@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MatrixDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ETUDIANTS">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MATRICULE" Type="text" />
+          <Property Name="NOM" Type="text" Nullable="false" />
+          <Property Name="PRENOM" Type="text" Nullable="false" />
+          <Property Name="CIVILITE" Type="text" />
+          <Property Name="PHOTO_IDENTITE" Type="image" />
+          <Property Name="NUMERO_ID" Type="text" />
+          <Property Name="TYPE_ID" Type="text" />
+          <Property Name="DATE_NAISSANCE" Type="date" />
+          <Property Name="NATIONALITE" Type="text" />
+          <Property Name="LIEU_NAISSANCE" Type="text" />
+          <Property Name="NUMERO_TEL" Type="text" />
+          <Property Name="ADRESS_EMAIL" Type="text" />
+          <Property Name="ADRESS_DOMICILE" Type="text" />
+          <Property Name="NOM_TUTEUR" Type="text" />
+          <Property Name="PRENOM_TUTEUR" Type="text" />
+          <Property Name="NUMERO_TEL_TUTEUR" Type="text" />
+          <Property Name="ADRESS_EMAIL_TUTEUR" Type="text" />
+          <Property Name="ADRESS_DOMICIL_TUTEUR" Type="text" />
+          <Property Name="STATUT" Type="text" />
+          <Property Name="DATE_REGISTRATION" Type="date" />
+        </EntityType>
+        <EntityContainer Name="MatrixDBModelStoreContainer">
+          <EntitySet Name="ETUDIANTS" EntityType="Self.ETUDIANTS" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MatrixDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ETUDIANT">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" />
+          <Property Name="MATRICULE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NOM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRENOM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CIVILITE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PHOTO_IDENTITE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="NUMERO_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TYPE_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_NAISSANCE" Type="DateTime" Precision="0" />
+          <Property Name="NATIONALITE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LIEU_NAISSANCE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NUMERO_TEL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ADRESS_EMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ADRESS_DOMICILE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NOM_TUTEUR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PRENOM_TUTEUR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NUMERO_TEL_TUTEUR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ADRESS_EMAIL_TUTEUR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ADRESS_DOMICIL_TUTEUR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="STATUT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_REGISTRATION" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="MatrixDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ETUDIANTS" EntityType="Self.ETUDIANT" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MatrixDBModelStoreContainer" CdmEntityContainer="MatrixDBEntities">
+          <EntitySetMapping Name="ETUDIANTS">
+            <EntityTypeMapping TypeName="MatrixDBModel.ETUDIANT">
+              <MappingFragment StoreEntitySet="ETUDIANTS">
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="MATRICULE" ColumnName="MATRICULE" />
+                <ScalarProperty Name="NOM" ColumnName="NOM" />
+                <ScalarProperty Name="PRENOM" ColumnName="PRENOM" />
+                <ScalarProperty Name="CIVILITE" ColumnName="CIVILITE" />
+                <ScalarProperty Name="PHOTO_IDENTITE" ColumnName="PHOTO_IDENTITE" />
+                <ScalarProperty Name="NUMERO_ID" ColumnName="NUMERO_ID" />
+                <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+                <ScalarProperty Name="DATE_NAISSANCE" ColumnName="DATE_NAISSANCE" />
+                <ScalarProperty Name="NATIONALITE" ColumnName="NATIONALITE" />
+                <ScalarProperty Name="LIEU_NAISSANCE" ColumnName="LIEU_NAISSANCE" />
+                <ScalarProperty Name="NUMERO_TEL" ColumnName="NUMERO_TEL" />
+                <ScalarProperty Name="ADRESS_EMAIL" ColumnName="ADRESS_EMAIL" />
+                <ScalarProperty Name="ADRESS_DOMICILE" ColumnName="ADRESS_DOMICILE" />
+                <ScalarProperty Name="NOM_TUTEUR" ColumnName="NOM_TUTEUR" />
+                <ScalarProperty Name="PRENOM_TUTEUR" ColumnName="PRENOM_TUTEUR" />
+                <ScalarProperty Name="NUMERO_TEL_TUTEUR" ColumnName="NUMERO_TEL_TUTEUR" />
+                <ScalarProperty Name="ADRESS_EMAIL_TUTEUR" ColumnName="ADRESS_EMAIL_TUTEUR" />
+                <ScalarProperty Name="ADRESS_DOMICIL_TUTEUR" ColumnName="ADRESS_DOMICIL_TUTEUR" />
+                <ScalarProperty Name="STATUT" ColumnName="STATUT" />
+                <ScalarProperty Name="DATE_REGISTRATION" ColumnName="DATE_REGISTRATION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

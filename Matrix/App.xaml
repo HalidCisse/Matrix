@@ -1,0 +1,18 @@
+﻿<Application x:Class="Matrix.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/ListBoxStyle.xaml"/>
+                <ResourceDictionary Source="Styles/ToolBarStyle.xaml"/>
+                <ResourceDictionary Source="Styles/MyWindowStyle.xaml"/>
+                <ResourceDictionary Source="Styles/MyForm.xaml"/>
+                <ResourceDictionary Source="Styles/MyButtonStyle.xaml"/>
+                <ResourceDictionary Source="Styles/Animations.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <!--<Style x:Key="ToolBarStyle" TargetType="ToolBar" />-->
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

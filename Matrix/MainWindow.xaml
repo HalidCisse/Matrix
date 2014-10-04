@@ -1,0 +1,38 @@
+﻿<Window x:Class="Matrix.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="660" Width="1100" MinHeight="550" MinWidth="850" WindowStartupLocation="CenterScreen" Background="Beige" Icon="/Images/mainicon.png" Style="{DynamicResource WindowStyle}">
+    
+    <Window.CommandBindings>
+        <!--<CommandBinding Command="ApplicationCommands.Cut" Executed="NavigateBack" />-->
+    </Window.CommandBindings>
+    
+    <Window.Resources>
+
+        <Style TargetType="Frame"  x:Key="HomeBackground">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <RadialGradientBrush>
+                        <RadialGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1.702" ScaleY="2.243"/>
+                                <SkewTransform AngleX="0" AngleY="0"/>
+                                <RotateTransform Angle="0"/>
+                                <TranslateTransform X="-0.368" Y="-0.152"/>
+                            </TransformGroup>
+                        </RadialGradientBrush.RelativeTransform>
+                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="Beige" Offset="1"/>
+                    </RadialGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    
+    <Grid Margin="10,0,10,10" Background="White">
+        <Frame x:Name="MainFrame"  NavigationUIVisibility="Hidden" Style="{DynamicResource HomeBackground}" />
+    </Grid>
+    
+   
+</Window>

@@ -1,0 +1,181 @@
+﻿<Window x:Class="Matrix.views.StudentINFO"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" WindowStartupLocation="CenterOwner" 
+      Height="600" Width="450" Style="{StaticResource MyForm}">
+
+    <Window.Resources>
+        
+        <LinearGradientBrush x:Key="BackBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientStop Color="#FFFFFD" Offset="0.1" />
+            <GradientStop Color="#CC9A9CAE" Offset="0.9" />
+        </LinearGradientBrush>
+
+        <Style x:Key="NoChromeButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="Chrome" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#ADADAD"/>
+                                <Setter Property="Opacity" TargetName="Chrome" Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PortraitPicStyle" TargetType="Image">
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Height" Value="150" />
+            <Setter Property="HorizontalAlignment" Value="Left" />           
+            
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Gray" ShadowDepth="2" BlurRadius="5" Opacity=".5" />
+                </Setter.Value>
+            </Setter>
+           
+        </Style>
+        
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="20"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource BackBrush}"/>           
+        </Style>
+        
+    </Window.Resources>
+    
+    <Grid Background="{StaticResource BackBrush}">       
+            
+        <DockPanel Margin="10,0">            
+                           
+            <StackPanel DockPanel.Dock="Top">
+
+                <DockPanel>
+
+                    <Button Name="PhotoID" Style="{StaticResource NoChromeButton}" Focusable="False" Background="Transparent" BorderThickness="0" Click="PhotoID_Click" ToolTip="Click Pour Changer">
+                        <Image Name="PHOTO_IDENTITY_" Style="{StaticResource PortraitPicStyle}" DockPanel.Dock="Left"/>
+                    </Button>                   
+                    
+                    <Grid  DockPanel.Dock="Right" Margin="10,-10,0,7">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <TextBlock Text="CIVILITE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                            <ComboBox Name="TITLE_" Width="100" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <TextBlock Text="NOM" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                            <TextBox Name="FIRSTNAME_" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                        </Grid>
+
+                        <Grid Grid.Row="2">
+                            <TextBlock Text="PRENOM" VerticalAlignment="Bottom"/>
+                            <TextBox Name="LASTNAME_" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                        </Grid>
+
+                        <Grid Grid.Row="3">
+                            <TextBlock Text="MATRICULE" VerticalAlignment="Bottom"/>
+                            <TextBox Name="STUDENT_ID_" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                        </Grid>
+                    </Grid>
+
+                </DockPanel>
+                
+                <Border Margin="-10,20,-10,0" Width="Auto" Height="10" Background="{StaticResource BackBrush}" BorderThickness="0"/>
+            
+            </StackPanel>
+                                 
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <TextBlock Text="Numero Identite" />
+                    <TextBox Name="IDENTITY_NUMBER_"/>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <TextBlock Text="Date de Naissance" />
+                    <DatePicker Name="BIRTH_DATE_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                </Grid>
+
+                <Grid  Grid.Row="2">
+                    <TextBlock Text="Nationalite" />
+                    <ComboBox Name="NATIONALITY_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <TextBlock Text="Lieu de Naissance" />
+                    <ComboBox Name="BIRTH_PLACE_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                </Grid>
+
+                <Grid Grid.Row="4">
+                    <TextBlock Text="Telephone" />
+                    <TextBox Name="PHONE_NUMBER_"/>
+                </Grid>
+
+                <Grid Grid.Row="5">
+                    <TextBlock Text="Adresse Email"/>
+                    <TextBox Name="EMAIL_ADRESS_"/>
+                </Grid>
+
+                <Grid Grid.Row="6">
+                    <TextBlock Text="Adresse Domicile"/>
+                    <TextBox Name="HOME_ADRESS_"/>
+                </Grid>
+
+                <Grid Grid.Row="7">
+                    <TextBlock Text="Statut"/>
+                    <ComboBox Name="STATUT_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                </Grid>
+
+                <Grid Grid.Row="8">
+                    <Button Name="Enregistrer" Content="Enregistrer" Margin="30,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Enregistrer_Click"/>
+                    <Button Name="Annuler"     Content="Annuler" Margin="30,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="Annuler_Click"/>
+                </Grid>
+
+            </Grid>
+                            
+        </DockPanel>
+                   
+    </Grid>
+</Window>
