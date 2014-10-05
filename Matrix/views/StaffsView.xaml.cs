@@ -33,7 +33,7 @@ namespace Matrix.views
 
         private void HomeButton_Click ( object sender, RoutedEventArgs e )
         {
-
+            NavigationService.Navigate (new Uri ("/views/HomePage.xaml", UriKind.Relative));
         }
 
         private void AddButton_Click ( object sender, RoutedEventArgs e )

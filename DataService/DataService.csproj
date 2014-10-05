@@ -59,6 +59,8 @@
   <ItemGroup>
     <Compile Include="Context\EF.cs" />
     <Compile Include="Context\Interface.cs" />
+    <Compile Include="Entities\Person.cs" />
+    <Compile Include="Entities\Staff.cs" />
     <Compile Include="Entities\Student.cs" />
     <Compile Include="Enum\Nationalite.cs" />
     <Compile Include="Enum\Statut.cs" />
@@ -71,6 +73,8 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="IS.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

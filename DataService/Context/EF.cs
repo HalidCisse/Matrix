@@ -11,6 +11,7 @@ namespace DataService.Context
         // 
         // If you wish to target a different database and/or database provider, modify the 'EF' 
         // connection string in the application configuration file.
+
         public EF ( ) : base ("name=EF")
         {
             Database.SetInitializer (new DropCreateDatabaseIfModelChanges<EF> ());
@@ -18,7 +19,9 @@ namespace DataService.Context
         }
 
 
-        public virtual DbSet<Student> Student { get; set; }
+        public virtual DbSet<Person> PERSON { get; set; }
+        public virtual DbSet<Staff> STAFF { get; set; }
+        public virtual DbSet<Student> STUDENT { get; set; }
 
 
 

@@ -11,18 +11,39 @@ namespace DataService.Initializer
     class DBInitializer : DropCreateDatabaseIfModelChanges<EF>
     {
 
-        protected override void Seed ( EF context )
-        {            
-            var MyStudents = new List<Student>{
-                new Student {STUDENT_ID = "DI100", FIRSTNAME = "Halid", LASTNAME = "Cisse", PHONE_NUMBER = "00122445545", PHOTO_IDENTITY = BitmapArrayFromFile(GetRes("/Images/defaultStudent.png"))},
-                new Student {STUDENT_ID = "DI102", FIRSTNAME = "Mat", LASTNAME = "Pearson", PHONE_NUMBER = "0012244545545", PHOTO_IDENTITY = BitmapArrayFromFile(GetRes("/Images/defaultStudent.png"))},
-                new Student {STUDENT_ID = "DI103", FIRSTNAME = "Dave" , LASTNAME = "Wood", PHONE_NUMBER = "001544545578", PHOTO_IDENTITY = BitmapArrayFromFile(GetRes("/Images/defaultStudent.png"))},
-                new Student {STUDENT_ID = "DI104", FIRSTNAME = "Adam", LASTNAME = "Nolan", PHONE_NUMBER = "0012445454545", PHOTO_IDENTITY = BitmapArrayFromFile(GetRes("/Images/defaultStudent.png"))}
-            };
+        protected override void Seed ( EF EF )
+        {
 
-            MyStudents.ForEach (Student => context.Student.Add (Student));
+            AddStudentSeed (EF);
+
+
+
         }
 
+
+
+        #region SEEDS
+
+        private static void AddStudentSeed ( EF EF )
+        {
+            var MyStudents = new List<Student>{
+                new Student {STUDENT_ID = "DI100", FIRSTNAME = "Halid", LASTNAME = "Cisse", PHONE_NUMBER = "00122445545"},
+                new Student {STUDENT_ID = "DI102", FIRSTNAME = "Mat", LASTNAME = "Pearson", PHONE_NUMBER = "0012244545545"},
+                new Student {STUDENT_ID = "DI103", FIRSTNAME = "Dave" , LASTNAME = "Wood", PHONE_NUMBER = "001544545578"},
+                new Student {STUDENT_ID = "DI104", FIRSTNAME = "Adam", LASTNAME = "Nolan", PHONE_NUMBER = "0012445454545"}
+            };
+
+            MyStudents.ForEach (Student => EF.STUDENT.Add (Student));
+        }
+
+
+
+
+        #endregion
+
+
+
+        #region Helpers
 
         private static byte[] BitmapArrayFromFile ( string ImageFilePath )
         {
@@ -47,5 +68,10 @@ namespace DataService.Initializer
             }
             return (new Uri (@"pack://application:,,,/" + assembly.GetName ().Name + ";component/" + pathInApplication, UriKind.Absolute).ToString ());
         }
+
+        #endregion
+
+
+
     }
 }
