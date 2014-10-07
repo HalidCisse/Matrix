@@ -335,6 +335,7 @@
     <Resource Include="Images\StaffIcon.png" />
     <Resource Include="Images\AgendaIcon.png" />
     <Resource Include="Images\AgendaIcon1.png" />
+    <Resource Include="Portrait\defaultStaff.png" />
     <Content Include="Samples\Magick.NET\Files\StillLife.cr2" />
     <Resource Include="Samples\Magick.NET\Output\Readme.txt" />
   </ItemGroup>

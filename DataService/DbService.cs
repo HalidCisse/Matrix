@@ -109,8 +109,7 @@ namespace DataService
         public Student GetStudentByID (string STudentID )
         {
             using(var Db = new EF ())
-            {
-                //var MyStudent = Db.Student.SingleOrDefault (S => S.STUDENT_ID == STudentID);
+            {              
                 var MyStudent = Db.STUDENT.Find (STudentID);
                 return MyStudent;
             }    

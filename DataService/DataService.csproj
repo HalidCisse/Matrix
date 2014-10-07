@@ -89,6 +89,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\defaultStaff.png" />
     <Content Include="Images\defaultStudent.png" />
   </ItemGroup>
   <ItemGroup>

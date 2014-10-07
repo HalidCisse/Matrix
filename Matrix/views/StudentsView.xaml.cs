@@ -23,8 +23,7 @@ namespace Matrix.views
         private void Page_Loaded ( object sender, RoutedEventArgs e ) {
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            if (worker.IsBusy) return;
-            worker.RunWorkerAsync();           
+            UpdateStudents();         
         }
       
        
@@ -36,18 +35,20 @@ namespace Matrix.views
         private void Studentslist_MouseDoubleClick ( object sender, MouseButtonEventArgs e ) {
             if (Studentslist == null) return;
             if (Studentslist.SelectedValue == null) return;
-            var wind = new StudentINFO (Studentslist.SelectedValue.ToString()) { Owner = Window.GetWindow (this) };
-            wind.OpenOption = "Mod";
+            var wind = new StudentINFO (Studentslist.SelectedValue.ToString())
+            {
+                Owner = Window.GetWindow(this),
+                OpenOption = "Mod"
+            };
             wind.ShowDialog();
-            Studentslist.ItemsSource = App.Db.GetAllStudents ();
+            UpdateStudents ();
         }
 
         private void AddButon_Click ( object sender, RoutedEventArgs e )
         {
-            var wind = new StudentINFO { Owner = Window.GetWindow (this) };
-            wind.OpenOption = "Add";
+            var wind = new StudentINFO {Owner = Window.GetWindow(this), OpenOption = "Add"};
             wind.ShowDialog ();
-            Studentslist.ItemsSource = App.Db.GetAllStudents ();
+            UpdateStudents ();
         }
 
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )
@@ -64,19 +65,24 @@ namespace Matrix.views
             if(MessageBox.Show (theGaName,"",MessageBoxButton.YesNo,MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {              
                 MessageBox.Show (App.Db.DeleteStudent (Studentslist.SelectedValue.ToString ()) ? "Supprimer Avec Succes" : "Echec");
-                Studentslist.ItemsSource = App.Db.GetAllStudents ();
+                UpdateStudents ();
             }
         }
 
           
-
-        
+       
 
         #region Background Works
 
         private readonly BackgroundWorker worker = new BackgroundWorker ();
         
         private List<Student> StudentsBuff;
+
+        private void UpdateStudents()
+        {
+            if(worker.IsBusy) return;
+            worker.RunWorkerAsync (); 
+        }
 
         private void worker_DoWork(object sender, DoWorkEventArgs e) {                     
             StudentsBuff = App.Db.GetAllStudents ();            
@@ -90,12 +96,5 @@ namespace Matrix.views
         #endregion
 
         
-
-
-
-
-
-
-
     }
 }

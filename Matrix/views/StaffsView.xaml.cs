@@ -27,11 +27,8 @@ namespace Matrix.views
         {
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            if(worker.IsBusy) return;
-            worker.RunWorkerAsync (); 
+            UpdateStaff();
         }
-
-
 
         private void HomeButton_Click ( object sender, RoutedEventArgs e )
         {
@@ -40,10 +37,10 @@ namespace Matrix.views
 
         private void AddButton_Click ( object sender, RoutedEventArgs e )
         {
-            var wind = new StaffINFO { Owner = Window.GetWindow (this) };
-            wind.OpenOption = "Add";
+            var wind = new StaffINFO {Owner = Window.GetWindow(this), OpenOption = "Add"};
             wind.ShowDialog ();
-            StaffList.ItemsSource = App.Db.GetAllStaffs ();
+            //StaffList.ItemsSource = App.Db.GetAllStaffs ();
+            UpdateStaff();
         }
 
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )
@@ -60,17 +57,20 @@ namespace Matrix.views
             if (MessageBox.Show(theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
 
             MessageBox.Show (App.Db.DeleteStaff (StaffList.SelectedValue.ToString ()) ? "Supprimer Avec Succes" : "Echec");
-            StaffList.ItemsSource = App.Db.GetAllStaffs ();
+            UpdateStaff ();
         }
 
         private void StaffList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {
             if (StaffList == null) return;
             if (StaffList.SelectedValue == null) return;
-            var wind = new StaffINFO (StaffList.SelectedValue.ToString ()) { Owner = Window.GetWindow (this) };
-            wind.OpenOption = "Mod";
+            var wind = new StaffINFO (StaffList.SelectedValue.ToString ())
+            {
+                Owner = Window.GetWindow(this),
+                OpenOption = "Mod"
+            };
             wind.ShowDialog ();
-            StaffList.ItemsSource = App.Db.GetAllStudents ();
+            UpdateStaff ();
         }
 
 
@@ -81,12 +81,15 @@ namespace Matrix.views
         private readonly BackgroundWorker worker = new BackgroundWorker ();
 
         private List<Staff> StaffBuff;
-
+        private void UpdateStaff ( )
+        {
+            if(worker.IsBusy) return;
+            worker.RunWorkerAsync ();
+        }
         private void worker_DoWork ( object sender, DoWorkEventArgs e )
         {
             StaffBuff = App.Db.GetAllStaffs();         
         }
-
         private void worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {
             StaffList.ItemsSource = StaffBuff;

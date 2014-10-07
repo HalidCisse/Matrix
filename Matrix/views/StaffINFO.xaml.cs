@@ -16,11 +16,10 @@ using DataService.Entities;
 using Matrix.Utils;
 using Microsoft.Win32;
 
+
 namespace Matrix.views
 {
-    /// <summary>
-    /// Interaction logic for StaffINFO.xaml
-    /// </summary>
+    
     public partial class StaffINFO
     {
         public string OpenOption;
@@ -64,15 +63,13 @@ namespace Matrix.views
         {
             STUDENT_ID_.Text = GenNewStaffID ();
             TITLE_.SelectedIndex = 0;
-            //PHOTO_IDENTITY_.Source = PHOTO_IDENTITY_.Source = new BitmapImage (new Uri (Res.GetRes ("Portrait/defaultStaff.png")));
+            PHOTO_IDENTITY_.Source = PHOTO_IDENTITY_.Source = new BitmapImage (new Uri (Res.GetRes ("Portrait/defaultStaff.png")));
             PHONE_NUMBER_.Text =  "+00";
             BIRTH_DATE_.SelectedDate = DateTime.Today.AddDays (-7000);
             NATIONALITY_.SelectedIndex = 0;
             BIRTH_PLACE_.SelectedIndex = 0;
             STATUT_.SelectedIndex = 0;
         }
-
-        
 
         private void DisplayStaff ( Staff StaffToDisplay )
         {
