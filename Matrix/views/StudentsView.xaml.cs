@@ -1,19 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+//using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using DataService.Entities;
 
 namespace Matrix.views
@@ -23,7 +14,7 @@ namespace Matrix.views
     /// </summary>
     public partial class StudentsView
     {
-        #region Constructors
+       
 
         public StudentsView ( ) {
             InitializeComponent ();               
@@ -36,28 +27,18 @@ namespace Matrix.views
             worker.RunWorkerAsync();           
         }
       
-
-        #endregion
-
-
-
-        #region Navigations
-        
+       
         private void StudentsViewBackButton_Click ( object sender, RoutedEventArgs e )
         {
             NavigationService.Navigate (new Uri ("/views/HomePage.xaml", UriKind.Relative));
         }
 
         private void Studentslist_MouseDoubleClick ( object sender, MouseButtonEventArgs e ) {
-            if (Studentslist != null)
-            {
-                if (Studentslist.SelectedValue != null)
-                {
-                    var wind = new StudentINFO (Studentslist.SelectedValue.ToString()) { Owner = Window.GetWindow (this) };
-                    wind.OpenOption = "Mod";
-                    wind.ShowDialog();
-                }
-            }
+            if (Studentslist == null) return;
+            if (Studentslist.SelectedValue == null) return;
+            var wind = new StudentINFO (Studentslist.SelectedValue.ToString()) { Owner = Window.GetWindow (this) };
+            wind.OpenOption = "Mod";
+            wind.ShowDialog();
             Studentslist.ItemsSource = App.Db.GetAllStudents ();
         }
 
@@ -87,7 +68,7 @@ namespace Matrix.views
             }
         }
 
-        #endregion        
+          
 
         
 

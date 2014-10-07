@@ -27,6 +27,18 @@ namespace DataService.Entities
 
         public DateTime? REGISTRATION_DATE { get; set; }
 
-        
+        #region Trans
+
+        public string FULL_NAME
+        {
+            get
+            {
+                return FIRSTNAME + " " + LASTNAME;
+            }
+        }
+
+        #endregion
+
+
     }
 }

@@ -36,7 +36,7 @@
                 </Grid>
             </ToolBar>
             <Grid Background="Transparent" Margin="0" DockPanel.Dock="Bottom">
-                <ListBox Name="Studentslist" Style="{DynamicResource ListBoxStyle}" SelectedValuePath="STUDENT_ID"  MouseDoubleClick="Studentslist_MouseDoubleClick"/>
+                <ListBox Name="Studentslist" Style="{DynamicResource StudentListBoxStyle}" SelectedValuePath="STUDENT_ID"  MouseDoubleClick="Studentslist_MouseDoubleClick"/>
             </Grid>
         </DockPanel>
 

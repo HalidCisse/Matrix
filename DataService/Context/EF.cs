@@ -1,5 +1,7 @@
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using DataService.Entities;
+using DataService.Initializer;
 
 namespace DataService.Context
 {
@@ -14,8 +16,9 @@ namespace DataService.Context
 
         public EF ( ) : base ("name=EF")
         {
-            Database.SetInitializer (new DropCreateDatabaseIfModelChanges<EF> ());
-            //Database.SetInitializer (new DBInitializer ());
+            //Database.SetInitializer (new DropCreateDatabaseIfModelChanges<EF> ());
+            Configuration.ProxyCreationEnabled = false;           
+            Database.SetInitializer (new DBInitializer ());
         }
 
 
@@ -24,6 +27,16 @@ namespace DataService.Context
         public virtual DbSet<Student> STUDENT { get; set; }
 
 
+        protected override void OnModelCreating ( DbModelBuilder modelBuilder )
+        {
+            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention> ();
+
+            //modelBuilder.Entity<Course> ()
+            //    .HasMany (c => c.Instructors).WithMany (i => i.Courses)
+            //    .Map (t => t.MapLeftKey ("CourseID")
+            //        .MapRightKey ("InstructorID")
+            //        .ToTable ("CourseInstructor"));
+        }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.

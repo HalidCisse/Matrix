@@ -38,6 +38,7 @@ namespace DataService.Entities
         public string STATUT { get; set; }
 
 
+        #region Trans
         public string FULL_NAME
         {
             get
@@ -46,7 +47,24 @@ namespace DataService.Entities
             }
         }
 
+        public string COURSE 
+        {
+            get
+            {
+                return "Software Developper ";
+            }
+        }
 
+        public string LEVEL
+        {
+            get
+            {
+                return "1 ere Annnee";
+            }
+        }
+
+
+        #endregion
 
     }
 }

@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Windows;
 using DataService.Context;
 using DataService.Entities;
 namespace DataService
 {
-    public class Service: Interface
+    public class DbService //: Interface
     {
 
 
@@ -63,11 +64,6 @@ namespace DataService
             return new List<string> { "Regulier", "Irregulier", "Abandonner", "Radier" };
         }
 
-
-
-
-
-
         #endregion
 
 
@@ -75,7 +71,6 @@ namespace DataService
 
 
         #region C R U D
-
 
         public bool AddStudent(Student MyStudent)
         {          
@@ -105,18 +100,11 @@ namespace DataService
             }
         }
 
-       
-
-
-
         #endregion
 
 
 
         #region Get Student BY
-
-
-
 
         public Student GetStudentByID (string STudentID )
         {
@@ -128,7 +116,7 @@ namespace DataService
             }    
         }
 
-        public Student GetStudentByFullName (string FirstANDLastName )
+        public static Student GetStudentByFullName (string FirstANDLastName )
         {
             using(var Db = new EF ())
             {
@@ -137,9 +125,6 @@ namespace DataService
                 return MyStudent;
             }
         }
-
-
-
 
         #endregion
 
@@ -180,8 +165,20 @@ namespace DataService
         {
             using(var Db = new EF ())
             {
-                return Db.STUDENT.Find(StudentID) != null;
-            }  
+
+                try
+                {
+                    return Db.STUDENT.Find (StudentID) != null;
+                }
+                catch(Exception e)
+                {
+                    
+                    MessageBox.Show(e.InnerException.ToString()) ;
+                }
+
+            }
+
+            return false;
         }
 
 
@@ -200,7 +197,7 @@ namespace DataService
         #region PERSON C-R-U-D
 
 
-        public bool AddPerson ( Person MyPerson )
+        public static bool AddPerson ( Person MyPerson )
         {
             using(var Db = new EF ())
             {
@@ -209,7 +206,7 @@ namespace DataService
             }
         }
 
-        public bool UpdatePerson ( Person MyPerson )
+        public static bool UpdatePerson ( Person MyPerson )
         {
             using(var Db = new EF ())
             {
@@ -219,7 +216,7 @@ namespace DataService
             }
         }
 
-        public bool DeletePerson ( string PersonID )
+        public static bool DeletePerson ( string PersonID )
         {
             using(var Db = new EF ())
             {
@@ -237,6 +234,16 @@ namespace DataService
 
         #region GET PERSON BY
 
+        public static List<Person> GetAllPersons ( )
+        {
+            using(var Db = new EF ())
+            {
+                var Persons = Db.PERSON.ToList ();
+
+                return Persons;
+            }
+        }
+
         public Person GetPersonByID ( string PersonID )
         {
             using(var Db = new EF ())
@@ -246,7 +253,7 @@ namespace DataService
             }
         }
 
-        public Person GetPersonByFullName ( string FirstANDLastName )
+        public static Person GetPersonByFullName ( string FirstANDLastName )
         {
             using(var Db = new EF ())
             {
@@ -270,20 +277,20 @@ namespace DataService
 
         #region STAFF C-R-U-D
 
-
-        public bool AddStaff ( Staff MyStaff )
+        public bool AddStaff ( Staff MyStaff)
         {
             using(var Db = new EF ())
-            {
+            {              
+                Db.PERSON.Add (new Person { PERSON_ID = "STAFF_ID" + MyStaff.STAFF_ID });
                 Db.STAFF.Add (MyStaff);
                 return Db.SaveChanges () > 0;
             }
         }
 
-        public bool UpdateStaff ( Staff MyStaff )
+        public bool UpdateStaff ( Staff MyStaff)
         {
             using(var Db = new EF ())
-            {
+            {              
                 Db.STAFF.Attach (MyStaff);
                 Db.Entry (MyStaff).State = EntityState.Modified;
                 return Db.SaveChanges () > 0;
@@ -295,13 +302,10 @@ namespace DataService
             using(var Db = new EF ())
             {
                 Db.STAFF.Remove (Db.STAFF.Find (StaffID));
+                Db.PERSON.Remove(Db.PERSON.Find("STAFF_ID" + StaffID));               
                 return Db.SaveChanges () > 0;
             }
         }
-
-
-
-
 
         #endregion
 
@@ -318,21 +322,33 @@ namespace DataService
         public Staff GetStaffByFullName ( string FirstANDLastName )
         {
             using(var Db = new EF ())
-            {
-                var MyPerson = GetPersonByFullName(FirstANDLastName);
+            {             
+                var MyStaff = Db.STAFF.SingleOrDefault (S => "STAFF_ID" + S.STAFF_ID ==  GetPersonByFullName (FirstANDLastName).PERSON_ID);
 
-                //var MyStaff = Db.Staff.SingleOrDefault (S => S.PERSON_ID == MyPerson);
-
-                return null;
+                return MyStaff;
             }
         }
 
 
-
+        public List<Staff> GetAllStaffs ( )
+        {
+            using(var Db = new EF ())
+            {
+                return Db.STAFF.ToList ();
+            }
+        }
 
 
         #endregion
 
+
+        public string GetStaffFullName ( string StaffID )
+        {
+            using(var Db = new EF ())
+            {               
+                return Db.STAFF.Find (StaffID).FULL_NAME;
+            }
+        }
 
         #endregion
 

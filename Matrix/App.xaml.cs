@@ -19,20 +19,20 @@ namespace Matrix
 
             try
             {
-                new Thread (( ) => Db = new Service ()) { Name = "DataThread", Priority = ThreadPriority.Highest }.Start ();
+                new Thread (( ) => Db = new DbService ()) { Name = "DataThread", Priority = ThreadPriority.Highest }.Start ();
 
             }
             catch(System.Exception e)
             {
-                
-                MessageBox.Show(e.Message);
+
+                MessageBox.Show (e.Message);
             }           
         }
 
        
         static public string _currentUser;
 
-        public static Service Db { get;
+        public static DbService Db { get;
             private set;
         }
 
