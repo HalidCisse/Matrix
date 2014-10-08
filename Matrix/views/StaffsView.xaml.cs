@@ -17,7 +17,6 @@ namespace Matrix.views
     public partial class StaffsView
     {
 
-
         public StaffsView ( )
         {
             InitializeComponent ();

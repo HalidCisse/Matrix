@@ -8,7 +8,7 @@ namespace DataService.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.People",
+                "dbo.Person",
                 c => new
                     {
                         PERSON_ID = c.String(nullable: false, maxLength: 128),
@@ -24,30 +24,24 @@ namespace DataService.Migrations
                         EMAIL_ADRESS = c.String(),
                         HOME_ADRESS = c.String(),
                         REGISTRATION_DATE = c.DateTime(),
-                    })
-                .PrimaryKey(t => t.PERSON_ID);
-            
-            CreateTable(
-                "dbo.Staffs",
-                c => new
-                    {
-                        STAFF_ID = c.String(nullable: false, maxLength: 128),
+                        STAFF_ID = c.String(),
                         POSITION = c.String(),
                         DEPARTEMENT = c.String(),
                         QUALIFICATION = c.String(),
                         HIRED_DATE = c.String(),
                         STATUT = c.String(),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
                     })
-                .PrimaryKey(t => t.STAFF_ID);
+                .PrimaryKey(t => t.PERSON_ID);
             
             CreateTable(
-                "dbo.Students",
+                "dbo.Student",
                 c => new
                     {
                         STUDENT_ID = c.String(nullable: false, maxLength: 128),
                         TITLE = c.String(),
-                        FIRSTNAME = c.String(nullable: false),
-                        LASTNAME = c.String(nullable: false),
+                        FIRSTNAME = c.String(),
+                        LASTNAME = c.String(),
                         PHOTO_IDENTITY = c.Binary(),
                         NATIONALITY = c.String(),
                         IDENTITY_NUMBER = c.String(),
@@ -65,9 +59,8 @@ namespace DataService.Migrations
         
         public override void Down()
         {
-            DropTable("dbo.Students");
-            DropTable("dbo.Staffs");
-            DropTable("dbo.People");
+            DropTable("dbo.Student");
+            DropTable("dbo.Person");
         }
     }
 }

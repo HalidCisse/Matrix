@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Windows;
 using DataService.Context;
 using DataService.Entities;
 
@@ -21,19 +22,22 @@ namespace DataService.Migrations
         }
 
         protected override void Seed(EF EF)
-        {           
+        {
+            
+
             //AddPersonSeed (EF);
             AddStudentSeed (EF);
             AddStaffSeed (EF);
         }
 
-
+        
 
 
         #region SEEDS
 
         private static void AddStudentSeed ( EF EF )
         {
+            MessageBox.Show ("adding student");
             ImageBuff = BitmapArrayFromFile ("defaultStudent.png");
 
             var MyStudents = new List<Student>{
@@ -43,35 +47,46 @@ namespace DataService.Migrations
                 new Student {STUDENT_ID = "DI104", FIRSTNAME = "Adam", LASTNAME = "Nolan", PHONE_NUMBER = "0012445454545", PHOTO_IDENTITY = ImageBuff}
             };
 
-            MyStudents.ForEach (Student => EF.STUDENT.AddOrUpdate (Student));
+            MyStudents.ForEach (Student => EF.STUDENT.Add (Student));
+
+            MessageBox.Show ("Finish student");
         }
 
         private static void AddPersonSeed ( EF EF )
         {
             ImageBuff = BitmapArrayFromFile ("defaultStudent.png");
 
+            MessageBox.Show("adding person");
+
             var MyPersons = new List<Person> {
-                new Person {PERSON_ID = "STAFF_IDDI100", FIRSTNAME = "Halid", LASTNAME = "Cisse", PHONE_NUMBER = "00122445545", PHOTO_IDENTITY = ImageBuff},
-                new Person {PERSON_ID = "STAFF_IDDI102", FIRSTNAME = "Mat", LASTNAME = "Pearson", PHONE_NUMBER = "0012244545545", PHOTO_IDENTITY = ImageBuff},
-                new Person {PERSON_ID = "STAFF_IDDI103", FIRSTNAME = "Dave" , LASTNAME = "Wood", PHONE_NUMBER = "001544545578"},
-                new Person {PERSON_ID = "STAFF_IDDI104", FIRSTNAME = "Adam", LASTNAME = "Nolan", PHONE_NUMBER = "0012445454545"}
+                //new Person {PERSON_ID = "DI100", FIRSTNAME = "Halid", LASTNAME = "Cisse", PHONE_NUMBER = "00122445545"},
+                //new Person {PERSON_ID = "DI102", FIRSTNAME = "Mat", LASTNAME = "Pearson", PHONE_NUMBER = "0012244545545"},
+                //new Person {PERSON_ID = "DI103", FIRSTNAME = "Dave" , LASTNAME = "Wood", PHONE_NUMBER = "001544545578"},
+                //new Person {PERSON_ID = "DI104", FIRSTNAME = "Adam", LASTNAME = "Nolan", PHONE_NUMBER = "0012445454545"}
             };
 
-            MyPersons.ForEach (Person => EF.PERSON.AddOrUpdate (Person));
+            //MyPersons.ForEach (Person => EF.PERSON.AddOrUpdate (Person));
         }
 
         private static void AddStaffSeed ( EF EF )
         {
+            MessageBox.Show ("adding staff");
+
             ImageBuff = BitmapArrayFromFile ("defaultStaff.png");
 
+            
+
             var MyStaffs = new List<Staff> {
-                new Staff {STAFF_ID = "DI100", DEPARTEMENT = "Info", POSITION = "Chef de Departement Info"},
-                new Staff {STAFF_ID = "DI102", DEPARTEMENT = "Math", POSITION = "Chef de Departement"},
-                new Staff {STAFF_ID = "DI103", DEPARTEMENT = "Bio", POSITION = "Chef de Departement"},
-                new Staff {STAFF_ID = "DI104", DEPARTEMENT = "Chimie", POSITION = "Chef de Departement"}
+                new Staff {STAFF_ID = "DI100", DEPARTEMENT = "Info", POSITION = "Chef de Departement Info", FIRSTNAME = "Halid", LASTNAME = "cisse", PHOTO_IDENTITY = ImageBuff},
+                new Staff {STAFF_ID = "DI102", DEPARTEMENT = "Math", POSITION = "Chef de Departement", FIRSTNAME = "Oumar", LASTNAME = "Diallo", PHOTO_IDENTITY = ImageBuff},
+                new Staff {STAFF_ID = "DI103", DEPARTEMENT = "Bio", POSITION = "Chef de Departement", FIRSTNAME = "Amadou", LASTNAME = "Sekou", PHOTO_IDENTITY = ImageBuff},
+                new Staff {STAFF_ID = "DI104", DEPARTEMENT = "Chimie", POSITION = "Chef de Departement", FIRSTNAME = "Kadia", LASTNAME = "Keita", PHOTO_IDENTITY = ImageBuff}
             };
 
-            MyStaffs.ForEach (Staff => EF.STAFF.AddOrUpdate (Staff));
+            MessageBox.Show ("adding staff data");
+            MyStaffs.ForEach (Staff => EF.STAFF.Add(Staff));
+            MessageBox.Show ("Finish staff");
+
         }
 
 

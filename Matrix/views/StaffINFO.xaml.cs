@@ -61,7 +61,7 @@ namespace Matrix.views
 
         private void DisplayDefault()
         {
-            STUDENT_ID_.Text = GenNewStaffID ();
+            ID_.Text = GenNewStaffID ();
             TITLE_.SelectedIndex = 0;
             PHOTO_IDENTITY_.Source = PHOTO_IDENTITY_.Source = new BitmapImage (new Uri (Res.GetRes ("Portrait/defaultStaff.png")));
             PHONE_NUMBER_.Text =  "+00";
@@ -75,8 +75,8 @@ namespace Matrix.views
         {
             if(StaffToDisplay == null) return;
 
-            STUDENT_ID_.Text = StaffToDisplay.STAFF_ID;
-            STUDENT_ID_.IsEnabled = false;
+            ID_.Text = StaffToDisplay.STAFF_ID;
+            ID_.IsEnabled = false;
             TITLE_.SelectedValue = StaffToDisplay.TITLE;
             FIRSTNAME_.Text = StaffToDisplay.FIRSTNAME;
             LASTNAME_.Text = StaffToDisplay.LASTNAME;
@@ -103,7 +103,7 @@ namespace Matrix.views
 
             var MyStaff= new Staff
             {
-                STAFF_ID = STUDENT_ID_.Text.Trim (),
+                STAFF_ID = ID_.Text.Trim (),
                 TITLE = TITLE_.SelectedValue.ToString (),
                 FIRSTNAME = FIRSTNAME_.Text.Trim (),
                 LASTNAME = LASTNAME_.Text.Trim (),
@@ -138,32 +138,31 @@ namespace Matrix.views
         {
             string idOut;
 
-            do idOut = "M" + DateTime.Today.Year + GenID.GetID (4); while(App.Db.StudentExist (idOut));
+            do idOut = "S" + DateTime.Today.Year + GenID.GetID (4); while(App.Db.StudentExist (idOut));
 
             return idOut;
         }
         private bool ChampsValidated ( )
         {
-
+          
             var Ok = true;
 
 
             if(OpenOption == "Add")
             {
-                if(string.IsNullOrEmpty (STUDENT_ID_.Text))
+                if(string.IsNullOrEmpty (ID_.Text))
                 {
-                    STUDENT_ID_.BorderBrush = Brushes.Red;
+                    ID_.BorderBrush = Brushes.Red;
                     Ok = false;
                 }
-                else if(App.Db.StudentExist (STUDENT_ID_.Text.Trim ()))
+                else if(App.Db.StudentExist (ID_.Text.Trim ()))
                 {
-                    MessageBox.Show ("Ce numero de Matricule Est Deja Utiliser par " +
-                                    App.Db.GetStudentName (STUDENT_ID_.Text.Trim ()));
+                    MessageBox.Show ("Ce Numero de Matricule Est Deja Utiliser par " + App.Db.GetStaffFullName (ID_.Text.Trim ()));
                     return false;
                 }
                 else
                 {
-                    STUDENT_ID_.BorderBrush = Brushes.Blue;
+                    ID_.BorderBrush = Brushes.Blue;
                 }
             }
 

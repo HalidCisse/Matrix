@@ -272,82 +272,64 @@ namespace DataService
 
 
 
-        #region STAFF
-
         #region STAFF C-R-U-D
 
+
+        private readonly EF D = new EF();
+
+        
         public bool AddStaff ( Staff MyStaff)
-        {
-            using(var Db = new EF ())
-            {              
-                Db.PERSON.Add (new Person { PERSON_ID = "STAFF_ID" + MyStaff.STAFF_ID });
-                Db.STAFF.Add (MyStaff);
-                return Db.SaveChanges () > 0;
-            }
+        {                      
+            D.STAFF.Add (MyStaff);
+            return D.SaveChanges () > 0;          
         }
 
         public bool UpdateStaff ( Staff MyStaff)
-        {
-            using(var Db = new EF ())
-            {              
-                Db.STAFF.Attach (MyStaff);
-                Db.Entry (MyStaff).State = EntityState.Modified;
-                return Db.SaveChanges () > 0;
-            }
+        {                       
+            D.STAFF.Attach (MyStaff);
+            D.Entry (MyStaff).State = EntityState.Modified;
+            return D.SaveChanges () > 0;
+            
         }
 
         public bool DeleteStaff ( string StaffID )
-        {
-            using(var Db = new EF ())
-            {
-                Db.STAFF.Remove (Db.STAFF.Find (StaffID));
-                Db.PERSON.Remove(Db.PERSON.Find("STAFF_ID" + StaffID));               
-                return Db.SaveChanges () > 0;
-            }
+        {          
+            D.STAFF.Remove (D.STAFF.Find (StaffID));                    
+            return D.SaveChanges () > 0;            
         }
 
-        #endregion
-
-        #region GET STAFF BY
-
         public Staff GetStaffByID ( string StaffID )
-        {
-            using(var Db = new EF ())
-            {
-                return Db.STAFF.Find (StaffID);
-            }
+        {          
+            return D.STAFF.Find (StaffID);            
         }
 
         public Staff GetStaffByFullName ( string FirstANDLastName )
         {
-            using(var Db = new EF ())
-            {             
-                var MyStaff = Db.STAFF.SingleOrDefault (S => "STAFF_ID" + S.STAFF_ID ==  GetPersonByFullName (FirstANDLastName).PERSON_ID);
+            var MyStaff = D.STAFF.SingleOrDefault (S => S.FULL_NAME ==  FirstANDLastName);
 
-                return MyStaff;
-            }
+            return MyStaff;           
         }
-
 
         public List<Staff> GetAllStaffs ( )
-        {
-            using(var Db = new EF ())
-            {
-                return Db.STAFF.ToList ();
-            }
+        {           
+            return D.STAFF.ToList ();            
         }
 
+        public List<string> GetAllStaffsID ( )
+        {
+            List<string> IDs = null;
 
-        #endregion
+            IDs.AddRange(D.STAFF.ToList().Select(S => S.STAFF_ID));
 
+            return IDs;
+        }
 
         public string GetStaffFullName ( string StaffID )
-        {
-            using(var Db = new EF ())
-            {               
-                return Db.STAFF.Find (StaffID).FULL_NAME;
-            }
+        {                         
+            return D.STAFF.Find (StaffID).FULL_NAME;            
         }
+
+
 
         #endregion
 

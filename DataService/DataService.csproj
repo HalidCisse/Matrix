@@ -44,6 +44,7 @@
     <Reference Include="System">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations">
       <Private>True</Private>
     </Reference>
@@ -63,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Context\EF.cs" />
     <Compile Include="Context\Interface.cs" />
+    <Compile Include="Entities\Human.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Staff.cs" />
     <Compile Include="Entities\Student.cs" />
@@ -70,13 +72,9 @@
     <Compile Include="Enum\Statut.cs" />
     <Compile Include="Enum\Title.cs" />
     <Compile Include="Initializer\DBInitializer.cs" />
-    <Compile Include="Migrations\201410062357322_kk.cs" />
-    <Compile Include="Migrations\201410062357322_kk.Designer.cs">
-      <DependentUpon>201410062357322_kk.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410062358280_KKKK.cs" />
-    <Compile Include="Migrations\201410062358280_KKKK.Designer.cs">
-      <DependentUpon>201410062358280_KKKK.cs</DependentUpon>
+    <Compile Include="Migrations\201410081806459_kk.cs" />
+    <Compile Include="Migrations\201410081806459_kk.Designer.cs">
+      <DependentUpon>201410081806459_kk.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,12 +91,12 @@
     <Content Include="Images\defaultStudent.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201410062357322_kk.resx">
-      <DependentUpon>201410062357322_kk.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201410081806459_kk.resx">
+      <DependentUpon>201410081806459_kk.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410062358280_KKKK.resx">
-      <DependentUpon>201410062358280_KKKK.cs</DependentUpon>
-    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
