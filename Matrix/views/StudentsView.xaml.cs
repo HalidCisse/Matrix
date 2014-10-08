@@ -48,7 +48,7 @@ namespace Matrix.views
         {
             var wind = new StudentINFO {Owner = Window.GetWindow(this), OpenOption = "Add"};
             wind.ShowDialog ();
-            UpdateStudents ();
+            UpdateStudents ();           
         }
 
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )

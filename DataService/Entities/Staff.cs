@@ -14,8 +14,8 @@ namespace DataService.Entities
         [Key]
         public string STAFF_ID { get; set; }
 
-        //[ForeignKey ("PERSON")]
-        //public string PERSON_ID { get; set; }
+        [ForeignKey("PERSON")]
+        public string PERSON_ID {get; set ; }
 
         public string POSITION { get; set; }    
         public string DEPARTEMENT { get; set; }
@@ -26,7 +26,7 @@ namespace DataService.Entities
         public string STATUT { get; set; }  // suspended, regulier, Licencier
 
        // [Required]
-       // public virtual Person PERSON { get; set; }
+        public virtual Person PERSON { get; set; }
 
 
         #region The Person
