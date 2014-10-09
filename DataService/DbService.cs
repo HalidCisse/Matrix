@@ -299,7 +299,10 @@ namespace DataService
         }
 
         public Staff GetStaffByID ( string StaffID )
-        {          
+        {
+        //    var productNames = 
+        //from p in products
+        //select p.ProductName; 
             return D.STAFF.Find (StaffID);            
         }
 

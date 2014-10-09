@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using DataService.Entities;
 using Matrix.Utils;
 using Microsoft.Win32;
-
+//using Xceed.Wpf.Toolkit;
 
 namespace Matrix.views
 {
@@ -64,6 +64,12 @@ namespace Matrix.views
             ID_.Text = GenNewStaffID ();
             TITLE_.SelectedIndex = 0;
             PHOTO_IDENTITY_.Source = PHOTO_IDENTITY_.Source = new BitmapImage (new Uri (Res.GetRes ("Portrait/defaultStaff.png")));
+            
+            POSITION_.SelectedIndex = 0;
+            DEPARTEMENT_.SelectedIndex = 0;
+            QUALIFICATION_.SelectedIndex = 0;
+            HIRED_DATE_.SelectedDate = DateTime.Today.Date;
+
             PHONE_NUMBER_.Text =  "+00";
             BIRTH_DATE_.SelectedDate = DateTime.Today.AddDays (-7000);
             NATIONALITY_.SelectedIndex = 0;
@@ -81,10 +87,16 @@ namespace Matrix.views
             FIRSTNAME_.Text = StaffToDisplay.FIRSTNAME;
             LASTNAME_.Text = StaffToDisplay.LASTNAME;
             PHOTO_IDENTITY_.Source = ImageUtils.DecodePhoto (StaffToDisplay.PHOTO_IDENTITY);
+
+            POSITION_.Text = StaffToDisplay.POSITION;
+            DEPARTEMENT_.Text = StaffToDisplay.DEPARTEMENT;
+            QUALIFICATION_.Text = StaffToDisplay.QUALIFICATION;
+            HIRED_DATE_.SelectedDate = StaffToDisplay.HIRED_DATE;
+
             IDENTITY_NUMBER_.Text = StaffToDisplay.IDENTITY_NUMBER;
             BIRTH_DATE_.SelectedDate = StaffToDisplay.BIRTH_DATE;
-            NATIONALITY_.SelectedValue = StaffToDisplay.NATIONALITY;
-            BIRTH_PLACE_.SelectedValue = StaffToDisplay.BIRTH_PLACE;
+            NATIONALITY_.Text = StaffToDisplay.NATIONALITY;
+            BIRTH_PLACE_.Text = StaffToDisplay.BIRTH_PLACE;
             PHONE_NUMBER_.Text = StaffToDisplay.PHONE_NUMBER;
             EMAIL_ADRESS_.Text = StaffToDisplay.EMAIL_ADRESS;
             HOME_ADRESS_.Text = StaffToDisplay.HOME_ADRESS;
@@ -108,6 +120,12 @@ namespace Matrix.views
                 FIRSTNAME = FIRSTNAME_.Text.Trim (),
                 LASTNAME = LASTNAME_.Text.Trim (),
                 PHOTO_IDENTITY = ImageUtils.getPNGFromImageControl (PHOTO_IDENTITY_.Source as BitmapImage),
+
+                POSITION = POSITION_.SelectedValue.ToString (),
+                DEPARTEMENT = DEPARTEMENT_.SelectedValue.ToString (),
+                QUALIFICATION = QUALIFICATION_.SelectedValue.ToString (),
+                HIRED_DATE = HIRED_DATE_.SelectedDate.Value,
+
                 IDENTITY_NUMBER = IDENTITY_NUMBER_.Text.Trim (),
                 BIRTH_DATE = BIRTH_DATE_.SelectedDate.Value,
                 NATIONALITY = NATIONALITY_.SelectedValue.ToString (),
@@ -142,6 +160,7 @@ namespace Matrix.views
 
             return idOut;
         }
+
         private bool ChampsValidated ( )
         {
           
@@ -247,6 +266,74 @@ namespace Matrix.views
             return Ok;
         }
 
+
+
+        #region EXPANDERS
+
+        private void CoursExpander_Collapsed ( object sender, RoutedEventArgs e )
+        {
+            if(InfoExpander != null && (RoleExpander != null && (MatiereExpander != null && (!MatiereExpander.IsExpanded && !RoleExpander.IsExpanded && !InfoExpander.IsExpanded))))
+            {
+                MatiereExpander.IsExpanded = true;
+            }
+        }
+
+        private void CoursExpander_Expanded ( object sender, RoutedEventArgs e )
+        {
+            if(MatiereExpander != null) MatiereExpander.IsExpanded = false;
+            if(RoleExpander != null) RoleExpander.IsExpanded = false;
+            if(InfoExpander != null) InfoExpander.IsExpanded = false;
+        }
+
+        private void MatiereExpander_Collapsed ( object sender, RoutedEventArgs e )
+        {
+            if(CoursExpander != null && (InfoExpander != null && (RoleExpander != null && (!RoleExpander.IsExpanded && !InfoExpander.IsExpanded && !CoursExpander.IsExpanded))))
+            {
+                RoleExpander.IsExpanded = true;
+            }
+        }
+
+        private void MatiereExpander_Expanded ( object sender, RoutedEventArgs e )
+        {
+            if (RoleExpander != null) RoleExpander.IsExpanded = false;
+            if (InfoExpander != null) InfoExpander.IsExpanded = false;
+            if(CoursExpander != null) CoursExpander.IsExpanded = false;
+        }
+
+        private void RoleExpander_Collapsed ( object sender, RoutedEventArgs e )
+        {
+            if(CoursExpander != null && (InfoExpander != null && (MatiereExpander != null && (!MatiereExpander.IsExpanded && !InfoExpander.IsExpanded && !CoursExpander.IsExpanded))))
+            {
+                InfoExpander.IsExpanded = true;
+            }
+        }
+
+        private void RoleExpander_Expanded ( object sender, RoutedEventArgs e )
+        {
+            if (MatiereExpander != null) MatiereExpander.IsExpanded = false;
+            if (InfoExpander != null) InfoExpander.IsExpanded = false;
+            if(CoursExpander != null) CoursExpander.IsExpanded = false;
+        }
+
+        private void InfoExpander_Collapsed ( object sender, RoutedEventArgs e )
+        {
+            if(CoursExpander != null && (RoleExpander != null && (MatiereExpander != null && (!MatiereExpander.IsExpanded && !RoleExpander.IsExpanded && !CoursExpander.IsExpanded))))
+            {
+                CoursExpander.IsExpanded = true;
+            }
+        }
+
+        private void InfoExpander_Expanded ( object sender, RoutedEventArgs e )
+        {
+            if (MatiereExpander != null) MatiereExpander.IsExpanded = false;
+            if (RoleExpander != null) RoleExpander.IsExpanded = false;
+            if(CoursExpander != null) CoursExpander.IsExpanded = false;
+        }
+
+        
+        #endregion
+
+        
 
 
     }

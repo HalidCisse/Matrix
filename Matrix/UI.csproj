@@ -53,9 +53,6 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.2-beta1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Magick.NET-AnyCPU">
-      <HintPath>..\packages\Magick.NET-Q16-AnyCPU.7.0.0.0004\lib\net40-client\Magick.NET-AnyCPU.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.TeamFoundation.Client, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.TeamFoundation.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="microsoft.teamfoundation.controls, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -85,22 +82,22 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Xceed.Wpf.AvalonDock">
-      <HintPath>..\..\..\..\..\Downloads\Extended WPF Toolkit Binaries\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero">
-      <HintPath>..\..\..\..\..\Downloads\Extended WPF Toolkit Binaries\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro">
-      <HintPath>..\..\..\..\..\Downloads\Extended WPF Toolkit Binaries\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010">
-      <HintPath>..\..\..\..\..\Downloads\Extended WPF Toolkit Binaries\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.DataGrid">
-      <HintPath>..\..\..\..\..\Downloads\Extended WPF Toolkit Binaries\Xceed.Wpf.DataGrid.dll</HintPath>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.Toolkit">
-      <HintPath>..\..\..\..\..\Downloads\Extended WPF Toolkit Binaries\Xceed.Wpf.Toolkit.dll</HintPath>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -116,18 +113,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Samples\Magick.NET\CombiningImages.cs" />
-    <Compile Include="Samples\Magick.NET\CommandLineOptionDefine.cs" />
-    <Compile Include="Samples\Magick.NET\ConvertImage.cs" />
-    <Compile Include="Samples\Magick.NET\ConvertPDF.cs" />
-    <Compile Include="Samples\Magick.NET\DetailedDebugInformation.cs" />
-    <Compile Include="Samples\Magick.NET\ExceptionHandling.cs" />
-    <Compile Include="Samples\Magick.NET\ExifData.cs" />
-    <Compile Include="Samples\Magick.NET\Files\Files.cs" />
-    <Compile Include="Samples\Magick.NET\MagickScript.cs" />
-    <Compile Include="Samples\Magick.NET\ReadImage.cs" />
-    <Compile Include="Samples\Magick.NET\ReadRawImageFromCamera.cs" />
-    <Compile Include="Samples\Magick.NET\UsingColors.cs" />
     <Compile Include="Styles\LocalExtensions.cs" />
     <Compile Include="Styles\MyForm.cs" />
     <Compile Include="Utils\DEP.cs" />
@@ -158,6 +143,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Animations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ExpanderStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,13 +221,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Samples\Magick.NET\Files\Snakeware.eps" />
-    <None Include="Samples\Magick.NET\Files\Snakeware.pdf" />
-    <None Include="Samples\Magick.NET\Files\YourProfile.icc" />
-    <None Include="Samples\Magick.NET\Scripts\Clone.msl" />
-    <None Include="Samples\Magick.NET\Scripts\Crop.msl" />
-    <None Include="Samples\Magick.NET\Scripts\Resize.msl" />
-    <None Include="Samples\Magick.NET\Scripts\Wave.msl" />
     <Resource Include="Fonts\fontawesome-webfont.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -325,19 +307,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Portrait\defaultStudent.png" />
-    <Resource Include="Samples\Magick.NET\Files\CorruptImage.jpg" />
-    <Resource Include="Samples\Magick.NET\Files\FileWithWarning.jpg" />
-    <Resource Include="Samples\Magick.NET\Files\FujiFilmFinePixS1Pro.jpg" />
-    <Resource Include="Samples\Magick.NET\Files\InvalidFile.jpg" />
-    <Resource Include="Samples\Magick.NET\Files\Snakeware.gif" />
-    <Resource Include="Samples\Magick.NET\Files\Snakeware.jpg" />
-    <Resource Include="Samples\Magick.NET\Files\Snakeware.png" />
     <Resource Include="Images\StaffIcon.png" />
     <Resource Include="Images\AgendaIcon.png" />
     <Resource Include="Images\AgendaIcon1.png" />
     <Resource Include="Portrait\defaultStaff.png" />
-    <Content Include="Samples\Magick.NET\Files\StillLife.cr2" />
-    <Resource Include="Samples\Magick.NET\Output\Readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

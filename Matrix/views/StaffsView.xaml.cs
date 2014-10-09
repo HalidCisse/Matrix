@@ -26,7 +26,7 @@ namespace Matrix.views
         {
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            UpdateStaff();
+            //UpdateStaff();
         }
 
         private void HomeButton_Click ( object sender, RoutedEventArgs e )
@@ -37,8 +37,7 @@ namespace Matrix.views
         private void AddButton_Click ( object sender, RoutedEventArgs e )
         {
             var wind = new StaffINFO {Owner = Window.GetWindow(this), OpenOption = "Add"};
-            wind.ShowDialog ();
-            //StaffList.ItemsSource = App.Db.GetAllStaffs ();
+            wind.ShowDialog ();          
             UpdateStaff();
         }
 

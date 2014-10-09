@@ -1,6 +1,0 @@
-<msl xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<read fileName="C:\Users\Halid\Documents\Visual Studio 2013\Projects\Matrix\Matrix\Samples\Magick.NET\Files\Snakeware.jpg">
-		<resize percentage="50"/>
-		<write fileName="C:\Users\Halid\Documents\Visual Studio 2013\Projects\Matrix\Matrix\Samples\Magick.NET\Output\Snakeware.resized.jpg"/>
-	</read>
-</msl>

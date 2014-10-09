@@ -18,7 +18,7 @@ namespace DataService.Entities
         public string DEPARTEMENT { get; set; }
 
         public string QUALIFICATION { get; set; }
-        public string HIRED_DATE { get; set; }       
+        public DateTime? HIRED_DATE { get; set; }       
       
         public string STATUT { get; set; }  // suspended, regulier, Licencier
 

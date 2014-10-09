@@ -3,8 +3,9 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:m="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" WindowStartupLocation="CenterOwner" 
-      Height="600" Width="450" Style="{StaticResource MyForm}">
+      Height="650" Width="450" Style="{StaticResource MyForm}">
 
     <Window.Resources>
 
@@ -68,121 +69,162 @@
 
     </Window.Resources>
 
+    
     <Grid Background="{StaticResource BackBrush}">
 
-        <DockPanel Margin="10,0">
+        <StackPanel Margin="10,0,10,40" VerticalAlignment="Stretch">
 
-            <StackPanel DockPanel.Dock="Top">
+            <DockPanel>
 
-                <DockPanel>
+                <Button Name="PhotoID" Style="{StaticResource NoChromeButton}" Focusable="False" BorderThickness="0" Click="PhotoID_Click" ToolTip="Click Pour Changer">
+                    <Image Name="PHOTO_IDENTITY_" DockPanel.Dock="Left"/>
+                </Button>
 
-                    <Button Name="PhotoID" Style="{StaticResource NoChromeButton}" Focusable="False" BorderThickness="0" Click="PhotoID_Click" ToolTip="Click Pour Changer">
-                        <Image Name="PHOTO_IDENTITY_" DockPanel.Dock="Left"/>
-                    </Button>
+                <Grid  DockPanel.Dock="Right" Margin="10,-10,0,7">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-                    <Grid  DockPanel.Dock="Right" Margin="10,-10,0,7">
+                    <Grid Grid.Row="0">
+                        <TextBlock Text="CIVILITE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                        <ComboBox Name="TITLE_" Width="100" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <TextBlock Text="NOM" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                        <TextBox Name="FIRSTNAME_" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <TextBlock Text="PRENOM" VerticalAlignment="Bottom"/>
+                        <TextBox Name="LASTNAME_" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                    </Grid>
+
+                    <Grid Grid.Row="3">
+                        <TextBlock Text="MATRICULE" VerticalAlignment="Bottom"/>
+                        <TextBox Name="ID_" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                    </Grid>
+                </Grid>
+
+            </DockPanel>
+               
+            <StackPanel>
+
+                <Expander Header="Cours" IsExpanded="True" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="CoursExpander" Collapsed="CoursExpander_Collapsed" Expanded="CoursExpander_Expanded">
+                    <Grid Height="230" Margin="5">
+
+                    </Grid>
+                </Expander>
+                
+                <Expander Header="Matieres Qualifier" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="MatiereExpander" Collapsed="MatiereExpander_Collapsed" Expanded="MatiereExpander_Expanded">
+                    <Grid Height="230" Margin="5">
+                        
+                    </Grid>
+                </Expander>
+
+                <Expander Header="Role" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="RoleExpander" Collapsed="RoleExpander_Collapsed" Expanded="RoleExpander_Expanded" >
+                    <Grid Height="230" Margin="5">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>                           
                         </Grid.RowDefinitions>
 
                         <Grid Grid.Row="0">
-                            <TextBlock Text="CIVILITE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                            <ComboBox Name="TITLE_" Width="100" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                            <TextBlock Text="Position"/>
+                            <ComboBox Name="POSITION_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                         </Grid>
 
                         <Grid Grid.Row="1">
-                            <TextBlock Text="NOM" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                            <TextBox Name="FIRSTNAME_" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                            <TextBlock Text="Departement"/>
+                            <ComboBox Name="DEPARTEMENT_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                         </Grid>
 
-                        <Grid Grid.Row="2">
-                            <TextBlock Text="PRENOM" VerticalAlignment="Bottom"/>
-                            <TextBox Name="LASTNAME_" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                        <Grid  Grid.Row="2">
+                            <TextBlock Text="Qualification" />
+                            <ComboBox Name="QUALIFICATION_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                         </Grid>
 
                         <Grid Grid.Row="3">
-                            <TextBlock Text="MATRICULE" VerticalAlignment="Bottom"/>
-                            <TextBox Name="ID_" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                            <TextBlock Text="Date de Recrutement" />
+                            <DatePicker Name="HIRED_DATE_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                        </Grid>
+
+                        <Grid Grid.Row="4">
+                            <TextBlock Text="Statut"/>
+                            <ComboBox Name="STATUT_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                         </Grid>
                     </Grid>
+                </Expander>
 
-                </DockPanel>
+                <Expander Header="Informations Civiles" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="InfoExpander" Collapsed="InfoExpander_Collapsed" Expanded="InfoExpander_Expanded">
+                    <Grid Margin="5" Height="230">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                           
+                            <!--<RowDefinition Height="2*"/>-->
+                        </Grid.RowDefinitions>
 
-                <!--<Border Margin="-10,20,-10,0" Width="Auto" Height="10" Background="{StaticResource BackBrush}" BorderThickness="0"/>-->
+                        <Grid Grid.Row="0">
+                            <TextBlock Text="Numero Identite"/>
+                            <TextBox Name="IDENTITY_NUMBER_"/>
+                        </Grid>
 
+                        <Grid Grid.Row="1">
+                            <TextBlock Text="Date de Naissance"/>
+                            <DatePicker Name="BIRTH_DATE_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                        </Grid>
+
+                        <Grid  Grid.Row="2">
+                            <TextBlock Text="Nationalite" />
+                            <ComboBox Name="NATIONALITY_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                        </Grid>
+
+                        <Grid Grid.Row="3">
+                            <TextBlock Text="Lieu de Naissance" />
+                            <ComboBox Name="BIRTH_PLACE_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                        </Grid>
+
+                        <Grid Grid.Row="4">
+                            <TextBlock Text="Telephone" />
+                            <TextBox Name="PHONE_NUMBER_"/>
+                        </Grid>
+
+                        <Grid Grid.Row="5">
+                            <TextBlock Text="Adresse Email"/>
+                            <TextBox Name="EMAIL_ADRESS_"/>
+                        </Grid>
+
+                        <Grid Grid.Row="6">
+                            <TextBlock Text="Adresse Domicile"/>
+                            <TextBox Name="HOME_ADRESS_"/>
+                        </Grid>                       
+                    </Grid>                                              
+                </Expander >
+                            
             </StackPanel>
 
-            
-            
-            <WPF:BusySpinner Name="BSpin" />
-            
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition Height="2*"/>
-                </Grid.RowDefinitions>
-
-                <Grid Grid.Row="0">
-                    <TextBlock Text="Numero Identite"/>
-                    <TextBox Name="IDENTITY_NUMBER_"/>
-                </Grid>
-
-                <Grid Grid.Row="1">
-                    <TextBlock Text="Date de Naissance"/>
-                    <DatePicker Name="BIRTH_DATE_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                </Grid>
-
-                <Grid  Grid.Row="2">
-                    <TextBlock Text="Nationalite" />
-                    <ComboBox Name="NATIONALITY_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                </Grid>
-
-                <Grid Grid.Row="3">
-                    <TextBlock Text="Lieu de Naissance" />
-                    <ComboBox Name="BIRTH_PLACE_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                </Grid>
-
-                <Grid Grid.Row="4">
-                    <TextBlock Text="Telephone" />
-                    <TextBox Name="PHONE_NUMBER_"/>
-                </Grid>
-
-                <Grid Grid.Row="5">
-                    <TextBlock Text="Adresse Email"/>
-                    <TextBox Name="EMAIL_ADRESS_"/>
-                </Grid>
-
-                <Grid Grid.Row="6">
-                    <TextBlock Text="Adresse Domicile"/>
-                    <TextBox Name="HOME_ADRESS_"/>
-                </Grid>
-
-                <Grid Grid.Row="7">
-                    <TextBlock Text="Statut"/>
-                    <ComboBox Name="STATUT_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
-                </Grid>
-
-                <Grid Grid.Row="8">
-                    <Button Name="Enregistrer" Content="Enregistrer" Margin="30,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Enregistrer_Click"/>
-                    <Button Name="Annuler"     Content="Annuler" Margin="30,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="Annuler_Click"/>
-                </Grid>
-
-            </Grid>
-
-        </DockPanel>
-
+        </StackPanel>       
+        
+        <Grid VerticalAlignment="Bottom" Margin="0,10">
+            <Button Name="Enregistrer" Content="Enregistrer" Margin="30,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Enregistrer_Click"/>
+            <Button Name="Annuler"     Content="Annuler" Margin="30,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="Annuler_Click"/>
+        </Grid>
+        
     </Grid>
 
-
-
+    
+        
+    
 </Window>
