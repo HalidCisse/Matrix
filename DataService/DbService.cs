@@ -14,7 +14,7 @@ namespace DataService
 
         #region Patternes DATA
 
-        public List<string> GetNATIONALITIES ( )
+        public IEnumerable GetNATIONALITIES ( )
         {
             var BIRTH_PLACE = new List<string> ();
 
@@ -37,7 +37,7 @@ namespace DataService
             return BIRTH_PLACE;
         }
 
-        public List<string> GetBIRTH_PLACE ( )
+        public IEnumerable GetBIRTH_PLACE ( )
         {
             var BIRTH_PLACE = new List<string> ();
 
@@ -54,23 +54,41 @@ namespace DataService
             return BIRTH_PLACE;
         }
 
-        public List<string> GetTITLES ( )
+        public IEnumerable GetTITLES ( )
         {
             return new List<string> { "Mr", "Mme", "Mlle", "Inspecifie" };
         }
 
-        public List<string> GetSTATUTS ( )
+        public IEnumerable GetSTATUTS ( )
         {
-            return new List<string> { "Regulier", "Irregulier", "Abandonner", "Radier" };
+            return new List<string> { "Regulier", "Irregulier", "Abandonner", "Radier", "Suspendue" };
         }
+
+        public IEnumerable GetStaffSTATUTS ( )
+        {
+            return new List<string> { "Regulier", "Licencier", "Suspendue"};
+        }
+
+        public IEnumerable GetStaffPOSITIONS ( )
+        {
+            return new List<string> {"Professeur", "Enseignant", "Instructeur", "Conferencier", "Chef Departement", "Directeur General", "Directeur Financier", "Directeur Pedagogique", "Secretaire" };
+        }
+
+        public IEnumerable GetDEPARTEMENTS ( )
+        {
+            return new List<string> { "Departement de Mathematique", "Departement de Chimie", "Departement de Physique" };
+        }
+
+        public IEnumerable GetStaffQUALIFICATIONS ( )
+        {
+            return new List<string> { "Engenieur Etat En Informatique", "Doctorat En Mathematique", "Master En Anglais" };
+        }
+
 
         #endregion
 
 
         #region STUDENTS
-
-
-        #region C R U D
 
         public bool AddStudent(Student MyStudent)
         {          
@@ -100,12 +118,6 @@ namespace DataService
             }
         }
 
-        #endregion
-
-
-
-        #region Get Student BY
-
         public Student GetStudentByID (string STudentID )
         {
             using(var Db = new EF ())
@@ -125,13 +137,6 @@ namespace DataService
             }
         }
 
-        #endregion
-
-
-
-        #region Get Student Info
-
-
         public List<Student> GetAllStudents ( )
         {
             using(var Db = new EF ())
@@ -142,7 +147,6 @@ namespace DataService
             }
         }
 
-
         public string GetStudentName(string StudentID)
         {
             using (var Db = new EF())
@@ -151,14 +155,6 @@ namespace DataService
                 return MyStudentName;
             }           
         }
-
-        
-
-        #endregion
-
-
-
-        #region Validations
 
         public bool StudentExist(string StudentID)
         {
@@ -179,13 +175,6 @@ namespace DataService
 
             return false;
         }
-
-
-
-        #endregion
-
-
-
 
         #endregion
 
@@ -285,11 +274,13 @@ namespace DataService
         }
 
         public bool UpdateStaff ( Staff MyStaff)
-        {                       
-            D.STAFF.Attach (MyStaff);
-            D.Entry (MyStaff).State = EntityState.Modified;
-            return D.SaveChanges () > 0;
-            
+        {
+            using (var Db = new EF())
+            {
+                Db.STAFF.Attach(MyStaff);
+                Db.Entry(MyStaff).State = EntityState.Modified;
+                return Db.SaveChanges() > 0;
+            }
         }
 
         public bool DeleteStaff ( string StaffID )
@@ -300,9 +291,9 @@ namespace DataService
 
         public Staff GetStaffByID ( string StaffID )
         {
-        //    var productNames = 
-        //from p in products
-        //select p.ProductName; 
+        //    var StaffIDs = 
+            //from S in Db.STAFF
+        //select S.STAFF_ID; 
             return D.STAFF.Find (StaffID);            
         }
 
@@ -314,8 +305,9 @@ namespace DataService
         }
 
         public List<Staff> GetAllStaffs ( )
-        {           
-            return D.STAFF.ToList ();            
+        {
+            //D.SaveChangesAsync();
+            return D.STAFF.ToList ();                             
         }
 
         public List<string> GetAllStaffsID ( )
@@ -336,20 +328,6 @@ namespace DataService
 
         #endregion
 
-
-
-
-
-
-       
-
-
-
-
-
-
-
-
-
+        
     }
 }

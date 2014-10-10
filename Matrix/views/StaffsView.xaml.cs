@@ -26,7 +26,7 @@ namespace Matrix.views
         {
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            //UpdateStaff();
+            UpdateStaff();
         }
 
         private void HomeButton_Click ( object sender, RoutedEventArgs e )
@@ -82,6 +82,7 @@ namespace Matrix.views
         private void UpdateStaff ( )
         {
             if(worker.IsBusy) return;
+            BusyIndicator.IsBusy = true;
             worker.RunWorkerAsync ();
         }
         private void worker_DoWork ( object sender, DoWorkEventArgs e )
@@ -90,6 +91,7 @@ namespace Matrix.views
         }
         private void worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {
+            BusyIndicator.IsBusy = false;
             StaffList.ItemsSource = StaffBuff;
             worker.Dispose ();
         }

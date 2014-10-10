@@ -77,10 +77,10 @@ namespace DataService.Migrations
             
 
             var MyStaffs = new List<Staff> {
-                new Staff {STAFF_ID = "DI100", DEPARTEMENT = "Info", POSITION = "Chef de Departement Info", FIRSTNAME = "Halid", LASTNAME = "cisse", PHOTO_IDENTITY = ImageBuff},
-                new Staff {STAFF_ID = "DI102", DEPARTEMENT = "Math", POSITION = "Chef de Departement", FIRSTNAME = "Oumar", LASTNAME = "Diallo", PHOTO_IDENTITY = ImageBuff},
-                new Staff {STAFF_ID = "DI103", DEPARTEMENT = "Bio", POSITION = "Chef de Departement", FIRSTNAME = "Amadou", LASTNAME = "Sekou", PHOTO_IDENTITY = ImageBuff},
-                new Staff {STAFF_ID = "DI104", DEPARTEMENT = "Chimie", POSITION = "Chef de Departement", FIRSTNAME = "Kadia", LASTNAME = "Keita", PHOTO_IDENTITY = ImageBuff}
+                new Staff {STAFF_ID = "DI100", DEPARTEMENT = "Infomatique", POSITION = "Chef de Departement Info", FIRSTNAME = "Halid", LASTNAME = "cisse", PHOTO_IDENTITY = ImageBuff},
+                new Staff {STAFF_ID = "DI102", DEPARTEMENT = "Mathematique", POSITION = "Chef de Departement Math", FIRSTNAME = "Oumar", LASTNAME = "Diallo", PHOTO_IDENTITY = ImageBuff},
+                new Staff {STAFF_ID = "DI103", DEPARTEMENT = "Biologie", POSITION = "Chef de Departement Bio", FIRSTNAME = "Amadou", LASTNAME = "Sekou", PHOTO_IDENTITY = ImageBuff},
+                new Staff {STAFF_ID = "DI104", DEPARTEMENT = "Chimie", POSITION = "Chef de Departement Chimie", FIRSTNAME = "Kadia", LASTNAME = "Keita", PHOTO_IDENTITY = ImageBuff}
             };
 
             MessageBox.Show ("adding staff data");

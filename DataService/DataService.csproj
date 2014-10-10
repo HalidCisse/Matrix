@@ -72,9 +72,9 @@
     <Compile Include="Enum\Statut.cs" />
     <Compile Include="Enum\Title.cs" />
     <Compile Include="Initializer\DBInitializer.cs" />
-    <Compile Include="Migrations\201410081806459_kk.cs" />
-    <Compile Include="Migrations\201410081806459_kk.Designer.cs">
-      <DependentUpon>201410081806459_kk.cs</DependentUpon>
+    <Compile Include="Migrations\201410091822377_kk.cs" />
+    <Compile Include="Migrations\201410091822377_kk.Designer.cs">
+      <DependentUpon>201410091822377_kk.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,12 +91,12 @@
     <Content Include="Images\defaultStudent.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201410081806459_kk.resx">
-      <DependentUpon>201410081806459_kk.cs</DependentUpon>
-    </EmbeddedResource>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <EmbeddedResource Include="Migrations\201410091822377_kk.resx">
+      <DependentUpon>201410091822377_kk.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

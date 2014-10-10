@@ -81,15 +81,17 @@ namespace Matrix.views
         private void UpdateStudents()
         {
             if(worker.IsBusy) return;
-            worker.RunWorkerAsync (); 
+            BusyIndicator.IsBusy = true;
+            worker.RunWorkerAsync ();          
         }
 
         private void worker_DoWork(object sender, DoWorkEventArgs e) {                     
             StudentsBuff = App.Db.GetAllStudents ();            
         }
 
-        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {          
-            Studentslist.ItemsSource = StudentsBuff;
+        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+            BusyIndicator.IsBusy = false;
+            Studentslist.ItemsSource = StudentsBuff;           
             worker.Dispose();
         }
 

@@ -36,7 +36,13 @@ namespace Matrix.views
 
             BIRTH_PLACE_.ItemsSource = App.Db.GetBIRTH_PLACE ();
 
-            STATUT_.ItemsSource = App.Db.GetSTATUTS ();
+            STATUT_.ItemsSource = App.Db.GetStaffSTATUTS ();
+
+            POSITION_.ItemsSource = App.Db.GetStaffPOSITIONS ();
+
+            DEPARTEMENT_.ItemsSource = App.Db.GetDEPARTEMENTS ();
+
+            QUALIFICATION_.ItemsSource = App.Db.GetStaffQUALIFICATIONS ();
 
             #endregion
 
@@ -45,7 +51,6 @@ namespace Matrix.views
             else
                 DisplayDefault ();
         }
-
 
         private void PhotoID_Click ( object sender, RoutedEventArgs e )
         {
@@ -61,7 +66,11 @@ namespace Matrix.views
 
         private void DisplayDefault()
         {
-            ID_.Text = GenNewStaffID ();
+            CoursExpander.Visibility = Visibility.Hidden;
+            MatiereExpander.Visibility = Visibility.Hidden;
+            InfoExpander.IsExpanded = true;
+
+            STAFF_ID_.Text = GenNewStaffID ();
             TITLE_.SelectedIndex = 0;
             PHOTO_IDENTITY_.Source = PHOTO_IDENTITY_.Source = new BitmapImage (new Uri (Res.GetRes ("Portrait/defaultStaff.png")));
             
@@ -81,8 +90,9 @@ namespace Matrix.views
         {
             if(StaffToDisplay == null) return;
 
-            ID_.Text = StaffToDisplay.STAFF_ID;
-            ID_.IsEnabled = false;
+
+            STAFF_ID_.Text = StaffToDisplay.STAFF_ID;
+            STAFF_ID_.IsEnabled = false;
             TITLE_.SelectedValue = StaffToDisplay.TITLE;
             FIRSTNAME_.Text = StaffToDisplay.FIRSTNAME;
             LASTNAME_.Text = StaffToDisplay.LASTNAME;
@@ -115,16 +125,11 @@ namespace Matrix.views
 
             var MyStaff= new Staff
             {
-                STAFF_ID = ID_.Text.Trim (),
+                STAFF_ID = STAFF_ID_.Text.Trim (),
                 TITLE = TITLE_.SelectedValue.ToString (),
                 FIRSTNAME = FIRSTNAME_.Text.Trim (),
                 LASTNAME = LASTNAME_.Text.Trim (),
                 PHOTO_IDENTITY = ImageUtils.getPNGFromImageControl (PHOTO_IDENTITY_.Source as BitmapImage),
-
-                POSITION = POSITION_.SelectedValue.ToString (),
-                DEPARTEMENT = DEPARTEMENT_.SelectedValue.ToString (),
-                QUALIFICATION = QUALIFICATION_.SelectedValue.ToString (),
-                HIRED_DATE = HIRED_DATE_.SelectedDate.Value,
 
                 IDENTITY_NUMBER = IDENTITY_NUMBER_.Text.Trim (),
                 BIRTH_DATE = BIRTH_DATE_.SelectedDate.Value,
@@ -135,6 +140,11 @@ namespace Matrix.views
                 HOME_ADRESS = HOME_ADRESS_.Text.Trim (),
                 STATUT = STATUT_.SelectedValue.ToString (),
             };
+
+            if(POSITION_.SelectedValue != null) MyStaff.POSITION = POSITION_.SelectedValue.ToString ();
+            if(DEPARTEMENT_.SelectedValue != null) MyStaff.DEPARTEMENT = DEPARTEMENT_.SelectedValue.ToString ();
+            if(QUALIFICATION_.SelectedValue != null) MyStaff.QUALIFICATION = QUALIFICATION_.SelectedValue.ToString ();
+            if(HIRED_DATE_.SelectedDate != null) MyStaff.HIRED_DATE = HIRED_DATE_.SelectedDate.Value;
 
             switch (OpenOption)
             {
@@ -151,7 +161,6 @@ namespace Matrix.views
 
         }
 
-
         private static string GenNewStaffID ( )
         {
             string idOut;
@@ -162,26 +171,24 @@ namespace Matrix.views
         }
 
         private bool ChampsValidated ( )
-        {
-          
+        {          
             var Ok = true;
-
 
             if(OpenOption == "Add")
             {
-                if(string.IsNullOrEmpty (ID_.Text))
+                if(string.IsNullOrEmpty (STAFF_ID_.Text))
                 {
-                    ID_.BorderBrush = Brushes.Red;
+                    STAFF_ID_.BorderBrush = Brushes.Red;
                     Ok = false;
                 }
-                else if(App.Db.StudentExist (ID_.Text.Trim ()))
+                else if(App.Db.StudentExist (STAFF_ID_.Text.Trim ()))
                 {
-                    MessageBox.Show ("Ce Numero de Matricule Est Deja Utiliser par " + App.Db.GetStaffFullName (ID_.Text.Trim ()));
+                    MessageBox.Show ("Ce Numero de Matricule Est Deja Utiliser par " + App.Db.GetStaffFullName (STAFF_ID_.Text.Trim ()));
                     return false;
                 }
                 else
                 {
-                    ID_.BorderBrush = Brushes.Blue;
+                    STAFF_ID_.BorderBrush = Brushes.Blue;
                 }
             }
 
@@ -333,8 +340,13 @@ namespace Matrix.views
         
         #endregion
 
-        
 
+        #region INTER-ACTION
+
+        
+        #endregion
+
+       
 
     }
 }
