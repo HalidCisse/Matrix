@@ -11,9 +11,7 @@ using DataService.Entities;
 
 namespace Matrix.views
 {
-    /// <summary>
-    /// Interaction logic for StaffsView.xaml
-    /// </summary>
+    
     public partial class StaffsView
     {
 

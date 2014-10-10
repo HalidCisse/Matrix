@@ -22,28 +22,28 @@ namespace DataService.Context
         }
 
 
-        public virtual DbSet<Person> PERSON { get; set; }
+        //public virtual DbSet<Person> PERSON { get; set; }
         public virtual DbSet<Staff> STAFF { get; set; }
         public virtual DbSet<Student> STUDENT { get; set; }
 
 
-        protected override void OnModelCreating ( DbModelBuilder modelBuilder )
-        {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention> ();
+        //protected override void OnModelCreating ( DbModelBuilder modelBuilder )
+        //{
+        //    modelBuilder.Conventions.Remove<PluralizingTableNameConvention> ();
+        //    modelBuilder.Conventions.Remove<KeyDiscoveryConvention>();
+        //    //modelBuilder.Entity<Staff> ()
+        //    //    .HasRequired (e => e.PERSON)
+        //    //    .WithRequiredPrincipal ();
 
-            //modelBuilder.Entity<Staff> ()
-            //    .HasRequired (e => e.PERSON)
-            //    .WithRequiredPrincipal ();
-
-            //modelBuilder.Entity<Course> ()
-            //    .HasMany (c => c.Instructors).WithMany (i => i.Courses)
-            //    .Map (t => t.MapLeftKey ("CourseID")
-            //        .MapRightKey ("InstructorID")
-            //        .ToTable ("CourseInstructor"));
+        //    //modelBuilder.Entity<Course> ()
+        //    //    .HasMany (c => c.Instructors).WithMany (i => i.Courses)
+        //    //    .Map (t => t.MapLeftKey ("CourseID")
+        //    //        .MapRightKey ("InstructorID")
+        //    //        .ToTable ("CourseInstructor"));
 
 
 
-        }
+        //}
 
         
 

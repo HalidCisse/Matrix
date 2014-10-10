@@ -4,21 +4,19 @@ using System.Reflection;
 using System.Windows;
 using DataService.Context;
 using DataService.Entities;
+using System;
+using System.Data.Entity.Migrations;
 
 namespace DataService.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
+    
 
     internal sealed class Configuration : DbMigrationsConfiguration<EF>
     {
         public Configuration()
         {
             AutomaticMigrationDataLossAllowed = true;
-            AutomaticMigrationsEnabled = true;
-            
+            AutomaticMigrationsEnabled = true;           
         }
 
         protected override void Seed(EF EF)
@@ -37,7 +35,7 @@ namespace DataService.Migrations
 
         private static void AddStudentSeed ( EF EF )
         {
-            MessageBox.Show ("adding student");
+            //MessageBox.Show ("adding student");
             ImageBuff = BitmapArrayFromFile ("defaultStudent.png");
 
             var MyStudents = new List<Student>{
@@ -47,30 +45,16 @@ namespace DataService.Migrations
                 new Student {STUDENT_ID = "DI104", FIRSTNAME = "Adam", LASTNAME = "Nolan", PHONE_NUMBER = "0012445454545", PHOTO_IDENTITY = ImageBuff}
             };
 
-            MyStudents.ForEach (Student => EF.STUDENT.Add (Student));
+            MyStudents.ForEach (Student => EF.STUDENT.AddOrUpdate (Student));
 
-            MessageBox.Show ("Finish student");
+            //MessageBox.Show ("Finish student");
         }
 
-        private static void AddPersonSeed ( EF EF )
-        {
-            ImageBuff = BitmapArrayFromFile ("defaultStudent.png");
-
-            MessageBox.Show("adding person");
-
-            var MyPersons = new List<Person> {
-                //new Person {PERSON_ID = "DI100", FIRSTNAME = "Halid", LASTNAME = "Cisse", PHONE_NUMBER = "00122445545"},
-                //new Person {PERSON_ID = "DI102", FIRSTNAME = "Mat", LASTNAME = "Pearson", PHONE_NUMBER = "0012244545545"},
-                //new Person {PERSON_ID = "DI103", FIRSTNAME = "Dave" , LASTNAME = "Wood", PHONE_NUMBER = "001544545578"},
-                //new Person {PERSON_ID = "DI104", FIRSTNAME = "Adam", LASTNAME = "Nolan", PHONE_NUMBER = "0012445454545"}
-            };
-
-            //MyPersons.ForEach (Person => EF.PERSON.AddOrUpdate (Person));
-        }
+       
 
         private static void AddStaffSeed ( EF EF )
         {
-            MessageBox.Show ("adding staff");
+            //MessageBox.Show ("adding staff");
 
             ImageBuff = BitmapArrayFromFile ("defaultStaff.png");
 
@@ -83,10 +67,9 @@ namespace DataService.Migrations
                 new Staff {STAFF_ID = "DI104", DEPARTEMENT = "Chimie", POSITION = "Chef de Departement Chimie", FIRSTNAME = "Kadia", LASTNAME = "Keita", PHOTO_IDENTITY = ImageBuff}
             };
 
-            MessageBox.Show ("adding staff data");
-            MyStaffs.ForEach (Staff => EF.STAFF.Add(Staff));
-            MessageBox.Show ("Finish staff");
-
+            
+            MyStaffs.ForEach (Staff => EF.STAFF.AddOrUpdate(Staff));
+            //MessageBox.Show ("Finish staff");
         }
 
 
@@ -126,3 +109,20 @@ namespace DataService.Migrations
 
     }
 }
+
+
+//private static void AddPersonSeed ( EF EF )
+//{
+//    ImageBuff = BitmapArrayFromFile ("defaultStudent.png");
+
+//    MessageBox.Show("adding person");
+
+//    var MyPersons = new List<Person> {
+//        //new Person {PERSON_ID = "DI100", FIRSTNAME = "Halid", LASTNAME = "Cisse", PHONE_NUMBER = "00122445545"},
+//        //new Person {PERSON_ID = "DI102", FIRSTNAME = "Mat", LASTNAME = "Pearson", PHONE_NUMBER = "0012244545545"},
+//        //new Person {PERSON_ID = "DI103", FIRSTNAME = "Dave" , LASTNAME = "Wood", PHONE_NUMBER = "001544545578"},
+//        //new Person {PERSON_ID = "DI104", FIRSTNAME = "Adam", LASTNAME = "Nolan", PHONE_NUMBER = "0012445454545"}
+//    };
+
+//    //MyPersons.ForEach (Person => EF.PERSON.AddOrUpdate (Person));
+//}

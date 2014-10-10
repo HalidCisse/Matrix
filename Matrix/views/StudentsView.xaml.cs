@@ -53,8 +53,7 @@ namespace Matrix.views
 
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )
         {
-            if(Studentslist.SelectedValue == null)
-            {
+            if(Studentslist.SelectedValue == null) {
                 MessageBox.Show("Selectionner Un Etudiant A Supprimer !");
                 return;
             }
@@ -62,11 +61,9 @@ namespace Matrix.views
             var theGaName = App.Db.GetStudentName(Studentslist.SelectedValue.ToString ());
             theGaName = "Ete Vous Sure de supprimer " + theGaName + " de la base de donnee ?";
 
-            if(MessageBox.Show (theGaName,"",MessageBoxButton.YesNo,MessageBoxImage.Warning) == MessageBoxResult.Yes)
-            {              
-                MessageBox.Show (App.Db.DeleteStudent (Studentslist.SelectedValue.ToString ()) ? "Supprimer Avec Succes" : "Echec");
-                UpdateStudents ();
-            }
+            if (MessageBox.Show(theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
+            MessageBox.Show (App.Db.DeleteStudent (Studentslist.SelectedValue.ToString ()) ? "Supprimer Avec Succes" : "Echec");
+            UpdateStudents ();
         }
 
           

@@ -146,26 +146,24 @@ namespace Matrix.views
             if(QUALIFICATION_.SelectedValue != null) MyStaff.QUALIFICATION = QUALIFICATION_.SelectedValue.ToString ();
             if(HIRED_DATE_.SelectedDate != null) MyStaff.HIRED_DATE = HIRED_DATE_.SelectedDate.Value;
 
-            switch (OpenOption)
+            if (OpenOption == "Add")
             {
-                case "Add":
-                    MyStaff.REGISTRATION_DATE = DateTime.Now.Date;
-                    MessageBox.Show (App.Db.AddStaff (MyStaff) ? "Add Success" : "Add Failed");
-                    Close ();
-                    break;
-                default:
-                    MessageBox.Show (App.Db.UpdateStaff (MyStaff) ? "Update Success" : "Update Failed");
-                    Close ();
-                    break;
+                MyStaff.REGISTRATION_DATE = DateTime.Now.Date;
+                MessageBox.Show(App.Db.AddStaff(MyStaff) ? "Add Success" : "Add Failed");
+                Close();
             }
-
+            else
+            {
+                MessageBox.Show(App.Db.UpdateStaff(MyStaff) ? "Update Success" : "Update Failed");
+                Close();
+            }
         }
 
         private static string GenNewStaffID ( )
         {
             string idOut;
 
-            do idOut = "S" + DateTime.Today.Year + GenID.GetID (4); while(App.Db.StudentExist (idOut));
+            do idOut = "S" + DateTime.Today.Year + GenID.GetID (4); while(App.Db.StaffExist (idOut));
 
             return idOut;
         }
