@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Windows;
 using DataService.Context;
 using DataService.Entities;
 
@@ -13,10 +11,10 @@ namespace DataService
     {
         public DbService()
         {
-            D = new EF();
+            //D = new EF();
         }
 
-        private readonly EF D;
+        //private static EF Db = new EF ();
 
 
         #region Patternes DATA
@@ -98,47 +96,49 @@ namespace DataService
         #region STUDENTS
 
         public bool AddStudent(Student MyStudent)
-        {          
+        {
             using (var Db = new EF())
             {
                 Db.STUDENT.Add (MyStudent);               
-                return Db.SaveChanges() > 0;                               
-            }        
+                return Db.SaveChanges() > 0;  
+            }
+                                             
+                    
         }
 
         public bool UpdateStudent(Student MyStudent)
         {
-            using(var Db = new EF ())
+            using (var Db = new EF())
             {
-                D.STUDENT.Attach (MyStudent);
-                D.Entry (MyStudent).State = EntityState.Modified;
-                return D.SaveChanges () > 0;
+                Db.STUDENT.Attach(MyStudent);
+                Db.Entry(MyStudent).State = EntityState.Modified;
+                return Db.SaveChanges() > 0;
             }
         }
 
         public bool DeleteStudent ( string StudentID )
         {
-            using(var Db = new EF ())
-            {              
-                Db.STUDENT.Remove (Db.STUDENT.Find (StudentID));               
-                return Db.SaveChanges () > 0;
+            using (var Db = new EF())
+            {
+                Db.STUDENT.Remove(Db.STUDENT.Find(StudentID));
+                return Db.SaveChanges() > 0;
             }
         }
 
         public Student GetStudentByID (string STudentID )
         {
-            using(var Db = new EF ())
-            {              
-                var MyStudent = Db.STUDENT.Find (STudentID);
+            using (var Db = new EF())
+            {
+                var MyStudent = Db.STUDENT.Find(STudentID);
                 return MyStudent;
-            }    
+            }
         }
 
         public static Student GetStudentByFullName (string FirstANDLastName )
         {
-            using(var Db = new EF ())
+            using (var Db = new EF())
             {
-                var MyStudent = Db.STUDENT.SingleOrDefault (S => S.FIRSTNAME + S.LASTNAME  == FirstANDLastName);
+                var MyStudent = Db.STUDENT.SingleOrDefault(S => S.FIRSTNAME + S.LASTNAME == FirstANDLastName);
 
                 return MyStudent;
             }
@@ -146,11 +146,12 @@ namespace DataService
 
         public List<Student> GetAllStudents ( )
         {
-            using(var Db = new EF ())
+            using (var Db = new EF())
             {
-                IList<Student> DaraNatadjis = Db.STUDENT.ToList ();
 
-                return (List<Student>)DaraNatadjis;
+                IList<Student> DaraNatadjis = Db.STUDENT.ToList();
+
+                return (List<Student>) DaraNatadjis;
             }
         }
 
@@ -160,90 +161,111 @@ namespace DataService
             {
                 var MyStudentName = Db.STUDENT.Find(StudentID).FIRSTNAME + " " + Db.STUDENT.Find(StudentID).LASTNAME;
                 return MyStudentName;
-            }           
+            }
         }
 
         public bool StudentExist(string StudentID)
         {
-            using(var Db = new EF ())
+            using (var Db = new EF())
             {
-                
-                return D.STUDENT.Find (StudentID) != null;
-               
-            }           
+
+                return Db.STUDENT.Find(StudentID) != null;
+
+            }
         }
 
         #endregion
+
+
+
 
 
         #region STAFF C-R-U-D
 
-
-        
-
-
-        public bool AddStaff ( Staff MyStaff )
+        public bool AddStaff(Staff MyStaff)
         {
-            D.STAFF.Add (MyStaff);
-            return D.SaveChanges () > 0;
-        }
-
-        public bool UpdateStaff ( Staff MyStaff )
-        {
-            using(var Db = new EF ())
+            using (var Db = new EF())
             {
-                D.STAFF.Attach (MyStaff);
-                
-                //D.Entry (MyStaff).State = EntityState.Modified;
-                                    
-                return D.SaveChanges () > 0;
+                Db.STAFF.Add(MyStaff);
+                return Db.SaveChanges() > 0;
             }
         }
 
-        public bool DeleteStaff ( string StaffID )
+        public bool UpdateStaff ( Staff MStaff )
         {
-            D.STAFF.Remove (D.STAFF.Find (StaffID));
-            return D.SaveChanges () > 0;
+            using (var Db = new EF())
+            {               
+                Db.STAFF.Attach(MStaff);
+                Db.Entry(MStaff).State = EntityState.Modified;
+
+                return Db.SaveChanges() > 0;
+            }
         }
 
-        public Staff GetStaffByID ( string StaffID )
+        public bool DeleteStaff(string StaffID)
         {
-            //    var StaffIDs = 
-            //from S in Db.STAFF
-            //select S.STAFF_ID; 
-            return D.STAFF.Find (StaffID);
+            using (var Db = new EF())
+            {
+                Db.STAFF.Remove(Db.STAFF.Find(StaffID));
+                return Db.SaveChanges() > 0;
+            }
         }
 
-        public Staff GetStaffByFullName ( string FirstANDLastName )
+        public Staff GetStaffByID(string StaffID)
         {
-            var MyStaff = D.STAFF.SingleOrDefault (S => S.FULL_NAME ==  FirstANDLastName);
-
-            return MyStaff;
+            using (var Db = new EF())
+            {
+                //    var StaffIDs = 
+                //from S in Db.STAFF
+                //select S.STAFF_ID; 
+                return Db.STAFF.Find(StaffID);
+            }
         }
 
-        public List<Staff> GetAllStaffs ( )
+        public Staff GetStaffByFullName(string FirstANDLastName)
         {
-            //D.SaveChangesAsync();
-            return D.STAFF.ToList ();
+            using (var Db = new EF())
+            {
+                var MyStaff = Db.STAFF.SingleOrDefault(S => S.FULL_NAME == FirstANDLastName);
+
+                return MyStaff;
+            }
         }
 
-        public List<string> GetAllStaffsID ( )
+        public List<Staff> GetAllStaffs()
         {
-            List<string> IDs = null;
-
-            IDs.AddRange (D.STAFF.ToList ().Select (S => S.STAFF_ID));
-
-            return IDs;
+            using (var Db = new EF())
+            {            
+                return Db.STAFF.ToList();
+            }
         }
 
-        public string GetStaffFullName ( string StaffID )
+        public List<string> GetAllStaffsID()
         {
-            return D.STAFF.Find (StaffID).FULL_NAME;
+            using (var Db = new EF())
+            {
+                List<string> IDs = null;
+
+                IDs.AddRange(Db.STAFF.ToList().Select(S => S.STAFF_ID));
+
+                return IDs;
+            }
         }
 
-        public bool StaffExist ( string StaffID )
+        public string GetStaffFullName(string StaffID)
         {
-            return D.STAFF.Find (StaffID) != null;
+            using (var Db = new EF())
+            {
+                return Db.STAFF.Find(StaffID).FULL_NAME;
+            }
+        }
+
+        public bool StaffExist(string StaffID)
+        {
+            using (var Db = new EF())
+            {
+                return Db.STAFF.Find(StaffID) != null;
+            }
         }
 
         #endregion
@@ -253,85 +275,5 @@ namespace DataService
 
 
 
-
-
-        #region PERSON
-
-
-        #region PERSON C-R-U-D
-
-
-        //public static bool AddPerson ( Person MyPerson )
-        //{
-        //    using(var Db = new EF ())
-        //    {
-        //        Db.PERSON.Add (MyPerson);
-        //        return Db.SaveChanges () > 0;
-        //    }
-        //}
-
-        //public static bool UpdatePerson ( Person MyPerson )
-        //{
-        //    using(var Db = new EF ())
-        //    {
-        //        Db.PERSON.Attach (MyPerson);
-        //        Db.Entry (MyPerson).State = EntityState.Modified;
-        //        return Db.SaveChanges () > 0;
-        //    }
-        //}
-
-        //public static bool DeletePerson ( string PersonID )
-        //{
-        //    using(var Db = new EF ())
-        //    {
-        //        Db.PERSON.Remove (Db.PERSON.Find (PersonID));
-        //        return Db.SaveChanges () > 0;
-        //    }
-        //}
-
-
-
-
-
-        #endregion
-
-
-        #region GET PERSON BY
-
-        //public static List<Person> GetAllPersons ( )
-        //{
-        //    using(var Db = new EF ())
-        //    {
-        //        var Persons = Db.PERSON.ToList ();
-
-        //        return Persons;
-        //    }
-        //}
-
-        //public Person GetPersonByID ( string PersonID )
-        //{
-        //    using(var Db = new EF ())
-        //    {
-        //        //var MyStudent = Db.Student.Find (PersonID);
-        //        return Db.PERSON.Find (PersonID);
-        //    }
-        //}
-
-        //public static Person GetPersonByFullName ( string FirstANDLastName )
-        //{
-        //    using(var Db = new EF ())
-        //    {
-        //        var MyPerson = Db.PERSON.SingleOrDefault (P => P.FIRSTNAME + P.LASTNAME  == FirstANDLastName);
-
-        //        return MyPerson;
-        //    }
-        //}
-
-        #endregion
-
-
-        #endregion
-
-        
     }
 }

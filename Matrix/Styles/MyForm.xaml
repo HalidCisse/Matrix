@@ -67,7 +67,7 @@
                         TextOptions.TextFormattingMode="Display">
                         <Border x:Name="PART_Border" Width="Auto" Height="Auto" Background="{StaticResource FormBackGroundColor}" BorderBrush="{StaticResource FormBorderBrush}" BorderThickness="0" Padding="0">
                             <Border.Effect>
-                                <DropShadowEffect Color="black" Opacity="0.5" BlurRadius="7" ShadowDepth="2" Direction="315"/>
+                                <DropShadowEffect Color="black" Opacity="0.5" BlurRadius="20" ShadowDepth="2" Direction="315"/>
                             </Border.Effect>
                             <DockPanel   HorizontalAlignment="Stretch" Background="Transparent" VerticalAlignment="Stretch">
                                 <Border x:Name="TitleBar" DockPanel.Dock="Top" Background="{StaticResource FormTitleBarBackgroundBrush}" BorderThickness="0" MouseLeftButtonDown="TitleBarMouseLeftButtonDown" MouseMove="TitleBarMouseMove">
