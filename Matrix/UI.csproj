@@ -119,6 +119,9 @@
     <Compile Include="Utils\GenID.cs" />
     <Compile Include="Utils\ImageUtils.cs" />
     <Compile Include="Utils\Res.cs" />
+    <Compile Include="views\Pedagogy.xaml.cs">
+      <DependentUpon>Pedagogy.xaml</DependentUpon>
+    </Compile>
     <Compile Include="views\StaffINFO.xaml.cs">
       <DependentUpon>StaffINFO.xaml</DependentUpon>
     </Compile>
@@ -186,6 +189,10 @@
     <Compile Include="views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Page Include="views\Pedagogy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="views\StaffINFO.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

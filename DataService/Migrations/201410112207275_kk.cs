@@ -8,27 +8,7 @@ namespace DataService.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Person",
-                c => new
-                    {
-                        PERSON_ID = c.String(nullable: false, maxLength: 128),
-                        TITLE = c.String(),
-                        FIRSTNAME = c.String(),
-                        LASTNAME = c.String(),
-                        PHOTO_IDENTITY = c.Binary(),
-                        NATIONALITY = c.String(),
-                        IDENTITY_NUMBER = c.String(),
-                        BIRTH_DATE = c.DateTime(),
-                        BIRTH_PLACE = c.String(),
-                        PHONE_NUMBER = c.String(),
-                        EMAIL_ADRESS = c.String(),
-                        HOME_ADRESS = c.String(),
-                        REGISTRATION_DATE = c.DateTime(),
-                    })
-                .PrimaryKey(t => t.PERSON_ID);
-            
-            CreateTable(
-                "dbo.Staff",
+                "dbo.Staffs",
                 c => new
                     {
                         STAFF_ID = c.String(nullable: false, maxLength: 128),
@@ -53,7 +33,7 @@ namespace DataService.Migrations
                 .PrimaryKey(t => t.STAFF_ID);
             
             CreateTable(
-                "dbo.Student",
+                "dbo.Students",
                 c => new
                     {
                         STUDENT_ID = c.String(nullable: false, maxLength: 128),
@@ -77,9 +57,8 @@ namespace DataService.Migrations
         
         public override void Down()
         {
-            DropTable("dbo.Student");
-            DropTable("dbo.Staff");
-            DropTable("dbo.Person");
+            DropTable("dbo.Students");
+            DropTable("dbo.Staffs");
         }
     }
 }

@@ -57,9 +57,11 @@
     <Reference Include="System.Data">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml">
       <Private>True</Private>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\EF.cs" />
@@ -72,13 +74,9 @@
     <Compile Include="Enum\Statut.cs" />
     <Compile Include="Enum\Title.cs" />
     <Compile Include="Initializer\DBInitializer.cs" />
-    <Compile Include="Migrations\201410102020393_kk.cs" />
-    <Compile Include="Migrations\201410102020393_kk.Designer.cs">
-      <DependentUpon>201410102020393_kk.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410102216509_kk1.cs" />
-    <Compile Include="Migrations\201410102216509_kk1.Designer.cs">
-      <DependentUpon>201410102216509_kk1.cs</DependentUpon>
+    <Compile Include="Migrations\201410112207275_kk.cs" />
+    <Compile Include="Migrations\201410112207275_kk.Designer.cs">
+      <DependentUpon>201410112207275_kk.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,22 +85,46 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Images\MOCK_DATA.json" />
     <None Include="IS.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\defaultStaff.png" />
     <Content Include="Images\defaultStudent.png" />
+    <Content Include="Images\portrait1.jpg" />
+    <Content Include="Images\portrait10.jpg" />
+    <Content Include="Images\portrait11.jpg" />
+    <Content Include="Images\portrait12.jpg" />
+    <Content Include="Images\portrait13.jpg" />
+    <Content Include="Images\portrait14.jpg" />
+    <Content Include="Images\portrait15.jpg" />
+    <Content Include="Images\portrait16.jpg" />
+    <Content Include="Images\portrait17.png" />
+    <Content Include="Images\portrait18.jpg" />
+    <Content Include="Images\portrait19.jpg" />
+    <Content Include="Images\portrait2.jpg" />
+    <Content Include="Images\portrait20.jpg" />
+    <Content Include="Images\portrait21.jpg" />
+    <Content Include="Images\portrait22.jpg" />
+    <Content Include="Images\portrait3.jpg" />
+    <Content Include="Images\portrait4.jpg" />
+    <Content Include="Images\portrait5.jpg" />
+    <Content Include="Images\portrait6.jpg" />
+    <Content Include="Images\portrait7.jpg" />
+    <Content Include="Images\portrait8.jpg" />
+    <Content Include="Images\portrait9.jpg" />
+    <Content Include="Images\user_ico.png" />
+    <Content Include="Images\user_icon.png" />
+    <Content Include="Initializer\Staffs.sql" />
+    <Content Include="Initializer\Students.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201410102020393_kk.resx">
-      <DependentUpon>201410102020393_kk.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410102216509_kk1.resx">
-      <DependentUpon>201410102216509_kk1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201410112207275_kk.resx">
+      <DependentUpon>201410112207275_kk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

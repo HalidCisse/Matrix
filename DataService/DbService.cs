@@ -9,12 +9,7 @@ namespace DataService
 {
     public class DbService //: Interface
     {
-        public DbService()
-        {
-            //D = new EF();
-        }
-
-        //private static EF Db = new EF ();
+       
 
 
         #region Patternes DATA
@@ -61,17 +56,17 @@ namespace DataService
 
         public IEnumerable GetTITLES ( )
         {
-            return new List<string> { "Mr", "Mme", "Mlle", "Inspecifie" };
+            return new List<string> { "Mr", "Mme", "Mlle", "Dr" };
         }
 
-        public IEnumerable GetSTATUTS ( )
+        public IEnumerable GetStudentSTATUTS ( )
         {
-            return new List<string> { "Regulier", "Irregulier", "Abandonner", "Radier", "Suspendue" };
+            return new List<string> { "Regulier", "Abandonner", "Irregulier", "Suspendue" };
         }
 
         public IEnumerable GetStaffSTATUTS ( )
         {
-            return new List<string> { "Regulier", "Licencier", "Suspendue"};
+            return new List<string> { "Regulier", "Licencier", "Irregulier", "Suspendue"};
         }
 
         public IEnumerable GetStaffPOSITIONS ( )

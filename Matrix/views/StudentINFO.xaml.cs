@@ -28,7 +28,7 @@ namespace Matrix.views
 
             BIRTH_PLACE_.ItemsSource = App.Db.GetBIRTH_PLACE();
 
-            STATUT_.ItemsSource = App.Db.GetSTATUTS();
+            STATUT_.ItemsSource = App.Db.GetStudentSTATUTS();
 
             #endregion
 
