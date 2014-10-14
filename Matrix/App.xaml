@@ -5,6 +5,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/ScrollBarStyle.xaml"/>
                 <ResourceDictionary Source="Styles/Styles.xaml"/>
                 <ResourceDictionary Source="Styles/ExpanderStyle.xaml"/>
                 <ResourceDictionary Source="Styles/ListBoxStyle.xaml"/>
