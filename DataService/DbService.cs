@@ -41,7 +41,7 @@ namespace DataService
             NATIONALITIES.Add ("Congo");
             NATIONALITIES.Add ("Burkina Fasso");
 
-            return NATIONALITIES.Distinct();
+            return NATIONALITIES;
         }
 
         public IEnumerable GetBIRTH_PLACE ( )
@@ -66,7 +66,7 @@ namespace DataService
             BIRTH_PLACE.Add ("Tayba");
             BIRTH_PLACE.Add ("Dakar");
             
-            return BIRTH_PLACE.Distinct();
+            return BIRTH_PLACE;
         }
 
         public IEnumerable GetTITLES ( )
@@ -75,25 +75,13 @@ namespace DataService
         }
 
         public IEnumerable GetStudentSTATUTS ( )
-        {
-            using(var Db = new EF ())
-            {
-                var St = (from S in Db.STUDENT.ToList () where S.STATUT != null select S.STATUT).ToList ().Distinct ().ToList ();
-
-                return St;
-            }
-            //return new List<string> { "Regulier", "Abandonner", "Irregulier", "Suspendue" };
+        {           
+            return new List<string> { "Regulier", "Abandonner", "Irregulier", "Suspendue" };
         }
 
         public IEnumerable GetStaffSTATUTS ( )
-        {
-            using(var Db = new EF ())
-            {
-                var St = (from S in Db.STAFF.ToList () where S.STATUT != null select S.STATUT).ToList ().Distinct ().ToList ();
-
-                return St;
-            }
-            //return new List<string> { "Regulier", "Licencier", "Irregulier", "Suspendue"};
+        {            
+            return new List<string> { "Regulier", "Licencier", "Irregulier", "Suspendue"};
         }
 
         public IEnumerable GetStaffPOSITIONS ( )
@@ -102,9 +90,22 @@ namespace DataService
             {
                 var Pos = (from S in Db.STAFF.ToList () where S.POSITION != null select S.POSITION).ToList ().Distinct ().ToList ();
 
+                if (Pos.Count == 0)
+                {
+                    return new List<string> {
+                        "Professeur",
+                        "Enseignant",
+                        "Instructeur",
+                        "Conferencier",
+                        "Chef Departement",
+                        "Directeur General",
+                        "Directeur Financier",
+                        "Directeur Pedagogique",
+                        "Secretaire"
+                    };
+                }
                 return Pos;
-            }
-            //return new List<string> {"Professeur", "Enseignant", "Instructeur", "Conferencier", "Chef Departement", "Directeur General", "Directeur Financier", "Directeur Pedagogique", "Secretaire" };
+            }            
         }
 
         public List<string> GetDEPARTEMENTS ( )
@@ -112,10 +113,10 @@ namespace DataService
             using(var Db = new EF ())
             {
                 var Deps = (from S in Db.STAFF.ToList() where S.DEPARTEMENT != null select S.DEPARTEMENT).ToList().Distinct().ToList();
-                
+
                 return Deps;
             }
-            //return new List<string> { "Departement de Mathematique", "Departement de Chimie", "Departement de Physique" };
+            //Deps.Count == 0 ? new List<string> { "Departement de Mathematique", "Departement de Chimie", "Departement de Physique" } :
         }
 
         public IEnumerable GetStaffQUALIFICATIONS ( )
@@ -124,10 +125,8 @@ namespace DataService
             {
                 var Quals = (from S in Db.STAFF.ToList () where S.QUALIFICATION != null select S.QUALIFICATION).ToList ().Distinct ().ToList ();
 
-                return Quals;
-            }
-
-            //return new List<string> { "Engenieur Etat En Informatique", "Doctorat En Mathematique", "Master En Anglais" };
+                return Quals.Count == 0 ? new List<string> { "Engenieur Etat En Informatique", "Doctorat En Mathematique", "Master En Anglais" } : Quals;
+            }           
         }
 
         #endregion
