@@ -3,7 +3,30 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    
 
+   
+
+    <Style TargetType="{x:Type ListBoxItem}">                
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Grid x:Name="Chrome" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                        <ContentPresenter 
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                            Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" 
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Grid>                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+   
+
+    <!--____________________________________Students_____________________________________________-->
 
     <Style x:Key="StudentListBoxStyle" TargetType="{x:Type ListBox}">
         
@@ -22,13 +45,7 @@
             </Style>
 
             <Style x:Key="ListBoxBoderStyle" TargetType="Border">
-                <Style.Resources>
-                    <!--<LinearGradientBrush x:Key="BackBrush" StartPoint="0.5,0" EndPoint="0.5,1">
-                        <GradientStop Color="#FFFFFD" Offset="0.1" />
-                        <GradientStop Color="#CC9A9CAE" Offset="0.9" />
-                        
-                    </LinearGradientBrush>-->
-                    
+                <Style.Resources>                                       
                     <LinearGradientBrush x:Key="BackBrush" StartPoint="0.5,0" EndPoint="0.5,1">
                         <GradientStop Color="#E4E4DC" Offset="0.1" />
                         <GradientStop Color="#CC9A9CAE" Offset="0.9" />
@@ -110,18 +127,45 @@
     </Style>
 
 
+   
 
-    <Style x:Key="StaffListBoxStyle" TargetType="{x:Type ListBox}">
+    <!--________________________________________Staffs__________________________________________________-->
+
+
+    <Style x:Key="DepListStyle" TargetType="ListBox">
 
         <Style.Resources>
+            <ItemsPanelTemplate x:Key="DepListITemp" >
+                <StackPanel Orientation="Vertical" IsItemsHost="True"/>
+            </ItemsPanelTemplate>
+        </Style.Resources>
+
+        <Setter Property="ItemsPanel" Value="{DynamicResource DepListITemp}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="FontFamily" Value="Trebuchet MS" />
+        <Setter Property="VirtualizingPanel.CacheLengthUnit" Value="Item"/>
+        <Setter Property="VirtualizingPanel.CacheLength" Value="1"/>
+        <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
+
+    </Style>
+
+
+    <Style x:Key="StaffListStyle" TargetType="ListBox">
+
+        <Style.Resources>
+
             <Style TargetType="{x:Type ListBoxItem}">
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Foreground" Value="BlueViolet" />
+                        <Setter Property="Foreground" Value="Maroon" />
                     </Trigger>
 
                     <Trigger Property="IsSelected" Value="true">
-                        <Setter Property="Foreground" Value="Blue" />
+                        <Setter Property="Foreground" Value="#6363E3" />
                         <Setter Property="BorderThickness" Value="1"/>
                     </Trigger>
                 </Style.Triggers>
@@ -136,7 +180,7 @@
                     <LinearGradientBrush x:Key="BorderBrush" StartPoint="0.5,0" EndPoint="0.5,1">
                         <GradientStop Color="#18000000" Offset="0.1" />
                         <GradientStop Color="#08000000" Offset="0.9" />
-                    </LinearGradientBrush>                   
+                    </LinearGradientBrush>
                 </Style.Resources>
                 <Setter Property="Background" Value="{StaticResource BackBrush}"/>
                 <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
@@ -153,10 +197,9 @@
                         <DropShadowEffect Color="#080707" Opacity="0.5" BlurRadius="5" ShadowDepth="5"/>
                     </Border.Effect>
                     <StackPanel Orientation="Vertical" Margin="10">
-
                         <StackPanel Orientation="Horizontal">
                             <Image Source="{Binding PHOTO_IDENTITY}" Stretch="Fill" Width="70" Height="70"/>
-                            
+
                             <Grid Margin="10,5,5,0">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <TextBlock Text="{Binding FIRSTNAME}" FontSize="15" FontWeight="Normal" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
@@ -186,24 +229,26 @@
             <ItemsPanelTemplate x:Key="ListBoxITemp" >
                 <WrapPanel Orientation="Vertical" IsItemsHost="True"/>
             </ItemsPanelTemplate>
+
         </Style.Resources>
 
         <Setter Property="ItemTemplate" Value="{StaticResource ListBoxTemp}" />
         <Setter Property="ItemsPanel" Value="{StaticResource ListBoxITemp}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Margin" Value="20" />
         <Setter Property="VirtualizingPanel.CacheLengthUnit" Value="Item"/>
         <Setter Property="VirtualizingPanel.CacheLength" Value="5"/>
         <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="MaxHeight" Value="350" />
+        <Setter Property="ItemsSource" Value="{Binding STAFFS_LIST}" />
+        <Setter Property="SelectedValuePath" Value="STAFF_ID" />
 
     </Style>
 
-
-
-
-
-
+    <!--__________________________________________________________________________________________-->
 
 </ResourceDictionary>

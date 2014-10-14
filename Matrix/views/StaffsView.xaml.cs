@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Navigation;
 using DataService;
 using DataService.Entities;
+using Matrix.Model;
 
 namespace Matrix.views
 {
@@ -22,10 +23,11 @@ namespace Matrix.views
 
         private void Page_Loaded ( object sender, RoutedEventArgs e )
         {
-            worker.DoWork += worker_DoWork;
-            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            UpdateStaff();
+            Worker.DoWork += Worker_DoWork;
+            Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            UpdateDep ();
         }
+
 
         private void HomeButton_Click ( object sender, RoutedEventArgs e )
         {
@@ -35,66 +37,114 @@ namespace Matrix.views
         private void AddButton_Click ( object sender, RoutedEventArgs e )
         {
             var wind = new StaffINFO {Owner = Window.GetWindow(this), OpenOption = "Add"};
-            wind.ShowDialog ();          
-            UpdateStaff();
+            wind.ShowDialog ();
+            UpdateDep ();
         }
 
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )
         {
-            if(StaffList.SelectedValue == null) {
-
+            if(CurrentSelected == null)
+            {
                 MessageBox.Show ("Selectionner Un Staff A Supprimer !");
                 return;
             }
 
-            var theGaName = App.Db.GetStaffFullName (StaffList.SelectedValue.ToString ());
+            var theGaName = App.Db.GetStaffFullName (CurrentSelected);
             theGaName = "Ete Vous Sure de supprimer " + theGaName + " de la base de donnee ?";
 
             if (MessageBox.Show(theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
 
-            MessageBox.Show (App.Db.DeleteStaff (StaffList.SelectedValue.ToString ()) ? "Supprimer Avec Succes" : "Echec");
-            UpdateStaff ();
+            MessageBox.Show (App.Db.DeleteStaff (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
+            UpdateDep ();
         }
 
-        private void StaffList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
+        private string CurrentSelected;
+
+        private void DepStaffList_SelectionChanged ( object sender, SelectionChangedEventArgs e )
         {
-            if (StaffList == null) return;
-            if (StaffList.SelectedValue == null) return;
-            var wind = new StaffINFO (StaffList.SelectedValue.ToString ())
+            var Staff = sender as ListBox;
+
+            if(Staff == null) return;
+
+            if(Staff.SelectedValue == null)
             {
+                CurrentSelected = null;
+                return;
+            }
+            CurrentSelected = Staff.SelectedValue.ToString ();
+        }
+       
+        private void DepStaffList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
+        {          
+            var Staff = sender as ListBox;
+
+            if(Staff == null) return;
+            if(Staff.SelectedValue == null) return;
+            var wind = new StaffINFO (Staff.SelectedValue.ToString ()) {
                 Owner = Window.GetWindow(this),
                 OpenOption = "Mod"
             };
             wind.ShowDialog ();
-            UpdateStaff ();
+            UpdateDep ();            
         }
 
+             
+
+        #region Background Load
 
 
+        private readonly BackgroundWorker Worker = new BackgroundWorker ();
 
-        #region Background Works
-
-        private readonly BackgroundWorker worker = new BackgroundWorker ();
-
-        private List<Staff> StaffBuff;
-        private void UpdateStaff ( )
+        private readonly List<StaffViewModel> ListBuff = new List<StaffViewModel>();
+        private void UpdateDep ( )
         {
-            if(worker.IsBusy) return;
+            if(Worker.IsBusy) return;
             BusyIndicator.IsBusy = true;
-            worker.RunWorkerAsync ();
+            Worker.RunWorkerAsync ();
         }
-        private void worker_DoWork ( object sender, DoWorkEventArgs e )
-        {
-            StaffBuff = App.Db.GetAllStaffs();         
+        private void Worker_DoWork ( object sender, DoWorkEventArgs e )
+        {          
+            var Deps = App.Db.GetDEPARTEMENTS();
+            
+            var N = new StaffViewModel {DEPARTEMENT_NAME = "", STAFFS_LIST = App.Db.GetDepStaffs()};
+            ListBuff.Add (N);
+         
+            foreach (var D in Deps)
+            {
+                var M = new StaffViewModel ();
+
+                if (D != null)
+                {
+                    M.DEPARTEMENT_NAME = D;
+                    
+                    M.STAFFS_LIST = App.Db.GetDepStaffs(M.DEPARTEMENT_NAME);
+                }
+
+                ListBuff.Add (M);
+            }
+           
         }
-        private void worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
-        {
+        private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
+        {          
             BusyIndicator.IsBusy = false;
-            StaffList.ItemsSource = StaffBuff;
-            worker.Dispose ();
+            StaffList.ItemsSource = ListBuff;
+            Worker.Dispose ();
         }
 
         #endregion
+
+        
+
+        
+
+        
+
+        
+
+
+
+       
+       
 
 
 

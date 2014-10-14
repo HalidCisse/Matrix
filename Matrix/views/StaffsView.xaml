@@ -6,9 +6,9 @@
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" KeepAlive="True" Loaded="Page_Loaded"
       d:DesignHeight="550" d:DesignWidth="1020">
-
+  
     <Grid>
-
+        
         <DockPanel LastChildFill="True">
             <ToolBar Style="{StaticResource ToolBarStyle}" DockPanel.Dock="Top">
                 <Grid HorizontalAlignment="Stretch">
@@ -35,14 +35,19 @@
                     </Grid>
                 </Grid>
             </ToolBar>
-            <Grid Background="Transparent" Margin="0" DockPanel.Dock="Bottom">
+            <Grid Background="Transparent" Margin="0" DockPanel.Dock="Bottom" >
                 <xctk:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <ListBox Name="StaffList" Style="{DynamicResource StaffListBoxStyle}" SelectedValuePath="STAFF_ID"  MouseDoubleClick="StaffList_MouseDoubleClick"/>
+                <ListBox Name="StaffList" Style="{DynamicResource DepListStyle}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Expander  Header="{Binding Path=DEPARTEMENT_NAME}" Style="{DynamicResource DepExpandStyle}">
+                                <ListBox Name="DepStaffList" Style="{DynamicResource StaffListStyle}" MouseDoubleClick="DepStaffList_MouseDoubleClick" SelectionChanged="DepStaffList_SelectionChanged"/>
+                            </Expander>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </Grid>
         </DockPanel>
-
-
-
 
     </Grid>
 </Page>

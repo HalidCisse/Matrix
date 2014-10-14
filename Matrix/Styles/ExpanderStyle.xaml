@@ -5,6 +5,38 @@
 
 
 
+    <Style x:Key="DepExpandStyle" TargetType="Expander">
+
+        <Style.Resources>
+            
+            <SolidColorBrush x:Key="BackBrus" Color="Maroon"/>
+            
+            <LinearGradientBrush x:Key="BackBruss" StartPoint="0.5,0" EndPoint="0.5,1">
+                <GradientStop Color="#EB4041" Offset="0.1" />
+                <GradientStop Color="#D62B2B" Offset="0.9" />
+            </LinearGradientBrush>
+        </Style.Resources>
+      
+        <Setter Property="BorderBrush" Value="#824D4D"/>
+        <Setter Property="BorderThickness" Value="1"/>
+
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Border Name="TheBorder" Height="40" Background="{StaticResource BackBruss}">
+                        <Border.Effect>
+                            <DropShadowEffect Color="#080707" Opacity="0.2" BlurRadius="5" ShadowDepth="2"/>
+                        </Border.Effect>
+                        <TextBlock Text="{Binding}" Margin="4 0" VerticalAlignment="Center" Foreground="White" FontFamily="Verdana" FontSize="15" FontWeight="Medium" Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Expander}}, Path=ActualWidth}" TextWrapping="Wrap"/>
+                    </Border>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Margin" Value="5" />
+    </Style>
+
 
     <Style x:Key="ExpanderStyle" TargetType="Expander">
                
@@ -29,12 +61,6 @@
                 
     </Style>
 
-
-
-    
-
-   
-
-   
+ 
 
 </ResourceDictionary>

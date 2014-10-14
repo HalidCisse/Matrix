@@ -19,19 +19,17 @@ namespace DataService.Migrations
     internal sealed class Configuration : DbMigrationsConfiguration<EF>
     {
         public Configuration()
-        {
+        {          
             AutomaticMigrationDataLossAllowed = true;
             AutomaticMigrationsEnabled = true;           
         }
 
         protected override void Seed(EF EF)
         {
-
             EF.Database.CreateIfNotExists ();
 
             Student_SeedFromSql (EF);
-            Staff_SeedFromSql (EF);
-            
+            Staff_SeedFromSql (EF);            
             
         }
 
