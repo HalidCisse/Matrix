@@ -2,13 +2,17 @@
 //using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Navigation;
 using DataService;
 using DataService.Entities;
 using Matrix.Model;
+using Xceed.Wpf.Toolkit;
+using MessageBox = System.Windows.MessageBox;
 
 namespace Matrix.views
 {
@@ -25,7 +29,7 @@ namespace Matrix.views
         {
             Worker.DoWork += Worker_DoWork;
             Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-            UpdateDep ();
+            UpdateDep ();            
         }
 
 
@@ -36,7 +40,8 @@ namespace Matrix.views
 
         private void AddButton_Click ( object sender, RoutedEventArgs e )
         {
-            var wind = new StaffINFO {Owner = Window.GetWindow(this), OpenOption = "Add"};
+            BusyIndicator.IsBusy = false;
+            var wind = new StaffINFO { Owner = Window.GetWindow (this), OpenOption = "Add" };
             wind.ShowDialog ();
             UpdateDep ();
         }
@@ -85,13 +90,12 @@ namespace Matrix.views
                 OpenOption = "Mod"
             };
             wind.ShowDialog ();
-            UpdateDep ();            
+            UpdateDep ();  
         }
 
              
 
         #region Background Load
-
 
         private readonly BackgroundWorker Worker = new BackgroundWorker ();
 
@@ -105,8 +109,11 @@ namespace Matrix.views
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
         {          
             var Deps = App.Db.GetDEPARTEMENTS();
-            
+
             var N = new StaffViewModel {DEPARTEMENT_NAME = "", STAFFS_LIST = App.Db.GetDepStaffs()};
+
+            //N.STAFF_COUNT = N.STAFFS_LIST.Count;
+
             ListBuff.Add (N);
          
             foreach (var D in Deps)
@@ -115,38 +122,51 @@ namespace Matrix.views
 
                 if (D != null)
                 {
-                    M.DEPARTEMENT_NAME = D;
-                    
-                    M.STAFFS_LIST = App.Db.GetDepStaffs(M.DEPARTEMENT_NAME);
-                }
+                    M.DEPARTEMENT_NAME = D.ToUpper();
 
+                    M.STAFFS_LIST = App.Db.GetDepStaffs(D);
+
+                    //M.STAFF_COUNT = M.STAFFS_LIST.Count;
+                }
+                
                 ListBuff.Add (M);
-            }
-           
+            }           
         }
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {          
             BusyIndicator.IsBusy = false;
-            StaffList.ItemsSource = ListBuff;
+            StaffList.ItemsSource = ListBuff;                                                 
             Worker.Dispose ();
         }
 
         #endregion
 
-        
+        private void DepStaffList_Loaded ( object sender, RoutedEventArgs e )
+        {
+            foreach(var Ep in FindVisualChildren<Expander> (this).Where (Ep => string.IsNullOrEmpty (Ep.Header.ToString ())))
+            {
+                Ep.IsExpanded = true;
+            }
+        }
 
-        
+        public static IEnumerable<T> FindVisualChildren<T> ( DependencyObject depObj ) where T : DependencyObject
+        {
+            if (depObj == null) yield break;
+            for(var i = 0; i < VisualTreeHelper.GetChildrenCount (depObj); i++)
+            {
+                var child = VisualTreeHelper.GetChild (depObj, i);
+                if(child != null && child is T)
+                {
+                    yield return (T)child;
+                }
 
-        
+                foreach(var childOfChild in FindVisualChildren<T> (child))
+                {
+                    yield return childOfChild;
+                }
+            }
+        }
 
-        
-
-
-
-       
-       
-
-
-
+           
     }
 }

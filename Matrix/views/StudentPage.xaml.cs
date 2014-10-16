@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FirstFloor.ModernUI;
+using FirstFloor.ModernUI.Windows.Controls;
+using TCD.Controls;
 
 namespace Matrix.views
 {
@@ -27,6 +30,10 @@ namespace Matrix.views
 
         private void BackBut_Click ( object sender, RoutedEventArgs e )
         {
+
+            ModernDialog.ShowMessage ("Hi Going Back do you like it Hi Going Back do you like it", "Matrix", MessageBoxButton.YesNo);
+           
+
             if(NavigationService.CanGoBack)
             {
                 NavigationService.GoBack ();

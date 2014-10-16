@@ -4,7 +4,20 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+
+            <!--<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+
+            --><!--<ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.xaml" />
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.Light.xaml"/>-->
+            <!--<ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.Dark.xaml"/>-->
+
             <ResourceDictionary.MergedDictionaries>
+                
+                <ResourceDictionary Source="Styles/CoreStyles.xaml"/>
                 <ResourceDictionary Source="Styles/ScrollBarStyle.xaml"/>
                 <ResourceDictionary Source="Styles/Styles.xaml"/>
                 <ResourceDictionary Source="Styles/ExpanderStyle.xaml"/>
@@ -13,7 +26,8 @@
                 <ResourceDictionary Source="Styles/MyWindowStyle.xaml"/>
                 <ResourceDictionary Source="Styles/MyForm.xaml"/>
                 <ResourceDictionary Source="Styles/MyButtonStyle.xaml"/>
-                <ResourceDictionary Source="Styles/Animations.xaml"/>               
+                <ResourceDictionary Source="Styles/Animations.xaml"/>
+                
             </ResourceDictionary.MergedDictionaries>
             <!--<Style x:Key="ToolBarStyle" TargetType="ToolBar" />-->
         </ResourceDictionary>

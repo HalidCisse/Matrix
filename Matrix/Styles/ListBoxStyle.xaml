@@ -146,7 +146,7 @@
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Margin" Value="0" />
-        <Setter Property="FontFamily" Value="Trebuchet MS" />
+        <!--<Setter Property="FontFamily" Value="Trebuchet MS" />-->
         <Setter Property="VirtualizingPanel.CacheLengthUnit" Value="Item"/>
         <Setter Property="VirtualizingPanel.CacheLength" Value="1"/>
         <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>

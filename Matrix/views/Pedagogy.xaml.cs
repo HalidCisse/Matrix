@@ -15,14 +15,19 @@ using System.Windows.Shapes;
 
 namespace Matrix.views
 {
-    /// <summary>
-    /// Interaction logic for Pedagogy.xaml
-    /// </summary>
-    public partial class Pedagogy : Page
+    
+    public partial class Pedagogy
     {
         public Pedagogy ( )
         {
-            InitializeComponent ();
+            InitializeComponent ();            
+        }
+
+        private void Button_Click ( object sender, RoutedEventArgs e )
+        {
+
+
+
         }
     }
 }

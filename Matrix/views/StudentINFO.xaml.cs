@@ -8,7 +8,6 @@ using Brushes = System.Windows.Media.Brushes;
 
 
 
-
 namespace Matrix.views
 {
     

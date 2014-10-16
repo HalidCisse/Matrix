@@ -5,43 +5,40 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
       xmlns:My="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" KeepAlive="True"  Loaded="Page_Loaded"
-      d:DesignHeight="550" d:DesignWidth="1020">
-   
-    <Grid>
-
+      d:DesignHeight="550" d:DesignWidth="1020" Margin="0,0,0,-20">
+       
         <!--<Button Name="StudentsViewBackButton" Style="{DynamicResource BackButtonText}" Click="StudentsViewBackButton_Click" />-->
-        <DockPanel LastChildFill="True">
-            <ToolBar Style="{StaticResource ToolBarStyle}" DockPanel.Dock="Top">
-                <Grid HorizontalAlignment="Stretch">
+    <DockPanel LastChildFill="True">
+        <ToolBar Style="{StaticResource ToolBarStyle}" DockPanel.Dock="Top">
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Content="&#xf015;" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Click="StudentsViewBackButton_Click" />
+                <Button Content="&#xf055;" Grid.Column="1" Style="{DynamicResource ToolButtonStyle}" Name="AddButon" Click="AddButon_Click" />
+                <Button Content="&#xf014;" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Name="DeleteButton" Click="DeleteButton_Click"/>
+                <Button Content="&#xf15d;" Grid.Column="3" Style="{DynamicResource ToolButtonStyle}" />
+                <Button Content="&#xf0dc;" Grid.Column="4" Style="{DynamicResource ToolButtonStyle}" />
+                <Grid Grid.Column="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="40" />
                     </Grid.ColumnDefinitions>
-                    <Button Content="&#xf015;" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Click="StudentsViewBackButton_Click" />
-                    <Button Content="&#xf055;" Grid.Column="1" Style="{DynamicResource ToolButtonStyle}" Name="AddButon" Click="AddButon_Click" />
-                    <Button Content="&#xf014;" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Name="DeleteButton" Click="DeleteButton_Click"/>
-                    <Button Content="&#xf15d;" Grid.Column="3" Style="{DynamicResource ToolButtonStyle}" />
-                    <Button Content="&#xf0dc;" Grid.Column="4" Style="{DynamicResource ToolButtonStyle}" />
-                    <Grid Grid.Column="5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="40" />
-                        </Grid.ColumnDefinitions>
-                        <TextBox Height="20" Background="Beige" Margin="0,0,10,0" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" BorderThickness="0" />
-                        <Button Content="&#xf002;" Margin="0,0,10,0" Style="{DynamicResource ToolButtonStyle}" Grid.Column="1" />
-                    </Grid>
+                    <TextBox Height="20" Background="Beige" Margin="0,0,10,0" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" BorderThickness="0" />
+                    <Button Content="&#xf002;" Margin="0,0,10,0" Style="{DynamicResource ToolButtonStyle}" Grid.Column="1" />
                 </Grid>
-            </ToolBar>
-            <Grid Background="Transparent" Margin="0" DockPanel.Dock="Bottom">
-                <My:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <ListBox Name="Studentslist" Style="{DynamicResource StudentListBoxStyle}" SelectedValuePath="STUDENT_ID"  MouseDoubleClick="Studentslist_MouseDoubleClick"/>
             </Grid>
-        </DockPanel>
+        </ToolBar>
+        <Grid Background="Transparent">
+            <My:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ListBox Name="Studentslist" Style="{DynamicResource StudentListBoxStyle}" SelectedValuePath="STUDENT_ID"  MouseDoubleClick="Studentslist_MouseDoubleClick"/>
+        </Grid>
+    </DockPanel>
 
-    </Grid>
-
+   
 </Page>

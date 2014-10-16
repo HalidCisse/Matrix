@@ -13,7 +13,7 @@
     -->
 
     <SolidColorBrush x:Key="FormBackGroundColor" Color="#3A3A3A" />
-    <SolidColorBrush x:Key="FormTitleBarBackgroundBrush" Color="#3A3A3A" />
+    <SolidColorBrush x:Key="FormTitleBarBackgroundBrush" Color="#F2F2EA" />
     <SolidColorBrush x:Key="FormBorderBrush" Color="#007ACC" />
     <SolidColorBrush x:Key="FormBorderBrushInactive" Color="#999999" />
     <SolidColorBrush x:Key="FormStatusForeground" Color="#FFFFFF" />
@@ -54,7 +54,8 @@
         
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect Color="Black" ShadowDepth="0.9" BlurRadius="20" Opacity=".5" />
+                <!--<DropShadowEffect Color="Black" ShadowDepth="0.9" BlurRadius="20" Opacity=".5" />-->
+                <BlurEffect   Radius="-20" RenderOptions.BitmapScalingMode="HighQuality" RenderingBias="Performance"/>
             </Setter.Value>
         </Setter>
         

@@ -2,12 +2,12 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d" KeepAlive="False"
-      d:DesignHeight="550" d:DesignWidth="1020" Margin="0,0,0,0">
+      d:DesignHeight="550" d:DesignWidth="1020" >
     
     <Page.Resources>
-        
+                
         <Style TargetType="TabItem" x:Key="TabItemStyleX">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="SaddleBrown" />
@@ -288,11 +288,9 @@
         <TabControl Background="Transparent" TabStripPlacement="Left" SnapsToDevicePixels="True">
             
             <TabItem Style="{DynamicResource TabItemStyleX}">
-                <Frame Background="White">
-                    <Frame.Content>
-                        <ListBox Name="StudentList" Style="{DynamicResource StudentList}"   Margin="10" />
-                    </Frame.Content>
-                </Frame>
+                <Grid>                    
+                    <ListBox Name="StudentList" Style="{DynamicResource StudentList}" Background="#5B8577"/>
+                </Grid>
             </TabItem>
             
             <TabItem Style="{DynamicResource TabItemStyleY}">

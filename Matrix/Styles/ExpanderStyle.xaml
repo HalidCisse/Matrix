@@ -3,38 +3,49 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-
-
+   
+    
+    <Style x:Key="TextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Verdana"/>
+        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="Foreground" Value="Gray"/>
+        <Setter Property="Margin" Value="4 0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>       
+    </Style>
+    
+    
     <Style x:Key="DepExpandStyle" TargetType="Expander">
 
-        <Style.Resources>
-            
-            <SolidColorBrush x:Key="BackBrus" Color="Maroon"/>
-            
+        <Style.Resources>            
+            <SolidColorBrush x:Key="BackBrus" Color="Maroon"/>            
             <LinearGradientBrush x:Key="BackBruss" StartPoint="0.5,0" EndPoint="0.5,1">
                 <GradientStop Color="#EB4041" Offset="0.1" />
                 <GradientStop Color="#D62B2B" Offset="0.9" />
             </LinearGradientBrush>
         </Style.Resources>
-      
-        <Setter Property="BorderBrush" Value="#824D4D"/>
-        <Setter Property="BorderThickness" Value="1"/>
-
+                      
         <Setter Property="HeaderTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Border Name="TheBorder" Height="40" Background="{StaticResource BackBruss}">
-                        <Border.Effect>
-                            <DropShadowEffect Color="#080707" Opacity="0.2" BlurRadius="5" ShadowDepth="2"/>
-                        </Border.Effect>
-                        <TextBlock Text="{Binding}" Margin="4 0" VerticalAlignment="Center" Foreground="White" FontFamily="Verdana" FontSize="15" FontWeight="Medium" Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Expander}}, Path=ActualWidth}" TextWrapping="Wrap"/>
-                    </Border>
+                    <StackPanel Margin="0,0,0,0">
+                        <Border Height="5" Background="{StaticResource BackBruss}" CornerRadius="0,5,0,0">
+                            <!--<Border.Effect>
+                                <DropShadowEffect Color="Gray" Opacity="0.5" BlurRadius="5" ShadowDepth="0"/>
+                            </Border.Effect>-->
+                        </Border>
+                        <Border Name="TheBorder" Height="Auto" Background="Transparent" Margin="0,0,0,0" CornerRadius="0,5,0,0">
+                            <TextBlock Text="{Binding}" Style="{StaticResource TextStyle}" Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Expander}}, Path=ActualWidth}" TextWrapping="Wrap"/>
+                        </Border>                        
+                    </StackPanel>                                        
                 </DataTemplate>
             </Setter.Value>
         </Setter>
         
         <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="Margin" Value="5" />
+        <Setter Property="Margin" Value="5,10,5,10" />
+        <Setter Property="BorderBrush" Value="#7E78BB"/>
+        <Setter Property="BorderThickness" Value="0.1"/>
     </Style>
 
 

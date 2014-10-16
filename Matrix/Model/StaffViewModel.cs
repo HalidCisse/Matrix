@@ -17,5 +17,13 @@ namespace Matrix.Model
 
         public List<Staff> STAFFS_LIST { get; set; }
 
+        public int STAFF_COUNT{ get; set; }
+        //{
+        //    get
+        //    {
+        //        return STAFFS_LIST.Count();
+        //    }
+        //    set { STAFF_COUNT = value; }
+        //}
     }
 }

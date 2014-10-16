@@ -4,13 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d" WindowStartupLocation="CenterOwner" 
-      Height="650" Width="450" Style="{StaticResource MyForm}">
+      Height="650" Width="500" Style="{StaticResource MyForm}">
 
     <Window.Resources>
 
         <LinearGradientBrush x:Key="BackBrush" StartPoint="0.5,0" EndPoint="0.5,1">
-            <GradientStop Color="#FFFFFD" Offset="0.1" />
-            <GradientStop Color="#CC9A9CAE" Offset="0.9" />
+
+            <GradientStop Color="#F2F2EA" Offset="0.1" />
+            <!--<GradientStop Color="#FFFFFD" Offset="0.1" />-->
+            <!--<GradientStop Color="#CC9A9CAE" Offset="0.9" />-->
         </LinearGradientBrush>
 
         <Style x:Key="NoChromeButton" TargetType="{x:Type Button}">
@@ -53,6 +55,12 @@
         <Style TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Bottom"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="OpacityMask" Value="Gray"/>
+            
         </Style>
 
         <Style TargetType="TextBox">
@@ -76,10 +84,10 @@
             <DockPanel>
 
                 <Button Name="PhotoID" Style="{StaticResource NoChromeButton}" Focusable="False" BorderThickness="0" Click="PhotoID_Click" ToolTip="Click Pour Changer">
-                    <Image Name="PHOTO_IDENTITY_" DockPanel.Dock="Left"/>
+                    <Image Name="PHOTO_IDENTITY_" DockPanel.Dock="Left" Stretch="Fill"/>
                 </Button>
 
-                <Grid  DockPanel.Dock="Right" Margin="10,-10,0,7">
+                <Grid  DockPanel.Dock="Right" Margin="10,-20,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -112,19 +120,19 @@
                
             <StackPanel>
 
-                <Expander Header="Cours" IsExpanded="True" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="CoursExpander" Collapsed="CoursExpander_Collapsed" Expanded="CoursExpander_Expanded">
+                <Expander Header="COURS" IsExpanded="True" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="CoursExpander" Collapsed="CoursExpander_Collapsed" Expanded="CoursExpander_Expanded">
                     <Grid Height="230" Margin="5">
 
                     </Grid>
                 </Expander>
                 
-                <Expander Header="Matieres D Enseignement" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="MatiereExpander" Collapsed="MatiereExpander_Collapsed" Expanded="MatiereExpander_Expanded">
+                <Expander Header="MATIERES D ENSEIGNEMENT" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="MatiereExpander" Collapsed="MatiereExpander_Collapsed" Expanded="MatiereExpander_Expanded">
                     <Grid Height="230" Margin="5">
                         
                     </Grid>
                 </Expander>
 
-                <Expander Header="Role" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="RoleExpander" Collapsed="RoleExpander_Collapsed" Expanded="RoleExpander_Expanded" >
+                <Expander Header="ROLE" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="RoleExpander" Collapsed="RoleExpander_Collapsed" Expanded="RoleExpander_Expanded" >
                     <Grid Height="230" Margin="5">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -161,7 +169,7 @@
                     </Grid>
                 </Expander>
 
-                <Expander Header="Informations Civiles" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="InfoExpander" Collapsed="InfoExpander_Collapsed" Expanded="InfoExpander_Expanded">
+                <Expander Header="INFORMATIONS DETAILLEES" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="InfoExpander" Collapsed="InfoExpander_Collapsed" Expanded="InfoExpander_Expanded">
                     <Grid Margin="5" Height="230">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -217,8 +225,8 @@
         </StackPanel>       
         
         <Grid VerticalAlignment="Bottom" Margin="0,10">
-            <Button Name="Enregistrer" Content="Enregistrer" Margin="30,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Enregistrer_Click"/>
-            <Button Name="Annuler"     Content="Annuler" Margin="30,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="Annuler_Click"/>
+            <Button Name="Enregistrer" Content="Enregistrer" Margin="10,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Enregistrer_Click"/>
+            <Button Name="Annuler"     Content="Annuler" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="Annuler_Click"/>
         </Grid>
         
     </Grid>

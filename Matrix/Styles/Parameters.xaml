@@ -1,0 +1,17 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:Double x:Key="OpacityDisable">0.4</sys:Double>
+    
+    <sys:Double x:Key="FontSize1">12</sys:Double>
+    <sys:Double x:Key="FontSize2">12</sys:Double>
+    <sys:Double x:Key="FontSize3">14</sys:Double>
+    
+    <!--<sys:String x:Key="FontFamily1"></sys:String>-->
+
+    <sys:Double x:Key="Height1">22</sys:Double>
+
+    <sys:String x:Key="CaretColor">#303030</sys:String>
+</ResourceDictionary>
