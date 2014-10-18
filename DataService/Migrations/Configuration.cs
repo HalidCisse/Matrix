@@ -1,15 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.SqlClient;
-using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using DataService.Context;
-using DataService.Entities;
 using System.Linq;
 using System.Data.Entity.Migrations;
 

@@ -1,5 +1,4 @@
 ﻿using System;
-//using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,11 +6,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Navigation;
-using DataService;
-using DataService.Entities;
+//using System.Windows.Navigation;
+//using DataService.Entities;
 using Matrix.Model;
-using Xceed.Wpf.Toolkit;
+//using Xceed.Wpf.Toolkit;
 using MessageBox = System.Windows.MessageBox;
 
 namespace Matrix.views
@@ -19,9 +17,13 @@ namespace Matrix.views
     
     public partial class StaffsView
     {
+        private readonly BackgroundWorker Worker = new BackgroundWorker ();
+        private readonly List<StaffViewModel> ListBuff = new List<StaffViewModel> ();
+        private string CurrentSelected;
+        private bool isFistTime = true;
 
-        public StaffsView ( )
-        {
+        public StaffsView ( ) {
+
             InitializeComponent ();
         }
 
@@ -29,13 +31,16 @@ namespace Matrix.views
         {
             Worker.DoWork += Worker_DoWork;
             Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            BusyIndicator.IsBusy = true;
             UpdateDep ();            
         }
 
+        //_______________________________________________________________________________________//
 
         private void HomeButton_Click ( object sender, RoutedEventArgs e )
         {
-            NavigationService.Navigate (new Uri ("/views/HomePage.xaml", UriKind.Relative));
+            if (NavigationService != null)
+                NavigationService.Navigate (new Uri ("/views/HomePage.xaml", UriKind.Relative));
         }
 
         private void AddButton_Click ( object sender, RoutedEventArgs e )
@@ -61,9 +66,7 @@ namespace Matrix.views
 
             MessageBox.Show (App.Db.DeleteStaff (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
             UpdateDep ();
-        }
-
-        private string CurrentSelected;
+        }       
 
         private void DepStaffList_SelectionChanged ( object sender, SelectionChangedEventArgs e )
         {
@@ -93,17 +96,12 @@ namespace Matrix.views
             UpdateDep ();  
         }
 
+        //_______________________________________________________________________________________//
              
-
-        #region Background Load
-
-        private readonly BackgroundWorker Worker = new BackgroundWorker ();
-
-        private readonly List<StaffViewModel> ListBuff = new List<StaffViewModel>();
         private void UpdateDep ( )
         {
             if(Worker.IsBusy) return;
-            BusyIndicator.IsBusy = true;
+            //BusyIndicator.IsBusy = true;
             Worker.RunWorkerAsync ();
         }
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
@@ -139,13 +137,25 @@ namespace Matrix.views
             Worker.Dispose ();
         }
 
-        #endregion
-
+        //_______________________________________________________________________________________//
+        
         private void DepStaffList_Loaded ( object sender, RoutedEventArgs e )
         {
+            if (!isFistTime) return;
             foreach(var Ep in FindVisualChildren<Expander> (this).Where (Ep => string.IsNullOrEmpty (Ep.Header.ToString ())))
             {
                 Ep.IsExpanded = true;
+                isFistTime = false;
+            }
+        }
+
+        private void Expander_Expanded ( object sender, RoutedEventArgs e )
+        {
+            var E = sender as Expander;
+
+            foreach(var Ep in FindVisualChildren<Expander> (this).Where (Ep => E != null && Ep.Header.ToString () != E.Header.ToString()))
+            {
+                Ep.IsExpanded = false;                
             }
         }
 
@@ -155,7 +165,7 @@ namespace Matrix.views
             for(var i = 0; i < VisualTreeHelper.GetChildrenCount (depObj); i++)
             {
                 var child = VisualTreeHelper.GetChild (depObj, i);
-                if(child != null && child is T)
+                if(child is T)
                 {
                     yield return (T)child;
                 }
@@ -167,6 +177,6 @@ namespace Matrix.views
             }
         }
 
-           
+                   
     }
 }

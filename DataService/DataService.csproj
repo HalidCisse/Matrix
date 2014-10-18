@@ -66,7 +66,17 @@
   <ItemGroup>
     <Compile Include="Context\EF.cs" />
     <Compile Include="Context\Interface.cs" />
+    <Compile Include="Entities\Classe.cs" />
+    <Compile Include="Entities\Classe_Students.cs" />
+    <Compile Include="Entities\Cours.cs" />
+    <Compile Include="Entities\Filiere.cs" />
+    <Compile Include="Entities\Filiere_Classes.cs" />
+    <Compile Include="Entities\Filiere_Matieres.cs" />
     <Compile Include="Entities\Human.cs" />
+    <Compile Include="Entities\Matiere.cs" />
+    <Compile Include="Entities\MatiereControl.cs" />
+    <Compile Include="Entities\Matiere_Instructeurs.cs" />
+    <Compile Include="Entities\ControlNote.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Staff.cs" />
     <Compile Include="Entities\Student.cs" />

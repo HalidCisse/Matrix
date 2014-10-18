@@ -38,7 +38,7 @@
             <ListBox Name="StaffList" Style="{DynamicResource DepListStyle}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Expander  Header="{Binding Path=DEPARTEMENT_NAME}" Style="{DynamicResource DepExpandStyle}">
+                        <Expander  Header="{Binding Path=DEPARTEMENT_NAME}" Style="{DynamicResource DepExpandStyle}" Expanded="Expander_Expanded">
                             <ListBox Name="DepStaffList" Style="{DynamicResource StaffListStyle}" Loaded="DepStaffList_Loaded" Margin="5,5,5,0" MouseDoubleClick="DepStaffList_MouseDoubleClick" SelectionChanged="DepStaffList_SelectionChanged"/>
                         </Expander>
                     </DataTemplate>

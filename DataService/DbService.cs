@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Windows;
 using DataService.Context;
 using DataService.Entities;
 
@@ -10,7 +9,261 @@ namespace DataService
 {
     public class DbService //: Interface
     {
-       
+
+
+
+
+
+
+
+
+
+
+        #region CLASSE C-R-U-D
+
+        public bool AddClasse ( Classe MyClasse )
+        {
+            using(var Db = new EF ())
+            {
+                Db.CLASSE.Add (MyClasse);
+                return Db.SaveChanges () > 0;
+            }
+        }
+
+        public bool UpdateClasse ( Classe MyClasse )
+        {
+            using(var Db = new EF ())
+            {
+                Db.CLASSE.Attach (MyClasse);
+                Db.Entry (MyClasse).State = EntityState.Modified;
+                return Db.SaveChanges () > 0;
+            }
+        }
+
+        public bool DeleteClasse ( string ClasseID )
+        {
+            using(var Db = new EF ())
+            {
+                Db.CLASSE.Remove (Db.CLASSE.Find (ClasseID));
+                return Db.SaveChanges () > 0;
+            }
+        }
+
+        public Classe GetClasseByID ( string ClasseID )
+        {
+            using(var Db = new EF ())
+            {
+                var MyClasse = Db.CLASSE.Find (ClasseID);
+                return MyClasse;
+            }
+        }
+
+        public static Classe GetClasseByName ( string ClasseName )
+        {
+            using(var Db = new EF ())
+            {
+                var MyClasse = Db.CLASSE.SingleOrDefault (S => S.NAME == ClasseName);
+
+                return MyClasse;
+            }
+        }
+
+        public List<Classe> GetAllClasse ( )
+        {
+            using(var Db = new EF ())
+            {
+                IList<Classe> MesClasses = Db.CLASSE.ToList ();
+
+                return (List<Classe>)MesClasses;
+            }
+        }
+
+        public string GetClasseName ( string ClasseID )
+        {
+            using(var Db = new EF ())
+            {
+                var MyClasseName = Db.CLASSE.Find (ClasseID).NAME;
+                return MyClasseName;
+            }
+        }
+
+        public bool ClasseExist ( string ClasseID )
+        {
+            using(var Db = new EF ())
+            {
+                return Db.CLASSE.Find (ClasseID) != null;
+            }
+        }
+
+        #endregion
+
+
+
+
+        #region MATIERE C-R-U-D
+
+        public bool AddMatiere ( Matiere MyMatiere )
+        {
+            using(var Db = new EF ())
+            {
+                Db.MATIERE.Add (MyMatiere);
+                return Db.SaveChanges () > 0;
+            }
+        }
+
+        public bool UpdateMatiere ( Matiere MyMatiere )
+        {
+            using(var Db = new EF ())
+            {
+                Db.MATIERE.Attach (MyMatiere);
+                Db.Entry (MyMatiere).State = EntityState.Modified;
+                return Db.SaveChanges () > 0;
+            }
+        }
+
+        public bool DeleteMatiere ( string MatiereID )
+        {
+            using(var Db = new EF ())
+            {
+                Db.MATIERE.Remove (Db.MATIERE.Find (MatiereID));
+                return Db.SaveChanges () > 0;
+            }
+        }
+
+        public Matiere GetMatiereByID ( string MatiereID )
+        {
+            using(var Db = new EF ())
+            {
+                var MyMatiere = Db.MATIERE.Find (MatiereID);
+                return MyMatiere;
+            }
+        }
+
+        public static Matiere GetMatiereByName ( string MatiereName )
+        {
+            using(var Db = new EF ())
+            {
+                var MyMatiere = Db.MATIERE.SingleOrDefault (S => S.NAME == MatiereName);
+
+                return MyMatiere;
+            }
+        }
+
+        public List<Matiere> GetAllMatieres ( )
+        {
+            using(var Db = new EF ())
+            {
+                IList<Matiere> MesMatieres = Db.MATIERE.ToList ();
+
+                return (List<Matiere>)MesMatieres;
+            }
+        }
+
+        public string GetMatiereName ( string MatiereID )
+        {
+            using(var Db = new EF ())
+            {
+                var MyMatiereName = Db.MATIERE.Find (MatiereID).NAME;
+                return MyMatiereName;
+            }
+        }
+
+        public bool MatiereExist ( string MatiereID )
+        {
+            using(var Db = new EF ())
+            {
+                return Db.MATIERE.Find (MatiereID) != null;
+            }
+        }
+
+        #endregion
+
+
+
+
+
+        #region Filiere C-R-U-D
+
+        public bool AddFiliere ( Filiere MyFiliere )
+        {
+            using(var Db = new EF ())
+            {
+                Db.FILIERE.Add (MyFiliere);
+                return Db.SaveChanges () > 0;
+            }
+        }
+
+        public bool UpdateFiliere ( Filiere MyFiliere )
+        {
+            using(var Db = new EF ())
+            {
+                Db.FILIERE.Attach (MyFiliere);
+                Db.Entry (MyFiliere).State = EntityState.Modified;
+                return Db.SaveChanges () > 0;
+            }
+        }
+
+        public bool DeleteFiliere ( string FiliereID )
+        {
+            using(var Db = new EF ())
+            {
+                Db.FILIERE.Remove (Db.FILIERE.Find (FiliereID));
+                return Db.SaveChanges () > 0;
+            }
+        }
+
+        public Filiere GetFiliereByID ( string FiliereID )
+        {
+            using(var Db = new EF ())
+            {
+                var MyFiliere = Db.FILIERE.Find (FiliereID);
+                return MyFiliere;
+            }
+        }
+
+        public static Filiere GetFiliereByName ( string FiliereName )
+        {
+            using(var Db = new EF ())
+            {
+                var MyFiliere = Db.FILIERE.SingleOrDefault (S => S.NAME == FiliereName);
+
+                return MyFiliere;
+            }
+        }
+
+        public List<Filiere> GetAllFilieres ( )
+        {
+            using(var Db = new EF ())
+            {
+
+                IList<Filiere> MesFilieres = Db.FILIERE.ToList ();
+
+                return (List<Filiere>)MesFilieres;
+            }
+        }
+
+        public string GetFiliereName ( string FiliereID )
+        {
+            using(var Db = new EF ())
+            {
+                var MyFiliereName = Db.FILIERE.Find (FiliereID).NAME;
+                return MyFiliereName;
+            }
+        }
+
+        public bool FiliereExist ( string FiliereID )
+        {
+            using(var Db = new EF ())
+            {
+                return Db.FILIERE.Find (FiliereID) != null;
+            }
+        }
+
+        #endregion
+
+
+
+
         #region Patternes DATA
 
         public IEnumerable GetNATIONALITIES ( )
@@ -315,7 +568,6 @@ namespace DataService
         #endregion
 
         
-
 
     }
 }

@@ -9,6 +9,63 @@
         <ResourceDictionary Source="Brushes.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
+    <!--TargetType="ContentControl"-->
+
+    <Style x:Key="PopupContentStyle" TargetType="ContentControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Grid Width="Auto" Height="Auto" Background="Gray">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Border BorderThickness="2" CornerRadius="8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="2">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="Gray"/>
+                            </Border.BorderBrush>
+                            <Border.Background>
+                                <SolidColorBrush Color="White"/>
+                            </Border.Background>
+                        </Border>
+
+                        <StackPanel Grid.Row="0">
+                            <Label Foreground="Blue" Content="Popup_Title"/>
+                        </StackPanel>
+
+                        <GroupBox Grid.Row="1" Header="Popup example content">
+                            <StackPanel>
+                                <ContentPresenter />
+                            </StackPanel>
+                        </GroupBox>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type MenuItem}">
+        
+        <Setter Property="Background" Value="White"></Setter>       
+        <Setter Property="Foreground" Value="Maroon"></Setter>        
+        <Setter Property="FontSize" Value="13"></Setter>        
+        <Setter Property="FontFamily" Value="Verdana"></Setter>       
+        <Setter Property="Margin" Value="-5,0,0,0"></Setter>       
+        <Style.Triggers>            
+            <Trigger Property="IsHighlighted" Value="True">                
+                <!--<Setter Property="Background" Value="Black"></Setter>-->                
+                <Setter Property="FontSize" Value="15"></Setter>                
+            </Trigger>
+            
+            <Trigger Property="IsEnabled" Value="False">                
+                <!--<Setter Property="Foreground" Value="LightGray"></Setter>-->                
+            </Trigger>            
+        </Style.Triggers>       
+    </Style>
+
+
+
 
 
     <Style TargetType="{x:Type ProgressBar}" x:Key="ProgressBarStyle">

@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        mc:Ignorable="d" WindowStartupLocation="CenterOwner" 
+      mc:Ignorable="d" WindowStartupLocation="CenterOwner" 
       Height="650" Width="500" Style="{StaticResource MyForm}">
 
     <Window.Resources>
@@ -77,7 +77,7 @@
     </Window.Resources>
 
     
-    <Grid Background="{StaticResource BackBrush}">
+    <Grid>
 
         <StackPanel Margin="10,0,10,40" VerticalAlignment="Stretch">
 

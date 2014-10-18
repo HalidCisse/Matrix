@@ -16,7 +16,8 @@
             <!--<ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.Dark.xaml"/>-->
 
             <ResourceDictionary.MergedDictionaries>
-                
+
+                <ResourceDictionary Source="Styles/TabStyle.xaml"/>
                 <ResourceDictionary Source="Styles/CoreStyles.xaml"/>
                 <ResourceDictionary Source="Styles/ScrollBarStyle.xaml"/>
                 <ResourceDictionary Source="Styles/Styles.xaml"/>

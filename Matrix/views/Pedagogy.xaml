@@ -3,14 +3,124 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"      
-      xmlns:My="http://schemas.xceed.com/wpf/xaml/toolkit"
-            
+      xmlns:My="http://schemas.xceed.com/wpf/xaml/toolkit"            
       mc:Ignorable="d" KeepAlive="True"
-      d:DesignHeight="550" d:DesignWidth="1020" Margin="0,0,0,-20">
+      d:DesignHeight="550" d:DesignWidth="1020">
+
+    <Page.Resources>
+        
+        <Style x:Key="BackButtonText" TargetType="{x:Type Button}">
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontFamily" Value="pack://application:,,,/Fonts/#FontAwesome" />
+            <Setter Property="Content" Value="&#xf137;"/>
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="10,-40"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border x:Name="PART_border" Background="Transparent"/>
+                            <ContentPresenter />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#FFF"/>
+                                <Setter TargetName="PART_border" Property="Opacity" Value="0.7" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Foreground" Value="Gray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ContextMenu PlacementTarget="{Binding ElementName =AddClasse}" HasDropShadow="True" Placement="Bottom" PlacementRectangle="10,10,10,10" HorizontalOffset="-100" VerticalOffset="20" x:Key="cmButton">
+            <MenuItem Header="Ajouter Une Classe" Name="AddClasse" Click="AddClasse_Click">
+                <MenuItem.Icon>
+                    <TextBlock Text="&#xf055;" FontFamily="pack://application:,,,/Fonts/#FontAwesome" />
+                </MenuItem.Icon>
+            </MenuItem>
+            
+            <MenuItem Header="Ajouter Une Filiere" Name="AddFiliere" Click="AddFiliere_Click">
+                
+            </MenuItem>          
+        </ContextMenu>
+        
+    </Page.Resources>
     
-    <Grid>
-        
-        
-       
+    <Grid>  
+        <Button Name="BackBut" Style="{StaticResource BackButtonText}" Click="BackBut_Click"/>
+
+        <TabControl Background="Transparent" TabStripPlacement="Left" SnapsToDevicePixels="True" >
+
+            <TabItem Style="{DynamicResource TabItemStyleEmploiDuTemps}">
+                
+            </TabItem>
+
+            <TabItem Style="{DynamicResource TabItemStyleNote}">
+                <Grid>
+
+                </Grid>           
+            </TabItem>
+
+            <TabItem Style="{DynamicResource TabItemStyleClass}">
+                <DockPanel LastChildFill="True">
+                    <ToolBar Style="{StaticResource ToolBarStyle}" DockPanel.Dock="Top">
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="&#xf015;" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Name="HomeButton" Click="HomeButton_Click" />
+                            <Button Content="&#xf055;" Grid.Column="1" Style="{DynamicResource ToolButtonStyle}" Name="AddClasseButton" Click="AddClasseButton_Click" />
+                            <Button Content="&#xf014;" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Name="DeleteClasseButton" Click="DeleteClasseButton_Click"/>
+                            <Button Content="&#xf15d;" Grid.Column="3" Style="{DynamicResource ToolButtonStyle}" />
+                            <Button Content="&#xf0dc;" Grid.Column="4" Style="{DynamicResource ToolButtonStyle}" />
+                            <Grid Grid.Column="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="40" />
+                                </Grid.ColumnDefinitions>
+                                <TextBox Height="20" Background="Beige" Margin="0,0,10,0" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" BorderThickness="0" />
+                                <Button Content="&#xf002;" Margin="0,0,10,0" Style="{DynamicResource ToolButtonStyle}" Grid.Column="1" />
+                            </Grid>
+                        </Grid>
+                    </ToolBar>
+                    <Grid Background="Transparent">
+                        <My:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ListBox Name="FiliereList" Style="{DynamicResource DepListStyle}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Expander  Header="{Binding Path=FiliereName}" Style="{DynamicResource DepExpandStyle}"  >
+                                        <ListBox Name="FilClassList" Style="{DynamicResource StaffListStyle}" Margin="5,5,5,0"  />
+                                    </Expander>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Style="{DynamicResource TabItemStyleFiliere}">
+                <Grid>
+
+                </Grid>
+            </TabItem>
+
+        </TabControl>
     </Grid>
 </Page>
+

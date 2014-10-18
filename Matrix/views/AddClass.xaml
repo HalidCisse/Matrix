@@ -1,0 +1,42 @@
+﻿<Window x:Class="Matrix.views.AddClass"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Ajouter Une Classe" WindowStartupLocation="CenterOwner"
+        Height="300" Width="500" Style="{StaticResource MyForm}">
+
+    
+    <Grid  DockPanel.Dock="Right" Margin="10,-20,10,20">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <TextBlock Text="FILIERE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+            <ComboBox Name="FILIERE_" Width="200" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <TextBlock Text="NIVEAU" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+            <ComboBox Name="NIVEAU_" Width="200" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <TextBlock Text="NOM DE CLASSE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+            <TextBox Name="FIRSTNAME_" Width="300" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        </Grid>
+       
+        <Grid Grid.Row="3">
+            <TextBlock Text="CLASSE_ID" VerticalAlignment="Bottom"/>
+            <TextBlock Name="CLASSE_ID_" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        </Grid>
+
+        <Grid Grid.Row="4" VerticalAlignment="Bottom" Margin="0,0">
+            <Button Name="Enregistrer" Content="Enregistrer" Margin="10,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Enregistrer_Click"/>
+            <Button Name="Annuler"     Content="Annuler" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="Annuler_Click"/>
+        </Grid>
+    </Grid>
+</Window>

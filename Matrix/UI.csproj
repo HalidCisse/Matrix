@@ -135,6 +135,9 @@
     <Compile Include="Utils\GenID.cs" />
     <Compile Include="Utils\ImageUtils.cs" />
     <Compile Include="Utils\Res.cs" />
+    <Compile Include="views\AddClass.xaml.cs">
+      <DependentUpon>AddClass.xaml</DependentUpon>
+    </Compile>
     <Compile Include="views\Pedagogy.xaml.cs">
       <DependentUpon>Pedagogy.xaml</DependentUpon>
     </Compile>
@@ -209,7 +212,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\TabStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\ToolBarStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\AddClass.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -365,6 +376,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Entypo-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Class.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Note.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Classe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EmploieDuTemps.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Filiere.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

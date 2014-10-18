@@ -1,7 +1,5 @@
 using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
 using DataService.Entities;
-using DataService.Initializer;
 
 namespace DataService.Context
 {
@@ -21,11 +19,38 @@ namespace DataService.Context
             Configuration.ProxyCreationEnabled = false;           
             //Database.SetInitializer (new DBInitializer ());
         }
+        
 
 
-        //public virtual DbSet<Person> PERSON { get; set; }
         public virtual DbSet<Staff> STAFF { get; set; }
         public virtual DbSet<Student> STUDENT { get; set; }
+
+        //_______________________________________________________________________________//
+        public virtual DbSet<Classe> CLASSE { get; set; }
+        public virtual DbSet<Filiere> FILIERE { get; set; }
+        public virtual DbSet<Matiere> MATIERE { get; set; }
+        public virtual DbSet<ControlNote> CONTROL_NOTE { get; set; }
+        public virtual DbSet<Cours> COURS { get; set; }
+        public virtual DbSet<MatiereControl> MATIERE_CONTROL { get; set; }
+
+        //_______________________________________________________________________________//
+        public virtual DbSet<Filiere_Classes> FILIERE_CLASSES { get; set; }
+        public virtual DbSet<Classe_Students> CLASSE_STUDENTS { get; set; }       
+        public virtual DbSet<Filiere_Matieres> FILIERE_MATIERE { get; set; }
+        public virtual DbSet<Matiere_Instructeurs> MATIERES_INSTRUCTEURS { get; set; }
+
+        
+
+
+
+
+
+
+
+
+
+
+
 
 
         //protected override void OnModelCreating ( DbModelBuilder modelBuilder )

@@ -12,7 +12,8 @@
     <SolidColorBrush x:Key="VS2012WindowBackGroundColor" Color="#EFEFF2" />
     -->
 
-    <SolidColorBrush x:Key="FormBackGroundColor" Color="#3A3A3A" />
+    <!--<SolidColorBrush x:Key="FormBackGroundColor" Color="#3A3A3A" />-->
+    <SolidColorBrush x:Key="FormBackGroundColor" Color="#F2F2EA" />
     <SolidColorBrush x:Key="FormTitleBarBackgroundBrush" Color="#F2F2EA" />
     <SolidColorBrush x:Key="FormBorderBrush" Color="#007ACC" />
     <SolidColorBrush x:Key="FormBorderBrushInactive" Color="#999999" />
