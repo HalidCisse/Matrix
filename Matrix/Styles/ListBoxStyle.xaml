@@ -3,11 +3,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    
 
-   
 
-    <Style TargetType="{x:Type ListBoxItem}">                
+    <!--____________________________________General_____________________________________________-->
+
+    <Style TargetType="{x:Type ListBoxItem}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -17,14 +17,144 @@
                             Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" 
                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                    </Grid>                    
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    
-   
+    <Style x:Key="NoChrome" TargetType="ContentControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Grid x:Name="Chrome" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                        <ContentPresenter 
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                            Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" 
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <!--____________________________________Filieres_____________________________________________-->
+
+
+    <Style x:Key="FiliereListBoxStyle" TargetType="{x:Type ListBox}">
+
+        <Style.Resources>
+            <Style TargetType="{x:Type ListBoxItem}">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Foreground" Value="BlueViolet" />
+                    </Trigger>
+
+                    <Trigger Property="IsSelected" Value="true">
+                        <Setter Property="Foreground" Value="Blue" />
+                        <Setter Property="BorderThickness" Value="1"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="ListBoxBoderStyle" TargetType="Border">
+                <Style.Resources>                   
+                    <LinearGradientBrush x:Key="BorderBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="Blue" Offset="0.1" />
+                        <GradientStop Color="#081136FF" Offset="0.9" />
+                    </LinearGradientBrush>
+                </Style.Resources>
+                
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>                              
+                <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="CornerRadius" Value="2" />
+                <Setter Property="Margin" Value="10" />
+	            <Setter Property="HorizontalAlignment" Value="Stretch" />
+	            <Setter Property="Height" Value="260" />
+	            <Setter Property="Width" Value="300" />
+            </Style>
+
+            <DataTemplate x:Key="ListBoxTemp">
+                <Border Style="{StaticResource ListBoxBoderStyle}">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#080707" Opacity="0.5" BlurRadius="5" ShadowDepth="5"/>
+                    </Border.Effect>
+                    
+                    <DockPanel LastChildFill="True">                        
+                        <Border Height="50" HorizontalAlignment="Stretch" CornerRadius="0" Background="#3737B2" DockPanel.Dock="Top">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="../Images/Filiere.png" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+                                <TextBlock Text="{Binding NAME}" FontSize="20" Foreground="White" FontWeight="ExtraBold" FontFamily="Helvetica" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </StackPanel>                           
+                        </Border>
+                        <!--Background="#F2F2EA"-->
+                        <StackPanel Margin="10">
+                            <StackPanel Orientation="Horizontal" Margin="0,10">
+                                <TextBlock Text="Niveau" FontSize="15" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                                <TextBlock Text="{Binding NIVEAU}" FontSize="15" Margin="10,0" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                            </StackPanel>
+                            
+                            <Grid Margin="0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="250" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Grid.Column="1" Text="Etudiants" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                            </Grid> 
+                            
+                            <Grid Margin="0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="7" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Grid.Column="1" Text="Enseignants" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                            </Grid>
+                            
+                            <Grid Margin="0,10">  
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="25" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Text="Classes" Grid.Column="1" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                            </Grid>
+
+                            <Grid Margin="0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="15" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Grid.Column="1" Text="Matieres" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                            </Grid>
+                                                                                                                                       
+                        </StackPanel>
+                    </DockPanel>                  
+                </Border>
+            </DataTemplate>
+
+            <ItemsPanelTemplate x:Key="ListBoxITemp" >
+                <WrapPanel Orientation="Vertical" IsItemsHost="True"/>
+            </ItemsPanelTemplate>
+        </Style.Resources>
+
+        <Setter Property="ItemTemplate" Value="{StaticResource ListBoxTemp}" />
+        <Setter Property="ItemsPanel" Value="{StaticResource ListBoxITemp}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="VirtualizingPanel.CacheLengthUnit" Value="Item"/>
+        <Setter Property="VirtualizingPanel.CacheLength" Value="10"/>
+        <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Standard"/>
+
+    </Style>
 
     <!--____________________________________Students_____________________________________________-->
 
@@ -77,8 +207,7 @@
                             <Grid Margin="10,5,5,0">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
                                     <TextBlock Text="{Binding FIRSTNAME}" FontSize="15" FontWeight="Normal" VerticalAlignment="Bottom"/>
-                                    <TextBlock Text="{Binding LASTNAME}" FontSize="15" FontWeight="Light" Margin="10,0" VerticalAlignment="Bottom"/>
-                                    <TextBlock Text="{Binding STUDENT_ID}" Visibility="Hidden" Height="0" Width="0"/>
+                                    <TextBlock Text="{Binding LASTNAME}" FontSize="15" FontWeight="Light" Margin="10,0" VerticalAlignment="Bottom"/>                                    
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
@@ -126,12 +255,7 @@
         
     </Style>
 
-
-   
-
-    <!--________________________________________Staffs__________________________________________________-->
-
-
+    <!--________________________________________Staffs____________________________________________-->
     <Style x:Key="DepListStyle" TargetType="ListBox">
 
         <Style.Resources>
@@ -205,7 +329,7 @@
                                     <TextBlock Text="{Binding FIRSTNAME}" FontSize="15" FontWeight="Normal" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
                                     <TextBlock Text="{Binding LASTNAME}" FontSize="15" FontWeight="Light" Margin="10,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
                                 </StackPanel>
-                                <TextBlock Text="{Binding STAFF_ID}" Visibility="Hidden" Height="0" Width="0"/>
+                                <!--<TextBlock Text="{Binding STAFF_ID}" Visibility="Hidden" Height="0" Width="0"/>-->
                                 <TextBlock Text="{Binding QUALIFICATION}" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 <TextBlock Text="{Binding DEPARTEMENT}" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                             </Grid>

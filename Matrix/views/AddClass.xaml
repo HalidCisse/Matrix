@@ -1,11 +1,11 @@
 ﻿<Window x:Class="Matrix.views.AddClass"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Ajouter Une Classe" WindowStartupLocation="CenterOwner"
-        Height="300" Width="500" Style="{StaticResource MyForm}">
+        WindowStartupLocation="CenterOwner"
+        Height="300" Width="500" Style="{StaticResource MyForm}" FontFamily="Helvetica">
 
-    
-    <Grid  DockPanel.Dock="Right" Margin="10,-20,10,20">
+
+    <Grid  DockPanel.Dock="Right" Margin="10,-20,10,20" Background="#e9e9e9">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>

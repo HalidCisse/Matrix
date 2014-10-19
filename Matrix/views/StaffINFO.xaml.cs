@@ -133,17 +133,17 @@ namespace Matrix.views
 
                 IDENTITY_NUMBER = IDENTITY_NUMBER_.Text.Trim (),
                 BIRTH_DATE = BIRTH_DATE_.SelectedDate.Value,
-                NATIONALITY = NATIONALITY_.SelectedValue.ToString (),
-                BIRTH_PLACE = BIRTH_PLACE_.SelectedValue.ToString (),
+                NATIONALITY = NATIONALITY_.Text,
+                BIRTH_PLACE = BIRTH_PLACE_.Text,
                 PHONE_NUMBER = PHONE_NUMBER_.Text.Trim (),
                 EMAIL_ADRESS = EMAIL_ADRESS_.Text.Trim (),
                 HOME_ADRESS = HOME_ADRESS_.Text.Trim (),
                 STATUT = STATUT_.SelectedValue.ToString (),
             };
 
-            if(POSITION_.SelectedValue != null) MyStaff.POSITION = POSITION_.SelectedValue.ToString ();
-            if(DEPARTEMENT_.SelectedValue != null) MyStaff.DEPARTEMENT = DEPARTEMENT_.SelectedValue.ToString ();
-            if(QUALIFICATION_.SelectedValue != null) MyStaff.QUALIFICATION = QUALIFICATION_.SelectedValue.ToString ();
+            if(string.IsNullOrEmpty (POSITION_.Text)) MyStaff.POSITION = POSITION_.SelectedValue.ToString ();
+            if(string.IsNullOrEmpty (DEPARTEMENT_.Text)) MyStaff.DEPARTEMENT = DEPARTEMENT_.SelectedValue.ToString ();
+            if(string.IsNullOrEmpty (QUALIFICATION_.Text)) MyStaff.QUALIFICATION = QUALIFICATION_.SelectedValue.ToString ();
             if(HIRED_DATE_.SelectedDate != null) MyStaff.HIRED_DATE = HIRED_DATE_.SelectedDate.Value;
 
             if (OpenOption == "Add")
@@ -163,7 +163,7 @@ namespace Matrix.views
         {
             string idOut;
 
-            do idOut = "S" + DateTime.Today.Year + GenID.GetID (4); while(App.Db.StaffExist (idOut));
+            do idOut = "ST" + DateTime.Today.Year + "-" + GenID.GetID (3) + "-" + GenID.GetID (4); while(App.Db.StaffExist (idOut));
 
             return idOut;
         }
@@ -220,7 +220,7 @@ namespace Matrix.views
                 IDENTITY_NUMBER_.BorderBrush = Brushes.Blue;
             }
 
-            if(NATIONALITY_.SelectedValue == null)
+            if(string.IsNullOrEmpty (NATIONALITY_.Text))
             {
                 NATIONALITY_.BorderBrush = Brushes.Red;
                 Ok = false;
@@ -229,7 +229,7 @@ namespace Matrix.views
             {
                 NATIONALITY_.BorderBrush = Brushes.Blue;
             }
-            if(BIRTH_PLACE_.SelectedValue == null)
+            if(string.IsNullOrEmpty (BIRTH_PLACE_.Text))
             {
                 BIRTH_PLACE_.BorderBrush = Brushes.Red;
                 Ok = false;

@@ -115,9 +115,9 @@
             </TabItem>
 
             <TabItem Style="{DynamicResource TabItemStyleFiliere}">
-                <Grid>
+                <Frame Name="filiereFrame" NavigationUIVisibility="Hidden" Source="FilieresView.xaml">
 
-                </Grid>
+                </Frame>
             </TabItem>
 
         </TabControl>

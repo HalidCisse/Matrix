@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -186,6 +187,7 @@ namespace DataService
 
         public bool AddFiliere ( Filiere MyFiliere )
         {
+            MyFiliere.FILIERE_ID = Guid.NewGuid().ToString();
             using(var Db = new EF ())
             {
                 Db.FILIERE.Add (MyFiliere);
@@ -382,6 +384,35 @@ namespace DataService
             }           
         }
 
+        public IEnumerable GetFILIERE_NIVEAU_ENTREE ( )
+        {
+            using(var Db = new EF ())
+            {
+                var Ns = (from S in Db.FILIERE.ToList () where S.NIVEAU_ENTREE != null select S.NIVEAU_ENTREE).ToList ();
+
+                Ns.AddRange(new List<string> {"Bac", "Bac+1", "Bac+2", "Licence", "Bac+4", "Master", "Engenieur", "Doctorat"});
+
+                return Ns.Distinct().ToList();
+            }  
+        }
+
+        public IEnumerable GetFILIERE_NIVEAU_SORTIE ( )
+        {
+            using(var Db = new EF ())
+            {
+                var Ns = (from S in Db.FILIERE.ToList () where S.NIVEAU != null select S.NIVEAU).ToList ();
+
+                Ns.AddRange (new List<string> {"Bac+1", "Bac+2", "Licence", "Bac+4", "Master", "Engenieur", "Doctorat" });
+
+                return Ns.Distinct ().ToList ();
+            }  
+        }
+
+        public IEnumerable GetFILIERE_ANNEE ( )
+        {            
+            return new List<string>{ "1", "2", "3", "4", "5", "6", "7", "8" };
+        }
+
         #endregion
 
 
@@ -568,6 +599,5 @@ namespace DataService
         #endregion
 
         
-
     }
 }

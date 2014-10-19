@@ -138,6 +138,12 @@
     <Compile Include="views\AddClass.xaml.cs">
       <DependentUpon>AddClass.xaml</DependentUpon>
     </Compile>
+    <Compile Include="views\AddFiliere.xaml.cs">
+      <DependentUpon>AddFiliere.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\FilieresView.xaml.cs">
+      <DependentUpon>FilieresView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="views\Pedagogy.xaml.cs">
       <DependentUpon>Pedagogy.xaml</DependentUpon>
     </Compile>
@@ -221,6 +227,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="views\AddClass.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\AddFiliere.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\FilieresView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -9,9 +9,7 @@ using DataService.Entities;
 
 namespace Matrix.views
 {
-    /// <summary>
-    /// Interaction logic for StudentsView.xaml
-    /// </summary>
+    
     public partial class StudentsView
     {
        
@@ -29,7 +27,8 @@ namespace Matrix.views
        
         private void StudentsViewBackButton_Click ( object sender, RoutedEventArgs e )
         {
-            NavigationService.Navigate (new Uri ("/views/HomePage.xaml", UriKind.Relative));
+            if (NavigationService != null)
+                NavigationService.Navigate (new Uri ("/views/HomePage.xaml", UriKind.Relative));
         }
 
         private void Studentslist_MouseDoubleClick ( object sender, MouseButtonEventArgs e ) {
