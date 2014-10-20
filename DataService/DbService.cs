@@ -261,6 +261,19 @@ namespace DataService
             }
         }
 
+        public IEnumerable GetFILIERE_NIVEAUX ( string FiliereID )
+        {
+            using(var Db = new EF ())
+            {
+                var MyFiliereN = Db.FILIERE.Find (FiliereID).N_ANNEE;
+                var N = new List<int>();
+
+                for (var i = 1; i < MyFiliereN + 1; i++) N.Add(i);
+
+                return N;
+            }
+        }
+
         #endregion
 
 
@@ -572,6 +585,16 @@ namespace DataService
             }
         }
 
+        public IEnumerable GetAllStaffNames ( )
+        {
+            var Names = new List<string> ();
+            using(var Db = new EF ())
+            {
+                Names.AddRange (Db.STAFF.ToList ().Select (S => S.FULL_NAME));
+                return Names;
+            }
+        }
+
         public List<Staff> GetDepStaffs(string DepName = null)
         {
             using(var Db = new EF ())
@@ -595,9 +618,28 @@ namespace DataService
                 return Db.STAFF.Find(StaffID) != null;
             }
         }
+      
 
         #endregion
 
-        
+
+
+        #region Pedagogy
+
+
+        public bool IsMatiereInstructor ( string StaffID, string MatiereID )
+        {
+            using(var Db = new EF ())
+            {                                                
+                return
+                    Db.MATIERES_INSTRUCTEURS.Count(
+                        S => S.MATIERE_ID == MatiereID && S.MATIERE_INSTRUCTEURS_ID == StaffID) != 0;
+            }
+        }
+
+        #endregion
+
+
+
     }
 }

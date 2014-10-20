@@ -127,6 +127,7 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\MatiereStaffsModel.cs" />
     <Compile Include="Model\StaffViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Styles\LocalExtensions.cs" />
@@ -141,8 +142,14 @@
     <Compile Include="views\AddFiliere.xaml.cs">
       <DependentUpon>AddFiliere.xaml</DependentUpon>
     </Compile>
+    <Compile Include="views\AddMatiere.xaml.cs">
+      <DependentUpon>AddMatiere.xaml</DependentUpon>
+    </Compile>
     <Compile Include="views\FilieresView.xaml.cs">
       <DependentUpon>FilieresView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\MatieresView.xaml.cs">
+      <DependentUpon>MatieresView.xaml</DependentUpon>
     </Compile>
     <Compile Include="views\Pedagogy.xaml.cs">
       <DependentUpon>Pedagogy.xaml</DependentUpon>
@@ -234,6 +241,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="views\AddMatiere.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="views\FilieresView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -250,6 +261,10 @@
     <Compile Include="views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Page Include="views\MatieresView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="views\Pedagogy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -405,6 +420,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Filiere.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Matiere.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="views\Icon\Matiere.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

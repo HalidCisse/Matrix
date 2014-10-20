@@ -10,6 +10,5 @@ namespace DataService.Entities
 
         public string NAME { get; set; }
 
-
     }
 }
