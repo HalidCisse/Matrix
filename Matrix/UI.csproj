@@ -128,6 +128,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\MatiereStaffsModel.cs" />
+    <Compile Include="Model\MatiereViewModel.cs" />
     <Compile Include="Model\StaffViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Styles\LocalExtensions.cs" />

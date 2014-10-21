@@ -14,7 +14,7 @@ namespace DataService.Context
 
         public EF ( ) : base ("name=EF")
         {
-            Database.CreateIfNotExists();
+            //Database.CreateIfNotExists();
             //Database.SetInitializer (new DropCreateDatabaseIfModelChanges<EF> ());
             Configuration.ProxyCreationEnabled = false;           
             //Database.SetInitializer (new DBInitializer ());

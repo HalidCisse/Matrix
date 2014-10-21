@@ -12,14 +12,6 @@ namespace DataService
     {
 
 
-
-
-
-
-
-
-
-
         #region CLASSE C-R-U-D
 
         public bool AddClasse ( Classe MyClasse )
@@ -105,6 +97,8 @@ namespace DataService
 
         public bool AddMatiere ( Matiere MyMatiere )
         {
+            MyMatiere.MATIERE_ID = Guid.NewGuid ().ToString ();
+
             using(var Db = new EF ())
             {
                 Db.MATIERE.Add (MyMatiere);
@@ -178,7 +172,6 @@ namespace DataService
         }
 
         #endregion
-
 
 
 
@@ -271,6 +264,18 @@ namespace DataService
                 for (var i = 1; i < MyFiliereN + 1; i++) N.Add(i);
 
                 return N;
+            }
+        }
+
+        public List<Matiere> GetMatieresOfFiliereYear ( string FiliereID, int FiliereYear )
+        {
+            using(var Db = new EF ())
+            {                
+                var MatieresIDs = Db.FILIERE_MATIERE.Where (F => F.FILIERE_ID == FiliereID && F.FILIERE_LEVEL == FiliereYear).Select (F => F.MATIERE_ID).ToList ();
+
+                var Matieres = MatieresIDs.Select(M => Db.MATIERE.Find(M)).ToList();
+
+                return Matieres;
             }
         }
 
@@ -637,9 +642,98 @@ namespace DataService
             }
         }
 
+        public int GetFiliereMatiereNiveau ( string FiliereID, string MatiereID )
+        {
+            using(var Db = new EF ())
+            {
+                var Matiere = Db.FILIERE_MATIERE.SingleOrDefault(S => S.MATIERE_ID == MatiereID && S.FILIERE_ID == FiliereID);
+                if (Matiere !=null) return Matiere.FILIERE_LEVEL;
+            }
+            return 1;
+        }      
+
+        public bool AddFiliereMatiere(string FiliereID, string MatiereID, int Level)
+        {// FiliereID + FiliereLevel + MatiereID
+            using(var Db = new EF ())
+            {
+                var Matiere = Db.FILIERE_MATIERE.Find (MatiereID + Level + FiliereID);
+                if (Matiere != null) return true;
+
+                var R = new Filiere_Matieres
+                {
+                    FILIERE_MATIERE_ID = FiliereID + Level + MatiereID,
+                    FILIERE_ID = FiliereID,
+                    MATIERE_ID = MatiereID,
+                    FILIERE_LEVEL = Level
+                };
+
+                Db.FILIERE_MATIERE.Add(R);
+
+                return Db.SaveChanges() > 0;
+            }            
+        }
+
+        public bool DeleteFiliereMatiere ( string FiliereID, string MatiereID, int Level )
+        {
+            using(var Db = new EF ())
+            {
+                var Matiere = Db.FILIERE_MATIERE.Find (MatiereID + Level + FiliereID);
+                if(Matiere == null) return true;
+              
+                Db.FILIERE_MATIERE.Remove (new Filiere_Matieres { FILIERE_MATIERE_ID = FiliereID + Level + MatiereID });
+
+                return Db.SaveChanges () > 0;
+            }
+        }
+
+        public bool UpdateFiliereMatiere ( string FiliereID, string MatiereID, int Level )
+        {
+            using(var Db = new EF ())
+            {
+                var Matiere = Db.FILIERE_MATIERE.Find (MatiereID + Level + FiliereID);
+                Db.FILIERE_MATIERE.Remove(Matiere);
+                                
+                return Db.SaveChanges()>0 & AddFiliereMatiere (FiliereID, MatiereID, Level);
+            }  
+        }
+
+        public bool AddMatiereInstructor ( string MatiereID, string StaffID )
+        {
+            using(var Db = new EF ())
+            {
+                var RL = Db.MATIERES_INSTRUCTEURS.Find (MatiereID + StaffID);
+                if(RL != null) return true;
+
+                var R = new Matiere_Instructeurs
+                {
+                    MATIERE_INSTRUCTEURS_ID = MatiereID + StaffID,                    
+                    MATIERE_ID = MatiereID,
+                    STAFF_ID = StaffID
+                };
+
+                Db.MATIERES_INSTRUCTEURS.Add (R);
+
+                return Db.SaveChanges () > 0;
+            }  
+        }
+
+        public bool DeleteMatiereInstructor ( string MatiereID, string StaffID )
+        {
+            using(var Db = new EF ())
+            {
+                var RL = Db.MATIERES_INSTRUCTEURS.Find (MatiereID + StaffID);
+                if(RL == null) return true;
+                
+                Db.MATIERES_INSTRUCTEURS.Remove (RL);
+
+                return Db.SaveChanges () > 0;
+            } 
+        }
+
+
+
         #endregion
 
-
-
+        
     }
 }

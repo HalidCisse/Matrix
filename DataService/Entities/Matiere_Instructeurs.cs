@@ -6,7 +6,7 @@ namespace DataService.Entities
     {
 
         [Key]
-        public string MATIERE_INSTRUCTEURS_ID { get; set; }
+        public string MATIERE_INSTRUCTEURS_ID { get; set; } // MATIERE_ID + STAFF_ID
 
         public string MATIERE_ID { get; set; }
 

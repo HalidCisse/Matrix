@@ -9,7 +9,7 @@ namespace DataService.Entities
 
         public string FILIERE_ID { get; set; }    //ID de la filiere Consernee
 
-        public string FILIERE_LEVEL { get; set; }  // 2 ere Annnee -> 2 eme Annnee
+        public int FILIERE_LEVEL { get; set; }  // 2 ere Annnee -> 2 eme Annnee
 
         public string MATIERE_ID { get; set; }   //ID de la matiere Consernee
         

@@ -37,7 +37,17 @@
 
         <Grid Background="Transparent">
             <xctk:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <ListBox Name="MatiereList" Style="{DynamicResource FiliereListBoxStyle}" Margin="10,10,0,0" SelectedValuePath="MATIERE_ID" MouseDoubleClick="MatiereList_MouseDoubleClick"/>
+
+            <ListBox Name="AnneeList" Style="{DynamicResource MatiereAnneeListStyle}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Expander Header="{Binding Path=ANNEE_NAME}" Style="{DynamicResource DepExpandStyle}" Expanded="Expander_Expanded">
+                            <ListBox Name="MatiereList" Style="{DynamicResource MatiereListBoxStyle}" Loaded="MatiereList_Loaded" Margin="10,10,0,0" MouseDoubleClick="MatiereList_MouseDoubleClick" SelectionChanged="MatiereList_SelectionChanged"/>
+                        </Expander>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
         </Grid>
     </DockPanel>
 </Page>

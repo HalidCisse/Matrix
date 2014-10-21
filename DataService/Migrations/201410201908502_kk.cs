@@ -78,8 +78,9 @@ namespace DataService.Migrations
                 c => new
                     {
                         FILIERE_MATIERE_ID = c.String(nullable: false, maxLength: 128),
-                        MATIERE_ID = c.String(),
                         FILIERE_ID = c.String(),
+                        FILIERE_LEVEL = c.String(),
+                        MATIERE_ID = c.String(),
                     })
                 .PrimaryKey(t => t.FILIERE_MATIERE_ID);
             

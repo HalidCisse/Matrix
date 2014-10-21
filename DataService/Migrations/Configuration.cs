@@ -21,11 +21,12 @@ namespace DataService.Migrations
 
         protected override void Seed(EF EF)
         {
-            EF.Database.CreateIfNotExists ();
+            //EF.Database.CreateIfNotExists ();
 
             Student_SeedFromSql (EF);
-            Staff_SeedFromSql (EF);            
-            
+            Staff_SeedFromSql (EF);
+
+            MessageBox.Show ("Seed Done");
         }
 
 
@@ -33,9 +34,9 @@ namespace DataService.Migrations
         private static void Staff_SeedFromSql ( EF EF )
         {
                       
-            const string FilePath = @"C:\Users\Halid\Documents\Visual Studio 2013\Projects\Matrix\DataService\Initializer\Staffs.sql";
+            const string FilePath = @"C:\\Users\\Halid\\Documents\\Visual Studio 2013\\Projects\\Matrix\\DataService\\Initializer\\Staffs.sql";
                       
-            var SqlFile = new FileInfo (FilePath);
+            var SqlFile = new FileInfo (@FilePath);
             var SqlString = SqlFile.OpenText ().ReadToEnd();
                     
             EF.Database.ExecuteSqlCommand ("DELETE FROM Staffs");
@@ -44,9 +45,7 @@ namespace DataService.Migrations
             var x = EF.STAFF.ToList();
 
             x.ForEach (S => S.PHOTO_IDENTITY = GetRandomImg());
-            //x.ForEach (S => S.STAFF_ID = "ST-" + GenID(6));
-            
-            MessageBox.Show ("Staffs Done");
+            //x.ForEach (S => S.STAFF_ID = "ST-" + GenID(6));                     
         }
 
         private static void Student_SeedFromSql ( EF EF )
@@ -64,8 +63,7 @@ namespace DataService.Migrations
 
             x.ForEach (S => S.PHOTO_IDENTITY = GetRandomImg ());
             //x.ForEach (S => S.STUDENT_ID = "M-" + GenID (6));
-
-            MessageBox.Show ("Students Done");
+           
         }
 
 
