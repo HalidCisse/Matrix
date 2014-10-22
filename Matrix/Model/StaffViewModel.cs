@@ -9,17 +9,12 @@ namespace Matrix.Model
         {
             STAFFS_LIST = new List<Staff> ();
         }
+
         public string DEPARTEMENT_NAME { get; set; }
 
         public List<Staff> STAFFS_LIST { get; set; }
 
-        public int STAFF_COUNT  //{ get; set; }
-        {
-            get
-            {
-                return App.Db.GetDepStaffs(DEPARTEMENT_NAME).ToArray().Length; 
-            }
-            set { STAFF_COUNT = value; }
-        }
+        public int STAFF_COUNT  { get; set; }
+        
     }
 }

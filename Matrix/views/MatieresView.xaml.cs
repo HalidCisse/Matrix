@@ -15,16 +15,17 @@ namespace Matrix.views
     {
 
         private readonly BackgroundWorker Worker = new BackgroundWorker ();
-        private readonly List<MatiereViewModel> ListBuff = new List<MatiereViewModel> ();
+        private readonly List<MatiereViewModel> ListBuff = new List<MatiereViewModel>();        
         private string CurrentSelected;
         private bool isFistTime = true;
         public string OpenedFiliere { get; set; }
-
+        
         public MatieresView ( string OpenFiliere )
         {
             InitializeComponent ();
 
             OpenedFiliere = OpenFiliere;
+            MatiereHeader.Text = App.Db.GetFiliereByID(OpenFiliere).NAME.ToUpper();
         }
        
         private void Page_Loaded ( object sender, RoutedEventArgs e )
@@ -118,7 +119,9 @@ namespace Matrix.views
             Worker.RunWorkerAsync ();
         }
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
-        {            
+        {
+            ListBuff.Clear();
+
             var Ans = App.Db.GetFILIERE_NIVEAUX (OpenedFiliere);
                        
             foreach(int A in Ans)
@@ -143,7 +146,9 @@ namespace Matrix.views
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {
             BusyIndicator.IsBusy = false;
+            AnneeList.ItemsSource = new List<MatiereViewModel>();
             AnneeList.ItemsSource = ListBuff;
+            isFistTime = true;
             Worker.Dispose ();
         }
 

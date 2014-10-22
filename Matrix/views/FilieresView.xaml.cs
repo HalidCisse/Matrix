@@ -21,6 +21,7 @@ namespace Matrix.views
         {
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            BusyIndicator.IsBusy = true;
             UpdateFilieres ();
         }
 
@@ -44,15 +45,9 @@ namespace Matrix.views
         {
             var wind = new AddFiliere { Owner = Window.GetWindow (this), OpenOption = "Add" };
             wind.ShowDialog ();
-        }
-
-        private void filiereHomeButton_Click ( object sender, RoutedEventArgs e )
-        {
-            if(NavigationService != null)
-                NavigationService.Navigate (new Uri ("/views/HomePage.xaml", UriKind.Relative));
+            UpdateFilieres();
         }
        
-
         private void Filiere_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {
             if(FiliereList == null) return;
@@ -73,8 +68,7 @@ namespace Matrix.views
 
         private void UpdateFilieres ( )
         {
-            if(worker.IsBusy) return;
-            BusyIndicator.IsBusy = true;
+            if(worker.IsBusy) return;            
             worker.RunWorkerAsync ();
         }
 

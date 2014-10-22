@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-//using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Navigation;
 using DataService.Entities;
 
 namespace Matrix.views

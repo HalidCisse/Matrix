@@ -7,7 +7,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Matrix.Model;
-using MessageBox = System.Windows.MessageBox;
 
 namespace Matrix.views
 {
@@ -16,7 +15,7 @@ namespace Matrix.views
     {
         private readonly BackgroundWorker Worker = new BackgroundWorker ();
         private readonly List<StaffViewModel> ListBuff = new List<StaffViewModel> ();
-        private string CurrentSelected;
+        private string CurrentSelected;        
         private bool isFistTime = true;
 
         public StaffsView ( ) {
@@ -82,9 +81,9 @@ namespace Matrix.views
         private void DepStaffList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {          
             var Staff = sender as ListBox;
-
             if(Staff == null) return;
             if(Staff.SelectedValue == null) return;
+
             var wind = new StaffINFO (Staff.SelectedValue.ToString ()) {
                 Owner = Window.GetWindow(this),
                 OpenOption = "Mod"
@@ -97,40 +96,40 @@ namespace Matrix.views
              
         private void UpdateDep ( )
         {
-            if(Worker.IsBusy) return;
-            //BusyIndicator.IsBusy = true;
+            if(Worker.IsBusy) return;           
             Worker.RunWorkerAsync ();
         }
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
-        {          
+        {
+            ListBuff.Clear();
+            
             var Deps = App.Db.GetDEPARTEMENTS();
 
-            var N = new StaffViewModel {DEPARTEMENT_NAME = "", STAFFS_LIST = App.Db.GetDepStaffs()};
-
-            //N.STAFF_COUNT = N.STAFFS_LIST.Count;
+            var N = new StaffViewModel
+            {
+                DEPARTEMENT_NAME = "",
+                STAFFS_LIST = App.Db.GetDepStaffs(),
+                STAFF_COUNT = App.Db.GetDepStaffs().Count
+            };
 
             ListBuff.Add (N);
          
-            foreach (var D in Deps)
+            foreach (var M in Deps.Select(D => new StaffViewModel
             {
-                var M = new StaffViewModel ();
-
-                if (D != null)
-                {
-                    M.DEPARTEMENT_NAME = D.ToUpper();
-
-                    M.STAFFS_LIST = App.Db.GetDepStaffs(D);
-
-                    //M.STAFF_COUNT = M.STAFFS_LIST.Count;
-                }
-                
+                DEPARTEMENT_NAME = D.ToUpper(),
+                STAFFS_LIST = App.Db.GetDepStaffs(D),
+                STAFF_COUNT = App.Db.GetDepStaffs(D).Count
+            }))
+            {
                 ListBuff.Add (M);
             }           
         }
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
-        {          
+        {           
             BusyIndicator.IsBusy = false;
-            StaffList.ItemsSource = ListBuff;                                                 
+            StaffList.ItemsSource = new List<StaffViewModel> ();
+            StaffList.ItemsSource = ListBuff;
+            isFistTime = true;                      
             Worker.Dispose ();
         }
 
@@ -139,18 +138,19 @@ namespace Matrix.views
         private void DepStaffList_Loaded ( object sender, RoutedEventArgs e )
         {
             if (!isFistTime) return;
-            foreach(var Ep in FindVisualChildren<Expander> (this).Where (Ep => string.IsNullOrEmpty (Ep.Header.ToString ())))
+
+            foreach(var Ep in FindVisualChildren<Expander> (this).Where (Ep => Ep.Header.ToString () == ""))
             {
                 Ep.IsExpanded = true;
                 isFistTime = false;
-            }
+            }            
         }
-
+      
         private void Expander_Expanded ( object sender, RoutedEventArgs e )
         {
             var E = sender as Expander;
-
-            foreach(var Ep in FindVisualChildren<Expander> (this).Where (Ep => E != null && Ep.Header.ToString () != E.Header.ToString()))
+                     
+            foreach(var Ep in FindVisualChildren<Expander>(this).Where(Ep => E != null && Ep.Header.ToString() != E.Header.ToString()))
             {
                 Ep.IsExpanded = false;                
             }
