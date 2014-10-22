@@ -12,12 +12,17 @@ namespace Matrix.Model
 
         public MatiereViewModel ( )
         {
-            MATIERES_LIST = new List<Matiere> ();
+            //MATIERES_LIST = new List<Matiere> ();
+            MATIERES_MODEL_LIST = new List<MatiereModel>();
         }
         public string ANNEE_NAME { get; set; }
 
-        public List<Matiere> MATIERES_LIST { get; set; }
+        //public List<Matiere> MATIERES_LIST { get; set; }
 
+        public List<MatiereModel> MATIERES_MODEL_LIST { get; set; }
+
+        public int INSTRUCTOR_COUNT { get; set; }
+        
         public int MATIERES_COUNT { get; set; }
         
 

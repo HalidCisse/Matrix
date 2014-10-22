@@ -55,7 +55,6 @@
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Margin" Value="0" />
-        <!--<Setter Property="FontFamily" Value="Trebuchet MS" />-->
         <Setter Property="VirtualizingPanel.CacheLengthUnit" Value="Item"/>
         <Setter Property="VirtualizingPanel.CacheLength" Value="1"/>
         <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
@@ -81,17 +80,13 @@
             </Style>
 
             <Style x:Key="ListBoxBoderStyle" TargetType="Border">
-                <Style.Resources>
-                    <LinearGradientBrush x:Key="BackBrush" StartPoint="0.5,0" EndPoint="0.5,1">
-                        <GradientStop Color="#E4E4DC" Offset="0.1" />
-                        <GradientStop Color="#CC9A9CAE" Offset="0.9" />
-                    </LinearGradientBrush>
+                <Style.Resources>                    
                     <LinearGradientBrush x:Key="BorderBrush" StartPoint="0.5,0" EndPoint="0.5,1">
-                        <GradientStop Color="#18000000" Offset="0.1" />
-                        <GradientStop Color="#08000000" Offset="0.9" />
+                        <GradientStop Color="Blue" Offset="0.1" />
+                        <GradientStop Color="#081136FF" Offset="0.9" />
                     </LinearGradientBrush>
                 </Style.Resources>
-                <Setter Property="Background" Value="{StaticResource BackBrush}"/>
+                <Setter Property="Background" Value="White"/>
                 <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
                 <Setter Property="Width" Value="250" />
                 <Setter Property="Height" Value="135" />
@@ -105,32 +100,22 @@
                     <Border.Effect>
                         <DropShadowEffect Color="#080707" Opacity="0.5" BlurRadius="5" ShadowDepth="5"/>
                     </Border.Effect>
-                    <StackPanel Orientation="Vertical" Margin="10">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding PHOTO_IDENTITY}" Stretch="Fill" Width="70" Height="70"/>
+                    <StackPanel Orientation="Horizontal" Margin="10">                        
+                        <Image Source="../views/Icon/Matiere.png" Stretch="Fill" Width="100" Height="100"/>
+                                            
+                        <Grid Margin="10,5,5,0">                           
+                            <TextBlock Text="{Binding NAME}" FontSize="20" FontWeight="Bold" TextWrapping="WrapWithOverflow" VerticalAlignment="Top"/>
 
-                            <Grid Margin="10,5,5,0">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                    <TextBlock Text="{Binding NAME}" FontSize="15" FontWeight="Normal" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                                    <TextBlock Text="{Binding NAME}" FontSize="15" FontWeight="Light" Margin="10,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
-                                </StackPanel>
-                                <!--<TextBlock Text="{Binding STAFF_ID}" Visibility="Hidden" Height="0" Width="0"/>-->
-                                <TextBlock Text="{Binding QUALIFICATION}" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <TextBlock Text="{Binding DEPARTEMENT}" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                            <Grid VerticalAlignment="Center">
+                                <TextBlock Text="{Binding INSTRUCTEURS_COUNT}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Text="Instructeurs" FontSize="15" Margin="25,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
                             </Grid>
-                        </StackPanel>
 
-                        <StackPanel Margin="0,10,0,0">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Tel:" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                                <TextBlock Text="{Binding PHONE_NUMBER}" FontSize="12" FontWeight="ExtraLight" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="@:" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                                <TextBlock Text="{Binding EMAIL_ADRESS}" FontSize="12" FontWeight="ExtraLight" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                            </StackPanel>
-                        </StackPanel>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                                <TextBlock Text="{Binding HEURES_PAR_SEMAINE}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Text="/S" FontSize="15" Margin="5,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                            </StackPanel>                                                      
+                        </Grid>                                                
                     </StackPanel>
                 </Border>
             </DataTemplate>
@@ -153,7 +138,7 @@
         <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="MaxHeight" Value="350" />
-        <Setter Property="ItemsSource" Value="{Binding MATIERES_LIST}" />
+        <Setter Property="ItemsSource" Value="{Binding MATIERES_MODEL_LIST}" />
         <Setter Property="SelectedValuePath" Value="MATIERE_ID" />
 
     </Style>

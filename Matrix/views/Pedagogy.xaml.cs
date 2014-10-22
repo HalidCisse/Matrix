@@ -13,23 +13,22 @@ namespace Matrix.views
        
         private void BackBut_Click ( object sender, RoutedEventArgs e )
         {
-            if(NavigationService != null && NavigationService.CanGoBack)
+            if(NavigationService != null)
             {
-                NavigationService.GoBack ();
+                NavigationService.Navigate (new HomePage ());
             }
         }
 
         private void HomeButton_Click ( object sender, RoutedEventArgs e )
         {
-            if(NavigationService != null && NavigationService.CanGoBack)
+            if(NavigationService != null)
             {
-                NavigationService.GoBack ();
+                NavigationService.Navigate(new HomePage());
             }
         }
        
         private void AddClasseButton_Click ( object sender, RoutedEventArgs e )
         {
-
             var wind = new AddClass { Owner = Window.GetWindow (this), OpenOption = "Add" };
             wind.ShowDialog ();
             

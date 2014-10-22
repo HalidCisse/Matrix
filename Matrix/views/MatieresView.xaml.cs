@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using DataService.Entities;
 using Matrix.Model;
 
 namespace Matrix.views
@@ -45,8 +44,9 @@ namespace Matrix.views
 
         private void AddMatiereButton_Click ( object sender, RoutedEventArgs e )
         {
-            var wind = new AddMatiere (OpenedFiliere) { Owner = Window.GetWindow (this), OpenOption = "Add" };
+            var wind = new AddMatiere (OpenedFiliere) { Owner = Window.GetWindow (this)};
             wind.ShowDialog ();
+            UpdateMatieres ();
         }
 
         private void DeleteMatiereButton_Click ( object sender, RoutedEventArgs e )
@@ -70,14 +70,11 @@ namespace Matrix.views
         private void MatiereList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {
             var Matieres = sender as ListBox;
-
             if(Matieres == null) return;
             if(Matieres.SelectedValue == null) return;
-            var wind = new AddMatiere (Matieres.SelectedValue.ToString ())
-            {
-                Owner = Window.GetWindow (this),
-                OpenOption = "Mod"
-            };
+            var MatiereToDisplay = App.Db.GetMatiereByID(Matieres.SelectedValue.ToString());
+
+            var wind = new AddMatiere (OpenedFiliere, MatiereToDisplay) { Owner = Window.GetWindow (this) };
             wind.ShowDialog();
             UpdateMatieres ();           
         }
@@ -110,36 +107,38 @@ namespace Matrix.views
 
             if(Matieres == null) return;
 
-            if(Matieres.SelectedValue == null)
-            {
-                CurrentSelected = null;
-                return;
-            }
-            CurrentSelected = Matieres.SelectedValue.ToString ();
+            CurrentSelected = Matieres.SelectedValue != null ? Matieres.SelectedValue.ToString() : null;
         }
 
         //_______________________________________________________________________________________//
 
         private void UpdateMatieres ( )
         {
-            if(Worker.IsBusy) return;
-            //BusyIndicator.IsBusy = true;
+            if(Worker.IsBusy) return;            
             Worker.RunWorkerAsync ();
         }
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
         {            
             var Ans = App.Db.GetFILIERE_NIVEAUX (OpenedFiliere);
-           
+                       
             foreach(int A in Ans)
             {
-                var M = new MatiereViewModel
-                {
-                    ANNEE_NAME = A + " Annee",
-                    MATIERES_LIST = App.Db.GetMatieresOfFiliereYear(OpenedFiliere, A)
-                };
+                var MM = new MatiereViewModel {ANNEE_NAME = A + " Annee"};
 
-                ListBuff.Add (M);
-            }
+                var MOFY = App.Db.GetMatieresOfFiliereYear(OpenedFiliere, A);
+                foreach(var M in MOFY)
+                {
+                    var MMM = new MatiereModel
+                    {
+                        MATIERE_ID = M.MATIERE_ID,
+                        NAME = M.NAME,
+                        HEURES_PAR_SEMAINE = M.GetHEURE_PAR_SEMAINE(OpenedFiliere, Convert.ToInt32(A)),
+                        INSTRUCTEURS_COUNT = App.Db.GetNofMatiereInstructor(M.MATIERE_ID)
+                    };
+                    MM.MATIERES_MODEL_LIST.Add (MMM);
+                }
+                ListBuff.Add (MM);
+            }                       
         }
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {

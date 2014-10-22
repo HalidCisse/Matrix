@@ -13,7 +13,6 @@ namespace Matrix.views
     public partial class StudentsView
     {
        
-
         public StudentsView ( ) {
             InitializeComponent ();               
         }
@@ -21,6 +20,7 @@ namespace Matrix.views
         private void Page_Loaded ( object sender, RoutedEventArgs e ) {
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            BusyIndicator.IsBusy = true;
             UpdateStudents();         
         }
       
@@ -28,7 +28,7 @@ namespace Matrix.views
         private void StudentsViewBackButton_Click ( object sender, RoutedEventArgs e )
         {
             if (NavigationService != null)
-                NavigationService.Navigate (new Uri ("/views/HomePage.xaml", UriKind.Relative));
+                NavigationService.Navigate (new HomePage(), UriKind.Relative);
         }
 
         private void Studentslist_MouseDoubleClick ( object sender, MouseButtonEventArgs e ) {
@@ -77,7 +77,6 @@ namespace Matrix.views
         private void UpdateStudents()
         {
             if(worker.IsBusy) return;
-            BusyIndicator.IsBusy = true;
             worker.RunWorkerAsync ();          
         }
 

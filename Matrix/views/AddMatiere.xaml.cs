@@ -12,35 +12,41 @@ namespace Matrix.views
     
     public partial class AddMatiere
     {
-        public string OpenOption { get; set; }
-
-        public string FiliereDisplayedID { get; set; }
+        public string OpenOption;
+        public string FiliereDisplayedID;        
+        private readonly Matiere MatiereDisplayed = new Matiere();
+        private readonly BackgroundWorker worker = new BackgroundWorker ();
+        private static List<MatiereStaffsModel> StaffBuff;
         
-        public Matiere MatiereDisplayed = new Matiere();
 
-        public AddMatiere (string FiliereSelectedID, string MatiereToDisplayID = null )
+        public AddMatiere (string FiliereSelectedID, Matiere MatiereToDisplay = null )
         {
             InitializeComponent ();
-           
+            
             NIVEAU_.ItemsSource = App.Db.GetFILIERE_NIVEAUX (FiliereSelectedID);
+            HEURE_PAR_SEMAINE_.ItemsSource = App.Db.GetMATIERE_HEURES_PAR_SEMAINE ();
 
             FiliereDisplayedID = FiliereSelectedID;
 
-            if (!string.IsNullOrEmpty(MatiereToDisplayID))
+            if(MatiereToDisplay == null)
             {
-                MatiereDisplayed = App.Db.GetMatiereByID(MatiereToDisplayID);
-                DisplayMatiere(MatiereDisplayed);                
+                OpenOption = "Add";
+                MatiereDisplayed.MATIERE_ID = Guid.NewGuid ().ToString ();
+                DisplayDefault ();
             }
             else
             {
-                MatiereDisplayed.MATIERE_ID = Guid.NewGuid().ToString();
-                DisplayDefault ();
-            }               
+                OpenOption = "Mod";
+                MatiereDisplayed = MatiereToDisplay;
+                DisplayMatiere (MatiereDisplayed);
+                NIVEAU_.IsEnabled = false;                
+            }                                     
         }
 
         private void DisplayDefault()
-        {
-            NIVEAU_.SelectedIndex = 0;            
+        {           
+            NIVEAU_.SelectedIndex = 0;
+            HEURE_PAR_SEMAINE_.SelectedIndex = 0;
         }
 
         private void DisplayMatiere(Matiere MatiereToDisplay)
@@ -48,13 +54,15 @@ namespace Matrix.views
             if(MatiereToDisplay == null) return;
 
             MATIERE_NAME_.Text = MatiereToDisplay.NAME;
-            NIVEAU_.SelectedValue = App.Db.GetFiliereMatiereNiveau (FiliereDisplayedID, MatiereToDisplay.MATIERE_ID);            
+            NIVEAU_.SelectedValue = App.Db.GetFiliereMatiereNiveau (FiliereDisplayedID, MatiereToDisplay.MATIERE_ID);
+            HEURE_PAR_SEMAINE_.SelectedValue = App.Db.GetFiliereMatiereHeuresParSemaine (FiliereDisplayedID, MatiereToDisplay.MATIERE_ID);
         }
 
         private void Window_Loaded ( object sender, RoutedEventArgs e )
-        {
+        {            
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            BusyIndicator.IsBusy = true;
             UpdateStaffs ();
         }
 
@@ -67,33 +75,33 @@ namespace Matrix.views
             
             if(OpenOption == "Add")
             {
-                if(!App.Db.AddMatiere (MatiereDisplayed))
+                try
                 {
-                    ModernDialog.ShowMessage ("Erreur D Enregistrement", "Matrix", MessageBoxButton.OK);
-                }
-                else
-                {
+                    App.Db.AddMatiere(MatiereDisplayed);
                     UpdateMatiereInstructors ();
-                    ModernDialog.ShowMessage (App.Db.AddFiliereMatiere (FiliereDisplayedID, MatiereDisplayed.MATIERE_ID,
-                        Convert.ToInt32(NIVEAU_.SelectedValue.ToString()))
-                        ? "Success" : "Erreur", "Matrix", MessageBoxButton.OK);                   
+                    App.Db.SaveFiliereMatiere(FiliereDisplayedID, MatiereDisplayed.MATIERE_ID,
+                        Convert.ToInt32(NIVEAU_.SelectedValue.ToString()), HEURE_PAR_SEMAINE_.SelectedValue.ToString());
                 }
+                catch (Exception ex)
+                {                    
+                    ModernDialog.ShowMessage (ex.Message, "Matrix", MessageBoxButton.OK);
+                }                
                 Close ();
             }
             else
             {
-                if(App.Db.UpdateMatiere (MatiereDisplayed))
+                try
                 {
+                    App.Db.UpdateMatiere(MatiereDisplayed);
                     UpdateMatiereInstructors ();
-                    ModernDialog.ShowMessage(
-                        App.Db.UpdateFiliereMatiere (FiliereDisplayedID, MatiereDisplayed.MATIERE_ID,
-                            Convert.ToInt32(NIVEAU_.SelectedValue.ToString()))
-                            ? "Success" : "Erreur", "Matrix", MessageBoxButton.OK);                    
+                    App.Db.SaveFiliereMatiere(FiliereDisplayedID, MatiereDisplayed.MATIERE_ID,
+                        Convert.ToInt32(NIVEAU_.SelectedValue.ToString()), HEURE_PAR_SEMAINE_.SelectedValue.ToString());
+                    ModernDialog.ShowMessage("Success","Matrix", MessageBoxButton.OK);
                 }
-                else
+                catch (Exception ex)
                 {
-                    ModernDialog.ShowMessage ("Erreur", "Matrix", MessageBoxButton.OK);
-                }                                
+                    ModernDialog.ShowMessage(ex.Message, "Matrix", MessageBoxButton.OK);                    
+                }                                                                         
                 Close ();
             }            
         }
@@ -132,30 +140,43 @@ namespace Matrix.views
             Close();
         }
 
+        private void UpdateMatiereInstructors ( )
+        {
+            foreach (var S in StaffBuff)
+                if (S.IsINSTRUCTOR)
+                {
+                    App.Db.AddMatiereInstructor(MatiereDisplayed.MATIERE_ID, S.STAFF_ID);
+                }
+                else
+                {
+                    App.Db.DeleteMatiereInstructor(MatiereDisplayed.MATIERE_ID, S.STAFF_ID);
+                }
+        }
+
 
         #region Background Works
-
-        private readonly BackgroundWorker worker = new BackgroundWorker ();
-
-        private List<MatiereStaffsModel> StaffBuff;
-
+       
         private void UpdateStaffs ( )
         {
-            if(worker.IsBusy) return;
-            BusyIndicator.IsBusy = true;
+            if(worker.IsBusy) return;            
             worker.RunWorkerAsync ();
         }
 
         private void worker_DoWork ( object sender, DoWorkEventArgs e )
         {
-            StaffBuff = GetStaffModelList (MatiereDisplayed.MATIERE_ID);              
+            StaffBuff = GetStaffModelList (MatiereDisplayed.MATIERE_ID);
+            if (OpenOption != "Mod") return;
+            foreach(var S in StaffBuff)
+            {
+                S.IsINSTRUCTOR = App.Db.IsMatiereInstructor (S.STAFF_ID, MatiereDisplayed.MATIERE_ID);
+            }
         }
 
         private void worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {
             BusyIndicator.IsBusy = false;
             InstructeursList.Items.Clear();
-            InstructeursList.ItemsSource = StaffBuff;
+            InstructeursList.ItemsSource = StaffBuff;            
             worker.Dispose ();
         }
 
@@ -183,26 +204,6 @@ namespace Matrix.views
 
         #endregion
 
-
-        private void UpdateMatiereInstructors()
-        {
-            foreach (var S in StaffBuff)
-            {
-                if (S.IsINSTRUCTOR)
-                {
-                    App.Db.AddMatiereInstructor (MatiereDisplayed.MATIERE_ID, S.STAFF_ID);
-                }
-                else
-                {
-                    App.Db.DeleteMatiereInstructor (MatiereDisplayed.MATIERE_ID, S.STAFF_ID);
-                }
-            }
-        }
-
-
-
-
-
-
+       
     }
 }

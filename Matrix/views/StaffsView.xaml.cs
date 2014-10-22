@@ -6,10 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-//using System.Windows.Navigation;
-//using DataService.Entities;
 using Matrix.Model;
-//using Xceed.Wpf.Toolkit;
 using MessageBox = System.Windows.MessageBox;
 
 namespace Matrix.views

@@ -55,24 +55,12 @@ namespace Matrix.views
 
         private void Filiere_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {
-
             if(FiliereList == null) return;
             if(FiliereList.SelectedValue == null) return;
 
             var navigationService = NavigationService;
             if(navigationService != null)
                 navigationService.Navigate (new MatieresView (FiliereList.SelectedValue.ToString ()));
-
-
-            //if(FiliereList == null) return;
-            //if(FiliereList.SelectedValue == null) return;
-            //var wind = new AddFiliere (FiliereList.SelectedValue.ToString ())
-            //{
-            //    Owner = Window.GetWindow (this),
-            //    OpenOption = "Mod"
-            //};
-            //wind.ShowDialog ();
-            //UpdateFilieres ();
         }
 
 
