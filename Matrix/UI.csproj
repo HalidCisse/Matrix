@@ -127,6 +127,7 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\FiliereModel.cs" />
     <Compile Include="Model\MatiereModel.cs" />
     <Compile Include="Model\MatiereStaffsModel.cs" />
     <Compile Include="Model\MatiereViewModel.cs" />
