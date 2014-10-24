@@ -88,7 +88,7 @@
                 </Style.Resources>
                 <Setter Property="Background" Value="White"/>
                 <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
-                <Setter Property="Width" Value="250" />
+                <Setter Property="Width" Value="278" />
                 <Setter Property="Height" Value="135" />
                 <Setter Property="BorderThickness" Value="1" />
                 <Setter Property="CornerRadius" Value="5" />
@@ -103,8 +103,8 @@
                     <StackPanel Orientation="Horizontal" Margin="10">                        
                         <Image Source="../views/Icon/Matiere.png" Stretch="Fill" Width="100" Height="100"/>
                                             
-                        <Grid Margin="10,5,5,0">                           
-                            <TextBlock Text="{Binding NAME}" FontSize="20" FontWeight="Bold" TextWrapping="WrapWithOverflow" VerticalAlignment="Top"/>
+                        <Grid Margin="10,5,5,0">
+                            <TextBlock Text="{Binding NAME}" FontSize="20" FontWeight="Bold" Width="170" TextWrapping="WrapWithOverflow" VerticalAlignment="Top"/>
 
                             <Grid VerticalAlignment="Center">
                                 <TextBlock Text="{Binding INSTRUCTEURS_COUNT}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
@@ -177,7 +177,7 @@
                 <Setter Property="CornerRadius" Value="2" />
                 <Setter Property="Margin" Value="10" />
 	            <Setter Property="HorizontalAlignment" Value="Stretch" />
-	            <Setter Property="Height" Value="260" />
+	            <Setter Property="Height" Value="280" />
 	            <Setter Property="Width" Value="300" />
             </Style>
 
@@ -188,17 +188,17 @@
                     </Border.Effect>
                     
                     <DockPanel LastChildFill="True">                        
-                        <Border Height="50" HorizontalAlignment="Stretch" CornerRadius="0" Background="#3737B2" DockPanel.Dock="Top">
+                        <Border Height="70" HorizontalAlignment="Stretch" CornerRadius="0" Background="#3737B2" DockPanel.Dock="Top">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="../Images/Filiere.png" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
-                                <TextBlock Text="{Binding NAME}" FontSize="20" Foreground="White" FontWeight="ExtraBold" FontFamily="Helvetica" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding NAME}" FontSize="20" Foreground="White" FontWeight="ExtraBold" FontFamily="{StaticResource NameFontFamily}" Width="200" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </StackPanel>                           
                         </Border>
                         <!--Background="#F2F2EA"-->
                         <StackPanel Margin="10">
-                            <StackPanel Orientation="Horizontal" Margin="0,10">
-                                <TextBlock Text="Niveau" FontSize="15" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
-                                <TextBlock Text="{Binding NIVEAU}" FontSize="15" Margin="10,0" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
+                                <TextBlock Text="Niveau" FontSize="15" Foreground="Gray" FontWeight="SemiBold" FontFamily="Verdana"/>
+                                <TextBlock Text="{Binding NIVEAU}" FontSize="15" Margin="5,0" Foreground="Gray" FontWeight="SemiBold" FontFamily="Verdana"/>
                             </StackPanel>
                             
                             <Grid Margin="0,10">
@@ -206,7 +206,7 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="250" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Text="{Binding STUDENTS_COUNT}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
                                 <TextBlock Grid.Column="1" Text="Etudiants" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
                             </Grid> 
                             
@@ -215,8 +215,8 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="7" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
-                                <TextBlock Grid.Column="1" Text="Enseignants" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                                <TextBlock Text="{Binding STAFFS_COUNT}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Grid.Column="1" Text="Instructeurs" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
                             </Grid>
                             
                             <Grid Margin="0,10">  
@@ -224,7 +224,7 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="25" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Text="{Binding CLASSES_COUNT}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
                                 <TextBlock Text="Classes" Grid.Column="1" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
                             </Grid>
 
@@ -233,7 +233,7 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="15" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Text="{Binding MATIERES_COUNT}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
                                 <TextBlock Grid.Column="1" Text="Matieres" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
                             </Grid>
                                                                                                                                        

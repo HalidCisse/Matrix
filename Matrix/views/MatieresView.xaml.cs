@@ -90,7 +90,6 @@ namespace Matrix.views
             }
         }
 
-
         private void MatiereList_Loaded ( object sender, RoutedEventArgs e )
         {
             if(!isFistTime) return;
@@ -101,7 +100,6 @@ namespace Matrix.views
             }
         }
 
-
         private void MatiereList_SelectionChanged ( object sender, SelectionChangedEventArgs e )
         {
             var Matieres = sender as ListBox;
@@ -111,7 +109,7 @@ namespace Matrix.views
             CurrentSelected = Matieres.SelectedValue != null ? Matieres.SelectedValue.ToString() : null;
         }
 
-        //_______________________________________________________________________________________//
+       
 
         private void UpdateMatieres ( )
         {
@@ -152,9 +150,7 @@ namespace Matrix.views
             Worker.Dispose ();
         }
 
-        //_______________________________________________________________________________________//
-
-
+        
 
         public static IEnumerable<T> FindVisualChildren<T> ( DependencyObject depObj ) where T : DependencyObject
         {

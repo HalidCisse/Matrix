@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using DataService.Context;
 using DataService.Entities;
+using DataService.ViewModel;
 
 namespace DataService
 {
@@ -242,11 +244,8 @@ namespace DataService
         public List<Filiere> GetAllFilieres ( )
         {
             using(var Db = new EF ())
-            {
-
-                IList<Filiere> MesFilieres = Db.FILIERE.ToList ();
-
-                return (List<Filiere>)MesFilieres;
+            {              
+                return Db.FILIERE.ToList ();
             }
         }
 
@@ -763,6 +762,32 @@ namespace DataService
 
         #endregion
 
-        
+        public List<FiliereCard> GetAllFilieresCards()
+        {
+            var FL = new List<FiliereCard>();
+           
+            using(var Db = new EF ())
+            {
+                Parallel.ForEach(Db.FILIERE, F =>
+                {
+                    var FM = new FiliereCard(F.FILIERE_ID)
+                    {
+                        NAME = F.NAME.ToUpper(),
+                        NIVEAU = F.NIVEAU,
+                        NIVEAU_ENTREE = F.NIVEAU_ENTREE,
+                        N_ANNEE = F.N_ANNEE
+                    };
+                    FL.Add(FM);
+                });
+            }
+            return FL;
+        }
+
+
+
+
+
+
+
     }
 }

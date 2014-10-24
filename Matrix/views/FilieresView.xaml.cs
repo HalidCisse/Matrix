@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Navigation;
-using DataService.Entities;
+using DataService.ViewModel;
 
 namespace Matrix.views
 {
@@ -12,6 +10,11 @@ namespace Matrix.views
 
     public partial class FilieresView
     {
+
+        private readonly BackgroundWorker worker = new BackgroundWorker ();
+
+        private List<FiliereCard> FilieresBuff = new List<FiliereCard> ();
+
         public FilieresView ( )
         {
             InitializeComponent ();
@@ -43,7 +46,7 @@ namespace Matrix.views
 
         private void FiliereAddButon_Click ( object sender, RoutedEventArgs e )
         {
-            var wind = new AddFiliere { Owner = Window.GetWindow (this), OpenOption = "Add" };
+            var wind = new AddFiliere {Owner = Window.GetWindow(this), OpenOption = "Add"};
             wind.ShowDialog ();
             UpdateFilieres();
         }
@@ -58,14 +61,6 @@ namespace Matrix.views
                 navigationService.Navigate (new MatieresView (FiliereList.SelectedValue.ToString ()));
         }
 
-
-
-        #region Background Works
-
-        private readonly BackgroundWorker worker = new BackgroundWorker ();
-
-        private List<Filiere> FilieresBuff;
-
         private void UpdateFilieres ( )
         {
             if(worker.IsBusy) return;            
@@ -74,7 +69,7 @@ namespace Matrix.views
 
         private void worker_DoWork ( object sender, DoWorkEventArgs e )
         {
-            FilieresBuff = App.Db.GetAllFilieres ();
+            FilieresBuff = App.Db.GetAllFilieresCards ();            
         }
 
         private void worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
@@ -84,8 +79,7 @@ namespace Matrix.views
             worker.Dispose ();
         }
 
-        #endregion
-
+       
 
     }
 }

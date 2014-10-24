@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Navigation;
 using DataService.Entities;
 
 namespace Matrix.views
@@ -12,6 +13,7 @@ namespace Matrix.views
     {
         public string OpenOption;
         private readonly string FiliereDisplayedID;
+        
         public AddFiliere ( string FiliereToDisplayID = null )
         {
             InitializeComponent ();
@@ -65,16 +67,17 @@ namespace Matrix.views
 
             if(OpenOption == "Add")
             {                
-                MessageBox.Show (App.Db.AddFiliere (Myfiliere) ? "Add Success" : "Add Failed");
-                Close ();
+                MessageBox.Show (App.Db.AddFiliere (Myfiliere) ? "Add Success" : "Add Failed");               
             }
             else
             {
                 Myfiliere.FILIERE_ID = FiliereDisplayedID;
-                MessageBox.Show (App.Db.UpdateFiliere (Myfiliere) ? "Update Success" : "Update Failed");
-                Close ();
+                MessageBox.Show (App.Db.UpdateFiliere (Myfiliere) ? "Update Success" : "Update Failed");               
             }
+            Close ();
         }
+
+        
 
         private bool ChampsValidated()
         {

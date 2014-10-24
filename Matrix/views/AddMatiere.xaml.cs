@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using DataService.Entities;
@@ -80,12 +81,12 @@ namespace Matrix.views
                     App.Db.AddMatiere(MatiereDisplayed);
                     UpdateMatiereInstructors ();
                     App.Db.SaveFiliereMatiere(FiliereDisplayedID, MatiereDisplayed.MATIERE_ID,
-                        Convert.ToInt32(NIVEAU_.SelectedValue.ToString()), HEURE_PAR_SEMAINE_.SelectedValue.ToString());
+                        Convert.ToInt32(NIVEAU_.SelectedValue.ToString()), HEURE_PAR_SEMAINE_.SelectedValue.ToString());                   
                 }
                 catch (Exception ex)
                 {                    
-                    ModernDialog.ShowMessage (ex.Message, "Matrix", MessageBoxButton.OK);
-                }                
+                    ModernDialog.ShowMessage (ex.Message, "Matrix", MessageBoxButton.OK);                   
+                }
                 Close ();
             }
             else
@@ -140,9 +141,10 @@ namespace Matrix.views
             Close();
         }
 
-        private void UpdateMatiereInstructors ( )
+        private void UpdateMatiereInstructors()
         {
-            foreach (var S in StaffBuff)
+            Parallel.ForEach(StaffBuff, S =>
+            {
                 if (S.IsINSTRUCTOR)
                 {
                     App.Db.AddMatiereInstructor(MatiereDisplayed.MATIERE_ID, S.STAFF_ID);
@@ -151,8 +153,8 @@ namespace Matrix.views
                 {
                     App.Db.DeleteMatiereInstructor(MatiereDisplayed.MATIERE_ID, S.STAFF_ID);
                 }
+            });
         }
-
 
         #region Background Works
        
@@ -166,10 +168,10 @@ namespace Matrix.views
         {
             StaffBuff = GetStaffModelList (MatiereDisplayed.MATIERE_ID);
             if (OpenOption != "Mod") return;
-            foreach(var S in StaffBuff)
+            Parallel.ForEach(StaffBuff, S =>
             {
-                S.IsINSTRUCTOR = App.Db.IsMatiereInstructor (S.STAFF_ID, MatiereDisplayed.MATIERE_ID);
-            }
+                S.IsINSTRUCTOR = App.Db.IsMatiereInstructor(S.STAFF_ID, MatiereDisplayed.MATIERE_ID);
+            });
         }
 
         private void worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
@@ -185,7 +187,7 @@ namespace Matrix.views
             var ML = new List<MatiereStaffsModel>();
             var Staffs = App.Db.GetAllStaffs ();
 
-            foreach (var S in Staffs)
+            Parallel.ForEach(Staffs, S =>
             {
                 var M = new MatiereStaffsModel
                 {
@@ -195,9 +197,8 @@ namespace Matrix.views
                     QUALIFICATION = S.QUALIFICATION,
                     IsINSTRUCTOR = App.Db.IsMatiereInstructor(S.STAFF_ID, MatiereID)
                 };
-
                 ML.Add(M);
-            }
+            });
             return ML;
         }
 
