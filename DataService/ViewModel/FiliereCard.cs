@@ -1,14 +1,20 @@
 ﻿using System.Linq;
 using DataService.Context;
+using DataService.Entities;
 
 namespace DataService.ViewModel
 {
     public class FiliereCard
     {
-        public FiliereCard (string FiliereID)
+        public FiliereCard (Filiere FL)
         {
-            FILIERE_ID = FiliereID;         
+            FILIERE_ID = FL.FILIERE_ID;
+            NAME = FL.NAME.ToUpper();
+            NIVEAU = FL.NIVEAU;
+            NIVEAU_ENTREE = FL.NIVEAU_ENTREE;
+            N_ANNEE = FL.N_ANNEE;
         }
+
         public string FILIERE_ID { get; set; } 
 
         public string NAME { get; set; }
@@ -65,7 +71,6 @@ namespace DataService.ViewModel
                 }
             }           
         }
-
 
     }
 }

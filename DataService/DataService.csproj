@@ -89,12 +89,13 @@
       <DependentUpon>201410250248543_kk.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Model\MatiereModel.cs" />
+    <Compile Include="Model\MatiereCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DbService.cs" />
     <Compile Include="Utils\ListExtention.cs" />
     <Compile Include="ViewModel\FiliereCard.cs" />
     <Compile Include="ViewModel\FiliereLevelCard.cs" />
+    <Compile Include="ViewModel\DepStaffCard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

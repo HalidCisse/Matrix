@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using DataService.ViewModel;
 using Matrix.Model;
 
 namespace Matrix.views
@@ -14,9 +15,9 @@ namespace Matrix.views
     public partial class StaffsView
     {
         private readonly BackgroundWorker Worker = new BackgroundWorker ();
-        private readonly List<StaffViewModel> ListBuff = new List<StaffViewModel> ();
+        private List<DepStaffCard> ListBuff = new List<DepStaffCard> ();
         private string CurrentSelected;        
-        private bool isFistTime = true;
+        private bool isFirstTime = true;
 
         public StaffsView ( ) {
 
@@ -31,12 +32,11 @@ namespace Matrix.views
             UpdateDep ();            
         }
 
-        //_______________________________________________________________________________________//
-
+        
         private void HomeButton_Click ( object sender, RoutedEventArgs e )
         {
             if (NavigationService != null)
-                NavigationService.Navigate (new Uri ("/views/HomePage.xaml", UriKind.Relative));
+                NavigationService.Navigate (new HomePage(), UriKind.Relative);
         }
 
         private void AddButton_Click ( object sender, RoutedEventArgs e )
@@ -92,8 +92,7 @@ namespace Matrix.views
             UpdateDep ();  
         }
 
-        //_______________________________________________________________________________________//
-             
+        
         private void UpdateDep ( )
         {
             if(Worker.IsBusy) return;           
@@ -101,49 +100,25 @@ namespace Matrix.views
         }
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
         {
-            ListBuff.Clear();
-            
-            var Deps = App.Db.GetDEPARTEMENTS();
-
-            var N = new StaffViewModel
-            {
-                DEPARTEMENT_NAME = "",
-                STAFFS_LIST = App.Db.GetDepStaffs(),
-                STAFF_COUNT = App.Db.GetDepStaffs().Count
-            };
-
-            ListBuff.Add (N);
-         
-            foreach (var M in Deps.Select(D => new StaffViewModel
-            {
-                DEPARTEMENT_NAME = D.ToUpper(),
-                STAFFS_LIST = App.Db.GetDepStaffs(D),
-                STAFF_COUNT = App.Db.GetDepStaffs(D).Count
-            }))
-            {
-                ListBuff.Add (M);
-            }           
+            ListBuff = App.Db.GetDepStaffsCard();            
         }
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {           
             BusyIndicator.IsBusy = false;
-            StaffList.ItemsSource = new List<StaffViewModel> ();
             StaffList.ItemsSource = ListBuff;
-            isFistTime = true;                      
+            isFirstTime = true;                      
             Worker.Dispose ();
         }
 
-        //_______________________________________________________________________________________//
         
         private void DepStaffList_Loaded ( object sender, RoutedEventArgs e )
         {
-            if (!isFistTime) return;
+            if (!isFirstTime) return;
 
-            foreach(var Ep in FindVisualChildren<Expander> (this).Where (Ep => Ep.Header.ToString () == ""))
-            {
-                Ep.IsExpanded = true;
-                isFistTime = false;
-            }            
+            var E = FindVisualChildren<Expander> (this).FirstOrDefault (Ep => Ep.Header.ToString () == "");
+
+            if (E != null) E.IsExpanded = true;
+            isFirstTime = false;                     
         }
       
         private void Expander_Expanded ( object sender, RoutedEventArgs e )

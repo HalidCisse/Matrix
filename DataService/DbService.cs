@@ -763,36 +763,49 @@ namespace DataService
 
         #endregion
 
+
+        #region VIEW MODELS
+
         public List<FiliereCard> GetAllFilieresCards()
-        {
-            var FL = new List<FiliereCard>();
-           
+        {                       
             using(var Db = new EF ())
             {
+                var FL = new List<FiliereCard> ();
+
                 Parallel.ForEach(Db.FILIERE, F =>
-                {
-                    var FM = new FiliereCard(F.FILIERE_ID)
-                    {
-                        NAME = F.NAME.ToUpper(),
-                        NIVEAU = F.NIVEAU,
-                        NIVEAU_ENTREE = F.NIVEAU_ENTREE,
-                        N_ANNEE = F.N_ANNEE
-                    };
-                    FL.Add(FM);
+                {                  
+                    FL.Add(new FiliereCard(F));
                 });
                 return FL;
             }           
         }
 
-
         public List<FiliereLevelCard> GetFiliereMatieresCards( string FiliereID)
-        {
-            var Levels = GetFILIERE_NIVEAUX (FiliereID);
+        {           
+            var MatiereCardList = new List<FiliereLevelCard> ();              
 
-            return (from int Level in Levels select new FiliereLevelCard(FiliereID, Level)).ToList();                       
+            foreach(int Level in GetFILIERE_NIVEAUX (FiliereID))
+            {                                   
+                MatiereCardList.Add (new FiliereLevelCard (FiliereID, Level ));
+            }
+            return MatiereCardList;
         }
 
 
+        public List<DepStaffCard> GetDepStaffsCard ( )
+        {
+            var DepStaffCardList = new List<DepStaffCard> {new DepStaffCard("")};
 
+            foreach(var Dep in GetDEPARTEMENTS ())
+            {
+                DepStaffCardList.Add (new DepStaffCard (Dep));
+            }
+
+            return DepStaffCardList;
+        }
+
+        #endregion
+
+       
     }
 }

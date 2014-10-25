@@ -95,11 +95,10 @@ namespace Matrix.views
         private void MatiereList_Loaded ( object sender, RoutedEventArgs e )
         {
             if(!isFirstTime) return;
-            foreach(var Ep in FindVisualChildren<Expander> (this).Where (Ep => Ep.Header.ToString () == "1 Annee"))
-            {
-                Ep.IsExpanded = true;
-                isFirstTime = false;
-            }
+
+            var E = FindVisualChildren<Expander>(this).First(Ep => Ep.Header.ToString() == "1 ere Annee");
+            E.IsExpanded = true;
+            isFirstTime = false;            
         }
 
         private void MatiereList_SelectionChanged ( object sender, SelectionChangedEventArgs e )
@@ -120,36 +119,11 @@ namespace Matrix.views
         }
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
         {
-
-            ListBuff = App.Db.GetFiliereMatieresCards (OpenedFiliere);
-
-            //ListBuff.Clear ();
-
-            //var Ans = App.Db.GetFILIERE_NIVEAUX (OpenedFiliere);
-
-            //foreach(int A in Ans)
-            //{
-            //    var MM = new MatiereViewModel { ANNEE_NAME = A + " Annee" };
-
-            //    var MOFY = App.Db.GetMatieresOfFiliereYear (OpenedFiliere, A);
-            //    foreach(var M in MOFY)
-            //    {
-            //        var MMM = new MatiereModel
-            //        {
-            //            MATIERE_ID = M.MATIERE_ID,
-            //            NAME = M.NAME,
-            //            HEURES_PAR_SEMAINE = M.GetHEURE_PAR_SEMAINE (OpenedFiliere, Convert.ToInt32 (A)),
-            //            INSTRUCTEURS_COUNT = App.Db.GetNofMatiereInstructor (M.MATIERE_ID)
-            //        };
-            //        MM.MATIERES_MODEL_LIST.Add (MMM);
-            //    }
-            //    ListBuff.Add (MM);
-            //}                       
+            ListBuff = App.Db.GetFiliereMatieresCards (OpenedFiliere);                        
         }
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {
-            BusyIndicator.IsBusy = false;
-            AnneeList.ItemsSource = new List<MatiereViewModel>();
+            BusyIndicator.IsBusy = false;           
             AnneeList.ItemsSource = ListBuff;
             isFirstTime = true;
             Worker.Dispose ();
