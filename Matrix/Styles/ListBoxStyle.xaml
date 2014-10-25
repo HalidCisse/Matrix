@@ -107,11 +107,13 @@
                             <TextBlock Text="{Binding NAME}" FontSize="20" FontWeight="Bold" Width="170" TextWrapping="WrapWithOverflow" VerticalAlignment="Top"/>
 
                             <Grid VerticalAlignment="Center">
+                                <!--<TextBlock Text="{Binding INSTRUCTEURS_COUNT}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>-->
                                 <TextBlock Text="{Binding INSTRUCTEURS_COUNT}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
                                 <TextBlock Text="Instructeurs" FontSize="15" Margin="25,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
                             </Grid>
 
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                                <!--<TextBlock Text="{Binding HEURES_PAR_SEMAINE}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>-->
                                 <TextBlock Text="{Binding HEURES_PAR_SEMAINE}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
                                 <TextBlock Text="/S" FontSize="15" Margin="5,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
                             </StackPanel>                                                      
@@ -138,7 +140,8 @@
         <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="MaxHeight" Value="350" />
-        <Setter Property="ItemsSource" Value="{Binding MATIERES_MODEL_LIST}" />
+        <!--<Setter Property="ItemsSource" Value="{Binding MATIERES_MODEL_LIST}" />-->
+        <Setter Property="ItemsSource" Value="{Binding MATIERES_LIST}" />
         <Setter Property="SelectedValuePath" Value="MATIERE_ID" />
 
     </Style>

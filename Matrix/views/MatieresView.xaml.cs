@@ -6,6 +6,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using DataService.Entities;
+using DataService.ViewModel;
 using Matrix.Model;
 
 namespace Matrix.views
@@ -15,9 +17,9 @@ namespace Matrix.views
     {
 
         private readonly BackgroundWorker Worker = new BackgroundWorker ();
-        private readonly List<MatiereViewModel> ListBuff = new List<MatiereViewModel>();        
+        private List<FiliereLevelCard> ListBuff = new List<FiliereLevelCard> ();        
         private string CurrentSelected;
-        private bool isFistTime = true;
+        private bool isFirstTime = true;
         public string OpenedFiliere { get; set; }
         
         public MatieresView ( string OpenFiliere )
@@ -92,11 +94,11 @@ namespace Matrix.views
 
         private void MatiereList_Loaded ( object sender, RoutedEventArgs e )
         {
-            if(!isFistTime) return;
+            if(!isFirstTime) return;
             foreach(var Ep in FindVisualChildren<Expander> (this).Where (Ep => Ep.Header.ToString () == "1 Annee"))
             {
                 Ep.IsExpanded = true;
-                isFistTime = false;
+                isFirstTime = false;
             }
         }
 
@@ -118,35 +120,38 @@ namespace Matrix.views
         }
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
         {
-            ListBuff.Clear();
 
-            var Ans = App.Db.GetFILIERE_NIVEAUX (OpenedFiliere);
-                       
-            foreach(int A in Ans)
-            {
-                var MM = new MatiereViewModel {ANNEE_NAME = A + " Annee"};
+            ListBuff = App.Db.GetFiliereMatieresCards (OpenedFiliere);
 
-                var MOFY = App.Db.GetMatieresOfFiliereYear(OpenedFiliere, A);
-                foreach(var M in MOFY)
-                {
-                    var MMM = new MatiereModel
-                    {
-                        MATIERE_ID = M.MATIERE_ID,
-                        NAME = M.NAME,
-                        HEURES_PAR_SEMAINE = M.GetHEURE_PAR_SEMAINE(OpenedFiliere, Convert.ToInt32(A)),
-                        INSTRUCTEURS_COUNT = App.Db.GetNofMatiereInstructor(M.MATIERE_ID)
-                    };
-                    MM.MATIERES_MODEL_LIST.Add (MMM);
-                }
-                ListBuff.Add (MM);
-            }                       
+            //ListBuff.Clear ();
+
+            //var Ans = App.Db.GetFILIERE_NIVEAUX (OpenedFiliere);
+
+            //foreach(int A in Ans)
+            //{
+            //    var MM = new MatiereViewModel { ANNEE_NAME = A + " Annee" };
+
+            //    var MOFY = App.Db.GetMatieresOfFiliereYear (OpenedFiliere, A);
+            //    foreach(var M in MOFY)
+            //    {
+            //        var MMM = new MatiereModel
+            //        {
+            //            MATIERE_ID = M.MATIERE_ID,
+            //            NAME = M.NAME,
+            //            HEURES_PAR_SEMAINE = M.GetHEURE_PAR_SEMAINE (OpenedFiliere, Convert.ToInt32 (A)),
+            //            INSTRUCTEURS_COUNT = App.Db.GetNofMatiereInstructor (M.MATIERE_ID)
+            //        };
+            //        MM.MATIERES_MODEL_LIST.Add (MMM);
+            //    }
+            //    ListBuff.Add (MM);
+            //}                       
         }
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {
             BusyIndicator.IsBusy = false;
             AnneeList.ItemsSource = new List<MatiereViewModel>();
             AnneeList.ItemsSource = ListBuff;
-            isFistTime = true;
+            isFirstTime = true;
             Worker.Dispose ();
         }
 

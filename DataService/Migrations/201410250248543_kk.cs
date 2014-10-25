@@ -79,8 +79,9 @@ namespace DataService.Migrations
                     {
                         FILIERE_MATIERE_ID = c.String(nullable: false, maxLength: 128),
                         FILIERE_ID = c.String(),
-                        FILIERE_LEVEL = c.String(),
+                        FILIERE_LEVEL = c.Int(nullable: false),
                         MATIERE_ID = c.String(),
+                        HEURE_PAR_SEMAINE = c.String(),
                     })
                 .PrimaryKey(t => t.FILIERE_MATIERE_ID);
             
@@ -90,6 +91,9 @@ namespace DataService.Migrations
                     {
                         MATIERE_ID = c.String(nullable: false, maxLength: 128),
                         NAME = c.String(),
+                        HEURES_PAR_SEMAINE = c.String(),
+                        INSTRUCTEURS_COUNT = c.Int(),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.MATIERE_ID);
             

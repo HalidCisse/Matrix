@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataService.Context;
 using DataService.Entities;
+using DataService.Model;
 using DataService.ViewModel;
 
 namespace DataService
@@ -779,13 +780,17 @@ namespace DataService
                     };
                     FL.Add(FM);
                 });
-            }
-            return FL;
+                return FL;
+            }           
         }
 
 
+        public List<FiliereLevelCard> GetFiliereMatieresCards( string FiliereID)
+        {
+            var Levels = GetFILIERE_NIVEAUX (FiliereID);
 
-
+            return (from int Level in Levels select new FiliereLevelCard(FiliereID, Level)).ToList();                       
+        }
 
 
 

@@ -41,7 +41,7 @@
             <ListBox Name="AnneeList" Style="{DynamicResource MatiereAnneeListStyle}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Expander Header="{Binding Path=ANNEE_NAME}" Style="{DynamicResource DepExpandStyle}" Expanded="Expander_Expanded">
+                        <Expander Header="{Binding Path=FILIERE_YEAR}" Style="{DynamicResource DepExpandStyle}" Expanded="Expander_Expanded">
                             <ListBox Name="MatiereList" Style="{DynamicResource MatiereListBoxStyle}" Loaded="MatiereList_Loaded" Margin="10,10,0,0" MouseDoubleClick="MatiereList_MouseDoubleClick" SelectionChanged="MatiereList_SelectionChanged"/>
                         </Expander>
                     </DataTemplate>
