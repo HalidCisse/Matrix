@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         WindowStartupLocation="CenterOwner" Loaded="Window_Loaded"
-        Height="500" Width="570" Style="{StaticResource MyForm}" FontFamily="Helvetica">
+        Height="590" Width="570" Style="{StaticResource MyForm}" FontFamily="Helvetica">
 
     <Window.Resources>
                
@@ -18,10 +18,18 @@
 
     </Window.Resources>
 
-    <StackPanel Margin="10,-20,10,20">
+    <StackPanel Margin="10,-30,10,20">
 
-        <DockPanel Height="120">
-            <Image Source="icon/Matiere.png" Height="140" Width="140" VerticalAlignment="Center" DockPanel.Dock="Left"/>
+        <StackPanel Orientation="Horizontal" Height="90">
+            <Image Source="icon/Matiere.png" Height="100" Width="100" VerticalAlignment="Center" DockPanel.Dock="Left"/>
+
+            <Grid Height="40" VerticalAlignment="Top" Margin="40,0,0,0">
+                <TextBlock Name="TitleText" Text="AJOUTER NOUVELLE MATIERE" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Center"/>
+                <Border Background="Blue" Width="350" Height="7"  VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+            </Grid>
+        </StackPanel>
+                      
+        <DockPanel Height="120" Margin="0,0,0,0">
             <Grid Margin="15,0,0,0">
                 <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -30,7 +38,7 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <TextBlock Text="MATIERE" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBox Name="MATIERE_NAME_" Width="200" Height="20" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <TextBox Name="MATIERE_NAME_" Width="250" Height="20" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 </Grid>
 
                 <Grid Grid.Row="1">
@@ -40,7 +48,7 @@
 
                 <Grid Grid.Row="2">
                     <TextBlock Text="HEURES PAR SEMAINE" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <ComboBox Name="HEURE_PAR_SEMAINE_" Width="150" Height="20" Margin="0,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <ComboBox Name="HEURE_PAR_SEMAINE_" Width="250" Height="20" Margin="0,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 </Grid>
             </Grid>            
         </DockPanel>

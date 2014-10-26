@@ -35,7 +35,7 @@
         </ToolBar>
         <TextBlock Name="MatiereHeader" Text="Filiere" FontFamily="{StaticResource  NameFontFamily}" FontSize="20" FontWeight="ExtraLight" Foreground="#B9B2B2" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
 
-        <Grid Background="Transparent">
+        <Grid>
             <xctk:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
             <ListBox Name="AnneeList" Style="{DynamicResource MatiereAnneeListStyle}">

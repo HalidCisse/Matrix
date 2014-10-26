@@ -12,5 +12,7 @@ namespace DataService.Entities
 
         public string CLASSE_ID { get; set; }
 
+        //public string LEVEL { get; set; }
+
     }
 }

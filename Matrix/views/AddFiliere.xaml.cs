@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Navigation;
 using DataService.Entities;
 
 namespace Matrix.views
@@ -24,13 +23,14 @@ namespace Matrix.views
 
             NIVEAU_SORTIE_.ItemsSource = App.Db.GetFILIERE_NIVEAU_SORTIE ();
 
-            N_ANNEE_.ItemsSource = App.Db.GetFILIERE_ANNEE ();
+            N_ANNEE_.ItemsSource = App.Db.GetFILIERE_LEVELS ();
            
             #endregion
 
             if (!string.IsNullOrEmpty(FiliereToDisplayID)) {
                 DisplayFiliere(App.Db.GetFiliereByID(FiliereToDisplayID));
                 FiliereDisplayedID = FiliereToDisplayID;
+                TitleText.Text = "MODIFICATION";
             }
             else
                 DisplayDefault();

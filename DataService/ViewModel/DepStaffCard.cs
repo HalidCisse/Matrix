@@ -13,11 +13,8 @@ namespace DataService.ViewModel
 
 
         public DepStaffCard (string Departement)
-        {
-            
-             DEPARTEMENT_NAME = Departement.ToUpper ();
-            
-            
+        {            
+             DEPARTEMENT_NAME = Departement.ToUpper ();                       
             GetSTAFFS_LIST();
             //GetSTAFF_COUNT();
             //STAFF_COUNT = STAFFS_LIST.Count();
@@ -47,7 +44,7 @@ namespace DataService.ViewModel
         {
             using(var Db = new EF ())
             {
-                STAFF_COUNT = DEPARTEMENT_NAME == null ? Db.STAFF.Count(S => string.IsNullOrEmpty (S.DEPARTEMENT)) : Db.STAFF.Count(S => S.DEPARTEMENT == DEPARTEMENT_NAME);
+                STAFF_COUNT = string.IsNullOrEmpty(DEPARTEMENT_NAME) ? Db.STAFF.Count(S => string.IsNullOrEmpty (S.DEPARTEMENT)) : Db.STAFF.Count(S => S.DEPARTEMENT == DEPARTEMENT_NAME);
             }
         }
 

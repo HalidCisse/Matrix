@@ -67,57 +67,15 @@
             </TabItem>
 
             <TabItem Style="{DynamicResource TabItemStyleNote}">
-                <Grid>
-
-                </Grid>           
+                          
             </TabItem>
 
             <TabItem Style="{DynamicResource TabItemStyleClass}">
-                <DockPanel LastChildFill="True">
-                    <ToolBar Style="{StaticResource ToolBarStyle}" DockPanel.Dock="Top">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <Button Content="&#xf015;" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Name="HomeButton" Click="HomeButton_Click" />
-                            <Button Content="&#xf055;" Grid.Column="1" Style="{DynamicResource ToolButtonStyle}" Name="AddClasseButton" Click="AddClasseButton_Click" />
-                            <Button Content="&#xf014;" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Name="DeleteClasseButton" Click="DeleteClasseButton_Click"/>
-                            <Button Content="&#xf15d;" Grid.Column="3" Style="{DynamicResource ToolButtonStyle}" />
-                            <Button Content="&#xf0dc;" Grid.Column="4" Style="{DynamicResource ToolButtonStyle}" />
-                            <Grid Grid.Column="5">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="40" />
-                                </Grid.ColumnDefinitions>
-                                <TextBox Height="20" Background="Beige" Margin="0,0,10,0" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" BorderThickness="0" />
-                                <Button Content="&#xf002;" Margin="0,0,10,0" Style="{DynamicResource ToolButtonStyle}" Grid.Column="1" />
-                            </Grid>
-                        </Grid>
-                    </ToolBar>
-                    <Grid Background="Transparent">
-                        <My:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <ListBox Name="FiliereList" Style="{DynamicResource DepListStyle}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Expander  Header="{Binding Path=FiliereName}" Style="{DynamicResource DepExpandStyle}"  >
-                                        <ListBox Name="FilClassList" Style="{DynamicResource StaffListStyle}" Margin="5,5,5,0"  />
-                                    </Expander>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </Grid>
-                </DockPanel>
+                <Frame Name="ClassFrame" NavigationUIVisibility="Hidden" Source="ClassesView.xaml"/>
             </TabItem>
 
             <TabItem Style="{DynamicResource TabItemStyleFiliere}">
-                <Frame Name="filiereFrame" NavigationUIVisibility="Hidden" Source="FilieresView.xaml">
-
-                </Frame>
+                <Frame Name="filiereFrame" NavigationUIVisibility="Hidden" Source="FilieresView.xaml"/>
             </TabItem>
 
         </TabControl>

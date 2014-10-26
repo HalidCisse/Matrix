@@ -9,8 +9,9 @@ namespace DataService.Entities
 
         public string NAME { get; set; }
 
-        public int LEVEL { get; set; }
+        public string FILIERE_ID { get; set; }
 
+        public int LEVEL { get; set; }
         
     }
 }

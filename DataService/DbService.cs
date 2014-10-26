@@ -67,10 +67,8 @@ namespace DataService
         public List<Classe> GetAllClasse ( )
         {
             using(var Db = new EF ())
-            {
-                IList<Classe> MesClasses = Db.CLASSE.ToList ();
-
-                return (List<Classe>)MesClasses;
+            {               
+                return Db.CLASSE.ToList ();
             }
         }
 
@@ -249,6 +247,17 @@ namespace DataService
                 return Db.FILIERE.ToList ();
             }
         }
+      
+        public IEnumerable GetAllFilieresNames ( )
+        {
+            var Names = new List<string> ();
+            using(var Db = new EF ())
+            {
+                Names.AddRange (Db.FILIERE.Select (S => S.NAME));
+                return Names;
+            }
+        }
+        
 
         public string GetFiliereName ( string FiliereID )
         {
@@ -439,9 +448,19 @@ namespace DataService
             }  
         }
 
-        public IEnumerable GetFILIERE_ANNEE ( )
-        {            
-            return new List<string>{ "1", "2", "3", "4", "5", "6", "7", "8" };
+        public IEnumerable GetFILIERE_LEVELS ( string filiereID = "" )
+        {
+            if (filiereID == "")
+                return new List<string> {"1", "2", "3", "4", "5", "6", "7", "8"};
+            else
+            {
+                
+
+
+
+            }
+
+
         }
 
         public IEnumerable GetMATIERE_HEURES_PAR_SEMAINE ( )
@@ -764,6 +783,7 @@ namespace DataService
         #endregion
 
 
+
         #region VIEW MODELS
 
         public List<FiliereCard> GetAllFilieresCards()
@@ -791,21 +811,37 @@ namespace DataService
             return MatiereCardList;
         }
 
-
         public List<DepStaffCard> GetDepStaffsCard ( )
         {
             var DepStaffCardList = new List<DepStaffCard> {new DepStaffCard("")};
 
-            foreach(var Dep in GetDEPARTEMENTS ())
+            Parallel.ForEach(GetDEPARTEMENTS(), Dep =>
             {
-                DepStaffCardList.Add (new DepStaffCard (Dep));
-            }
+                DepStaffCardList.Add(new DepStaffCard(Dep));
+            });
 
             return DepStaffCardList;
         }
 
+
+
+        public List<FiliereClassCard> GetFiliereClassCards ( )
+        {
+            var ClassCardList = new List<FiliereClassCard> ();
+
+            foreach(var Fil in GetAllFilieres())
+            {
+                ClassCardList.Add (new FiliereClassCard (Fil));
+            }
+            return ClassCardList;
+        }
+
+
         #endregion
 
+
+
+        //Task.Factory.StartNew( () => Parallel.ForEach<Item>(items, item => DoSomething(item)));
        
     }
 }

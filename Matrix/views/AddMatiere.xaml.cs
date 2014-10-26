@@ -40,12 +40,13 @@ namespace Matrix.views
                 OpenOption = "Mod";
                 MatiereDisplayed = MatiereToDisplay;
                 DisplayMatiere (MatiereDisplayed);
-                NIVEAU_.IsEnabled = false;                
+                NIVEAU_.IsEnabled = false;
+                TitleText.Text = "MODIFICATION";
             }                                     
         }
 
         private void DisplayDefault()
-        {           
+        {            
             NIVEAU_.SelectedIndex = 0;
             HEURE_PAR_SEMAINE_.SelectedIndex = 0;
         }
