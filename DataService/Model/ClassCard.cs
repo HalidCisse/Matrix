@@ -1,4 +1,5 @@
-﻿using DataService.Context;
+﻿using System;
+using DataService.Context;
 using DataService.Entities;
 
 namespace DataService.Model
@@ -8,9 +9,9 @@ namespace DataService.Model
         public ClassCard ( Classe Clas )
         {
             CLASS_ID = Clas.CLASSE_ID;
-            NAME = Clas.NAME;
-            LEVEL = Clas.LEVEL;
-
+            NAME = Clas.NAME;  
+          
+            GetLEVEL (Clas.LEVEL);            
             GetSTUDENTS_COUNT();
             GetINSTRUCTEURS_COUNT ();
             GetHEURE_PAR_SEMAINE ();
@@ -18,11 +19,11 @@ namespace DataService.Model
         }
 
        
-        public string CLASS_ID { get; set; }
+        public Guid CLASS_ID { get; set; }
          
         public string NAME { get; set; }
 
-        public int LEVEL { get; set; }
+        public string LEVEL { get; set; }
 
         public int STUDENTS_COUNT { get; set; }
 
@@ -37,25 +38,34 @@ namespace DataService.Model
 
         private void GetSTUDENTS_COUNT ()
         {
+            //From Cours => Class => Guys
             STUDENTS_COUNT = 10;
         }        
         private void GetINSTRUCTEURS_COUNT ()
         {
             using(var Db = new EF ())
             {
-                INSTRUCTEURS_COUNT = 5; //Db.MATIERES_INSTRUCTEURS.Count (M => M.MATIERE_ID == MATIERE_ID);
+                //Class Cours proffs
+                INSTRUCTEURS_COUNT = 10; //Db.MATIERES_INSTRUCTEURS.Count (M => M.MATIERE_ID == MATIERE_ID);
             }
         }
         private void GetHEURE_PAR_SEMAINE ()
         {
             using(var Db = new EF ())
             {
-                HEURES_PAR_SEMAINE = "2 Heures"; //Db.FILIERE_MATIERE.Find (FiliereID + MATIERE_ID + FiliereLevel).HEURE_PAR_SEMAINE;
+                // From Cours
+                HEURES_PAR_SEMAINE = "10 Heures"; //Db.FILIERE_MATIERE.Find (FiliereID + MATIERE_ID + FiliereLevel).HEURE_PAR_SEMAINE;
             }
         }
         private void GetMATIERES_COUNT ()
         {
+            //From Cours
             MATIERES_COUNT = 10;
+        }
+
+        private void GetLEVEL (int level)
+        {
+            LEVEL = level == 1 ? "1 ere Annee" : level + " eme Annee";
         }
 
         #endregion

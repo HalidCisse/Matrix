@@ -145,6 +145,9 @@
     <Compile Include="views\AddMatiere.xaml.cs">
       <DependentUpon>AddMatiere.xaml</DependentUpon>
     </Compile>
+    <Compile Include="views\ClassesView.xaml.cs">
+      <DependentUpon>ClassesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="views\FilieresView.xaml.cs">
       <DependentUpon>FilieresView.xaml</DependentUpon>
     </Compile>
@@ -242,6 +245,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="views\AddMatiere.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\ClassesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -429,6 +436,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="views\Icon\Filiere.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="views\Icon\Classe.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

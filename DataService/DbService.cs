@@ -230,11 +230,11 @@ namespace DataService
             }
         }
 
-        public static Filiere GetFiliereByName ( string FiliereName )
+        public Filiere GetFiliereByName ( string FiliereName )
         {
             using(var Db = new EF ())
             {
-                var MyFiliere = Db.FILIERE.SingleOrDefault (S => S.NAME == FiliereName);
+                var MyFiliere = Db.FILIERE.First (S => S.NAME == FiliereName);
 
                 return MyFiliere;
             }
@@ -450,17 +450,7 @@ namespace DataService
 
         public IEnumerable GetFILIERE_LEVELS ( string filiereID = "" )
         {
-            if (filiereID == "")
-                return new List<string> {"1", "2", "3", "4", "5", "6", "7", "8"};
-            else
-            {
-                
-
-
-
-            }
-
-
+            return filiereID == "" ? new List<string> {"1", "2", "3", "4", "5", "6", "7", "8"} : GetFILIERE_NIVEAUX(filiereID);
         }
 
         public IEnumerable GetMATIERE_HEURES_PAR_SEMAINE ( )
@@ -822,8 +812,6 @@ namespace DataService
 
             return DepStaffCardList;
         }
-
-
 
         public List<FiliereClassCard> GetFiliereClassCards ( )
         {

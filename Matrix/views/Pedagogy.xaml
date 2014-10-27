@@ -44,13 +44,13 @@
         </Style>
 
         <ContextMenu PlacementTarget="{Binding ElementName =AddClasse}" HasDropShadow="True" Placement="Bottom" PlacementRectangle="10,10,10,10" HorizontalOffset="-100" VerticalOffset="20" x:Key="cmButton">
-            <MenuItem Header="Ajouter Une Classe" Name="AddClasse" Click="AddClasse_Click">
+            <MenuItem Header="Ajouter Une Classe" Name="AddClasse" >
                 <MenuItem.Icon>
                     <TextBlock Text="&#xf055;" FontFamily="pack://application:,,,/Fonts/#FontAwesome" />
                 </MenuItem.Icon>
             </MenuItem>
             
-            <MenuItem Header="Ajouter Une Filiere" Name="AddFiliere" Click="AddFiliere_Click">
+            <MenuItem Header="Ajouter Une Filiere" Name="AddFiliere" >
                 
             </MenuItem>          
         </ContextMenu>

@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DataService.Entities
 {
     public class Classe
     {
         [Key]
-        public string CLASSE_ID { get; set; }
+        public Guid CLASSE_ID { get; set; }
 
         public string NAME { get; set; }
 

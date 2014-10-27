@@ -66,57 +66,82 @@
 
         <Style.Resources>
 
-            <Style TargetType="{x:Type ListBoxItem}">
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Foreground" Value="Maroon" />
-                    </Trigger>
-
-                    <Trigger Property="IsSelected" Value="true">
-                        <Setter Property="Foreground" Value="#6363E3" />
-                        <Setter Property="BorderThickness" Value="1"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-
             <Style x:Key="ListBoxBoderStyle" TargetType="Border">
                 <Style.Resources>
                     <LinearGradientBrush x:Key="BorderBrush" StartPoint="0.5,0" EndPoint="0.5,1">
-                        <GradientStop Color="Blue" Offset="0.1" />
+                        <GradientStop Color="#606F11" Offset="0.1" />
                         <GradientStop Color="#081136FF" Offset="0.9" />
                     </LinearGradientBrush>
                 </Style.Resources>
+
                 <Setter Property="Background" Value="White"/>
                 <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
-                <Setter Property="Width" Value="278" />
-                <Setter Property="Height" Value="135" />
-                <Setter Property="BorderThickness" Value="1" />
-                <Setter Property="CornerRadius" Value="5" />
-                <Setter Property="Margin" Value="2,4" />
+                <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="CornerRadius" Value="2" />
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="Height" Value="280" />
+                <Setter Property="Width" Value="300" />
             </Style>
 
             <DataTemplate x:Key="ListBoxTemp">
-                <Border Style="{DynamicResource ListBoxBoderStyle}" HorizontalAlignment="Stretch">
+                <Border Style="{StaticResource ListBoxBoderStyle}">
                     <Border.Effect>
                         <DropShadowEffect Color="#080707" Opacity="0.5" BlurRadius="5" ShadowDepth="5"/>
                     </Border.Effect>
-                    <StackPanel Orientation="Horizontal" Margin="10">
-                        <Image Source="../views/Icon/Matiere.png" Stretch="Fill" Width="100" Height="100"/>
 
-                        <Grid Margin="10,5,5,0">
-                            <TextBlock Text="{Binding NAME}" FontSize="20" FontWeight="Bold" Width="170" TextWrapping="WrapWithOverflow" VerticalAlignment="Top"/>
+                    <DockPanel LastChildFill="True">
+                        <Border Height="70" HorizontalAlignment="Stretch" CornerRadius="0" Background="#606F11" DockPanel.Dock="Top">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="../Images/Classe.png" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+                                <TextBlock Text="{Binding NAME}" FontSize="20" Foreground="White" FontWeight="ExtraBold" FontFamily="{StaticResource NameFontFamily}" Width="200" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                        <!--Background="#F2F2EA"-->
+                        <StackPanel Margin="10">
+                            <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
+                                <!--<TextBlock Text="Niveau" FontSize="15" Foreground="Gray" FontWeight="SemiBold" FontFamily="Verdana"/>-->
+                                <TextBlock Text="{Binding LEVEL}" FontSize="15" Margin="5,0" Foreground="Gray" FontWeight="SemiBold" FontFamily="Verdana"/>
+                            </StackPanel>
 
-                            <Grid VerticalAlignment="Center">
-                                <TextBlock Text="{Binding INSTRUCTEURS_COUNT}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
-                                <TextBlock Text="Instructeurs" FontSize="15" Margin="25,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                            <Grid Margin="0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding STUDENTS_COUNT}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Grid.Column="1" Text="Etudiants" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
                             </Grid>
 
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <Grid Margin="0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding INSTRUCTEURS_COUNT}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Grid.Column="1" Text="Instructeurs" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                            </Grid>
+
+                            <Grid Margin="0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
                                 <TextBlock Text="{Binding HEURES_PAR_SEMAINE}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
-                                <TextBlock Text="/S" FontSize="15" Margin="5,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
-                            </StackPanel>
-                        </Grid>
-                    </StackPanel>
+                                <TextBlock Text="/ Semaine" Grid.Column="1" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                            </Grid>
+
+                            <Grid Margin="0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding MATIERES_COUNT}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Grid.Column="1" Text="Matieres" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                            </Grid>
+
+                        </StackPanel>
+                    </DockPanel>
                 </Border>
             </DataTemplate>
 
@@ -133,12 +158,10 @@
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Margin" Value="20" />
-        <Setter Property="VirtualizingPanel.CacheLengthUnit" Value="Item"/>
-        <Setter Property="VirtualizingPanel.CacheLength" Value="5"/>
-        <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
+        <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"/>        
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="MaxHeight" Value="350" />
-        <Setter Property="ItemsSource" Value="{Binding MATIERES_LIST}" />
+        <Setter Property="ItemsSource" Value="{Binding CLASS_LIST}" />
         <Setter Property="SelectedValuePath" Value="CLASSE_ID" />
 
     </Style>
@@ -172,7 +195,7 @@
 
         <Style.Resources>
 
-            <Style TargetType="{x:Type ListBoxItem}">
+            <!--<Style TargetType="{x:Type ListBoxItem}">
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="Foreground" Value="Maroon" />
@@ -183,7 +206,7 @@
                         <Setter Property="BorderThickness" Value="1"/>
                     </Trigger>
                 </Style.Triggers>
-            </Style>
+            </Style>-->
 
             <Style x:Key="ListBoxBoderStyle" TargetType="Border">
                 <Style.Resources>                    
@@ -257,20 +280,7 @@
 
     <Style x:Key="FiliereListBoxStyle" TargetType="{x:Type ListBox}">
 
-        <Style.Resources>
-            <Style TargetType="{x:Type ListBoxItem}">
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Foreground" Value="BlueViolet" />
-                    </Trigger>
-
-                    <Trigger Property="IsSelected" Value="true">
-                        <Setter Property="Foreground" Value="Blue" />
-                        <Setter Property="BorderThickness" Value="1"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-
+        <Style.Resources>          
             <Style x:Key="ListBoxBoderStyle" TargetType="Border">
                 <Style.Resources>                   
                     <LinearGradientBrush x:Key="BorderBrush" StartPoint="0.5,0" EndPoint="0.5,1">
@@ -373,20 +383,7 @@
 
     <Style x:Key="StudentListBoxStyle" TargetType="{x:Type ListBox}">
         
-        <Style.Resources>
-            <Style TargetType="{x:Type ListBoxItem}">
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Foreground" Value="BlueViolet" />
-                    </Trigger>
-
-                    <Trigger Property="IsSelected" Value="true">
-                        <Setter Property="Foreground" Value="Blue" />
-                        <Setter Property="BorderThickness" Value="1"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-
+        <Style.Resources>            
             <Style x:Key="ListBoxBoderStyle" TargetType="Border">
                 <Style.Resources>                                       
                     <LinearGradientBrush x:Key="BackBrush" StartPoint="0.5,0" EndPoint="0.5,1">
@@ -498,7 +495,7 @@
 
         <Style.Resources>
 
-            <Style TargetType="{x:Type ListBoxItem}">
+            <!--<Style TargetType="{x:Type ListBoxItem}">
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="Foreground" Value="Maroon" />
@@ -509,7 +506,7 @@
                         <Setter Property="BorderThickness" Value="1"/>
                     </Trigger>
                 </Style.Triggers>
-            </Style>
+            </Style>-->
 
             <Style x:Key="ListBoxBoderStyle" TargetType="Border">
                 <Style.Resources>

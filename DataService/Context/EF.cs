@@ -34,7 +34,7 @@ namespace DataService.Context
         public virtual DbSet<MatiereControl> MATIERE_CONTROL { get; set; }
 
         //_______________________________________________________________________________//
-        public virtual DbSet<Filiere_Classes> FILIERE_CLASSES { get; set; }
+        //public virtual DbSet<Filiere_Classes> FILIERE_CLASSES { get; set; }
         public virtual DbSet<Classe_Students> CLASSE_STUDENTS { get; set; }       
         public virtual DbSet<Filiere_Matieres> FILIERE_MATIERE { get; set; }
         public virtual DbSet<Matiere_Instructeurs> MATIERES_INSTRUCTEURS { get; set; }

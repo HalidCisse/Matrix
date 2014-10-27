@@ -70,7 +70,6 @@
     <Compile Include="Entities\Classe_Students.cs" />
     <Compile Include="Entities\Cours.cs" />
     <Compile Include="Entities\Filiere.cs" />
-    <Compile Include="Entities\Filiere_Classes.cs" />
     <Compile Include="Entities\Filiere_Matieres.cs" />
     <Compile Include="Entities\Human.cs" />
     <Compile Include="Entities\Matiere.cs" />
@@ -89,11 +88,13 @@
       <DependentUpon>201410250248543_kk.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\ClassCard.cs" />
     <Compile Include="Model\MatiereCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DbService.cs" />
     <Compile Include="Utils\ListExtention.cs" />
     <Compile Include="ViewModel\FiliereCard.cs" />
+    <Compile Include="ViewModel\FiliereClassCard.cs" />
     <Compile Include="ViewModel\FiliereLevelCard.cs" />
     <Compile Include="ViewModel\DepStaffCard.cs" />
   </ItemGroup>

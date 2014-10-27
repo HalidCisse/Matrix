@@ -1,5 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 using DataService.Entities;
+using FirstFloor.ModernUI.Windows.Controls;
 
 namespace Matrix.views
 {
@@ -9,31 +13,118 @@ namespace Matrix.views
     public partial class AddClass 
     {
         private string OpenOption;
+        private Classe ClassDisplayed;
 
-        public AddClass (Classe matiereToDisplay = null)
+        public AddClass (Classe ClassToDisplay = null)
         {
             InitializeComponent ();
-         
-            FILIERE_.ItemsSource = App.Db.GetAllFilieresNames ();
 
-            
+            FILIERE_NAME_.ItemsSource = App.Db.GetAllFilieresNames ();
 
+            if(ClassToDisplay != null)
+            {                
+                ClassDisplayed = ClassToDisplay;
+                DisplayClass ();                               
+            }
+            else
+                OpenOption = "Add";
+                DisplayDefault ();
+        }
 
+        private void DisplayDefault()
+        {
+            FILIERE_NAME_.SelectedIndex = 0;
+            NIVEAU_.SelectedIndex = 0;
+        }
+
+        private void DisplayClass()
+        {
+            TitleText.Text = "MODIFICATION";
+            FILIERE_NAME_.SelectedValue = ClassDisplayed.NAME;
+            NIVEAU_.SelectedValue = ClassDisplayed.LEVEL;
         }
 
         private void Enregistrer_Click ( object sender, RoutedEventArgs e )
         {
+            if(ChampsValidated () != true) return;
 
+            var MyClass = new Classe
+            {
+                NAME = CLASS_NAME_.Text.Trim (),
+                FILIERE_ID = App.Db.GetFiliereByName(FILIERE_NAME_.SelectedValue.ToString()).FILIERE_ID,
+                LEVEL = Convert.ToInt32 (NIVEAU_.SelectedValue.ToString())              
+            };
+            
+            if(OpenOption == "Add")
+            {
+                try
+                {
+                    MyClass.CLASSE_ID = Guid.NewGuid();
+                    App.Db.AddClasse(MyClass);
+                    ModernDialog.ShowMessage("Add Success","Matrix",MessageBoxButton.OK);                    
+                }
+                catch (Exception Ex)
+                {                    
+                    ModernDialog.ShowMessage(Ex.Message,"Matrix",MessageBoxButton.OK);                   
+                }                
+            }
+            else
+            {
+                try
+                {
+                    MyClass.CLASSE_ID = ClassDisplayed.CLASSE_ID;
+                    App.Db.UpdateClasse(MyClass);
+                    ModernDialog.ShowMessage("Add Success","Matrix",MessageBoxButton.OK);
+                }
+                catch (Exception Ex)
+                {                    
+                    ModernDialog.ShowMessage(Ex.Message,"Matrix",MessageBoxButton.OK);  
+                }                
+            }
+            Close ();
+        }
+
+        private bool ChampsValidated()
+        {
+            var Ok = true;
+
+            if(FILIERE_NAME_.SelectedValue == null)
+            {
+                FILIERE_NAME_.BorderBrush = Brushes.Red;
+                Ok = false;
+            }
+            
+
+            if(NIVEAU_.SelectedValue == null)
+            {
+                NIVEAU_.BorderBrush = Brushes.Red;
+                Ok = false;
+            }
+
+
+            if(string.IsNullOrEmpty (CLASS_NAME_.Text))
+            {
+                CLASS_NAME_.BorderBrush = Brushes.Red;
+                Ok = false;
+            }
+            
+            if(!Ok) ModernDialog.ShowMessage ("Verifier Les Informations !","Matrix",MessageBoxButton.OK);
+
+            return Ok;
         }
 
         private void Annuler_Click ( object sender, RoutedEventArgs e )
         {
-
+            Close();
         }
 
-        private void FILIERE__SelectionChanged ( object sender, System.Windows.Controls.SelectionChangedEventArgs e )
+        private void FILIERE__SelectionChanged ( object sender, SelectionChangedEventArgs e )
         {
-            NIVEAU_.ItemsSource = App.Db.GetFILIERE_LEVELS ();
+
+            if ( FILIERE_NAME_.SelectedValue == null) return;
+
+            NIVEAU_.ItemsSource = App.Db.GetFILIERE_NIVEAUX (App.Db.GetFiliereByName (FILIERE_NAME_.SelectedValue.ToString ()).FILIERE_ID);
+            NIVEAU_.SelectedIndex = 0;
         }
 
 

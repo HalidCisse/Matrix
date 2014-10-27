@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -33,7 +34,7 @@ namespace Matrix.views
       
         private void ClassAddButon_Click ( object sender, RoutedEventArgs e )
         {
-            var wind = new AddClass () { Owner = Window.GetWindow (this) };
+            var wind = new AddClass { Owner = Window.GetWindow (this) };
             wind.ShowDialog ();
             UpdateClass ();
         }
@@ -68,10 +69,16 @@ namespace Matrix.views
         private void ClassList_Loaded ( object sender, RoutedEventArgs e )
         {
             if(!isFirstTime) return;
-
-            var E = FindVisualChildren<Expander> (this).First (Ep => Ep.Header.ToString () == "1 ere Annee");
-            E.IsExpanded = true;
-            isFirstTime = false;  
+            try
+            {
+                var E = FindVisualChildren<Expander> (this).First ();
+                E.IsExpanded = true;
+                isFirstTime = false; 
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
         }
 
         private void ClassList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
