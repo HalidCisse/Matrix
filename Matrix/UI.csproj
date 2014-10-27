@@ -133,6 +133,7 @@
     <Compile Include="Styles\LocalExtensions.cs" />
     <Compile Include="Styles\MyForm.cs" />
     <Compile Include="Utils\DEP.cs" />
+    <Compile Include="Utils\Exp.cs" />
     <Compile Include="Utils\GenID.cs" />
     <Compile Include="Utils\ImageUtils.cs" />
     <Compile Include="Utils\Res.cs" />
@@ -144,6 +145,9 @@
     </Compile>
     <Compile Include="views\AddMatiere.xaml.cs">
       <DependentUpon>AddMatiere.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\ClassDetails.xaml.cs">
+      <DependentUpon>ClassDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="views\ClassesView.xaml.cs">
       <DependentUpon>ClassesView.xaml</DependentUpon>
@@ -245,6 +249,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="views\AddMatiere.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\ClassDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

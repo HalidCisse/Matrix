@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +23,7 @@ namespace Matrix.views
         public ClassesView ( )
         {
             InitializeComponent ();
+                        
         }
 
         private void Page_Loaded ( object sender, RoutedEventArgs e )
@@ -83,14 +85,13 @@ namespace Matrix.views
 
         private void ClassList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {
-            var Classes = sender as ListBox;
-            if(Classes == null) return;
-            if(Classes.SelectedValue == null) return;
-            var MatiereToDisplay = App.Db.GetClasseByID (Classes.SelectedValue.ToString ());
+            var list = sender as ListBox;
+            if(list == null) return;
+            if(list.SelectedValue == null) return;
 
-            var wind = new AddClass (MatiereToDisplay) { Owner = Window.GetWindow (this) };
-            wind.ShowDialog ();
-            UpdateClass (); 
+            var navigationService = NavigationService;
+            if(navigationService != null)
+                navigationService.Navigate (new ClassDetails (list.SelectedValue.ToString ()));             
         }
 
         private void ClassList_SelectionChanged ( object sender, SelectionChangedEventArgs e )
@@ -98,8 +99,9 @@ namespace Matrix.views
             var Classes = sender as ListBox;
 
             if(Classes == null) return;
+            if(Classes.SelectedValue == null) return;
 
-            CurrentSelected = Classes.SelectedValue != null ? Classes.SelectedValue.ToString () : null;
+            CurrentSelected = Classes.SelectedValue.ToString ();
         }
 
         private void UpdateClass ( )
