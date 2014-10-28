@@ -45,7 +45,7 @@ namespace DataService
             }
         }
 
-        public Classe GetClasseByID ( string ClasseID )
+        public Classe GetClasseByID ( Guid ClasseID )
         {
             using(var Db = new EF ())
             {
@@ -825,11 +825,32 @@ namespace DataService
         }
 
 
+
+        public List<MatiereCard> GetClassMatieresCards ( string FiliereID, int FiliereYear )
+        {            
+            //return new FiliereLevelCard (FiliereID, FiliereLevel);
+            var MATIERES_LIST = new List<MatiereCard>();
+
+            using(var Db = new EF ())
+            {
+                var MatieresIDs = Db.FILIERE_MATIERE.Where (F => F.FILIERE_ID == FiliereID && F.FILIERE_LEVEL == FiliereYear).Select (F => F.MATIERE_ID).ToList ();
+
+                foreach(var M in MatieresIDs.Select (M => Db.MATIERE.Find (M)))
+                {
+                    MATIERES_LIST.Add (new MatiereCard (FiliereID, FiliereYear, M));
+                }
+
+                return MATIERES_LIST;
+            }
+
+        }
+
         #endregion
 
 
 
         //Task.Factory.StartNew( () => Parallel.ForEach<Item>(items, item => DoSomething(item)));
-       
+
+        
     }
 }

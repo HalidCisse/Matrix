@@ -2,12 +2,57 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
-	Title="ClassDetails">
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      mc:Ignorable="d" KeepAlive="True" Loaded="Page_Loaded"
+      d:DesignHeight="550" d:DesignWidth="900">
 
-    <Grid>
+    
+    
+    <DockPanel>
+        <ToolBar Style="{StaticResource ToolBarStyle}" DockPanel.Dock="Top">
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Content="&#xf0a8;" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Name="BackButton" Click="BackButton_Click" />
+                <Button Content="&#xf055;" Grid.Column="1" Style="{DynamicResource ToolButtonStyle}" Name="AddButton" Click="AddButon_Click" />
+                <Button Content="&#xf014;" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Name="DeleteButton" Click="DeleteButton_Click"/>
+                <Button Content="&#xf15d;" Grid.Column="3" Style="{DynamicResource ToolButtonStyle}" />
+                <Grid Grid.Column="4" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="40" />
+                    </Grid.ColumnDefinitions>
+                    <TextBox Height="20" Background="Beige" Margin="0,0,10,0" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" BorderThickness="0" />
+                    <Button Content="&#xf002;" Margin="0,0,10,0" Style="{DynamicResource ToolButtonStyle}" Grid.Column="1" />
+                </Grid>
+            </Grid>
+        </ToolBar>
+
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center">
+            <TextBlock Text="CLASSE" Name="ClassName" />
+            <TextBlock Text="FILIERE" Name="ClassFiliere" Margin="20,0,0,0"/>
+        </StackPanel>
         
-    </Grid>
+        <Grid>
+            <xctk:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            
+            <Expander Header="MATIERES DE CETTE CLASSE" Style="{StaticResource DepExpandStyle}">
+                <ListBox Name="MatieresList" Style="{DynamicResource MatiereListBoxStyle}" Margin="10" MouseDoubleClick="MatieresList_MouseDoubleClick"/>
+            </Expander>
+            
+            
+        </Grid>
+
+
+
+
+
+    </DockPanel>
 </Page>

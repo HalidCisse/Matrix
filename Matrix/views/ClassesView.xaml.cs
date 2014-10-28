@@ -91,7 +91,7 @@ namespace Matrix.views
 
             var navigationService = NavigationService;
             if(navigationService != null)
-                navigationService.Navigate (new ClassDetails (list.SelectedValue.ToString ()));             
+                navigationService.Navigate (new ClassDetails (new Guid (list.SelectedValue.ToString())));             
         }
 
         private void ClassList_SelectionChanged ( object sender, SelectionChangedEventArgs e )
