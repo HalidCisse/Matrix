@@ -49,12 +49,12 @@ namespace Matrix.views
                 return;
             }
 
-            var theGaName = App.Db.GetClasseName (CurrentSelected);
+            var theGaName = App.DataS.GetClasseName (CurrentSelected);
             theGaName = "Ete Vous Sure de supprimer " + theGaName + " de la base de donnee ?";
 
             if(MessageBox.Show (theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
 
-            MessageBox.Show (App.Db.DeleteClasse (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
+            MessageBox.Show (App.DataS.DeleteClasse (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
             UpdateClass ();
         }
        
@@ -112,7 +112,7 @@ namespace Matrix.views
 
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
         {
-            ListBuff = App.Db.GetFiliereClassCards ();
+            ListBuff = App.ModelS.GetFiliereClassCards ();
         }
 
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )

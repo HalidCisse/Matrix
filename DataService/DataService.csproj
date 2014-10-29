@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Context\EF.cs" />
     <Compile Include="Context\Interface.cs" />
+    <Compile Include="ModelService.cs" />
     <Compile Include="Entities\Classe.cs" />
     <Compile Include="Entities\Classe_Students.cs" />
     <Compile Include="Entities\Cours.cs" />

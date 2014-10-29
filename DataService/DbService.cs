@@ -774,78 +774,86 @@ namespace DataService
 
 
 
-        #region VIEW MODELS
 
-        public List<FiliereCard> GetAllFilieresCards()
-        {                       
-            using(var Db = new EF ())
-            {
-                var FL = new List<FiliereCard> ();
-
-                Parallel.ForEach(Db.FILIERE, F =>
-                {                  
-                    FL.Add(new FiliereCard(F));
-                });
-                return FL;
-            }           
-        }
-
-        public List<FiliereLevelCard> GetFiliereMatieresCards( string FiliereID)
-        {           
-            var MatiereCardList = new List<FiliereLevelCard> ();              
-
-            foreach(int Level in GetFILIERE_NIVEAUX (FiliereID))
-            {                                   
-                MatiereCardList.Add (new FiliereLevelCard (FiliereID, Level ));
-            }
-            return MatiereCardList;
-        }
-
-        public List<DepStaffCard> GetDepStaffsCard ( )
-        {
-            var DepStaffCardList = new List<DepStaffCard> {new DepStaffCard("")};
-
-            Parallel.ForEach(GetDEPARTEMENTS(), Dep =>
-            {
-                DepStaffCardList.Add(new DepStaffCard(Dep));
-            });
-
-            return DepStaffCardList;
-        }
-
-        public List<FiliereClassCard> GetFiliereClassCards ( )
-        {
-            var ClassCardList = new List<FiliereClassCard> ();
-
-            foreach(var Fil in GetAllFilieres())
-            {
-                ClassCardList.Add (new FiliereClassCard (Fil));
-            }
-            return ClassCardList;
-        }
+        #region MODELS
 
 
 
-        public List<MatiereCard> GetClassMatieresCards ( string FiliereID, int FiliereYear )
-        {            
-            //return new FiliereLevelCard (FiliereID, FiliereLevel);
-            var MATIERES_LIST = new List<MatiereCard>();
+        //public List<FiliereCard> GetAllFilieresCards ( )
+        //{
+        //    using(var Db = new EF ())
+        //    {
+        //        var FL = new List<FiliereCard> ();
 
-            using(var Db = new EF ())
-            {
-                var MatieresIDs = Db.FILIERE_MATIERE.Where (F => F.FILIERE_ID == FiliereID && F.FILIERE_LEVEL == FiliereYear).Select (F => F.MATIERE_ID).ToList ();
+        //        Parallel.ForEach (Db.FILIERE, F =>
+        //        {
+        //            FL.Add (new FiliereCard (F));
+        //        });
+        //        return FL;
+        //    }
+        //}
 
-                foreach(var M in MatieresIDs.Select (M => Db.MATIERE.Find (M)))
-                {
-                    MATIERES_LIST.Add (new MatiereCard (FiliereID, FiliereYear, M));
-                }
+        //public List<FiliereLevelCard> GetFiliereMatieresCards ( string FiliereID )
+        //{
+        //    var MatiereCardList = new List<FiliereLevelCard> ();
 
-                return MATIERES_LIST;
-            }
+        //    foreach(int Level in GetFILIERE_NIVEAUX (FiliereID))
+        //    {
+        //        MatiereCardList.Add (new FiliereLevelCard (FiliereID, Level));
+        //    }
+        //    return MatiereCardList;
+        //}
 
-        }
+        //public List<DepStaffCard> GetDepStaffsCard ( )
+        //{
+        //    var DepStaffCardList = new List<DepStaffCard> { new DepStaffCard ("") };
+
+        //    Parallel.ForEach (GetDEPARTEMENTS (), Dep =>
+        //    {
+        //        DepStaffCardList.Add (new DepStaffCard (Dep));
+        //    });
+
+        //    return DepStaffCardList;
+        //}
+
+        //public List<FiliereClassCard> GetFiliereClassCards ( )
+        //{
+        //    var ClassCardList = new List<FiliereClassCard> ();
+
+        //    foreach(var Fil in GetAllFilieres ())
+        //    {
+        //        ClassCardList.Add (new FiliereClassCard (Fil));
+        //    }
+        //    return ClassCardList;
+        //}
+
+        //public List<MatiereCard> GetClassMatieresCards ( string FiliereID, int FiliereYear )
+        //{
+        //    var MATIERES_LIST = new List<MatiereCard> ();
+
+        //    using(var Db = new EF ())
+        //    {
+        //        var MatieresIDs = Db.FILIERE_MATIERE.Where (F => F.FILIERE_ID == FiliereID && F.FILIERE_LEVEL == FiliereYear).Select (F => F.MATIERE_ID).ToList ();
+
+        //        foreach(var M in MatieresIDs.Select (M => Db.MATIERE.Find (M)))
+        //        {
+        //            MATIERES_LIST.Add (new MatiereCard (FiliereID, FiliereYear, M));
+        //        }
+
+        //        return MATIERES_LIST;
+        //    }
+
+        //}
+
+
 
         #endregion
+
+
+
+
+
+
 
 
 

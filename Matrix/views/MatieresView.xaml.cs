@@ -24,7 +24,7 @@ namespace Matrix.views
             InitializeComponent ();
 
             OpenedFiliere = OpenFiliere;
-            MatiereHeader.Text = App.Db.GetFiliereByID(OpenFiliere).NAME.ToUpper();
+            MatiereHeader.Text = App.DataS.GetFiliereByID(OpenFiliere).NAME.ToUpper();
         }
        
         private void Page_Loaded ( object sender, RoutedEventArgs e )
@@ -58,12 +58,12 @@ namespace Matrix.views
                 return;
             }
 
-            var theGaName = App.Db.GetMatiereName (CurrentSelected);
+            var theGaName = App.DataS.GetMatiereName (CurrentSelected);
             theGaName = "Ete Vous Sure de supprimer " + theGaName + " de la base de donnee ?";
 
             if(MessageBox.Show (theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
 
-            MessageBox.Show (App.Db.DeleteMatiere (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
+            MessageBox.Show (App.DataS.DeleteMatiere (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
             UpdateMatieres ();
         }
 
@@ -72,7 +72,7 @@ namespace Matrix.views
             var Matieres = sender as ListBox;
             if(Matieres == null) return;
             if(Matieres.SelectedValue == null) return;
-            var MatiereToDisplay = App.Db.GetMatiereByID(Matieres.SelectedValue.ToString());
+            var MatiereToDisplay = App.DataS.GetMatiereByID(Matieres.SelectedValue.ToString());
 
             var wind = new AddMatiere (OpenedFiliere, MatiereToDisplay) { Owner = Window.GetWindow (this) };
             wind.ShowDialog();
@@ -116,7 +116,7 @@ namespace Matrix.views
         }
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
         {
-            ListBuff = App.Db.GetFiliereMatieresCards (OpenedFiliere);                        
+            ListBuff = App.ModelS.GetFiliereMatieresCards (OpenedFiliere);                        
         }
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {

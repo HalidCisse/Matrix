@@ -19,24 +19,24 @@ namespace Matrix.views
 
             #region Patterns Data
 
-            TITLE_.ItemsSource = App.Db.GetTITLES ();
+            TITLE_.ItemsSource = App.DataS.GetTITLES ();
 
-            NATIONALITY_.ItemsSource = App.Db.GetNATIONALITIES ();
+            NATIONALITY_.ItemsSource = App.DataS.GetNATIONALITIES ();
 
-            BIRTH_PLACE_.ItemsSource = App.Db.GetBIRTH_PLACE ();
+            BIRTH_PLACE_.ItemsSource = App.DataS.GetBIRTH_PLACE ();
 
-            STATUT_.ItemsSource = App.Db.GetStaffSTATUTS ();
+            STATUT_.ItemsSource = App.DataS.GetStaffSTATUTS ();
 
-            POSITION_.ItemsSource = App.Db.GetStaffPOSITIONS ();
+            POSITION_.ItemsSource = App.DataS.GetStaffPOSITIONS ();
 
-            DEPARTEMENT_.ItemsSource = App.Db.GetDEPARTEMENTS ();
+            DEPARTEMENT_.ItemsSource = App.DataS.GetDEPARTEMENTS ();
 
-            QUALIFICATION_.ItemsSource = App.Db.GetStaffQUALIFICATIONS ();
+            QUALIFICATION_.ItemsSource = App.DataS.GetStaffQUALIFICATIONS ();
 
             #endregion
 
             if(!string.IsNullOrEmpty (StaffToDisplayID))
-                DisplayStaff (App.Db.GetStaffByID (StaffToDisplayID));
+                DisplayStaff (App.DataS.GetStaffByID (StaffToDisplayID));
             else
                 DisplayDefault ();
         }
@@ -138,12 +138,12 @@ namespace Matrix.views
             if (OpenOption == "Add")
             {
                 MyStaff.REGISTRATION_DATE = DateTime.Now.Date;
-                MessageBox.Show(App.Db.AddStaff(MyStaff) ? "Add Success" : "Add Failed");
+                MessageBox.Show(App.DataS.AddStaff(MyStaff) ? "Add Success" : "Add Failed");
                 Close();
             }
             else
             {
-                MessageBox.Show(App.Db.UpdateStaff(MyStaff) ? "Update Success" : "Update Failed");
+                MessageBox.Show(App.DataS.UpdateStaff(MyStaff) ? "Update Success" : "Update Failed");
                 Close();
             }
         }
@@ -152,7 +152,7 @@ namespace Matrix.views
         {
             string idOut;
 
-            do idOut = "ST" + DateTime.Today.Year + "-" + GenID.GetID (3) + "-" + GenID.GetID (4); while(App.Db.StaffExist (idOut));
+            do idOut = "ST" + DateTime.Today.Year + "-" + GenID.GetID (3) + "-" + GenID.GetID (4); while(App.DataS.StaffExist (idOut));
 
             return idOut;
         }
@@ -168,9 +168,9 @@ namespace Matrix.views
                     STAFF_ID_.BorderBrush = Brushes.Red;
                     Ok = false;
                 }
-                else if(App.Db.StudentExist (STAFF_ID_.Text.Trim ()))
+                else if(App.DataS.StudentExist (STAFF_ID_.Text.Trim ()))
                 {
-                    MessageBox.Show ("Ce Numero de Matricule Est Deja Utiliser par " + App.Db.GetStaffFullName (STAFF_ID_.Text.Trim ()));
+                    MessageBox.Show ("Ce Numero de Matricule Est Deja Utiliser par " + App.DataS.GetStaffFullName (STAFF_ID_.Text.Trim ()));
                     return false;
                 }
                 else

@@ -36,11 +36,11 @@ namespace Matrix.views
                 return;
             }
 
-            var theGaName = App.Db.GetFiliereName (FiliereList.SelectedValue.ToString ());
+            var theGaName = App.DataS.GetFiliereName (FiliereList.SelectedValue.ToString ());
             theGaName = "Ete Vous Sure de supprimer " + theGaName + " de la base de donnee ?";
 
             if(MessageBox.Show (theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
-            MessageBox.Show (App.Db.DeleteFiliere (FiliereList.SelectedValue.ToString ()) ? "Supprimer Avec Succes" : "Echec");
+            MessageBox.Show (App.DataS.DeleteFiliere (FiliereList.SelectedValue.ToString ()) ? "Supprimer Avec Succes" : "Echec");
             UpdateFilieres ();
         }
 
@@ -69,7 +69,7 @@ namespace Matrix.views
 
         private void worker_DoWork ( object sender, DoWorkEventArgs e )
         {
-            FilieresBuff = App.Db.GetAllFilieresCards ();            
+            FilieresBuff = App.ModelS.GetAllFilieresCards ();            
         }
 
         private void worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )

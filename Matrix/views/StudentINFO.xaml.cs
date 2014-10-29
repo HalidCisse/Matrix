@@ -21,18 +21,18 @@ namespace Matrix.views
 
             #region Patterns Data
 
-            TITLE_.ItemsSource = App.Db.GetTITLES();
+            TITLE_.ItemsSource = App.DataS.GetTITLES();
 
-            NATIONALITY_.ItemsSource = App.Db.GetNATIONALITIES();
+            NATIONALITY_.ItemsSource = App.DataS.GetNATIONALITIES();
 
-            BIRTH_PLACE_.ItemsSource = App.Db.GetBIRTH_PLACE();
+            BIRTH_PLACE_.ItemsSource = App.DataS.GetBIRTH_PLACE();
 
-            STATUT_.ItemsSource = App.Db.GetStudentSTATUTS();
+            STATUT_.ItemsSource = App.DataS.GetStudentSTATUTS();
 
             #endregion
 
             if (!string.IsNullOrEmpty(StudentToDisplayID))
-                DisplayStudent(App.Db.GetStudentByID(StudentToDisplayID));
+                DisplayStudent(App.DataS.GetStudentByID(StudentToDisplayID));
             else 
                 DisplayDefault();
         }
@@ -77,12 +77,12 @@ namespace Matrix.views
             if (OpenOption == "Add")
             {
                 MyStudent.REGISTRATION_DATE = DateTime.Now.Date;
-                MessageBox.Show (App.Db.AddStudent (MyStudent) ? "Add Success" : "Add Failed");
+                MessageBox.Show (App.DataS.AddStudent (MyStudent) ? "Add Success" : "Add Failed");
                 Close ();
             }
             else
             {
-                MessageBox.Show (App.Db.UpdateStudent (MyStudent) ? "Update Success" : "Update Failed");
+                MessageBox.Show (App.DataS.UpdateStudent (MyStudent) ? "Update Success" : "Update Failed");
                 Close ();
             }
             
@@ -125,7 +125,7 @@ namespace Matrix.views
         {
             string idOut;
 
-            do idOut = "M" + DateTime.Today.Year + GenID.GetID(4); while (App.Db.StudentExist(idOut));
+            do idOut = "M" + DateTime.Today.Year + GenID.GetID(4); while (App.DataS.StudentExist(idOut));
 
             return idOut;
         }
@@ -143,10 +143,10 @@ namespace Matrix.views
                     STUDENT_ID_.BorderBrush = Brushes.Red;
                     Ok = false;
                 }
-                else if (App.Db.StudentExist(STUDENT_ID_.Text.Trim()))
+                else if (App.DataS.StudentExist(STUDENT_ID_.Text.Trim()))
                 {
                     MessageBox.Show("Ce numero de Matricule Est Deja Utiliser par " +
-                                    App.Db.GetStudentName(STUDENT_ID_.Text.Trim()));
+                                    App.DataS.GetStudentName(STUDENT_ID_.Text.Trim()));
                     return false;
                 }
                 else

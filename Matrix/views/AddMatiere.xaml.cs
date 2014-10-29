@@ -24,8 +24,8 @@ namespace Matrix.views
         {
             InitializeComponent ();
             
-            NIVEAU_.ItemsSource = App.Db.GetFILIERE_NIVEAUX (FiliereSelectedID);
-            HEURE_PAR_SEMAINE_.ItemsSource = App.Db.GetMATIERE_HEURES_PAR_SEMAINE ();
+            NIVEAU_.ItemsSource = App.DataS.GetFILIERE_NIVEAUX (FiliereSelectedID);
+            HEURE_PAR_SEMAINE_.ItemsSource = App.DataS.GetMATIERE_HEURES_PAR_SEMAINE ();
 
             FiliereDisplayedID = FiliereSelectedID;
 
@@ -56,8 +56,8 @@ namespace Matrix.views
             if(MatiereToDisplay == null) return;
 
             MATIERE_NAME_.Text = MatiereToDisplay.NAME;
-            NIVEAU_.SelectedValue = App.Db.GetFiliereMatiereNiveau (FiliereDisplayedID, MatiereToDisplay.MATIERE_ID);
-            HEURE_PAR_SEMAINE_.SelectedValue = App.Db.GetFiliereMatiereHeuresParSemaine (FiliereDisplayedID, MatiereToDisplay.MATIERE_ID);
+            NIVEAU_.SelectedValue = App.DataS.GetFiliereMatiereNiveau (FiliereDisplayedID, MatiereToDisplay.MATIERE_ID);
+            HEURE_PAR_SEMAINE_.SelectedValue = App.DataS.GetFiliereMatiereHeuresParSemaine (FiliereDisplayedID, MatiereToDisplay.MATIERE_ID);
         }
 
         private void Window_Loaded ( object sender, RoutedEventArgs e )
@@ -79,9 +79,9 @@ namespace Matrix.views
             {
                 try
                 {
-                    App.Db.AddMatiere(MatiereDisplayed);
+                    App.DataS.AddMatiere(MatiereDisplayed);
                     UpdateMatiereInstructors ();
-                    App.Db.SaveFiliereMatiere(FiliereDisplayedID, MatiereDisplayed.MATIERE_ID,
+                    App.DataS.SaveFiliereMatiere(FiliereDisplayedID, MatiereDisplayed.MATIERE_ID,
                         Convert.ToInt32(NIVEAU_.SelectedValue.ToString()), HEURE_PAR_SEMAINE_.SelectedValue.ToString());                   
                 }
                 catch (Exception ex)
@@ -94,9 +94,9 @@ namespace Matrix.views
             {
                 try
                 {
-                    App.Db.UpdateMatiere(MatiereDisplayed);
+                    App.DataS.UpdateMatiere(MatiereDisplayed);
                     UpdateMatiereInstructors ();
-                    App.Db.SaveFiliereMatiere(FiliereDisplayedID, MatiereDisplayed.MATIERE_ID,
+                    App.DataS.SaveFiliereMatiere(FiliereDisplayedID, MatiereDisplayed.MATIERE_ID,
                         Convert.ToInt32(NIVEAU_.SelectedValue.ToString()), HEURE_PAR_SEMAINE_.SelectedValue.ToString());
                     ModernDialog.ShowMessage("Success","Matrix", MessageBoxButton.OK);
                 }
@@ -148,11 +148,11 @@ namespace Matrix.views
             {
                 if (S.IsINSTRUCTOR)
                 {
-                    App.Db.AddMatiereInstructor(MatiereDisplayed.MATIERE_ID, S.STAFF_ID);
+                    App.DataS.AddMatiereInstructor(MatiereDisplayed.MATIERE_ID, S.STAFF_ID);
                 }
                 else
                 {
-                    App.Db.DeleteMatiereInstructor(MatiereDisplayed.MATIERE_ID, S.STAFF_ID);
+                    App.DataS.DeleteMatiereInstructor(MatiereDisplayed.MATIERE_ID, S.STAFF_ID);
                 }
             });
         }
@@ -171,7 +171,7 @@ namespace Matrix.views
             if (OpenOption != "Mod") return;
             Parallel.ForEach(StaffBuff, S =>
             {
-                S.IsINSTRUCTOR = App.Db.IsMatiereInstructor(S.STAFF_ID, MatiereDisplayed.MATIERE_ID);
+                S.IsINSTRUCTOR = App.DataS.IsMatiereInstructor(S.STAFF_ID, MatiereDisplayed.MATIERE_ID);
             });
         }
 
@@ -186,7 +186,7 @@ namespace Matrix.views
         private static List<MatiereStaffsModel> GetStaffModelList (string MatiereID)
         {
             var ML = new List<MatiereStaffsModel>();
-            var Staffs = App.Db.GetAllStaffs ();
+            var Staffs = App.DataS.GetAllStaffs ();
 
             Parallel.ForEach(Staffs, S =>
             {
@@ -196,7 +196,7 @@ namespace Matrix.views
                     FULL_NAME = S.FULL_NAME,
                     PHOTO_IDENTITY = S.PHOTO_IDENTITY,
                     QUALIFICATION = S.QUALIFICATION,
-                    IsINSTRUCTOR = App.Db.IsMatiereInstructor(S.STAFF_ID, MatiereID)
+                    IsINSTRUCTOR = App.DataS.IsMatiereInstructor(S.STAFF_ID, MatiereID)
                 };
                 ML.Add(M);
             });

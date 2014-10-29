@@ -36,19 +36,34 @@
         </ToolBar>
 
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center">
-            <TextBlock Text="CLASSE" Name="ClassName" />
-            <TextBlock Text="FILIERE" Name="ClassFiliere" Margin="20,0,0,0"/>
+            <TextBlock Text="CLASSE" Name="ClassName" FontFamily="{StaticResource  NameFontFamily}" FontSize="20" FontWeight="ExtraLight" Foreground="#B9B2B2"/>
+            <TextBlock Text="FILIERE" Name="ClassFiliere" Margin="20,0,0,0" FontFamily="{StaticResource  NameFontFamily}" FontSize="20" FontWeight="ExtraLight" Foreground="#B9B2B2"/>
         </StackPanel>
-        
-        <Grid>
+
+        <StackPanel>
             <xctk:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <Expander Header="COURS" Style="{StaticResource DepExpandStyle}" >
+                <ListBox Name="CoursList" Style="{DynamicResource MatiereListBoxStyle}" Margin="10" MouseDoubleClick="CoursList_MouseDoubleClick"/>
+
+            </Expander>
             
-            <Expander Header="MATIERES DE CETTE CLASSE" Style="{StaticResource DepExpandStyle}">
+            <Expander Header="MATIERES" Style="{StaticResource DepExpandStyle}">
                 <ListBox Name="MatieresList" Style="{DynamicResource MatiereListBoxStyle}" Margin="10" MouseDoubleClick="MatieresList_MouseDoubleClick"/>
+            </Expander>
+
+            <Expander Header="ETUDIANTS" Style="{StaticResource DepExpandStyle}" >
+                <ListBox Name="StudentsList" Style="{DynamicResource MatiereListBoxStyle}" Margin="10" MouseDoubleClick="StudentsList_MouseDoubleClick"/>
+
+            </Expander>
+
+            <Expander Header="ENSEIGNANTS" Style="{StaticResource DepExpandStyle}" >
+                <ListBox Name="StaffList" Style="{DynamicResource MatiereListBoxStyle}" Margin="10" MouseDoubleClick="StaffList_MouseDoubleClick"/>
+
             </Expander>
             
             
-        </Grid>
+        </StackPanel>
 
 
 

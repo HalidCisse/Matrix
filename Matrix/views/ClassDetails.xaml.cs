@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using DataService.Entities;
 using DataService.Model;
-using DataService.ViewModel;
 
 namespace Matrix.views
 {
@@ -14,7 +13,10 @@ namespace Matrix.views
     public partial class ClassDetails
     {
         private readonly BackgroundWorker Worker = new BackgroundWorker ();
-        private List<MatiereCard> ListBuff = new List<MatiereCard>();
+        private List<MatiereCard> MatieresListBuff = new List<MatiereCard>();
+        private List<Staff> StaffListBuff = new List<Staff> ();
+        private List<Student> StudentsListBuff = new List<Student> ();
+        //private List<CoursCard> CoursListBuff = new List<CoursCard> ();
         private string CurrentSelected;
         private bool isFirstTime = true;
         private Filiere OpenedFiliere;
@@ -24,20 +26,20 @@ namespace Matrix.views
         {
             InitializeComponent ();
 
-            OpenedClass = App.Db.GetClasseByID (OpenClassID);
-            OpenedFiliere = App.Db.GetFiliereByID (OpenedClass.FILIERE_ID);
+            OpenedClass = App.DataS.GetClasseByID (OpenClassID);
+            OpenedFiliere = App.DataS.GetFiliereByID (OpenedClass.FILIERE_ID);
             ClassName.Text = OpenedClass.NAME.ToUpper ();
-            ClassFiliere.Text = OpenedFiliere.NAME;
+            ClassFiliere.Text = OpenedFiliere.NAME.ToUpper();
         }
        
-        private void AddButon_Click ( object sender, System.Windows.RoutedEventArgs e )
+        private void AddButon_Click ( object sender, RoutedEventArgs e )
         {
             //var wind = new AddMatiere (OpenedFiliere) { Owner = Window.GetWindow (this) };
            // wind.ShowDialog ();
            // UpdateMatieres ();
         }
 
-        private void DeleteButton_Click ( object sender, System.Windows.RoutedEventArgs e )
+        private void DeleteButton_Click ( object sender, RoutedEventArgs e )
         {
             //if(CurrentSelected == null)
             //{
@@ -54,7 +56,7 @@ namespace Matrix.views
             //UpdateMatieres ();
         }
 
-        private void Page_Loaded ( object sender, System.Windows.RoutedEventArgs e )
+        private void Page_Loaded ( object sender, RoutedEventArgs e )
         {
             Worker.DoWork += Worker_DoWork;
             Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
@@ -70,34 +72,54 @@ namespace Matrix.views
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            ListBuff = App.Db.GetClassMatieresCards (OpenedFiliere.FILIERE_ID,OpenedClass.LEVEL); 
+            
+            MatieresListBuff = App.ModelS.GetClassMatieresCards (OpenedClass.CLASSE_ID); 
+            StaffListBuff = App.ModelS.GetClassStaffCards (OpenedFiliere.FILIERE_ID, OpenedClass.LEVEL);
+            StudentsListBuff = App.ModelS.GetClassStudentCards (OpenedFiliere.FILIERE_ID, OpenedClass.LEVEL);
+            //CoursListBuff = App.ModelS.GetClassCoursCards (OpenedFiliere.FILIERE_ID, OpenedClass.LEVEL); 
+
         }
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             BusyIndicator.IsBusy = false;
-            MatieresList.ItemsSource = ListBuff;
+            MatieresList.ItemsSource = MatieresListBuff;
             isFirstTime = true;
             Worker.Dispose ();
         }
 
         
-        private void MatieresList_MouseDoubleClick ( object sender, System.Windows.Input.MouseButtonEventArgs e )
+        private void MatieresList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {
             var Matieres = sender as ListBox;
             if(Matieres == null) return;
             if(Matieres.SelectedValue == null) return;
-            var MatiereToDisplay = App.Db.GetMatiereByID (Matieres.SelectedValue.ToString ());
+            var MatiereToDisplay = App.DataS.GetMatiereByID (Matieres.SelectedValue.ToString ());
 
             var wind = new AddMatiere (OpenedFiliere.FILIERE_ID, MatiereToDisplay) { Owner = Window.GetWindow (this) };
             wind.ShowDialog ();
             UpdateMatieres ();
         }
 
-        private void BackButton_Click ( object sender, System.Windows.RoutedEventArgs e )
+        private void BackButton_Click ( object sender, RoutedEventArgs e )
         {
             var navigationService = NavigationService;
             if(navigationService != null)
                 navigationService.Navigate (new ClassesView ());
+        }
+
+        private void CoursList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
+        {
+
+        }
+
+        private void StudentsList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
+        {
+
+        }
+
+        private void StaffList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
+        {
+
         }
 
 

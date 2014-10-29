@@ -7,11 +7,16 @@ using DataService;
 
 namespace Matrix
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
+    
+
+     
+
     public partial class App
     {
+        static public string _currentUser;
+        public static DbService DataS { get; private set; }
+        public static ModelService ModelS { get; private set; }
+
         App ( )
         {
             //Db = new Service ();
@@ -19,22 +24,17 @@ namespace Matrix
 
             try
             {
-                new Thread (( ) => Db = new DbService ()) { Name = "DataThread", Priority = ThreadPriority.Highest }.Start ();
-
+                new Thread (( ) => DataS = new DbService ()) { Name = "DataThread", Priority = ThreadPriority.Highest }.Start ();
+                new Thread (( ) => ModelS = new ModelService ()) { Name = "DataModelThread", Priority = ThreadPriority.Highest }.Start ();                
             }
             catch(System.Exception e)
             {
-
                 MessageBox.Show (e.Message);
             }           
         }
 
        
-        static public string _currentUser;
-
-        public static DbService Db { get;
-            private set;
-        }
+       
 
 
         /// <summary>
@@ -56,8 +56,7 @@ namespace Matrix
         protected override void OnStartup ( StartupEventArgs e )
         {
             base.OnStartup (e);
-            DispatcherUnhandledException += App_DispatcherUnhandledException;
-            //Db = new Service ();
+            DispatcherUnhandledException += App_DispatcherUnhandledException;            
         }
 
         static void App_DispatcherUnhandledException ( object sender, DispatcherUnhandledExceptionEventArgs e )

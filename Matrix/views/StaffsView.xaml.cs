@@ -55,12 +55,12 @@ namespace Matrix.views
                 return;
             }
 
-            var theGaName = App.Db.GetStaffFullName (CurrentSelected);
+            var theGaName = App.DataS.GetStaffFullName (CurrentSelected);
             theGaName = "Ete Vous Sure de supprimer " + theGaName + " de la base de donnee ?";
 
             if (MessageBox.Show(theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
 
-            MessageBox.Show (App.Db.DeleteStaff (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
+            MessageBox.Show (App.DataS.DeleteStaff (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
             UpdateDep ();
         }       
 
@@ -100,7 +100,7 @@ namespace Matrix.views
         }
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
         {
-            ListBuff = App.Db.GetDepStaffsCard();            
+            ListBuff = App.ModelS.GetDepStaffsCard ();            
         }
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {           

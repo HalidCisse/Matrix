@@ -19,7 +19,7 @@ namespace Matrix.views
         {
             InitializeComponent ();
 
-            FILIERE_NAME_.ItemsSource = App.Db.GetAllFilieresNames ();
+            FILIERE_NAME_.ItemsSource = App.DataS.GetAllFilieresNames ();
 
             if(ClassToDisplay != null)
             {                
@@ -51,7 +51,7 @@ namespace Matrix.views
             var MyClass = new Classe
             {
                 NAME = CLASS_NAME_.Text.Trim (),
-                FILIERE_ID = App.Db.GetFiliereByName(FILIERE_NAME_.SelectedValue.ToString()).FILIERE_ID,
+                FILIERE_ID = App.DataS.GetFiliereByName(FILIERE_NAME_.SelectedValue.ToString()).FILIERE_ID,
                 LEVEL = Convert.ToInt32 (NIVEAU_.SelectedValue.ToString())              
             };
             
@@ -60,7 +60,7 @@ namespace Matrix.views
                 try
                 {
                     MyClass.CLASSE_ID = Guid.NewGuid();
-                    App.Db.AddClasse(MyClass);
+                    App.DataS.AddClasse(MyClass);
                     ModernDialog.ShowMessage("Add Success","Matrix",MessageBoxButton.OK);                    
                 }
                 catch (Exception Ex)
@@ -73,7 +73,7 @@ namespace Matrix.views
                 try
                 {
                     MyClass.CLASSE_ID = ClassDisplayed.CLASSE_ID;
-                    App.Db.UpdateClasse(MyClass);
+                    App.DataS.UpdateClasse(MyClass);
                     ModernDialog.ShowMessage("Add Success","Matrix",MessageBoxButton.OK);
                 }
                 catch (Exception Ex)
@@ -123,7 +123,7 @@ namespace Matrix.views
 
             if ( FILIERE_NAME_.SelectedValue == null) return;
 
-            NIVEAU_.ItemsSource = App.Db.GetFILIERE_NIVEAUX (App.Db.GetFiliereByName (FILIERE_NAME_.SelectedValue.ToString ()).FILIERE_ID);
+            NIVEAU_.ItemsSource = App.DataS.GetFILIERE_NIVEAUX (App.DataS.GetFiliereByName (FILIERE_NAME_.SelectedValue.ToString ()).FILIERE_ID);
             NIVEAU_.SelectedIndex = 0;
         }
 
