@@ -7,33 +7,36 @@ using FirstFloor.ModernUI.Windows.Controls;
 
 namespace Matrix.views
 {
-    /// <summary>
-    /// Interaction logic for AddClass.xaml
-    /// </summary>
+    
     public partial class AddClass 
     {
         private string OpenOption;
         private Classe ClassDisplayed;
+        private string FiliereDisplayed;
 
-        public AddClass (Classe ClassToDisplay = null)
+        public AddClass (string CurrentFiliere, Classe ClassToDisplay = null)
         {
             InitializeComponent ();
 
+            FiliereDisplayed = CurrentFiliere;
             FILIERE_NAME_.ItemsSource = App.DataS.GetAllFilieresNames ();
 
             if(ClassToDisplay != null)
-            {                
+            {
+                OpenOption = "Mod";
                 ClassDisplayed = ClassToDisplay;
                 DisplayClass ();                               
             }
             else
+            {
                 OpenOption = "Add";
-                DisplayDefault ();
+                DisplayDefault();
+            }                
         }
 
         private void DisplayDefault()
         {
-            FILIERE_NAME_.SelectedIndex = 0;
+            FILIERE_NAME_.SelectedValue = App.DataS.GetFiliereByID(FiliereDisplayed).NAME;
             NIVEAU_.SelectedIndex = 0;
         }
 
@@ -120,10 +123,9 @@ namespace Matrix.views
 
         private void FILIERE__SelectionChanged ( object sender, SelectionChangedEventArgs e )
         {
+            if ( FILIERE_NAME_.SelectedItem == null) return;
 
-            if ( FILIERE_NAME_.SelectedValue == null) return;
-
-            NIVEAU_.ItemsSource = App.DataS.GetFILIERE_NIVEAUX (App.DataS.GetFiliereByName (FILIERE_NAME_.SelectedValue.ToString ()).FILIERE_ID);
+            NIVEAU_.ItemsSource = App.DataS.GetFILIERE_NIVEAUX (App.DataS.GetFiliereByName (FILIERE_NAME_.SelectedItem.ToString ()).FILIERE_ID);
             NIVEAU_.SelectedIndex = 0;
         }
 

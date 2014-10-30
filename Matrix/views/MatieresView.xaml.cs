@@ -116,6 +116,7 @@ namespace Matrix.views
         }
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
         {
+            ListBuff.Clear();
             ListBuff = App.ModelS.GetFiliereMatieresCards (OpenedFiliere);                        
         }
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )

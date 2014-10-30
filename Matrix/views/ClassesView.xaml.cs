@@ -1,29 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using DataService.ViewModel;
+using DataService.Model;
 
 namespace Matrix.views
 {
-   
+
     public partial class ClassesView 
     {
 
         private readonly BackgroundWorker Worker = new BackgroundWorker ();
-        private List<FiliereClassCard> ListBuff = new List<FiliereClassCard> ();
-        private string CurrentSelected;
+        private List<ClassCard> ListBuff = new List<ClassCard> ();
+        private string OpenedFiliereID;
+        //private string CurrentSelected;
         private bool isFirstTime = true;
 
-        public ClassesView ( )
+        public ClassesView (string OpenFiliere)
         {
             InitializeComponent ();
-                        
+            OpenedFiliereID = OpenFiliere;
         }
 
         private void Page_Loaded ( object sender, RoutedEventArgs e )
@@ -33,17 +33,29 @@ namespace Matrix.views
             BusyIndicator.IsBusy = true;
             UpdateClass (); 
         }
-      
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            var navigationService = NavigationService;
+            if (navigationService != null)
+                navigationService.Navigate(new FilieresView());
+        }
+
         private void ClassAddButon_Click ( object sender, RoutedEventArgs e )
         {
-            var wind = new AddClass { Owner = Window.GetWindow (this) };
+            var wind = new AddClass(OpenedFiliereID) { Owner = Window.GetWindow (this) };
             wind.ShowDialog ();
             UpdateClass ();
         }
 
         private void ClassDeleteButton_Click ( object sender, RoutedEventArgs e )
         {
-            if(CurrentSelected == null)
+            if (ClassList == null) return;
+            if (ClassList.SelectedValue == null) return;
+
+            var CurrentSelected = ClassList.SelectedValue.ToString();
+
+            if (CurrentSelected == null)
             {
                 MessageBox.Show ("Selectionner Une Classe A Supprimer !");
                 return;
@@ -96,12 +108,12 @@ namespace Matrix.views
 
         private void ClassList_SelectionChanged ( object sender, SelectionChangedEventArgs e )
         {
-            var Classes = sender as ListBox;
+            //var Classes = sender as ListBox;
 
-            if(Classes == null) return;
-            if(Classes.SelectedValue == null) return;
+            //if(Classes == null) return;
+            //if(Classes.SelectedValue == null) return;
 
-            CurrentSelected = Classes.SelectedValue.ToString ();
+            //CurrentSelected = Classes.SelectedValue.ToString ();
         }
 
         private void UpdateClass ( )
@@ -112,17 +124,16 @@ namespace Matrix.views
 
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
         {
-            ListBuff = App.ModelS.GetFiliereClassCards ();
+            ListBuff = App.ModelS.GetFiliereClassCards (OpenedFiliereID);
         }
 
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {
             BusyIndicator.IsBusy = false;
-            ClassFiliereList.ItemsSource = ListBuff;
+            ClassList.ItemsSource = ListBuff;
             isFirstTime = true;
             Worker.Dispose ();
         }
-
 
         public static IEnumerable<T> FindVisualChildren<T> ( DependencyObject depObj ) where T : DependencyObject
         {
@@ -142,7 +153,6 @@ namespace Matrix.views
             }
         }
 
-
-
+        
     }
 }

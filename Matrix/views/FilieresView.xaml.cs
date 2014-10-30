@@ -58,7 +58,9 @@ namespace Matrix.views
 
             var navigationService = NavigationService;
             if(navigationService != null)
-                navigationService.Navigate (new MatieresView (FiliereList.SelectedValue.ToString ()));
+                navigationService.Navigate(new ClassesView(FiliereList.SelectedValue.ToString()));
+            //navigationService.Navigate (new MatieresView (FiliereList.SelectedValue.ToString ()));
+
         }
 
         private void UpdateFilieres ( )
@@ -79,7 +81,11 @@ namespace Matrix.views
             worker.Dispose ();
         }
 
-       
-
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            var navigationService = NavigationService;
+            if (navigationService != null)
+                navigationService.Navigate(new HomePage());
+        }
     }
 }

@@ -1,23 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Matrix.views
 {
-    /// <summary>
-    /// Interaction logic for HomePage.xaml
-    /// </summary>
+    
     public partial class HomePage
     {
         public HomePage ( ) {
@@ -25,23 +12,26 @@ namespace Matrix.views
         }
 
         #region Home Buttons Commandes
-        private void StudentButton_Click ( object sender, RoutedEventArgs e ) {  
-         
-            NavigationService.Navigate (new Uri ("/views/StudentsView.xaml", UriKind.Relative));         
+
+
+        private void StudentButton_Click ( object sender, RoutedEventArgs e ) {           
+            NavigationService.Navigate (new StudentsView(), UriKind.Relative);         
         }
 
         private void PedagogieButton_Click ( object sender, RoutedEventArgs e ) {
-            NavigationService.Navigate (new Uri ("/views/Pedagogy.xaml", UriKind.Relative));
+            NavigationService.Navigate (new FilieresView(), UriKind.Relative);
         }
+
         private void StaffButton_Click ( object sender, RoutedEventArgs e ) {
 
-            NavigationService.Navigate (new Uri ("/views/StaffsView.xaml", UriKind.Relative)); 
+            NavigationService.Navigate (new StaffsView(), UriKind.Relative); 
         }
 
         private void AgendaButton_Click ( object sender, RoutedEventArgs e ) {
 
-            NavigationService.Navigate (new Uri ("/views/StudentPage.xaml", UriKind.Relative));
+            NavigationService.Navigate (new StudentPage(), UriKind.Relative);
         }
+
         private void FinanceButton_Click ( object sender, RoutedEventArgs e ) {
 
 

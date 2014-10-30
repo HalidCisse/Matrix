@@ -104,7 +104,7 @@ namespace Matrix.views
         {
             var navigationService = NavigationService;
             if(navigationService != null)
-                navigationService.Navigate (new ClassesView ());
+                navigationService.Navigate (new ClassesView (OpenedFiliere.FILIERE_ID));
         }
 
         private void CoursList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )

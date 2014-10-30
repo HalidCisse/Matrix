@@ -160,7 +160,7 @@
         <Setter Property="Margin" Value="20" />
         <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"/>        
         <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="MaxHeight" Value="350" />
+        <!--<Setter Property="MaxHeight" Value="350" />-->
         <Setter Property="ItemsSource" Value="{Binding CLASS_LIST}" />
         <Setter Property="SelectedValuePath" Value="CLASS_ID" />
 

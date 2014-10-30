@@ -60,7 +60,7 @@ namespace DataService
             }
             return ClassCardList;
         }
-
+        
         public List<MatiereCard> GetClassMatieresCards ( Guid ClassID )
         {
             var FiliereID = DS.GetClasseByID (ClassID).FILIERE_ID;
@@ -76,13 +76,26 @@ namespace DataService
                 {
                     MATIERES_LIST.Add (new MatiereCard (FiliereID, FiliereYear, M));
                 }
-
                 return MATIERES_LIST;
             }
         }
 
 
+        public List<ClassCard> GetFiliereClassCards(string FiliereID)
+        {
+            //return new FiliereClassCard(DS.GetFiliereByID(FiliereID));
 
+            var Class_List = new List<ClassCard>();
+
+            using (var Db = new EF())
+            {               
+                foreach (var C in Db.CLASSE.Where(C => C.FILIERE_ID == FiliereID))
+                {
+                    Class_List.Add(new ClassCard(C));
+                }
+                return Class_List;
+            }
+        }
 
 
         public List<Staff> GetClassStaffCards(string filiereId, int level)
@@ -92,8 +105,8 @@ namespace DataService
 
         public List<Student> GetClassStudentCards(string filiereId, int level)
         {
-            
 
+            throw new System.NotImplementedException ();
         }
     }
 

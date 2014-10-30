@@ -17,11 +17,13 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button Content="&#xf055;" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Name="ClassAddButon" Click="ClassAddButon_Click" />
-                <Button Content="&#xf014;" Grid.Column="1" Style="{DynamicResource ToolButtonStyle}" Name="ClassDeleteButton" Click="ClassDeleteButton_Click"/>
-                <Button Content="&#xf15d;" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}"/>
-                <Grid Grid.Column="4" Grid.ColumnSpan="2">
+                <Button Content="&#xf0a8;" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Name="BackButton" Click="BackButton_Click" />
+                <Button Content="&#xf055;" Grid.Column="1" Style="{DynamicResource ToolButtonStyle}" Name="ClassAddButon" Click="ClassAddButon_Click" />
+                <Button Content="&#xf014;" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Name="ClassDeleteButton" Click="ClassDeleteButton_Click"/>
+                <Button Content="&#xf15d;" Grid.Column="3" Style="{DynamicResource ToolButtonStyle}"/>
+                <Grid Grid.Column="5" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="40" />
@@ -34,15 +36,17 @@
         <Grid>
             <xctk:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-            <ListBox Name="ClassFiliereList" Style="{DynamicResource ClassFiliereListStyle}">
+            <!--<ListBox Name="ClassFiliereList" Style="{DynamicResource ClassFiliereListStyle}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Expander Header="{Binding Path=FILIERE_NAME}" Style="{DynamicResource DepExpandStyle}" Expanded="Expander_Expanded">
+                        <Expander Header="{Binding Path=FILIERE_NAME}" Style="{DynamicResource DepExpandStyle}" Expanded="Expander_Expanded">-->
                             <ListBox Name="ClassList" Style="{DynamicResource ClassListBoxStyle}" Loaded="ClassList_Loaded" Margin="10,10,0,0" MouseDoubleClick="ClassList_MouseDoubleClick" SelectionChanged="ClassList_SelectionChanged"/>
-                        </Expander>
+                        <!--</Expander>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-            </ListBox>
+            </ListBox>-->
+            
+            
             
         </Grid>
     </DockPanel>
