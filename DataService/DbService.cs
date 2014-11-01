@@ -36,7 +36,7 @@ namespace DataService
             }
         }
 
-        public bool DeleteClasse ( string ClasseID )
+        public bool DeleteClasse ( Guid ClasseID )
         {
             using(var Db = new EF ())
             {
@@ -257,7 +257,14 @@ namespace DataService
                 return Names;
             }
         }
-        
+
+        public int GetFiliereClassCount ( string filiereId )
+        {
+            using(var Db = new EF ())
+            {               
+                return Db.CLASSE.Count (C => C.FILIERE_ID == filiereId);
+            }
+        }
 
         public string GetFiliereName ( string FiliereID )
         {
@@ -858,6 +865,7 @@ namespace DataService
 
 
         //Task.Factory.StartNew( () => Parallel.ForEach<Item>(items, item => DoSomething(item)));
+
 
         
     }

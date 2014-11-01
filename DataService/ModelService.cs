@@ -100,7 +100,7 @@ namespace DataService
 
         public List<Staff> GetClassStaffCards(string filiereId, int level)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public List<Student> GetClassStudentCards(string filiereId, int level)
@@ -109,7 +109,6 @@ namespace DataService
             throw new System.NotImplementedException ();
         }
     }
-
 
     
 }

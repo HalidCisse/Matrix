@@ -10,15 +10,15 @@ namespace Matrix.views
     
     public partial class AddClass 
     {
-        private string OpenOption;
-        private Classe ClassDisplayed;
-        private string FiliereDisplayed;
+        private readonly string OpenOption;
+        private readonly Classe ClassDisplayed;
+        //private readonly string FiliereDisplayed;
 
-        public AddClass (string CurrentFiliere, Classe ClassToDisplay = null)
+        public AddClass (string CurrentFiliere = null, Classe ClassToDisplay = null)
         {
             InitializeComponent ();
 
-            FiliereDisplayed = CurrentFiliere;
+            //FiliereDisplayed = CurrentFiliere;
             FILIERE_NAME_.ItemsSource = App.DataS.GetAllFilieresNames ();
 
             if(ClassToDisplay != null)
@@ -36,7 +36,7 @@ namespace Matrix.views
 
         private void DisplayDefault()
         {
-            FILIERE_NAME_.SelectedValue = App.DataS.GetFiliereByID(FiliereDisplayed).NAME;
+            FILIERE_NAME_.SelectedIndex = 0;                     //.SelectedValue = App.DataS.GetFiliereByID(FiliereDisplayed).NAME;
             NIVEAU_.SelectedIndex = 0;
         }
 

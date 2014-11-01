@@ -7,6 +7,29 @@
       mc:Ignorable="d" KeepAlive="True" Loaded="Page_Loaded"
       d:DesignHeight="550" d:DesignWidth="900">
 
+    <Page.Resources>
+        <ContextMenu x:Key="AddContext" HasDropShadow="True" Placement="Bottom" PlacementRectangle="10,10,10,10" HorizontalOffset="-100" VerticalOffset="15">
+            <MenuItem Height="50" Margin="10,0" Click="AddClasse_Click">
+                <MenuItem.Icon>
+                    <Image Source="/views/Icon/Classe.png" Height="40" Width="40"/>
+                </MenuItem.Icon>
+                
+                <MenuItem.Header>                    
+                    <TextBlock Text="Nouvelle Classe" Margin="5" FontWeight="ExtraLight" FontSize="15" VerticalAlignment="Center"/>                                   
+                </MenuItem.Header>                              
+            </MenuItem>
+
+            <MenuItem Height="50" Margin="10,0" Click="AddFiliere_Click">
+                <MenuItem.Icon>
+                    <Image Source="/views/Icon/Filiere.png" Height="40" Width="40"/>
+                </MenuItem.Icon>
+                
+                <MenuItem.Header>
+                    <TextBlock Text="Nouvelle Filiere" Margin="5" FontWeight="ExtraLight" FontSize="15" VerticalAlignment="Center"/>
+                </MenuItem.Header>               
+            </MenuItem>            
+        </ContextMenu>
+    </Page.Resources>
  
     <DockPanel LastChildFill="True">
         <ToolBar Style="{StaticResource ToolBarStyle}" DockPanel.Dock="Top">
@@ -18,12 +41,11 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />
-                </Grid.ColumnDefinitions>         
+                </Grid.ColumnDefinitions>
                 <Button Content="&#xf015;" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Name="HomeButton" Click="HomeButton_Click" />
-                <Button Content="&#xf055;" Grid.Column="1" Style="{DynamicResource ToolButtonStyle}" Name="FiliereAddButon" Click="FiliereAddButon_Click" />
-                <Button Content="&#xf014;" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Name="FiliereDeleteButton" Click="FiliereDeleteButton_Click"/>
-                <!--<Button Content="&#xf15d;" Grid.Column="3" Style="{DynamicResource ToolButtonStyle}"/>-->                
-                <Grid Grid.Column="4" Grid.ColumnSpan="4">
+                <Button Content="&#xf055;" Grid.Column="1" Style="{DynamicResource ToolButtonStyle}" Name="AddButon" Click="AddButon_Click" />
+                <Button Content="&#xf014;" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Name="DeleteButton" Click="DeleteButton_Click"/>
+                <Grid Grid.Column="4" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="40" />
@@ -33,9 +55,20 @@
                 </Grid>
             </Grid>
         </ToolBar>
-        <Grid Background="Transparent">
+        <Grid>
             <xctk:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <ListBox Name="FiliereList" Style="{DynamicResource FiliereListBoxStyle}" Margin="10,10,0,0" SelectedValuePath="FILIERE_ID" MouseDoubleClick="Filiere_MouseDoubleClick"/>
+            <!--<ListBox Name="FiliereList" Style="{DynamicResource FiliereListBoxStyle}" Margin="10,10,0,0" SelectedValuePath="FILIERE_ID" MouseDoubleClick="Filiere_MouseDoubleClick"/>-->
+
+            <ListBox Name="FiliereList" Style="{DynamicResource FiliereClassListStyle}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Expander Header="{Binding Path=FILIERE_NAME}" Style="{DynamicResource DepExpandStyle}" Expanded="Expander_Expanded">
+                            <ListBox Name="ClassList" Style="{DynamicResource ClassListBoxStyle2}" Loaded="ClassList_Loaded" MouseDoubleClick="ClassList_MouseDoubleClick" SelectionChanged="ClassList_SelectionChanged"/>
+                        </Expander>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
         </Grid>
     </DockPanel>
 </Page>
