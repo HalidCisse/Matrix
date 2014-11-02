@@ -57,14 +57,14 @@ namespace Matrix.views
                 return;
             }
 
-            var CurrentSelected = ClassList.SelectedValue.ToString();
+            var CurrentSelected = new Guid (ClassList.SelectedValue.ToString ());
            
             var theGaName = App.DataS.GetClasseName (CurrentSelected);
             theGaName = "Ete Vous Sure de supprimer " + theGaName + " de la base de donnee ?";
 
             if(MessageBox.Show (theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
 
-            MessageBox.Show (App.DataS.DeleteClasse (new Guid (CurrentSelected)) ? "Supprimer Avec Succes" : "Echec");
+            MessageBox.Show (App.DataS.DeleteClasse (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
             UpdateClass ();
         }
        

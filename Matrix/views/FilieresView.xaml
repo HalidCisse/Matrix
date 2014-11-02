@@ -29,6 +29,18 @@
                 </MenuItem.Header>               
             </MenuItem>            
         </ContextMenu>
+
+        <ContextMenu x:Key="ClassContext">
+            
+            <MenuItem Header="Supprimer Cette Classe" Click="ClassContextDel_Click">
+                
+            </MenuItem>
+            
+            <MenuItem Header="Menu item 2">
+                
+            </MenuItem> 
+                                    
+        </ContextMenu>
     </Page.Resources>
  
     <DockPanel LastChildFill="True">
@@ -63,7 +75,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Expander Header="{Binding Path=FILIERE_NAME}" Style="{DynamicResource DepExpandStyle}" Expanded="Expander_Expanded">
-                            <ListBox Name="ClassList" Style="{DynamicResource ClassListBoxStyle2}" Loaded="ClassList_Loaded" MouseDoubleClick="ClassList_MouseDoubleClick" SelectionChanged="ClassList_SelectionChanged"/>
+                            <ListBox Name="ClassList" Style="{DynamicResource ClassListBoxStyle2}" ContextMenu="{StaticResource ClassContext}" Loaded="ClassList_Loaded" MouseDoubleClick="ClassList_MouseDoubleClick" SelectionChanged="ClassList_SelectionChanged"/>
                         </Expander>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

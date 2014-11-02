@@ -48,9 +48,8 @@ namespace DataService
         public Classe GetClasseByID ( Guid ClasseID )
         {
             using(var Db = new EF ())
-            {
-                var MyClasse = Db.CLASSE.Find (ClasseID);
-                return MyClasse;
+            {                
+                return Db.CLASSE.Find (ClasseID);
             }
         }
 
@@ -72,12 +71,11 @@ namespace DataService
             }
         }
 
-        public string GetClasseName ( string ClasseID )
+        public string GetClasseName ( Guid ClasseID )
         {
             using(var Db = new EF ())
-            {
-                var MyClasseName = Db.CLASSE.Find (ClasseID).NAME;
-                return MyClasseName;
+            {               
+                return Db.CLASSE.Find (ClasseID).NAME;
             }
         }
 
@@ -668,7 +666,7 @@ namespace DataService
 
 
 
-        #region Pedagogy
+        #region PEDAGOGY
 
 
         public bool IsMatiereInstructor ( string StaffID, string MatiereID )

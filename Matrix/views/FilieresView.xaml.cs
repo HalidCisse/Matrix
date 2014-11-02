@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Media;
+using DataService.Model;
 using FirstFloor.ModernUI.Windows.Controls;
 
 namespace Matrix.views
@@ -15,11 +16,10 @@ namespace Matrix.views
 
     public partial class FilieresView
     {
-
-        private readonly BackgroundWorker worker = new BackgroundWorker ();
-        private string CurrentSelected;
+        
+        private Guid CurrentSelected;
         private bool isFirstTime = true;
-
+        private readonly BackgroundWorker worker = new BackgroundWorker ();
         private List<FiliereClassCard> FilieresBuff = new List<FiliereClassCard> ();
 
         public FilieresView ( )
@@ -28,7 +28,6 @@ namespace Matrix.views
         }
 
         
-
         private void UpdateData ( )
         {
             if(worker.IsBusy) return;            
@@ -61,42 +60,27 @@ namespace Matrix.views
 
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )
         {
-            var list = sender as ListBox;
-            if(list == null) return;            
-            if(list.SelectedValue == null){
-                MessageBox.Show ("Selectionner Une Classe A Supprimer !");
-                return;
-            }
-
-            var TheClass = App.DataS.GetClasseByID (new Guid (list.SelectedValue.ToString ()));
+            
+            MessageBox.Show (CurrentSelected + "");
 
 
+            var TheClass = App.DataS.GetClasseByID (CurrentSelected);
 
-            var theName = App.DataS.GetClasseName (list.SelectedValue.ToString ());
+
+            var theName = App.DataS.GetClasseName (CurrentSelected);
             theName = "Ete Vous Sure de supprimer " + TheClass.NAME + " definitivement ?";
 
-
-            var v = new ModernDialog
-            {
+            var MD = new ModernDialog {
                 Title = "Matrix",
-                Content = theName, BackgroundContent = MessageBoxButton.YesNo, MinWidth = 200
+                Content = theName
             };
-            //v.OkButton.Click += OkButton_Click;
-            //v.Buttons = new[] { v.OkButton, v.CancelButton };
+                      
+            var r = MD.ShowDialogOKCancel ();
+            if (r != MessageBoxResult.OK)
+            {
+                return;
+            }
            
-            var r = v.ShowDialogOKCancel ();
-            if(r==MessageBoxResult.OK)
-            {
-                MessageBox.Show ("ok was clicked");
-            }
-            else
-            {
-                MessageBox.Show ("cancel was clicked");
-            }
-
-
-            //if(new ModernDialog.ShowDialogOKCancel(theName, "Matrix", MessageBoxButton.YesNo) != MessageBoxResult.OK) return;
-
             try
             {
                 App.DataS.DeleteClasse (TheClass.CLASSE_ID);
@@ -121,11 +105,7 @@ namespace Matrix.views
             UpdateData ();
         }
 
-        private void OkButton_Click ( object sender, RoutedEventArgs e )
-        {
-            
-        }
-
+       
         private void AddButon_Click ( object sender, RoutedEventArgs e )
         {
             ContextMenu cm = FindResource ("AddContext") as ContextMenu;
@@ -187,7 +167,7 @@ namespace Matrix.views
             if(Classes == null) return;
             if(Classes.SelectedValue == null) return;
 
-            CurrentSelected = Classes.SelectedValue.ToString ();
+            CurrentSelected = new Guid (Classes.SelectedValue.ToString ());
         }
 
         private void Expander_Expanded ( object sender, RoutedEventArgs e )
@@ -220,11 +200,31 @@ namespace Matrix.views
                 }
             }
         }
+
         #endregion
 
+       
+        private void ClassContextDel_Click ( object sender, RoutedEventArgs e )
+        {
+            var theName = App.DataS.GetClasseName (CurrentSelected);
+            theName = "Ete Vous Sure de supprimer " + theName + " definitivement ?";
 
-        
-        
+            var MD = new ModernDialog
+            {
+                Title = "Matrix",
+                Content = theName
+            };
+
+            var r = MD.ShowDialogOKCancel ();
+            if(r != MessageBoxResult.OK) return;
+                
+            App.DataS.DeleteClasse (CurrentSelected);
+            
+            //ModernDialog.ShowMessage ("Success", "Matrix", MessageBoxButton.OK);
+
+            UpdateData();
+        }
+                
     }
 
     static class ModernDialogExtension
