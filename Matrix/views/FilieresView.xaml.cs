@@ -106,6 +106,7 @@ namespace Matrix.views
         }
 
        
+
         private void AddButon_Click ( object sender, RoutedEventArgs e )
         {
             ContextMenu cm = FindResource ("AddContext") as ContextMenu;
