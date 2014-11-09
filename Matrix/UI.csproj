@@ -139,6 +139,7 @@
       <DependentUpon>ToolbarStudentViews.xaml</DependentUpon>
     </Compile>
     <Compile Include="EFR.cs" />
+    <Compile Include="Extention\ModernDialogExtention.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -149,6 +150,7 @@
     <Compile Include="Styles\MyForm.cs" />
     <Compile Include="Utils\DEP.cs" />
     <Compile Include="Utils\Exp.cs" />
+    <Compile Include="Utils\FindVisualChildren.cs" />
     <Compile Include="Utils\GenID.cs" />
     <Compile Include="Utils\ImageUtils.cs" />
     <Compile Include="Utils\Res.cs" />
@@ -175,6 +177,9 @@
     </Compile>
     <Compile Include="views\Pedagogy.xaml.cs">
       <DependentUpon>Pedagogy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\PedagogyView.xaml.cs">
+      <DependentUpon>PedagogyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="views\StaffINFO.xaml.cs">
       <DependentUpon>StaffINFO.xaml</DependentUpon>
@@ -216,6 +221,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\ExpanderStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\GroupBoxStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -296,6 +305,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="views\Pedagogy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\PedagogyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -463,6 +476,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="views\Icon\Classe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Styles\ListStyles\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

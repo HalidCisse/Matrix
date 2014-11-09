@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Navigation;
 
 namespace Matrix.views
 {
@@ -19,7 +18,7 @@ namespace Matrix.views
         }
 
         private void PedagogieButton_Click ( object sender, RoutedEventArgs e ) {
-            NavigationService.Navigate (new FilieresView(), UriKind.Relative);
+            NavigationService.Navigate (new PedagogyView(), UriKind.Relative);
         }
 
         private void StaffButton_Click ( object sender, RoutedEventArgs e ) {

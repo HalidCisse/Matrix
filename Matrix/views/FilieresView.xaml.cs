@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows;
-using System.Windows.Input;
-using DataService.ViewModel;
-using System;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
-using DataService.Model;
+using DataService.ViewModel;
 using FirstFloor.ModernUI.Windows.Controls;
+using Matrix.Extention;
 
 namespace Matrix.views
 {
@@ -228,26 +228,6 @@ namespace Matrix.views
                 
     }
 
-    static class ModernDialogExtension
-    {
-        static MessageBoxResult result;
-
-        public static MessageBoxResult ShowDialogOKCancel ( this ModernDialog modernDialog )
-        {
-            result = MessageBoxResult.Cancel;
-
-            modernDialog.OkButton.Click += OkButton_Click;
-            modernDialog.Buttons = new[] { modernDialog.OkButton, modernDialog.CloseButton };
-
-            modernDialog.ShowDialog ();
-
-            return result;
-        }
-
-        private static void OkButton_Click ( object sender, RoutedEventArgs e )
-        {
-            result = MessageBoxResult.OK;
-        }
-    }
+    
 }
 

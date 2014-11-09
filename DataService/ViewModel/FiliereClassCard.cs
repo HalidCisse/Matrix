@@ -13,16 +13,13 @@ namespace DataService.ViewModel
     {
 
         public FiliereClassCard ( Filiere Fil )
-        {
-            //FILIERE_ID = Fil.FILIERE_ID;
+        {           
             FILIERE_NAME = Fil.NAME.ToUpper();
 
             CLASS_LIST = new List<ClassCard> ();
             GetCLASS_LIST (Fil.FILIERE_ID);           
         }
-
-       // public string FILIERE_ID { get; set; }
-
+      
         public string FILIERE_NAME { get; set; }
 
         public List<ClassCard> CLASS_LIST { get; set; }
