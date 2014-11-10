@@ -6,8 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>  
             
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/GroupBoxStyle.xaml"/>
+            <ResourceDictionary.MergedDictionaries>               
                 <ResourceDictionary Source="Styles/TabStyle.xaml"/>
                 <ResourceDictionary Source="Styles/CoreStyles.xaml"/>
                 <ResourceDictionary Source="Styles/ScrollBarStyle.xaml"/>
@@ -18,7 +17,8 @@
                 <ResourceDictionary Source="Styles/MyWindowStyle.xaml"/>
                 <ResourceDictionary Source="Styles/MyForm.xaml"/>
                 <ResourceDictionary Source="Styles/MyButtonStyle.xaml"/>
-                <ResourceDictionary Source="Styles/Animations.xaml"/>                                
+                <ResourceDictionary Source="Styles/Animations.xaml"/>
+                <ResourceDictionary Source="Styles/GroupBoxStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             
             <!--<Style x:Key="ToolBarStyle" TargetType="ToolBar" />-->            

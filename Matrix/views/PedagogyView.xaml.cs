@@ -45,7 +45,7 @@ namespace Matrix.views
         }
 
 
-        #region Eventhandler
+        #region Eventhandlers
 
         private void Page_Loaded ( object sender, RoutedEventArgs e )
         {
@@ -53,6 +53,7 @@ namespace Matrix.views
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
             BusyIndicator.IsBusy = true;
             UpdateData ();
+            
         }
 
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )
@@ -132,6 +133,15 @@ namespace Matrix.views
 
         private void ClassList_Loaded ( object sender, RoutedEventArgs e )
         {
+            //var style = FindResource ("LabelTemplate") as Style;           
+            //TheScrollBar. = style;
+
+            //var styl = new Style (typeof (ScrollViewer), FindResource ("ScrollThumbs") as Style);
+            //styl.TargetType = typeof (ScrollViewer);
+
+
+
+
             if(!isFirstTime) return;
             try
             {

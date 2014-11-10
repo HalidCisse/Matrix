@@ -70,21 +70,13 @@
             </Grid>
         </ToolBar>
         <Grid>
-            <xctk:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <!--<ListBox Name="FiliereList" Style="{DynamicResource FiliereListBoxStyle}" Margin="10,10,0,0" SelectedValuePath="FILIERE_ID" MouseDoubleClick="Filiere_MouseDoubleClick"/>-->
-
-            <ListBox Name="FiliereList" Style="{DynamicResource ListOfGroupBoxStyle}">
+            <xctk:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>            
+            <ListBox Name="FiliereList" Style="{DynamicResource ListOfGroupBoxStyle}" ScrollViewer.CanContentScroll="False">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <GroupBox Header="{Binding Path=FILIERE_NAME}" Style="{DynamicResource GroupBoxStyle}" >
-                            <ListBox Name="ClassList" Style="{DynamicResource ClassListBoxStyle2}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" ContextMenu="{StaticResource ClassContext}" Loaded="ClassList_Loaded" MouseDoubleClick="ClassList_MouseDoubleClick" SelectionChanged="ClassList_SelectionChanged">
-                                <ItemsPanelTemplate>
-                                    <WrapPanel Orientation="Horizontal" IsItemsHost="True"/>
-                                </ItemsPanelTemplate>
-                            </ListBox>
-
-                            
-
+                        <GroupBox Header="{Binding Path=FILIERE_NAME}" Style="{StaticResource GroupBoxStyle}">                           
+                            <ListBox Name="ClassList" Style="{DynamicResource ClassListBoxStyle3}" ContextMenu="{DynamicResource ClassContext}" Loaded="ClassList_Loaded" MouseDoubleClick="ClassList_MouseDoubleClick" SelectionChanged="ClassList_SelectionChanged"/>
+                                                
                         </GroupBox>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
