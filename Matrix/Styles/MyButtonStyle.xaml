@@ -8,7 +8,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="ButtonBorder" CornerRadius="2" BorderThickness="0" Background="Transparent" BorderBrush="White" RenderTransformOrigin="0.5,0.5">
+                    <Border x:Name="ButtonBorder" Effect="{StaticResource z-depth3}"  CornerRadius="2" BorderThickness="0" Background="Transparent" BorderBrush="White" RenderTransformOrigin="0.5,0.5">
                         <!--<Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -25,9 +25,9 @@
                             <ContentPresenter x:Name="ButtonContentPresenter" VerticalAlignment="Center" Grid.RowSpan="2" HorizontalAlignment="Center"/>
                         </Grid>-->
                         <ContentPresenter x:Name="ButtonContentPresenter" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <Border.Effect>
+                        <!--<Border.Effect>
                             <DropShadowEffect Color="Beige"  BlurRadius="50" ShadowDepth="1" Opacity="1" Direction="90" />
-                        </Border.Effect>
+                        </Border.Effect>-->
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
