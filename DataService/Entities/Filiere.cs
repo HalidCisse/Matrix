@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DataService.Entities
 {
@@ -6,7 +7,7 @@ namespace DataService.Entities
     {
 
         [Key]
-        public string FILIERE_ID { get; set; } // --> NAME + NIVEAU
+        public Guid FILIERE_ID { get; set; } // --> NAME + NIVEAU
 
         public string NAME { get; set; } //Genie Informatique
 
@@ -15,5 +16,7 @@ namespace DataService.Entities
         public string NIVEAU_ENTREE { get; set; }
 
         public int N_ANNEE { get; set; }  // 5 ans
+
+        public string DESCRIPTION { get; set; }
     }
 }

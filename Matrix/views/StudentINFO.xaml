@@ -146,12 +146,12 @@
 
                 <Grid  Grid.Row="2">
                     <TextBlock Text="Nationalite" />
-                    <ComboBox Name="NATIONALITY_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                    <ComboBox Name="NATIONALITY_" IsEditable="True" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                 </Grid>
 
                 <Grid Grid.Row="3">
                     <TextBlock Text="Lieu de Naissance" />
-                    <ComboBox Name="BIRTH_PLACE_" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                    <ComboBox Name="BIRTH_PLACE_" IsEditable="True" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                 </Grid>
 
                 <Grid Grid.Row="4">

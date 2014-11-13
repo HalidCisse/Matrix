@@ -66,8 +66,8 @@ namespace Matrix.views
                 PHOTO_IDENTITY = ImageUtils.getPNGFromImageControl(PHOTO_IDENTITY_.Source as BitmapImage),                                              
                 IDENTITY_NUMBER = IDENTITY_NUMBER_.Text.Trim (),
                 BIRTH_DATE = BIRTH_DATE_.SelectedDate.Value,
-                NATIONALITY = NATIONALITY_.SelectedValue.ToString (),
-                BIRTH_PLACE = BIRTH_PLACE_.SelectedValue.ToString (),
+                NATIONALITY = NATIONALITY_.Text,
+                BIRTH_PLACE = BIRTH_PLACE_.Text,
                 PHONE_NUMBER = PHONE_NUMBER_.Text.Trim (),
                 EMAIL_ADRESS = EMAIL_ADRESS_.Text.Trim (),
                 HOME_ADRESS = HOME_ADRESS_.Text.Trim (),
@@ -185,7 +185,7 @@ namespace Matrix.views
                 IDENTITY_NUMBER_.BorderBrush = Brushes.Blue;
             }  
             
-            if (NATIONALITY_.SelectedValue == null)
+            if (string.IsNullOrEmpty (NATIONALITY_.Text))
             {             
                 NATIONALITY_.BorderBrush = Brushes.Red;
                 Ok = false;
@@ -194,7 +194,7 @@ namespace Matrix.views
             {
                 NATIONALITY_.BorderBrush = Brushes.Blue;
             }  
-            if (BIRTH_PLACE_.SelectedValue == null)
+            if (string.IsNullOrEmpty (BIRTH_PLACE_.Text))
             {               
                 BIRTH_PLACE_.BorderBrush = Brushes.Red;
                 Ok = false;

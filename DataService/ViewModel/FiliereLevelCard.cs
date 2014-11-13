@@ -12,7 +12,7 @@ namespace DataService.ViewModel
     public class FiliereLevelCard
     {
 
-        public FiliereLevelCard ( string FiliereID, int FiliereYear )
+        public FiliereLevelCard ( Guid FiliereID, int FiliereYear )
         {
             FILIERE_ID = FiliereID;
             FormatYear(FiliereYear);      
@@ -20,7 +20,7 @@ namespace DataService.ViewModel
             GetMATIERES_LIST (FiliereYear);           
         }
 
-        public string FILIERE_ID { get; set; }
+        public Guid FILIERE_ID { get; set; }
 
         public string FILIERE_YEAR { get; set; }
 
@@ -33,12 +33,17 @@ namespace DataService.ViewModel
         {
             using(var Db = new EF ())
             {
-                var MatieresIDs = Db.FILIERE_MATIERE.Where (F => F.FILIERE_ID == FILIERE_ID && F.FILIERE_LEVEL == FiliereYear).Select (F => F.MATIERE_ID).ToList ();
+                //var MatieresIDs = Db.FILIERE_MATIERE.Where (F => F.FILIERE_ID == FILIERE_ID && F.FILIERE_LEVEL == FiliereYear).Select (F => F.MATIERE_ID).ToList ();
                
-                foreach(var M in MatieresIDs.Select (M => Db.MATIERE.Find (M)))
+                //foreach(var M in MatieresIDs.Select (M => Db.MATIERE.Find (M)))
+                //{
+                //    MATIERES_LIST.Add (new MatiereCard (FILIERE_ID, FiliereYear, M));
+                //}   
+
+                foreach(var M in Db.MATIERE.Where (M => M.FILIERE_ID == FILIERE_ID && M.FILIERE_LEVEL == FiliereYear))
                 {
-                    MATIERES_LIST.Add (new MatiereCard (FILIERE_ID, FiliereYear, M));
-                }          
+                    MATIERES_LIST.Add (new MatiereCard (M));
+                } 
             }
         }
 

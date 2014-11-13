@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DataService.Entities
 {
-    public class Filiere_Matieres
+    public class Filiere_Matieres_DEP
     {
         [Key]
         public string FILIERE_MATIERE_ID { get; set; } // FiliereID + FiliereLevel + MatiereID

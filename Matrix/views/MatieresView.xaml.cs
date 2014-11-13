@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -15,11 +16,11 @@ namespace Matrix.views
 
         private readonly BackgroundWorker Worker = new BackgroundWorker ();
         private List<FiliereLevelCard> ListBuff = new List<FiliereLevelCard> ();        
-        private string CurrentSelected;
+        private Guid CurrentSelected;
         private bool isFirstTime = true;
-        public string OpenedFiliere { get; set; }
+        public Guid OpenedFiliere { get; set; }
         
-        public MatieresView ( string OpenFiliere )
+        public MatieresView ( Guid OpenFiliere )
         {
             InitializeComponent ();
 
@@ -51,8 +52,8 @@ namespace Matrix.views
 
         private void DeleteMatiereButton_Click ( object sender, RoutedEventArgs e )
         {
-            
-            if(CurrentSelected == null)
+
+            if(App.DataS.GetMatiereByID (CurrentSelected) == null)
             {
                 MessageBox.Show ("Selectionner Une Matiere A Supprimer !");
                 return;
@@ -72,7 +73,7 @@ namespace Matrix.views
             var Matieres = sender as ListBox;
             if(Matieres == null) return;
             if(Matieres.SelectedValue == null) return;
-            var MatiereToDisplay = App.DataS.GetMatiereByID(Matieres.SelectedValue.ToString());
+            var MatiereToDisplay = App.DataS.GetMatiereByID(new Guid(Matieres.SelectedValue.ToString()));
 
             var wind = new AddMatiere (OpenedFiliere, MatiereToDisplay) { Owner = Window.GetWindow (this) };
             wind.ShowDialog();
@@ -104,7 +105,9 @@ namespace Matrix.views
 
             if(Matieres == null) return;
 
-            CurrentSelected = Matieres.SelectedValue != null ? Matieres.SelectedValue.ToString() : null;
+            if (Matieres.SelectedValue == null) return;
+
+            CurrentSelected = new Guid (Matieres.SelectedValue.ToString ()) ;
         }
 
        

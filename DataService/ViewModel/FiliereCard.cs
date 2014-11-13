@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using DataService.Context;
 using DataService.Entities;
 
@@ -16,7 +17,7 @@ namespace DataService.ViewModel
             GetCLASSES_COUNT();
         }
 
-        public string FILIERE_ID { get; set; } 
+        public Guid FILIERE_ID { get; set; } 
 
         public string NAME { get; set; }
 

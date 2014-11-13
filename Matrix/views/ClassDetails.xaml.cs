@@ -73,7 +73,7 @@ namespace Matrix.views
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             
-            MatieresListBuff = App.ModelS.GetClassMatieresCards (OpenedClass.CLASSE_ID); 
+            MatieresListBuff = App.ModelS.GetClassMatieresCards (OpenedClass); 
             StaffListBuff = App.ModelS.GetClassStaffCards (OpenedFiliere.FILIERE_ID, OpenedClass.LEVEL);
             StudentsListBuff = App.ModelS.GetClassStudentCards (OpenedFiliere.FILIERE_ID, OpenedClass.LEVEL);
             //CoursListBuff = App.ModelS.GetClassCoursCards (OpenedFiliere.FILIERE_ID, OpenedClass.LEVEL); 
@@ -93,7 +93,7 @@ namespace Matrix.views
             var Matieres = sender as ListBox;
             if(Matieres == null) return;
             if(Matieres.SelectedValue == null) return;
-            var MatiereToDisplay = App.DataS.GetMatiereByID (Matieres.SelectedValue.ToString ());
+            var MatiereToDisplay = App.DataS.GetMatiereByID (new Guid(Matieres.SelectedValue.ToString ()));
 
             var wind = new AddMatiere (OpenedFiliere.FILIERE_ID, MatiereToDisplay) { Owner = Window.GetWindow (this) };
             wind.ShowDialog ();

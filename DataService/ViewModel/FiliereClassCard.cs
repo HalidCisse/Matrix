@@ -27,7 +27,7 @@ namespace DataService.ViewModel
 
         #region HELPERS
 
-        private void GetCLASS_LIST ( string FILIERE_ID )
+        private void GetCLASS_LIST ( Guid FILIERE_ID )
         {
             using(var Db = new EF ())
             {                

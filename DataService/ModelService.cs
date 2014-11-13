@@ -27,7 +27,7 @@ namespace DataService
             }
         }
 
-        public List<FiliereLevelCard> GetFiliereMatieresCards ( string FiliereID )
+        public List<FiliereLevelCard> GetFiliereMatieresCards ( Guid FiliereID )
         {
             var MatiereCardList = new List<FiliereLevelCard> ();
 
@@ -61,27 +61,36 @@ namespace DataService
             return ClassCardList;
         }
         
-        public List<MatiereCard> GetClassMatieresCards ( Guid ClassID )
+        public List<MatiereCard> GetClassMatieresCards ( Classe MyClasse )
         {
-            var FiliereID = DS.GetClasseByID (ClassID).FILIERE_ID;
-            var FiliereYear = DS.GetClasseByID (ClassID).LEVEL;
+            //var Cl = DS.GetClasseByID (ClassID);
+            //var FiliereID = Cl.FILIERE_ID;
+            //var FiliereYear = Cl.LEVEL;
 
             var MATIERES_LIST = new List<MatiereCard> ();
 
             using(var Db = new EF ())
             {
-                var MatieresIDs = Db.FILIERE_MATIERE.Where (F => F.FILIERE_ID == FiliereID && F.FILIERE_LEVEL == FiliereYear).Select (F => F.MATIERE_ID).ToList ();
+                //var MatieresIDs = Db.FILIERE_MATIERE.Where (F => F.FILIERE_ID == MyClasse.FILIERE_ID && F.FILIERE_LEVEL == MyClasse.LEVEL).Select (F => F.MATIERE_ID).ToList ();
 
-                foreach(var M in MatieresIDs.Select (M => Db.MATIERE.Find (M)))
+                //foreach(var M in MatieresIDs.Select (M => Db.MATIERE.Find (M)))
+                //{
+                //    MATIERES_LIST.Add (new MatiereCard (M));
+                //}
+                //return MATIERES_LIST;
+
+                foreach(var M in Db.MATIERE.Where (M => M.FILIERE_ID == MyClasse.FILIERE_ID && M.FILIERE_LEVEL == MyClasse.LEVEL))
                 {
-                    MATIERES_LIST.Add (new MatiereCard (FiliereID, FiliereYear, M));
+                    MATIERES_LIST.Add (new MatiereCard (M));
                 }
                 return MATIERES_LIST;
+
+
             }
         }
 
 
-        public List<ClassCard> GetFiliereClassCards(string FiliereID)
+        public List<ClassCard> GetFiliereClassCards ( Guid FiliereID )
         {
             //return new FiliereClassCard(DS.GetFiliereByID(FiliereID));
 
@@ -98,14 +107,13 @@ namespace DataService
         }
 
 
-        public List<Staff> GetClassStaffCards(string filiereId, int level)
+        public List<Staff> GetClassStaffCards(Guid filiereId, int level)
         {
             throw new NotImplementedException();
         }
 
-        public List<Student> GetClassStudentCards(string filiereId, int level)
+        public List<Student> GetClassStudentCards ( Guid filiereId, int level )
         {
-
             throw new System.NotImplementedException ();
         }
     }

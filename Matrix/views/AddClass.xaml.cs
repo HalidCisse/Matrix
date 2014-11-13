@@ -14,7 +14,7 @@ namespace Matrix.views
         private readonly Classe ClassDisplayed;
         //private readonly string FiliereDisplayed;
 
-        public AddClass (string CurrentFiliere = null, Classe ClassToDisplay = null)
+        public AddClass (Classe ClassToDisplay = null )
         {
             InitializeComponent ();
 

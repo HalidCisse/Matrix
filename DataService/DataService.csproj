@@ -66,6 +66,13 @@
   <ItemGroup>
     <Compile Include="Context\EF.cs" />
     <Compile Include="Context\Interface.cs" />
+    <Compile Include="Entities\AnneeScolaire.cs" />
+    <Compile Include="Entities\Etablissement.cs" />
+    <Compile Include="Entities\Inscription.cs" />
+    <Compile Include="Entities\InscriptionRule.cs" />
+    <Compile Include="Entities\Qualification.cs" />
+    <Compile Include="Entities\Salle.cs" />
+    <Compile Include="Entities\StudentQualification.cs" />
     <Compile Include="ModelService.cs" />
     <Compile Include="Entities\Classe.cs" />
     <Compile Include="Entities\Classe_Students.cs" />

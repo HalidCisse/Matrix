@@ -16,11 +16,11 @@ namespace Matrix.views
 
         private readonly BackgroundWorker Worker = new BackgroundWorker ();
         private List<ClassCard> ListBuff = new List<ClassCard> ();
-        private string OpenedFiliereID;
+        private Guid OpenedFiliereID;
         //private string CurrentSelected;
         private bool isFirstTime = true;
 
-        public ClassesView (string OpenFiliere)
+        public ClassesView (Guid OpenFiliere)
         {
             InitializeComponent ();
             OpenedFiliereID = OpenFiliere;
@@ -43,7 +43,7 @@ namespace Matrix.views
 
         private void ClassAddButon_Click ( object sender, RoutedEventArgs e )
         {
-            var wind = new AddClass(OpenedFiliereID) { Owner = Window.GetWindow (this) };
+            var wind = new AddClass() { Owner = Window.GetWindow (this) };
             wind.ShowDialog ();
             UpdateClass ();
         }

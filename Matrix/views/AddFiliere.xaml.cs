@@ -4,14 +4,14 @@ using System.Windows;
 using System.Windows.Media;
 using DataService.Entities;
 
+
 namespace Matrix.views
 {
     
-
     public partial class AddFiliere
     {
         public string OpenOption;
-        private readonly string FiliereDisplayedID;
+        private Guid FiliereDisplayedID;
         
         public AddFiliere ( string FiliereToDisplayID = null )
         {
@@ -23,13 +23,24 @@ namespace Matrix.views
 
             NIVEAU_SORTIE_.ItemsSource = App.DataS.GetFILIERE_NIVEAU_SORTIE ();
 
-            N_ANNEE_.ItemsSource = App.DataS.GetFILIERE_LEVELS ();
+            foreach(var F in App.DataS.GetFILIERE_LEVELS ())
+            {
+                if(F.ToString().Equals ("1"))
+                {
+                    N_ANNEE_.Items.Add (1 +" Annee");
+                }
+                else
+                {
+                    N_ANNEE_.Items.Add (F + " Annees");
+                }
+            }
+            //N_ANNEE_.ItemsSource = App.DataS.GetFILIERE_LEVELS ();
            
             #endregion
 
             if (!string.IsNullOrEmpty(FiliereToDisplayID)) {
-                DisplayFiliere(App.DataS.GetFiliereByID(FiliereToDisplayID));
-                FiliereDisplayedID = FiliereToDisplayID;
+                DisplayFiliere(App.DataS.GetFiliereByID(new Guid(FiliereToDisplayID)));
+                FiliereDisplayedID = new Guid (FiliereToDisplayID);
                 TitleText.Text = "MODIFICATION";
             }
             else
@@ -62,7 +73,7 @@ namespace Matrix.views
                 NAME = FILIERE_NAME_.Text.Trim(),
                 NIVEAU_ENTREE = NIVEAU_ENTREE_.Text.Trim (),
                 NIVEAU = NIVEAU_SORTIE_.Text.Trim (),
-                N_ANNEE = Convert.ToInt32 (N_ANNEE_.SelectedValue.ToString ()),
+                N_ANNEE = Convert.ToInt32 ((N_ANNEE_.SelectedValue.ToString ().Substring(0,1)))
             };
 
             if(OpenOption == "Add")
@@ -76,9 +87,7 @@ namespace Matrix.views
             }
             Close ();
         }
-
         
-
         private bool ChampsValidated()
         {
             var Ok = true;

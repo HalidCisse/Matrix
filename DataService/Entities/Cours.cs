@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DataService.Entities
 {
@@ -6,17 +7,22 @@ namespace DataService.Entities
     {
 
         [Key]
-        public string COURS_ID { get; set; }
+        public Guid COURS_ID { get; set; }
 
-        public string MATIERE_ID { get; set; }
+        public Guid CLASSE_ID { get; set; }
 
-        public int SALLE { get; set; }
+        public string STAFF_ID { get; set; }
 
-        public string CLASSE_ID { get; set; }
+        public Guid MATIERE_ID { get; set; }
 
-        public int START_TIME { get; set; }
+        public Guid SALLE_ID { get; set; }
+        
+        public int DAY { get; set; }
+         
+        public DateTime START_TIME { get; set; }
+         
+        public DateTime END_TIME { get; set; }
 
-        public int DURATION { get; set; }
-
+        public string DESCRIPTION { get; set; }
     }
 }
