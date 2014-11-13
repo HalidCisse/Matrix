@@ -8,7 +8,7 @@ using DataService.Entities;
 
 namespace DataService
 {
-    public class DbService //: Interface
+    public class DbService 
     {
 
 
@@ -183,9 +183,10 @@ namespace DataService
         #endregion
 
 
+       
 
 
-        #region Filiere C-R-U-D
+        #region FILIERE C-R-U-D
 
         public bool AddFiliere ( Filiere MyFiliere )
         {
@@ -678,73 +679,7 @@ namespace DataService
                 return Db.MATIERES_INSTRUCTEURS.First(S => S.MATIERE_ID == MatiereID && S.STAFF_ID == StaffID) != null;
             }
         }
-
-        //public int GetFiliereMatiereNiveau ( Guid FiliereID, Guid MatiereID )
-        //{
-        //    using(var Db = new EF ())
-        //    {
-        //        //var Matiere = Db.FILIERE_MATIERE.SingleOrDefault(S => S.MATIERE_ID == MatiereID && S.FILIERE_ID == FiliereID);
-        //        //if(Matieres != null) return Matiere.FILIERE_LEVEL;
-
-        //        var Matieres = Db.MATIERE.First (S => S.MATIERE_ID == MatiereID && S.FILIERE_ID == FiliereID);
-
-        //        if (Matieres != null) return Matieres.FILIERE_LEVEL;
-
-
-        //    }
-        //    return 1;
-        //}
-
-        //public string GetFiliereMatiereHeuresParSemaine ( string FiliereID, string MatiereID )
-        //{
-        //    using(var Db = new EF ())
-        //    {
-        //        var Matiere = Db.FILIERE_MATIERE.SingleOrDefault (S => S.MATIERE_ID == MatiereID && S.FILIERE_ID == FiliereID);
-        //        if(Matiere !=null) return Matiere.HEURE_PAR_SEMAINE;
-        //    }
-        //    return null;
-        //}
-        
-        //public bool SaveFiliereMatiere(string FiliereID, string MatiereID, int Level , string HeuresParSemaine)
-        //{            
-        //    using(var Db = new EF ())
-        //    {
-        //        if (Db.FILIERE_MATIERE.Find(FiliereID + MatiereID + Level) != null)
-        //        {
-        //            Db.FILIERE_MATIERE.Find(FiliereID + MatiereID + Level).HEURE_PAR_SEMAINE = HeuresParSemaine;
-        //        }
-        //        else
-        //        {
-        //            var FM = new Filiere_Matieres
-        //            {
-        //                FILIERE_MATIERE_ID = FiliereID + MatiereID + Level,
-        //                FILIERE_ID = FiliereID,
-        //                MATIERE_ID = MatiereID,
-        //                FILIERE_LEVEL = Level,
-        //                HEURE_PAR_SEMAINE = HeuresParSemaine
-        //            };
-        //            Db.FILIERE_MATIERE.Add(FM);
-        //        }
-        //        return Db.SaveChanges() > 0;
-        //    }
-        //}
-
-
-
-
-
-        //public bool DeleteFiliereMatiere ( Guid FiliereID, string MatiereID, int Level )
-        //{
-        //    using(var Db = new EF ())
-        //    {
-        //        var MT = Db.FILIERE_MATIERE.Find (FiliereID +MatiereID +Level);
-        //        if (MT == null) return true;
-        //        Db.FILIERE_MATIERE.Remove (MT);
-
-        //        return Db.SaveChanges () > 0;
-        //    }
-        //}
-        
+             
         public bool AddMatiereInstructor ( Guid MatiereID, string StaffID )
         {
             using(var Db = new EF ())
@@ -780,90 +715,83 @@ namespace DataService
             } 
         }
 
-        //public int GetNofMatiereInstructor ( string MatiereID )
-        //{
-        //    using(var Db = new EF ())
-        //    {              
-        //        return Db.MATIERES_INSTRUCTEURS.Count (M => M.MATIERE_ID == MatiereID);
-        //    }
-        //}
-        
+        public List<Staff> GetClassStaffs(Guid ClassID)
+        {
+            var Staffs = new List<Staff>();
+
+            using(var Db = new EF ())
+            {
+                foreach(var ST in Db.COURS.Where (C => C.CLASSE_ID == ClassID))
+                {
+                    Staffs.Add (Db.STAFF.Find (ST.STAFF_ID));
+                }
+                return Staffs;
+            }
+        }
+
+        public List<Student> GetClassStudents ( Guid ClassID )
+        {
+            var Students = new List<Student> ();
+
+            using(var Db = new EF ())
+            {
+                foreach(var ST in Db.INSCRIPTION.Where (C => C.CLASSE_ID == ClassID))
+                {
+                    Students.Add (Db.STUDENT.Find (ST.STUDENT_ID));
+                }
+                return Students;
+            }
+        }
+
+
+
+
 
         #endregion
 
 
 
 
-        #region MODELS
+        #region COURS C-R-U-D
 
 
+        public bool AddCours ( Cours MyCours )
+        {
+            MyCours.COURS_ID = Guid.NewGuid ();
+            using(var Db = new EF ())
+            {
+                Db.COURS.Add (MyCours);
+                return Db.SaveChanges () > 0;
+            }
+        }
 
-        //public List<FiliereCard> GetAllFilieresCards ( )
-        //{
-        //    using(var Db = new EF ())
-        //    {
-        //        var FL = new List<FiliereCard> ();
+        public bool UpdateCours ( Cours MyCours )
+        {
+            using(var Db = new EF ())
+            {
+                Db.COURS.Attach (MyCours);
+                Db.Entry (MyCours).State = EntityState.Modified;
+                return Db.SaveChanges () > 0;
+            }
+        }
 
-        //        Parallel.ForEach (Db.FILIERE, F =>
-        //        {
-        //            FL.Add (new FiliereCard (F));
-        //        });
-        //        return FL;
-        //    }
-        //}
+        public bool DeleteCours ( Guid CoursID )
+        {
+            using(var Db = new EF ())
+            {
+                Db.COURS.Remove (Db.COURS.Find (CoursID));
+                return Db.SaveChanges () > 0;
+            }
+        }
 
-        //public List<FiliereLevelCard> GetFiliereMatieresCards ( string FiliereID )
-        //{
-        //    var MatiereCardList = new List<FiliereLevelCard> ();
-
-        //    foreach(int Level in GetFILIERE_NIVEAUX (FiliereID))
-        //    {
-        //        MatiereCardList.Add (new FiliereLevelCard (FiliereID, Level));
-        //    }
-        //    return MatiereCardList;
-        //}
-
-        //public List<DepStaffCard> GetDepStaffsCard ( )
-        //{
-        //    var DepStaffCardList = new List<DepStaffCard> { new DepStaffCard ("") };
-
-        //    Parallel.ForEach (GetDEPARTEMENTS (), Dep =>
-        //    {
-        //        DepStaffCardList.Add (new DepStaffCard (Dep));
-        //    });
-
-        //    return DepStaffCardList;
-        //}
-
-        //public List<FiliereClassCard> GetFiliereClassCards ( )
-        //{
-        //    var ClassCardList = new List<FiliereClassCard> ();
-
-        //    foreach(var Fil in GetAllFilieres ())
-        //    {
-        //        ClassCardList.Add (new FiliereClassCard (Fil));
-        //    }
-        //    return ClassCardList;
-        //}
-
-        //public List<MatiereCard> GetClassMatieresCards ( string FiliereID, int FiliereYear )
-        //{
-        //    var MATIERES_LIST = new List<MatiereCard> ();
-
-        //    using(var Db = new EF ())
-        //    {
-        //        var MatieresIDs = Db.FILIERE_MATIERE.Where (F => F.FILIERE_ID == FiliereID && F.FILIERE_LEVEL == FiliereYear).Select (F => F.MATIERE_ID).ToList ();
-
-        //        foreach(var M in MatieresIDs.Select (M => Db.MATIERE.Find (M)))
-        //        {
-        //            MATIERES_LIST.Add (new MatiereCard (FiliereID, FiliereYear, M));
-        //        }
-
-        //        return MATIERES_LIST;
-        //    }
-
-        //}
-
+        public Cours GetCoursByID ( Guid CoursID )
+        {
+            using(var Db = new EF ())
+            {
+                var MyCours = Db.COURS.Find (CoursID);
+                return MyCours;
+            }
+        }
 
 
         #endregion
@@ -873,12 +801,86 @@ namespace DataService
 
 
 
-
-
-
-        //Task.Factory.StartNew( () => Parallel.ForEach<Item>(items, item => DoSomething(item)));
+       
 
 
         
     }
 }
+
+
+//Task.Factory.StartNew( () => Parallel.ForEach<Item>(items, item => DoSomething(item)));
+
+//public int GetFiliereMatiereNiveau ( Guid FiliereID, Guid MatiereID )
+//{
+//    using(var Db = new EF ())
+//    {
+//        //var Matiere = Db.FILIERE_MATIERE.SingleOrDefault(S => S.MATIERE_ID == MatiereID && S.FILIERE_ID == FiliereID);
+//        //if(Matieres != null) return Matiere.FILIERE_LEVEL;
+
+//        var Matieres = Db.MATIERE.First (S => S.MATIERE_ID == MatiereID && S.FILIERE_ID == FiliereID);
+
+//        if (Matieres != null) return Matieres.FILIERE_LEVEL;
+
+
+//    }
+//    return 1;
+//}
+
+//public string GetFiliereMatiereHeuresParSemaine ( string FiliereID, string MatiereID )
+//{
+//    using(var Db = new EF ())
+//    {
+//        var Matiere = Db.FILIERE_MATIERE.SingleOrDefault (S => S.MATIERE_ID == MatiereID && S.FILIERE_ID == FiliereID);
+//        if(Matiere !=null) return Matiere.HEURE_PAR_SEMAINE;
+//    }
+//    return null;
+//}
+
+//public bool SaveFiliereMatiere(string FiliereID, string MatiereID, int Level , string HeuresParSemaine)
+//{            
+//    using(var Db = new EF ())
+//    {
+//        if (Db.FILIERE_MATIERE.Find(FiliereID + MatiereID + Level) != null)
+//        {
+//            Db.FILIERE_MATIERE.Find(FiliereID + MatiereID + Level).HEURE_PAR_SEMAINE = HeuresParSemaine;
+//        }
+//        else
+//        {
+//            var FM = new Filiere_Matieres
+//            {
+//                FILIERE_MATIERE_ID = FiliereID + MatiereID + Level,
+//                FILIERE_ID = FiliereID,
+//                MATIERE_ID = MatiereID,
+//                FILIERE_LEVEL = Level,
+//                HEURE_PAR_SEMAINE = HeuresParSemaine
+//            };
+//            Db.FILIERE_MATIERE.Add(FM);
+//        }
+//        return Db.SaveChanges() > 0;
+//    }
+//}
+
+
+
+
+
+//public bool DeleteFiliereMatiere ( Guid FiliereID, string MatiereID, int Level )
+//{
+//    using(var Db = new EF ())
+//    {
+//        var MT = Db.FILIERE_MATIERE.Find (FiliereID +MatiereID +Level);
+//        if (MT == null) return true;
+//        Db.FILIERE_MATIERE.Remove (MT);
+
+//        return Db.SaveChanges () > 0;
+//    }
+//}
+
+//public int GetNofMatiereInstructor ( string MatiereID )
+//{
+//    using(var Db = new EF ())
+//    {              
+//        return Db.MATIERES_INSTRUCTEURS.Count (M => M.MATIERE_ID == MatiereID);
+//    }
+//}

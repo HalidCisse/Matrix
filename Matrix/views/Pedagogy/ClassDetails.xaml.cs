@@ -13,7 +13,7 @@ namespace Matrix.views
     public partial class ClassDetails
     {
         private readonly BackgroundWorker Worker = new BackgroundWorker ();
-        private List<MatiereCard> MatieresListBuff = new List<MatiereCard>();
+        //private List<MatiereCard> MatieresListBuff = new List<MatiereCard>();
         private List<Staff> StaffListBuff = new List<Staff> ();
         private List<Student> StudentsListBuff = new List<Student> ();
         //private List<CoursCard> CoursListBuff = new List<CoursCard> ();
@@ -71,18 +71,17 @@ namespace Matrix.views
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            
-            MatieresListBuff = App.ModelS.GetClassMatieresCards (OpenedClass); 
-            StaffListBuff = App.ModelS.GetClassStaffCards (OpenedFiliere.FILIERE_ID, OpenedClass.LEVEL);
-            StudentsListBuff = App.ModelS.GetClassStudentCards (OpenedFiliere.FILIERE_ID, OpenedClass.LEVEL);
+        {                        
+            StaffListBuff = App.DataS.GetClassStaffs (OpenedClass.CLASSE_ID);
+            StudentsListBuff = App.DataS.GetClassStudents (OpenedClass.CLASSE_ID);
             //CoursListBuff = App.ModelS.GetClassCoursCards (OpenedFiliere.FILIERE_ID, OpenedClass.LEVEL); 
+
 
         }
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             BusyIndicator.IsBusy = false;
-            MatieresList.ItemsSource = MatieresListBuff;
+            //MatieresList.ItemsSource = MatieresListBuff;
             isFirstTime = true;
             Worker.Dispose ();
         }

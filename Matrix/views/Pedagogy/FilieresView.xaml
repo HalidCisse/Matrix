@@ -11,7 +11,7 @@
         <ContextMenu x:Key="AddContext" HasDropShadow="True" Placement="Bottom" PlacementRectangle="10,10,10,10" HorizontalOffset="-100" VerticalOffset="15">
             <MenuItem Height="50" Margin="10,0" Click="AddClasse_Click">
                 <MenuItem.Icon>
-                    <Image Source="/views/Icon/Classe.png" Height="40" Width="40"/>
+                    <Image Source="Icon/Classe.png" Height="40" Width="40"/>
                 </MenuItem.Icon>
                 
                 <MenuItem.Header>                    
@@ -21,7 +21,7 @@
 
             <MenuItem Height="50" Margin="10,0" Click="AddFiliere_Click">
                 <MenuItem.Icon>
-                    <Image Source="/views/Icon/Filiere.png" Height="40" Width="40"/>
+                    <Image Source="Icon/Filiere.png" Height="40" Width="40"/>
                 </MenuItem.Icon>
                 
                 <MenuItem.Header>

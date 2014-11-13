@@ -23,6 +23,10 @@ namespace DataService.Entities
          
         public DateTime END_TIME { get; set; }
 
+        public DateTime START_DATE { get; set; }
+
+        public DateTime END_DATE { get; set; }
+         
         public string DESCRIPTION { get; set; }
     }
 }

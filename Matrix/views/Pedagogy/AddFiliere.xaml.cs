@@ -4,8 +4,7 @@ using System.Windows;
 using System.Windows.Media;
 using DataService.Entities;
 
-
-namespace Matrix.views
+namespace Matrix.views.Pedagogy
 {
     
     public partial class AddFiliere

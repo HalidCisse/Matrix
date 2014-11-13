@@ -9,6 +9,7 @@ using System.Windows.Media;
 using DataService.ViewModel;
 using FirstFloor.ModernUI.Windows.Controls;
 using Matrix.Extention;
+using Matrix.views.Pedagogy;
 
 namespace Matrix.views
 {

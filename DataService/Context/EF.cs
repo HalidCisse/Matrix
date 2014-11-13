@@ -23,28 +23,35 @@ namespace DataService.Context
 
 
         public virtual DbSet<Staff> STAFF { get; set; }
+
         public virtual DbSet<Student> STUDENT { get; set; }
 
+        public virtual DbSet<Etablissement> ETABLISSEMENT { get; set; }
+
+        public virtual DbSet<Salle> SALLE { get; set; }
+
         //_______________________________________________________________________________//
+        
         public virtual DbSet<Classe> CLASSE { get; set; }
         public virtual DbSet<Filiere> FILIERE { get; set; }
         public virtual DbSet<Matiere> MATIERE { get; set; }
         public virtual DbSet<ControlNote> CONTROL_NOTE { get; set; }
         public virtual DbSet<Cours> COURS { get; set; }
-        public virtual DbSet<MatiereControl> MATIERE_CONTROL { get; set; }
-
-        //_______________________________________________________________________________//
-        //public virtual DbSet<Filiere_Classes> FILIERE_CLASSES { get; set; }
-        public virtual DbSet<Classe_Students> CLASSE_STUDENTS { get; set; }       
-        //public virtual DbSet<Filiere_Matieres> FILIERE_MATIERE { get; set; }
+        public virtual DbSet<MatiereControl> MATIERE_CONTROL { get; set; }               
+        public virtual DbSet<Classe_Students> CLASSE_STUDENTS { get; set; } 
         public virtual DbSet<Matiere_Instructeurs> MATIERES_INSTRUCTEURS { get; set; }
-
+        public virtual DbSet<AnneeScolaire> ANNEE_SCOLAIRE { get; set; }        
+        public virtual DbSet<Inscription> INSCRIPTION { get; set; }
+        public virtual DbSet<InscriptionRule> INSCRIPTION_RULE { get; set; }        
+        public virtual DbSet<Qualification> QUALIFICATION { get; set; }
+        public virtual DbSet<StudentQualification> STUDENT_QUALIFICATION { get; set; }        
         
 
+        //_______________________________________________________________________________//
 
+        //public virtual DbSet<Filiere_Classes> FILIERE_CLASSES { get; set; }
 
-
-
+        //public virtual DbSet<Filiere_Matieres> FILIERE_MATIERE { get; set; }
 
 
 

@@ -154,46 +154,49 @@
     <Compile Include="Utils\GenID.cs" />
     <Compile Include="Utils\ImageUtils.cs" />
     <Compile Include="Utils\Res.cs" />
-    <Compile Include="views\AddClass.xaml.cs">
+    <Compile Include="views\Pedagogy\AddClass.xaml.cs">
       <DependentUpon>AddClass.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\AddFiliere.xaml.cs">
+    <Compile Include="views\Pedagogy\AddCours.xaml.cs">
+      <DependentUpon>AddCours.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\Pedagogy\AddFiliere.xaml.cs">
       <DependentUpon>AddFiliere.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\AddMatiere.xaml.cs">
+    <Compile Include="views\Pedagogy\AddMatiere.xaml.cs">
       <DependentUpon>AddMatiere.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\ClassDetails.xaml.cs">
+    <Compile Include="views\Pedagogy\ClassDetails.xaml.cs">
       <DependentUpon>ClassDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\ClassesView.xaml.cs">
+    <Compile Include="views\Pedagogy\ClassesView.xaml.cs">
       <DependentUpon>ClassesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\FilieresView.xaml.cs">
+    <Compile Include="views\Pedagogy\FilieresView.xaml.cs">
       <DependentUpon>FilieresView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\MatieresView.xaml.cs">
+    <Compile Include="views\Pedagogy\MatieresView.xaml.cs">
       <DependentUpon>MatieresView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\Pedagogy.xaml.cs">
+    <Compile Include="views\Pedagogy\Pedagogy.xaml.cs">
       <DependentUpon>Pedagogy.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\PedagogyView.xaml.cs">
+    <Compile Include="views\Pedagogy\PedagogyView.xaml.cs">
       <DependentUpon>PedagogyView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\StaffINFO.xaml.cs">
+    <Compile Include="views\Staffs\StaffINFO.xaml.cs">
       <DependentUpon>StaffINFO.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\StaffsView.xaml.cs">
+    <Compile Include="views\Staffs\StaffsView.xaml.cs">
       <DependentUpon>StaffsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\StudentINFO.xaml.cs">
+    <Compile Include="views\Students\StudentINFO.xaml.cs">
       <DependentUpon>StudentINFO.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\StudentPage.xaml.cs">
+    <Compile Include="views\Students\StudentPage.xaml.cs">
       <DependentUpon>StudentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\StudentsView.xaml.cs">
+    <Compile Include="views\Students\StudentsView.xaml.cs">
       <DependentUpon>StudentsView.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\ToolbarStudentViews.xaml">
@@ -264,27 +267,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\AddClass.xaml">
+    <Page Include="views\Pedagogy\AddClass.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\AddFiliere.xaml">
+    <Page Include="views\Pedagogy\AddCours.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\AddMatiere.xaml">
+    <Page Include="views\Pedagogy\AddFiliere.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\ClassDetails.xaml">
+    <Page Include="views\Pedagogy\AddMatiere.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\ClassesView.xaml">
+    <Page Include="views\Pedagogy\ClassDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\FilieresView.xaml">
+    <Page Include="views\Pedagogy\ClassesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\Pedagogy\FilieresView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -300,35 +307,35 @@
     <Compile Include="views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Page Include="views\MatieresView.xaml">
+    <Page Include="views\Pedagogy\MatieresView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\Pedagogy.xaml">
+    <Page Include="views\Pedagogy\Pedagogy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\PedagogyView.xaml">
+    <Page Include="views\Pedagogy\PedagogyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\StaffINFO.xaml">
+    <Page Include="views\Staffs\StaffINFO.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\StaffsView.xaml">
+    <Page Include="views\Staffs\StaffsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\StudentINFO.xaml">
+    <Page Include="views\Students\StudentINFO.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\StudentPage.xaml">
+    <Page Include="views\Students\StudentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\StudentsView.xaml">
+    <Page Include="views\Students\StudentsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -469,13 +476,13 @@
     <None Include="Images\Matiere.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="views\Icon\Matiere.png" />
+    <Resource Include="views\Pedagogy\Icon\Matiere.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="views\Icon\Filiere.png" />
+    <Resource Include="views\Pedagogy\Icon\Filiere.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="views\Icon\Classe.png" />
+    <Resource Include="views\Pedagogy\Icon\Classe.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Styles\ListStyles\" />

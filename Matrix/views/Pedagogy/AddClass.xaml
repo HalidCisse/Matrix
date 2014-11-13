@@ -1,4 +1,4 @@
-﻿<Window x:Class="Matrix.views.AddClass"
+﻿<Window x:Class="Matrix.views.Pedagogy.AddClass"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         WindowStartupLocation="CenterOwner"
@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Image Source="icon/Classe.png" Height="70" Width="70" VerticalAlignment="Center" DockPanel.Dock="Left"/>
+            <Image Source="Icon/Classe.png" Height="70" Width="70" VerticalAlignment="Center" DockPanel.Dock="Left"/>
 
             <Grid Height="40" VerticalAlignment="Top" Margin="15,0,0,0">
                 <TextBlock Name="TitleText" Text="AJOUTER NOUVELLE CLASSE" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Center"/>

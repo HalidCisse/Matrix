@@ -89,11 +89,9 @@ namespace DataService
             }
         }
 
-
         public List<ClassCard> GetFiliereClassCards ( Guid FiliereID )
         {
-            //return new FiliereClassCard(DS.GetFiliereByID(FiliereID));
-
+            
             var Class_List = new List<ClassCard>();
 
             using (var Db = new EF())
@@ -107,15 +105,17 @@ namespace DataService
         }
 
 
-        public List<Staff> GetClassStaffCards(Guid filiereId, int level)
-        {
-            throw new NotImplementedException();
-        }
 
-        public List<Student> GetClassStudentCards ( Guid filiereId, int level )
-        {
-            throw new System.NotImplementedException ();
-        }
+
+
+
+
+
+
+
+
+
+        
     }
 
     

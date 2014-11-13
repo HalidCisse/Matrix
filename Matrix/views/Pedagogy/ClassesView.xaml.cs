@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using DataService.Model;
+using Matrix.views.Pedagogy;
 
 namespace Matrix.views
 {

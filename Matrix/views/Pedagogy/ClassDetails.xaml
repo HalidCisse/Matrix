@@ -43,16 +43,11 @@
         <StackPanel>
             <xctk:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-            <Expander Header="COURS" Style="{StaticResource DepExpandStyle}" >
+            <Grid Height="380" Background="RoyalBlue">
                 <ListBox Name="CoursList" Style="{DynamicResource MatiereListBoxStyle}" Margin="10" MouseDoubleClick="CoursList_MouseDoubleClick"/>
 
-            </Expander>
-            
-            <Expander Header="MATIERES" Style="{StaticResource DepExpandStyle}">
-                <ListBox Name="MatieresList" Style="{DynamicResource MatiereListBoxStyle}" Margin="10" MouseDoubleClick="MatieresList_MouseDoubleClick"/>
-            
-            </Expander>
-
+            </Grid>
+                       
             <Expander Header="ETUDIANTS" Style="{StaticResource DepExpandStyle}" >
                 <ListBox Name="StudentsList" Style="{DynamicResource MatiereListBoxStyle}" Margin="10" MouseDoubleClick="StudentsList_MouseDoubleClick"/>
 

@@ -5,7 +5,7 @@ using System.Windows.Media;
 using DataService.Entities;
 using FirstFloor.ModernUI.Windows.Controls;
 
-namespace Matrix.views
+namespace Matrix.views.Pedagogy
 {
     
     public partial class AddClass 

@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DataService.Entities
 {
-    class AnneeScolaire
+    public class AnneeScolaire
     {
         [Key]
         public Guid ANNEE_SCOLAIRE_ID { get; set; }
@@ -15,12 +12,12 @@ namespace DataService.Entities
         public string NAME { get; set; }
 
         /// <summary>
-        /// Debut de l annee Scolaire
+        /// Debut de l Annee Scolaire
         /// </summary>
         public DateTime DATE_DEBUT { get; set; }
 
         /// <summary>
-        /// Fin de l annee Scolaire
+        /// Fin de l Annee Scolaire
         /// </summary>
         public DateTime DATE_FIN { get; set; }
         
@@ -31,4 +28,5 @@ namespace DataService.Entities
         public string DESCRIPTION { get; set; }
 
     }
+
 }

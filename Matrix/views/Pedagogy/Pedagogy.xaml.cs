@@ -3,9 +3,9 @@
 namespace Matrix.views
 {
     
-    public partial class Pedagogy
+    public partial class PedagogyD
     {
-        public Pedagogy ( )
+        public PedagogyD ( )
         {
             InitializeComponent ();            
         }
