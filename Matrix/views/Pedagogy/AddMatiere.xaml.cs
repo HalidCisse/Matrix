@@ -13,7 +13,7 @@ namespace Matrix.views
     
     public partial class AddMatiere
     {
-        public string OpenOption;
+        private string OpenOption;
         public Guid FiliereDisplayedID;        
         private readonly Matiere MatiereDisplayed = new Matiere();
         private readonly BackgroundWorker worker = new BackgroundWorker ();

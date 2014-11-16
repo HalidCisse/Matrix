@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using DataService.Entities;
 using Matrix.Utils;
 using Microsoft.Win32;
-using Brushes = System.Windows.Media.Brushes;
-
-
 
 namespace Matrix.views
 {

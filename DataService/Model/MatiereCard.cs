@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-using DataService.Context;
 using DataService.Entities;
 
 namespace DataService.Model
@@ -29,14 +27,14 @@ namespace DataService.Model
 
         #region Helpers
 
-        public string GetINSTRUCTEUR_NAME ( )
-        {
-            using(var Db = new EF ())
-            {
-                var S_ID = Db.COURS.First (C => C.MATIERE_ID == MATIERE_ID).STAFF_ID;
-                return Db.STAFF != null ? Db.STAFF.Find(S_ID).FULL_NAME : null;
-            }            
-        }
+        //public string GetINSTRUCTEUR_NAME ( )
+        //{
+        //    using(var Db = new EF ())
+        //    {
+        //        var S_ID = Db.COURS.First (C => C.MATIERE_ID == MATIERE_ID).STAFF_ID;
+        //        return Db.STAFF != null ? Db.STAFF.Find(S_ID).FULL_NAME : null;
+        //    }            
+        //}
 
 
         //public string GetHEURE_PAR_SEMAINE ( Guid FiliereID, int FiliereLevel )

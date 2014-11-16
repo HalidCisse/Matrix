@@ -47,7 +47,12 @@
                 <ListBox Name="CoursList" Style="{DynamicResource MatiereListBoxStyle}" Margin="10" MouseDoubleClick="CoursList_MouseDoubleClick"/>
 
             </Grid>
-                       
+
+            <Expander Header="MATIERES" Style="{StaticResource DepExpandStyle}" >
+                <ListBox Name="MatieresList" Style="{DynamicResource MatiereListBoxStyle}" Margin="10" MouseDoubleClick="MatieresList_MouseDoubleClick"/>
+
+            </Expander>
+
             <Expander Header="ETUDIANTS" Style="{StaticResource DepExpandStyle}" >
                 <ListBox Name="StudentsList" Style="{DynamicResource MatiereListBoxStyle}" Margin="10" MouseDoubleClick="StudentsList_MouseDoubleClick"/>
 

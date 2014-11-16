@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 
@@ -53,5 +52,5 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion ("1.0.0.0")]
 [assembly: AssemblyFileVersion ("1.0.0.0")]
-[assembly: NeutralResourcesLanguageAttribute ("fr-FR")]
-[assembly: GuidAttribute ("E6F848DE-6391-4305-8D56-860C7D40F381")]
+[assembly: NeutralResourcesLanguage ("fr-FR")]
+[assembly: Guid ("E6F848DE-6391-4305-8D56-860C7D40F381")]

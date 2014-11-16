@@ -32,8 +32,7 @@ namespace Matrix.views.Pedagogy
                 {
                     N_ANNEE_.Items.Add (F + " Annees");
                 }
-            }
-            //N_ANNEE_.ItemsSource = App.DataS.GetFILIERE_LEVELS ();
+            }           
            
             #endregion
 

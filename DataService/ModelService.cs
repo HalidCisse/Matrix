@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataService.Context;
 using DataService.Entities;
 using DataService.Model;
 using DataService.ViewModel;
-using System;
 
 namespace DataService
 {
     public class ModelService
     {
-        private readonly DbService DS = new DbService ();
+        //private readonly DbService DS = new DbService ();
 
         public List<FiliereCard> GetAllFilieresCards ( )
         {
@@ -29,20 +29,23 @@ namespace DataService
 
         public List<FiliereLevelCard> GetFiliereMatieresCards ( Guid FiliereID )
         {
+            
             var MatiereCardList = new List<FiliereLevelCard> ();
-
-            foreach(int Level in DS.GetFILIERE_NIVEAUX (FiliereID))
+            var Ds = new DbService();
+           
+            foreach(int Level in Ds.GetFILIERE_NIVEAUX (FiliereID))
             {
                 MatiereCardList.Add (new FiliereLevelCard (FiliereID, Level));
             }
-            return MatiereCardList;
+            return MatiereCardList;                       
         }
        
         public List<DepStaffCard> GetDepStaffsCard ( )
         {
             var DepStaffCardList = new List<DepStaffCard> { new DepStaffCard ("") };
+            var Ds = new DbService ();
 
-            Parallel.ForEach (DS.GetDEPARTEMENTS (), Dep =>
+            Parallel.ForEach (Ds.GetDEPARTEMENTS (), Dep =>
             {
                 DepStaffCardList.Add (new DepStaffCard (Dep));
             });
@@ -53,53 +56,49 @@ namespace DataService
         public List<FiliereClassCard> GetFiliereClassCards ( )
         {
             var ClassCardList = new List<FiliereClassCard> ();
+            var Ds = new DbService ();
 
-            foreach(var Fil in DS.GetAllFilieres ())
+            Parallel.ForEach(Ds.GetAllFilieres(), Fil =>
             {
-                ClassCardList.Add (new FiliereClassCard (Fil));
-            }
+                ClassCardList.Add(new FiliereClassCard(Fil));
+            });
+
+            //foreach(var Fil in Ds.GetAllFilieres ())
+            //{
+            //    ClassCardList.Add (new FiliereClassCard (Fil));
+            //}
             return ClassCardList;
         }
         
         public List<MatiereCard> GetClassMatieresCards ( Classe MyClasse )
-        {
-            //var Cl = DS.GetClasseByID (ClassID);
-            //var FiliereID = Cl.FILIERE_ID;
-            //var FiliereYear = Cl.LEVEL;
-
+        {            
             var MATIERES_LIST = new List<MatiereCard> ();
 
             using(var Db = new EF ())
-            {
-                //var MatieresIDs = Db.FILIERE_MATIERE.Where (F => F.FILIERE_ID == MyClasse.FILIERE_ID && F.FILIERE_LEVEL == MyClasse.LEVEL).Select (F => F.MATIERE_ID).ToList ();
-
-                //foreach(var M in MatieresIDs.Select (M => Db.MATIERE.Find (M)))
-                //{
-                //    MATIERES_LIST.Add (new MatiereCard (M));
-                //}
-                //return MATIERES_LIST;
-
+            {                
                 foreach(var M in Db.MATIERE.Where (M => M.FILIERE_ID == MyClasse.FILIERE_ID && M.FILIERE_LEVEL == MyClasse.LEVEL))
                 {
                     MATIERES_LIST.Add (new MatiereCard (M));
                 }
                 return MATIERES_LIST;
-
-
             }
         }
 
         public List<ClassCard> GetFiliereClassCards ( Guid FiliereID )
-        {
-            
-            var Class_List = new List<ClassCard>();
-
+        {                        
             using (var Db = new EF())
-            {               
-                foreach (var C in Db.CLASSE.Where(C => C.FILIERE_ID == FiliereID))
-                {
-                    Class_List.Add(new ClassCard(C));
-                }
+            {
+                var Class_List = new List<ClassCard> ();
+
+                Parallel.ForEach(Db.CLASSE.Where(C => C.FILIERE_ID == FiliereID), C =>
+                    {
+                        Class_List.Add (new ClassCard (C));
+                    });
+
+                //foreach (var C in Db.CLASSE.Where(C => C.FILIERE_ID == FiliereID))
+                //{
+                //    Class_List.Add(new ClassCard(C));
+                //}
                 return Class_List;
             }
         }

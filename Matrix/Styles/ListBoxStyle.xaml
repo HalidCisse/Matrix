@@ -230,7 +230,7 @@
                         <DropShadowEffect Color="#080707" Opacity="0.5" BlurRadius="5" ShadowDepth="5"/>
                     </Border.Effect>
                     <StackPanel Orientation="Horizontal" Margin="10">                        
-                        <Image Source="../views/Icon/Matiere.png" Stretch="Fill" Width="100" Height="100"/>
+                        <Image Source="views/Pedagogy/Icon/Matiere.png" Stretch="Fill" Width="100" Height="100"/>
                                             
                         <Grid Margin="10,5,5,0">
                             <TextBlock Text="{Binding NAME}" FontSize="20" FontWeight="Bold" Width="170" TextWrapping="WrapWithOverflow" VerticalAlignment="Top"/>

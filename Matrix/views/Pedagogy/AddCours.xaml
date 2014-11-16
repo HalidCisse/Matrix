@@ -1,14 +1,14 @@
 ﻿<Window x:Class="Matrix.views.Pedagogy.AddCours"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       WindowStartupLocation="CenterOwner"
-      Height="600" Width="550" Style="{StaticResource MyForm}" FontFamily="Helvetica">
+      Height="650" Width="600" Style="{StaticResource MyForm}" FontFamily="Helvetica">
 
     <Window.Resources>
 
-        <Style TargetType="TextBlock">
+        <Style TargetType="TextBlock">            
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="Verdana"/>
             <Setter Property="FontWeight" Value="Light"/>
@@ -17,8 +17,8 @@
         </Style>
 
         <Style TargetType="ComboBox">
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <!--<Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>-->
             <Setter Property="FontSize" Value="20"/>
             <!--<Setter Property="FontFamily" Value="Verdana"/>-->
             <!--<Setter Property="FontWeight" Value="ExtraLight"/>-->
@@ -27,7 +27,7 @@
 
         </Style>
 
-        <Style TargetType="Button">
+        <Style x:Key="ButtonStyle" TargetType="Button">
             <!--<Setter Property="FontSize" Value="16"/>-->
             <Setter Property="FontFamily" Value="Verdana"/>
             <Setter Property="FontWeight" Value="ExtraLight"/>
@@ -39,16 +39,138 @@
             <Setter Property="Background" Value="#e9e9e9"/>
 
         </Style>
+        
 
     </Window.Resources>
 
+    <Grid Margin="10,-30,10,20"> 
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Image Source="Icon/Cours.png" Height="70" Width="70" VerticalAlignment="Center" DockPanel.Dock="Left"/>
 
-    <Grid>
-        
-        
-        
-    </Grid>
-    
-    
+            <Grid Height="40" VerticalAlignment="Top" Margin="15,0,0,0">
+                <TextBlock Name="TitleText" Text="AJOUTER UN COURS" VerticalAlignment="Top" FontSize="25" HorizontalAlignment="Center"/>
+                <Border Background="Blue" Width="350" Height="7"  VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+            </Grid>
+        </StackPanel>        
+
+        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBlock Text="MATIERE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+            <ComboBox Name="MATIERE_NAME_" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <TextBlock Text="INSTRUCTEUR" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+            <ComboBox Name="STAFF_NAME_" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBlock Text="SALLE" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+            <ComboBox Name="SALLE_NAME_" IsEditable="True" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <TextBlock Text="COULEUR" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+            <xctk:ColorPicker Name="COLOR_" Width="250" Height="30" SelectedColor="RoyalBlue"  AvailableColorsHeader=""  ShowAdvancedButton="False" ShowRecentColors="False" ShowStandardColors="False" DisplayColorAndName="True" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Center">
+            <TextBlock Text="HEURE DEBUT" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+            <xctk:TimePicker Name="START_TIME_" Value="07:45" StartTime="07:00" EndTime="00:00" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <TextBlock Text="HEURE FIN" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+            <xctk:TimePicker Name="END_TIME_" Value="09:45" StartTime="07:00" EndTime="00:00" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Center">
+            <TextBlock Text="DE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+            <DatePicker Name="START_DATE_" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <TextBlock Text="A" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+            <DatePicker Name="END_DATE_" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>                
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" >
+                <TextBlock Text="LUN"  HorizontalAlignment="Center"/>
+                <CheckBox Name="LUN_" FontSize="20" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="MAR" HorizontalAlignment="Center"/>
+                <CheckBox Name="MAR_" FontSize="20" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <TextBlock Text="MER"  HorizontalAlignment="Center"/>
+                <CheckBox Name="MER_" FontSize="20" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="3">
+                <TextBlock Text="JEU" HorizontalAlignment="Center"/>
+                <CheckBox Name="JEU_" FontSize="20" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="4">
+                <TextBlock Text="VEND"  HorizontalAlignment="Center"/>
+                <CheckBox Name="VEND_" FontSize="20" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="5">
+                <TextBlock Text="SAM" HorizontalAlignment="Center"/>
+                <CheckBox Name="SAM_" FontSize="20" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="6">
+                <TextBlock Text="DIM"  HorizontalAlignment="Center"/>
+                <CheckBox Name="DIM_" FontSize="20" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+           
+
+
+
+        </Grid>
+
+        <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
+            <TextBlock Text="DESCRIPTION" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+            <TextBox Name="DESCRIPTION_" Height="70" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Stretch" />
+        </StackPanel>
+                
+        <Grid Grid.Row="7" Grid.ColumnSpan="2" Grid.Column="0" VerticalAlignment="Bottom" Margin="0,0">
+            <Button Name="Enregistrer" Content="Enregistrer" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Click="Enregistrer_Click"/>
+            <Button Name="Annuler" Content="Annuler" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Right" Click="Annuler_Click"/>
+        </Grid>
+
+    </Grid>        
     
 </Window>

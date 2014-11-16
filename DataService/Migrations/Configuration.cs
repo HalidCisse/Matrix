@@ -1,12 +1,12 @@
 using System;
+using System.Data.Entity.Migrations;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using DataService.Context;
-using System.Linq;
-using System.Data.Entity.Migrations;
 
 namespace DataService.Migrations
 {

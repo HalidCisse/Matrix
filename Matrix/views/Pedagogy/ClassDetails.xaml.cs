@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using DataService.Entities;
 using DataService.Model;
+using Matrix.views.Pedagogy;
 
 namespace Matrix.views
 {
@@ -13,7 +14,7 @@ namespace Matrix.views
     public partial class ClassDetails
     {
         private readonly BackgroundWorker Worker = new BackgroundWorker ();
-        //private List<MatiereCard> MatieresListBuff = new List<MatiereCard>();
+        private List<MatiereCard> MatieresListBuff = new List<MatiereCard>();
         private List<Staff> StaffListBuff = new List<Staff> ();
         private List<Student> StudentsListBuff = new List<Student> ();
         //private List<CoursCard> CoursListBuff = new List<CoursCard> ();
@@ -34,9 +35,10 @@ namespace Matrix.views
        
         private void AddButon_Click ( object sender, RoutedEventArgs e )
         {
-            //var wind = new AddMatiere (OpenedFiliere) { Owner = Window.GetWindow (this) };
-           // wind.ShowDialog ();
-           // UpdateMatieres ();
+            //var SelectedClasse = App.DataS.GetCoursByID (new Guid(CurrentSelected));
+            var wind = new AddCours (OpenedClass.CLASSE_ID) { Owner = Window.GetWindow (this) };
+           wind.ShowDialog ();
+           UpdateData ();
         }
 
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )
@@ -61,17 +63,18 @@ namespace Matrix.views
             Worker.DoWork += Worker_DoWork;
             Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             BusyIndicator.IsBusy = true;
-            UpdateMatieres (); 
+            UpdateData (); 
         }
 
-        private void UpdateMatieres()
+        private void UpdateData()
         {
             if(Worker.IsBusy) return;
             Worker.RunWorkerAsync ();
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
-        {                        
+        {
+            MatieresListBuff = App.ModelS.GetClassMatieresCards (OpenedClass); 
             StaffListBuff = App.DataS.GetClassStaffs (OpenedClass.CLASSE_ID);
             StudentsListBuff = App.DataS.GetClassStudents (OpenedClass.CLASSE_ID);
             //CoursListBuff = App.ModelS.GetClassCoursCards (OpenedFiliere.FILIERE_ID, OpenedClass.LEVEL); 
@@ -96,7 +99,7 @@ namespace Matrix.views
 
             var wind = new AddMatiere (OpenedFiliere.FILIERE_ID, MatiereToDisplay) { Owner = Window.GetWindow (this) };
             wind.ShowDialog ();
-            UpdateMatieres ();
+            UpdateData ();
         }
 
         private void BackButton_Click ( object sender, RoutedEventArgs e )
@@ -117,6 +120,11 @@ namespace Matrix.views
         }
 
         private void StaffList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
+        {
+
+        }
+
+        private void MatieresList_MouseDoubleClick_1 ( object sender, MouseButtonEventArgs e )
         {
 
         }

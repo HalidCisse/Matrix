@@ -1,9 +1,9 @@
-﻿
+﻿using System;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
-//using Manager;
 using DataService;
+//using Manager;
 
 namespace Matrix
 {
@@ -27,7 +27,7 @@ namespace Matrix
                 new Thread (( ) => DataS = new DbService ()) { Name = "DataThread", Priority = ThreadPriority.Highest }.Start ();
                 new Thread (( ) => ModelS = new ModelService ()) { Name = "DataModelThread", Priority = ThreadPriority.Highest }.Start ();                
             }
-            catch(System.Exception e)
+            catch(Exception e)
             {
                 MessageBox.Show (e.Message);
             }           

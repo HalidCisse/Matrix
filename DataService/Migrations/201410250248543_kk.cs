@@ -1,8 +1,7 @@
+using System.Data.Entity.Migrations;
+
 namespace DataService.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
     public partial class kk : DbMigration
     {
         public override void Up()
