@@ -6,6 +6,10 @@ using DataService.Model;
 
 namespace DataService.ViewModel
 {
+
+    /// <summary>
+    /// Revoi Une le niveau d une filiere avec ses matieres deprecated
+    /// </summary>
     public class FiliereLevelCard
     {
 
@@ -13,15 +17,15 @@ namespace DataService.ViewModel
         {
             FILIERE_ID = FiliereID;
             FormatYear(FiliereYear);      
-            MATIERES_LIST = new List<MatiereCard> ();
-            GetMATIERES_LIST (FiliereYear);           
+            //MATIERES_LIST = new List<MatiereCard> ();
+            //GetMATIERES_LIST (FiliereYear);           
         }
 
         public Guid FILIERE_ID { get; set; }
 
         public string FILIERE_YEAR { get; set; }
 
-        public List<MatiereCard> MATIERES_LIST { get; set; }
+       // public List<MatiereCard> MATIERES_LIST { get; set; }
 
 
         #region HELPERS
@@ -37,10 +41,10 @@ namespace DataService.ViewModel
                 //    MATIERES_LIST.Add (new MatiereCard (FILIERE_ID, FiliereYear, M));
                 //}   
 
-                foreach(var M in Db.MATIERE.Where (M => M.FILIERE_ID == FILIERE_ID && M.FILIERE_LEVEL == FiliereYear))
-                {
-                    MATIERES_LIST.Add (new MatiereCard (M));
-                } 
+                //foreach(var M in Db.MATIERE.Where (M => M.FILIERE_ID == FILIERE_ID && M.FILIERE_LEVEL == FiliereYear))
+                //{
+                //    MATIERES_LIST.Add (new MatiereCard (M));
+                //} 
             }
         }
 

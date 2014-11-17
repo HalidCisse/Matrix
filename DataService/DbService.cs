@@ -67,7 +67,7 @@ namespace DataService
                 return Db.CLASSE.ToList ();
             }
         }
-
+       
         public string GetClasseName ( Guid ClasseID )
         {
             using(var Db = new EF ())
@@ -182,7 +182,6 @@ namespace DataService
 
         #endregion
 
-
        
 
 
@@ -292,24 +291,25 @@ namespace DataService
             }
         }
 
-        public List<Matiere> GetMatieresOfFiliereYear ( Guid FiliereID, int FiliereYear )
-        {
-            using(var Db = new EF ())
-            {                
-                //var MatieresIDs = Db.FILIERE_MATIERE.Where (F => F.FILIERE_ID == FiliereID.ToString() && F.FILIERE_LEVEL == FiliereYear).Select (F => F.MATIERE_ID).ToList ();
 
-                //var Matieres = MatieresIDs.Select(M => Db.MATIERE.Find(M)).ToList();
+        //public List<Matiere> GetMatieresOfFiliereYear ( Guid FiliereID, int FiliereYear )
+        //{
+        //    using(var Db = new EF ())
+        //    {                
+        //        //var MatieresIDs = Db.FILIERE_MATIERE.Where (F => F.FILIERE_ID == FiliereID.ToString() && F.FILIERE_LEVEL == FiliereYear).Select (F => F.MATIERE_ID).ToList ();
 
-                return Db.MATIERE.Where (M => M.FILIERE_ID == FiliereID && M.FILIERE_LEVEL == FiliereYear).ToList();
-            }
-        }
+        //        //var Matieres = MatieresIDs.Select(M => Db.MATIERE.Find(M)).ToList();
+
+        //        return Db.MATIERE.Where (M => M.FILIERE_ID == FiliereID && M.FILIERE_LEVEL == FiliereYear).ToList();
+        //    }
+        //}
 
         #endregion
 
 
 
 
-        #region Patternes DATA
+        #region PATTERNES DATA
 
         public IEnumerable GetNATIONALITIES ( )
         {
@@ -421,7 +421,7 @@ namespace DataService
         {
             using(var Db = new EF ())
             {
-                var Quals = (from S in Db.STAFF.ToList () where S.QUALIFICATION != null select S.QUALIFICATION).ToList ().Distinct ().ToList ();
+                var Quals = (from S in Db.STAFF.ToList () where S.QUALIFICATION != null select S.QUALIFICATION).Distinct ().ToList ();
 
                 return Quals.Count == 0 ? new List<string> { "Engenieur Etat En Informatique", "Doctorat En Mathematique", "Master En Anglais" } : Quals;
             }           
@@ -469,6 +469,19 @@ namespace DataService
                 "5 Heure", "5 Heure 30 min", "6 Heures", "6 Heures 30 min", "7 Heures", "7 Heures 30 min", "8 Heures", "8 Heures 30 min",
                 "9 Heure", "9 Heure 30 min", "10 Heures", "10 Heures 30 min", "11 Heures", "11 Heures 30 min", "12 Heures", "12 Heures 30 min"            
             };
+        }
+
+        public IEnumerable GetAllSalles ( )
+        {
+            using(var Db = new EF ())
+            {                
+                return (from S in Db.COURS.ToList () where S.SALLE != null select S.SALLE).Distinct ().ToList ();
+            }  
+        }
+
+        public IEnumerable GetAllCoursTypes ( )
+        {
+            return new List<string> { "Cours", "Control", "Travaux Pratiques", "Travaux Dirigés", "Examen", "Test", "Revision", "Cours Theorique", "Cours Magistral" };
         }
 
         #endregion
@@ -715,6 +728,14 @@ namespace DataService
             } 
         }
 
+        public List<Matiere> GetClassMatieres ( Guid ClasseID )
+        {
+            using(var Db = new EF ())
+            {               
+                return Db.MATIERE.Where (M => M.CLASSE_ID == ClasseID).ToList ();
+            }
+        }
+
         public List<Staff> GetClassStaffs(Guid ClassID)
         {
             var Staffs = new List<Staff>();
@@ -795,14 +816,6 @@ namespace DataService
 
 
         #endregion
-
-
-
-
-
-
-       
-
 
         
     }

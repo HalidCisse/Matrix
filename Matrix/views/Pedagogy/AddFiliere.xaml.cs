@@ -59,7 +59,7 @@ namespace Matrix.views.Pedagogy
             FILIERE_NAME_.Text = FiliereToDisplay.NAME;
             NIVEAU_ENTREE_.SelectedValue = FiliereToDisplay.NIVEAU_ENTREE;
             NIVEAU_SORTIE_.SelectedValue = FiliereToDisplay.NIVEAU;
-            N_ANNEE_.SelectedValue = FiliereToDisplay.N_ANNEE.ToString(CultureInfo.InvariantCulture);           
+            N_ANNEE_.SelectedValue = FiliereToDisplay.N_ANNEE.ToString();           
         }
 
         private void Enregistrer_Click ( object sender, RoutedEventArgs e )

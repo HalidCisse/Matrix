@@ -1,4 +1,4 @@
-﻿<Page x:Class="Matrix.views.FilieresView"
+﻿<Page x:Class="Matrix.views.Pedagogy.FilieresView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -32,11 +32,11 @@
 
         <ContextMenu x:Key="ClassContext">
             
-            <MenuItem Header="Supprimer Cette Classe" Click="ClassContextDel_Click">
+            <MenuItem Header="Supprimer" Click="ClassContextDel_Click">
                 
             </MenuItem>
             
-            <MenuItem Header="Menu item 2">
+            <MenuItem Header="Modifier" Click="ClassConTextMod_Click">
                 
             </MenuItem> 
                                     

@@ -8,7 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using DataService.ViewModel;
 
-namespace Matrix.views
+namespace Matrix.views.Pedagogy
 {
     
     public partial class MatieresView
@@ -120,7 +120,7 @@ namespace Matrix.views
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
         {
             ListBuff.Clear();
-            ListBuff = App.ModelS.GetFiliereMatieresCards (OpenedFiliere);                        
+            //ListBuff = App.ModelS.GetFiliereMatieresCards (OpenedFiliere);                        
         }
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {

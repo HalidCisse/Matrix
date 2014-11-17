@@ -9,7 +9,7 @@ namespace DataService.Model
         {
             MATIERE_ID = Mat.MATIERE_ID;
             NAME = Mat.NAME;
-            HEURES_PAR_SEMAINE = Mat.HEURE_PAR_SEMAINE; //GetHEURE_PAR_SEMAINE (FiliereID, FiliereLevel);
+            //HEURES_PAR_SEMAINE = Mat.HEURE_PAR_SEMAINE; //GetHEURE_PAR_SEMAINE (FiliereID, FiliereLevel);
             //INSTRUCTEURS_COUNT = GetINSTRUCTEURS_COUNT();
         }
 
@@ -22,7 +22,7 @@ namespace DataService.Model
 
         public string INSTRUCTEUR_NAME { get; set; }
         
-        public int INSTRUCTEURS_COUNT { get; set; }
+        //public int INSTRUCTEURS_COUNT { get; set; }
 
 
         #region Helpers

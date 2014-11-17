@@ -9,16 +9,15 @@ using System.Windows.Media;
 using DataService.ViewModel;
 using FirstFloor.ModernUI.Windows.Controls;
 using Matrix.Extention;
-using Matrix.views.Pedagogy;
+using Matrix.Utils;
 
-namespace Matrix.views
+namespace Matrix.views.Pedagogy
 {
     
-
     public partial class FilieresView
     {
         
-        private Guid CurrentSelected;
+        private string CurrentSelected;
         private bool isFirstTime = true;
         private readonly BackgroundWorker worker = new BackgroundWorker ();
         private List<FiliereClassCard> FilieresBuff = new List<FiliereClassCard> ();
@@ -28,7 +27,9 @@ namespace Matrix.views
             InitializeComponent ();
         }
 
-        
+
+
+        #region BackgroundWorker
         private void UpdateData ( )
         {
             if(worker.IsBusy) return;            
@@ -36,8 +37,7 @@ namespace Matrix.views
         }
 
         private void worker_DoWork ( object sender, DoWorkEventArgs e )
-        {
-            //FilieresBuff = App.ModelS.GetAllFilieresCards ();  
+        {            
             FilieresBuff = App.ModelS.GetFiliereClassCards ();
         }
 
@@ -47,6 +47,10 @@ namespace Matrix.views
             FiliereList.ItemsSource = FilieresBuff;
             worker.Dispose ();
         }
+
+        #endregion
+
+
 
 
         #region Eventhandler
@@ -65,10 +69,10 @@ namespace Matrix.views
             MessageBox.Show (CurrentSelected + "");
 
 
-            var TheClass = App.DataS.GetClasseByID (CurrentSelected);
+            var TheClass = App.DataS.GetClasseByID (new Guid (CurrentSelected));
 
 
-            var theName = App.DataS.GetClasseName (CurrentSelected);
+            var theName = App.DataS.GetClasseName (new Guid (CurrentSelected));
             theName = "Ete Vous Sure de supprimer " + TheClass.NAME + " definitivement ?";
 
             var MD = new ModernDialog {
@@ -105,9 +109,7 @@ namespace Matrix.views
             }       
             UpdateData ();
         }
-
        
-
         private void AddButon_Click ( object sender, RoutedEventArgs e )
         {
             ContextMenu cm = FindResource ("AddContext") as ContextMenu;
@@ -141,7 +143,7 @@ namespace Matrix.views
             if(!isFirstTime) return;
             try
             {
-                var E = FindVisualChildren<Expander> (this).First ();
+                var E = FindVisual.FindVisualChildren<Expander> (this).First ();
                 E.IsExpanded = true;
                 isFirstTime = false;
             }
@@ -169,46 +171,22 @@ namespace Matrix.views
             if(Classes == null) return;
             if(Classes.SelectedValue == null) return;
 
-            CurrentSelected = new Guid (Classes.SelectedValue.ToString ());
+            CurrentSelected = Classes.SelectedValue.ToString();
         }
 
         private void Expander_Expanded ( object sender, RoutedEventArgs e )
         {
             var E = sender as Expander;
 
-            foreach(var Ep in FindVisualChildren<Expander> (this).Where (Ep => E != null && Ep.Header.ToString () != E.Header.ToString ()))
+            foreach(var Ep in FindVisual.FindVisualChildren<Expander> (this).Where (Ep => E != null && Ep.Header.ToString () != E.Header.ToString ()))
             {
                 Ep.IsExpanded = false;
             }
         }
 
-
-        
-
-        public static IEnumerable<T> FindVisualChildren<T> ( DependencyObject depObj ) where T : DependencyObject
-        {
-            if(depObj == null) yield break;
-            for(var i = 0; i < VisualTreeHelper.GetChildrenCount (depObj); i++)
-            {
-                var child = VisualTreeHelper.GetChild (depObj, i);
-                if(child is T)
-                {
-                    yield return (T)child;
-                }
-
-                foreach(var childOfChild in FindVisualChildren<T> (child))
-                {
-                    yield return childOfChild;
-                }
-            }
-        }
-
-        #endregion
-
-       
         private void ClassContextDel_Click ( object sender, RoutedEventArgs e )
         {
-            var theName = App.DataS.GetClasseName (CurrentSelected);
+            var theName = App.DataS.GetClasseName (new Guid (CurrentSelected));
             theName = "Ete Vous Sure de supprimer " + theName + " definitivement ?";
 
             var MD = new ModernDialog
@@ -219,13 +197,43 @@ namespace Matrix.views
 
             var r = MD.ShowDialogOKCancel ();
             if(r != MessageBoxResult.OK) return;
-                
-            App.DataS.DeleteClasse (CurrentSelected);
-            
+
+            App.DataS.DeleteClasse (new Guid (CurrentSelected));
+
             //ModernDialog.ShowMessage ("Success", "Matrix", MessageBoxButton.OK);
 
-            UpdateData();
+            UpdateData ();
         }
+
+        private void ClassConTextMod_Click ( object sender, RoutedEventArgs e )
+        {
+            var wind = new AddClass(App.DataS.GetClasseByID(new Guid (CurrentSelected))) { Owner = Window.GetWindow (this) };
+            wind.ShowDialog ();
+            UpdateData ();
+        }
+                 
+        //public static IEnumerable<T> FindVisualChildrenDEP<T> ( DependencyObject depObj ) where T : DependencyObject
+        //{
+        //    if(depObj == null) yield break;
+        //    for(var i = 0; i < VisualTreeHelper.GetChildrenCount (depObj); i++)
+        //    {
+        //        var child = VisualTreeHelper.GetChild (depObj, i);
+        //        if(child is T)
+        //        {
+        //            yield return (T)child;
+        //        }
+
+        //        foreach(var childOfChild in FindVisualChildren<T> (child))
+        //        {
+        //            yield return childOfChild;
+        //        }
+        //    }
+        //}
+
+        #endregion
+
+       
+        
                 
     }
 

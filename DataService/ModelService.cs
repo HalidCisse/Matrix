@@ -13,32 +13,32 @@ namespace DataService
     {
         //private readonly DbService DS = new DbService ();
 
-        public List<FiliereCard> GetAllFilieresCards ( )
-        {
-            using(var Db = new EF ())
-            {
-                var FL = new List<FiliereCard> ();
+        //public List<FiliereCard> GetAllFilieresCards ( )
+        //{
+        //    using(var Db = new EF ())
+        //    {
+        //        var FL = new List<FiliereCard> ();
 
-                Parallel.ForEach (Db.FILIERE, F =>
-                {
-                    FL.Add (new FiliereCard (F));
-                });
-                return FL;
-            }
-        }
+        //        Parallel.ForEach (Db.FILIERE, F =>
+        //        {
+        //            FL.Add (new FiliereCard (F));
+        //        });
+        //        return FL;
+        //    }
+        //}
 
-        public List<FiliereLevelCard> GetFiliereMatieresCards ( Guid FiliereID )
-        {
+        //public List<FiliereLevelCard> GetFiliereMatieresCards ( Guid FiliereID )
+        //{
             
-            var MatiereCardList = new List<FiliereLevelCard> ();
-            var Ds = new DbService();
+        //    var MatiereCardList = new List<FiliereLevelCard> ();
+        //    var Ds = new DbService();
            
-            foreach(int Level in Ds.GetFILIERE_NIVEAUX (FiliereID))
-            {
-                MatiereCardList.Add (new FiliereLevelCard (FiliereID, Level));
-            }
-            return MatiereCardList;                       
-        }
+        //    foreach(int Level in Ds.GetFILIERE_NIVEAUX (FiliereID))
+        //    {
+        //        MatiereCardList.Add (new FiliereLevelCard (FiliereID, Level));
+        //    }
+        //    return MatiereCardList;                       
+        //}
        
         public List<DepStaffCard> GetDepStaffsCard ( )
         {
@@ -60,29 +60,29 @@ namespace DataService
 
             Parallel.ForEach(Ds.GetAllFilieres(), Fil =>
             {
-                ClassCardList.Add(new FiliereClassCard(Fil));
+                var FC = new FiliereClassCard(Fil);
+                if(FC.CLASS_LIST.Any ()) { ClassCardList.Add (FC); }                
             });
-
-            //foreach(var Fil in Ds.GetAllFilieres ())
-            //{
-            //    ClassCardList.Add (new FiliereClassCard (Fil));
-            //}
+            
             return ClassCardList;
         }
         
-        public List<MatiereCard> GetClassMatieresCards ( Classe MyClasse )
-        {            
-            var MATIERES_LIST = new List<MatiereCard> ();
+        //public List<MatiereCard> GetClassMatieresCards ( Classe MyClasse )
+        //{                        
+        //    using(var Db = new EF ())
+        //    {
+        //        var MATIERES_LIST = new List<MatiereCard> ();
+        //        foreach(var M in Db.MATIERE.Where (M => M.FILIERE_ID == MyClasse.FILIERE_ID && M.FILIERE_LEVEL == MyClasse.LEVEL))
+        //        {
+        //            MATIERES_LIST.Add (new MatiereCard (M));
+        //        }
+        //        return MATIERES_LIST;
+        //    }
+        //}
 
-            using(var Db = new EF ())
-            {                
-                foreach(var M in Db.MATIERE.Where (M => M.FILIERE_ID == MyClasse.FILIERE_ID && M.FILIERE_LEVEL == MyClasse.LEVEL))
-                {
-                    MATIERES_LIST.Add (new MatiereCard (M));
-                }
-                return MATIERES_LIST;
-            }
-        }
+        
+
+
 
         public List<ClassCard> GetFiliereClassCards ( Guid FiliereID )
         {                        
@@ -95,10 +95,6 @@ namespace DataService
                         Class_List.Add (new ClassCard (C));
                     });
 
-                //foreach (var C in Db.CLASSE.Where(C => C.FILIERE_ID == FiliereID))
-                //{
-                //    Class_List.Add(new ClassCard(C));
-                //}
                 return Class_List;
             }
         }
