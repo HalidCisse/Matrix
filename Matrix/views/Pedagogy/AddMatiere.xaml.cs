@@ -13,15 +13,14 @@ namespace Matrix.views.Pedagogy
     
     public partial class AddMatiere
     {
-        private readonly bool IsAdd;
-        public Guid CurrentClassID;        
+        private readonly bool IsAdd;               
         private readonly Matiere MatiereDisplayed = new Matiere();
 
         public AddMatiere ( Guid CurrentClassID, Matiere MatiereToDisplay = null )
         {
             InitializeComponent ();
-
-            this.CurrentClassID = CurrentClassID;
+            
+            MatiereDisplayed.CLASSE_ID = CurrentClassID;
 
             if(MatiereToDisplay == null)
             {
@@ -30,12 +29,11 @@ namespace Matrix.views.Pedagogy
             }
             else
             {
-                IsAdd = false;
+                IsAdd = false;               
                 MatiereDisplayed = MatiereToDisplay;
                 DisplayMatiere (MatiereDisplayed);                                
             }                                     
         }
-
         
         private void DisplayMatiere(Matiere MatiereToDisplay)
         {
@@ -55,8 +53,7 @@ namespace Matrix.views.Pedagogy
 
             if(ChampsValidated () != true) return;
             
-            MatiereDisplayed.NAME = MATIERE_NAME_.Text.Trim ();
-            MatiereDisplayed.CLASSE_ID = CurrentClassID;
+            MatiereDisplayed.NAME = MATIERE_NAME_.Text.Trim ();            
             MatiereDisplayed.SIGLE = SIGLE_.Text;
             MatiereDisplayed.COEFFICIENT = COEFFICIENT_.Value.GetValueOrDefault();
             MatiereDisplayed.COULEUR = COULEUR_.SelectedColorText;

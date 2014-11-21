@@ -11,34 +11,7 @@ namespace DataService
 {
     public class ModelService
     {
-        //private readonly DbService DS = new DbService ();
-
-        //public List<FiliereCard> GetAllFilieresCards ( )
-        //{
-        //    using(var Db = new EF ())
-        //    {
-        //        var FL = new List<FiliereCard> ();
-
-        //        Parallel.ForEach (Db.FILIERE, F =>
-        //        {
-        //            FL.Add (new FiliereCard (F));
-        //        });
-        //        return FL;
-        //    }
-        //}
-
-        //public List<FiliereLevelCard> GetFiliereMatieresCards ( Guid FiliereID )
-        //{
-            
-        //    var MatiereCardList = new List<FiliereLevelCard> ();
-        //    var Ds = new DbService();
-           
-        //    foreach(int Level in Ds.GetFILIERE_NIVEAUX (FiliereID))
-        //    {
-        //        MatiereCardList.Add (new FiliereLevelCard (FiliereID, Level));
-        //    }
-        //    return MatiereCardList;                       
-        //}
+       
        
         public List<DepStaffCard> GetDepStaffsCard ( )
         {
@@ -67,23 +40,6 @@ namespace DataService
             return ClassCardList;
         }
         
-        //public List<MatiereCard> GetClassMatieresCards ( Classe MyClasse )
-        //{                        
-        //    using(var Db = new EF ())
-        //    {
-        //        var MATIERES_LIST = new List<MatiereCard> ();
-        //        foreach(var M in Db.MATIERE.Where (M => M.FILIERE_ID == MyClasse.FILIERE_ID && M.FILIERE_LEVEL == MyClasse.LEVEL))
-        //        {
-        //            MATIERES_LIST.Add (new MatiereCard (M));
-        //        }
-        //        return MATIERES_LIST;
-        //    }
-        //}
-
-        
-
-
-
         public List<ClassCard> GetFiliereClassCards ( Guid FiliereID )
         {                        
             using (var Db = new EF())
@@ -99,19 +55,64 @@ namespace DataService
             }
         }
 
+        public List<DayCoursCards> GetClassWeekAgendaData ( Guid classID, DateTime scheduleDate )
+        {
+            var FirstDateOfWeek = scheduleDate.DayOfWeek == DayOfWeek.Sunday ? scheduleDate.AddDays(-6) : scheduleDate.AddDays (-((int)scheduleDate.DayOfWeek - 1));
+          
+            var ScheduleData = new List<DayCoursCards>();
 
+            for (int i = 0; i <= 6; i++)
+            {
+                ScheduleData.Add (new DayCoursCards (classID, FirstDateOfWeek.AddDays (i)));
+            }
+ 
+            return ScheduleData;
+        }
 
-
-
-
-
-
-
-
-
-
-        
+       
     }
-
-    
+ 
 }
+
+//private readonly DbService DS = new DbService ();
+
+//public List<FiliereCard> GetAllFilieresCards ( )
+//{
+//    using(var Db = new EF ())
+//    {
+//        var FL = new List<FiliereCard> ();
+
+//        Parallel.ForEach (Db.FILIERE, F =>
+//        {
+//            FL.Add (new FiliereCard (F));
+//        });
+//        return FL;
+//    }
+//}
+
+//public List<FiliereLevelCard> GetFiliereMatieresCards ( Guid FiliereID )
+//{
+
+//    var MatiereCardList = new List<FiliereLevelCard> ();
+//    var Ds = new DbService();
+
+//    foreach(int Level in Ds.GetFILIERE_NIVEAUX (FiliereID))
+//    {
+//        MatiereCardList.Add (new FiliereLevelCard (FiliereID, Level));
+//    }
+//    return MatiereCardList;                       
+//}
+
+
+//public List<MatiereCard> GetClassMatieresCards ( Classe MyClasse )
+//{                        
+//    using(var Db = new EF ())
+//    {
+//        var MATIERES_LIST = new List<MatiereCard> ();
+//        foreach(var M in Db.MATIERE.Where (M => M.FILIERE_ID == MyClasse.FILIERE_ID && M.FILIERE_LEVEL == MyClasse.LEVEL))
+//        {
+//            MATIERES_LIST.Add (new MatiereCard (M));
+//        }
+//        return MATIERES_LIST;
+//    }
+//}

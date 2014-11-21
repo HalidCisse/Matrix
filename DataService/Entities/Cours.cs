@@ -11,18 +11,14 @@ namespace DataService.Entities
 
         public Guid CLASSE_ID { get; set; }
 
-        public string STAFF_ID { get; set; }
-
-        //public string MATIERE_NAME { get; set; }
+        public string STAFF_ID { get; set; }      
 
         public Guid MATIERE_ID { get; set; }
 
         public string SALLE { get; set; }
            
         public string RECURRENCE_DAYS { get; set; }
-          
-        //public int DAY { get; set; }
-         
+                         
         public DateTime? START_TIME { get; set; }
          
         public DateTime? END_TIME { get; set; }

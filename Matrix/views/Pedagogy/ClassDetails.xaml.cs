@@ -5,19 +5,17 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using DataService.Entities;
-using DataService.Model;
-using Matrix.views.Pedagogy;
+using DataService.ViewModel;
 
-namespace Matrix.views
+namespace Matrix.views.Pedagogy
 {
     
     public partial class ClassDetails
     {
         private readonly BackgroundWorker Worker = new BackgroundWorker ();
-        private List<Matiere> MatieresListBuff = new List<Matiere>();
-        private List<Staff> StaffListBuff = new List<Staff> ();
+        private List<Matiere> MatieresListBuff = new List<Matiere>();        
         private List<Student> StudentsListBuff = new List<Student> ();
-        //private List<CoursCard> CoursListBuff = new List<CoursCard> ();
+        private List<DayCoursCards> CoursListBuff = new List<DayCoursCards>();
         private string CurrentSelected;
         private bool isFirstTime = true;
         private Filiere OpenedFiliere;
@@ -33,16 +31,29 @@ namespace Matrix.views
             ClassFiliere.Text = OpenedFiliere.NAME.ToUpper();
         }
        
+  
+
+        #region EVENT HANDLERS
+
+
+        private void Page_Loaded ( object sender, RoutedEventArgs e )
+        {
+            Worker.DoWork += Worker_DoWork;
+            Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            BusyIndicator.IsBusy = true;
+            UpdateData ();
+        }
+
         private void AddButon_Click ( object sender, RoutedEventArgs e )
         {
-           // //var SelectedClasse = App.DataS.GetCoursByID (new Guid(CurrentSelected));
-           //var wind = new AddCours (OpenedClass.CLASSE_ID) { Owner = Window.GetWindow (this) };
-           //wind.ShowDialog ();
-           //UpdateData ();
+            // //var SelectedClasse = App.DataS.GetCoursByID (new Guid(CurrentSelected));
+            //var wind = new AddCours (OpenedClass.CLASSE_ID) { Owner = Window.GetWindow (this) };
+            //wind.ShowDialog ();
+            //UpdateData ();
 
-           var cm = FindResource ("AddContext") as ContextMenu;
-           cm.PlacementTarget = sender as Button;
-           cm.IsOpen = true;
+            var cm = FindResource ("AddContext") as ContextMenu;
+            cm.PlacementTarget = sender as Button;
+            cm.IsOpen = true;
         }
 
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )
@@ -61,39 +72,6 @@ namespace Matrix.views
             //MessageBox.Show (App.Db.DeleteMatiere (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
             //UpdateMatieres ();
         }
-
-        private void Page_Loaded ( object sender, RoutedEventArgs e )
-        {
-            Worker.DoWork += Worker_DoWork;
-            Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-            BusyIndicator.IsBusy = true;
-            UpdateData (); 
-        }
-
-        private void UpdateData()
-        {
-            if(Worker.IsBusy) return;
-            Worker.RunWorkerAsync ();
-        }
-
-        private void Worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            MatieresListBuff = App.DataS.GetClassMatieres (OpenedClass.CLASSE_ID); 
-            StaffListBuff = App.DataS.GetClassStaffs (OpenedClass.CLASSE_ID);
-            StudentsListBuff = App.DataS.GetClassStudents (OpenedClass.CLASSE_ID);
-            //CoursListBuff = App.ModelS.GetClassCoursCards (OpenedFiliere.FILIERE_ID, OpenedClass.LEVEL); 
-
-
-        }
-        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            BusyIndicator.IsBusy = false;
-
-            MatieresList.ItemsSource = MatieresListBuff;
-            isFirstTime = true;
-            //Worker.Dispose ();
-        }
-
         
         private void MatieresList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {
@@ -144,11 +122,36 @@ namespace Matrix.views
         }
 
 
+        #endregion
 
 
+        #region BacgroundWorks
 
+        private void UpdateData ( )
+        {
+            if(Worker.IsBusy) return;
+            Worker.RunWorkerAsync ();
+        }
 
+        private void Worker_DoWork ( object sender, DoWorkEventArgs e )
+        {
+            MatieresListBuff = App.DataS.GetClassMatieres (OpenedClass.CLASSE_ID);            
+            StudentsListBuff = App.DataS.GetClassStudents (OpenedClass.CLASSE_ID);
+            CoursListBuff = App.ModelS.GetClassWeekAgendaData (OpenedClass.CLASSE_ID, DateTime.Now);
 
+        }
+        private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
+        {
+            BusyIndicator.IsBusy = false;
+
+            CoursList.ItemsSource = CoursListBuff;
+            MatieresList.ItemsSource = MatieresListBuff;
+            StudentsList.ItemsSource = StudentsListBuff;
+            
+            isFirstTime = true;
+        }
+
+        #endregion
 
 
 

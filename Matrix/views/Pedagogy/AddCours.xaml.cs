@@ -11,8 +11,7 @@ namespace Matrix.views.Pedagogy
     public partial class AddCours
     {
         private readonly bool IsAdd;
-        private Cours CurrentCours = new Cours();
-        //private Guid CurrentClassID;
+        private readonly Cours CurrentCours = new Cours();        
 
         public AddCours (Guid CurrentClassID, Cours CoursToOpen = null )
         {
@@ -61,19 +60,17 @@ namespace Matrix.views.Pedagogy
             START_DATE_.SelectedDate = CurrentCours.START_DATE;
             END_DATE_.SelectedDate = CurrentCours.END_DATE;
 
-            LUN_.IsChecked = CurrentCours.RECURRENCE_DAYS.Contains("LUN");
-            MAR_.IsChecked = CurrentCours.RECURRENCE_DAYS.Contains ("MAR");
-            MER_.IsChecked = CurrentCours.RECURRENCE_DAYS.Contains ("MER");
-            JEU_.IsChecked = CurrentCours.RECURRENCE_DAYS.Contains ("JEU");
-            VEND_.IsChecked = CurrentCours.RECURRENCE_DAYS.Contains ("VEND");
-            SAM_.IsChecked = CurrentCours.RECURRENCE_DAYS.Contains ("SAM");
-            DIM_.IsChecked = CurrentCours.RECURRENCE_DAYS.Contains ("DIM");
+            LUN_.IsChecked = CurrentCours.RECURRENCE_DAYS.Contains("1");
+            MAR_.IsChecked = CurrentCours.RECURRENCE_DAYS.Contains ("2");
+            MER_.IsChecked = CurrentCours.RECURRENCE_DAYS.Contains ("3");
+            JEU_.IsChecked = CurrentCours.RECURRENCE_DAYS.Contains ("4");
+            VEND_.IsChecked = CurrentCours.RECURRENCE_DAYS.Contains ("5");
+            SAM_.IsChecked = CurrentCours.RECURRENCE_DAYS.Contains ("6");
+            DIM_.IsChecked = CurrentCours.RECURRENCE_DAYS.Contains ("0");
 
             DESCRIPTION_.Text = CurrentCours.DESCRIPTION;
         }
-
        
-
         private void Enregistrer_Click ( object sender, RoutedEventArgs e )
         {
             if(ChampsValidated () != true) return;
@@ -84,17 +81,17 @@ namespace Matrix.views.Pedagogy
             CurrentCours.TYPE = TYPE_.SelectedValue.ToString();
             CurrentCours.START_TIME = DateTime.Parse(START_TIME_.Value.ToString());     
             CurrentCours.END_TIME =DateTime.Parse (END_TIME_.Value.ToString ());       
-            CurrentCours.START_DATE = START_DATE_.SelectedDate;
-            CurrentCours.END_DATE = END_DATE_.SelectedDate;
+            CurrentCours.START_DATE = START_DATE_.SelectedDate.Value;
+            CurrentCours.END_DATE = END_DATE_.SelectedDate.Value;
 
             CurrentCours.RECURRENCE_DAYS = "";
-            if(LUN_.IsChecked == true) { CurrentCours.RECURRENCE_DAYS = string.Format ("{0} LUN ", CurrentCours.RECURRENCE_DAYS); }
-            if(MAR_.IsChecked == true) { CurrentCours.RECURRENCE_DAYS = string.Format ("{0} MAR ", CurrentCours.RECURRENCE_DAYS); }
-            if(MER_.IsChecked == true) { CurrentCours.RECURRENCE_DAYS = string.Format ("{0} MER ", CurrentCours.RECURRENCE_DAYS); }
-            if(JEU_.IsChecked == true) { CurrentCours.RECURRENCE_DAYS = string.Format ("{0} JEU ", CurrentCours.RECURRENCE_DAYS); }
-            if(VEND_.IsChecked == true){ CurrentCours.RECURRENCE_DAYS = string.Format ("{0} VEND ",CurrentCours.RECURRENCE_DAYS); }
-            if(SAM_.IsChecked == true) { CurrentCours.RECURRENCE_DAYS = string.Format ("{0} SAM ", CurrentCours.RECURRENCE_DAYS); }
-            if(DIM_.IsChecked == true) { CurrentCours.RECURRENCE_DAYS = string.Format ("{0} DIM ", CurrentCours.RECURRENCE_DAYS); }
+            if(LUN_.IsChecked == true) { CurrentCours.RECURRENCE_DAYS = string.Format ("{0} 1 ", CurrentCours.RECURRENCE_DAYS); }
+            if(MAR_.IsChecked == true) { CurrentCours.RECURRENCE_DAYS = string.Format ("{0} 2 ", CurrentCours.RECURRENCE_DAYS); }
+            if(MER_.IsChecked == true) { CurrentCours.RECURRENCE_DAYS = string.Format ("{0} 3 ", CurrentCours.RECURRENCE_DAYS); }
+            if(JEU_.IsChecked == true) { CurrentCours.RECURRENCE_DAYS = string.Format ("{0} 4 ", CurrentCours.RECURRENCE_DAYS); }
+            if(VEND_.IsChecked == true){ CurrentCours.RECURRENCE_DAYS = string.Format ("{0} 5 ", CurrentCours.RECURRENCE_DAYS); }
+            if(SAM_.IsChecked == true) { CurrentCours.RECURRENCE_DAYS = string.Format ("{0} 6 ", CurrentCours.RECURRENCE_DAYS); }
+            if(DIM_.IsChecked == true) { CurrentCours.RECURRENCE_DAYS = string.Format ("{0} 0 ", CurrentCours.RECURRENCE_DAYS); }
             
             CurrentCours.DESCRIPTION = DESCRIPTION_.Text;
 
@@ -177,10 +174,9 @@ namespace Matrix.views.Pedagogy
             Close();
         }
 
-
         private void TYPE__OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (TitleText.Text != "AJOUTER UN COURS") return;
+            if(TitleText.Text == "MODIFICATION") return;
 
             if(TYPE_.SelectedValue.ToString () == "Revision")
               { TitleText.Text = "AJOUTER UNE " + TYPE_.SelectedValue.ToString().ToUpper(); }
