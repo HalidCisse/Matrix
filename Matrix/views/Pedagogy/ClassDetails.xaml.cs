@@ -16,7 +16,7 @@ namespace Matrix.views.Pedagogy
         private List<Matiere> MatieresListBuff = new List<Matiere>();        
         private List<Student> StudentsListBuff = new List<Student> ();
         private List<DayCoursCards> CoursListBuff = new List<DayCoursCards>();
-        private string CurrentSelected;
+        //private string CurrentSelected;
         private bool isFirstTime = true;
         private Filiere OpenedFiliere;
         private Classe OpenedClass;
@@ -138,24 +138,38 @@ namespace Matrix.views.Pedagogy
             MatieresListBuff = App.DataS.GetClassMatieres (OpenedClass.CLASSE_ID);            
             StudentsListBuff = App.DataS.GetClassStudents (OpenedClass.CLASSE_ID);
             CoursListBuff = App.ModelS.GetClassWeekAgendaData (OpenedClass.CLASSE_ID, DateTime.Now);
-
+            Worker.Dispose();
         }
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {
             BusyIndicator.IsBusy = false;
 
-            CoursList.ItemsSource = CoursListBuff;
+            AgendaUI.ItemsSource = CoursListBuff;
             MatieresList.ItemsSource = MatieresListBuff;
             StudentsList.ItemsSource = StudentsListBuff;
             
             isFirstTime = true;
         }
 
+
+
+
+
         #endregion
 
+        private void CoursList_Loaded(object sender, RoutedEventArgs e)
+        {
 
+        }
 
+        private void ClassList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
 
+        }
 
+        private void ClassList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

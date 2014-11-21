@@ -76,11 +76,11 @@
             <Grid Grid.Row="0" Background="RoyalBlue">
                 <!--<ListBox Name="CoursList" Style="{DynamicResource MatiereListBoxStyle}" Margin="10" MouseDoubleClick="CoursList_MouseDoubleClick"/>-->
 
-                <ListBox Name="DayList" Style="{DynamicResource ClassFiliereListStyle}">
+                <ListBox Name="AgendaUI" Style="{DynamicResource ClassFiliereListStyle}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <GroupBox Header="{Binding Path=FILIERE_NAME}" Style="{DynamicResource GroupBoxStyle}" >
-                                <ListBox Name="CoursList" Style="{DynamicResource ClassListBoxStyle}" Loaded=" " Margin="10,10,0,0" MouseDoubleClick="ClassList_MouseDoubleClick" SelectionChanged="ClassList_SelectionChanged"/>
+                                <ListBox Name="DayCoursList" Style="{DynamicResource ClassListBoxStyle}" Loaded="CoursList_Loaded" Margin="10,10,0,0" MouseDoubleClick="ClassList_MouseDoubleClick" SelectionChanged="ClassList_SelectionChanged"/>
                             </GroupBox>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

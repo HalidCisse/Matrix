@@ -211,7 +211,7 @@ namespace Matrix.views.Pedagogy
             wind.ShowDialog ();
             UpdateData ();
         }
-                 
+
         //public static IEnumerable<T> FindVisualChildrenDEP<T> ( DependencyObject depObj ) where T : DependencyObject
         //{
         //    if(depObj == null) yield break;
@@ -230,11 +230,28 @@ namespace Matrix.views.Pedagogy
         //    }
         //}
 
+        
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // dispose managed resources
+               
+            }
+            // free native resources
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
         #endregion
 
-       
-        
-                
+
+
+
     }
 
     
