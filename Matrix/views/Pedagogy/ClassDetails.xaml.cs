@@ -9,18 +9,24 @@ using DataService.ViewModel;
 
 namespace Matrix.views.Pedagogy
 {
-    
+
+    /// <summary>
+    /// Affiche l'emploi du temps , les matieres et les Etudiant pour une classe donnee
+    /// </summary>
     public partial class ClassDetails
     {
         private readonly BackgroundWorker Worker = new BackgroundWorker ();
         private List<Matiere> MatieresListBuff = new List<Matiere>();        
         private List<Student> StudentsListBuff = new List<Student> ();
         private List<DayCoursCards> CoursListBuff = new List<DayCoursCards>();
-        //private string CurrentSelected;
-        private bool isFirstTime = true;
-        private Filiere OpenedFiliere;
-        private Classe OpenedClass;
+        private string CurrentSelected;        
+        private readonly Filiere OpenedFiliere;
+        private readonly Classe OpenedClass;
 
+        /// <summary>
+        /// Affiche l'emploi du temps , les matieres et les Etudiant pour une classe donnee
+        /// </summary>
+        /// <param name="OpenClassID"> ID De la Classe</param>
         public ClassDetails ( Guid OpenClassID )
         {
             InitializeComponent ();
@@ -29,12 +35,10 @@ namespace Matrix.views.Pedagogy
             OpenedFiliere = App.DataS.GetFiliereByID (OpenedClass.FILIERE_ID);
             ClassName.Text = OpenedClass.NAME.ToUpper ();
             ClassFiliere.Text = OpenedFiliere.NAME.ToUpper();
-        }
-       
+        }      
   
 
         #region EVENT HANDLERS
-
 
         private void Page_Loaded ( object sender, RoutedEventArgs e )
         {
@@ -76,8 +80,7 @@ namespace Matrix.views.Pedagogy
         private void MatieresList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {
             var Matieres = sender as ListBox;
-            if(Matieres == null) return;
-            if(Matieres.SelectedValue == null) return;
+            if(Matieres?.SelectedValue == null) return;
             var MatiereToDisplay = App.DataS.GetMatiereByID (new Guid(Matieres.SelectedValue.ToString ()));
 
             var wind = new AddMatiere (OpenedClass.CLASSE_ID, MatiereToDisplay) { Owner = Window.GetWindow (this) };
@@ -88,24 +91,13 @@ namespace Matrix.views.Pedagogy
         private void BackButton_Click ( object sender, RoutedEventArgs e )
         {
             var navigationService = NavigationService;
-            if(navigationService != null)
-                navigationService.Navigate (new FilieresView ());
+            navigationService?.Navigate (new PedagogyView ());
         }
-
-        private void CoursList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
-        {
-
-        }
-
+        
         private void StudentsList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {
 
-        }
-
-        private void StaffList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
-        {
-
-        }
+        }     
         
         private void AddCours_Click ( object sender, RoutedEventArgs e )
         {
@@ -121,11 +113,29 @@ namespace Matrix.views.Pedagogy
             UpdateData ();
         }
 
+        private void DayCoursList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var List = sender as ListBox;
+
+            if (List?.SelectedValue == null) return;
+
+            CurrentSelected = List.SelectedValue.ToString();
+        }
+
+        private void DayCoursList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var list = sender as ListBox;
+            if (list?.SelectedValue == null) return;
+
+            var wind = new AddCours(OpenedClass.CLASSE_ID, App.DataS.GetCoursByID(new Guid(list.SelectedValue.ToString()))) { Owner = Window.GetWindow(this) };
+            wind.ShowDialog();
+            UpdateData();
+        }
 
         #endregion
 
 
-        #region BacgroundWorks
+        #region BACKGROUND WORKER
 
         private void UpdateData ( )
         {
@@ -147,29 +157,14 @@ namespace Matrix.views.Pedagogy
             AgendaUI.ItemsSource = CoursListBuff;
             MatieresList.ItemsSource = MatieresListBuff;
             StudentsList.ItemsSource = StudentsListBuff;
-            
-            isFirstTime = true;
+            Worker.Dispose();
         }
-
-
-
-
 
         #endregion
 
-        private void CoursList_Loaded(object sender, RoutedEventArgs e)
-        {
+       
 
-        }
-
-        private void ClassList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void ClassList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
+        
     }
 }

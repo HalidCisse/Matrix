@@ -73,9 +73,7 @@
         </Border>
     </DataTemplate>
 
-    <Style x:Key="GroupBoxStyle" TargetType="GroupBox">
-        <!--<Setter Property="Template" Value="{StaticResource GBCT}" />-->
-        <!--<Setter Property="HeaderTemplate" Value="{StaticResource GBHeader}" />-->
+    <Style x:Key="GroupBoxStyle" TargetType="GroupBox">        
         <Setter Property="Width" Value="690" />
         <Setter Property="Margin" Value="10" />        
         <Setter Property="Template">

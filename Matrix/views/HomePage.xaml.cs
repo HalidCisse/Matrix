@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using Matrix.views.Pedagogy;
 
 namespace Matrix.views
 {

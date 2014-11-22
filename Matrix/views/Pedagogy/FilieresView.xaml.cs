@@ -22,6 +22,9 @@ namespace Matrix.views.Pedagogy
         private readonly BackgroundWorker worker = new BackgroundWorker ();
         private List<FiliereClassCard> FilieresBuff = new List<FiliereClassCard> ();
 
+        /// <summary>
+        /// Affiche les filiere et leurs classes
+        /// </summary>
         public FilieresView ( )
         {
             InitializeComponent ();
@@ -140,36 +143,33 @@ namespace Matrix.views.Pedagogy
 
         private void ClassList_Loaded ( object sender, RoutedEventArgs e )
         {
-            if(!isFirstTime) return;
-            try
-            {
-                var E = FindVisual.FindVisualChildren<Expander> (this).First ();
-                E.IsExpanded = true;
-                isFirstTime = false;
-            }
-            catch(Exception)
-            {
-                // ignored
-            }
+            //if(!isFirstTime) return;
+            //try
+            //{
+            //    var E = FindVisual.FindVisualChildren<Expander> (this).First ();
+            //    E.IsExpanded = true;
+            //    isFirstTime = false;
+            //}
+            //catch(Exception)
+            //{
+            //    // ignored
+            //}
         }
 
         private void ClassList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {
             var list = sender as ListBox;
-            if(list == null) return;
-            if(list.SelectedValue == null) return;
+            if(list?.SelectedValue == null) return;
 
             var navigationService = NavigationService;
-            if(navigationService != null)
-                navigationService.Navigate (new ClassDetails (new Guid (list.SelectedValue.ToString ())));
+            navigationService?.Navigate (new ClassDetails (new Guid (list.SelectedValue.ToString ())));
         }
 
         private void ClassList_SelectionChanged ( object sender, SelectionChangedEventArgs e )
         {
             var Classes = sender as ListBox;
 
-            if(Classes == null) return;
-            if(Classes.SelectedValue == null) return;
+            if(Classes?.SelectedValue == null) return;
 
             CurrentSelected = Classes.SelectedValue.ToString();
         }
@@ -212,25 +212,11 @@ namespace Matrix.views.Pedagogy
             UpdateData ();
         }
 
-        //public static IEnumerable<T> FindVisualChildrenDEP<T> ( DependencyObject depObj ) where T : DependencyObject
-        //{
-        //    if(depObj == null) yield break;
-        //    for(var i = 0; i < VisualTreeHelper.GetChildrenCount (depObj); i++)
-        //    {
-        //        var child = VisualTreeHelper.GetChild (depObj, i);
-        //        if(child is T)
-        //        {
-        //            yield return (T)child;
-        //        }
-
-        //        foreach(var childOfChild in FindVisualChildren<T> (child))
-        //        {
-        //            yield return childOfChild;
-        //        }
-        //    }
-        //}
-
-        
+    
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
@@ -241,7 +227,7 @@ namespace Matrix.views.Pedagogy
             // free native resources
         }
 
-        public void Dispose()
+        private void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);

@@ -69,7 +69,6 @@
         </ToolBar>
         <Grid>
             <xctk:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <!--<ListBox Name="FiliereList" Style="{DynamicResource FiliereListBoxStyle}" Margin="10,10,0,0" SelectedValuePath="FILIERE_ID" MouseDoubleClick="Filiere_MouseDoubleClick"/>-->
 
             <ListBox Name="FiliereList" Style="{DynamicResource FiliereClassListStyle}">
                 <ListBox.ItemTemplate>

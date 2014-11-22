@@ -19,6 +19,9 @@
                 <ResourceDictionary Source="Styles/MyButtonStyle.xaml"/>
                 <ResourceDictionary Source="Styles/Animations.xaml"/>
                 <ResourceDictionary Source="Styles/GroupBoxStyle.xaml"/>
+                
+                <ResourceDictionary Source="Styles/AgendaStyles/DaysStyles.xaml"/>
+                <ResourceDictionary Source="Styles/AgendaStyles/CoursStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             
             <!--<Style x:Key="ToolBarStyle" TargetType="ToolBar" />-->            

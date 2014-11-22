@@ -101,7 +101,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>UI_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
@@ -221,6 +222,14 @@
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\AgendaStyles\CoursStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\AgendaStyles\DaysStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Animations.xaml">
       <SubType>Designer</SubType>
@@ -369,7 +378,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="UI_TemporaryKey.pfx" />
     <Resource Include="Resources\Entypo.ttf" />
     <Resource Include="Fonts\fontawesome-webfont.ttf" />
     <None Include="packages.config" />
@@ -503,6 +511,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="university_979ca1_100.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\AgendaStyles\Classe.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

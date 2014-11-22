@@ -1,20 +1,21 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataService.Context;
-using DataService.Entities;
-using DataService.Model;
 
 namespace DataService.ViewModel
 {
+    /// <summary>
+    /// Retourne les Informations d'une Journee Avec la liste de ses Cours
+    /// </summary>
     public class DayCoursCards
     {
 
-
+        /// <summary>
+        /// Retourne les Informations d'une Journee Avec la liste de ses Cours
+        /// </summary>
+        /// <param name="ClassID">ID de la Classe</param>
+        /// <param name="scheduleDate"> Date De la Journee</param>
         public DayCoursCards ( Guid ClassID, DateTime scheduleDate )
         {
             DAY_COURS = new List<CoursCard> ();
@@ -25,12 +26,18 @@ namespace DataService.ViewModel
 
         }
        
+        /// <summary>
+        /// Le Nom De la Journee WeekDay Name
+        /// </summary>
         public string DAY_NAME { get; set; }
 
         //public string DAY_START_TIME { get; set; }
 
         //public string DAY_END_TIME { get; set; }
 
+        /// <summary>
+        /// La Liste des Cours Enseigner Dans la Journee
+        /// </summary>
         public List<CoursCard> DAY_COURS { get; set; }
 
         
@@ -38,18 +45,16 @@ namespace DataService.ViewModel
         {            
             using(var Db = new EF ())
             {               
-                var MyCours = Db.COURS.Where (C => C.CLASSE_ID == ClassID && C.START_DATE <= scheduleDate && C.END_DATE >= scheduleDate).ToList ();
+                var MyCours = Db.COURS.Where (C => C.CLASSE_ID == ClassID && C.START_DATE <= scheduleDate && C.END_DATE >= scheduleDate).OrderBy(C => C.START_TIME);
     
-                foreach(var CR in MyCours)
-                {                    
+                foreach(var CR in MyCours) {                    
                     var DayNum = (int)scheduleDate.DayOfWeek;
 
-                    if(CR.RECURRENCE_DAYS.Contains (DayNum.ToString ()))
-                    {
+                    if(CR.RECURRENCE_DAYS.Contains (DayNum.ToString ())) {
                         DAY_COURS.Add (new CoursCard (CR, scheduleDate.DayOfWeek));
                     }                   
                 }
-                
+              
             } 
         
         }
