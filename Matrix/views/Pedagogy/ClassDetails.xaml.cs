@@ -18,9 +18,8 @@ namespace Matrix.views.Pedagogy
         private readonly BackgroundWorker Worker = new BackgroundWorker ();
         private List<Matiere> MatieresListBuff = new List<Matiere>();        
         private List<Student> StudentsListBuff = new List<Student> ();
-        private List<DayCoursCards> CoursListBuff = new List<DayCoursCards>();
-        private string CurrentSelected;        
-        private readonly Filiere OpenedFiliere;
+        private List<DayCoursCards> AgendaData = new List<DayCoursCards>();
+        private string CurrentSelected;                
         private readonly Classe OpenedClass;
 
         /// <summary>
@@ -32,9 +31,9 @@ namespace Matrix.views.Pedagogy
             InitializeComponent ();
 
             OpenedClass = App.DataS.GetClasseByID (OpenClassID);
-            OpenedFiliere = App.DataS.GetFiliereByID (OpenedClass.FILIERE_ID);
+                       
             ClassName.Text = OpenedClass.NAME.ToUpper ();
-            ClassFiliere.Text = OpenedFiliere.NAME.ToUpper();
+            ClassFiliere.Text = App.DataS.GetFiliereByID(OpenedClass.FILIERE_ID).NAME.ToUpper();
         }      
   
 
@@ -132,6 +131,11 @@ namespace Matrix.views.Pedagogy
             UpdateData();
         }
 
+        private void AgendaUI_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            AgendaUI.Items.Clear();
+        }
+
         #endregion
 
 
@@ -144,27 +148,26 @@ namespace Matrix.views.Pedagogy
         }
 
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
-        {
+        {            
+            AgendaData = App.ModelS.GetClassWeekAgendaData(OpenedClass.CLASSE_ID, DateTime.Now);
             MatieresListBuff = App.DataS.GetClassMatieres (OpenedClass.CLASSE_ID);            
             StudentsListBuff = App.DataS.GetClassStudents (OpenedClass.CLASSE_ID);
-            CoursListBuff = App.ModelS.GetClassWeekAgendaData (OpenedClass.CLASSE_ID, DateTime.Now);
+            
             Worker.Dispose();
         }
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {
             BusyIndicator.IsBusy = false;
-
-            AgendaUI.ItemsSource = CoursListBuff;
+           
+            AgendaUI.ItemsSource = AgendaData;
             MatieresList.ItemsSource = MatieresListBuff;
             StudentsList.ItemsSource = StudentsListBuff;
+
             Worker.Dispose();
         }
 
         #endregion
 
-       
-
-        
         
     }
 }
