@@ -14,21 +14,23 @@ namespace DataService.ViewModel
         /// </summary>
         /// <param name="CurrentCous">Le Cours</param>
         /// <param name="CoursDay">La Journee De Recurrence</param>
-        public CoursCard ( Cours CurrentCous, DayOfWeek CoursDay )
+        public CoursCard ( Cours CurrentCous, DateTime CoursDay )
         {
             TYPE = CurrentCous.TYPE.ToUpper ();
             COURS_ID = CurrentCous.COURS_ID;           
             
             SALLE = CurrentCous.SALLE.ToUpper();
 
-            COURS_DAY = CoursDay;
+            COURS_DAY = CoursDay.DayOfWeek;
 
             START_TIME = CurrentCous.START_TIME.GetValueOrDefault();
             END_TIME = CurrentCous.END_TIME.GetValueOrDefault();
 
+            FORE_COULEUR = "Black";
+
             HORRAIRE = START_TIME.TimeOfDay.ToString("hh\\:mm") + " - " + END_TIME.TimeOfDay.ToString("hh\\:mm");
 
-            ResolveData ( CurrentCous.MATIERE_ID, CurrentCous.STAFF_ID);
+            ResolveData (CoursDay, CurrentCous.MATIERE_ID, CurrentCous.STAFF_ID);
             
         }
 
@@ -73,6 +75,11 @@ namespace DataService.ViewModel
         public string COULEUR { get; set; }
 
         /// <summary>
+        /// Forecolor
+        /// </summary>
+        public string FORE_COULEUR { get; set; }
+
+        /// <summary>
         /// L'heure ou le cours commencera 
         /// </summary>
         public DateTime START_TIME { get; set; }
@@ -82,7 +89,7 @@ namespace DataService.ViewModel
         /// </summary>
         public DateTime END_TIME { get; set; }
 
-        private void ResolveData ( Guid MatiereID, string StaffID )
+        private void ResolveData (DateTime CoursDay, Guid MatiereID, string StaffID )
         {           
             using(var Db = new EF ())
             {
@@ -93,8 +100,25 @@ namespace DataService.ViewModel
 
                 STAFF_FULL_NAME = Db.STAFF.Find (StaffID).FULL_NAME;
             }
-        }
 
+            if (CoursDay < DateTime.Today)
+            {
+                FORE_COULEUR = "Gray";
+            }
+            else if(CoursDay == DateTime.Today)
+            {
+                if (END_TIME.TimeOfDay < DateTime.Now.TimeOfDay)
+                {                                                            
+                    FORE_COULEUR = "Gray";                    
+                }
+
+                if (START_TIME.TimeOfDay <= DateTime.Now.TimeOfDay && END_TIME.TimeOfDay >= DateTime.Now.TimeOfDay)
+                {
+                    FORE_COULEUR = "Red";
+                }
+            }
+                      
+        }
 
     }
 }

@@ -55,15 +55,29 @@ namespace DataService
             }
         }
 
+        /// <summary>
+        /// Renvoi les informations des cours d'une classe pour une semaine
+        /// </summary>
+        /// <param name="classID">ID de la Classe</param>
+        /// <param name="scheduleDate">Une date de cette Semaine</param>
+        /// <returns></returns>
         public List<DayCoursCards> GetClassWeekAgendaData ( Guid classID, DateTime scheduleDate )
         {
+            scheduleDate = scheduleDate.Date;
+
             var FirstDateOfWeek = scheduleDate.DayOfWeek == DayOfWeek.Sunday ? scheduleDate.AddDays(-6) : scheduleDate.AddDays (-((int)scheduleDate.DayOfWeek - 1));
           
             var ScheduleData = new List<DayCoursCards>();
 
-            for (int i = 0; i <= 6; i++)
+            for (var i = 0; i <= 6; i++)
             {
-                ScheduleData.Add (new DayCoursCards (classID, FirstDateOfWeek.AddDays (i)));
+                var DayCard = new DayCoursCards(classID, FirstDateOfWeek.AddDays(i));
+
+                if (DayCard.DAY_COURS.Any())
+                {
+                    ScheduleData.Add(DayCard);
+                }
+                
             }
  
             return ScheduleData;

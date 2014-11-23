@@ -10,7 +10,6 @@ namespace DataService.ViewModel
     /// </summary>
     public class DayCoursCards
     {
-
         /// <summary>
         /// Retourne les Informations d'une Journee Avec la liste de ses Cours
         /// </summary>
@@ -22,6 +21,8 @@ namespace DataService.ViewModel
 
             DAY_NAME = scheduleDate.DayOfWeek.ToString ().ToUpper ();
 
+            DAY_COULEUR = scheduleDate == DateTime.Today ? "Green" : "#25A0DA";
+
             ResolveData (ClassID, scheduleDate);
 
         }
@@ -31,18 +32,22 @@ namespace DataService.ViewModel
         /// </summary>
         public string DAY_NAME { get; set; }
 
-        //public string DAY_START_TIME { get; set; }
-
-        //public string DAY_END_TIME { get; set; }
-
+        /// <summary>
+        /// La Couleur de la journee
+        /// </summary>
+        public string DAY_COULEUR { get; set; }
+      
         /// <summary>
         /// La Liste des Cours Enseigner Dans la Journee
         /// </summary>
         public List<CoursCard> DAY_COURS { get; set; }
 
-        
+        //public string DAY_START_TIME { get; set; }
+
+        //public string DAY_END_TIME { get; set; }
+
         private void ResolveData ( Guid ClassID, DateTime scheduleDate )
-        {            
+        {
             using(var Db = new EF ())
             {               
                 var MyCours = Db.COURS.Where (C => C.CLASSE_ID == ClassID && C.START_DATE <= scheduleDate && C.END_DATE >= scheduleDate).OrderBy(C => C.START_TIME);
@@ -51,13 +56,14 @@ namespace DataService.ViewModel
                     var DayNum = (int)scheduleDate.DayOfWeek;
 
                     if(CR.RECURRENCE_DAYS.Contains (DayNum.ToString ())) {
-                        DAY_COURS.Add (new CoursCard (CR, scheduleDate.DayOfWeek));
+                        DAY_COURS.Add (new CoursCard (CR, scheduleDate));
                     }                   
-                }
-              
-            } 
-        
+                }              
+            }            
         }
+
+
+
 
     }
 }

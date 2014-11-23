@@ -8,11 +8,19 @@ using FirstFloor.ModernUI.Windows.Controls;
 namespace Matrix.views.Pedagogy
 {
     
+    /// <summary>
+    /// Form pour ajouter un cours
+    /// </summary>
     public partial class AddCours
     {
         private readonly bool IsAdd;
-        private readonly Cours CurrentCours = new Cours();        
+        private readonly Cours CurrentCours = new Cours();
 
+        /// <summary>
+        /// Form pour ajouter un cours
+        /// </summary>
+        /// <param name="CurrentClassID"></param>
+        /// <param name="CoursToOpen"></param>
         public AddCours (Guid CurrentClassID, Cours CoursToOpen = null )
         {
             InitializeComponent ();
@@ -81,8 +89,8 @@ namespace Matrix.views.Pedagogy
             CurrentCours.TYPE = TYPE_.SelectedValue.ToString();
             CurrentCours.START_TIME = DateTime.Parse(START_TIME_.Value.ToString());     
             CurrentCours.END_TIME =DateTime.Parse (END_TIME_.Value.ToString ());       
-            CurrentCours.START_DATE = START_DATE_.SelectedDate.Value;
-            CurrentCours.END_DATE = END_DATE_.SelectedDate.Value;
+            CurrentCours.START_DATE = START_DATE_.SelectedDate.GetValueOrDefault().Date;
+            CurrentCours.END_DATE = END_DATE_.SelectedDate.GetValueOrDefault().Date;
 
             CurrentCours.RECURRENCE_DAYS = "";
             if(LUN_.IsChecked == true) { CurrentCours.RECURRENCE_DAYS = string.Format ("{0} 1 ", CurrentCours.RECURRENCE_DAYS); }
