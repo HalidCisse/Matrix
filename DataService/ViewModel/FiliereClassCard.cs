@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DataService.Context;
 using DataService.Entities;
 using DataService.Model;
@@ -20,23 +21,22 @@ namespace DataService.ViewModel
       
         public string FILIERE_NAME { get; set; }
 
-        public List<ClassCard> CLASS_LIST { get; set; }
-
-
-        #region HELPERS
+        public List<ClassCard> CLASS_LIST { get; set; }      
 
         private void GetCLASS_LIST ( Guid FILIERE_ID )
         {
             using(var Db = new EF ())
-            {                
-                foreach (var CL in Db.CLASSE.Where(C => C.FILIERE_ID == FILIERE_ID))
+            {
+                Parallel.ForEach(Db.CLASSE.Where(C => C.FILIERE_ID == FILIERE_ID), CL =>
                 {
-                    CLASS_LIST.Add (new ClassCard (CL));
-                }
+                    CLASS_LIST.Add(new ClassCard(CL));
+                });
+                
+                CLASS_LIST = CLASS_LIST.OrderBy(C => C.LEVEL).ToList();
             }
         }
        
-        #endregion
+       
 
     }
 }

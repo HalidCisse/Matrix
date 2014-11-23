@@ -728,6 +728,11 @@ namespace DataService
             } 
         }
 
+        /// <summary>
+        /// Renvoi les matieres Enregistrees pour cette classe
+        /// </summary>
+        /// <param name="ClasseID"></param>
+        /// <returns></returns>
         public List<Matiere> GetClassMatieres ( Guid ClasseID )
         {
             using(var Db = new EF ())

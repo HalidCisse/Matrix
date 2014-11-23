@@ -26,7 +26,7 @@ namespace DataService.ViewModel
             START_TIME = CurrentCous.START_TIME.GetValueOrDefault();
             END_TIME = CurrentCous.END_TIME.GetValueOrDefault();
 
-            FORE_COULEUR = "Black";
+            FORE_COLOR = "Black";
 
             HORRAIRE = START_TIME.TimeOfDay.ToString("hh\\:mm") + " - " + END_TIME.TimeOfDay.ToString("hh\\:mm");
 
@@ -77,7 +77,7 @@ namespace DataService.ViewModel
         /// <summary>
         /// Forecolor
         /// </summary>
-        public string FORE_COULEUR { get; set; }
+        public string FORE_COLOR { get; set; }
 
         /// <summary>
         /// L'heure ou le cours commencera 
@@ -103,18 +103,18 @@ namespace DataService.ViewModel
 
             if (CoursDay < DateTime.Today)
             {
-                FORE_COULEUR = "Gray";
+                FORE_COLOR = "Gray";
             }
             else if(CoursDay == DateTime.Today)
             {
                 if (END_TIME.TimeOfDay < DateTime.Now.TimeOfDay)
                 {                                                            
-                    FORE_COULEUR = "Gray";                    
+                    FORE_COLOR = "Gray";                    
                 }
 
                 if (START_TIME.TimeOfDay <= DateTime.Now.TimeOfDay && END_TIME.TimeOfDay >= DateTime.Now.TimeOfDay)
                 {
-                    FORE_COULEUR = "Red";
+                    FORE_COLOR = "Red";
                 }
             }
                       

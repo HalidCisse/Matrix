@@ -21,10 +21,9 @@ namespace DataService.ViewModel
 
             DAY_NAME = scheduleDate.DayOfWeek.ToString ().ToUpper ();
 
-            DAY_COULEUR = scheduleDate == DateTime.Today ? "Green" : "#25A0DA";
+            DAY_COLOR = scheduleDate == DateTime.Today.Date ? "Green" : "#25A0DA";
 
             ResolveData (ClassID, scheduleDate);
-
         }
        
         /// <summary>
@@ -35,7 +34,7 @@ namespace DataService.ViewModel
         /// <summary>
         /// La Couleur de la journee
         /// </summary>
-        public string DAY_COULEUR { get; set; }
+        public string DAY_COLOR { get; set; }
       
         /// <summary>
         /// La Liste des Cours Enseigner Dans la Journee

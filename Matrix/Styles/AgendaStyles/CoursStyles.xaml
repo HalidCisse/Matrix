@@ -35,13 +35,13 @@
                         
                         <Border Background="{Binding COULEUR}" Width="50" Height="50"/> 
                         
-                        <TextBlock Text="{Binding HORRAIRE}" Margin="10,0,10,0" Width="110" Foreground="{Binding FORE_COULEUR}" FontSize="20" FontWeight="ExtraLight"/>
+                        <TextBlock Text="{Binding HORRAIRE}" Margin="10,0,10,0" Width="110" Foreground="{Binding FORE_COLOR}" FontSize="20" FontWeight="ExtraLight"/>
                         
-                        <TextBlock Text="{Binding MATIERE_NAME}" Margin="10,0,10,0" Width="200" Foreground="{Binding FORE_COULEUR}" FontSize="20" FontWeight="Normal" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding MATIERE_NAME}" Margin="10,0,10,0" Width="200" Foreground="{Binding FORE_COLOR}" FontSize="20" FontWeight="Normal" TextWrapping="Wrap"/>
                                                                         
-                        <TextBlock Text="{Binding STAFF_FULL_NAME}" Width="200" Margin="10,0,10,0" Foreground="{Binding FORE_COULEUR}" FontSize="20" FontWeight="Thin" TextWrapping="Wrap" />
+                        <TextBlock Text="{Binding STAFF_FULL_NAME}" Width="200" Margin="10,0,10,0" Foreground="{Binding FORE_COLOR}" FontSize="20" FontWeight="Thin" TextWrapping="Wrap" />
 
-                        <TextBlock Text="{Binding SALLE}" Width="100" Foreground="{Binding FORE_COULEUR}" FontSize="20" FontWeight="ExtraLight" TextWrapping="Wrap" />
+                        <TextBlock Text="{Binding SALLE}" Width="100" Foreground="{Binding FORE_COLOR}" FontSize="20" FontWeight="ExtraLight" TextWrapping="Wrap" />
                                                                       
                     </StackPanel>
                 </Border>
@@ -59,7 +59,7 @@
         <Setter Property="Margin" Value="20" />
         <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Standard"/>        
         <Setter Property="VerticalAlignment" Value="Stretch" />
-        <!--<Setter Property="MaxHeight" Value="350" />-->       
+        <Setter Property="MaxHeight" Value="350" />       
         <Setter Property="ItemsSource" Value="{Binding DAY_COURS}" />
         <Setter Property="SelectedValuePath" Value="COURS_ID" />
 

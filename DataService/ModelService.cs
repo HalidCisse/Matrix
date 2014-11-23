@@ -9,10 +9,16 @@ using DataService.ViewModel;
 
 namespace DataService
 {
+    /// <summary>
+    /// Modelisateur des donnees 
+    /// </summary>
     public class ModelService
     {
-       
-       
+             
+        /// <summary>
+        /// Renvoi la list des departements avec leur employer
+        /// </summary>
+        /// <returns></returns>
         public List<DepStaffCard> GetDepStaffsCard ( )
         {
             var DepStaffCardList = new List<DepStaffCard> { new DepStaffCard ("") };
@@ -23,9 +29,13 @@ namespace DataService
                 DepStaffCardList.Add (new DepStaffCard (Dep));
             });
 
-            return DepStaffCardList;
+            return DepStaffCardList.OrderBy(D => D.DEPARTEMENT_NAME).ToList();
         }
 
+        /// <summary>
+        /// Renvoi les filieres avec leurs classes
+        /// </summary>
+        /// <returns></returns>
         public List<FiliereClassCard> GetFiliereClassCards ( )
         {
             var ClassCardList = new List<FiliereClassCard> ();
@@ -34,12 +44,17 @@ namespace DataService
             Parallel.ForEach(Ds.GetAllFilieres(), Fil =>
             {
                 var FC = new FiliereClassCard(Fil);
-                if(FC.CLASS_LIST.Any ()) { ClassCardList.Add (FC); }                
+                if (FC.CLASS_LIST.Any()){ ClassCardList.Add (FC); }                
             });
-            
-            return ClassCardList;
+                        
+            return ClassCardList.OrderBy(F => F.FILIERE_NAME).ToList();
         }
         
+        /// <summary>
+        /// renvoi la filiere avec ses classes
+        /// </summary>
+        /// <param name="FiliereID"></param>
+        /// <returns></returns>
         public List<ClassCard> GetFiliereClassCards ( Guid FiliereID )
         {                        
             using (var Db = new EF())
@@ -51,7 +66,7 @@ namespace DataService
                         Class_List.Add (new ClassCard (C));
                     });
 
-                return Class_List;
+                return Class_List.OrderBy(C => C.LEVEL).ToList();
             }
         }
 
@@ -63,7 +78,7 @@ namespace DataService
         /// <returns></returns>
         public List<DayCoursCards> GetClassWeekAgendaData ( Guid classID, DateTime scheduleDate )
         {
-            scheduleDate = scheduleDate.Date;
+            scheduleDate = scheduleDate.Date; 
 
             var FirstDateOfWeek = scheduleDate.DayOfWeek == DayOfWeek.Sunday ? scheduleDate.AddDays(-6) : scheduleDate.AddDays (-((int)scheduleDate.DayOfWeek - 1));
           
@@ -76,8 +91,7 @@ namespace DataService
                 if (DayCard.DAY_COURS.Any())
                 {
                     ScheduleData.Add(DayCard);
-                }
-                
+                }                
             }
  
             return ScheduleData;
@@ -87,6 +101,8 @@ namespace DataService
     }
  
 }
+
+
 
 //private readonly DbService DS = new DbService ();
 
