@@ -4,13 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataService.Context;
 using DataService.Entities;
-using DataService.Model;
 
 namespace DataService.ViewModel
 {
+    /// <summary>
+    /// Model d'une filiere et une list de ses classes
+    /// </summary>
     public class FiliereClassCard
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Fil"></param>
         public FiliereClassCard ( Filiere Fil )
         {           
             FILIERE_NAME = Fil.NAME.ToUpper();
@@ -19,8 +25,14 @@ namespace DataService.ViewModel
             GetCLASS_LIST (Fil.FILIERE_ID);           
         }
       
+        /// <summary>
+        /// 
+        /// </summary>
         public string FILIERE_NAME { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public List<ClassCard> CLASS_LIST { get; set; }      
 
         private void GetCLASS_LIST ( Guid FILIERE_ID )

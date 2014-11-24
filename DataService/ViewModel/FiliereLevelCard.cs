@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataService.Context;
-using DataService.Model;
 
 namespace DataService.ViewModel
 {

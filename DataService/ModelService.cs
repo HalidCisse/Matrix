@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataService.Context;
-using DataService.Entities;
-using DataService.Model;
 using DataService.ViewModel;
 
 namespace DataService

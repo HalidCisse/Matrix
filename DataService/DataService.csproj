@@ -127,8 +127,8 @@
       <DependentUpon>201410250248543_kk.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Model\ClassCard.cs" />
-    <Compile Include="Model\MatiereCard.cs" />
+    <Compile Include="ViewModel\ClassCard.cs" />
+    <Compile Include="ViewModel\MatiereCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DbService.cs" />
     <Compile Include="Utils\ListExtention.cs" />

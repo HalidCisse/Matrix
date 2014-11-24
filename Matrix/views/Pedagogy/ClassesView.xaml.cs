@@ -6,12 +6,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using DataService.Model;
-using Matrix.views.Pedagogy;
+using DataService.ViewModel;
 
-namespace Matrix.views
+namespace Matrix.views.Pedagogy
 {
 
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class ClassesView 
     {
 
@@ -21,6 +23,10 @@ namespace Matrix.views
         //private string CurrentSelected;
         private bool isFirstTime = true;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="OpenFiliere"></param>
         public ClassesView (Guid OpenFiliere)
         {
             InitializeComponent ();
@@ -69,15 +75,15 @@ namespace Matrix.views
             UpdateClass ();
         }
        
-        private void Expander_Expanded ( object sender, RoutedEventArgs e )
-        {
-            var E = sender as Expander;
+        //private void Expander_Expanded ( object sender, RoutedEventArgs e )
+        //{
+        //    var E = sender as Expander;
 
-            foreach(var Ep in FindVisualChildren<Expander> (this).Where (Ep => E != null && Ep.Header.ToString () != E.Header.ToString ()))
-            {
-                Ep.IsExpanded = false;
-            }
-        }
+        //    foreach(var Ep in FindVisualChildren<Expander> (this).Where (Ep => E != null && Ep.Header.ToString () != E.Header.ToString ()))
+        //    {
+        //        Ep.IsExpanded = false;
+        //    }
+        //}
 
         private void ClassList_Loaded ( object sender, RoutedEventArgs e )
         {
@@ -97,12 +103,10 @@ namespace Matrix.views
         private void ClassList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {
             var list = sender as ListBox;
-            if(list == null) return;
-            if(list.SelectedValue == null) return;
+            if(list?.SelectedValue == null) return;
 
             var navigationService = NavigationService;
-            if(navigationService != null)
-                navigationService.Navigate (new ClassDetails (new Guid (list.SelectedValue.ToString())));             
+            navigationService?.Navigate (new ClassDetails (new Guid (list.SelectedValue.ToString())));
         }
 
         private void ClassList_SelectionChanged ( object sender, SelectionChangedEventArgs e )
