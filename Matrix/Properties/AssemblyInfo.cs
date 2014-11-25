@@ -9,10 +9,10 @@ using System.Windows;
 [assembly: AssemblyTitle ("Matrix")]
 [assembly: AssemblyDescription ("Gestion Ecole")]
 [assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("Matrix Software Service")]
+[assembly: AssemblyCompany ("Matrix Software")]
 [assembly: AssemblyProduct ("Matrix")]
 [assembly: AssemblyCopyright ("Copyright ©  2014 Halidou Cisse")]
-[assembly: AssemblyTrademark ("Campus")]
+[assembly: AssemblyTrademark ("Matrix Soft")]
 [assembly: AssemblyCulture ("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

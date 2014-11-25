@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using DataService.Entities;
 using DataService.ViewModel;
+using Matrix.Controls;
 
 namespace Matrix.views.Pedagogy
 {
@@ -34,6 +36,7 @@ namespace Matrix.views.Pedagogy
                        
             ClassName.Text = OpenedClass.NAME.ToUpper ();
             ClassFiliere.Text = App.DataS.GetFiliereByID(OpenedClass.FILIERE_ID).NAME.ToUpper();
+           
         }      
   
 
@@ -145,6 +148,9 @@ namespace Matrix.views.Pedagogy
         {
             if(Worker.IsBusy) return;
             Worker.RunWorkerAsync ();
+            //var schedule = FindName("ClassWeekSchedule") as ScheduleWeek;
+            //schedule?.UpdateData(OpenedClass.CLASSE_ID);
+            ClassWeekSchedule.UpdateData(OpenedClass.CLASSE_ID);
         }
 
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
@@ -160,9 +166,9 @@ namespace Matrix.views.Pedagogy
             BusyIndicator.IsBusy = false;
            
             AgendaUI.ItemsSource = AgendaData;
-            MatieresList.ItemsSource = MatieresListBuff;
-            StudentsList.ItemsSource = StudentsListBuff;
-
+            //MatieresList.ItemsSource = MatieresListBuff;
+            //StudentsList.ItemsSource = StudentsListBuff;
+            //WeekSchedule.AgendaData = AgendaData;
             Worker.Dispose();
         }
 

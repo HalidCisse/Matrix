@@ -36,8 +36,8 @@ namespace DataService.ViewModel
                 foreach (var MC in Db.COURS.Where(C => C.MATIERE_ID == Mat.MATIERE_ID))
                 {
                     if (MC.RECURRENCE_DAYS.Contains("1"))
-                    {
-                        T.Add(MC.END_TIME - MC.START_TIME);
+                    {                       
+                        T.Add((MC.END_TIME - MC.START_TIME).Value);
 
                     }
                 }

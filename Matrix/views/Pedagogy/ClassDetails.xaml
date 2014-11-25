@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:controls="clr-namespace:Matrix.Controls"
       mc:Ignorable="d" KeepAlive="True" Loaded="Page_Loaded"
       d:DesignHeight="550" d:DesignWidth="1500">
 
@@ -32,8 +33,7 @@
         </ContextMenu>
         
     </Page.Resources>
-    
-    
+        
     <DockPanel>
         <ToolBar Style="{StaticResource ToolBarStyle}" DockPanel.Dock="Top">
             <Grid HorizontalAlignment="Stretch">
@@ -66,8 +66,9 @@
         </StackPanel>
                      
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-            <StackPanel Orientation="Horizontal" >
-                <DockPanel Width="950" Margin="10" >
+            <StackPanel Orientation="Horizontal">
+            
+                <DockPanel Width="950" Margin="10,0" >
                     
                     <Border DockPanel.Dock="Top" Height="30" Background="#25A0DA" Effect="{StaticResource z-depth3}">
                         <TextBlock Text="EMPLOI DU TEMPS" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
@@ -90,7 +91,20 @@
                     </Border>
                     
                 </DockPanel>
+                
+                <controls:ScheduleWeek x:Name="ClassWeekSchedule"/>
+               
+                <!--<DockPanel Width="950" Margin="10" >
+                    <Border DockPanel.Dock="Top" Height="30" Background="#25A0DA" Effect="{StaticResource z-depth3}">
+                        <TextBlock Text="ETUDIANTS" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
+                    </Border>
+                    
+                    <Border BorderThickness="2,0,2,2" BorderBrush="#25A0DA" Effect="{StaticResource z-depth3}">
+                        <ListBox Name="StudentsList" Style="{DynamicResource MatiereStyle}" Margin="10" MouseDoubleClick="StudentsList_MouseDoubleClick"/>
 
+                    </Border>
+
+                </DockPanel>
                 
                 <DockPanel Width="950" Margin="10" >
                     <Border DockPanel.Dock="Top" Height="30" Background="#25A0DA" Effect="{StaticResource z-depth3}">
@@ -102,14 +116,8 @@
 
                     </Border>
 
-                </DockPanel>
-
-                
-                <GroupBox Header="ETUDIANTS" Style="{StaticResource GroupBoxStyle}" >
-                    <ListBox Name="StudentsList" Style="{DynamicResource MatiereListBoxStyle}" Margin="10" MouseDoubleClick="StudentsList_MouseDoubleClick"/>
-
-                </GroupBox>
-   
+                </DockPanel>-->
+                               
             </StackPanel>
         </ScrollViewer>
 
