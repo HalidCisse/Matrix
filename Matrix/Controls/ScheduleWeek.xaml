@@ -13,7 +13,7 @@
         </Border>
 
         <Border BorderThickness="2,0,2,2" BorderBrush="#25A0DA" Effect="{StaticResource z-depth3}">
-            <ListBox Name="AgendaUI" ItemsSource="{Binding AgendaData, Mode=TwoWay}" Style="{DynamicResource DayListStyle}" Margin="10,15,10,10" Loaded="AgendaUI_OnLoaded">
+            <ListBox Name="ScheduleUI" Style="{DynamicResource DayListStyle}" Margin="10,15,10,10">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border Background="{Binding DAY_COLOR}" Margin="0,5" CornerRadius="5" Effect="{StaticResource z-depth2}">

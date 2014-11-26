@@ -36,7 +36,7 @@ namespace Matrix.views.Pedagogy
                        
             ClassName.Text = OpenedClass.NAME.ToUpper ();
             ClassFiliere.Text = App.DataS.GetFiliereByID(OpenedClass.FILIERE_ID).NAME.ToUpper();
-           
+            
         }      
   
 
@@ -44,10 +44,23 @@ namespace Matrix.views.Pedagogy
 
         private void Page_Loaded ( object sender, RoutedEventArgs e )
         {
+            AgendaUI.Items.Clear();
+            ClassWeekSchedule.SelectionChanged += ClassWeekSchedule_SelectionChanged;
             Worker.DoWork += Worker_DoWork;
             Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             BusyIndicator.IsBusy = true;
             UpdateData ();
+            
+        }
+
+        private void ClassWeekSchedule_SelectionChanged(object sender, EventArgs e)
+        {
+            var List = sender as ListBox;
+
+            if (List?.SelectedValue == null) return;
+
+            CurrentSelected = List.SelectedValue.ToString();
+            MessageBox.Show(List.SelectedValue.ToString());
         }
 
         private void AddButon_Click ( object sender, RoutedEventArgs e )
@@ -58,6 +71,7 @@ namespace Matrix.views.Pedagogy
             //UpdateData ();
 
             var cm = FindResource ("AddContext") as ContextMenu;
+            if (cm == null) return;
             cm.PlacementTarget = sender as Button;
             cm.IsOpen = true;
         }
@@ -122,6 +136,8 @@ namespace Matrix.views.Pedagogy
             if (List?.SelectedValue == null) return;
 
             CurrentSelected = List.SelectedValue.ToString();
+
+            MessageBox.Show("1 ere => " +List.SelectedValue.ToString());
         }
 
         private void DayCoursList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -136,7 +152,7 @@ namespace Matrix.views.Pedagogy
 
         private void AgendaUI_OnLoaded(object sender, RoutedEventArgs e)
         {
-            AgendaUI.Items.Clear();
+            //AgendaUI.Items.Clear();
         }
 
         #endregion
@@ -145,35 +161,37 @@ namespace Matrix.views.Pedagogy
         #region BACKGROUND WORKER
 
         private void UpdateData ( )
-        {
-            if(Worker.IsBusy) return;
-            Worker.RunWorkerAsync ();
-            //var schedule = FindName("ClassWeekSchedule") as ScheduleWeek;
-            //schedule?.UpdateData(OpenedClass.CLASSE_ID);
-            ClassWeekSchedule.UpdateData(OpenedClass.CLASSE_ID);
+        {           
+            if (Worker.IsBusy) { Worker.CancelAsync();};
+            Worker.RunWorkerAsync ();           
         }
 
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
-        {            
+        {
+            ClassWeekSchedule.UpdateData(OpenedClass.CLASSE_ID);
             AgendaData = App.ModelS.GetClassWeekAgendaData(OpenedClass.CLASSE_ID, DateTime.Now);
-            MatieresListBuff = App.DataS.GetClassMatieres (OpenedClass.CLASSE_ID);            
-            StudentsListBuff = App.DataS.GetClassStudents (OpenedClass.CLASSE_ID);
+            //MatieresListBuff = App.DataS.GetClassMatieres (OpenedClass.CLASSE_ID);            
+            //StudentsListBuff = App.DataS.GetClassStudents (OpenedClass.CLASSE_ID);
             
             Worker.Dispose();
         }
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {
             BusyIndicator.IsBusy = false;
-           
+            
             AgendaUI.ItemsSource = AgendaData;
+            //ClassWeekSchedule.AgendaData = AgendaData;
             //MatieresList.ItemsSource = MatieresListBuff;
             //StudentsList.ItemsSource = StudentsListBuff;
-            //WeekSchedule.AgendaData = AgendaData;
+            //ClassWeekSchedule.AgendaData = AgendaData;
             Worker.Dispose();
         }
 
         #endregion
 
-        
+        private void ClassWeekSchedule_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            //
+        }
     }
 }

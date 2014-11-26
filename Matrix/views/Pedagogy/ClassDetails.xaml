@@ -92,7 +92,7 @@
                     
                 </DockPanel>
                 
-                <controls:ScheduleWeek x:Name="ClassWeekSchedule"/>
+                <controls:ScheduleWeek x:Name="ClassWeekSchedule" Loaded="ClassWeekSchedule_OnLoaded"/>
                
                 <!--<DockPanel Width="950" Margin="10" >
                     <Border DockPanel.Dock="Top" Height="30" Background="#25A0DA" Effect="{StaticResource z-depth3}">

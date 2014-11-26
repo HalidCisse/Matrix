@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 using DataService.ViewModel;
 using Matrix.views.Pedagogy;
 
@@ -20,46 +21,37 @@ namespace Matrix.Controls
         /// <summary>
         /// Les donnees de l'Agenda
         /// </summary>
-        public List<DayCoursCards> AgendaData
-        {
-            get;
-            set;
-        } = new List<DayCoursCards>();
-        private readonly BackgroundWorker Worker = new BackgroundWorker();
+        private List<DayCoursCards> AgendaData{get; set; } = new List<DayCoursCards>();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event EventHandler SelectionChanged;
+
         /// <summary>
         /// ID de la classe
         /// </summary>
-        private Guid ClassID;
+        public Guid ClassID;
         
         #endregion
 
 
         /// <summary>
-        /// Affiche l'emploi du temps d'une classe pour une semaine
+        /// UI Emploi du temps d'une classe en une semaine
         /// </summary>
         public ScheduleWeek()
         {                    
             InitializeComponent();
-
-            DataContext = AgendaData;
+                        
         }
-
         
 
         #region EVENTS HANDLER
-
-
-        private void AgendaUI_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            //AgendaUI.Items.Clear();
-        }
-
+       
         private void ScheduleWeek_OnLoaded(object sender, RoutedEventArgs e)
         {
-            Worker.DoWork += Worker_DoWork;
-            Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-            //AgendaUI.Items.Clear();
-            UpdateData(ClassID);
+            BWorker.DoWork += BWorkerDoWork;
+            //BWorker.RunWorkerCompleted += BWorkerRunBWorkerCompleted;                       
         }
 
         private void DayCoursList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -74,14 +66,15 @@ namespace Matrix.Controls
        
         private void DayCoursList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            SelectionChanged?.Invoke(this, e);
         }
-
 
         #endregion
 
 
         #region BACKGROUND WORKER
+
+        private readonly BackgroundWorker BWorker = new BackgroundWorker();
 
         /// <summary>
         /// Mettre a jour les information de l'emploi du temps
@@ -90,22 +83,19 @@ namespace Matrix.Controls
         public void UpdateData(Guid Class_ID)
         {
             ClassID = Class_ID;
-            if (Worker.IsBusy) return;
-            Worker.RunWorkerAsync();
+            if (BWorker.IsBusy) { BWorker.CancelAsync(); }            
+            BWorker.RunWorkerAsync();
         }
-        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        private void BWorkerDoWork(object sender, DoWorkEventArgs e)
         {
-            AgendaData = App.ModelS.GetClassWeekAgendaData(ClassID, DateTime.Now);            
-            Worker.Dispose();
+            AgendaData = App.ModelS.GetClassWeekAgendaData(ClassID, DateTime.Now);
+            Dispatcher.BeginInvoke(new Action(() => { ScheduleUI.ItemsSource = AgendaData; }));
+            BWorker.Dispose();
         }
-        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {           
-            AgendaUI.ItemsSource = AgendaData;          
-            Worker.Dispose();
-        }
+       
 
         #endregion
 
-        
+
     }
 }
