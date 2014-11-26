@@ -67,34 +67,10 @@
                      
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
             <StackPanel Orientation="Horizontal">
-            
-                <DockPanel Width="950" Margin="10,0" >
-                    
-                    <Border DockPanel.Dock="Top" Height="30" Background="#25A0DA" Effect="{StaticResource z-depth3}">
-                        <TextBlock Text="EMPLOI DU TEMPS" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
-                    </Border>
-
-                    <Border BorderThickness="2,0,2,2" BorderBrush="#25A0DA" Effect="{StaticResource z-depth3}">                       
-                        <ListBox Name="AgendaUI" Style="{DynamicResource DayListStyle}" Margin="10,15,10,10" Loaded="AgendaUI_OnLoaded">                              
-                            <xctk:BusyIndicator Name="BusyIndicator" DockPanel.Dock="Top" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Border Background="{Binding DAY_COLOR}" Margin="0,5" CornerRadius="5" Effect="{StaticResource z-depth2}">
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding DAY_NAME}" Width="120" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="White" FontWeight="Thin" FontFamily="League Gothic"/>
-                                            <ListBox Name="DayCoursList" Style="{DynamicResource CoursListStyle}" Margin="10,10,0,0" MouseDoubleClick="DayCoursList_MouseDoubleClick" SelectionChanged="DayCoursList_SelectionChanged"/>
-                                        </StackPanel>
-                                    </Border>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>                                
-                        </ListBox>                        
-                    </Border>
-                    
-                </DockPanel>
-                
-                <controls:ScheduleWeek x:Name="ClassWeekSchedule" Loaded="ClassWeekSchedule_OnLoaded"/>
+                                           
+                <controls:ScheduleWeek x:Name="ClassWeekSchedule" Margin="10,5" SelectionChanged="ClassWeekSchedule_OnSelectionChanged"/>
                
-                <!--<DockPanel Width="950" Margin="10" >
+                <DockPanel Width="950" Margin="10,5" >
                     <Border DockPanel.Dock="Top" Height="30" Background="#25A0DA" Effect="{StaticResource z-depth3}">
                         <TextBlock Text="ETUDIANTS" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
                     </Border>
@@ -103,20 +79,17 @@
                         <ListBox Name="StudentsList" Style="{DynamicResource MatiereStyle}" Margin="10" MouseDoubleClick="StudentsList_MouseDoubleClick"/>
 
                     </Border>
-
                 </DockPanel>
                 
-                <DockPanel Width="950" Margin="10" >
+                <DockPanel Width="950" Margin="10,5" >
                     <Border DockPanel.Dock="Top" Height="30" Background="#25A0DA" Effect="{StaticResource z-depth3}">
                         <TextBlock Text="MATIERES" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
                     </Border>
                     
                     <Border BorderThickness="2,0,2,2" BorderBrush="#25A0DA" Effect="{StaticResource z-depth3}">
                         <ListBox Name="MatieresList" Style="{DynamicResource MatiereStyle}" Margin="10" MouseDoubleClick="MatieresList_MouseDoubleClick"/>
-
                     </Border>
-
-                </DockPanel>-->
+                </DockPanel>
                                
             </StackPanel>
         </ScrollViewer>

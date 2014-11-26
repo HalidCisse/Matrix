@@ -17,10 +17,7 @@ namespace Matrix.views.Pedagogy
     /// </summary>
     public partial class ClassDetails
     {
-        private readonly BackgroundWorker Worker = new BackgroundWorker ();
-        private List<Matiere> MatieresListBuff = new List<Matiere>();        
-        private List<Student> StudentsListBuff = new List<Student> ();
-        private List<DayCoursCards> AgendaData = new List<DayCoursCards>();
+        private readonly BackgroundWorker Worker = new BackgroundWorker ();        
         private string CurrentSelected;                
         private readonly Classe OpenedClass;
 
@@ -43,24 +40,15 @@ namespace Matrix.views.Pedagogy
         #region EVENT HANDLERS
 
         private void Page_Loaded ( object sender, RoutedEventArgs e )
-        {
-            AgendaUI.Items.Clear();
-            ClassWeekSchedule.SelectionChanged += ClassWeekSchedule_SelectionChanged;
-            Worker.DoWork += Worker_DoWork;
-            Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-            BusyIndicator.IsBusy = true;
-            UpdateData ();
-            
+        {                       
+            Worker.DoWork += Worker_DoWork;           
+            UpdateData ();            
         }
 
-        private void ClassWeekSchedule_SelectionChanged(object sender, EventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            var List = sender as ListBox;
-
-            if (List?.SelectedValue == null) return;
-
-            CurrentSelected = List.SelectedValue.ToString();
-            MessageBox.Show(List.SelectedValue.ToString());
+            var navigationService = NavigationService;
+            navigationService?.Navigate(new PedagogyView());
         }
 
         private void AddButon_Click ( object sender, RoutedEventArgs e )
@@ -74,6 +62,20 @@ namespace Matrix.views.Pedagogy
             if (cm == null) return;
             cm.PlacementTarget = sender as Button;
             cm.IsOpen = true;
+        }
+
+        private void AddCours_Click(object sender, RoutedEventArgs e)
+        {
+            var wind = new AddCours(OpenedClass.CLASSE_ID) { Owner = Window.GetWindow(this) };
+            wind.ShowDialog();
+            UpdateData();
+        }
+
+        private void AddMatiere_Click(object sender, RoutedEventArgs e)
+        {
+            var wind = new AddMatiere(OpenedClass.CLASSE_ID) { Owner = Window.GetWindow(this) };
+            wind.ShowDialog();
+            UpdateData();
         }
 
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )
@@ -92,7 +94,13 @@ namespace Matrix.views.Pedagogy
             //MessageBox.Show (App.Db.DeleteMatiere (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
             //UpdateMatieres ();
         }
-        
+
+        private void ClassWeekSchedule_OnSelectionChanged(object sender, EventArgs e)
+        {
+            var ID = sender as string;
+            CurrentSelected = ID;
+        }
+
         private void MatieresList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {
             var Matieres = sender as ListBox;
@@ -102,58 +110,17 @@ namespace Matrix.views.Pedagogy
             var wind = new AddMatiere (OpenedClass.CLASSE_ID, MatiereToDisplay) { Owner = Window.GetWindow (this) };
             wind.ShowDialog ();
             UpdateData ();
-        }
-
-        private void BackButton_Click ( object sender, RoutedEventArgs e )
-        {
-            var navigationService = NavigationService;
-            navigationService?.Navigate (new PedagogyView ());
-        }
+        }        
         
         private void StudentsList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {
 
         }     
         
-        private void AddCours_Click ( object sender, RoutedEventArgs e )
-        {
-            var wind = new AddCours (OpenedClass.CLASSE_ID) { Owner = Window.GetWindow (this) };
-            wind.ShowDialog ();
-            UpdateData ();
-        }
+        
+       
+       
 
-        private void AddMatiere_Click ( object sender, RoutedEventArgs e )
-        {
-            var wind = new AddMatiere (OpenedClass.CLASSE_ID) { Owner = Window.GetWindow (this) };
-            wind.ShowDialog ();
-            UpdateData ();
-        }
-
-        private void DayCoursList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var List = sender as ListBox;
-
-            if (List?.SelectedValue == null) return;
-
-            CurrentSelected = List.SelectedValue.ToString();
-
-            MessageBox.Show("1 ere => " +List.SelectedValue.ToString());
-        }
-
-        private void DayCoursList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var list = sender as ListBox;
-            if (list?.SelectedValue == null) return;
-
-            var wind = new AddCours(OpenedClass.CLASSE_ID, App.DataS.GetCoursByID(new Guid(list.SelectedValue.ToString()))) { Owner = Window.GetWindow(this) };
-            wind.ShowDialog();
-            UpdateData();
-        }
-
-        private void AgendaUI_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            //AgendaUI.Items.Clear();
-        }
 
         #endregion
 
@@ -162,36 +129,24 @@ namespace Matrix.views.Pedagogy
 
         private void UpdateData ( )
         {           
-            if (Worker.IsBusy) { Worker.CancelAsync();};
-            Worker.RunWorkerAsync ();           
+            if (Worker.IsBusy) { Worker.CancelAsync();}
+            Dispatcher.BeginInvoke(new Action(() => { ClassWeekSchedule.UpdateData(OpenedClass.CLASSE_ID); }));
+            Worker.RunWorkerAsync ();            
         }
 
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
-        {
-            ClassWeekSchedule.UpdateData(OpenedClass.CLASSE_ID);
-            AgendaData = App.ModelS.GetClassWeekAgendaData(OpenedClass.CLASSE_ID, DateTime.Now);
-            //MatieresListBuff = App.DataS.GetClassMatieres (OpenedClass.CLASSE_ID);            
-            //StudentsListBuff = App.DataS.GetClassStudents (OpenedClass.CLASSE_ID);
-            
+        {                       
+            Dispatcher.BeginInvoke(new Action(() => { MatieresList.ItemsSource = App.DataS.GetClassMatieres(OpenedClass.CLASSE_ID); }));
+            Dispatcher.BeginInvoke(new Action(() => { StudentsList.ItemsSource = App.DataS.GetClassStudents(OpenedClass.CLASSE_ID); }));
+
             Worker.Dispose();
         }
-        private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
-        {
-            BusyIndicator.IsBusy = false;
-            
-            AgendaUI.ItemsSource = AgendaData;
-            //ClassWeekSchedule.AgendaData = AgendaData;
-            //MatieresList.ItemsSource = MatieresListBuff;
-            //StudentsList.ItemsSource = StudentsListBuff;
-            //ClassWeekSchedule.AgendaData = AgendaData;
-            Worker.Dispose();
-        }
+        
 
         #endregion
 
-        private void ClassWeekSchedule_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            //
-        }
+      
+
+        
     }
 }

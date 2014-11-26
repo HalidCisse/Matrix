@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Threading;
-using DataService.ViewModel;
 using Matrix.views.Pedagogy;
 
 namespace Matrix.Controls
@@ -17,21 +14,16 @@ namespace Matrix.Controls
     {
 
         #region FIELDS
-
+        
         /// <summary>
-        /// Les donnees de l'Agenda
-        /// </summary>
-        private List<DayCoursCards> AgendaData{get; set; } = new List<DayCoursCards>();
-
-        /// <summary>
-        /// 
+        /// Quand on click sur une un cours e = ID
         /// </summary>
         public event EventHandler SelectionChanged;
 
         /// <summary>
         /// ID de la classe
         /// </summary>
-        public Guid ClassID;
+        private Guid ClassID;
         
         #endregion
 
@@ -42,18 +34,12 @@ namespace Matrix.Controls
         public ScheduleWeek()
         {                    
             InitializeComponent();
-                        
+            BWorker.DoWork += BWorkerDoWork;
         }
         
 
         #region EVENTS HANDLER
-       
-        private void ScheduleWeek_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            BWorker.DoWork += BWorkerDoWork;
-            //BWorker.RunWorkerCompleted += BWorkerRunBWorkerCompleted;                       
-        }
-
+              
         private void DayCoursList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var list = sender as ListBox;
@@ -66,7 +52,10 @@ namespace Matrix.Controls
        
         private void DayCoursList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectionChanged?.Invoke(this, e);
+            var list = sender as ListBox;
+            if (list?.SelectedValue == null) return;
+
+            SelectionChanged?.Invoke(list.SelectedValue.ToString(), e);
         }
 
         #endregion
@@ -87,13 +76,11 @@ namespace Matrix.Controls
             BWorker.RunWorkerAsync();
         }
         private void BWorkerDoWork(object sender, DoWorkEventArgs e)
-        {
-            AgendaData = App.ModelS.GetClassWeekAgendaData(ClassID, DateTime.Now);
-            Dispatcher.BeginInvoke(new Action(() => { ScheduleUI.ItemsSource = AgendaData; }));
+        {           
+            Dispatcher.BeginInvoke(new Action(() => { ScheduleUI.ItemsSource = App.ModelS.GetClassWeekAgendaData(ClassID, DateTime.Now); }));
             BWorker.Dispose();
         }
        
-
         #endregion
 
 
