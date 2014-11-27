@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using DataService.Context;
 using DataService.Entities;
@@ -19,35 +21,33 @@ namespace DataService.ViewModel
             MATIERE_ID = Mat.MATIERE_ID;
             NAME = Mat.NAME;
             COEFF = Mat.COEFFICIENT;
-
+            COLOR = Mat.COULEUR;
 
             using (var Db = new EF())
             {
                 var S_ID = Db.COURS.First (C => C.MATIERE_ID == Mat.MATIERE_ID).STAFF_ID;
 
-                INSTRUCTEUR_NAME = Db.STAFF?.Find(S_ID).FULL_NAME;
+                INSTRUCTEUR_NAME = Db.STAFF?.Find(S_ID).FULL_NAME; //--------
 
-                INSTRUCTEUR_PHOTO = Db.STAFF?.Find(S_ID).PHOTO_IDENTITY;
+                INSTRUCTEUR_PHOTO = Db.STAFF?.Find(S_ID).PHOTO_IDENTITY; //------
 
-                HEURES_PAR_SEMAINE = "";
-
-                var T = new DateTime();
+                var WeekDays = new List<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday };
+                var T = new TimeSpan(0,0,0);
 
                 foreach (var MC in Db.COURS.Where(C => C.MATIERE_ID == Mat.MATIERE_ID))
-                {
-                    if (MC.RECURRENCE_DAYS.Contains("1"))
-                    {                       
-                        T.Add((MC.END_TIME - MC.START_TIME).Value);
+                {                                       
+                    foreach (var D in WeekDays)
+                    {
+                        var DayNum = (int)D;
 
+                        if (MC.RECURRENCE_DAYS.Contains(DayNum.ToString()))
+                        {
+                            T = T.Add((MC.END_TIME - MC.START_TIME).Value);
+                        }
                     }
-                }
-                
-
-
-
+                    HEURES_PAR_SEMAINE = T.TotalHours.ToString(CultureInfo.InvariantCulture); //------
+                }                
             }  
-
-
         }
 
         /// <summary>
@@ -66,6 +66,11 @@ namespace DataService.ViewModel
         public int COEFF { get; }
 
         /// <summary>
+        /// Nomination
+        /// </summary>
+        public string COLOR { get; }
+
+        /// <summary>
         /// Heures par semaine
         /// </summary>
         public string HEURES_PAR_SEMAINE { get; }
@@ -81,34 +86,6 @@ namespace DataService.ViewModel
         public byte[] INSTRUCTEUR_PHOTO { get; set; }
 
 
-        #region Helpers
-
-        //public string GetINSTRUCTEUR_NAME ( )
-        //{
-        //    using(var Db = new EF ())
-        //    {
-        //        var S_ID = Db.COURS.First (C => C.MATIERE_ID == MATIERE_ID).STAFF_ID;
-        //        return Db.STAFF != null ? Db.STAFF.Find(S_ID).FULL_NAME : null;
-        //    }            
-        //}
-
-
-        //public string GetHEURE_PAR_SEMAINE ( Guid FiliereID, int FiliereLevel )
-        //{
-        //    using(var Db = new EF ())
-        //    {
-        //        return Db.MATIERE.Find (FiliereID + MATIERE_ID + FiliereLevel).HEURE_PAR_SEMAINE;
-        //    }
-        //}
-
-        //public int GetINSTRUCTEURS_COUNT ()
-        //{
-        //    using(var Db = new EF ())
-        //    {
-        //        return Db.MATIERES_INSTRUCTEURS.Count (M => M.MATIERE_ID == MATIERE_ID);
-        //    }
-        //}
-
-        #endregion
+       
     }
 }

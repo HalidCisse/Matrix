@@ -145,8 +145,6 @@ namespace Matrix.views.Pedagogy
 
         #endregion
 
-      
-
         
     }
 }

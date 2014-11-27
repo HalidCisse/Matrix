@@ -23,7 +23,20 @@ namespace DataService.ViewModel
 
             DAY_COLOR = scheduleDate == DateTime.Today.Date ? "Green" : "#25A0DA";
 
-            ResolveData (ClassID, scheduleDate);
+            using (var Db = new EF())
+            {
+                var MyCours = Db.COURS.Where(C => C.CLASSE_ID == ClassID && C.START_DATE <= scheduleDate && C.END_DATE >= scheduleDate).OrderBy(C => C.START_TIME);
+
+                foreach (var CR in MyCours)
+                {
+                    var DayNum = (int)scheduleDate.DayOfWeek;
+
+                    if (CR.RECURRENCE_DAYS.Contains(DayNum.ToString()))
+                    {
+                        DAY_COURS.Add(new CoursCard(CR, scheduleDate));
+                    }
+                }
+            }
         }
        
         /// <summary>
@@ -45,21 +58,21 @@ namespace DataService.ViewModel
 
         //public string DAY_END_TIME { get; set; }
 
-        private void ResolveData ( Guid ClassID, DateTime scheduleDate )
-        {
-            using(var Db = new EF ())
-            {               
-                var MyCours = Db.COURS.Where (C => C.CLASSE_ID == ClassID && C.START_DATE <= scheduleDate && C.END_DATE >= scheduleDate).OrderBy(C => C.START_TIME);
+        //private void ResolveData ( Guid ClassID, DateTime scheduleDate )
+        //{
+        //    using(var Db = new EF ())
+        //    {               
+        //        var MyCours = Db.COURS.Where (C => C.CLASSE_ID == ClassID && C.START_DATE <= scheduleDate && C.END_DATE >= scheduleDate).OrderBy(C => C.START_TIME);
     
-                foreach(var CR in MyCours) {                    
-                    var DayNum = (int)scheduleDate.DayOfWeek;
+        //        foreach(var CR in MyCours) {                    
+        //            var DayNum = (int)scheduleDate.DayOfWeek;
 
-                    if(CR.RECURRENCE_DAYS.Contains (DayNum.ToString ())) {
-                        DAY_COURS.Add (new CoursCard (CR, scheduleDate));
-                    }                   
-                }              
-            }            
-        }
+        //            if(CR.RECURRENCE_DAYS.Contains (DayNum.ToString ())) {
+        //                DAY_COURS.Add (new CoursCard (CR, scheduleDate));
+        //            }                   
+        //        }              
+        //    }            
+        //}
 
 
 

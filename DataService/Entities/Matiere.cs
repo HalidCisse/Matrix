@@ -26,10 +26,12 @@ namespace DataService.Entities
         /// La classe de cette Matiere
         /// </summary>
         public Guid CLASSE_ID { get; set; }
-         
+
         //public Guid FILIERE_ID { get; set; }
 
         //public int FILIERE_LEVEL { get; set; }
+
+        //todo: Mass Horaire Matiere
 
         //public string HEURE_PAR_SEMAINE { get; set; }
 
