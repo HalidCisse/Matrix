@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 using DataService.Entities;
-using DataService.ViewModel;
-using Matrix.Controls;
 
 namespace Matrix.views.Pedagogy
 {
@@ -17,7 +13,7 @@ namespace Matrix.views.Pedagogy
     /// </summary>
     public partial class ClassDetails
     {
-        private readonly BackgroundWorker Worker = new BackgroundWorker ();        
+        //private readonly BackgroundWorker Worker = new BackgroundWorker ();        
         private string CurrentSelected;                
         private readonly Classe OpenedClass;
 
@@ -41,7 +37,7 @@ namespace Matrix.views.Pedagogy
 
         private void Page_Loaded ( object sender, RoutedEventArgs e )
         {                       
-            Worker.DoWork += Worker_DoWork;           
+            //Worker.DoWork += Worker_DoWork;           
             UpdateData ();            
         }
 
@@ -129,18 +125,19 @@ namespace Matrix.views.Pedagogy
 
         private void UpdateData ( )
         {           
-            if (Worker.IsBusy) { Worker.CancelAsync();}
+            //if (Worker.IsBusy) { Worker.CancelAsync();}
             Dispatcher.BeginInvoke(new Action(() => { ClassWeekSchedule.UpdateData(OpenedClass.CLASSE_ID); }));
-            Worker.RunWorkerAsync ();            
-        }
-
-        private void Worker_DoWork ( object sender, DoWorkEventArgs e )
-        {                       
-            Dispatcher.BeginInvoke(new Action(() => { MatieresList.ItemsSource = App.DataS.GetClassMatieres(OpenedClass.CLASSE_ID); }));
+            Dispatcher.BeginInvoke(new Action(() => { MatieresList.ItemsSource = App.ModelS.GetClassMatieresCards(OpenedClass.CLASSE_ID); }));
             Dispatcher.BeginInvoke(new Action(() => { StudentsList.ItemsSource = App.DataS.GetClassStudents(OpenedClass.CLASSE_ID); }));
-
-            Worker.Dispose();
+                       
         }
+
+        //private void Worker_DoWork ( object sender, DoWorkEventArgs e )
+        //{                       
+            
+
+        //    Worker.Dispose();
+        //}
         
 
         #endregion

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:controls="clr-namespace:Matrix.Controls"
       mc:Ignorable="d" KeepAlive="True" Loaded="Page_Loaded"
-      d:DesignHeight="550" d:DesignWidth="1500">
+      d:DesignHeight="550" d:DesignWidth="2000">
 
     <Page.Resources>
         
@@ -69,24 +69,26 @@
                                            
                 <controls:ScheduleWeek x:Name="ClassWeekSchedule" Margin="10,5" SelectionChanged="ClassWeekSchedule_OnSelectionChanged"/>
                
-                <DockPanel Width="950" Margin="10,5" >
-                    <Border DockPanel.Dock="Top" Height="30" Background="#25A0DA" Effect="{StaticResource z-depth3}">
+                <DockPanel Width="500" Margin="10,5" >
+                    <!--<Border DockPanel.Dock="Top" Height="30" Background="#25A0DA" Effect="{StaticResource z-depth3}">
                         <TextBlock Text="ETUDIANTS" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
+                    </Border>-->
+                    <Border DockPanel.Dock="Top" Height="30"  Background="Beige" Effect="{StaticResource z-depth3}">
+                        <TextBlock Text="ETUDIANTS" Foreground="#25A0DA" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
                     </Border>
                     
-                    <Border BorderThickness="2,0,2,2" BorderBrush="#25A0DA" Effect="{StaticResource z-depth3}">
-                        <ListBox Name="StudentsList" Style="{DynamicResource MatiereStyle}" Margin="10" MouseDoubleClick="StudentsList_MouseDoubleClick"/>
-
+                    <Border BorderThickness="0" Background="Transparent" >
+                        <ListBox Name="StudentsList" Style="{DynamicResource MatiereStyle}" Margin="20,10,20,0" MouseDoubleClick="StudentsList_MouseDoubleClick"/>
                     </Border>
                 </DockPanel>
                 
-                <DockPanel Width="950" Margin="10,5" >
-                    <Border DockPanel.Dock="Top" Height="30" Background="#25A0DA" Effect="{StaticResource z-depth3}">
-                        <TextBlock Text="MATIERES" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
+                <DockPanel Width="700" Margin="10,5">
+                    <Border DockPanel.Dock="Top" Height="30"  Background="Beige" Effect="{StaticResource z-depth3}">
+                        <TextBlock Text="MATIERES" Foreground="#25A0DA" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
                     </Border>
                     
-                    <Border BorderThickness="2,0,2,2" BorderBrush="#25A0DA" Effect="{StaticResource z-depth3}">
-                        <ListBox Name="MatieresList" Style="{DynamicResource MatiereStyle}" Margin="10" MouseDoubleClick="MatieresList_MouseDoubleClick"/>
+                    <Border BorderThickness="0" Background="Transparent" >
+                        <ListBox Name="MatieresList" Style="{DynamicResource MatiereStyle}" Margin="20,10,20,0" MouseDoubleClick="MatieresList_MouseDoubleClick"/>
                     </Border>
                 </DockPanel>
                                

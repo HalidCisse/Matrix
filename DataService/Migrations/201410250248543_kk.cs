@@ -1,18 +1,36 @@
-using System.Data.Entity.Migrations;
-
 namespace DataService.Migrations
 {
+    using System;
+    using System.Data.Entity.Migrations;
+    
     public partial class kk : DbMigration
     {
         public override void Up()
         {
             CreateTable(
+                "dbo.AnneeScolaires",
+                c => new
+                    {
+                        ANNEE_SCOLAIRE_ID = c.Guid(nullable: false),
+                        NAME = c.String(),
+                        DATE_DEBUT = c.DateTime(nullable: false),
+                        DATE_FIN = c.DateTime(nullable: false),
+                        DATE_DEBUT_INSCRIPTION = c.DateTime(nullable: false),
+                        DATE_FIN_INSCRIPTION = c.DateTime(nullable: false),
+                        DESCRIPTION = c.String(),
+                    })
+                .PrimaryKey(t => t.ANNEE_SCOLAIRE_ID);
+            
+            CreateTable(
                 "dbo.Classes",
                 c => new
                     {
-                        CLASSE_ID = c.String(nullable: false, maxLength: 128),
+                        CLASSE_ID = c.Guid(nullable: false),
                         NAME = c.String(),
+                        FILIERE_ID = c.Guid(nullable: false),
                         LEVEL = c.Int(nullable: false),
+                        DESCRIPTION = c.String(),
+                        ANNEE_SCOLAIRE_ID = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => t.CLASSE_ID);
             
@@ -41,58 +59,80 @@ namespace DataService.Migrations
                 "dbo.Cours",
                 c => new
                     {
-                        COURS_ID = c.String(nullable: false, maxLength: 128),
-                        MATIERE_ID = c.String(),
-                        SALLE = c.Int(nullable: false),
-                        CLASSE_ID = c.String(),
-                        START_TIME = c.Int(nullable: false),
-                        DURATION = c.Int(nullable: false),
+                        COURS_ID = c.Guid(nullable: false),
+                        CLASSE_ID = c.Guid(nullable: false),
+                        STAFF_ID = c.String(),
+                        MATIERE_ID = c.Guid(nullable: false),
+                        SALLE = c.String(),
+                        RECURRENCE_DAYS = c.String(),
+                        START_TIME = c.DateTime(),
+                        END_TIME = c.DateTime(),
+                        START_DATE = c.DateTime(),
+                        END_DATE = c.DateTime(),
+                        TYPE = c.String(),
+                        DESCRIPTION = c.String(),
                     })
                 .PrimaryKey(t => t.COURS_ID);
+            
+            CreateTable(
+                "dbo.Etablissements",
+                c => new
+                    {
+                        ETABLISSEMENT_ID = c.Guid(nullable: false),
+                        NAME = c.String(),
+                        LOGO = c.Binary(),
+                        COUNTRY = c.String(),
+                        ADRESSE = c.String(),
+                        PHONE = c.String(),
+                        FAX = c.String(),
+                        DESCRIPTION = c.String(),
+                    })
+                .PrimaryKey(t => t.ETABLISSEMENT_ID);
             
             CreateTable(
                 "dbo.Filieres",
                 c => new
                     {
-                        FILIERE_ID = c.String(nullable: false, maxLength: 128),
+                        FILIERE_ID = c.Guid(nullable: false),
                         NAME = c.String(),
                         NIVEAU = c.String(),
                         NIVEAU_ENTREE = c.String(),
                         N_ANNEE = c.Int(nullable: false),
+                        DESCRIPTION = c.String(),
                     })
                 .PrimaryKey(t => t.FILIERE_ID);
             
             CreateTable(
-                "dbo.Filiere_Classes",
+                "dbo.Inscriptions",
                 c => new
                     {
-                        FILIERE_CLASSES_ID = c.String(nullable: false, maxLength: 128),
-                        FILIERE_ID = c.String(),
-                        CLASSE_ID = c.String(),
+                        INSCRIPTION_ID = c.Guid(nullable: false),
+                        STUDENT_ID = c.String(),
+                        CLASSE_ID = c.Guid(nullable: false),
                     })
-                .PrimaryKey(t => t.FILIERE_CLASSES_ID);
+                .PrimaryKey(t => t.INSCRIPTION_ID);
             
             CreateTable(
-                "dbo.Filiere_Matieres",
+                "dbo.InscriptionRules",
                 c => new
                     {
-                        FILIERE_MATIERE_ID = c.String(nullable: false, maxLength: 128),
-                        FILIERE_ID = c.String(),
-                        FILIERE_LEVEL = c.Int(nullable: false),
-                        MATIERE_ID = c.String(),
-                        HEURE_PAR_SEMAINE = c.String(),
+                        INSCRIPTION_RULE_ID = c.Guid(nullable: false),
+                        CLASSE_ID = c.Guid(nullable: false),
+                        QUALIFICATION_ID = c.Guid(nullable: false),
                     })
-                .PrimaryKey(t => t.FILIERE_MATIERE_ID);
+                .PrimaryKey(t => t.INSCRIPTION_RULE_ID);
             
             CreateTable(
                 "dbo.Matieres",
                 c => new
                     {
-                        MATIERE_ID = c.String(nullable: false, maxLength: 128),
+                        MATIERE_ID = c.Guid(nullable: false),
                         NAME = c.String(),
-                        HEURES_PAR_SEMAINE = c.String(),
-                        INSTRUCTEURS_COUNT = c.Int(),
-                        Discriminator = c.String(nullable: false, maxLength: 128),
+                        SIGLE = c.String(),
+                        CLASSE_ID = c.Guid(nullable: false),
+                        COEFFICIENT = c.Int(nullable: false),
+                        COULEUR = c.String(),
+                        DESCRIPTION = c.String(),
                     })
                 .PrimaryKey(t => t.MATIERE_ID);
             
@@ -111,11 +151,45 @@ namespace DataService.Migrations
                 "dbo.Matiere_Instructeurs",
                 c => new
                     {
-                        MATIERE_INSTRUCTEURS_ID = c.String(nullable: false, maxLength: 128),
-                        MATIERE_ID = c.String(),
+                        MATIERE_INSTRUCTEURS_ID = c.Guid(nullable: false),
+                        MATIERE_ID = c.Guid(nullable: false),
                         STAFF_ID = c.String(),
                     })
                 .PrimaryKey(t => t.MATIERE_INSTRUCTEURS_ID);
+            
+            CreateTable(
+                "dbo.PeriodeScolaires",
+                c => new
+                    {
+                        PERIODE_SCOLAIRE_ID = c.Guid(nullable: false),
+                        NAME = c.String(),
+                        ANNEE_SCOLAIRE_ID = c.Guid(nullable: false),
+                        START_DATE = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.PERIODE_SCOLAIRE_ID);
+            
+            CreateTable(
+                "dbo.Qualifications",
+                c => new
+                    {
+                        QUALIFICATION_ID = c.Guid(nullable: false),
+                        NIVEAU = c.String(),
+                        FILIERE_ID = c.String(),
+                        ETABLISSEMENT = c.String(),
+                        BAC_PLUS = c.Int(nullable: false),
+                        DESCRIPTION = c.String(),
+                    })
+                .PrimaryKey(t => t.QUALIFICATION_ID);
+            
+            CreateTable(
+                "dbo.Salles",
+                c => new
+                    {
+                        SALLE_ID = c.Guid(nullable: false),
+                        NAME = c.String(),
+                        ADRESSE = c.String(),
+                    })
+                .PrimaryKey(t => t.SALLE_ID);
             
             CreateTable(
                 "dbo.Staffs",
@@ -163,22 +237,38 @@ namespace DataService.Migrations
                     })
                 .PrimaryKey(t => t.STUDENT_ID);
             
+            CreateTable(
+                "dbo.StudentQualifications",
+                c => new
+                    {
+                        STUDENT_QUALIFICATION_ID = c.Guid(nullable: false),
+                        STUDENT_ID = c.String(),
+                        QUALIFICATION_ID = c.Guid(nullable: false),
+                    })
+                .PrimaryKey(t => t.STUDENT_QUALIFICATION_ID);
+            
         }
         
         public override void Down()
         {
+            DropTable("dbo.StudentQualifications");
             DropTable("dbo.Students");
             DropTable("dbo.Staffs");
+            DropTable("dbo.Salles");
+            DropTable("dbo.Qualifications");
+            DropTable("dbo.PeriodeScolaires");
             DropTable("dbo.Matiere_Instructeurs");
             DropTable("dbo.MatiereControls");
             DropTable("dbo.Matieres");
-            DropTable("dbo.Filiere_Matieres");
-            DropTable("dbo.Filiere_Classes");
+            DropTable("dbo.InscriptionRules");
+            DropTable("dbo.Inscriptions");
             DropTable("dbo.Filieres");
+            DropTable("dbo.Etablissements");
             DropTable("dbo.Cours");
             DropTable("dbo.ControlNotes");
             DropTable("dbo.Classe_Students");
             DropTable("dbo.Classes");
+            DropTable("dbo.AnneeScolaires");
         }
     }
 }

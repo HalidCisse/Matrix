@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataService.Context;
+using DataService.Entities;
 using DataService.ViewModel;
 
 namespace DataService
@@ -95,7 +96,22 @@ namespace DataService
             return ScheduleData;
         }
 
-       
+
+        public List<MatiereCard> GetClassMatieresCards(Guid ClasseID)
+        {
+            using (var Db = new EF())
+            {
+                var MatierCard_List = new List<MatiereCard>();
+
+                Parallel.ForEach(Db.MATIERE.Where(M => M.CLASSE_ID == ClasseID), MC =>
+                {
+                    MatierCard_List.Add(new MatiereCard(MC));
+                });
+
+                return MatierCard_List.OrderBy(M => M.NAME).ToList();
+            }
+        }
+
     }
  
 }

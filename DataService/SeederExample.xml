@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Rename this file to match the name of your DbContext. For instance, if you context class name is Cars, name this file Cars.xml -->
+<CodeFirstSeeder>
+  <DbSets>
+    <Roles>
+      <!-- Name of a DbSet<> in your context -->
+      <Role key="admin">
+        <!-- 1st entity of DbSet -->
+        <!-- Use the "key" attribute to reuse this entity later on -->
+        <Name>Admin</Name>
+        <!-- Simple entity property -->
+      </Role>
+      <Role key="user">
+        <!-- 2nd entity of DbSet -->
+        <Name>User</Name>
+      </Role>
+    </Roles>
+
+    <Locations>
+      <!-- Next DbSet<> -->
+      <Location>
+        <City>Boston</City>
+        <Users>
+          <!-- Location has a collection of Users -->
+          <User>
+            <Name>Mary</Name>
+            <Age>21</Age>
+            <Roles>
+              <!-- User has a collection of Roles -->
+              <Role usekey="admin" />
+              <!-- "usekey" will add the entity we defined above, instead of crating a new one -->
+              <Role usekey="user" />
+            </Roles>
+          </User>
+          <User>
+            <Name>Bob</Name>
+            <Age>45</Age>
+            <Roles>
+              <Role usekey="user" />
+            </Roles>
+          </User>
+        </Users>
+      </Location>
+      <Location>
+        <City>Chicago</City>
+        <Users>
+          <User>
+            <Name>Tom</Name>
+            <Age>33</Age>
+            <Roles>
+              <Role usekey="admin" />
+              <Role usekey="user" />
+            </Roles>
+          </User>
+        </Users>
+      </Location>
+    </Locations>
+  </DbSets>
+</CodeFirstSeeder>
