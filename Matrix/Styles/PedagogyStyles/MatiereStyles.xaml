@@ -28,9 +28,18 @@
             <DataTemplate x:Key="ListBoxTemp">
                 <Border Style="{DynamicResource ListBoxBoderStyle}" HorizontalAlignment="Stretch">
                     
-                    <StackPanel Orientation="Horizontal" Margin="0">                        
-                        <Image Source="{Binding INSTRUCTEUR_PHOTO}" Stretch="Fill" Width="100" Height="100"/>
-                                                                                        
+                    <StackPanel Orientation="Horizontal" Margin="0">
+
+                        <Grid VerticalAlignment="Center">
+                            <Border Name="Mask" Background="White" BorderThickness="0" CornerRadius="50"/>
+                            <StackPanel>
+                                <Image Source="{Binding INSTRUCTEUR_PHOTO}" Stretch="Fill" Width="90" Height="90"/>
+                                <StackPanel.OpacityMask>
+                                    <VisualBrush Visual="{Binding ElementName=Mask}"/>
+                                </StackPanel.OpacityMask>
+                            </StackPanel>
+                        </Grid>
+                                                      
                         <StackPanel Margin="10,5,5,5" >
                             
                             <TextBlock Text="{Binding NAME}" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Width="170" TextWrapping="Wrap" VerticalAlignment="Top"/>
@@ -63,16 +72,18 @@
         </Style.Resources>
 
         <Setter Property="ItemTemplate" Value="{StaticResource ListBoxTemp}" />
-        <Setter Property="ItemsPanel" Value="{StaticResource ListBoxITemp}" />        
+        <Setter Property="ItemsPanel" Value="{StaticResource ListBoxITemp}" />  
+        <Setter Property="ItemsSource" Value="{Binding MATIERES_LIST}" />
+        <Setter Property="SelectedValuePath" Value="MATIERE_ID" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />        
         <Setter Property="Margin" Value="10" />
         <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"/>        
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Background" Value="Beige" />
-        <Setter Property="Effect" Value="{StaticResource z-depth3}" />
-        <Setter Property="ItemsSource" Value="{Binding MATIERES_LIST}" />
-        <Setter Property="SelectedValuePath" Value="MATIERE_ID" />
+        <!--<Setter Property="Effect" Value="{StaticResource z-depth3}" />-->
+        <Setter Property="BorderThickness" Value="0" />
+        
 
     </Style>
     

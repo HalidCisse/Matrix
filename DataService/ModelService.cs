@@ -28,7 +28,7 @@ namespace DataService
                 DepStaffCardList.Add (new DepStaffCard (Dep));
             });
 
-            return DepStaffCardList.OrderBy(D => D.DEPARTEMENT_NAME).ToList();
+            return DepStaffCardList.Any()? DepStaffCardList.OrderBy(D => D.DEPARTEMENT_NAME).ToList() : DepStaffCardList;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace DataService
                 if (FC.CLASS_LIST.Any()){ ClassCardList.Add (FC); }                
             });
                         
-            return ClassCardList.OrderBy(F => F.FILIERE_NAME).ToList();
+            return ClassCardList.Any()? ClassCardList.OrderBy(F => F.FILIERE_NAME).ToList() : ClassCardList;
         }
         
         /// <summary>
@@ -61,11 +61,11 @@ namespace DataService
                 var Class_List = new List<ClassCard> ();
 
                 Parallel.ForEach(Db.CLASSE.Where(C => C.FILIERE_ID == FiliereID), C =>
-                    {
-                        Class_List.Add (new ClassCard (C));
-                    });
+                {
+                    Class_List.Add (new ClassCard (C));
+                });
 
-                return Class_List.OrderBy(C => C.LEVEL).ToList();
+                return Class_List.Any()? Class_List.OrderBy(C => C.LEVEL).ToList() : Class_List;
             }
         }
 
@@ -96,7 +96,11 @@ namespace DataService
             return ScheduleData;
         }
 
-
+        /// <summary>
+        /// Renvoi les Matieres Cards Pour Une Classe
+        /// </summary>
+        /// <param name="ClasseID">ID de la Classe</param>
+        /// <returns></returns>
         public List<MatiereCard> GetClassMatieresCards(Guid ClasseID)
         {
             using (var Db = new EF())
@@ -108,13 +112,25 @@ namespace DataService
                     MatierCard_List.Add(new MatiereCard(MC));
                 });
 
-                return MatierCard_List.OrderBy(M => M.NAME).ToList();
+                return MatierCard_List.Any() ? MatierCard_List.OrderBy(M => M?.NAME).ToList() : MatierCard_List;
             }
         }
+
+
+
+
+
+
 
     }
  
 }
+
+
+
+
+
+
 
 
 

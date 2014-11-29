@@ -11,7 +11,7 @@
         //    var secondTask = firstTask.ContinueWith (( t ) => DisplayTheStudents ());
         //    firstTask.Start ();
         //}
-           
+
 
         //void GetTheStudents ( )
         //{
@@ -25,6 +25,11 @@
         //    this.Studentslist.Items.Refresh ();
         //    MessageBox.Show ("Affter finished");
         //}
+
+        //Dispatcher.BeginInvoke(new Action(() => { ClassWeekSchedule.UpdateData(OpenedClass.CLASSE_ID); }));
+        //Dispatcher.BeginInvoke(new Action(() => { MatieresList.ItemsSource = App.ModelS.GetClassMatieresCards(OpenedClass.CLASSE_ID); }));
+        //Dispatcher.BeginInvoke(new Action(() => { StudentsList.ItemsSource = App.DataS.GetClassStudents(OpenedClass.CLASSE_ID); }));
+
 
         #endregion
 

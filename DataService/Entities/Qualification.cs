@@ -10,17 +10,35 @@ namespace DataService.Entities
     
     public class Qualification
     {
+        /// <summary>
+        /// ID
+        /// </summary>
         [Key]
         public Guid QUALIFICATION_ID { get; set; }
 
-        public string NIVEAU { get; set; } // Technicien Sup
+        /// <summary>
+        /// Ex : Engenieur
+        /// </summary>
+        public string NIVEAU { get; set; } // 
 
-        public string FILIERE_ID { get; set; } // -> Developpement Informatique
+        /// <summary>
+        /// La Filiere
+        /// </summary>
+        public Guid FILIERE_ID { get; set; } 
 
-        public string ETABLISSEMENT { get; set; } // Miage Rabat
+        /// <summary>
+        /// Etablissement
+        /// </summary>
+        public string ETABLISSEMENT { get; set; } 
                   
-        public int BAC_PLUS { get; set; } // +2
+        /// <summary>
+        /// Bac + ?
+        /// </summary>
+        public int BAC_PLUS { get; set; } 
 
+        /// <summary>
+        /// Description
+        /// </summary>
         public string DESCRIPTION { get; set; }
 
     }

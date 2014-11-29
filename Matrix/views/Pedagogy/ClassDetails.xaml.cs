@@ -1,5 +1,5 @@
 ﻿using System;
-using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,11 +12,10 @@ namespace Matrix.views.Pedagogy
     /// Affiche l'emploi du temps , les matieres et les Etudiant pour une classe donnee
     /// </summary>
     public partial class ClassDetails
-    {
-        //private readonly BackgroundWorker Worker = new BackgroundWorker ();        
-        private string CurrentSelected;                
-        private readonly Classe OpenedClass;
-
+    {       
+        private string CurrentSelected;
+        private Classe OpenedClass = new Classe();
+        
         /// <summary>
         /// Affiche l'emploi du temps , les matieres et les Etudiant pour une classe donnee
         /// </summary>
@@ -25,19 +24,22 @@ namespace Matrix.views.Pedagogy
         {
             InitializeComponent ();
 
-            OpenedClass = App.DataS.GetClasseByID (OpenClassID);
-                       
-            ClassName.Text = OpenedClass.NAME.ToUpper ();
-            ClassFiliere.Text = App.DataS.GetFiliereByID(OpenedClass.FILIERE_ID).NAME.ToUpper();
+            OpenedClass.CLASSE_ID = OpenClassID;
             
+            new Task(() =>
+            {
+                OpenedClass = App.DataS.GetClasseByID(OpenClassID);
+                Dispatcher.BeginInvoke(new Action(() => { ClassFiliere.Text = App.DataS.GetFiliereByID(OpenedClass.FILIERE_ID).NAME.ToUpper(); }));
+                Dispatcher.BeginInvoke(new Action(() => { ClassName.Text = OpenedClass.NAME.ToUpper(); }));               
+            }).Start();
+
         }      
   
 
         #region EVENT HANDLERS
 
         private void Page_Loaded ( object sender, RoutedEventArgs e )
-        {                       
-            //Worker.DoWork += Worker_DoWork;           
+        {                                            
             UpdateData ();            
         }
 
@@ -113,35 +115,49 @@ namespace Matrix.views.Pedagogy
 
         }     
         
-        
-       
-       
-
 
         #endregion
 
 
-        #region BACKGROUND WORKER
+
+
+        #region DATA WORKER
 
         private void UpdateData ( )
-        {           
-            //if (Worker.IsBusy) { Worker.CancelAsync();}
+        {
             Dispatcher.BeginInvoke(new Action(() => { ClassWeekSchedule.UpdateData(OpenedClass.CLASSE_ID); }));
-            Dispatcher.BeginInvoke(new Action(() => { MatieresList.ItemsSource = App.ModelS.GetClassMatieresCards(OpenedClass.CLASSE_ID); }));
-            Dispatcher.BeginInvoke(new Action(() => { StudentsList.ItemsSource = App.DataS.GetClassStudents(OpenedClass.CLASSE_ID); }));
-                       
-        }
 
-        //private void Worker_DoWork ( object sender, DoWorkEventArgs e )
-        //{                       
-            
-
-        //    Worker.Dispose();
-        //}
-        
+            var DataTask = new Task(() =>
+            {
+                Dispatcher.BeginInvoke(new Action(() => { MatieresList.ItemsSource = App.ModelS.GetClassMatieresCards(OpenedClass.CLASSE_ID); }));              
+            });            
+            DataTask.ContinueWith(Cont =>
+            {
+                Dispatcher.BeginInvoke(new Action(() => { StudentsList.ItemsSource = App.DataS.GetClassStudents(OpenedClass.CLASSE_ID); }));                
+            });
+            DataTask.Start();            
+        }        
 
         #endregion
 
         
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Dispatcher.BeginInvoke(new Action(() => { ClassWeekSchedule.UpdateData(OpenedClass.CLASSE_ID); }));
+//Dispatcher.BeginInvoke(new Action(() => { MatieresList.ItemsSource = App.ModelS.GetClassMatieresCards(OpenedClass.CLASSE_ID); }));
+//Dispatcher.BeginInvoke(new Action(() => { StudentsList.ItemsSource = App.DataS.GetClassStudents(OpenedClass.CLASSE_ID); }));

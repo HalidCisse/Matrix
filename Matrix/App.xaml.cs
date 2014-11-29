@@ -41,20 +41,6 @@ namespace Matrix
             //Db = new Service ();
             //new Thread(() => Db = new Service()).Start();
 
-            #region Single Instance Enforcer
-
-            Mutex mutex;
-            if (!CreateMutex(out mutex))
-            {
-                MessageBox.Show("Another instance is running !!");
-                Shutdown();
-                return;
-            }
-
-            #endregion
-
-            Environment.SetEnvironmentVariable(guid, null, EnvironmentVariableTarget.User);
-
             try
             {
                 new Thread (( ) => DataS = new DbService ()) { Name = "DataThread", Priority = ThreadPriority.Highest }.Start ();
@@ -77,7 +63,22 @@ namespace Matrix
         protected override void OnStartup ( StartupEventArgs e )
         {             
             base.OnStartup(e);
-            DispatcherUnhandledException += App_DispatcherUnhandledException;         
+            DispatcherUnhandledException += App_DispatcherUnhandledException;
+
+            #region Single Instance Enforcer
+
+            Mutex mutex;
+            if (!CreateMutex(out mutex))
+            {
+                MessageBox.Show("Another instance is running !!");
+                Shutdown();
+                return;
+            }
+
+            Environment.SetEnvironmentVariable(guid, null, EnvironmentVariableTarget.User);
+
+            #endregion
+
         }
 
         static void App_DispatcherUnhandledException ( object sender, DispatcherUnhandledExceptionEventArgs e )

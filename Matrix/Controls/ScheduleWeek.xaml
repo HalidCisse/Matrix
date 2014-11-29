@@ -8,11 +8,11 @@
              d:DesignHeight="300" d:DesignWidth="950">
 
     <DockPanel Width="950">
-        <Border DockPanel.Dock="Top" Height="30" Background="#25A0DA" Effect="{StaticResource z-depth3}">
+        <Border DockPanel.Dock="Top" Height="30" Background="#25A0DA" >
             <TextBlock Text="EMPLOI DU TEMPS" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
         </Border>
 
-        <Border BorderThickness="2,0,2,2" BorderBrush="#25A0DA" Effect="{StaticResource z-depth3}">
+        <Border BorderBrush="#25A0DA" BorderThickness="0">
             <ListBox Name="ScheduleUI" Style="{DynamicResource DayListStyle}" Margin="10,15,10,10">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
