@@ -9,7 +9,7 @@ namespace DataService.Entities
     public class AnneeScolaire
     {
         /// <summary>
-        /// 
+        /// ID
         /// </summary>
         [Key]
         public Guid ANNEE_SCOLAIRE_ID { get; set; }

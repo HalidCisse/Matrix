@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:controls="clr-namespace:Matrix.Controls"
+      
       mc:Ignorable="d" KeepAlive="True" Loaded="Page_Loaded"
       d:DesignHeight="550" d:DesignWidth="2000">
 
@@ -66,9 +67,9 @@
                      
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
             <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
-                                           
+                
                 <controls:ScheduleWeek x:Name="ClassWeekSchedule" Margin="10,0" Effect="{StaticResource z-depth3}" SelectionChanged="ClassWeekSchedule_OnSelectionChanged"/>
-                                               
+                                                                           
                 <DockPanel Width="650" Margin="10,0" Effect="{StaticResource z-depth3}">
                     <Border DockPanel.Dock="Top" Height="30" BorderThickness="0" Background="Beige" >
                         <TextBlock Text="MATIERES" Foreground="#25A0DA" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>

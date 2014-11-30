@@ -291,19 +291,7 @@ namespace DataService
             }
         }
 
-
-        //public List<Matiere> GetMatieresOfFiliereYear ( Guid FiliereID, int FiliereYear )
-        //{
-        //    using(var Db = new EF ())
-        //    {                
-        //        //var MatieresIDs = Db.FILIERE_MATIERE.Where (F => F.FILIERE_ID == FiliereID.ToString() && F.FILIERE_LEVEL == FiliereYear).Select (F => F.MATIERE_ID).ToList ();
-
-        //        //var Matieres = MatieresIDs.Select(M => Db.MATIERE.Find(M)).ToList();
-
-        //        return Db.MATIERE.Where (M => M.FILIERE_ID == FiliereID && M.FILIERE_LEVEL == FiliereYear).ToList();
-        //    }
-        //}
-
+       
         #endregion
 
 
@@ -829,76 +817,3 @@ namespace DataService
 
 //Task.Factory.StartNew( () => Parallel.ForEach<Item>(items, item => DoSomething(item)));
 
-//public int GetFiliereMatiereNiveau ( Guid FiliereID, Guid MatiereID )
-//{
-//    using(var Db = new EF ())
-//    {
-//        //var Matiere = Db.FILIERE_MATIERE.SingleOrDefault(S => S.MATIERE_ID == MatiereID && S.FILIERE_ID == FiliereID);
-//        //if(Matieres != null) return Matiere.FILIERE_LEVEL;
-
-//        var Matieres = Db.MATIERE.First (S => S.MATIERE_ID == MatiereID && S.FILIERE_ID == FiliereID);
-
-//        if (Matieres != null) return Matieres.FILIERE_LEVEL;
-
-
-//    }
-//    return 1;
-//}
-
-//public string GetFiliereMatiereHeuresParSemaine ( string FiliereID, string MatiereID )
-//{
-//    using(var Db = new EF ())
-//    {
-//        var Matiere = Db.FILIERE_MATIERE.SingleOrDefault (S => S.MATIERE_ID == MatiereID && S.FILIERE_ID == FiliereID);
-//        if(Matiere !=null) return Matiere.HEURE_PAR_SEMAINE;
-//    }
-//    return null;
-//}
-
-//public bool SaveFiliereMatiere(string FiliereID, string MatiereID, int Level , string HeuresParSemaine)
-//{            
-//    using(var Db = new EF ())
-//    {
-//        if (Db.FILIERE_MATIERE.Find(FiliereID + MatiereID + Level) != null)
-//        {
-//            Db.FILIERE_MATIERE.Find(FiliereID + MatiereID + Level).HEURE_PAR_SEMAINE = HeuresParSemaine;
-//        }
-//        else
-//        {
-//            var FM = new Filiere_Matieres
-//            {
-//                FILIERE_MATIERE_ID = FiliereID + MatiereID + Level,
-//                FILIERE_ID = FiliereID,
-//                MATIERE_ID = MatiereID,
-//                FILIERE_LEVEL = Level,
-//                HEURE_PAR_SEMAINE = HeuresParSemaine
-//            };
-//            Db.FILIERE_MATIERE.Add(FM);
-//        }
-//        return Db.SaveChanges() > 0;
-//    }
-//}
-
-
-
-
-
-//public bool DeleteFiliereMatiere ( Guid FiliereID, string MatiereID, int Level )
-//{
-//    using(var Db = new EF ())
-//    {
-//        var MT = Db.FILIERE_MATIERE.Find (FiliereID +MatiereID +Level);
-//        if (MT == null) return true;
-//        Db.FILIERE_MATIERE.Remove (MT);
-
-//        return Db.SaveChanges () > 0;
-//    }
-//}
-
-//public int GetNofMatiereInstructor ( string MatiereID )
-//{
-//    using(var Db = new EF ())
-//    {              
-//        return Db.MATIERES_INSTRUCTEURS.Count (M => M.MATIERE_ID == MatiereID);
-//    }
-//}

@@ -117,9 +117,6 @@
     <Reference Include="FirstFloor.ModernUI">
       <HintPath>..\packages\ModernUI.WPF.1.0.6\lib\net45\FirstFloor.ModernUI.dll</HintPath>
     </Reference>
-    <Reference Include="Hardcodet.Wpf.TaskbarNotification">
-      <HintPath>..\packages\Hardcodet.NotifyIcon.Wpf.1.0.5\lib\net451\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
-    </Reference>
     <Reference Include="MahApps.Metro">
       <HintPath>..\packages\MahApps.Metro.0.15.0-ALPHA43\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
@@ -130,9 +127,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="TCD.Controls">
-      <HintPath>..\packages\TCD.Controls.3.1.0\lib\net45\TCD.Controls.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase">
       <Private>True</Private>
@@ -155,6 +149,7 @@
       <DependentUpon>ToolbarStudentViews.xaml</DependentUpon>
     </Compile>
     <Compile Include="EFR.cs" />
+    <Compile Include="Extention\FaderFrames.cs" />
     <Compile Include="Extention\ModernDialogExtention.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -171,6 +166,10 @@
     <Compile Include="Utils\GetRecurrenceDays.cs" />
     <Compile Include="Utils\ImageUtils.cs" />
     <Compile Include="Utils\Res.cs" />
+    <Compile Include="Utils\SingletonApplicationEnforcer.cs" />
+    <Compile Include="views\Pedagogy\AddAnneeScolaire.xaml.cs">
+      <DependentUpon>AddAnneeScolaire.xaml</DependentUpon>
+    </Compile>
     <Compile Include="views\Pedagogy\AddClass.xaml.cs">
       <DependentUpon>AddClass.xaml</DependentUpon>
     </Compile>
@@ -179,6 +178,9 @@
     </Compile>
     <Compile Include="views\Pedagogy\AddFiliere.xaml.cs">
       <DependentUpon>AddFiliere.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\Pedagogy\AddInscription.xaml.cs">
+      <DependentUpon>AddInscription.xaml</DependentUpon>
     </Compile>
     <Compile Include="views\Pedagogy\AddMatiere.xaml.cs">
       <DependentUpon>AddMatiere.xaml</DependentUpon>
@@ -300,6 +302,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="views\Pedagogy\AddAnneeScolaire.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="views\Pedagogy\AddClass.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -309,6 +315,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="views\Pedagogy\AddFiliere.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\Pedagogy\AddInscription.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

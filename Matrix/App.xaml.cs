@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
+using System.Windows.Interop;
 using System.Windows.Threading;
 using DataService;
+using Matrix.Utils;
+
 //using Manager;
 
 namespace Matrix
@@ -14,71 +19,74 @@ namespace Matrix
     /// <summary>
     /// 
     /// </summary>
-    public partial class App
+    public partial class App 
     {
-        [DllImport("user32.dll")]
-        static extern bool SetForegroundWindow(IntPtr hWnd);
-
-        private const string guid = "E6F848DE-6391-4305-8D56-860C7D40F381";
-
+        
         /// <summary>
-        /// 
+        /// l'utilisateur Actuelle
         /// </summary>
         static public string _currentUser;
 
         /// <summary>
-        /// 
+        /// Annee Scolaire Actuelle
+        /// </summary>
+        static public string CurrentAnneeScolaire;
+
+        /// <summary>
+        /// Serveur de Donnees
         /// </summary>
         public static DbService DataS { get; private set; }
 
         /// <summary>
-        /// 
+        /// Serveur de Model
         /// </summary>
         public static ModelService ModelS { get; private set; }
 
-        App ( )
+        /// <summary>
+        /// Verifier Q'une Seule Instance est Lancee
+        /// </summary>
+        readonly SingletonApplication.SingletonApplicationEnforcer enforcer = new SingletonApplication.SingletonApplicationEnforcer(DisplayArgs);
+
+        App()
         {
-            //Db = new Service ();
-            //new Thread(() => Db = new Service()).Start();
+
+            if (enforcer.ShouldApplicationExit())
+            {
+                //MessageBox.Show("Unable to start application. An instance of this application is already running.");
+                Shutdown();
+            }
+
+
 
             try
             {
-                new Thread (( ) => DataS = new DbService ()) { Name = "DataThread", Priority = ThreadPriority.Highest }.Start ();
-                new Thread (( ) => ModelS = new ModelService ()) { Name = "DataModelThread", Priority = ThreadPriority.Highest }.Start ();                
+                new Thread(() => DataS = new DbService()) { Name = "DataThread", Priority = ThreadPriority.Highest }.Start();
+                new Thread(() => ModelS = new ModelService()) { Name = "DataModelThread", Priority = ThreadPriority.Highest }.Start();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                MessageBox.Show (e.Message);
+                MessageBox.Show(e.Message);
                 Current.Shutdown();
-            }           
+            }
+
+            
+
+            
         }
+
         
 
-        #region StartUp Evenements
+
+        #region StartUp Events
 
         /// <summary>
-        /// 
+        /// OnStartup
         /// </summary>
         /// <param name="e"></param>
         protected override void OnStartup ( StartupEventArgs e )
         {             
             base.OnStartup(e);
-            DispatcherUnhandledException += App_DispatcherUnhandledException;
-
-            #region Single Instance Enforcer
-
-            Mutex mutex;
-            if (!CreateMutex(out mutex))
-            {
-                MessageBox.Show("Another instance is running !!");
-                Shutdown();
-                return;
-            }
-
-            Environment.SetEnvironmentVariable(guid, null, EnvironmentVariableTarget.User);
-
-            #endregion
-
+            DispatcherUnhandledException += App_DispatcherUnhandledException;            
         }
 
         static void App_DispatcherUnhandledException ( object sender, DispatcherUnhandledExceptionEventArgs e )
@@ -91,34 +99,36 @@ namespace Matrix
         #endregion
 
 
-        static bool CreateMutex(out Mutex mutex)
+
+        #region ISingleInstanceApp Members
+
+        public static void DisplayArgs(IEnumerable<string> args)
         {
-            bool createdNew;
-            mutex = new Mutex(false, guid, out createdNew);
-
-            if (createdNew)
+            var dispatcher = Current.Dispatcher;
+            if (dispatcher.CheckAccess())
             {
-                var process = Process.GetCurrentProcess();
-                var value = process.Id.ToString();
-
-                Environment.SetEnvironmentVariable(guid, value, EnvironmentVariableTarget.User);
+                ShowArgs();
             }
             else
             {
-                var value = Environment.GetEnvironmentVariable(guid, EnvironmentVariableTarget.User);
-                Process process = null;
-                var processId = -1;
-
-                if (int.TryParse(value, out processId))
-                    process = Process.GetProcessById(processId);
-
-                if (process == null || !SetForegroundWindow(process.MainWindowHandle))
-                    MessageBox.Show("Unable to start application. An instance of this application is already running.");
+                dispatcher.BeginInvoke(
+                    new Action(ShowArgs));
             }
-
-            return createdNew;
         }
 
+        private static void ShowArgs()
+        {
+            // Bring window to foreground
+            var mainWindow = Current.MainWindow as MainWindow;
+            if (mainWindow.WindowState == WindowState.Minimized)
+            {
+                mainWindow.WindowState = WindowState.Normal;
+            }
+
+            mainWindow.Activate();
+        }
+
+        #endregion
 
 
     }

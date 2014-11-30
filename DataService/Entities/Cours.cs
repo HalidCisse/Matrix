@@ -65,11 +65,11 @@ namespace DataService.Entities
         /// </summary>
         public string TYPE { get; set; }
 
-        //Todo: Term integration
+        //Todo: PERIODE SCOLAIRE Integration To Cours
         /// <summary>
         /// La periode du cours
         /// </summary>
-        //public Guid TERM_ID { get; set; }
+        public Guid PERIODE_SCOLAIRE_ID { get; set; }
 
         /// <summary>
         /// Description

@@ -75,11 +75,11 @@
             </StackPanel>
         </Button>
 
-        <Button Name="FinanceButton" Grid.Column="2" Grid.Row="2" Style="{DynamicResource  FontButton}" Click="FinanceButton_Click">
+        <Button Name="EconomatButton" Grid.Column="2" Grid.Row="2" Style="{DynamicResource  FontButton}" Click="EconomatButton_Click">
             <StackPanel Margin="0,0,0,-10">
                 <Image Source = "../Images/finance.png" Width="150" Height="150"/>
                 <!--<TextBlock Text="&#xf155;" Style="{DynamicResource FontAwesome}"></TextBlock>-->
-                <TextBlock Text="Finance" Style="{DynamicResource ButtonTextStyle}"/>
+                <TextBlock Text="Economat" Style="{DynamicResource ButtonTextStyle}"/>
             </StackPanel>
         </Button>
 
@@ -93,7 +93,7 @@
                   
     </Grid>
 
-    <Page.RenderTransform>
+    <!--<Page.RenderTransform>
         <TranslateTransform x:Name="MoveMe" X="-100" />
     </Page.RenderTransform>
     <Page.Triggers>
@@ -106,6 +106,6 @@
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger>
-    </Page.Triggers>
+    </Page.Triggers>-->
 
 </Page>

@@ -107,7 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\EF.cs" />
-    <Compile Include="Context\Interface.cs" />
     <Compile Include="Entities\AnneeScolaire.cs" />
     <Compile Include="Entities\Etablissement.cs" />
     <Compile Include="Entities\Inscription.cs" />
@@ -115,7 +114,12 @@
     <Compile Include="Entities\PeriodeScolaire.cs" />
     <Compile Include="Entities\Qualification.cs" />
     <Compile Include="Entities\Salle.cs" />
+    <Compile Include="Entities\Setting.cs" />
     <Compile Include="Entities\StudentQualification.cs" />
+    <Compile Include="Migrations\201411301724240_kk.cs" />
+    <Compile Include="Migrations\201411301724240_kk.Designer.cs">
+      <DependentUpon>201411301724240_kk.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelService.cs" />
     <Compile Include="Entities\Classe.cs" />
     <Compile Include="Entities\Classe_Students.cs" />
@@ -134,10 +138,6 @@
     <Compile Include="Enum\Statut.cs" />
     <Compile Include="Enum\Title.cs" />
     <Compile Include="Initializer\DBInitializer.cs" />
-    <Compile Include="Migrations\201410250248543_kk.cs" />
-    <Compile Include="Migrations\201410250248543_kk.Designer.cs">
-      <DependentUpon>201410250248543_kk.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModel\ClassCard.cs" />
     <Compile Include="ViewModel\MatiereCard.cs" />
@@ -195,8 +195,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201410250248543_kk.resx">
-      <DependentUpon>201410250248543_kk.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411301724240_kk.resx">
+      <DependentUpon>201411301724240_kk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
