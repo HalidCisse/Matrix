@@ -13,23 +13,44 @@
         <ContextMenu x:Key="AddContext" HasDropShadow="True" Placement="Bottom" PlacementRectangle="10,10,10,10" HorizontalOffset="-100" VerticalOffset="15">
             <MenuItem Height="50" Margin="10,0" Click="AddCours_Click">
                 <MenuItem.Icon>
-                    <Image Source="Icon/Cours.png" Height="40" Width="40"/>
+                    <Image Source="pack://application:,,,/Images/Cours.png" Height="40" Width="40"/>
                 </MenuItem.Icon>
 
                 <MenuItem.Header>
-                    <TextBlock Text="Nouvel Cours" Margin="5" FontWeight="ExtraLight" FontSize="15" VerticalAlignment="Center"/>
+                    <TextBlock Text="Ajouter Cours" Margin="5" FontWeight="ExtraLight" FontSize="15" VerticalAlignment="Center"/>
                 </MenuItem.Header>
             </MenuItem>
 
             <MenuItem Height="50" Margin="10,0" Click="AddMatiere_Click">
                 <MenuItem.Icon>
-                    <Image Source="Icon/Matiere.png" Height="40" Width="40"/>
+                    <Image Source="pack://application:,,,/Images/Matiere.png" Height="40" Width="40"/>
                 </MenuItem.Icon>
 
                 <MenuItem.Header>
-                    <TextBlock Text="Nouvelle Matiere" Margin="5" FontWeight="ExtraLight" FontSize="15" VerticalAlignment="Center"/>
+                    <TextBlock Text="Ajouter Matiere" Margin="5" FontWeight="ExtraLight" FontSize="15" VerticalAlignment="Center"/>
                 </MenuItem.Header>
             </MenuItem>
+            
+            <MenuItem Height="50" Margin="10,0" Click="AddInscription_Click">
+                <MenuItem.Icon>
+                    <Image Source="pack://application:,,,/Images/Inscription.png" Height="40" Width="40"/>
+                </MenuItem.Icon>
+
+                <MenuItem.Header>
+                    <TextBlock Text="Inscription" Margin="5" FontWeight="ExtraLight" FontSize="15" VerticalAlignment="Center"/>
+                </MenuItem.Header>
+            </MenuItem>
+            
+            <MenuItem Height="50" Margin="10,0" Click="AddAnneScolaire_Click">
+                <MenuItem.Icon>
+                    <Image Source="pack://application:,,,/Images/AnneeScolaire.png" Height="40" Width="40"/>
+                </MenuItem.Icon>
+
+                <MenuItem.Header>
+                    <TextBlock Text="Nouvelle Annee Scolaire" Margin="5" FontWeight="ExtraLight" FontSize="15" VerticalAlignment="Center"/>
+                </MenuItem.Header>
+            </MenuItem>
+            
         </ContextMenu>
         
     </Page.Resources>
@@ -71,8 +92,8 @@
                 <controls:ScheduleWeek x:Name="ClassWeekSchedule" Margin="10,0" Effect="{StaticResource z-depth3}" SelectionChanged="ClassWeekSchedule_OnSelectionChanged"/>
                                                                            
                 <DockPanel Width="650" Margin="10,0" Effect="{StaticResource z-depth3}">
-                    <Border DockPanel.Dock="Top" Height="30" BorderThickness="0" Background="Beige" >
-                        <TextBlock Text="MATIERES" Foreground="#25A0DA" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
+                    <Border DockPanel.Dock="Top" Height="30" BorderThickness="5" BorderBrush="Beige" Background="#25A0DA" >
+                        <TextBlock Text="MATIERES" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
                     </Border>
                     
                     <Border BorderThickness="0" Background="Transparent">

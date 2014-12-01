@@ -757,9 +757,34 @@ namespace DataService
             }
         }
 
+        /// <summary>
+        /// Ajouter Une Nouvelle Annee Scolaire, Return True if Successful
+        /// </summary>
+        /// <param name="newAnneeScolaire">Object AnneeScolaire</param>
+        /// <returns></returns>
+        public bool AddAnneeScolaire(AnneeScolaire newAnneeScolaire)
+        {
+            //newAnneeScolaire.ANNEE_SCOLAIRE_ID = Guid.NewGuid();
+            using (var Db = new EF())
+            {
+                Db.ANNEE_SCOLAIRE.Add(newAnneeScolaire);
+                return Db.SaveChanges() > 0;
+            }
+        }
 
-
-
+        /// <summary>
+        /// Ajouter Nouvelle Periode Pour Une Annee Scolaire, Return True if Successful
+        /// </summary>
+        /// <param name="newPeriodeScolaire"> Object PeriodeScolaire</param>
+        public bool AddPeriodeScolaire(PeriodeScolaire newPeriodeScolaire)
+        {
+            newPeriodeScolaire.PERIODE_SCOLAIRE_ID = Guid.NewGuid();
+            using (var Db = new EF())
+            {
+                Db.PERIODE_SCOLAIRE.Add(newPeriodeScolaire);
+                return Db.SaveChanges() > 0;
+            }
+        }
 
         #endregion
 

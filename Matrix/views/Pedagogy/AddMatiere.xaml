@@ -47,7 +47,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,30">
-            <Image Source="Icon/Matiere.png" Height="70" Width="70" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <Image Source="pack://application:,,,/Images/Matiere.png" Height="70" Width="70" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
             <Grid Height="40" Margin="15,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                 <TextBlock Name="TitleText" Text="AJOUTER UNE MATIERE" VerticalAlignment="Top" FontSize="25" HorizontalAlignment="Center"/>

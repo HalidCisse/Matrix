@@ -416,15 +416,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\ico1.png" />
-    <Resource Include="Images\ico10.png" />
-    <Resource Include="Images\ico2.png" />
-    <Resource Include="Images\ico3.png" />
-    <Resource Include="Images\ico4.png" />
-    <Resource Include="Images\ico5.png" />
-    <Resource Include="Images\ico6.png" />
-    <Resource Include="Images\ico7.png" />
-    <Resource Include="Images\ico8.png" />
     <Resource Include="Images\ico9.png" />
     <Resource Include="Images\mainicon.png" />
   </ItemGroup>
@@ -527,6 +518,7 @@
     <Resource Include="views\Pedagogy\Icon\Classe.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Styles\GridStyles\" />
     <Folder Include="Styles\ListStyles\" />
   </ItemGroup>
   <ItemGroup>
@@ -537,6 +529,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Styles\AgendaStyles\Classe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cours.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Inscription.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AnneeScolaire.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -27,7 +27,7 @@ namespace DataService.Entities
         /// <summary>
         /// Date de Debut du Periode
         /// </summary>
-        public DateTime? START_DATE { get; set; }
+        public DateTime? END_DATE { get; set; }
 
 
 

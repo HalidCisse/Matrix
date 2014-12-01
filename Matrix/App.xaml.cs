@@ -91,7 +91,7 @@ namespace Matrix
 
         static void App_DispatcherUnhandledException ( object sender, DispatcherUnhandledExceptionEventArgs e )
         {
-            MessageBox.Show (e.Exception.Message);
+            MessageBox.Show (e.Exception.Message,"Il ya Un Problem le Programme Doit se fermer !!");
             e.Handled = true;
             Current.Shutdown();
         }

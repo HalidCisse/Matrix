@@ -76,6 +76,20 @@ namespace Matrix.views.Pedagogy
             UpdateData();
         }
 
+        private void AddInscription_Click(object sender, RoutedEventArgs e)
+        {
+            var wind = new AddInscription(OpenedClass.CLASSE_ID.ToString()) { Owner = Window.GetWindow(this) };
+            wind.ShowDialog();
+            UpdateData();
+        }
+
+        private void AddAnneScolaire_Click(object sender, RoutedEventArgs e)
+        {
+            var wind = new AddAnneeScolaire() { Owner = Window.GetWindow(this) };
+            wind.ShowDialog();
+            UpdateData();
+        }
+
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )
         {
             //if(CurrentSelected == null)
@@ -113,7 +127,8 @@ namespace Matrix.views.Pedagogy
         private void StudentsList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {
 
-        }     
+        }
+
         
 
         #endregion
@@ -136,7 +151,9 @@ namespace Matrix.views.Pedagogy
                 Dispatcher.BeginInvoke(new Action(() => { StudentsList.ItemsSource = App.DataS.GetClassStudents(OpenedClass.CLASSE_ID); }));                
             });
             DataTask.Start();            
-        }        
+        }
+
+
 
         #endregion
 

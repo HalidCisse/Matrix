@@ -17,11 +17,21 @@ namespace Matrix.views.Pedagogy
     /// <summary>
     /// Interaction logic for AddInscription.xaml
     /// </summary>
-    public partial class AddInscription : Window
+    public partial class AddInscription
     {
-        public AddInscription()
+        public AddInscription(string ClassToOpenID)
         {
             InitializeComponent();
+
+
         }
+
+
+
+
+
+
+
+
     }
 }

@@ -84,7 +84,7 @@ namespace DataService.Migrations
 
         private static byte[] GetRandomImg()
         {
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
             var x = new Random ().Next (1, 9);
 
             var Img = BitmapArrayFromFile("portrait" + x + ".jpg");
