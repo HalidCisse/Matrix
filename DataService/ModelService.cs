@@ -19,16 +19,23 @@ namespace DataService
         /// </summary>
         /// <returns></returns>
         public List<DepStaffCard> GetDepStaffsCard ( )
-        {
-            var DepStaffCardList = new List<DepStaffCard> { new DepStaffCard ("") };
-            var Ds = new DbService ();
-
-            Parallel.ForEach (Ds.GetDEPARTEMENTS (), Dep =>
+        {                       
+            using (var Db = new EF())
             {
-                DepStaffCardList.Add (new DepStaffCard (Dep));
-            });
+                var DepStaffCardList = new List<DepStaffCard> {  };
+                var Nd = new DepStaffCard("");
 
-            return DepStaffCardList.Any()? DepStaffCardList.OrderBy(D => D.DEPARTEMENT_NAME).ToList() : DepStaffCardList;
+                if (Nd.STAFFS_LIST.Any()) { DepStaffCardList.Add(Nd);}
+
+                var Deps = (from S in Db.STAFF.ToList() where S.DEPARTEMENT != null select S.DEPARTEMENT).Distinct().ToList();
+
+                Parallel.ForEach(Deps, Dep =>
+                {
+                    DepStaffCardList.Add(new DepStaffCard(Dep));
+                });
+
+                return DepStaffCardList.Any() ? DepStaffCardList.OrderBy(D => D.DEPARTEMENT_NAME).ToList() : DepStaffCardList;
+            }       
         }
 
         /// <summary>
@@ -37,16 +44,20 @@ namespace DataService
         /// <returns></returns>
         public List<FiliereClassCard> GetFiliereClassCards ( )
         {
-            var ClassCardList = new List<FiliereClassCard> ();
-            var Ds = new DbService ();
-
-            Parallel.ForEach(Ds.GetAllFilieres(), Fil =>
+            using (var Db = new EF())
             {
-                var FC = new FiliereClassCard(Fil);
-                if (FC.CLASS_LIST.Any()){ ClassCardList.Add (FC); }                
-            });
-                        
-            return ClassCardList.Any()? ClassCardList.OrderBy(F => F.FILIERE_NAME).ToList() : ClassCardList;
+                var Fls = Db.FILIERE;
+
+                var ClassCardList = new List<FiliereClassCard>();
+                
+                Parallel.ForEach(Fls, Fil =>
+                {
+                    var FC = new FiliereClassCard(Fil);
+                    if (FC.CLASS_LIST.Any()) { ClassCardList.Add(FC); }
+                });
+
+                return ClassCardList.Any() ? ClassCardList.OrderBy(F => F.FILIERE_NAME).ToList() : ClassCardList;
+            }           
         }
         
         /// <summary>

@@ -1,21 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using DataService.Entities;
 using FirstFloor.ModernUI.Windows.Controls;
-using Matrix.Model;
 
 namespace Matrix.views.Pedagogy
 {
-    
     public partial class AddMatiere
     {
         private readonly bool IsAdd;               
         private readonly Matiere MatiereDisplayed = new Matiere();
 
+        /// <summary>
+        /// Form pour Ajouter/Modifier une Matiere
+        /// </summary>
+        /// <param name="CurrentClassID">ID</param>
+        /// <param name="MatiereToDisplay">Object</param>
         public AddMatiere ( Guid CurrentClassID, Matiere MatiereToDisplay = null )
         {
             InitializeComponent ();
@@ -28,7 +28,7 @@ namespace Matrix.views.Pedagogy
                 MatiereDisplayed.MATIERE_ID = Guid.NewGuid ();               
             }
             else
-            {
+            { 
                 IsAdd = false;               
                 MatiereDisplayed = MatiereToDisplay;
                 DisplayMatiere (MatiereDisplayed);                                

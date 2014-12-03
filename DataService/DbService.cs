@@ -763,8 +763,7 @@ namespace DataService
         /// <param name="newAnneeScolaire">Object AnneeScolaire</param>
         /// <returns></returns>
         public bool AddAnneeScolaire(AnneeScolaire newAnneeScolaire)
-        {
-            //newAnneeScolaire.ANNEE_SCOLAIRE_ID = Guid.NewGuid();
+        {           
             using (var Db = new EF())
             {
                 Db.ANNEE_SCOLAIRE.Add(newAnneeScolaire);

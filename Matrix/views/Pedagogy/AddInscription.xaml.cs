@@ -19,6 +19,10 @@ namespace Matrix.views.Pedagogy
     /// </summary>
     public partial class AddInscription
     {
+        /// <summary>
+        /// Form Pour Ajouter Inscrire Un Etudiant
+        /// </summary>
+        /// <param name="ClassToOpenID"></param>
         public AddInscription(string ClassToOpenID)
         {
             InitializeComponent();

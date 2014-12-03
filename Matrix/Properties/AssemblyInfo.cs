@@ -7,12 +7,12 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle ("Matrix")]
-[assembly: AssemblyDescription ("Gestion Ecole")]
+[assembly: AssemblyDescription ("Management Ecole")]
 [assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("Matrix Software")]
+[assembly: AssemblyCompany ("Matrix Software Inc.")]
 [assembly: AssemblyProduct ("Matrix")]
 [assembly: AssemblyCopyright ("Copyright ©  2014 Halidou Cisse")]
-[assembly: AssemblyTrademark ("Matrix Soft")]
+[assembly: AssemblyTrademark ("Matrix")]
 [assembly: AssemblyCulture ("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
