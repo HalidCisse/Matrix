@@ -60,7 +60,7 @@ namespace Matrix.Controls
             var list = sender as ListBox;
             if (list?.SelectedValue == null) return;
 
-            var wind = new AddCours(ClassID, App.DataS.GetCoursByID(new Guid(list.SelectedValue.ToString()))) { Owner = Window.GetWindow(this) };
+            var wind = new AddCours(ClassID, App.DataS.Pedagogy.Cours.GetCoursByID(new Guid(list.SelectedValue.ToString()))) { Owner = Window.GetWindow(this) };
             wind.ShowDialog();
             UpdateData(ClassID);
         }

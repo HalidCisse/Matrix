@@ -55,7 +55,7 @@ namespace Matrix.views.Pedagogy
             {
                 SavePeriodesScolaire(NewAnneeScolaire.ANNEE_SCOLAIRE_ID);
 
-                App.DataS.AddAnneeScolaire(NewAnneeScolaire);
+                App.DataS.Pedagogy.AddAnneeScolaire(NewAnneeScolaire);
                 ModernDialog.ShowMessage("Success", "Matrix", MessageBoxButton.OK);
             }
             catch (Exception ex)
@@ -70,7 +70,7 @@ namespace Matrix.views.Pedagogy
             foreach (var PS in PeriodeList)
             {
                 PS.ANNEE_SCOLAIRE_ID = anneeScolaireID;
-                App.DataS.AddPeriodeScolaire(PS);
+                App.DataS.Pedagogy.AddPeriodeScolaire(PS);
             }            
         }
 

@@ -63,7 +63,7 @@ namespace Matrix.views.Pedagogy
             {
                 try
                 {
-                    App.DataS.AddMatiere(MatiereDisplayed);
+                    App.DataS.Pedagogy.Matieres.AddMatiere(MatiereDisplayed);
                     ModernDialog.ShowMessage ("Success", "Matrix", MessageBoxButton.OK);                
                 }
                 catch (Exception ex)
@@ -76,7 +76,7 @@ namespace Matrix.views.Pedagogy
             {
                 try
                 {
-                    App.DataS.UpdateMatiere(MatiereDisplayed);                    
+                    App.DataS.Pedagogy.Matieres.UpdateMatiere(MatiereDisplayed);                    
                     ModernDialog.ShowMessage("Success","Matrix", MessageBoxButton.OK);
                 }
                 catch (Exception ex)

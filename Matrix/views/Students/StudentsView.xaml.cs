@@ -55,11 +55,11 @@ namespace Matrix.views
                 return;
             }
 
-            var theGaName = App.DataS.GetStudentName(Studentslist.SelectedValue.ToString ());
+            var theGaName = App.DataS.Students.GetStudentName(Studentslist.SelectedValue.ToString ());
             theGaName = "Ete Vous Sure de supprimer " + theGaName + " de la base de donnee ?";
 
             if (MessageBox.Show(theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
-            MessageBox.Show (App.DataS.DeleteStudent (Studentslist.SelectedValue.ToString ()) ? "Supprimer Avec Succes" : "Echec");
+            MessageBox.Show (App.DataS.Students.DeleteStudent (Studentslist.SelectedValue.ToString ()) ? "Supprimer Avec Succes" : "Echec");
             UpdateStudents ();
         }
 
@@ -79,7 +79,7 @@ namespace Matrix.views
         }
 
         private void worker_DoWork(object sender, DoWorkEventArgs e) {                     
-            StudentsBuff = App.DataS.GetAllStudents ();            
+            StudentsBuff = App.DataS.Students.GetAllStudents ();            
         }
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {

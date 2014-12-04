@@ -27,13 +27,13 @@ namespace Matrix.views.Pedagogy
 
             #region Patterns Data
 
-                MATIERE_ID_.ItemsSource = App.DataS.GetClassMatieres (CurrentClassID);
+                MATIERE_ID_.ItemsSource = App.DataS.Pedagogy.Classes.GetClassMatieres (CurrentClassID);
 
-                STAFF_ID_.ItemsSource = App.DataS.GetAllStaffs ();
+                STAFF_ID_.ItemsSource = App.DataS.HR.GetAllStaffs ();
 
-                SALLE_NAME_.ItemsSource = App.DataS.GetAllSalles ();
+                SALLE_NAME_.ItemsSource = App.DataS.DataEnums.GetAllSalles ();
 
-                TYPE_.ItemsSource = App.DataS.GetAllCoursTypes ();
+                TYPE_.ItemsSource = App.DataS.DataEnums.GetAllCoursTypes ();
 
                 START_DATE_.SelectedDate = DateTime.Today;
 
@@ -107,7 +107,7 @@ namespace Matrix.views.Pedagogy
             {
                 try
                 {
-                    App.DataS.AddCours (CurrentCours);
+                    App.DataS.Pedagogy.Cours.AddCours (CurrentCours);
                     ModernDialog.ShowMessage ("Success", "Matrix", MessageBoxButton.OK);
                 }
                 catch(Exception ex)
@@ -120,7 +120,7 @@ namespace Matrix.views.Pedagogy
             {
                 try
                 {
-                    App.DataS.UpdateCours (CurrentCours);
+                    App.DataS.Pedagogy.Cours.UpdateCours (CurrentCours);
                     ModernDialog.ShowMessage ("Success", "Matrix", MessageBoxButton.OK);
                 }
                 catch(Exception ex)

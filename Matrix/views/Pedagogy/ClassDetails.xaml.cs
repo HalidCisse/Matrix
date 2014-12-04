@@ -28,13 +28,29 @@ namespace Matrix.views.Pedagogy
             
             new Task(() =>
             {
-                OpenedClass = App.DataS.GetClasseByID(OpenClassID);
-                Dispatcher.BeginInvoke(new Action(() => { ClassFiliere.Text = App.DataS.GetFiliereByID(OpenedClass.FILIERE_ID).NAME.ToUpper(); }));
+                OpenedClass = App.DataS.Pedagogy.Classes.GetClasseByID(OpenClassID);
+                Dispatcher.BeginInvoke(new Action(() => { ClassFiliere.Text = App.DataS.Pedagogy.Filieres.GetFiliereByID(OpenedClass.FILIERE_ID).NAME.ToUpper(); }));
                 Dispatcher.BeginInvoke(new Action(() => { ClassName.Text = OpenedClass.NAME.ToUpper(); }));               
             }).Start();
 
-        }      
-  
+        }
+
+
+        private void UpdateData()
+        {
+            Dispatcher.BeginInvoke(new Action(() => { ClassWeekSchedule.UpdateData(OpenedClass.CLASSE_ID); }));
+
+            var DataTask = new Task(() =>
+            {
+                Dispatcher.BeginInvoke(new Action(() => { MatieresList.ItemsSource = App.ModelS.GetClassMatieresCards(OpenedClass.CLASSE_ID); }));
+            });
+            DataTask.ContinueWith(Cont =>
+            {
+                Dispatcher.BeginInvoke(new Action(() => { StudentsList.ItemsSource = App.DataS.Pedagogy.Classes.GetClassStudents(OpenedClass.CLASSE_ID); }));
+            });
+            DataTask.Start();
+        }
+
 
         #region EVENT HANDLERS
 
@@ -117,7 +133,7 @@ namespace Matrix.views.Pedagogy
         {
             var Matieres = sender as ListBox;
             if(Matieres?.SelectedValue == null) return;
-            var MatiereToDisplay = App.DataS.GetMatiereByID (new Guid(Matieres.SelectedValue.ToString ()));
+            var MatiereToDisplay = App.DataS.Pedagogy.Matieres.GetMatiereByID (new Guid(Matieres.SelectedValue.ToString ()));
 
             var wind = new AddMatiere (OpenedClass.CLASSE_ID, MatiereToDisplay) { Owner = Window.GetWindow (this) };
             wind.ShowDialog ();
@@ -134,28 +150,6 @@ namespace Matrix.views.Pedagogy
         #endregion
 
 
-
-
-        #region DATA WORKER
-
-        private void UpdateData ( )
-        {
-            Dispatcher.BeginInvoke(new Action(() => { ClassWeekSchedule.UpdateData(OpenedClass.CLASSE_ID); }));
-
-            var DataTask = new Task(() =>
-            {
-                Dispatcher.BeginInvoke(new Action(() => { MatieresList.ItemsSource = App.ModelS.GetClassMatieresCards(OpenedClass.CLASSE_ID); }));              
-            });            
-            DataTask.ContinueWith(Cont =>
-            {
-                Dispatcher.BeginInvoke(new Action(() => { StudentsList.ItemsSource = App.DataS.GetClassStudents(OpenedClass.CLASSE_ID); }));                
-            });
-            DataTask.Start();            
-        }
-
-
-
-        #endregion
 
         
     }

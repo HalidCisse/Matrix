@@ -19,18 +19,18 @@ namespace Matrix.views
 
             #region Patterns Data
 
-            TITLE_.ItemsSource = App.DataS.GetTITLES();
+            TITLE_.ItemsSource = App.DataS.DataEnums.GetTITLES();
 
-            NATIONALITY_.ItemsSource = App.DataS.GetNATIONALITIES();
+            NATIONALITY_.ItemsSource = App.DataS.DataEnums.GetNATIONALITIES();
 
-            BIRTH_PLACE_.ItemsSource = App.DataS.GetBIRTH_PLACE();
+            BIRTH_PLACE_.ItemsSource = App.DataS.DataEnums.GetBIRTH_PLACE();
 
-            STATUT_.ItemsSource = App.DataS.GetStudentSTATUTS();
+            STATUT_.ItemsSource = App.DataS.DataEnums.GetStudentSTATUTS();
 
             #endregion
 
             if (!string.IsNullOrEmpty(StudentToDisplayID))
-                DisplayStudent(App.DataS.GetStudentByID(StudentToDisplayID));
+                DisplayStudent(App.DataS.Students.GetStudentByID(StudentToDisplayID));
             else 
                 DisplayDefault();
         }
@@ -75,12 +75,12 @@ namespace Matrix.views
             if (OpenOption == "Add")
             {
                 MyStudent.REGISTRATION_DATE = DateTime.Now.Date;
-                MessageBox.Show (App.DataS.AddStudent (MyStudent) ? "Add Success" : "Add Failed");
+                MessageBox.Show (App.DataS.Students.AddStudent (MyStudent) ? "Add Success" : "Add Failed");
                 Close ();
             }
             else
             {
-                MessageBox.Show (App.DataS.UpdateStudent (MyStudent) ? "Update Success" : "Update Failed");
+                MessageBox.Show (App.DataS.Students.UpdateStudent (MyStudent) ? "Update Success" : "Update Failed");
                 Close ();
             }
             
@@ -123,7 +123,7 @@ namespace Matrix.views
         {
             string idOut;
 
-            do idOut = "M" + DateTime.Today.Year + GenID.GetID(4); while (App.DataS.StudentExist(idOut));
+            do idOut = "M" + DateTime.Today.Year + GenID.GetID(4); while (App.DataS.Students.StudentExist(idOut));
 
             return idOut;
         }
@@ -141,10 +141,10 @@ namespace Matrix.views
                     STUDENT_ID_.BorderBrush = Brushes.Red;
                     Ok = false;
                 }
-                else if (App.DataS.StudentExist(STUDENT_ID_.Text.Trim()))
+                else if (App.DataS.Students.StudentExist(STUDENT_ID_.Text.Trim()))
                 {
                     MessageBox.Show("Ce numero de Matricule Est Deja Utiliser par " +
-                                    App.DataS.GetStudentName(STUDENT_ID_.Text.Trim()));
+                                    App.DataS.Students.GetStudentName(STUDENT_ID_.Text.Trim()));
                     return false;
                 }
                 else

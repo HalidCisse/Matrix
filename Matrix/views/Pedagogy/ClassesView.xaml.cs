@@ -66,12 +66,12 @@ namespace Matrix.views.Pedagogy
 
             var CurrentSelected = new Guid (ClassList.SelectedValue.ToString ());
            
-            var theGaName = App.DataS.GetClasseName (CurrentSelected);
+            var theGaName = App.DataS.Pedagogy.Classes.GetClasseName (CurrentSelected);
             theGaName = "Ete Vous Sure de supprimer " + theGaName + " de la base de donnee ?";
 
             if(MessageBox.Show (theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
 
-            MessageBox.Show (App.DataS.DeleteClasse (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
+            MessageBox.Show (App.DataS.Pedagogy.Classes.DeleteClasse (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
             UpdateClass ();
         }
        

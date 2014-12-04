@@ -18,11 +18,11 @@ namespace Matrix.views.Pedagogy
 
             #region Patterns Data
 
-            NIVEAU_ENTREE_.ItemsSource = App.DataS.GetFILIERE_NIVEAU_ENTREE ();
+            NIVEAU_ENTREE_.ItemsSource = App.DataS.DataEnums.GetFILIERE_NIVEAU_ENTREE ();
 
-            NIVEAU_SORTIE_.ItemsSource = App.DataS.GetFILIERE_NIVEAU_SORTIE ();
+            NIVEAU_SORTIE_.ItemsSource = App.DataS.DataEnums.GetFILIERE_NIVEAU_SORTIE ();
 
-            foreach(var F in App.DataS.GetFILIERE_LEVELS ())
+            foreach(var F in App.DataS.DataEnums.GetFILIERE_LEVELS ())
             {
                 if(F.ToString().Equals ("1"))
                 {
@@ -37,7 +37,7 @@ namespace Matrix.views.Pedagogy
             #endregion
 
             if (!string.IsNullOrEmpty(FiliereToDisplayID)) {
-                DisplayFiliere(App.DataS.GetFiliereByID(new Guid(FiliereToDisplayID)));
+                DisplayFiliere(App.DataS.Pedagogy.Filieres.GetFiliereByID(new Guid(FiliereToDisplayID)));
                 FiliereDisplayedID = new Guid (FiliereToDisplayID);
                 TitleText.Text = "MODIFICATION";
             }
@@ -76,12 +76,12 @@ namespace Matrix.views.Pedagogy
 
             if(OpenOption == "Add")
             {                
-                MessageBox.Show (App.DataS.AddFiliere (Myfiliere) ? "Add Success" : "Add Failed");               
+                MessageBox.Show (App.DataS.Pedagogy.Filieres.AddFiliere (Myfiliere) ? "Add Success" : "Add Failed");               
             }
             else
             {
                 Myfiliere.FILIERE_ID = FiliereDisplayedID;
-                MessageBox.Show (App.DataS.UpdateFiliere (Myfiliere) ? "Update Success" : "Update Failed");               
+                MessageBox.Show (App.DataS.Pedagogy.Filieres.UpdateFiliere (Myfiliere) ? "Update Success" : "Update Failed");               
             }
             Close ();
         }

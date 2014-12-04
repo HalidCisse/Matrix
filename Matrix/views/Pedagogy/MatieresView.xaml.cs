@@ -25,7 +25,7 @@ namespace Matrix.views.Pedagogy
             InitializeComponent ();
 
             OpenedFiliere = OpenFiliere;
-            MatiereHeader.Text = App.DataS.GetFiliereByID(OpenFiliere).NAME.ToUpper();
+            MatiereHeader.Text = App.DataS.Pedagogy.Filieres.GetFiliereByID(OpenFiliere).NAME.ToUpper();
         }
        
         private void Page_Loaded ( object sender, RoutedEventArgs e )
@@ -53,18 +53,18 @@ namespace Matrix.views.Pedagogy
         private void DeleteMatiereButton_Click ( object sender, RoutedEventArgs e )
         {
 
-            if(App.DataS.GetMatiereByID (CurrentSelected) == null)
+            if(App.DataS.Pedagogy.Matieres.GetMatiereByID (CurrentSelected) == null)
             {
                 MessageBox.Show ("Selectionner Une Matiere A Supprimer !");
                 return;
             }
 
-            var theGaName = App.DataS.GetMatiereName (CurrentSelected);
+            var theGaName = App.DataS.Pedagogy.Matieres.GetMatiereName (CurrentSelected);
             theGaName = "Ete Vous Sure de supprimer " + theGaName + " de la base de donnee ?";
 
             if(MessageBox.Show (theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
 
-            MessageBox.Show (App.DataS.DeleteMatiere (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
+            MessageBox.Show (App.DataS.Pedagogy.Matieres.DeleteMatiere (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
             UpdateMatieres ();
         }
 
@@ -73,7 +73,7 @@ namespace Matrix.views.Pedagogy
             var Matieres = sender as ListBox;
             if(Matieres == null) return;
             if(Matieres.SelectedValue == null) return;
-            var MatiereToDisplay = App.DataS.GetMatiereByID(new Guid(Matieres.SelectedValue.ToString()));
+            var MatiereToDisplay = App.DataS.Pedagogy.Matieres.GetMatiereByID(new Guid(Matieres.SelectedValue.ToString()));
 
             var wind = new AddMatiere (OpenedFiliere, MatiereToDisplay) { Owner = Window.GetWindow (this) };
             wind.ShowDialog();

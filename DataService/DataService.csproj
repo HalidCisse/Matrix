@@ -101,6 +101,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\EF.cs" />
+    <Compile Include="DataManager\ClassesManager.cs" />
+    <Compile Include="DataManager\CoursManager.cs" />
+    <Compile Include="DataManager\DataEnums.cs" />
+    <Compile Include="DataManager\FilieresManager.cs" />
+    <Compile Include="DataManager\HRManager.cs" />
+    <Compile Include="DataManager\MatieresManager.cs" />
+    <Compile Include="DataManager\PedagogyManager.cs" />
+    <Compile Include="DataManager\StudentsManager.cs" />
     <Compile Include="Entities\AnneeScolaire.cs" />
     <Compile Include="Entities\Etablissement.cs" />
     <Compile Include="Entities\Inscription.cs" />
