@@ -35,7 +35,6 @@ namespace Matrix.views.Pedagogy
 
         }
 
-
         private void UpdateData()
         {
             Dispatcher.BeginInvoke(new Action(() => { ClassWeekSchedule.UpdateData(OpenedClass.CLASSE_ID); }));
