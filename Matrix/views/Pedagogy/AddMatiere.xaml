@@ -50,7 +50,7 @@
             <Image Source="Icon/Matiere.png" Height="70" Width="70" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
             <Grid Height="40" Margin="15,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                <TextBlock Name="TitleText" Text="AJOUTER UNE MATIERE" VerticalAlignment="Top" FontSize="25" HorizontalAlignment="Center"/>
+                <TextBlock Name="TitleText" Text="NOUVELLE MATIERE" VerticalAlignment="Top" FontSize="25" HorizontalAlignment="Center"/>
                 <Border Background="Blue" Width="350" Height="7"  VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
             </Grid>
         </Grid>
