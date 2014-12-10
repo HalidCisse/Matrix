@@ -14,24 +14,24 @@ namespace Matrix.views.Pedagogy
     public partial class MatieresView
     {
 
-        private readonly BackgroundWorker Worker = new BackgroundWorker ();
-        private List<FiliereLevelCard> ListBuff = new List<FiliereLevelCard> ();        
-        private Guid CurrentSelected;
-        private bool isFirstTime = true;
+        private readonly BackgroundWorker _worker = new BackgroundWorker ();
+        private List<FiliereLevelCard> _listBuff = new List<FiliereLevelCard> ();        
+        private Guid _currentSelected;
+        private bool _isFirstTime = true;
         public Guid OpenedFiliere { get; set; }
         
-        public MatieresView ( Guid OpenFiliere )
+        public MatieresView ( Guid openFiliere )
         {
             InitializeComponent ();
 
-            OpenedFiliere = OpenFiliere;
-            MatiereHeader.Text = App.DataS.Pedagogy.Filieres.GetFiliereByID(OpenFiliere).NAME.ToUpper();
+            OpenedFiliere = openFiliere;
+            MatiereHeader.Text = App.DataS.Pedagogy.Filieres.GetFiliereById(openFiliere).Name.ToUpper();
         }
        
         private void Page_Loaded ( object sender, RoutedEventArgs e )
         {
-            Worker.DoWork += Worker_DoWork;
-            Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            _worker.DoWork += Worker_DoWork;
+            _worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             BusyIndicator.IsBusy = true;
             UpdateMatieres (); 
         }     
@@ -53,29 +53,29 @@ namespace Matrix.views.Pedagogy
         private void DeleteMatiereButton_Click ( object sender, RoutedEventArgs e )
         {
 
-            if(App.DataS.Pedagogy.Matieres.GetMatiereByID (CurrentSelected) == null)
+            if(App.DataS.Pedagogy.Matieres.GetMatiereById (_currentSelected) == null)
             {
                 MessageBox.Show ("Selectionner Une Matiere A Supprimer !");
                 return;
             }
 
-            var theGaName = App.DataS.Pedagogy.Matieres.GetMatiereName (CurrentSelected);
+            var theGaName = App.DataS.Pedagogy.Matieres.GetMatiereName (_currentSelected);
             theGaName = "Ete Vous Sure de supprimer " + theGaName + " de la base de donnee ?";
 
             if(MessageBox.Show (theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
 
-            MessageBox.Show (App.DataS.Pedagogy.Matieres.DeleteMatiere (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
+            MessageBox.Show (App.DataS.Pedagogy.Matieres.DeleteMatiere (_currentSelected) ? "Supprimer Avec Succes" : "Echec");
             UpdateMatieres ();
         }
 
         private void MatiereList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {
-            var Matieres = sender as ListBox;
-            if(Matieres == null) return;
-            if(Matieres.SelectedValue == null) return;
-            var MatiereToDisplay = App.DataS.Pedagogy.Matieres.GetMatiereByID(new Guid(Matieres.SelectedValue.ToString()));
+            var matieres = sender as ListBox;
+            if(matieres == null) return;
+            if(matieres.SelectedValue == null) return;
+            var matiereToDisplay = App.DataS.Pedagogy.Matieres.GetMatiereById(new Guid(matieres.SelectedValue.ToString()));
 
-            var wind = new AddMatiere (OpenedFiliere, MatiereToDisplay) { Owner = Window.GetWindow (this) };
+            var wind = new AddMatiere (OpenedFiliere, matiereToDisplay) { Owner = Window.GetWindow (this) };
             wind.ShowDialog();
             UpdateMatieres ();           
         }
@@ -84,50 +84,50 @@ namespace Matrix.views.Pedagogy
         {
             var E = sender as Expander;
 
-            foreach(var Ep in FindVisualChildren<Expander> (this).Where (Ep => E != null && Ep.Header.ToString () != E.Header.ToString ()))
+            foreach(var ep in FindVisualChildren<Expander> (this).Where (ep => E != null && ep.Header.ToString () != E.Header.ToString ()))
             {
-                Ep.IsExpanded = false;
+                ep.IsExpanded = false;
             }
         }
 
         private void MatiereList_Loaded ( object sender, RoutedEventArgs e )
         {
-            if(!isFirstTime) return;
+            if(!_isFirstTime) return;
 
-            var E = FindVisualChildren<Expander>(this).First(Ep => Ep.Header.ToString() == "1 ere Annee");
+            var E = FindVisualChildren<Expander>(this).First(ep => ep.Header.ToString() == "1 ere Annee");
             E.IsExpanded = true;
-            isFirstTime = false;            
+            _isFirstTime = false;            
         }
 
         private void MatiereList_SelectionChanged ( object sender, SelectionChangedEventArgs e )
         {
-            var Matieres = sender as ListBox;
+            var matieres = sender as ListBox;
 
-            if(Matieres == null) return;
+            if(matieres == null) return;
 
-            if (Matieres.SelectedValue == null) return;
+            if (matieres.SelectedValue == null) return;
 
-            CurrentSelected = new Guid (Matieres.SelectedValue.ToString ()) ;
+            _currentSelected = new Guid (matieres.SelectedValue.ToString ()) ;
         }
 
        
 
         private void UpdateMatieres ( )
         {
-            if(Worker.IsBusy) return;            
-            Worker.RunWorkerAsync ();
+            if(_worker.IsBusy) return;            
+            _worker.RunWorkerAsync ();
         }
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
         {
-            ListBuff.Clear();
+            _listBuff.Clear();
             //ListBuff = App.ModelS.GetFiliereMatieresCards (OpenedFiliere);                        
         }
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {
             BusyIndicator.IsBusy = false;           
-            AnneeList.ItemsSource = ListBuff;
-            isFirstTime = true;
-            Worker.Dispose ();
+            AnneeList.ItemsSource = _listBuff;
+            _isFirstTime = true;
+            _worker.Dispose ();
         }
 
         

@@ -23,7 +23,7 @@
         <Style x:Key="ButtonStyle" TargetType="Button">          
             <Setter Property="FontFamily" Value="Verdana"/>
             <Setter Property="FontWeight" Value="ExtraLight"/>          
-            <Setter Property="Effect" Value="{StaticResource z-depth2}"/>
+            <Setter Property="Effect" Value="{StaticResource Z-Depth2}"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
             <Setter Property="Width" Value="100"/>
             <Setter Property="Height" Value="30"/>
@@ -57,27 +57,27 @@
 
         <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
             <TextBlock Text="NOM MATIERE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <TextBox Name="MATIERE_NAME_" HorizontalAlignment="Left" Width="250" Height="30" FontSize="20" />
+            <TextBox Name="MatiereName" HorizontalAlignment="Left" Width="250" Height="30" FontSize="20" />
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="SIGLE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <TextBox Name="SIGLE_" HorizontalAlignment="Left" Width="250" Height="30" FontSize="20"/>
+            <TextBox Name="Sigle" HorizontalAlignment="Left" Width="250" Height="30" FontSize="20"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
             <TextBlock Text="COEFFICIENT" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <xctk:IntegerUpDown Name="COEFFICIENT_" Value="1" Increment="1" Minimum="1" Maximum="20" HorizontalAlignment="Left" Width="250" Height="30" />
+            <xctk:IntegerUpDown Name="Coefficient" Value="1" Increment="1" Minimum="1" Maximum="20" HorizontalAlignment="Left" Width="250" Height="30" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="COULEUR" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <xctk:ColorPicker Name="COULEUR_" Width="250" Height="30" SelectedColor="RoyalBlue"  AvailableColorsHeader=""  ShowAdvancedButton="False" ShowRecentColors="False" ShowStandardColors="False" DisplayColorAndName="True" HorizontalAlignment="Left" />
+            <xctk:ColorPicker Name="Couleur" Width="250" Height="30" SelectedColor="RoyalBlue"  AvailableColorsHeader=""  ShowAdvancedButton="False" ShowRecentColors="False" ShowStandardColors="False" DisplayColorAndName="True" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
             <TextBlock Text="DESCRIPTION" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <TextBox Name="DESCRIPTION_" Height="70" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Stretch" />
+            <TextBox Name="Description" Height="70" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Stretch" />
         </StackPanel>
 
         <Grid Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" VerticalAlignment="Bottom" Margin="0,0">

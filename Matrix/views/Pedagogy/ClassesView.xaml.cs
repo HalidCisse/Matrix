@@ -17,26 +17,26 @@ namespace Matrix.views.Pedagogy
     public partial class ClassesView 
     {
 
-        private readonly BackgroundWorker Worker = new BackgroundWorker ();
-        private List<ClassCard> ListBuff = new List<ClassCard> ();
-        private Guid OpenedFiliereID;
+        private readonly BackgroundWorker _worker = new BackgroundWorker ();
+        private List<ClassCard> _listBuff = new List<ClassCard> ();
+        private Guid _openedFiliereId;
         //private string CurrentSelected;
-        private bool isFirstTime = true;
+        private bool _isFirstTime = true;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="OpenFiliere"></param>
-        public ClassesView (Guid OpenFiliere)
+        /// <param name="openFiliere"></param>
+        public ClassesView (Guid openFiliere)
         {
             InitializeComponent ();
-            OpenedFiliereID = OpenFiliere;
+            _openedFiliereId = openFiliere;
         }
 
         private void Page_Loaded ( object sender, RoutedEventArgs e )
         {
-            Worker.DoWork += Worker_DoWork;
-            Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            _worker.DoWork += Worker_DoWork;
+            _worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             BusyIndicator.IsBusy = true;
             UpdateClass (); 
         }
@@ -64,14 +64,14 @@ namespace Matrix.views.Pedagogy
                 return;
             }
 
-            var CurrentSelected = new Guid (ClassList.SelectedValue.ToString ());
+            var currentSelected = new Guid (ClassList.SelectedValue.ToString ());
            
-            var theGaName = App.DataS.Pedagogy.Classes.GetClasseName (CurrentSelected);
+            var theGaName = App.DataS.Pedagogy.Classes.GetClasseName (currentSelected);
             theGaName = "Ete Vous Sure de supprimer " + theGaName + " de la base de donnee ?";
 
             if(MessageBox.Show (theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
 
-            MessageBox.Show (App.DataS.Pedagogy.Classes.DeleteClasse (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
+            MessageBox.Show (App.DataS.Pedagogy.Classes.DeleteClasse (currentSelected) ? "Supprimer Avec Succes" : "Echec");
             UpdateClass ();
         }
        
@@ -87,12 +87,12 @@ namespace Matrix.views.Pedagogy
 
         private void ClassList_Loaded ( object sender, RoutedEventArgs e )
         {
-            if(!isFirstTime) return;
+            if(!_isFirstTime) return;
             try
             {
                 var E = FindVisualChildren<Expander> (this).First ();
                 E.IsExpanded = true;
-                isFirstTime = false; 
+                _isFirstTime = false; 
             }
             catch (Exception)
             {
@@ -121,21 +121,21 @@ namespace Matrix.views.Pedagogy
 
         private void UpdateClass ( )
         {
-            if(Worker.IsBusy) return;
-            Worker.RunWorkerAsync ();
+            if(_worker.IsBusy) return;
+            _worker.RunWorkerAsync ();
         }
 
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
         {
-            ListBuff = App.ModelS.GetFiliereClassCards (OpenedFiliereID);
+            _listBuff = App.ModelS.GetFiliereClassCards (_openedFiliereId);
         }
 
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {
             BusyIndicator.IsBusy = false;
-            ClassList.ItemsSource = ListBuff;
-            isFirstTime = true;
-            Worker.Dispose ();
+            ClassList.ItemsSource = _listBuff;
+            _isFirstTime = true;
+            _worker.Dispose ();
         }
 
         public static IEnumerable<T> FindVisualChildren<T> ( DependencyObject depObj ) where T : DependencyObject

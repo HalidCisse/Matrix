@@ -3,10 +3,10 @@ using DataService.Context;
 
 namespace DataService.Initializer
 {
-    class DBInitializer : CreateDatabaseIfNotExists<EF> //DropCreateDatabaseIfModelChanges<EF> //CreateDatabaseIfNotExists<EF> //DropCreateDatabaseIfModelChanges<EF>
+    class DbInitializer : CreateDatabaseIfNotExists<Ef> //DropCreateDatabaseIfModelChanges<EF> //CreateDatabaseIfNotExists<EF> //DropCreateDatabaseIfModelChanges<EF>
     {
 
-        protected override void Seed ( EF EF )
+        protected override void Seed ( Ef ef )
         {
            
             //AddPersonSeed(EF);

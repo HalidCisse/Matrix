@@ -16,22 +16,22 @@ namespace DataService.Entities
         /// ID
         /// </summary>
         [Key]
-        public Guid SETTING_ID { get; set; }
+        public Guid SettingId { get; set; }
 
         /// <summary>
         /// L'Utilisateur
         /// </summary>
-        public Guid USER_ID { get; set; }
+        public Guid UserId { get; set; }
 
         /// <summary>
         /// Le Nom du Parametre
         /// </summary>
-        public string SETTING_NAME { get; set; }
+        public string SettingName { get; set; }
 
         /// <summary>
         /// La Valeur du Parametre
         /// </summary>
-        public string SETTING_VALUE { get; set; }
+        public string SettingValue { get; set; }
 
         
     }

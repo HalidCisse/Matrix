@@ -6,17 +6,17 @@ namespace DataService.Entities
     public class Classe
     {
         [Key]
-        public Guid CLASSE_ID { get; set; }
+        public Guid ClasseId { get; set; }
 
-        public string NAME { get; set; }
+        public string Name { get; set; }
 
-        public Guid FILIERE_ID { get; set; }
+        public Guid FiliereId { get; set; }
 
-        public int LEVEL { get; set; }
+        public int Level { get; set; }
 
-        public string DESCRIPTION { get; set; }
+        public string Description { get; set; }
 
-        public Guid ANNEE_SCOLAIRE_ID { get; set; }
+        public Guid AnneeScolaireId { get; set; }
 
         
     }

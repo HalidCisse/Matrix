@@ -8,77 +8,77 @@ namespace DataService.DataManager
     /// <summary>
     /// Gestion des Ressources Humaines
     /// </summary>
-    public class HRManager
+    public class HrManager
     {
        /// <summary>
        /// 
        /// </summary>
-       /// <param name="MyStaff"></param>
+       /// <param name="myStaff"></param>
        /// <returns></returns>
-        public bool AddStaff(Staff MyStaff)
+        public bool AddStaff(Staff myStaff)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.STAFF.Add(MyStaff);
-                return Db.SaveChanges() > 0;
+                db.Staff.Add(myStaff);
+                return db.SaveChanges() > 0;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="MStaff"></param>
+        /// <param name="mStaff"></param>
         /// <returns></returns>
-        public bool UpdateStaff(Staff MStaff)
+        public bool UpdateStaff(Staff mStaff)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.STAFF.Attach(MStaff);
-                Db.Entry(MStaff).State = System.Data.Entity.EntityState.Modified;
+                db.Staff.Attach(mStaff);
+                db.Entry(mStaff).State = System.Data.Entity.EntityState.Modified;
 
-                return Db.SaveChanges() > 0;
+                return db.SaveChanges() > 0;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="StaffID"></param>
+        /// <param name="staffId"></param>
         /// <returns></returns>
-        public bool DeleteStaff(string StaffID)
+        public bool DeleteStaff(string staffId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.STAFF.Remove(Db.STAFF.Find(StaffID));
-                return Db.SaveChanges() > 0;
+                db.Staff.Remove(db.Staff.Find(staffId));
+                return db.SaveChanges() > 0;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="StaffID"></param>
+        /// <param name="staffId"></param>
         /// <returns></returns>
-        public Staff GetStaffByID(string StaffID)
+        public Staff GetStaffById(string staffId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {          
-                return Db.STAFF.Find(StaffID);
+                return db.Staff.Find(staffId);
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="FirstANDLastName"></param>
+        /// <param name="firstAndLastName"></param>
         /// <returns></returns>
-        public Staff GetStaffByFullName(string FirstANDLastName)
+        public Staff GetStaffByFullName(string firstAndLastName)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var MyStaff = Db.STAFF.SingleOrDefault(S => S.FULL_NAME == FirstANDLastName);
+                var myStaff = db.Staff.SingleOrDefault(s => s.FullName == firstAndLastName);
 
-                return MyStaff;
+                return myStaff;
             }
         }
 
@@ -88,9 +88,9 @@ namespace DataService.DataManager
         /// <returns></returns>
         public List<Staff> GetAllStaffs()
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                return Db.STAFF.ToList();
+                return db.Staff.ToList();
             }
         }
 
@@ -98,13 +98,13 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<string> GetAllStaffsID()
+        public List<string> GetAllStaffsId()
         {
-            var IDs = new List<string>();
-            using (var Db = new EF())
+            var ds = new List<string>();
+            using (var db = new Ef())
             {
-                IDs.AddRange(Db.STAFF.ToList().Select(S => S.STAFF_ID));
-                return IDs;
+                ds.AddRange(db.Staff.ToList().Select(s => s.StaffId));
+                return ds;
             }
         }
 
@@ -114,50 +114,50 @@ namespace DataService.DataManager
         /// <returns></returns>
         public System.Collections.IEnumerable GetAllStaffNames()
         {
-            var Names = new List<string>();
-            using (var Db = new EF())
+            var names = new List<string>();
+            using (var db = new Ef())
             {
-                Names.AddRange(Db.STAFF.ToList().Select(S => S.FULL_NAME));
-                return Names;
+                names.AddRange(db.Staff.ToList().Select(s => s.FullName));
+                return names;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="DepName"></param>
+        /// <param name="depName"></param>
         /// <returns></returns>
-        public List<Staff> GetDepStaffs(string DepName = null)
+        public List<Staff> GetDepStaffs(string depName = null)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                return DepName == null ? Db.STAFF.ToList().Where(S => string.IsNullOrEmpty(S.DEPARTEMENT)).ToList() : Db.STAFF.ToList().Where(S => S.DEPARTEMENT == DepName).ToList();
+                return depName == null ? db.Staff.ToList().Where(s => string.IsNullOrEmpty(s.Departement)).ToList() : db.Staff.ToList().Where(s => s.Departement == depName).ToList();
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="StaffID"></param>
+        /// <param name="staffId"></param>
         /// <returns></returns>
-        public string GetStaffFullName(string StaffID)
+        public string GetStaffFullName(string staffId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                return Db.STAFF.Find(StaffID).FULL_NAME;
+                return db.Staff.Find(staffId).FullName;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="StaffID"></param>
+        /// <param name="staffId"></param>
         /// <returns></returns>
-        public bool StaffExist(string StaffID)
+        public bool StaffExist(string staffId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                return Db.STAFF.Find(StaffID) != null;
+                return db.Staff.Find(staffId) != null;
             }
         }
 

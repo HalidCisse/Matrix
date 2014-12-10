@@ -30,7 +30,7 @@
             <Setter Property="FontFamily" Value="Verdana"/>
             <Setter Property="FontWeight" Value="ExtraLight"/>
             <!--<Setter Property="Foreground" Value="Gray"/>-->
-            <Setter Property="Effect" Value="{StaticResource z-depth2}"/>
+            <Setter Property="Effect" Value="{StaticResource Z-Depth2}"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
             <Setter Property="Width" Value="100"/>
             <Setter Property="Height" Value="30"/>
@@ -60,22 +60,22 @@
         
         <Grid Grid.Row="1">
             <TextBlock Text="NOM DE LA FILIERE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <TextBox Name="FILIERE_NAME_" Width="250" Height="30" FontSize="20" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+            <TextBox Name="FiliereName" Width="250" Height="30" FontSize="20" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
         </Grid>
 
         <Grid Grid.Row="2">
             <TextBlock Text="SCOLAIRITE" VerticalAlignment="Bottom"/>
-            <ComboBox Name="N_ANNEE_" Width="150"/>
+            <ComboBox Name="NAnnee" Width="150"/>
         </Grid>
         
         <Grid Grid.Row="3">
             <TextBlock Text="NIVEAU INSCRIPTION" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="NIVEAU_ENTREE_" IsEditable="True"/>
+            <ComboBox Name="NiveauEntree" IsEditable="True"/>
         </Grid>
 
         <Grid Grid.Row="4">
             <TextBlock Text="NIVEAU DIPLOMATION" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="NIVEAU_SORTIE_" Width="250" IsEditable="True" />
+            <ComboBox Name="NiveauSortie" Width="250" IsEditable="True" />
         </Grid>               
 
         <Grid Grid.Row="5" VerticalAlignment="Bottom" Margin="0,0">

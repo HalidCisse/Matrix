@@ -2,18 +2,18 @@
 
 namespace Matrix.Utils
 {
-    class GenID
+    class GenId
     {
-        public static string GetID (int lengthOfTheID)
+        public static string GetId (int lengthOfTheId)
         {
             var x = new Random();
-            var IdOut = string.Empty;
+            var idOut = string.Empty;
 
-            for (var i = 0; i < lengthOfTheID; i++)
+            for (var i = 0; i < lengthOfTheId; i++)
             {                
-                IdOut = IdOut + x.Next(1,9);
+                idOut = idOut + x.Next(1,9);
             }
-            return IdOut;
+            return idOut;
         }
 
     }

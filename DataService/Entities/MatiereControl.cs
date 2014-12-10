@@ -7,13 +7,13 @@ namespace DataService.Entities
     {
 
         [Key]
-        public string MATIERECONTROL_ID { get; set; }
+        public string MatierecontrolId { get; set; }
 
-        public string COURS_ID { get; set; }
+        public string CoursId { get; set; }
 
-        public DateTime? START_TIME { get; set; }
+        public DateTime? StartTime { get; set; }
 
-        public int DURATION { get; set; }
+        public int Duration { get; set; }
 
 
     }

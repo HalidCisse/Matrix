@@ -7,11 +7,11 @@ namespace DataService.Entities
     {
 
         [Key]
-        public Guid SALLE_ID { get; set; }
+        public Guid SalleId { get; set; }
 
-        public string NAME { get; set; }
+        public string Name { get; set; }
 
-        public string ADRESSE { get; set; }
+        public string Adresse { get; set; }
 
 
     }

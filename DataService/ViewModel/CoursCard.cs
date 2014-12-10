@@ -12,109 +12,109 @@ namespace DataService.ViewModel
         /// <summary>
         /// Les Informations s'un cours
         /// </summary>
-        /// <param name="CurrentCous">Le Cours</param>
-        /// <param name="CoursDay">La Journee De Recurrence</param>
-        public CoursCard ( Cours CurrentCous, DateTime CoursDay )
+        /// <param name="currentCous">Le Cours</param>
+        /// <param name="coursDay">La Journee De Recurrence</param>
+        public CoursCard ( Cours currentCous, DateTime coursDay )
         {
-            TYPE = CurrentCous.TYPE.ToUpper ();
-            COURS_ID = CurrentCous.COURS_ID;           
+            Type = currentCous.Type.ToUpper ();
+            CoursId = currentCous.CoursId;           
             
-            SALLE = CurrentCous.SALLE.ToUpper();
+            Salle = currentCous.Salle.ToUpper();
 
-            COURS_DAY = CoursDay.DayOfWeek;
+            CoursDay = coursDay.DayOfWeek;
 
-            START_TIME = CurrentCous.START_TIME.GetValueOrDefault();
-            END_TIME = CurrentCous.END_TIME.GetValueOrDefault();
+            StartTime = currentCous.StartTime.GetValueOrDefault();
+            EndTime = currentCous.EndTime.GetValueOrDefault();
 
-            FORE_COLOR = "Black";
+            ForeColor = "Black";
 
-            HORRAIRE = START_TIME.TimeOfDay.ToString("hh\\:mm") + " - " + END_TIME.TimeOfDay.ToString("hh\\:mm");
+            Horraire = StartTime.TimeOfDay.ToString("hh\\:mm") + " - " + EndTime.TimeOfDay.ToString("hh\\:mm");
 
-            ResolveData (CoursDay, CurrentCous.MATIERE_ID, CurrentCous.STAFF_ID);
+            ResolveData (coursDay, currentCous.MatiereId, currentCous.StaffId);
             
         }
 
         /// <summary>
         /// ID du cours
         /// </summary>
-        public Guid COURS_ID { get; set; }
+        public Guid CoursId { get; set; }
 
         /// <summary>
         /// Nom de la matiere
         /// </summary>
-        public string MATIERE_NAME { get; set; }
+        public string MatiereName { get; set; }
 
         /// <summary>
         /// Le Type du Cours: Cours, Control, Test, TP, TD Etc..
         /// </summary>
-        public string TYPE { get; set; } 
+        public string Type { get; set; } 
 
         /// <summary>
         /// Le nom de l'instructeur
         /// </summary>
-        public string STAFF_FULL_NAME { get; set; }
+        public string StaffFullName { get; set; }
         
         /// <summary>
         /// La Salle ou le cours Sera Dispenser
         /// </summary>
-        public string SALLE { get; set; }
+        public string Salle { get; set; }
         
         /// <summary>
         /// La Journee ou le cours sera dispenser
         /// </summary>
-        public DayOfWeek COURS_DAY { get; set; }
+        public DayOfWeek CoursDay { get; set; }
 
         /// <summary>
         /// L'Horraire Formater
         /// </summary>
-        public string HORRAIRE { get; set; }
+        public string Horraire { get; set; }
 
         /// <summary>
         /// La couleur du cours
         /// </summary>
-        public string COULEUR { get; set; }
+        public string Couleur { get; set; }
 
         /// <summary>
         /// Forecolor
         /// </summary>
-        public string FORE_COLOR { get; set; }
+        public string ForeColor { get; set; }
 
         /// <summary>
         /// L'heure ou le cours commencera 
         /// </summary>
-        public DateTime START_TIME { get; set; }
+        public DateTime StartTime { get; set; }
 
         /// <summary>
         /// L'heure ou le cours terminera 
         /// </summary>
-        public DateTime END_TIME { get; set; }
+        public DateTime EndTime { get; set; }
 
-        private void ResolveData (DateTime CoursDay, Guid MatiereID, string StaffID )
+        private void ResolveData (DateTime coursDay, Guid matiereId, string staffId )
         {           
-            using(var Db = new EF ())
+            using(var db = new Ef ())
             {
-                var M = Db.MATIERE.Find(MatiereID);
+                var m = db.Matiere.Find(matiereId);
 
-                MATIERE_NAME = M.NAME;
-                COULEUR = M.COULEUR;
+                MatiereName = m.Name;
+                Couleur = m.Couleur;
 
-                STAFF_FULL_NAME = Db.STAFF.Find (StaffID).FULL_NAME;
+                StaffFullName = db.Staff.Find (staffId).FullName;
             }
 
-            if (CoursDay < DateTime.Today)
+            if (coursDay < DateTime.Today)
             {
-                FORE_COLOR = "Gray";
+                ForeColor = "Gray";
             }
-            else if(CoursDay == DateTime.Today)
+            else if(coursDay == DateTime.Today)
             {
-                if (END_TIME.TimeOfDay < DateTime.Now.TimeOfDay)
+                if (EndTime.TimeOfDay < DateTime.Now.TimeOfDay)
                 {                                                            
-                    FORE_COLOR = "Gray";                    
+                    ForeColor = "Gray";                    
                 }
 
-                if (START_TIME.TimeOfDay <= DateTime.Now.TimeOfDay && END_TIME.TimeOfDay >= DateTime.Now.TimeOfDay)
+                if (StartTime.TimeOfDay <= DateTime.Now.TimeOfDay && EndTime.TimeOfDay >= DateTime.Now.TimeOfDay)
                 {
-                    FORE_COLOR = "Red";
+                    ForeColor = "Red";
                 }
             }
                       

@@ -8,44 +8,44 @@ namespace Matrix.views.Pedagogy
 {
     public partial class AddMatiere
     {
-        private readonly bool IsAdd;               
-        private readonly Matiere MatiereDisplayed = new Matiere();
+        private readonly bool _isAdd;               
+        private readonly Matiere _matiereDisplayed = new Matiere();
 
         /// <summary>
         /// Form pour Ajouter/Modifier une Matiere
         /// </summary>
-        /// <param name="CurrentClassID">ID</param>
-        /// <param name="MatiereToDisplay">Object</param>
-        public AddMatiere ( Guid CurrentClassID, Matiere MatiereToDisplay = null )
+        /// <param name="currentClassId">ID</param>
+        /// <param name="matiereToDisplay">Object</param>
+        public AddMatiere ( Guid currentClassId, Matiere matiereToDisplay = null )
         {
             InitializeComponent ();
             
-            MatiereDisplayed.CLASSE_ID = CurrentClassID;
+            _matiereDisplayed.ClasseId = currentClassId;
 
-            if(MatiereToDisplay == null)
+            if(matiereToDisplay == null)
             {
-                IsAdd = true;
-                MatiereDisplayed.MATIERE_ID = Guid.NewGuid ();               
+                _isAdd = true;
+                _matiereDisplayed.MatiereId = Guid.NewGuid ();               
             }
             else
             { 
-                IsAdd = false;               
-                MatiereDisplayed = MatiereToDisplay;
-                DisplayMatiere (MatiereDisplayed);                                
+                _isAdd = false;               
+                _matiereDisplayed = matiereToDisplay;
+                DisplayMatiere (_matiereDisplayed);                                
             }                                     
         }
         
-        private void DisplayMatiere(Matiere MatiereToDisplay)
+        private void DisplayMatiere(Matiere matiereToDisplay)
         {
-            if(MatiereToDisplay == null) return;
+            if(matiereToDisplay == null) return;
 
             TitleText.Text = "MODIFICATION";
-            MATIERE_NAME_.Text = MatiereToDisplay.NAME;
-            SIGLE_.Text = MatiereToDisplay.SIGLE;
-            COEFFICIENT_.Value = MatiereToDisplay.COEFFICIENT;
+            MatiereName.Text = matiereToDisplay.Name;
+            Sigle.Text = matiereToDisplay.Sigle;
+            Coefficient.Value = matiereToDisplay.Coefficient;
             // ReSharper disable once PossibleNullReferenceException
-            COULEUR_.SelectedColor = (Color)ColorConverter.ConvertFromString (MatiereToDisplay.COULEUR);
-            DESCRIPTION_.Text =MatiereToDisplay.DESCRIPTION;                         
+            Couleur.SelectedColor = (Color)ColorConverter.ConvertFromString (matiereToDisplay.Couleur);
+            Description.Text =matiereToDisplay.Description;                         
         }
        
         private void Enregistrer_Click ( object sender, RoutedEventArgs e )
@@ -53,17 +53,17 @@ namespace Matrix.views.Pedagogy
 
             if(ChampsValidated () != true) return;
             
-            MatiereDisplayed.NAME = MATIERE_NAME_.Text.Trim ();            
-            MatiereDisplayed.SIGLE = SIGLE_.Text;
-            MatiereDisplayed.COEFFICIENT = COEFFICIENT_.Value.GetValueOrDefault();
-            MatiereDisplayed.COULEUR = COULEUR_.SelectedColorText;
-            MatiereDisplayed.DESCRIPTION = DESCRIPTION_.Text;          
+            _matiereDisplayed.Name = MatiereName.Text.Trim ();            
+            _matiereDisplayed.Sigle = Sigle.Text;
+            _matiereDisplayed.Coefficient = Coefficient.Value.GetValueOrDefault();
+            _matiereDisplayed.Couleur = Couleur.SelectedColorText;
+            _matiereDisplayed.Description = Description.Text;          
 
-            if(IsAdd)
+            if(_isAdd)
             {
                 try
                 {
-                    App.DataS.Pedagogy.Matieres.AddMatiere(MatiereDisplayed);
+                    App.DataS.Pedagogy.Matieres.AddMatiere(_matiereDisplayed);
                     ModernDialog.ShowMessage ("Success", "Matrix", MessageBoxButton.OK);                
                 }
                 catch (Exception ex)
@@ -76,7 +76,7 @@ namespace Matrix.views.Pedagogy
             {
                 try
                 {
-                    App.DataS.Pedagogy.Matieres.UpdateMatiere(MatiereDisplayed);                    
+                    App.DataS.Pedagogy.Matieres.UpdateMatiere(_matiereDisplayed);                    
                     ModernDialog.ShowMessage("Success","Matrix", MessageBoxButton.OK);
                 }
                 catch (Exception ex)
@@ -89,21 +89,21 @@ namespace Matrix.views.Pedagogy
 
         private bool ChampsValidated()
         {
-            var Ok = true;
+            var ok = true;
 
-            if(string.IsNullOrEmpty (MATIERE_NAME_.Text))
+            if(string.IsNullOrEmpty (MatiereName.Text))
             {
-                MATIERE_NAME_.BorderBrush = Brushes.Red;
-                Ok = false;
+                MatiereName.BorderBrush = Brushes.Red;
+                ok = false;
             }
             else
             {
-                MATIERE_NAME_.BorderBrush = Brushes.Blue;
+                MatiereName.BorderBrush = Brushes.Blue;
             }
                        
-            if(!Ok) ModernDialog.ShowMessage ("Verifier Les Informations !","Matrix",MessageBoxButton.OK);
+            if(!ok) ModernDialog.ShowMessage ("Verifier Les Informations !","Matrix",MessageBoxButton.OK);
 
-            return Ok;
+            return ok;
         }
 
         private void Annuler_Click ( object sender, RoutedEventArgs e )

@@ -23,7 +23,7 @@
         <Style x:Key="ButtonStyle" TargetType="Button">          
             <Setter Property="FontFamily" Value="Verdana"/>
             <Setter Property="FontWeight" Value="ExtraLight"/>          
-            <Setter Property="Effect" Value="{StaticResource z-depth2}"/>
+            <Setter Property="Effect" Value="{StaticResource Z-Depth2}"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
             <Setter Property="Width" Value="100"/>
             <Setter Property="Height" Value="30"/>
@@ -58,32 +58,32 @@
 
         <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
             <TextBlock Text="ANNEE SCOLAIRE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <TextBox Name="ANNEESCOLAIRE_NAME_" HorizontalAlignment="Left" Width="250" Height="30" FontSize="20" />
+            <TextBox Name="AnneescolaireName" HorizontalAlignment="Left" Width="250" Height="30" FontSize="20" />
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="NOMBRE DE PERIODES" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <xctk:IntegerUpDown Name="N_PERIODES_" Value="2" Increment="1" Minimum="1" Maximum="20" ValueChanged="N_PERIODES__ValueChanged"  HorizontalAlignment="Left" Width="250" Height="30" />
+            <xctk:IntegerUpDown Name="NPeriodes" Value="2" Increment="1" Minimum="1" Maximum="20" ValueChanged="N_PERIODES__ValueChanged"  HorizontalAlignment="Left" Width="250" Height="30" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
             <TextBlock Text="DEBUT ANNEE SCOLAIRE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <DatePicker Name="DEBUT_ANS_" Width="250" Height="30" HorizontalAlignment="Left" />
+            <DatePicker Name="DebutAns" Width="250" Height="30" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="FIN ANNEE SCOLAIRE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <DatePicker Name="FIN_ANS_" Width="250" Height="30" HorizontalAlignment="Left" />
+            <DatePicker Name="FinAns" Width="250" Height="30" HorizontalAlignment="Left" />
         </StackPanel>
         
         <StackPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
             <TextBlock Text="DEBUT INSCRIPTION" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <DatePicker Name="DEBUT_INS_" Width="250" Height="30" HorizontalAlignment="Left" />
+            <DatePicker Name="DebutIns" Width="250" Height="30" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="FIN INSCRIPTION" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <DatePicker Name="FIN_INS_" Width="250" Height="30" HorizontalAlignment="Left" />
+            <DatePicker Name="FinIns" Width="250" Height="30" HorizontalAlignment="Left" />
         </StackPanel>
         
         <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center">

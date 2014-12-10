@@ -7,14 +7,14 @@ namespace Matrix.Model
     {
         public StaffViewModel()
         {
-            STAFFS_LIST = new List<Staff> ();
+            StaffsList = new List<Staff> ();
         }
 
-        public string DEPARTEMENT_NAME { get; set; }
+        public string DepartementName { get; set; }
 
-        public List<Staff> STAFFS_LIST { get; set; }
+        public List<Staff> StaffsList { get; set; }
 
-        public int STAFF_COUNT  { get; set; }
+        public int StaffCount  { get; set; }
         
     }
 }

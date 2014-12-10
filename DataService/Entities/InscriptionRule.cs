@@ -12,17 +12,17 @@ namespace DataService.Entities
         /// ID
         /// </summary>
         [Key]
-        public Guid INSCRIPTION_RULE_ID { get; set; }
+        public Guid InscriptionRuleId { get; set; }
 
         /// <summary>
         /// ID de la Classe
         /// </summary>
-        public Guid CLASSE_ID { get; set; }
+        public Guid ClasseId { get; set; }
 
         /// <summary>
         /// ID de la Classe
         /// </summary>
-        public Guid QUALIFICATION_ID { get; set; }
+        public Guid QualificationId { get; set; }
         
 
     }

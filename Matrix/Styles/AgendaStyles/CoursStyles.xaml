@@ -19,7 +19,7 @@
                 <Setter Property="BorderThickness" Value="1" />
                 <Setter Property="CornerRadius" Value="5" />
                 <Setter Property="Margin" Value="2,4" />
-                <Setter Property="Effect" Value="{StaticResource z-depth2}" />
+                <Setter Property="Effect" Value="{StaticResource Z-Depth2}" />
                 
             </Style>
             

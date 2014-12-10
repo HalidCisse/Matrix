@@ -36,10 +36,10 @@ namespace DataService.DataManager
         /// <returns></returns>
         public bool AddAnneeScolaire(AnneeScolaire newAnneeScolaire)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.ANNEE_SCOLAIRE.Add(newAnneeScolaire);
-                return Db.SaveChanges() > 0;
+                db.AnneeScolaire.Add(newAnneeScolaire);
+                return db.SaveChanges() > 0;
             }
         }
 
@@ -49,11 +49,11 @@ namespace DataService.DataManager
         /// <param name="newPeriodeScolaire"> Object PeriodeScolaire</param>
         public bool AddPeriodeScolaire(PeriodeScolaire newPeriodeScolaire)
         {
-            newPeriodeScolaire.PERIODE_SCOLAIRE_ID = Guid.NewGuid();
-            using (var Db = new EF())
+            newPeriodeScolaire.PeriodeScolaireId = Guid.NewGuid();
+            using (var db = new Ef())
             {
-                Db.PERIODE_SCOLAIRE.Add(newPeriodeScolaire);
-                return Db.SaveChanges() > 0;
+                db.PeriodeScolaire.Add(newPeriodeScolaire);
+                return db.SaveChanges() > 0;
             }
         }
 

@@ -5,23 +5,23 @@ namespace Matrix.Extention
 {    
     static class ModernDialogExtension
     {
-        static MessageBoxResult result;
+        static MessageBoxResult _result;
 
-        public static MessageBoxResult ShowDialogOKCancel ( this ModernDialog modernDialog )
+        public static MessageBoxResult ShowDialogOkCancel ( this ModernDialog modernDialog )
         {
-            result = MessageBoxResult.Cancel;
+            _result = MessageBoxResult.Cancel;
 
             modernDialog.OkButton.Click += OkButton_Click;
             modernDialog.Buttons = new[] { modernDialog.OkButton, modernDialog.CloseButton };
 
             modernDialog.ShowDialog ();
 
-            return result;
+            return _result;
         }
 
         private static void OkButton_Click ( object sender, RoutedEventArgs e )
         {
-            result = MessageBoxResult.OK;
+            _result = MessageBoxResult.OK;
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Matrix.views.Pedagogy
             InitializeComponent ();
 
             //FiliereDisplayed = CurrentFiliere;
-            FILIERE_NAME_.ItemsSource = App.DataS.Pedagogy.Filieres.GetAllFilieresNames ();
+            FiliereName.ItemsSource = App.DataS.Pedagogy.Filieres.GetAllFilieresNames ();
 
             if(classToDisplay != null)
             {
@@ -43,15 +43,15 @@ namespace Matrix.views.Pedagogy
 
         private void DisplayDefault()
         {
-            FILIERE_NAME_.SelectedIndex = 0;                     
-            NIVEAU_.SelectedIndex = 0;
+            FiliereName.SelectedIndex = 0;                     
+            Niveau.SelectedIndex = 0;
         }
 
         private void DisplayClass()
         {
             TitleText.Text = "MODIFICATION";
-            FILIERE_NAME_.SelectedValue = _classDisplayed.NAME;
-            NIVEAU_.SelectedValue = _classDisplayed.LEVEL;
+            FiliereName.SelectedValue = _classDisplayed.Name;
+            Niveau.SelectedValue = _classDisplayed.Level;
         }
 
         private void Enregistrer_Click ( object sender, RoutedEventArgs e )
@@ -60,16 +60,16 @@ namespace Matrix.views.Pedagogy
 
             var myClass = new Classe
             {
-                NAME = CLASS_NAME_.Text.Trim (),
-                FILIERE_ID = App.DataS.Pedagogy.Filieres.GetFiliereByName(FILIERE_NAME_.SelectedValue.ToString()).FILIERE_ID,
-                LEVEL = Convert.ToInt32 (NIVEAU_.SelectedValue.ToString())              
+                Name = ClassName.Text.Trim (),
+                FiliereId = App.DataS.Pedagogy.Filieres.GetFiliereByName(FiliereName.SelectedValue.ToString()).FiliereId,
+                Level = Convert.ToInt32 (Niveau.SelectedValue.ToString())              
             };
             
             if(_openOption == "Add")
             {
                 try
                 {
-                    myClass.CLASSE_ID = Guid.NewGuid();
+                    myClass.ClasseId = Guid.NewGuid();
                     App.DataS.Pedagogy.Classes.AddClasse(myClass);
                     ModernDialog.ShowMessage("Add Success","Matrix",MessageBoxButton.OK);                    
                 }
@@ -82,13 +82,13 @@ namespace Matrix.views.Pedagogy
             {
                 try
                 {
-                    myClass.CLASSE_ID = _classDisplayed.CLASSE_ID;
+                    myClass.ClasseId = _classDisplayed.ClasseId;
                     App.DataS.Pedagogy.Classes.UpdateClasse(myClass);
                     ModernDialog.ShowMessage("Add Success","Matrix",MessageBoxButton.OK);
                 }
-                catch (Exception Ex)
+                catch (Exception ex)
                 {                    
-                    ModernDialog.ShowMessage(Ex.Message,"Matrix",MessageBoxButton.OK);  
+                    ModernDialog.ShowMessage(ex.Message,"Matrix",MessageBoxButton.OK);  
                 }                
             }
             Close ();
@@ -96,31 +96,31 @@ namespace Matrix.views.Pedagogy
 
         private bool ChampsValidated()
         {
-            var Ok = true;
+            var ok = true;
 
-            if(FILIERE_NAME_.SelectedValue == null)
+            if(FiliereName.SelectedValue == null)
             {
-                FILIERE_NAME_.BorderBrush = Brushes.Red;
-                Ok = false;
+                FiliereName.BorderBrush = Brushes.Red;
+                ok = false;
             }
             
 
-            if(NIVEAU_.SelectedValue == null)
+            if(Niveau.SelectedValue == null)
             {
-                NIVEAU_.BorderBrush = Brushes.Red;
-                Ok = false;
+                Niveau.BorderBrush = Brushes.Red;
+                ok = false;
             }
 
 
-            if(string.IsNullOrEmpty (CLASS_NAME_.Text))
+            if(string.IsNullOrEmpty (ClassName.Text))
             {
-                CLASS_NAME_.BorderBrush = Brushes.Red;
-                Ok = false;
+                ClassName.BorderBrush = Brushes.Red;
+                ok = false;
             }
             
-            if(!Ok) ModernDialog.ShowMessage ("Verifier Les Informations !","Matrix",MessageBoxButton.OK);
+            if(!ok) ModernDialog.ShowMessage ("Verifier Les Informations !","Matrix",MessageBoxButton.OK);
 
-            return Ok;
+            return ok;
         }
 
         private void Annuler_Click ( object sender, RoutedEventArgs e )
@@ -130,10 +130,10 @@ namespace Matrix.views.Pedagogy
 
         private void FILIERE__SelectionChanged ( object sender, SelectionChangedEventArgs e )
         {
-            if ( FILIERE_NAME_.SelectedItem == null) return;
+            if ( FiliereName.SelectedItem == null) return;
 
-            NIVEAU_.ItemsSource = App.DataS.DataEnums.GetFILIERE_NIVEAUX (App.DataS.Pedagogy.Filieres.GetFiliereByName (FILIERE_NAME_.SelectedItem.ToString ()).FILIERE_ID);
-            NIVEAU_.SelectedIndex = 0;
+            Niveau.ItemsSource = App.DataS.DataEnums.GetFILIERE_NIVEAUX (App.DataS.Pedagogy.Filieres.GetFiliereByName (FiliereName.SelectedItem.ToString ()).FiliereId);
+            Niveau.SelectedIndex = 0;
         }
 
 

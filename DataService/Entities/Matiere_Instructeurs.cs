@@ -3,15 +3,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DataService.Entities
 {
-    public class Matiere_Instructeurs
+    public class MatiereInstructeurs
     {
 
         [Key]
-        public Guid MATIERE_INSTRUCTEURS_ID { get; set; } // MATIERE_ID + STAFF_ID
+        public Guid MatiereInstructeursId { get; set; } // MATIERE_ID + STAFF_ID
 
-        public Guid MATIERE_ID { get; set; }
+        public Guid MatiereId { get; set; }
 
-        public String STAFF_ID { get; set; }
+        public String StaffId { get; set; }
 
     }
 }

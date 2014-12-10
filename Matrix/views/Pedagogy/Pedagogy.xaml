@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"      
-      xmlns:My="http://schemas.xceed.com/wpf/xaml/toolkit"            
+      xmlns:my="http://schemas.xceed.com/wpf/xaml/toolkit"            
       mc:Ignorable="d" KeepAlive="True"
       d:DesignHeight="550" d:DesignWidth="1020">
 
@@ -43,7 +43,7 @@
             </Setter>
         </Style>
 
-        <ContextMenu PlacementTarget="{Binding ElementName =AddClasse}" HasDropShadow="True" Placement="Bottom" PlacementRectangle="10,10,10,10" HorizontalOffset="-100" VerticalOffset="20" x:Key="cmButton">
+        <ContextMenu PlacementTarget="{Binding ElementName =AddClasse}" HasDropShadow="True" Placement="Bottom" PlacementRectangle="10,10,10,10" HorizontalOffset="-100" VerticalOffset="20" x:Key="CmButton">
             <MenuItem Header="Ajouter Une Classe" Name="AddClasse" >
                 <MenuItem.Icon>
                     <TextBlock Text="&#xf055;" FontFamily="pack://application:,,,/Fonts/#FontAwesome" />
@@ -75,7 +75,7 @@
             </TabItem>
 
             <TabItem Style="{DynamicResource TabItemStyleFiliere}">
-                <Frame Name="filiereFrame" NavigationUIVisibility="Hidden" Source="FilieresView.xaml"/>
+                <Frame Name="FiliereFrame" NavigationUIVisibility="Hidden" Source="FilieresView.xaml"/>
             </TabItem>
 
         </TabControl>

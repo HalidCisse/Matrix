@@ -33,7 +33,7 @@ namespace DataService
         /// <summary>
         /// Gestion Des ressources Humaines
         /// </summary>
-        public HRManager HR = new HRManager();
+        public HrManager Hr = new HrManager();
  
     }
 }

@@ -15,10 +15,10 @@ namespace Matrix.Utils
         /// </summary>
         public sealed class SingletonApplicationEnforcer
         {
-            readonly Action<IEnumerable<string>> processArgsFunc;
-            readonly string applicationId;
-            Thread thread;
-            string argDelimiter = "_;;_";
+            readonly Action<IEnumerable<string>> _processArgsFunc;
+            readonly string _applicationId;
+            Thread _thread;
+            string _argDelimiter = "_;;_";
 
             /// <summary>
             /// Gets or sets the string that is used to join 
@@ -29,11 +29,11 @@ namespace Matrix.Utils
             {
                 get
                 {
-                    return argDelimiter;
+                    return _argDelimiter;
                 }
                 set
                 {
-                    argDelimiter = value;
+                    _argDelimiter = value;
                 }
             }
 
@@ -50,8 +50,8 @@ namespace Matrix.Utils
                 {
                     throw new ArgumentNullException("processArgsFunc");
                 }
-                this.processArgsFunc = processArgsFunc;
-                this.applicationId = applicationId;
+                this._processArgsFunc = processArgsFunc;
+                this._applicationId = applicationId;
             }
 
             /// <summary>
@@ -63,8 +63,8 @@ namespace Matrix.Utils
             public bool ShouldApplicationExit()
             {
                 bool createdNew;
-                string argsWaitHandleName = "ArgsWaitHandle_" + applicationId;
-                string memoryFileName = "ArgFile_" + applicationId;
+                string argsWaitHandleName = "ArgsWaitHandle_" + _applicationId;
+                string memoryFileName = "ArgFile_" + _applicationId;
 
                 EventWaitHandle argsWaitHandle = new EventWaitHandle(
                     false, EventResetMode.AutoReset, argsWaitHandleName, out createdNew);
@@ -77,7 +77,7 @@ namespace Matrix.Utils
                      * A thread is created to service the MemoryMappedFile. 
                      * We repeatedly examine this file each time the argsWaitHandle 
                      * is Set by a non-singleton application instance. */
-                    thread = new Thread(() =>
+                    _thread = new Thread(() =>
                     {
                         try
                         {
@@ -99,9 +99,9 @@ namespace Matrix.Utils
                                             Debug.WriteLine("Unable to retrieve string. " + ex);
                                             continue;
                                         }
-                                        string[] argsSplit = args.Split(new[] { argDelimiter },
+                                        string[] argsSplit = args.Split(new[] { _argDelimiter },
                                                                         StringSplitOptions.RemoveEmptyEntries);
-                                        processArgsFunc(argsSplit);
+                                        _processArgsFunc(argsSplit);
                                     }
 
                                 }
@@ -113,8 +113,8 @@ namespace Matrix.Utils
                         }
                     });
 
-                    thread.IsBackground = true;
-                    thread.Start();
+                    _thread.IsBackground = true;
+                    _thread.Start();
                 }
                 else
                 {
@@ -127,7 +127,7 @@ namespace Matrix.Utils
                         {
                             var writer = new BinaryWriter(stream);
                             var args = Environment.GetCommandLineArgs();
-                            var joined = string.Join(argDelimiter, args);
+                            var joined = string.Join(_argDelimiter, args);
                             writer.Write(joined);
                         }
                     }

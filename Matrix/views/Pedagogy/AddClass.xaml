@@ -25,17 +25,17 @@
         
         <Grid Grid.Row="1">
             <TextBlock Text="FILIERE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="FILIERE_NAME_" Width="200" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right" SelectionChanged="FILIERE__SelectionChanged"/>
+            <ComboBox Name="FiliereName" Width="200" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right" SelectionChanged="FILIERE__SelectionChanged"/>
         </Grid>
 
         <Grid Grid.Row="2">
             <TextBlock Text="NIVEAU" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="NIVEAU_" Width="200" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+            <ComboBox Name="Niveau" Width="200" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
         </Grid>
 
         <Grid Grid.Row="3">
             <TextBlock Text="NOM DE LA CLASSE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <TextBox Name="CLASS_NAME_" Width="300" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+            <TextBox Name="ClassName" Width="300" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
         </Grid>
              
         <Grid Grid.Row="4" VerticalAlignment="Bottom" Margin="0,0">

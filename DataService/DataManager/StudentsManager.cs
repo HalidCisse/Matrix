@@ -13,14 +13,14 @@ namespace DataService.DataManager
        /// <summary>
        /// 
        /// </summary>
-       /// <param name="MyStudent"></param>
+       /// <param name="myStudent"></param>
        /// <returns></returns>
-        public bool AddStudent(Student MyStudent)
+        public bool AddStudent(Student myStudent)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.STUDENT.Add(MyStudent);
-                return Db.SaveChanges() > 0;
+                db.Student.Add(myStudent);
+                return db.SaveChanges() > 0;
             }
 
 
@@ -29,58 +29,58 @@ namespace DataService.DataManager
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="MyStudent"></param>
+        /// <param name="myStudent"></param>
         /// <returns></returns>
-        public bool UpdateStudent(Student MyStudent)
+        public bool UpdateStudent(Student myStudent)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.STUDENT.Attach(MyStudent);
-                Db.Entry(MyStudent).State = System.Data.Entity.EntityState.Modified;
-                return Db.SaveChanges() > 0;
+                db.Student.Attach(myStudent);
+                db.Entry(myStudent).State = System.Data.Entity.EntityState.Modified;
+                return db.SaveChanges() > 0;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="StudentID"></param>
+        /// <param name="studentId"></param>
         /// <returns></returns>
-        public bool DeleteStudent(string StudentID)
+        public bool DeleteStudent(string studentId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.STUDENT.Remove(Db.STUDENT.Find(StudentID));
-                return Db.SaveChanges() > 0;
+                db.Student.Remove(db.Student.Find(studentId));
+                return db.SaveChanges() > 0;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="STudentID"></param>
+        /// <param name="sTudentId"></param>
         /// <returns></returns>
-        public Student GetStudentByID(string STudentID)
+        public Student GetStudentById(string sTudentId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var MyStudent = Db.STUDENT.Find(STudentID);
-                return MyStudent;
+                var myStudent = db.Student.Find(sTudentId);
+                return myStudent;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="FirstANDLastName"></param>
+        /// <param name="firstAndLastName"></param>
         /// <returns></returns>
-        public static Student GetStudentByFullName(string FirstANDLastName)
+        public static Student GetStudentByFullName(string firstAndLastName)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var MyStudent = Db.STUDENT.SingleOrDefault(S => S.FIRSTNAME + S.LASTNAME == FirstANDLastName);
+                var myStudent = db.Student.SingleOrDefault(s => s.Firstname + s.Lastname == firstAndLastName);
 
-                return MyStudent;
+                return myStudent;
             }
         }
 
@@ -90,40 +90,40 @@ namespace DataService.DataManager
         /// <returns></returns>
         public List<Student> GetAllStudents()
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
 
-                IList<Student> DaraNatadjis = Db.STUDENT.ToList();
+                IList<Student> daraNatadjis = db.Student.ToList();
 
-                return (List<Student>)DaraNatadjis;
+                return (List<Student>)daraNatadjis;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="StudentID"></param>
+        /// <param name="studentId"></param>
         /// <returns></returns>
-        public string GetStudentName(string StudentID)
+        public string GetStudentName(string studentId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var MyStudentName = Db.STUDENT.Find(StudentID).FIRSTNAME + " " + Db.STUDENT.Find(StudentID).LASTNAME;
-                return MyStudentName;
+                var myStudentName = db.Student.Find(studentId).Firstname + " " + db.Student.Find(studentId).Lastname;
+                return myStudentName;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="StudentID"></param>
+        /// <param name="studentId"></param>
         /// <returns></returns>
-        public bool StudentExist(string StudentID)
+        public bool StudentExist(string studentId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
 
-                return Db.STUDENT.Find(StudentID) != null;
+                return db.Student.Find(studentId) != null;
 
             }
         }

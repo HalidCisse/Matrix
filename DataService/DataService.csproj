@@ -122,9 +122,9 @@
     <Compile Include="Entities\Salle.cs" />
     <Compile Include="Entities\Setting.cs" />
     <Compile Include="Entities\StudentQualification.cs" />
-    <Compile Include="Migrations\201412100017448_kk.cs" />
-    <Compile Include="Migrations\201412100017448_kk.Designer.cs">
-      <DependentUpon>201412100017448_kk.cs</DependentUpon>
+    <Compile Include="Migrations\201412100527114_kk.cs" />
+    <Compile Include="Migrations\201412100527114_kk.Designer.cs">
+      <DependentUpon>201412100527114_kk.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelService.cs" />
     <Compile Include="Entities\Classe.cs" />
@@ -198,8 +198,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201412100017448_kk.resx">
-      <DependentUpon>201412100017448_kk.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201412100527114_kk.resx">
+      <DependentUpon>201412100527114_kk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

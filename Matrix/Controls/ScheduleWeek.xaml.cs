@@ -24,7 +24,7 @@ namespace Matrix.Controls
         /// <summary>
         /// ID de la classe
         /// </summary>
-        private Guid ClassID;
+        private Guid _classId;
 
         #endregion
 
@@ -41,13 +41,13 @@ namespace Matrix.Controls
         /// Mettre a jour les information de l'emploi du temps
         /// </summary>
         /// <param name="Class_ID">ID de la classe</param>
-        public void UpdateData(Guid Class_ID)
+        public void UpdateData(Guid classId)
         {
-            ClassID = Class_ID;
+            _classId = classId;
 
             new Task(() =>
             {
-                Dispatcher.BeginInvoke(new Action(() => { ScheduleUI.ItemsSource = App.ModelS.GetClassWeekAgendaData(ClassID, DateTime.Now); }));
+                Dispatcher.BeginInvoke(new Action(() => { ScheduleUi.ItemsSource = App.ModelS.GetClassWeekAgendaData(_classId, DateTime.Now); }));
             }).Start();
 
         }
@@ -60,9 +60,9 @@ namespace Matrix.Controls
             var list = sender as ListBox;
             if (list?.SelectedValue == null) return;
 
-            var wind = new AddCours(ClassID, App.DataS.Pedagogy.Cours.GetCoursByID(new Guid(list.SelectedValue.ToString()))) { Owner = Window.GetWindow(this) };
+            var wind = new AddCours(_classId, App.DataS.Pedagogy.Cours.GetCoursById(new Guid(list.SelectedValue.ToString()))) { Owner = Window.GetWindow(this) };
             wind.ShowDialog();
-            UpdateData(ClassID);
+            UpdateData(_classId);
         }
 
         private void DayCoursList_SelectionChanged(object sender, SelectionChangedEventArgs e)

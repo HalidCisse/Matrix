@@ -6,40 +6,40 @@ namespace Matrix.Utils
     public class Scheduler 
     {
 
-        public List<DayOfWeek> GetRecurrenceDays(int Bin)
+        public List<DayOfWeek> GetRecurrenceDays(int bin)
         {
-            var DayList = new List<DayOfWeek>();
+            var dayList = new List<DayOfWeek>();
 
 
-            if (Bin == 2)
+            if (bin == 2)
             {
-                DayList.Add(DayOfWeek.Monday);
+                dayList.Add(DayOfWeek.Monday);
             }
-            else if (Bin == 6)
+            else if (bin == 6)
             {
-                DayList.Add (DayOfWeek.Monday);
-                DayList.Add (DayOfWeek.Tuesday);
+                dayList.Add (DayOfWeek.Monday);
+                dayList.Add (DayOfWeek.Tuesday);
             }
-            else if(Bin == 14)
+            else if(bin == 14)
             {
-                DayList.Add (DayOfWeek.Monday);
-                DayList.Add (DayOfWeek.Tuesday);
-                DayList.Add (DayOfWeek.Wednesday);
+                dayList.Add (DayOfWeek.Monday);
+                dayList.Add (DayOfWeek.Tuesday);
+                dayList.Add (DayOfWeek.Wednesday);
             }
-            else if(Bin == 30)
+            else if(bin == 30)
             {
-                DayList.Add (DayOfWeek.Monday);
-                DayList.Add (DayOfWeek.Tuesday);
-                DayList.Add (DayOfWeek.Wednesday);
-                DayList.Add (DayOfWeek.Thursday);
+                dayList.Add (DayOfWeek.Monday);
+                dayList.Add (DayOfWeek.Tuesday);
+                dayList.Add (DayOfWeek.Wednesday);
+                dayList.Add (DayOfWeek.Thursday);
             }
-            else if(Bin == 30)
+            else if(bin == 30)
             {
-                DayList.Add (DayOfWeek.Monday);
-                DayList.Add (DayOfWeek.Tuesday);
-                DayList.Add (DayOfWeek.Wednesday);
-                DayList.Add (DayOfWeek.Thursday);
-                DayList.Add (DayOfWeek.Friday);
+                dayList.Add (DayOfWeek.Monday);
+                dayList.Add (DayOfWeek.Tuesday);
+                dayList.Add (DayOfWeek.Wednesday);
+                dayList.Add (DayOfWeek.Thursday);
+                dayList.Add (DayOfWeek.Friday);
             }
 
 
@@ -52,21 +52,21 @@ namespace Matrix.Utils
             //WeekDays.Add (DayOfWeek.Saturday);
             //WeekDays.Add (DayOfWeek.Sunday);
 
-            var WeekDays = new List<int>{2,4,8,16,32,64,128};
+            var weekDays = new List<int>{2,4,8,16,32,64,128};
 
-            foreach(var D1 in WeekDays)
+            foreach(var d1 in weekDays)
             {
-                foreach(var D2 in WeekDays)
+                foreach(var d2 in weekDays)
                 {
-                    foreach(var D3 in WeekDays)
+                    foreach(var d3 in weekDays)
                     {
-                        foreach(var D4 in WeekDays)
+                        foreach(var d4 in weekDays)
                         {
-                            foreach(var D5 in WeekDays)
+                            foreach(var d5 in weekDays)
                             {
-                                foreach(var D6 in WeekDays)
+                                foreach(var d6 in weekDays)
                                 {
-                                    foreach(var D7 in WeekDays)
+                                    foreach(var d7 in weekDays)
                                     {
                                         //
                                     }
@@ -84,7 +84,7 @@ namespace Matrix.Utils
 
 
 
-            return DayList;
+            return dayList;
         }
 
 

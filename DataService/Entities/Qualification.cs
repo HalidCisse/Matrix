@@ -14,32 +14,32 @@ namespace DataService.Entities
         /// ID
         /// </summary>
         [Key]
-        public Guid QUALIFICATION_ID { get; set; }
+        public Guid QualificationId { get; set; }
 
         /// <summary>
         /// Ex : Engenieur
         /// </summary>
-        public string NIVEAU { get; set; } // 
+        public string Niveau { get; set; } // 
 
         /// <summary>
         /// La Filiere
         /// </summary>
-        public Guid FILIERE_ID { get; set; } 
+        public Guid FiliereId { get; set; } 
 
         /// <summary>
         /// Etablissement
         /// </summary>
-        public string ETABLISSEMENT { get; set; } 
+        public string Etablissement { get; set; } 
                   
         /// <summary>
         /// Bac + ?
         /// </summary>
-        public int BAC_PLUS { get; set; } 
+        public int BacPlus { get; set; } 
 
         /// <summary>
         /// Description
         /// </summary>
-        public string DESCRIPTION { get; set; }
+        public string Description { get; set; }
 
     }
 }

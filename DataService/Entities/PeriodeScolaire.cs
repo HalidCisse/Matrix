@@ -12,27 +12,27 @@ namespace DataService.Entities
         /// ID
         /// </summary>
         [Key]
-        public Guid PERIODE_SCOLAIRE_ID { get; set; }
+        public Guid PeriodeScolaireId { get; set; }
 
         /// <summary>
         /// Ex: 1 ere Trimestre 2013/2014
         /// </summary>
-        public string NAME { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// ID de l'Annee Scolaire
         /// </summary>
-        public Guid ANNEE_SCOLAIRE_ID { get; set; }
+        public Guid AnneeScolaireId { get; set; }
 
         /// <summary>
         /// Date de Debut du Periode
         /// </summary>
-        public DateTime? START_DATE { get; set; }
+        public DateTime? StartDate { get; set; }
 
         /// <summary>
         /// Date de Debut du Periode
         /// </summary>
-        public DateTime? END_DATE { get; set; }
+        public DateTime? EndDate { get; set; }
 
 
 

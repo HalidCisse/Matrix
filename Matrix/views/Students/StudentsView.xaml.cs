@@ -16,8 +16,8 @@ namespace Matrix.views
         }
 
         private void Page_Loaded ( object sender, RoutedEventArgs e ) {
-            worker.DoWork += worker_DoWork;
-            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            _worker.DoWork += worker_DoWork;
+            _worker.RunWorkerCompleted += worker_RunWorkerCompleted;
             BusyIndicator.IsBusy = true;
             UpdateStudents();         
         }
@@ -32,7 +32,7 @@ namespace Matrix.views
         private void Studentslist_MouseDoubleClick ( object sender, MouseButtonEventArgs e ) {
             if (Studentslist == null) return;
             if (Studentslist.SelectedValue == null) return;
-            var wind = new StudentINFO (Studentslist.SelectedValue.ToString())
+            var wind = new StudentInfo (Studentslist.SelectedValue.ToString())
             {
                 Owner = Window.GetWindow(this),
                 OpenOption = "Mod"
@@ -43,7 +43,7 @@ namespace Matrix.views
 
         private void AddButon_Click ( object sender, RoutedEventArgs e )
         {
-            var wind = new StudentINFO {Owner = Window.GetWindow(this), OpenOption = "Add"};
+            var wind = new StudentInfo {Owner = Window.GetWindow(this), OpenOption = "Add"};
             wind.ShowDialog ();
             UpdateStudents ();           
         }
@@ -68,24 +68,24 @@ namespace Matrix.views
 
         #region Background Works
 
-        private readonly BackgroundWorker worker = new BackgroundWorker ();
+        private readonly BackgroundWorker _worker = new BackgroundWorker ();
         
-        private List<Student> StudentsBuff;
+        private List<Student> _studentsBuff;
 
         private void UpdateStudents()
         {
-            if(worker.IsBusy) return;
-            worker.RunWorkerAsync ();          
+            if(_worker.IsBusy) return;
+            _worker.RunWorkerAsync ();          
         }
 
         private void worker_DoWork(object sender, DoWorkEventArgs e) {                     
-            StudentsBuff = App.DataS.Students.GetAllStudents ();            
+            _studentsBuff = App.DataS.Students.GetAllStudents ();            
         }
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             BusyIndicator.IsBusy = false;
-            Studentslist.ItemsSource = StudentsBuff;           
-            worker.Dispose();
+            Studentslist.ItemsSource = _studentsBuff;           
+            _worker.Dispose();
         }
 
         #endregion

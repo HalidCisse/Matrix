@@ -5,15 +5,15 @@ namespace Matrix.Model
     public class MatiereStaffsModel
     {
         
-        public string STAFF_ID { get; set; }
+        public string StaffId { get; set; }
 
-        public string FULL_NAME { get; set; }
+        public string FullName { get; set; }
 
-        public byte[] PHOTO_IDENTITY { get; set; }
+        public byte[] PhotoIdentity { get; set; }
 
-        public string QUALIFICATION { get; set; }
+        public string Qualification { get; set; }
        
-        public Boolean IsINSTRUCTOR { get; set; }
+        public Boolean IsInstructor { get; set; }
         
     }
 }

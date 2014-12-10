@@ -9,39 +9,39 @@ namespace DataService.ViewModel
     {
 
 
-        public DepStaffCard (string Departement)
+        public DepStaffCard (string departement)
         {            
-             DEPARTEMENT_NAME = Departement.ToUpper ();                       
+             DepartementName = departement.ToUpper ();                       
             GetSTAFFS_LIST();
             //GetSTAFF_COUNT();
             //STAFF_COUNT = STAFFS_LIST.Count();
         }
         
 
-        public string DEPARTEMENT_NAME { get; set; }
+        public string DepartementName { get; set; }
 
-        public List<Staff> STAFFS_LIST { get; set; }
+        public List<Staff> StaffsList { get; set; }
 
-        public int STAFF_COUNT  { get; set; }
+        public int StaffCount  { get; set; }
 
 
         #region HELPERS
 
         private void GetSTAFFS_LIST ( )
         {
-            STAFFS_LIST = new List<Staff> ();
+            StaffsList = new List<Staff> ();
 
-            using(var Db = new EF ())
+            using(var db = new Ef ())
             {
-                STAFFS_LIST = string.IsNullOrEmpty(DEPARTEMENT_NAME)? Db.STAFF.Where (S => string.IsNullOrEmpty (S.DEPARTEMENT)).ToList () : Db.STAFF.Where (S => S.DEPARTEMENT == DEPARTEMENT_NAME).ToList ();
+                StaffsList = string.IsNullOrEmpty(DepartementName)? db.Staff.Where (s => string.IsNullOrEmpty (s.Departement)).ToList () : db.Staff.Where (s => s.Departement == DepartementName).ToList ();
             }
         }
 
         public void GetSTAFF_COUNT ( )
         {
-            using(var Db = new EF ())
+            using(var db = new Ef ())
             {
-                STAFF_COUNT = string.IsNullOrEmpty(DEPARTEMENT_NAME) ? Db.STAFF.Count(S => string.IsNullOrEmpty (S.DEPARTEMENT)) : Db.STAFF.Count(S => S.DEPARTEMENT == DEPARTEMENT_NAME);
+                StaffCount = string.IsNullOrEmpty(DepartementName) ? db.Staff.Count(s => string.IsNullOrEmpty (s.Departement)) : db.Staff.Count(s => s.Departement == DepartementName);
             }
         }
 

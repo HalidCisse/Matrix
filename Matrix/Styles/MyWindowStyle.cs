@@ -39,7 +39,7 @@ namespace Matrix.Styles
             else
             {
                 sender.ForWindowFromTemplate(w =>
-                    SendMessage(w.GetWindowHandle(), WM_SYSCOMMAND, (IntPtr)SC_KEYMENU, (IntPtr)' '));
+                    SendMessage(w.GetWindowHandle(), WmSyscommand, (IntPtr)ScKeymenu, (IntPtr)' '));
             }
         }
 
@@ -97,16 +97,16 @@ namespace Matrix.Styles
 
         #region P/Invoke
 
-        const int WM_SYSCOMMAND = 0x112;
-        const int SC_SIZE = 0xF000;
-        const int SC_KEYMENU = 0xF100;
+        const int WmSyscommand = 0x112;
+        const int ScSize = 0xF000;
+        const int ScKeymenu = 0xF100;
 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+        static extern IntPtr SendMessage(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
 
         static void DragSize(IntPtr handle, SizingAction sizingAction)
         {
-            SendMessage(handle, WM_SYSCOMMAND, (IntPtr)(SC_SIZE + sizingAction), IntPtr.Zero);
+            SendMessage(handle, WmSyscommand, (IntPtr)(ScSize + sizingAction), IntPtr.Zero);
             SendMessage(handle, 514, IntPtr.Zero, IntPtr.Zero);
         }
 

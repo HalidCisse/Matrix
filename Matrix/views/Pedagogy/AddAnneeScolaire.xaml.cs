@@ -12,8 +12,8 @@ namespace Matrix.views.Pedagogy
     /// </summary>
     public partial class AddAnneeScolaire
     {
-        private List<PeriodeScolaire> PeriodeList = new List<PeriodeScolaire>();
-        private bool isFirstTime = true;
+        private List<PeriodeScolaire> _periodeList = new List<PeriodeScolaire>();
+        private bool _isFirstTime = true;
 
         /// <summary>
         /// Represente Une Annee Scolaire
@@ -27,12 +27,12 @@ namespace Matrix.views.Pedagogy
 
         private void DisplayDefault()
         {
-            ANNEESCOLAIRE_NAME_.Text = "Annee Scolaire " + DateTime.Today.Year + "-" + (DateTime.Today.Year + 1);
-            DEBUT_ANS_.SelectedDate = new DateTime(DateTime.Today.Year, 10, 1);                      
-            FIN_ANS_.SelectedDate = new DateTime(DateTime.Today.Year, 10, 1).AddMonths(9);           
-            DEBUT_INS_.SelectedDate = DateTime.Today;
-            FIN_INS_.SelectedDate = DateTime.Today.AddMonths(3);
-            PERIODE_LIST_.ItemsSource = PeriodeList;
+            AnneescolaireName.Text = "Annee Scolaire " + DateTime.Today.Year + "-" + (DateTime.Today.Year + 1);
+            DebutAns.SelectedDate = new DateTime(DateTime.Today.Year, 10, 1);                      
+            FinAns.SelectedDate = new DateTime(DateTime.Today.Year, 10, 1).AddMonths(9);           
+            DebutIns.SelectedDate = DateTime.Today;
+            FinIns.SelectedDate = DateTime.Today.AddMonths(3);
+            PERIODE_LIST_.ItemsSource = _periodeList;
 
             Genperiods();
         }
@@ -41,21 +41,21 @@ namespace Matrix.views.Pedagogy
         {       
             if (ChampsValidated() != true) return;
 
-            var NewAnneeScolaire = new AnneeScolaire
+            var newAnneeScolaire = new AnneeScolaire
             {
-                ANNEE_SCOLAIRE_ID = Guid.NewGuid(),
-                NAME = ANNEESCOLAIRE_NAME_.Text.Trim(),
-                DATE_DEBUT = DEBUT_ANS_.SelectedDate,
-                DATE_FIN = FIN_ANS_.SelectedDate,
-                DATE_DEBUT_INSCRIPTION = DEBUT_INS_.SelectedDate,
-                DATE_FIN_INSCRIPTION = FIN_INS_.SelectedDate
+                AnneeScolaireId = Guid.NewGuid(),
+                Name = AnneescolaireName.Text.Trim(),
+                DateDebut = DebutAns.SelectedDate,
+                DateFin = FinAns.SelectedDate,
+                DateDebutInscription = DebutIns.SelectedDate,
+                DateFinInscription = FinIns.SelectedDate
             };
 
             try
             {
-                SavePeriodesScolaire(NewAnneeScolaire.ANNEE_SCOLAIRE_ID);
+                SavePeriodesScolaire(newAnneeScolaire.AnneeScolaireId);
 
-                App.DataS.Pedagogy.AddAnneeScolaire(NewAnneeScolaire);
+                App.DataS.Pedagogy.AddAnneeScolaire(newAnneeScolaire);
                 ModernDialog.ShowMessage("Success", "Matrix", MessageBoxButton.OK);
             }
             catch (Exception ex)
@@ -65,12 +65,12 @@ namespace Matrix.views.Pedagogy
             Close();                        
         }
        
-        private void SavePeriodesScolaire(Guid anneeScolaireID)
+        private void SavePeriodesScolaire(Guid anneeScolaireId)
         {           
-            foreach (var PS in PeriodeList)
+            foreach (var ps in _periodeList)
             {
-                PS.ANNEE_SCOLAIRE_ID = anneeScolaireID;
-                App.DataS.Pedagogy.AddPeriodeScolaire(PS);
+                ps.AnneeScolaireId = anneeScolaireId;
+                App.DataS.Pedagogy.AddPeriodeScolaire(ps);
             }            
         }
 
@@ -81,75 +81,75 @@ namespace Matrix.views.Pedagogy
 
         private bool ChampsValidated()
         {
-            var Ok = true;
+            var ok = true;
 
-            if (string.IsNullOrEmpty(ANNEESCOLAIRE_NAME_.Text))
+            if (string.IsNullOrEmpty(AnneescolaireName.Text))
             {
-                ANNEESCOLAIRE_NAME_.BorderBrush = Brushes.Red;
-                Ok = false;
+                AnneescolaireName.BorderBrush = Brushes.Red;
+                ok = false;
             }
             else
             {
-                ANNEESCOLAIRE_NAME_.BorderBrush = Brushes.Blue;
+                AnneescolaireName.BorderBrush = Brushes.Blue;
             }
 
 
             //todo: Validation Annee Scolaire Superposition
 
-            if (!Ok) ModernDialog.ShowMessage("Verifier Les Informations !", "Matrix", MessageBoxButton.OK);
+            if (!ok) ModernDialog.ShowMessage("Verifier Les Informations !", "Matrix", MessageBoxButton.OK);
 
-            return Ok;
+            return ok;
         }
 
         private void Genperiods()
         {
-            PeriodeList.Clear();
+            _periodeList.Clear();
 
-            int periodeLengh = (int)((FIN_ANS_.SelectedDate - DEBUT_ANS_.SelectedDate).Value.TotalDays / N_PERIODES_.Value);
+            int periodeLengh = (int)((FinAns.SelectedDate - DebutAns.SelectedDate).Value.TotalDays / NPeriodes.Value);
             DateTime lastStartDate = DateTime.Today;
-            DateTime lastEndDate = (DateTime)DEBUT_ANS_.SelectedDate;
+            DateTime lastEndDate = (DateTime)DebutAns.SelectedDate;
             var periodType = "Periode ";
 
-            if (N_PERIODES_.Value == 2)
+            if (NPeriodes.Value == 2)
             {
                 periodType = "Semestre ";
             }
-            else if (N_PERIODES_.Value == 3)
+            else if (NPeriodes.Value == 3)
             {
                 periodType = "Trimestre ";
             }
                        
-            for (var i = 1; i <= N_PERIODES_.Value; i++)
+            for (var i = 1; i <= NPeriodes.Value; i++)
             {
                 var newPeriodeSco = new PeriodeScolaire();
 
-                newPeriodeSco.PERIODE_SCOLAIRE_ID = Guid.NewGuid();
-                newPeriodeSco.NAME = periodType + i;
-                newPeriodeSco.START_DATE = lastEndDate.AddDays(1);
-                newPeriodeSco.END_DATE = lastEndDate.AddDays(periodeLengh);
+                newPeriodeSco.PeriodeScolaireId = Guid.NewGuid();
+                newPeriodeSco.Name = periodType + i;
+                newPeriodeSco.StartDate = lastEndDate.AddDays(1);
+                newPeriodeSco.EndDate = lastEndDate.AddDays(periodeLengh);
                                 
                 if (i == 1)
                 {
-                    newPeriodeSco.START_DATE = DEBUT_ANS_.SelectedDate;
+                    newPeriodeSco.StartDate = DebutAns.SelectedDate;
                 }
-                else if (i == N_PERIODES_.Value)
+                else if (i == NPeriodes.Value)
                 {
-                    newPeriodeSco.END_DATE = FIN_ANS_.SelectedDate;
+                    newPeriodeSco.EndDate = FinAns.SelectedDate;
                 }
 
-                PeriodeList.Add(newPeriodeSco);
+                _periodeList.Add(newPeriodeSco);
 
-                lastStartDate = newPeriodeSco.START_DATE.Value;
-                lastEndDate = newPeriodeSco.END_DATE.Value;
+                lastStartDate = newPeriodeSco.StartDate.Value;
+                lastEndDate = newPeriodeSco.EndDate.Value;
             }
 
             PERIODE_LIST_.ItemsSource = null;
-            PERIODE_LIST_.ItemsSource = PeriodeList;
+            PERIODE_LIST_.ItemsSource = _periodeList;
         }
     
         private void N_PERIODES__ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (isFirstTime){ isFirstTime = false;  return; }
+            if (_isFirstTime){ _isFirstTime = false;  return; }
             Genperiods();       
         }
     }

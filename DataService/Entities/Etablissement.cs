@@ -12,42 +12,42 @@ namespace DataService.Entities
         /// Etablissement
         /// </summary>
         [Key]
-        public Guid ETABLISSEMENT_ID { get; set; }
+        public Guid EtablissementId { get; set; }
 
         /// <summary>
         /// Nom de l'ecole
         /// </summary>
-        public string NAME { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Logo
         /// </summary>
-        public byte[] LOGO { get; set; } 
+        public byte[] Logo { get; set; } 
 
         /// <summary>
         /// Pays
         /// </summary>
-        public string COUNTRY { get; set; }
+        public string Country { get; set; }
 
         /// <summary>
         /// Adresse Domicile
         /// </summary>
-        public string ADRESSE { get; set; }
+        public string Adresse { get; set; }
 
         /// <summary>
         /// Numero de Telephone
         /// </summary>
-        public string PHONE { get; set; }
+        public string Phone { get; set; }
 
         /// <summary>
         /// Numero de fax
         /// </summary>
-        public string FAX { get; set; }
+        public string Fax { get; set; }
          
         /// <summary>
         /// Description
         /// </summary>
-        public string DESCRIPTION { get; set; }
+        public string Description { get; set; }
 
     }
 }

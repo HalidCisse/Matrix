@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
-      xmlns:My="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:my="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" KeepAlive="True"  Loaded="Page_Loaded"
       d:DesignHeight="550" d:DesignWidth="1020" Margin="0,0,0,-20">
        
@@ -35,7 +35,7 @@
             </Grid>
         </ToolBar>
         <Grid Background="Transparent">
-            <My:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <my:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <ListBox Name="Studentslist" Style="{DynamicResource StudentListBoxStyle}" SelectedValuePath="STUDENT_ID"  MouseDoubleClick="Studentslist_MouseDoubleClick"/>
         </Grid>
     </DockPanel>

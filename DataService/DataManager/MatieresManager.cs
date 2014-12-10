@@ -14,72 +14,72 @@ namespace DataService.DataManager
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="MyMatiere"></param>
+        /// <param name="myMatiere"></param>
         /// <returns></returns>
-        public bool AddMatiere(Matiere MyMatiere)
+        public bool AddMatiere(Matiere myMatiere)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.MATIERE.Add(MyMatiere);
-                return Db.SaveChanges() > 0;
+                db.Matiere.Add(myMatiere);
+                return db.SaveChanges() > 0;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="MyMatiere"></param>
+        /// <param name="myMatiere"></param>
         /// <returns></returns>
-        public bool UpdateMatiere(Matiere MyMatiere)
+        public bool UpdateMatiere(Matiere myMatiere)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.MATIERE.Attach(MyMatiere);
-                Db.Entry(MyMatiere).State = System.Data.Entity.EntityState.Modified;
-                return Db.SaveChanges() > 0;
+                db.Matiere.Attach(myMatiere);
+                db.Entry(myMatiere).State = System.Data.Entity.EntityState.Modified;
+                return db.SaveChanges() > 0;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="MatiereID"></param>
+        /// <param name="matiereId"></param>
         /// <returns></returns>
-        public bool DeleteMatiere(Guid MatiereID)
+        public bool DeleteMatiere(Guid matiereId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.MATIERE.Remove(Db.MATIERE.Find(MatiereID));
-                return Db.SaveChanges() > 0;
+                db.Matiere.Remove(db.Matiere.Find(matiereId));
+                return db.SaveChanges() > 0;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="MatiereID"></param>
+        /// <param name="matiereId"></param>
         /// <returns></returns>
-        public Matiere GetMatiereByID(Guid MatiereID)
+        public Matiere GetMatiereById(Guid matiereId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var MyMatiere = Db.MATIERE.Find(MatiereID);
-                return MyMatiere;
+                var myMatiere = db.Matiere.Find(matiereId);
+                return myMatiere;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="MatiereName"></param>
+        /// <param name="matiereName"></param>
         /// <returns></returns>
-        public static Matiere GetMatiereByName(string MatiereName)
+        public static Matiere GetMatiereByName(string matiereName)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var MyMatiere = Db.MATIERE.SingleOrDefault(S => S.NAME == MatiereName);
+                var myMatiere = db.Matiere.SingleOrDefault(s => s.Name == matiereName);
 
-                return MyMatiere;
+                return myMatiere;
             }
         }
 
@@ -89,9 +89,9 @@ namespace DataService.DataManager
         /// <returns></returns>
         public List<Matiere> GetAllMatieres()
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                return Db.MATIERE.ToList();
+                return db.Matiere.ToList();
             }
         }
 
@@ -101,50 +101,50 @@ namespace DataService.DataManager
         /// <returns></returns>
         public System.Collections.IEnumerable GetAllMatieresNames()
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                return Db.MATIERE.Select(M => M.NAME).ToList();
+                return db.Matiere.Select(m => m.Name).ToList();
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="MatiereID"></param>
+        /// <param name="matiereId"></param>
         /// <returns></returns>
-        public string GetMatiereName(Guid MatiereID)
+        public string GetMatiereName(Guid matiereId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var MyMatiereName = Db.MATIERE.Find(MatiereID).NAME;
-                return MyMatiereName;
+                var myMatiereName = db.Matiere.Find(matiereId).Name;
+                return myMatiereName;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="MatiereName"></param>
+        /// <param name="matiereName"></param>
         /// <returns></returns>
-        public string GetMatiereIDFromName(string MatiereName)
+        public string GetMatiereIdFromName(string matiereName)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var MAT = Db.MATIERE.FirstOrDefault(M => M.NAME == MatiereName);
-                return MAT == null ? null : MAT.MATIERE_ID.ToString();
+                var mat = db.Matiere.FirstOrDefault(m => m.Name == matiereName);
+                return mat == null ? null : mat.MatiereId.ToString();
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="MatiereID"></param>
+        /// <param name="matiereId"></param>
         /// <returns></returns>
-        public bool MatiereExist(Guid MatiereID)
+        public bool MatiereExist(Guid matiereId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                return Db.MATIERE.Find(MatiereID) != null;
+                return db.Matiere.Find(matiereId) != null;
             }
         }
 

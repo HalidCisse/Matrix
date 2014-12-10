@@ -17,10 +17,10 @@ namespace Matrix.views.Pedagogy
     public partial class PedagogyView
     {
         
-        private Guid CurrentSelected;
+        private Guid _currentSelected;
         //private bool isFirstTime = true;
-        private readonly BackgroundWorker worker = new BackgroundWorker ();
-        private List<FiliereClassCard> FilieresBuff = new List<FiliereClassCard> ();
+        private readonly BackgroundWorker _worker = new BackgroundWorker ();
+        private List<FiliereClassCard> _filieresBuff = new List<FiliereClassCard> ();
 
         /// <summary>
         /// Affiche les filieres et leurs classes
@@ -32,20 +32,20 @@ namespace Matrix.views.Pedagogy
         
         private void UpdateData ( )
         {
-            if(worker.IsBusy) return;            
-            worker.RunWorkerAsync ();
+            if(_worker.IsBusy) return;            
+            _worker.RunWorkerAsync ();
         }
 
         private void worker_DoWork ( object sender, DoWorkEventArgs e )
         {            
-            FilieresBuff = App.ModelS.GetFiliereClassCards ();
+            _filieresBuff = App.ModelS.GetFiliereClassCards ();
         }
 
         private void worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {
             BusyIndicator.IsBusy = false;
-            FiliereList.ItemsSource = FilieresBuff;
-            worker.Dispose ();
+            FiliereList.ItemsSource = _filieresBuff;
+            _worker.Dispose ();
         }
 
 
@@ -53,8 +53,8 @@ namespace Matrix.views.Pedagogy
 
         private void Page_Loaded ( object sender, RoutedEventArgs e )
         {
-            worker.DoWork += worker_DoWork;
-            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            _worker.DoWork += worker_DoWork;
+            _worker.RunWorkerCompleted += worker_RunWorkerCompleted;
             BusyIndicator.IsBusy = true;
             UpdateData ();
             
@@ -63,19 +63,19 @@ namespace Matrix.views.Pedagogy
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )
         {
             
-            MessageBox.Show (CurrentSelected + "");
+            MessageBox.Show (_currentSelected + "");
 
-            var TheClass = App.DataS.Pedagogy.Classes.GetClasseByID (CurrentSelected);
+            var theClass = App.DataS.Pedagogy.Classes.GetClasseById (_currentSelected);
 
-            var theName = App.DataS.Pedagogy.Classes.GetClasseName (CurrentSelected);
-            theName = "Ete Vous Sure de supprimer " + TheClass.NAME + " definitivement ?";
+            var theName = App.DataS.Pedagogy.Classes.GetClasseName (_currentSelected);
+            theName = "Ete Vous Sure de supprimer " + theClass.Name + " definitivement ?";
 
-            var MD = new ModernDialog {
+            var md = new ModernDialog {
                 Title = "Matrix",
                 Content = theName
             };
                       
-            var r = MD.ShowDialogOKCancel ();
+            var r = md.ShowDialogOkCancel ();
             if (r != MessageBoxResult.OK)
             {
                 return;
@@ -83,23 +83,23 @@ namespace Matrix.views.Pedagogy
            
             try
             {
-                App.DataS.Pedagogy.Classes.DeleteClasse (TheClass.CLASSE_ID);
+                App.DataS.Pedagogy.Classes.DeleteClasse (theClass.ClasseId);
             }
-            catch(Exception Ex)
+            catch(Exception ex)
             {
-                ModernDialog.ShowMessage (Ex.Message, "Matrix", MessageBoxButton.OK);
+                ModernDialog.ShowMessage (ex.Message, "Matrix", MessageBoxButton.OK);
             }
                                   
-            if (App.DataS.Pedagogy.Filieres.GetFiliereClassCount(TheClass.FILIERE_ID) == 1){
-                if(MessageBox.Show ("Vouler Vous Supprimer " + App.DataS.Pedagogy.Filieres.GetFiliereByID (TheClass.FILIERE_ID).NAME + " definitivement ?")!= MessageBoxResult.Yes) return;
+            if (App.DataS.Pedagogy.Filieres.GetFiliereClassCount(theClass.FiliereId) == 1){
+                if(MessageBox.Show ("Vouler Vous Supprimer " + App.DataS.Pedagogy.Filieres.GetFiliereById (theClass.FiliereId).Name + " definitivement ?")!= MessageBoxResult.Yes) return;
 
                 try
                 {
-                    App.DataS.Pedagogy.Filieres.DeleteFiliere (TheClass.FILIERE_ID);
+                    App.DataS.Pedagogy.Filieres.DeleteFiliere (theClass.FiliereId);
                 }
-                catch (Exception Ex)
+                catch (Exception ex)
                 {
-                    ModernDialog.ShowMessage (Ex.Message, "Matrix", MessageBoxButton.OK);
+                    ModernDialog.ShowMessage (ex.Message, "Matrix", MessageBoxButton.OK);
                 }                
             }       
             UpdateData ();
@@ -167,28 +167,28 @@ namespace Matrix.views.Pedagogy
 
         private void ClassList_SelectionChanged ( object sender, SelectionChangedEventArgs e )
         {
-            var Classes = sender as ListBox;
+            var classes = sender as ListBox;
 
-            if(Classes?.SelectedValue == null) return;
+            if(classes?.SelectedValue == null) return;
 
-            CurrentSelected = new Guid (Classes.SelectedValue.ToString ());
+            _currentSelected = new Guid (classes.SelectedValue.ToString ());
         }
 
         private void ClassContextDel_Click(object sender, RoutedEventArgs e)
         {
-            var theName = App.DataS.Pedagogy.Classes.GetClasseName(CurrentSelected);
+            var theName = App.DataS.Pedagogy.Classes.GetClasseName(_currentSelected);
             theName = "Ete Vous Sure de supprimer " + theName + " definitivement ?";
 
-            var MD = new ModernDialog
+            var md = new ModernDialog
             {
                 Title = "Matrix",
                 Content = theName
             };
 
-            var r = MD.ShowDialogOKCancel();
+            var r = md.ShowDialogOkCancel();
             if (r != MessageBoxResult.OK) return;
 
-            App.DataS.Pedagogy.Classes.DeleteClasse(CurrentSelected);
+            App.DataS.Pedagogy.Classes.DeleteClasse(_currentSelected);
 
             ModernDialog.ShowMessage("Supprimer Avec Success", "Matrix", MessageBoxButton.OK);
 

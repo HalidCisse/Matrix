@@ -15,35 +15,35 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable GetNATIONALITIES()
+        public IEnumerable GetNationalities()
         {
-            var NATIONALITIES = new List<string>();
+            var nationalities = new List<string>();
 
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var StudentNT = (from S in Db.STUDENT.ToList() where S.NATIONALITY != null select S.NATIONALITY).ToList().Distinct().ToList();
-                NATIONALITIES.AddRange(StudentNT);
+                var studentNt = (from S in db.Student.ToList() where S.Nationality != null select S.Nationality).ToList().Distinct().ToList();
+                nationalities.AddRange(studentNt);
 
-                var StaffNT = (from S in Db.STAFF.ToList() where S.NATIONALITY != null select S.NATIONALITY).ToList().Distinct().ToList();
-                NATIONALITIES.AddRange(StaffNT);
+                var staffNt = (from S in db.Staff.ToList() where S.Nationality != null select S.Nationality).ToList().Distinct().ToList();
+                nationalities.AddRange(staffNt);
             }
 
-            if (NATIONALITIES.Count != 0) return NATIONALITIES.Distinct();
+            if (nationalities.Count != 0) return nationalities.Distinct();
 
-            NATIONALITIES.Add("Maroc");
-            NATIONALITIES.Add("Mali");
-            NATIONALITIES.Add("Senegal");
-            NATIONALITIES.Add("Algerie");
-            NATIONALITIES.Add("Liberia");
-            NATIONALITIES.Add("Guinee");
-            NATIONALITIES.Add("Afrique Du Sud");
-            NATIONALITIES.Add("Nigeria");
-            NATIONALITIES.Add("Soudan");
-            NATIONALITIES.Add("Gambie");
-            NATIONALITIES.Add("Congo");
-            NATIONALITIES.Add("Burkina Fasso");
+            nationalities.Add("Maroc");
+            nationalities.Add("Mali");
+            nationalities.Add("Senegal");
+            nationalities.Add("Algerie");
+            nationalities.Add("Liberia");
+            nationalities.Add("Guinee");
+            nationalities.Add("Afrique Du Sud");
+            nationalities.Add("Nigeria");
+            nationalities.Add("Soudan");
+            nationalities.Add("Gambie");
+            nationalities.Add("Congo");
+            nationalities.Add("Burkina Fasso");
 
-            return NATIONALITIES;
+            return nationalities;
         }
 
         /// <summary>
@@ -52,34 +52,34 @@ namespace DataService.DataManager
         /// <returns></returns>
         public IEnumerable GetBIRTH_PLACE()
         {
-            var BIRTH_PLACE = new List<string>();
+            var birthPlace = new List<string>();
 
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var StudentBP = (from S in Db.STUDENT.ToList() where S.BIRTH_PLACE != null select S.BIRTH_PLACE).ToList().Distinct().ToList();
-                BIRTH_PLACE.AddRange(StudentBP);
+                var studentBp = (from S in db.Student.ToList() where S.BirthPlace != null select S.BirthPlace).ToList().Distinct().ToList();
+                birthPlace.AddRange(studentBp);
 
-                var StaffBP = (from S in Db.STAFF.ToList() where S.BIRTH_PLACE != null select S.BIRTH_PLACE).ToList().Distinct().ToList();
-                BIRTH_PLACE.AddRange(StaffBP);
+                var staffBp = (from S in db.Staff.ToList() where S.BirthPlace != null select S.BirthPlace).ToList().Distinct().ToList();
+                birthPlace.AddRange(staffBp);
             }
 
-            if (BIRTH_PLACE.Count != 0) return BIRTH_PLACE.Distinct();
+            if (birthPlace.Count != 0) return birthPlace.Distinct();
 
-            BIRTH_PLACE.Add("Rabat");
-            BIRTH_PLACE.Add("Casablanca");
-            BIRTH_PLACE.Add("Bamako");
-            BIRTH_PLACE.Add("Toumbouctou");
-            BIRTH_PLACE.Add("Tayba");
-            BIRTH_PLACE.Add("Dakar");
+            birthPlace.Add("Rabat");
+            birthPlace.Add("Casablanca");
+            birthPlace.Add("Bamako");
+            birthPlace.Add("Toumbouctou");
+            birthPlace.Add("Tayba");
+            birthPlace.Add("Dakar");
 
-            return BIRTH_PLACE;
+            return birthPlace;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable GetTITLES()
+        public IEnumerable GetTitles()
         {
             return new List<string> { "Mr", "Mme", "Mlle", "Dr" };
         }
@@ -88,7 +88,7 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable GetStudentSTATUTS()
+        public IEnumerable GetStudentStatuts()
         {
             return new List<string> { "Regulier", "Abandonner", "Irregulier", "Suspendue" };
         }
@@ -97,7 +97,7 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable GetStaffSTATUTS()
+        public IEnumerable GetStaffStatuts()
         {
             return new List<string> { "Regulier", "Licencier", "Irregulier", "Suspendue" };
         }
@@ -106,13 +106,13 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable GetStaffPOSITIONS()
+        public IEnumerable GetStaffPositions()
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var Pos = (from S in Db.STAFF.ToList() where S.POSITION != null select S.POSITION).ToList().Distinct().ToList();
+                var pos = (from S in db.Staff.ToList() where S.Position != null select S.Position).ToList().Distinct().ToList();
 
-                if (Pos.Count == 0)
+                if (pos.Count == 0)
                 {
                     return new List<string> {
                         "Professeur",
@@ -126,7 +126,7 @@ namespace DataService.DataManager
                         "Secretaire"
                     };
                 }
-                return Pos;
+                return pos;
             }
         }
 
@@ -134,13 +134,13 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable GetDEPARTEMENTS()
+        public IEnumerable GetDepartements()
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var Deps = (from S in Db.STAFF.ToList() where S.DEPARTEMENT != null select S.DEPARTEMENT).ToList().Distinct().ToList();
+                var deps = (from S in db.Staff.ToList() where S.Departement != null select S.Departement).ToList().Distinct().ToList();
 
-                return Deps;
+                return deps;
             }
             //Deps.Count == 0 ? new List<string> { "Departement de Mathematique", "Departement de Chimie", "Departement de Physique" } :
         }
@@ -149,13 +149,13 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable GetStaffQUALIFICATIONS()
+        public IEnumerable GetStaffQualifications()
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var Quals = (from S in Db.STAFF.ToList() where S.QUALIFICATION != null select S.QUALIFICATION).Distinct().ToList();
+                var quals = (from S in db.Staff.ToList() where S.Qualification != null select S.Qualification).Distinct().ToList();
 
-                return Quals.Count == 0 ? new List<string> { "Engenieur Etat En Informatique", "Doctorat En Mathematique", "Master En Anglais" } : Quals;
+                return quals.Count == 0 ? new List<string> { "Engenieur Etat En Informatique", "Doctorat En Mathematique", "Master En Anglais" } : quals;
             }
         }
 
@@ -165,13 +165,13 @@ namespace DataService.DataManager
         /// <returns></returns>
         public IEnumerable GetFILIERE_NIVEAU_ENTREE()
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var Ns = (from S in Db.FILIERE.ToList() where S.NIVEAU_ENTREE != null select S.NIVEAU_ENTREE).ToList();
+                var ns = (from S in db.Filiere.ToList() where S.NiveauEntree != null select S.NiveauEntree).ToList();
 
-                Ns.AddRange(new List<string> { "Bac", "Bac+1", "Bac+2", "Licence", "Bac+4", "Master", "Engenieur", "Doctorat" });
+                ns.AddRange(new List<string> { "Bac", "Bac+1", "Bac+2", "Licence", "Bac+4", "Master", "Engenieur", "Doctorat" });
 
-                return Ns.Distinct().ToList();
+                return ns.Distinct().ToList();
             }
         }
 
@@ -181,41 +181,41 @@ namespace DataService.DataManager
         /// <returns></returns>
         public IEnumerable GetFILIERE_NIVEAU_SORTIE()
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var Ns = (from S in Db.FILIERE.ToList() where S.NIVEAU != null select S.NIVEAU).ToList();
+                var ns = (from S in db.Filiere.ToList() where S.Niveau != null select S.Niveau).ToList();
 
-                Ns.AddRange(new List<string> { "Bac+1", "Bac+2", "Licence", "Bac+4", "Master", "Engenieur", "Doctorat" });
+                ns.AddRange(new List<string> { "Bac+1", "Bac+2", "Licence", "Bac+4", "Master", "Engenieur", "Doctorat" });
 
-                return Ns.Distinct().ToList();
+                return ns.Distinct().ToList();
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="filiereID"></param>
+        /// <param name="filiereId"></param>
         /// <returns></returns>
-        public IEnumerable GetFILIERE_LEVELS(Guid filiereID)
+        public IEnumerable GetFILIERE_LEVELS(Guid filiereId)
         {
-            return GetFILIERE_NIVEAUX(filiereID);
+            return GetFILIERE_NIVEAUX(filiereId);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="FiliereID"></param>
+        /// <param name="filiereId"></param>
         /// <returns></returns>
-        public IEnumerable GetFILIERE_NIVEAUX(Guid FiliereID)
+        public IEnumerable GetFILIERE_NIVEAUX(Guid filiereId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var MyFiliereN = Db.FILIERE.Find(FiliereID).N_ANNEE;
-                var N = new List<int>();
+                var myFiliereN = db.Filiere.Find(filiereId).NAnnee;
+                var n = new List<int>();
 
-                for (var i = 1; i < MyFiliereN + 1; i++) N.Add(i);
+                for (var i = 1; i < myFiliereN + 1; i++) n.Add(i);
 
-                return N;
+                return n;
             }
         }
 
@@ -248,9 +248,9 @@ namespace DataService.DataManager
         /// <returns></returns>
         public IEnumerable GetAllSalles()
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                return (from S in Db.COURS.ToList() where S.SALLE != null select S.SALLE).Distinct().ToList();
+                return (from S in db.Cours.ToList() where S.Salle != null select S.Salle).Distinct().ToList();
             }
         }
 

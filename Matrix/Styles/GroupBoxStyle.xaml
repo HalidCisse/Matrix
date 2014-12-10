@@ -24,7 +24,7 @@
 
     </Style>
 
-    <ControlTemplate x:Key="GBCT" TargetType="GroupBox">
+    <ControlTemplate x:Key="Gbct" TargetType="GroupBox">
         
         <Grid >
             <Grid.RowDefinitions>
@@ -46,7 +46,7 @@
               
     </ControlTemplate>
 
-    <ControlTemplate x:Key="GBCT1" TargetType="GroupBox">
+    <ControlTemplate x:Key="Gbct1" TargetType="GroupBox">
 
         <Grid >
             <Grid.RowDefinitions>
@@ -65,7 +65,7 @@
 
     </ControlTemplate>
 
-    <DataTemplate x:Key="GBHeader">
+    <DataTemplate x:Key="GbHeader">
         <Border BorderThickness="1" BorderBrush="#25A0DA" Background="#25A0DA">
             <Label Foreground="White" HorizontalAlignment="Center" FontSize="15" FontFamily="League Gothic">
                 <!--<ContentPresenter Margin="4" ContentSource="Header" RecognizesAccessKey="True" />-->
@@ -79,7 +79,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="GroupBox">
-                    <Grid Effect="{StaticResource z-depth3}">
+                    <Grid Effect="{StaticResource Z-Depth3}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*" />

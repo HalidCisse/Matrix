@@ -13,12 +13,12 @@ namespace DataService.ViewModel
         /// <summary>
         /// Un Model de classe
         /// </summary>
-        /// <param name="Clas">La classe</param>
-        public ClassCard ( Classe Clas )
+        /// <param name="clas">La classe</param>
+        public ClassCard ( Classe clas )
         {
-            CLASS_ID = Clas.CLASSE_ID;
-            NAME = Clas.NAME;
-            LEVEL = Clas.LEVEL == 1 ? "1 ere Annee" : Clas.LEVEL + " eme Annee";
+            ClassId = clas.ClasseId;
+            Name = clas.Name;
+            Level = clas.Level == 1 ? "1 ere Annee" : clas.Level + " eme Annee";
 
             //GetLEVEL (Clas.LEVEL);            
             //GetSTUDENTS_COUNT();
@@ -30,52 +30,52 @@ namespace DataService.ViewModel
         /// <summary>
         /// ID
         /// </summary>
-        public Guid CLASS_ID { get; }
+        public Guid ClassId { get; }
          
         /// <summary>
         /// Nomination
         /// </summary>
-        public string NAME { get; }
+        public string Name { get; }
 
         /// <summary>
         /// Level
         /// </summary>
-        public string LEVEL { get; }
+        public string Level { get; }
 
         /// <summary>
         /// Nombre d'etudiants
         /// </summary>
-        public int STUDENTS_COUNT { get; } = 10;
+        public int StudentsCount { get; } = 10;
 
         /// <summary>
         /// Nombre d'instructeurs
         /// </summary>
-        public int INSTRUCTEURS_COUNT { get; } = 10;
+        public int InstructeursCount { get; } = 10;
 
         /// <summary>
         /// Nombre d'heure par semaine
         /// </summary>
-        public string HEURES_PAR_SEMAINE { get; } = "10 Heures";
+        public string HeuresParSemaine { get; } = "10 Heures";
 
         /// <summary>
         /// Nombre de matieres
         /// </summary>
-        public int MATIERES_COUNT { get; } = 10;
+        public int MatieresCount { get; } = 10;
 
 
         
               
         private void GetINSTRUCTEURS_COUNT ()
         {
-            using(var Db = new EF ())
+            using(var db = new Ef ())
             {
-                var x = Db.COURS.Where(C => C.CLASSE_ID == CLASS_ID);
+                var x = db.Cours.Where(c => c.ClasseId == ClassId);
 
             }
         }
         private void GetHEURE_PAR_SEMAINE ()
         {
-            using(var Db = new EF ())
+            using(var db = new Ef ())
             {
                 // From Cours
                // HEURES_PAR_SEMAINE = "10 Heures"; //Db.FILIERE_MATIERE.Find (FiliereID + MATIERE_ID + FiliereLevel).HEURE_PAR_SEMAINE;
@@ -86,7 +86,7 @@ namespace DataService.ViewModel
             //From Cours
             //MATIERES_COUNT = 10;
         }
-        private void GetLEVEL (int level)
+        private void GetLevel (int level)
         {
             
         }

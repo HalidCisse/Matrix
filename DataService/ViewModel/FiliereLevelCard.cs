@@ -12,26 +12,26 @@ namespace DataService.ViewModel
     public class FiliereLevelCard
     {
 
-        public FiliereLevelCard ( Guid FiliereID, int FiliereYear )
+        public FiliereLevelCard ( Guid filiereId, int filiereYear )
         {
-            FILIERE_ID = FiliereID;
-            FormatYear(FiliereYear);      
+            FiliereId = filiereId;
+            FormatYear(filiereYear);      
             //MATIERES_LIST = new List<MatiereCard> ();
             //GetMATIERES_LIST (FiliereYear);           
         }
 
-        public Guid FILIERE_ID { get; set; }
+        public Guid FiliereId { get; set; }
 
-        public string FILIERE_YEAR { get; set; }
+        public string FiliereYear { get; set; }
 
        // public List<MatiereCard> MATIERES_LIST { get; set; }
 
 
         #region HELPERS
 
-        private void GetMATIERES_LIST (int FiliereYear )
+        private void GetMATIERES_LIST (int filiereYear )
         {
-            using(var Db = new EF ())
+            using(var db = new Ef ())
             {
                 //var MatieresIDs = Db.FILIERE_MATIERE.Where (F => F.FILIERE_ID == FILIERE_ID && F.FILIERE_LEVEL == FiliereYear).Select (F => F.MATIERE_ID).ToList ();
                
@@ -47,9 +47,9 @@ namespace DataService.ViewModel
             }
         }
 
-        private void FormatYear(int FiliereYear)
+        private void FormatYear(int filiereYear)
         {
-            FILIERE_YEAR = FiliereYear == 1 ? "1 ere Annee" : FiliereYear + " eme Annee";
+            this.FiliereYear = filiereYear == 1 ? "1 ere Annee" : filiereYear + " eme Annee";
         }
 
         #endregion

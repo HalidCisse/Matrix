@@ -22,7 +22,7 @@
                 <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="CornerRadius" Value="2" />
                 <Setter Property="Margin" Value="10"/>
-                <Setter Property="Effect" Value="{StaticResource z-depth3}"/>
+                <Setter Property="Effect" Value="{StaticResource Z-Depth3}"/>
             </Style>
 
             <DataTemplate x:Key="ListBoxTemp">

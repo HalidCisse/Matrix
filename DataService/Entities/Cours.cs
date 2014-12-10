@@ -13,67 +13,67 @@ namespace DataService.Entities
         /// ID du Cours
         /// </summary>
         [Key]
-        public Guid COURS_ID { get; set; }
+        public Guid CoursId { get; set; }
 
         /// <summary>
         /// ID de la classe
         /// </summary>
-        public Guid CLASSE_ID { get; set; }
+        public Guid ClasseId { get; set; }
 
         /// <summary>
         /// ID du staff qui va dispenser le cours
         /// </summary>
-        public string STAFF_ID { get; set; }      
+        public string StaffId { get; set; }      
 
         /// <summary>
         /// ID du matiere qui sera enseigner
         /// </summary>
-        public Guid MATIERE_ID { get; set; }
+        public Guid MatiereId { get; set; }
 
         /// <summary>
         /// La salle ou le cours sera dispenser
         /// </summary>
-        public string SALLE { get; set; }
+        public string Salle { get; set; }
            
         /// <summary>
         /// La recurrence du cours
         /// </summary>
-        public string RECURRENCE_DAYS { get; set; }
+        public string RecurrenceDays { get; set; }
 
         /// <summary>
         /// Heure de debut du cours
         /// </summary>
-        public DateTime? START_TIME { get; set; }
+        public DateTime? StartTime { get; set; }
          
         /// <summary>
         /// Heure de fin du cours
         /// </summary>
-        public DateTime? END_TIME { get; set; }
+        public DateTime? EndTime { get; set; }
 
         /// <summary>
         /// Debut de la periode du cours
         /// </summary>
-        public DateTime? START_DATE { get; set; }
+        public DateTime? StartDate { get; set; }
 
         /// <summary>
         /// Fin de la periode du cours
         /// </summary>
-        public DateTime? END_DATE { get; set; }
+        public DateTime? EndDate { get; set; }
 
         /// <summary>
         /// Control, Cours, Examen, Test, Revision, Travaux Pratiques, Travaux Dirigés
         /// </summary>
-        public string TYPE { get; set; }
+        public string Type { get; set; }
 
         //Todo: PERIODE SCOLAIRE Integration To Cours
         /// <summary>
         /// La periode du cours
         /// </summary>
-        public Guid PERIODE_SCOLAIRE_ID { get; set; }
+        public Guid PeriodeScolaireId { get; set; }
 
         /// <summary>
         /// Description
         /// </summary>
-        public string DESCRIPTION { get; set; }
+        public string Description { get; set; }
     }
 }

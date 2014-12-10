@@ -31,7 +31,7 @@
             <Setter Property="FontFamily" Value="Verdana"/>
             <Setter Property="FontWeight" Value="ExtraLight"/>
             <!--<Setter Property="Foreground" Value="Gray"/>-->
-            <Setter Property="Effect" Value="{StaticResource z-depth2}"/>
+            <Setter Property="Effect" Value="{StaticResource Z-Depth2}"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
             <Setter Property="Width" Value="100"/>
             <Setter Property="Height" Value="30"/>
@@ -69,42 +69,42 @@
 
         <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
             <TextBlock Text="MATIERE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="MATIERE_ID_" DisplayMemberPath="NAME" SelectedIndex="0" SelectedValuePath="MATIERE_ID" HorizontalAlignment="Left" />
+            <ComboBox Name="MatiereId" DisplayMemberPath="NAME" SelectedIndex="0" SelectedValuePath="MATIERE_ID" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <TextBlock Text="INSTRUCTEUR" Name="INSTRUCTEUR_" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="STAFF_ID_" SelectedIndex="0" DisplayMemberPath="FULL_NAME" SelectedValuePath="STAFF_ID" HorizontalAlignment="Left" />
+            <TextBlock Text="INSTRUCTEUR" Name="Instructeur" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+            <ComboBox Name="StaffId" SelectedIndex="0" DisplayMemberPath="FULL_NAME" SelectedValuePath="STAFF_ID" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
             <TextBlock Text="SALLE" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
-            <ComboBox Name="SALLE_NAME_" SelectedIndex="0" IsEditable="True" HorizontalAlignment="Left" />
+            <ComboBox Name="SalleName" SelectedIndex="0" IsEditable="True" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="TYPE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="TYPE_" Width="250" Height="30" SelectedIndex="0" HorizontalAlignment="Left" SelectionChanged="TYPE__OnSelectionChanged" />
+            <ComboBox Name="Type" Width="250" Height="30" SelectedIndex="0" HorizontalAlignment="Left" SelectionChanged="TYPE__OnSelectionChanged" />
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Center">
             <TextBlock Text="HEURE DEBUT" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <xctk:TimePicker Name="START_TIME_" Value="07:45" StartTime="07:00" EndTime="00:00" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
+            <xctk:TimePicker Name="StartTime" Value="07:45" StartTime="07:00" EndTime="00:00" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="HEURE FIN" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
-            <xctk:TimePicker Name="END_TIME_" Value="09:45" StartTime="07:00" EndTime="00:00" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
+            <xctk:TimePicker Name="EndTime" Value="09:45" StartTime="07:00" EndTime="00:00" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Center">
             <TextBlock Text="DE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <DatePicker Name="START_DATE_" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
+            <DatePicker Name="StartDate" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="A" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
-            <DatePicker Name="END_DATE_" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
+            <DatePicker Name="EndDate" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
         </StackPanel>
 
         <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" >
@@ -120,44 +120,44 @@
 
             <StackPanel Grid.Column="0" >
                 <TextBlock Text="LUN"  HorizontalAlignment="Center"/>
-                <CheckBox Name="LUN_" FontSize="20" HorizontalAlignment="Center"/>
+                <CheckBox Name="Lun" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1">
                 <TextBlock Text="MAR" HorizontalAlignment="Center"/>
-                <CheckBox Name="MAR_" FontSize="20" HorizontalAlignment="Center"/>
+                <CheckBox Name="Mar" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Grid.Column="2">
                 <TextBlock Text="MER"  HorizontalAlignment="Center"/>
-                <CheckBox Name="MER_" FontSize="20" HorizontalAlignment="Center"/>
+                <CheckBox Name="Mer" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Grid.Column="3">
                 <TextBlock Text="JEU" HorizontalAlignment="Center"/>
-                <CheckBox Name="JEU_" FontSize="20" HorizontalAlignment="Center"/>
+                <CheckBox Name="Jeu" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Grid.Column="4">
                 <TextBlock Text="VEND"  HorizontalAlignment="Center"/>
-                <CheckBox Name="VEND_" FontSize="20" HorizontalAlignment="Center"/>
+                <CheckBox Name="Vend" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Grid.Column="5">
                 <TextBlock Text="SAM" HorizontalAlignment="Center"/>
-                <CheckBox Name="SAM_" FontSize="20" HorizontalAlignment="Center"/>
+                <CheckBox Name="Sam" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Grid.Column="6">
                 <TextBlock Text="DIM"  HorizontalAlignment="Center"/>
-                <CheckBox Name="DIM_" FontSize="20" HorizontalAlignment="Center"/>
+                <CheckBox Name="Dim" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
 
         </Grid>
 
         <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
             <TextBlock Text="DESCRIPTION" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <TextBox Name="DESCRIPTION_" Height="70" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Stretch" />
+            <TextBox Name="Description" Height="70" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Stretch" />
         </StackPanel>
                 
         <Grid Grid.Row="7" Grid.ColumnSpan="2" Grid.Column="0" VerticalAlignment="Bottom" Margin="0,0">

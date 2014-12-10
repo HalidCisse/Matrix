@@ -11,7 +11,7 @@ using DataService.Context;
 namespace DataService.Migrations
 {
     
-    internal sealed class Configuration : DbMigrationsConfiguration<EF>
+    internal sealed class Configuration : DbMigrationsConfiguration<Ef>
     {
         public Configuration()
         {          
@@ -19,50 +19,50 @@ namespace DataService.Migrations
             AutomaticMigrationsEnabled = true;           
         }
 
-        protected override void Seed(EF EF)
+        protected override void Seed(Ef ef)
         {
             //EF.Database.CreateIfNotExists ();
 
-            Student_SeedFromSql (EF);
-            Staff_SeedFromSql (EF);
+            //Student_SeedFromSql (ef);
+            //Staff_SeedFromSql (ef);
 
-            MessageBox.Show ("Seed Done");
+            //MessageBox.Show ("Seed Done");
         }
 
 
 
-        private static void Staff_SeedFromSql ( EF EF )
+        private static void Staff_SeedFromSql ( Ef ef )
         {
 
-            const string FilePath = @"C:\Users\CISSE\Documents\Net\Matrix\DataService\Initializer\Staffs.sql";
+            const string filePath = @"C:\Users\CISSE\Documents\Net\Matrix\DataService\Initializer\Staffs.sql";
 
-            var SqlFile = new FileInfo (@FilePath);
-            var SqlString = SqlFile.OpenText ().ReadToEnd();
+            var sqlFile = new FileInfo (filePath);
+            var sqlString = sqlFile.OpenText ().ReadToEnd();
                     
-            EF.Database.ExecuteSqlCommand ("DELETE FROM Staffs");
-            EF.Database.ExecuteSqlCommand (SqlString);
+            ef.Database.ExecuteSqlCommand ("DELETE FROM Staffs");
+            ef.Database.ExecuteSqlCommand (sqlString);
 
-            var x = EF.STAFF.ToList();
+            var x = ef.Staff.ToList();
 
-            x.ForEach (S => S.PHOTO_IDENTITY = GetRandomImg());
+            x.ForEach (s => s.PhotoIdentity = GetRandomImg());
             //x.ForEach (S => S.STAFF_ID = "ST-" + GenID(6));                     
         }
 
-        private static void Student_SeedFromSql ( EF EF )
+        private static void Student_SeedFromSql ( Ef ef )
         {
 
             //const string FilePath = @"C:\Users\Halid\Documents\Visual Studio 2013\Projects\Matrix\DataService\DataService\Initializer\Students.sql";
-            const string FilePath = @"C:\Users\CISSE\Documents\Net\Matrix\DataService\Initializer\Students.sql";
+            const string filePath = @"C:\Users\CISSE\Documents\Net\Matrix\DataService\Initializer\Students.sql";
 
-            var SqlFile = new FileInfo (FilePath);
-            var SqlString = SqlFile.OpenText ().ReadToEnd ();
+            var sqlFile = new FileInfo (filePath);
+            var sqlString = sqlFile.OpenText ().ReadToEnd ();
 
-            EF.Database.ExecuteSqlCommand ("DELETE FROM Students");
-            EF.Database.ExecuteSqlCommand (SqlString);
+            ef.Database.ExecuteSqlCommand ("DELETE FROM Students");
+            ef.Database.ExecuteSqlCommand (sqlString);
 
-            var x = EF.STUDENT.ToList ();
+            var x = ef.Student.ToList ();
 
-            x.ForEach (S => S.PHOTO_IDENTITY = GetRandomImg ());
+            x.ForEach (s => s.PhotoIdentity = GetRandomImg ());
             //x.ForEach (S => S.STUDENT_ID = "M-" + GenID (6));
            
         }
@@ -71,16 +71,16 @@ namespace DataService.Migrations
 
         #region Helpers
 
-        public static string GenID ( int lengthOfTheID )
+        public static string GenId ( int lengthOfTheId )
         {
             var x = new Random ();
-            var IdOut = string.Empty;
+            var idOut = string.Empty;
 
-            for(var i = 0; i < lengthOfTheID; i++)
+            for(var i = 0; i < lengthOfTheId; i++)
             {
-                IdOut = IdOut + x.Next (1, 9);
+                idOut = idOut + x.Next (1, 9);
             }
-            return IdOut;
+            return idOut;
         }
 
         private static byte[] GetRandomImg()
@@ -88,17 +88,17 @@ namespace DataService.Migrations
             Thread.Sleep(1000);
             var x = new Random ().Next (1, 9);
 
-            var Img = BitmapArrayFromFile("portrait" + x + ".jpg");
+            var img = BitmapArrayFromFile("portrait" + x + ".jpg");
 
-            return Img;
+            return img;
         }
 
-        private static byte[] BitmapArrayFromFile ( string FilePath )
+        private static byte[] BitmapArrayFromFile ( string filePath )
         {           
-            FilePath = @"C:\Users\CISSE\Documents\Net\Matrix\Matrix\Portrait\" + FilePath;
-            if(!File.Exists (FilePath)) return null;
+            filePath = @"C:\Users\CISSE\Documents\Net\Matrix\Matrix\Portrait\" + filePath;
+            if(!File.Exists (filePath)) return null;
 
-            var fs = new FileStream (FilePath, FileMode.Open, FileAccess.Read);
+            var fs = new FileStream (filePath, FileMode.Open, FileAccess.Read);
             var imgByteArr = new byte[fs.Length];
             fs.Read (imgByteArr, 0, Convert.ToInt32 (fs.Length));
             fs.Close ();

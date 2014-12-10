@@ -7,16 +7,16 @@ namespace DataService.Entities
     {
 
         [Key]
-        public Guid FILIERE_ID { get; set; }
+        public Guid FiliereId { get; set; }
         /// <summary>
         /// exp: Genie Informatique
         /// </summary>
-        public string NAME { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// exp: Licence -> Licence Professionelle -> Technicien -> Technicien Specialise -> Master -> Ingenieur -> Ingenieur Etat -> Doctorat
         /// </summary>
-        public string NIVEAU { get; set; }
+        public string Niveau { get; set; }
 
         //todo:Filiere Departement => Staff Departement
         //public string DEPARTEMENT { get; set; }
@@ -24,16 +24,16 @@ namespace DataService.Entities
         /// <summary>
         /// Le niveau Minimal pour l'admission a cette filiere
         /// </summary>
-        public string NIVEAU_ENTREE { get; set; }
+        public string NiveauEntree { get; set; }
 
         /// <summary>
         /// Le nombre de niveau
         /// </summary>
-        public int N_ANNEE { get; set; }  // 5 ans
+        public int NAnnee { get; set; }  // 5 ans
 
         /// <summary>
         /// Description
         /// </summary>
-        public string DESCRIPTION { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -84,7 +84,7 @@
             </Style>
 
             <DataTemplate x:Key="ListBoxTemp">
-                <Border Effect="{StaticResource z-depth5}" Style="{StaticResource ListBoxBoderStyle}">
+                <Border Effect="{StaticResource Z-Depth5}" Style="{StaticResource ListBoxBoderStyle}">
                     <!--<Border.Effect>
                         <DropShadowEffect Color="#080707" Opacity="0.5" BlurRadius="5" ShadowDepth="5"/>
                     </Border.Effect>-->
@@ -310,7 +310,7 @@
             </Style>
 
             <DataTemplate x:Key="ListBoxTemp">
-                <Border Effect="{StaticResource z-depth5}" Style="{StaticResource ListBoxBoderStyle}">
+                <Border Effect="{StaticResource Z-Depth5}" Style="{StaticResource ListBoxBoderStyle}">
                     
                     <DockPanel>
                         <Border Height="70" HorizontalAlignment="Stretch" CornerRadius="0" Background="#606F11" DockPanel.Dock="Top">
@@ -400,7 +400,7 @@
             </Style>
 
             <DataTemplate x:Key="ListBoxTemp">
-                <Border Effect="{StaticResource z-depth5}" Style="{StaticResource ListBoxBoderStyle}">
+                <Border Effect="{StaticResource Z-Depth5}" Style="{StaticResource ListBoxBoderStyle}">
                     <!--<Border.Effect>
                         <DropShadowEffect Color="#080707" Opacity="0.5" BlurRadius="5" ShadowDepth="5"/>
                     </Border.Effect>-->

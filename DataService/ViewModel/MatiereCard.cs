@@ -15,40 +15,40 @@ namespace DataService.ViewModel
         /// <summary>
         /// Model d'une matiere
         /// </summary>
-        /// <param name="Mat"></param>
-        public MatiereCard ( Matiere Mat )
+        /// <param name="mat"></param>
+        public MatiereCard ( Matiere mat )
         {
-            MATIERE_ID = Mat.MATIERE_ID;
-            NAME = Mat.NAME;
-            COEFF = Mat.COEFFICIENT;
+            MatiereId = mat.MatiereId;
+            Name = mat.Name;
+            Coeff = mat.Coefficient;
             //COLOR = Mat.COULEUR;
 
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var S_ID = Db.COURS.FirstOrDefault (C => C.MATIERE_ID == Mat.MATIERE_ID)?.STAFF_ID;
+                var sId = db.Cours.FirstOrDefault (c => c.MatiereId == mat.MatiereId)?.StaffId;
 
-                INSTRUCTEUR_NAME = Db.STAFF?.Find(S_ID)?.FULL_NAME; //--------
+                InstructeurName = db.Staff?.Find(sId)?.FullName; //--------
 
-                INSTRUCTEUR_PHOTO = Db.STAFF?.Find(S_ID)?.PHOTO_IDENTITY; //------
+                InstructeurPhoto = db.Staff?.Find(sId)?.PhotoIdentity; //------
 
-                var WeekDays = new List<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday };
+                var weekDays = new List<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday };
                 var T = new TimeSpan(0,0,0);
                 var scheduleDate = DateTime.Today.Date;
 
-                foreach (var MC in Db.COURS.Where(C => C.MATIERE_ID == Mat.MATIERE_ID && C.START_DATE <= scheduleDate && C.END_DATE >= scheduleDate))
+                foreach (var mc in db.Cours.Where(c => c.MatiereId == mat.MatiereId && c.StartDate <= scheduleDate && c.EndDate >= scheduleDate))
                 {                             
-                    var CoursDuree = MC.END_TIME.GetValueOrDefault().TimeOfDay - MC.START_TIME.GetValueOrDefault().TimeOfDay;
+                    var coursDuree = mc.EndTime.GetValueOrDefault().TimeOfDay - mc.StartTime.GetValueOrDefault().TimeOfDay;
 
-                    foreach (var D in WeekDays)
+                    foreach (var d in weekDays)
                     {
-                        var DayNum = (int)D;
+                        var dayNum = (int)d;
 
-                        if (MC.RECURRENCE_DAYS.Contains(DayNum.ToString()))
+                        if (mc.RecurrenceDays.Contains(dayNum.ToString()))
                         {
-                            T = T.Add(CoursDuree);
+                            T = T.Add(coursDuree);
                         }
                     }
-                    HEURES_PAR_SEMAINE = T.TotalHours.ToString(CultureInfo.InvariantCulture); //---
+                    HeuresParSemaine = T.TotalHours.ToString(CultureInfo.InvariantCulture); //---
                 }                
             }  
         }
@@ -56,17 +56,17 @@ namespace DataService.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        public Guid MATIERE_ID { get; }
+        public Guid MatiereId { get; }
          
         /// <summary>
         /// Nomination
         /// </summary>
-        public string NAME { get; }
+        public string Name { get; }
 
         /// <summary>
         /// Coefficient
         /// </summary>
-        public int COEFF { get; }
+        public int Coeff { get; }
 
         /// <summary>
         /// Nomination
@@ -76,17 +76,17 @@ namespace DataService.ViewModel
         /// <summary>
         /// Heures par semaine
         /// </summary>
-        public string HEURES_PAR_SEMAINE { get; }
+        public string HeuresParSemaine { get; }
 
         /// <summary>
         /// Nom de l'instructeur
         /// </summary>
-        public string INSTRUCTEUR_NAME { get; }
+        public string InstructeurName { get; }
         
         /// <summary>
         /// Photo de l'instructeur
         /// </summary>
-        public byte[] INSTRUCTEUR_PHOTO { get; set; }
+        public byte[] InstructeurPhoto { get; set; }
 
 
        

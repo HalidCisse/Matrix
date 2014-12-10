@@ -89,9 +89,9 @@
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
             <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
                 
-                <controls:ScheduleWeek x:Name="ClassWeekSchedule" Margin="10,0" Effect="{StaticResource z-depth3}" SelectionChanged="ClassWeekSchedule_OnSelectionChanged"/>
+                <controls:ScheduleWeek x:Name="ClassWeekSchedule" Margin="10,0" Effect="{StaticResource Z-Depth3}" SelectionChanged="ClassWeekSchedule_OnSelectionChanged"/>
                                                                            
-                <DockPanel Width="650" Margin="10,0" Effect="{StaticResource z-depth3}">
+                <DockPanel Width="650" Margin="10,0" Effect="{StaticResource Z-Depth3}">
                     <Border DockPanel.Dock="Top" Height="30" BorderThickness="5" BorderBrush="Beige" Background="#25A0DA" >
                         <TextBlock Text="MATIERES" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
                     </Border>
@@ -101,11 +101,11 @@
                     </Border>
                 </DockPanel>
                              
-                <DockPanel Width="500" Margin="10,0" Effect="{StaticResource z-depth3}">
+                <DockPanel Width="500" Margin="10,0" Effect="{StaticResource Z-Depth3}">
                     <!--<Border DockPanel.Dock="Top" Height="30" Background="#25A0DA" Effect="{StaticResource z-depth3}" 20,10,20,0>
                         <TextBlock Text="ETUDIANTS" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
                     </Border>-->
-                    <Border DockPanel.Dock="Top" Height="30"  Background="Beige" Effect="{StaticResource z-depth3}">
+                    <Border DockPanel.Dock="Top" Height="30"  Background="Beige" Effect="{StaticResource Z-Depth3}">
                         <TextBlock Text="ETUDIANTS" Foreground="#25A0DA" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
                     </Border>
                     

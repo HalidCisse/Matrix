@@ -9,34 +9,34 @@ using Microsoft.Win32;
 namespace Matrix.views
 {
     
-    public partial class StaffINFO
+    public partial class StaffInfo
     {
         public string OpenOption;
 
-        public StaffINFO ( string StaffToDisplayID = null )
+        public StaffInfo ( string staffToDisplayId = null )
         {
             InitializeComponent ();
 
             #region Patterns Data
 
-            TITLE_.ItemsSource = App.DataS.DataEnums.GetTITLES ();
+            TITLE_.ItemsSource = App.DataS.DataEnums.GetTitles ();
 
-            NATIONALITY_.ItemsSource = App.DataS.DataEnums.GetNATIONALITIES ();
+            Nationality.ItemsSource = App.DataS.DataEnums.GetNationalities ();
 
-            BIRTH_PLACE_.ItemsSource = App.DataS.DataEnums.GetBIRTH_PLACE ();
+            BirthPlace.ItemsSource = App.DataS.DataEnums.GetBIRTH_PLACE ();
 
-            STATUT_.ItemsSource = App.DataS.DataEnums.GetStaffSTATUTS ();
+            Statut.ItemsSource = App.DataS.DataEnums.GetStaffStatuts ();
 
-            POSITION_.ItemsSource = App.DataS.DataEnums.GetStaffPOSITIONS ();
+            Position.ItemsSource = App.DataS.DataEnums.GetStaffPositions ();
 
-            DEPARTEMENT_.ItemsSource = App.DataS.DataEnums.GetDEPARTEMENTS ();
+            Departement.ItemsSource = App.DataS.DataEnums.GetDepartements ();
 
-            QUALIFICATION_.ItemsSource = App.DataS.DataEnums.GetStaffQUALIFICATIONS ();
+            Qualification.ItemsSource = App.DataS.DataEnums.GetStaffQualifications ();
 
             #endregion
 
-            if(!string.IsNullOrEmpty (StaffToDisplayID))
-                DisplayStaff (App.DataS.HR.GetStaffByID (StaffToDisplayID));
+            if(!string.IsNullOrEmpty (staffToDisplayId))
+                DisplayStaff (App.DataS.Hr.GetStaffById (staffToDisplayId));
             else
                 DisplayDefault ();
         }
@@ -49,7 +49,7 @@ namespace Matrix.views
             {
                 if(string.IsNullOrEmpty (openFileDialog.FileName)) return;
 
-                PHOTO_IDENTITY_.Source = new BitmapImage (new Uri (openFileDialog.FileName));
+                PhotoIdentity.Source = new BitmapImage (new Uri (openFileDialog.FileName));
             }
         }
 
@@ -59,47 +59,47 @@ namespace Matrix.views
             MatiereExpander.Visibility = Visibility.Hidden;
             InfoExpander.IsExpanded = true;
 
-            STAFF_ID_.Text = GenNewStaffID ();
+            StaffId.Text = GenNewStaffId ();
             TITLE_.SelectedIndex = 0;
-            PHOTO_IDENTITY_.Source = PHOTO_IDENTITY_.Source = new BitmapImage (new Uri (Res.GetRes ("Portrait/defaultStaff.png")));
+            PhotoIdentity.Source = PhotoIdentity.Source = new BitmapImage (new Uri (Res.GetRes ("Portrait/defaultStaff.png")));
             
-            POSITION_.SelectedIndex = 0;
-            DEPARTEMENT_.SelectedIndex = 0;
-            QUALIFICATION_.SelectedIndex = 0;
-            HIRED_DATE_.SelectedDate = DateTime.Today.Date;
+            Position.SelectedIndex = 0;
+            Departement.SelectedIndex = 0;
+            Qualification.SelectedIndex = 0;
+            HiredDate.SelectedDate = DateTime.Today.Date;
 
-            PHONE_NUMBER_.Text =  "+00";
-            BIRTH_DATE_.SelectedDate = DateTime.Today.AddDays (-7000);
-            NATIONALITY_.SelectedIndex = 0;
-            BIRTH_PLACE_.SelectedIndex = 0;
-            STATUT_.SelectedIndex = 0;
+            PhoneNumber.Text =  "+00";
+            BirthDate.SelectedDate = DateTime.Today.AddDays (-7000);
+            Nationality.SelectedIndex = 0;
+            BirthPlace.SelectedIndex = 0;
+            Statut.SelectedIndex = 0;
         }
 
-        private void DisplayStaff ( Staff StaffToDisplay )
+        private void DisplayStaff ( Staff staffToDisplay )
         {
-            if(StaffToDisplay == null) return;
+            if(staffToDisplay == null) return;
 
 
-            STAFF_ID_.Text = StaffToDisplay.STAFF_ID;
-            STAFF_ID_.IsEnabled = false;
-            TITLE_.SelectedValue = StaffToDisplay.TITLE;
-            FIRSTNAME_.Text = StaffToDisplay.FIRSTNAME;
-            LASTNAME_.Text = StaffToDisplay.LASTNAME;
-            PHOTO_IDENTITY_.Source = ImageUtils.DecodePhoto (StaffToDisplay.PHOTO_IDENTITY);
+            StaffId.Text = staffToDisplay.StaffId;
+            StaffId.IsEnabled = false;
+            TITLE_.SelectedValue = staffToDisplay.Title;
+            Firstname.Text = staffToDisplay.Firstname;
+            Lastname.Text = staffToDisplay.Lastname;
+            PhotoIdentity.Source = ImageUtils.DecodePhoto (staffToDisplay.PhotoIdentity);
 
-            POSITION_.Text = StaffToDisplay.POSITION;
-            DEPARTEMENT_.Text = StaffToDisplay.DEPARTEMENT;
-            QUALIFICATION_.Text = StaffToDisplay.QUALIFICATION;
-            HIRED_DATE_.SelectedDate = StaffToDisplay.HIRED_DATE;
+            Position.Text = staffToDisplay.Position;
+            Departement.Text = staffToDisplay.Departement;
+            Qualification.Text = staffToDisplay.Qualification;
+            HiredDate.SelectedDate = staffToDisplay.HiredDate;
 
-            IDENTITY_NUMBER_.Text = StaffToDisplay.IDENTITY_NUMBER;
-            BIRTH_DATE_.SelectedDate = StaffToDisplay.BIRTH_DATE;
-            NATIONALITY_.Text = StaffToDisplay.NATIONALITY;
-            BIRTH_PLACE_.Text = StaffToDisplay.BIRTH_PLACE;
-            PHONE_NUMBER_.Text = StaffToDisplay.PHONE_NUMBER;
-            EMAIL_ADRESS_.Text = StaffToDisplay.EMAIL_ADRESS;
-            HOME_ADRESS_.Text = StaffToDisplay.HOME_ADRESS;
-            STATUT_.SelectedValue = StaffToDisplay.STATUT;
+            IdentityNumber.Text = staffToDisplay.IdentityNumber;
+            BirthDate.SelectedDate = staffToDisplay.BirthDate;
+            Nationality.Text = staffToDisplay.Nationality;
+            BirthPlace.Text = staffToDisplay.BirthPlace;
+            PhoneNumber.Text = staffToDisplay.PhoneNumber;
+            EmailAdress.Text = staffToDisplay.EmailAdress;
+            HomeAdress.Text = staffToDisplay.HomeAdress;
+            Statut.SelectedValue = staffToDisplay.Statut;
             Enregistrer.Content = "Modifier";
         }
 
@@ -112,152 +112,152 @@ namespace Matrix.views
         {
             if(ChampsValidated () != true) return;
 
-            var MyStaff= new Staff
+            var myStaff= new Staff
             {
-                STAFF_ID = STAFF_ID_.Text.Trim (),
-                TITLE = TITLE_.SelectedValue.ToString (),
-                FIRSTNAME = FIRSTNAME_.Text.Trim (),
-                LASTNAME = LASTNAME_.Text.Trim (),
-                PHOTO_IDENTITY = ImageUtils.getPNGFromImageControl (PHOTO_IDENTITY_.Source as BitmapImage),
+                StaffId = StaffId.Text.Trim (),
+                Title = TITLE_.SelectedValue.ToString (),
+                Firstname = Firstname.Text.Trim (),
+                Lastname = Lastname.Text.Trim (),
+                PhotoIdentity = ImageUtils.GetPngFromImageControl (PhotoIdentity.Source as BitmapImage),
 
-                IDENTITY_NUMBER = IDENTITY_NUMBER_.Text.Trim (),
-                BIRTH_DATE = BIRTH_DATE_.SelectedDate.Value,
-                NATIONALITY = NATIONALITY_.Text,
-                BIRTH_PLACE = BIRTH_PLACE_.Text,
-                PHONE_NUMBER = PHONE_NUMBER_.Text.Trim (),
-                EMAIL_ADRESS = EMAIL_ADRESS_.Text.Trim (),
-                HOME_ADRESS = HOME_ADRESS_.Text.Trim (),
-                STATUT = STATUT_.SelectedValue.ToString (),
+                IdentityNumber = IdentityNumber.Text.Trim (),
+                BirthDate = BirthDate.SelectedDate.Value,
+                Nationality = Nationality.Text,
+                BirthPlace = BirthPlace.Text,
+                PhoneNumber = PhoneNumber.Text.Trim (),
+                EmailAdress = EmailAdress.Text.Trim (),
+                HomeAdress = HomeAdress.Text.Trim (),
+                Statut = Statut.SelectedValue.ToString (),
             };
 
-            if(!string.IsNullOrEmpty (POSITION_.Text)) MyStaff.POSITION = POSITION_.SelectedValue.ToString ();
-            if(!string.IsNullOrEmpty (DEPARTEMENT_.Text)) MyStaff.DEPARTEMENT = DEPARTEMENT_.SelectedValue.ToString ();
-            if(!string.IsNullOrEmpty (QUALIFICATION_.Text)) MyStaff.QUALIFICATION = QUALIFICATION_.SelectedValue.ToString ();
-            if(HIRED_DATE_.SelectedDate != null) MyStaff.HIRED_DATE = HIRED_DATE_.SelectedDate.Value;
+            if(!string.IsNullOrEmpty (Position.Text)) myStaff.Position = Position.SelectedValue.ToString ();
+            if(!string.IsNullOrEmpty (Departement.Text)) myStaff.Departement = Departement.SelectedValue.ToString ();
+            if(!string.IsNullOrEmpty (Qualification.Text)) myStaff.Qualification = Qualification.SelectedValue.ToString ();
+            if(HiredDate.SelectedDate != null) myStaff.HiredDate = HiredDate.SelectedDate.Value;
 
             if (OpenOption == "Add")
             {
-                MyStaff.REGISTRATION_DATE = DateTime.Now.Date;
-                MessageBox.Show(App.DataS.HR.AddStaff(MyStaff) ? "Add Success" : "Add Failed");
+                myStaff.RegistrationDate = DateTime.Now.Date;
+                MessageBox.Show(App.DataS.Hr.AddStaff(myStaff) ? "Add Success" : "Add Failed");
                 Close();
             }
             else
             {
-                MessageBox.Show(App.DataS.HR.UpdateStaff(MyStaff) ? "Update Success" : "Update Failed");
+                MessageBox.Show(App.DataS.Hr.UpdateStaff(myStaff) ? "Update Success" : "Update Failed");
                 Close();
             }
         }
 
-        private static string GenNewStaffID ( )
+        private static string GenNewStaffId ( )
         {
             string idOut;
 
-            do idOut = "ST" + DateTime.Today.Year + "-" + GenID.GetID (3) + "-" + GenID.GetID (4); while(App.DataS.HR.StaffExist (idOut));
+            do idOut = "ST" + DateTime.Today.Year + "-" + GenId.GetId (3) + "-" + GenId.GetId (4); while(App.DataS.Hr.StaffExist (idOut));
 
             return idOut;
         }
 
         private bool ChampsValidated ( )
         {          
-            var Ok = true;
+            var ok = true;
 
             if(OpenOption == "Add")
             {
-                if(string.IsNullOrEmpty (STAFF_ID_.Text))
+                if(string.IsNullOrEmpty (StaffId.Text))
                 {
-                    STAFF_ID_.BorderBrush = Brushes.Red;
-                    Ok = false;
+                    StaffId.BorderBrush = Brushes.Red;
+                    ok = false;
                 }
-                else if(App.DataS.Students.StudentExist (STAFF_ID_.Text.Trim ()))
+                else if(App.DataS.Students.StudentExist (StaffId.Text.Trim ()))
                 {
-                    MessageBox.Show ("Ce Numero de Matricule Est Deja Utiliser par " + App.DataS.HR.GetStaffFullName (STAFF_ID_.Text.Trim ()));
+                    MessageBox.Show ("Ce Numero de Matricule Est Deja Utiliser par " + App.DataS.Hr.GetStaffFullName (StaffId.Text.Trim ()));
                     return false;
                 }
                 else
                 {
-                    STAFF_ID_.BorderBrush = Brushes.Blue;
+                    StaffId.BorderBrush = Brushes.Blue;
                 }
             }
 
-            if(string.IsNullOrEmpty (FIRSTNAME_.Text))
+            if(string.IsNullOrEmpty (Firstname.Text))
             {
-                FIRSTNAME_.BorderBrush = Brushes.Red;
-                Ok = false;
+                Firstname.BorderBrush = Brushes.Red;
+                ok = false;
             }
             else
             {
-                FIRSTNAME_.BorderBrush = Brushes.Blue;
+                Firstname.BorderBrush = Brushes.Blue;
             }
 
-            if(string.IsNullOrEmpty (LASTNAME_.Text))
+            if(string.IsNullOrEmpty (Lastname.Text))
             {
-                LASTNAME_.BorderBrush = Brushes.Red;
-                Ok = false;
+                Lastname.BorderBrush = Brushes.Red;
+                ok = false;
             }
             else
             {
-                LASTNAME_.BorderBrush = Brushes.Blue;
+                Lastname.BorderBrush = Brushes.Blue;
             }
 
-            if(string.IsNullOrEmpty (IDENTITY_NUMBER_.Text))
+            if(string.IsNullOrEmpty (IdentityNumber.Text))
             {
-                IDENTITY_NUMBER_.BorderBrush = Brushes.Red;
-                Ok = false;
+                IdentityNumber.BorderBrush = Brushes.Red;
+                ok = false;
             }
             else
             {
-                IDENTITY_NUMBER_.BorderBrush = Brushes.Blue;
+                IdentityNumber.BorderBrush = Brushes.Blue;
             }
 
-            if(string.IsNullOrEmpty (NATIONALITY_.Text))
+            if(string.IsNullOrEmpty (Nationality.Text))
             {
-                NATIONALITY_.BorderBrush = Brushes.Red;
-                Ok = false;
+                Nationality.BorderBrush = Brushes.Red;
+                ok = false;
             }
             else
             {
-                NATIONALITY_.BorderBrush = Brushes.Blue;
+                Nationality.BorderBrush = Brushes.Blue;
             }
-            if(string.IsNullOrEmpty (BIRTH_PLACE_.Text))
+            if(string.IsNullOrEmpty (BirthPlace.Text))
             {
-                BIRTH_PLACE_.BorderBrush = Brushes.Red;
-                Ok = false;
+                BirthPlace.BorderBrush = Brushes.Red;
+                ok = false;
             }
             else
             {
-                BIRTH_PLACE_.BorderBrush = Brushes.Blue;
+                BirthPlace.BorderBrush = Brushes.Blue;
             }
-            if(string.IsNullOrEmpty (PHONE_NUMBER_.Text))
+            if(string.IsNullOrEmpty (PhoneNumber.Text))
             {
-                PHONE_NUMBER_.BorderBrush = Brushes.Red;
+                PhoneNumber.BorderBrush = Brushes.Red;
                 //Ok = false;
             }
             else
             {
-                PHONE_NUMBER_.BorderBrush = Brushes.Blue;
+                PhoneNumber.BorderBrush = Brushes.Blue;
             }
-            if(string.IsNullOrEmpty (EMAIL_ADRESS_.Text))
+            if(string.IsNullOrEmpty (EmailAdress.Text))
             {
-                EMAIL_ADRESS_.BorderBrush = Brushes.Red;
-                Ok = false;
+                EmailAdress.BorderBrush = Brushes.Red;
+                ok = false;
             }
             else
             {
-                EMAIL_ADRESS_.BorderBrush = Brushes.Blue;
+                EmailAdress.BorderBrush = Brushes.Blue;
             }
-            if(string.IsNullOrEmpty (HOME_ADRESS_.Text))
+            if(string.IsNullOrEmpty (HomeAdress.Text))
             {
-                HOME_ADRESS_.BorderBrush = Brushes.Red;
-                Ok = false;
+                HomeAdress.BorderBrush = Brushes.Red;
+                ok = false;
             }
             else
             {
-                HOME_ADRESS_.BorderBrush = Brushes.Blue;
+                HomeAdress.BorderBrush = Brushes.Blue;
             }
 
-            if(!Ok) MessageBox.Show ("Verifier Les Informations !");
+            if(!ok) MessageBox.Show ("Verifier Les Informations !");
 
-            return Ok;
+            return ok;
         }
 
 

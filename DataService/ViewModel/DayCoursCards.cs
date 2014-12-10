@@ -13,27 +13,27 @@ namespace DataService.ViewModel
         /// <summary>
         /// Retourne les Informations d'une Journee Avec la liste de ses Cours
         /// </summary>
-        /// <param name="ClassID">ID de la Classe</param>
+        /// <param name="classId">ID de la Classe</param>
         /// <param name="scheduleDate"> Date De la Journee</param>
-        public DayCoursCards ( Guid ClassID, DateTime scheduleDate )
+        public DayCoursCards ( Guid classId, DateTime scheduleDate )
         {
-            DAY_COURS = new List<CoursCard> ();
+            DayCours = new List<CoursCard> ();
 
-            DAY_NAME = scheduleDate.DayOfWeek.ToString ().ToUpper ();
+            DayName = scheduleDate.DayOfWeek.ToString ().ToUpper ();
 
-            DAY_COLOR = scheduleDate == DateTime.Today.Date ? "Green" : "#25A0DA";
+            DayColor = scheduleDate == DateTime.Today.Date ? "Green" : "#25A0DA";
 
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var MyCours = Db.COURS.Where(C => C.CLASSE_ID == ClassID && C.START_DATE <= scheduleDate && C.END_DATE >= scheduleDate).OrderBy(C => C.START_TIME);
+                var myCours = db.Cours.Where(c => c.ClasseId == classId && c.StartDate <= scheduleDate && c.EndDate >= scheduleDate).OrderBy(c => c.StartTime);
 
-                foreach (var CR in MyCours)
+                foreach (var cr in myCours)
                 {
-                    var DayNum = (int)scheduleDate.DayOfWeek;
+                    var dayNum = (int)scheduleDate.DayOfWeek;
 
-                    if (CR.RECURRENCE_DAYS.Contains(DayNum.ToString()))
+                    if (cr.RecurrenceDays.Contains(dayNum.ToString()))
                     {
-                        DAY_COURS.Add(new CoursCard(CR, scheduleDate));
+                        DayCours.Add(new CoursCard(cr, scheduleDate));
                     }
                 }
             }
@@ -42,17 +42,17 @@ namespace DataService.ViewModel
         /// <summary>
         /// Le Nom De la Journee WeekDay Name
         /// </summary>
-        public string DAY_NAME { get; set; }
+        public string DayName { get; set; }
 
         /// <summary>
         /// La Couleur de la journee
         /// </summary>
-        public string DAY_COLOR { get; set; }
+        public string DayColor { get; set; }
       
         /// <summary>
         /// La Liste des Cours Enseigner Dans la Journee
         /// </summary>
-        public List<CoursCard> DAY_COURS { get; set; }
+        public List<CoursCard> DayCours { get; set; }
 
         //public string DAY_START_TIME { get; set; }
 

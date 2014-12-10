@@ -16,35 +16,35 @@ namespace DataService.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Fil"></param>
-        public FiliereClassCard ( Filiere Fil )
+        /// <param name="fil"></param>
+        public FiliereClassCard ( Filiere fil )
         {           
-            FILIERE_NAME = Fil.NAME.ToUpper();
+            FiliereName = fil.Name.ToUpper();
 
-            CLASS_LIST = new List<ClassCard> ();
-            GetCLASS_LIST (Fil.FILIERE_ID);           
+            ClassList = new List<ClassCard> ();
+            GetCLASS_LIST (fil.FiliereId);           
         }
       
         /// <summary>
         /// 
         /// </summary>
-        public string FILIERE_NAME { get; set; }
+        public string FiliereName { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public List<ClassCard> CLASS_LIST { get; set; }      
+        public List<ClassCard> ClassList { get; set; }      
 
-        private void GetCLASS_LIST ( Guid FILIERE_ID )
+        private void GetCLASS_LIST ( Guid filiereId )
         {
-            using(var Db = new EF ())
+            using(var db = new Ef ())
             {
-                Parallel.ForEach(Db.CLASSE.Where(C => C.FILIERE_ID == FILIERE_ID), CL =>
+                Parallel.ForEach(db.Classe.Where(c => c.FiliereId == filiereId), cl =>
                 {
-                    CLASS_LIST.Add(new ClassCard(CL));
+                    ClassList.Add(new ClassCard(cl));
                 });
                 
-                CLASS_LIST = CLASS_LIST.OrderBy(C => C.LEVEL).ToList();
+                ClassList = ClassList.OrderBy(c => c.Level).ToList();
             }
         }
        

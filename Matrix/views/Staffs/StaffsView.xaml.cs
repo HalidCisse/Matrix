@@ -13,10 +13,10 @@ namespace Matrix.views
     
     public partial class StaffsView
     {
-        private readonly BackgroundWorker Worker = new BackgroundWorker ();
-        private List<DepStaffCard> ListBuff = new List<DepStaffCard> ();
-        private string CurrentSelected;        
-        private bool isFirstTime = true;
+        private readonly BackgroundWorker _worker = new BackgroundWorker ();
+        private List<DepStaffCard> _listBuff = new List<DepStaffCard> ();
+        private string _currentSelected;        
+        private bool _isFirstTime = true;
 
         public StaffsView ( ) {
 
@@ -25,8 +25,8 @@ namespace Matrix.views
 
         private void Page_Loaded ( object sender, RoutedEventArgs e )
         {
-            Worker.DoWork += Worker_DoWork;
-            Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            _worker.DoWork += Worker_DoWork;
+            _worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             BusyIndicator.IsBusy = true;
             UpdateDep ();            
         }
@@ -41,49 +41,49 @@ namespace Matrix.views
         private void AddButton_Click ( object sender, RoutedEventArgs e )
         {
             BusyIndicator.IsBusy = false;
-            var wind = new StaffINFO { Owner = Window.GetWindow (this), OpenOption = "Add" };
+            var wind = new StaffInfo { Owner = Window.GetWindow (this), OpenOption = "Add" };
             wind.ShowDialog ();
             UpdateDep ();
         }
 
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )
         {
-            if(CurrentSelected == null)
+            if(_currentSelected == null)
             {
                 MessageBox.Show ("Selectionner Un Staff A Supprimer !");
                 return;
             }
 
-            var theGaName = App.DataS.HR.GetStaffFullName (CurrentSelected);
+            var theGaName = App.DataS.Hr.GetStaffFullName (_currentSelected);
             theGaName = "Ete Vous Sure de supprimer " + theGaName + " de la base de donnee ?";
 
             if (MessageBox.Show(theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
 
-            MessageBox.Show (App.DataS.HR.DeleteStaff (CurrentSelected) ? "Supprimer Avec Succes" : "Echec");
+            MessageBox.Show (App.DataS.Hr.DeleteStaff (_currentSelected) ? "Supprimer Avec Succes" : "Echec");
             UpdateDep ();
         }       
 
         private void DepStaffList_SelectionChanged ( object sender, SelectionChangedEventArgs e )
         {
-            var Staff = sender as ListBox;
+            var staff = sender as ListBox;
 
-            if(Staff == null) return;
+            if(staff == null) return;
 
-            if(Staff.SelectedValue == null)
+            if(staff.SelectedValue == null)
             {
-                CurrentSelected = null;
+                _currentSelected = null;
                 return;
             }
-            CurrentSelected = Staff.SelectedValue.ToString ();
+            _currentSelected = staff.SelectedValue.ToString ();
         }
        
         private void DepStaffList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {          
-            var Staff = sender as ListBox;
-            if(Staff == null) return;
-            if(Staff.SelectedValue == null) return;
+            var staff = sender as ListBox;
+            if(staff == null) return;
+            if(staff.SelectedValue == null) return;
 
-            var wind = new StaffINFO (Staff.SelectedValue.ToString ()) {
+            var wind = new StaffInfo (staff.SelectedValue.ToString ()) {
                 Owner = Window.GetWindow(this),
                 OpenOption = "Mod"
             };
@@ -94,39 +94,39 @@ namespace Matrix.views
         
         private void UpdateDep ( )
         {
-            if(Worker.IsBusy) return;           
-            Worker.RunWorkerAsync ();
+            if(_worker.IsBusy) return;           
+            _worker.RunWorkerAsync ();
         }
         private void Worker_DoWork ( object sender, DoWorkEventArgs e )
         {
-            ListBuff = App.ModelS.GetDepStaffsCard ();            
+            _listBuff = App.ModelS.GetDepStaffsCard ();            
         }
         private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
         {           
             BusyIndicator.IsBusy = false;
-            StaffList.ItemsSource = ListBuff;
-            isFirstTime = true;                      
-            Worker.Dispose ();
+            StaffList.ItemsSource = _listBuff;
+            _isFirstTime = true;                      
+            _worker.Dispose ();
         }
 
         
         private void DepStaffList_Loaded ( object sender, RoutedEventArgs e )
         {
-            if (!isFirstTime) return;
+            if (!_isFirstTime) return;
 
-            var E = FindVisualChildren<Expander> (this).FirstOrDefault (Ep => Ep.Header.ToString () == "");
+            var E = FindVisualChildren<Expander> (this).FirstOrDefault (ep => ep.Header.ToString () == "");
 
             if (E != null) E.IsExpanded = true;
-            isFirstTime = false;                     
+            _isFirstTime = false;                     
         }
       
         private void Expander_Expanded ( object sender, RoutedEventArgs e )
         {
             var E = sender as Expander;
                      
-            foreach(var Ep in FindVisualChildren<Expander>(this).Where(Ep => E != null && Ep.Header.ToString() != E.Header.ToString()))
+            foreach(var ep in FindVisualChildren<Expander>(this).Where(ep => E != null && ep.Header.ToString() != E.Header.ToString()))
             {
-                Ep.IsExpanded = false;                
+                ep.IsExpanded = false;                
             }
         }
 

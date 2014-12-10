@@ -19,68 +19,68 @@ namespace DataService.DataManager
         /// <returns></returns>
         public bool AddFiliere(Filiere myFiliere)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.FILIERE.Add(myFiliere);
-                return Db.SaveChanges() > 0;
+                db.Filiere.Add(myFiliere);
+                return db.SaveChanges() > 0;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="MyFiliere"></param>
+        /// <param name="myFiliere"></param>
         /// <returns></returns>
-        public bool UpdateFiliere(Filiere MyFiliere)
+        public bool UpdateFiliere(Filiere myFiliere)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.FILIERE.Attach(MyFiliere);
-                Db.Entry(MyFiliere).State = System.Data.Entity.EntityState.Modified;
-                return Db.SaveChanges() > 0;
+                db.Filiere.Attach(myFiliere);
+                db.Entry(myFiliere).State = System.Data.Entity.EntityState.Modified;
+                return db.SaveChanges() > 0;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="FiliereID"></param>
+        /// <param name="filiereId"></param>
         /// <returns></returns>
-        public bool DeleteFiliere(Guid FiliereID)
+        public bool DeleteFiliere(Guid filiereId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.FILIERE.Remove(Db.FILIERE.Find(FiliereID));
-                return Db.SaveChanges() > 0;
+                db.Filiere.Remove(db.Filiere.Find(filiereId));
+                return db.SaveChanges() > 0;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="FiliereID"></param>
+        /// <param name="filiereId"></param>
         /// <returns></returns>
-        public Filiere GetFiliereByID(Guid FiliereID)
+        public Filiere GetFiliereById(Guid filiereId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var MyFiliere = Db.FILIERE.Find(FiliereID);
-                return MyFiliere;
+                var myFiliere = db.Filiere.Find(filiereId);
+                return myFiliere;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="FiliereName"></param>
+        /// <param name="filiereName"></param>
         /// <returns></returns>
-        public Filiere GetFiliereByName(string FiliereName)
+        public Filiere GetFiliereByName(string filiereName)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var MyFiliere = Db.FILIERE.First(S => S.NAME == FiliereName);
+                var myFiliere = db.Filiere.First(s => s.Name == filiereName);
 
-                return MyFiliere;
+                return myFiliere;
             }
         }
 
@@ -90,9 +90,9 @@ namespace DataService.DataManager
         /// <returns></returns>
         public List<Filiere> GetAllFilieres()
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                return Db.FILIERE.ToList();
+                return db.Filiere.ToList();
             }
         }
 
@@ -102,11 +102,11 @@ namespace DataService.DataManager
         /// <returns></returns>
         public IEnumerable GetAllFilieresNames()
         {
-            var Names = new List<string>();
-            using (var Db = new EF())
+            var names = new List<string>();
+            using (var db = new Ef())
             {
-                Names.AddRange(Db.FILIERE.Select(S => S.NAME));
-                return Names;
+                names.AddRange(db.Filiere.Select(s => s.Name));
+                return names;
             }
         }
 
@@ -117,36 +117,36 @@ namespace DataService.DataManager
         /// <returns></returns>
         public int GetFiliereClassCount(Guid filiereId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                return Db.CLASSE.Count(C => C.FILIERE_ID == filiereId);
+                return db.Classe.Count(c => c.FiliereId == filiereId);
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="FiliereID"></param>
+        /// <param name="filiereId"></param>
         /// <returns></returns>
-        public string GetFiliereName(Guid FiliereID)
+        public string GetFiliereName(Guid filiereId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var MyFiliereName = Db.FILIERE.Find(FiliereID).NAME;
-                return MyFiliereName;
+                var myFiliereName = db.Filiere.Find(filiereId).Name;
+                return myFiliereName;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="FiliereID"></param>
+        /// <param name="filiereId"></param>
         /// <returns></returns>
-        public bool FiliereExist(Guid FiliereID)
+        public bool FiliereExist(Guid filiereId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                return Db.FILIERE.Find(FiliereID) != null;
+                return db.Filiere.Find(filiereId) != null;
             }
         }
 

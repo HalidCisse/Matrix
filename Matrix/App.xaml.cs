@@ -25,7 +25,7 @@ namespace Matrix
         /// <summary>
         /// l'utilisateur Actuelle
         /// </summary>
-        static public string _currentUser;
+        static public string CurrentUser;
 
         /// <summary>
         /// Annee Scolaire Actuelle
@@ -45,12 +45,12 @@ namespace Matrix
         /// <summary>
         /// Verifier Q'une Seule Instance est Lancee
         /// </summary>
-        readonly SingletonApplication.SingletonApplicationEnforcer enforcer = new SingletonApplication.SingletonApplicationEnforcer(DisplayArgs);
+        readonly SingletonApplication.SingletonApplicationEnforcer _enforcer = new SingletonApplication.SingletonApplicationEnforcer(DisplayArgs);
 
         App()
         {
 
-            if (enforcer.ShouldApplicationExit())
+            if (_enforcer.ShouldApplicationExit())
             {
                 //MessageBox.Show("Unable to start application. An instance of this application is already running.");
                 Shutdown();

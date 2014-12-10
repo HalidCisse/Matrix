@@ -5,13 +5,13 @@ namespace DataService.Entities
     public class ControlNote
     {
         [Key]
-        public string CONTROLNOTE_ID { get; set; }
+        public string ControlnoteId { get; set; }
 
-        public string MATIERECONTROL_ID { get; set; }
+        public string MatierecontrolId { get; set; }
 
-        public string STUDENT_ID { get; set; }
+        public string StudentId { get; set; }
 
-        public int NOTE { get; set; }
+        public int Note { get; set; }
 
     }
 }

@@ -15,71 +15,71 @@ namespace DataService.DataManager
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="MyClasse"></param>
+        /// <param name="myClasse"></param>
         /// <returns></returns>
-        public bool AddClasse(Classe MyClasse)
+        public bool AddClasse(Classe myClasse)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.CLASSE.Add(MyClasse);
-                return Db.SaveChanges() > 0;
+                db.Classe.Add(myClasse);
+                return db.SaveChanges() > 0;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="MyClasse"></param>
+        /// <param name="myClasse"></param>
         /// <returns></returns>
-        public bool UpdateClasse(Classe MyClasse)
+        public bool UpdateClasse(Classe myClasse)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.CLASSE.Attach(MyClasse);
-                Db.Entry(MyClasse).State = EntityState.Modified;
-                return Db.SaveChanges() > 0;
+                db.Classe.Attach(myClasse);
+                db.Entry(myClasse).State = EntityState.Modified;
+                return db.SaveChanges() > 0;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ClasseID"></param>
+        /// <param name="classeId"></param>
         /// <returns></returns>
-        public bool DeleteClasse(Guid ClasseID)
+        public bool DeleteClasse(Guid classeId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.CLASSE.Remove(Db.CLASSE.Find(ClasseID));
-                return Db.SaveChanges() > 0;
+                db.Classe.Remove(db.Classe.Find(classeId));
+                return db.SaveChanges() > 0;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ClasseID"></param>
+        /// <param name="classeId"></param>
         /// <returns></returns>
-        public Classe GetClasseByID(Guid ClasseID)
+        public Classe GetClasseById(Guid classeId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                return Db.CLASSE.Find(ClasseID);
+                return db.Classe.Find(classeId);
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ClasseName"></param>
+        /// <param name="classeName"></param>
         /// <returns></returns>
-        public static Classe GetClasseByName(string ClasseName)
+        public static Classe GetClasseByName(string classeName)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var MyClasse = Db.CLASSE.SingleOrDefault(S => S.NAME == ClasseName);
+                var myClasse = db.Classe.SingleOrDefault(s => s.Name == classeName);
 
-                return MyClasse;
+                return myClasse;
             }
         }
 
@@ -89,86 +89,86 @@ namespace DataService.DataManager
         /// <returns></returns>
         public List<Classe> GetAllClasse()
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                return Db.CLASSE.ToList();
+                return db.Classe.ToList();
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ClasseID"></param>
+        /// <param name="classeId"></param>
         /// <returns></returns>
-        public string GetClasseName(Guid ClasseID)
+        public string GetClasseName(Guid classeId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                return Db.CLASSE.Find(ClasseID).NAME;
+                return db.Classe.Find(classeId).Name;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ClasseID"></param>
+        /// <param name="classeId"></param>
         /// <returns></returns>
-        public bool ClasseExist(string ClasseID)
+        public bool ClasseExist(string classeId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                return Db.CLASSE.Find(ClasseID) != null;
+                return db.Classe.Find(classeId) != null;
             }
         }
 
         /// <summary>
         /// Renvoi les matieres Enregistrees pour cette classe
         /// </summary>
-        /// <param name="ClasseID"></param>
+        /// <param name="classeId"></param>
         /// <returns></returns>
-        public List<Matiere> GetClassMatieres(Guid ClasseID)
+        public List<Matiere> GetClassMatieres(Guid classeId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                return Db.MATIERE.Where(M => M.CLASSE_ID == ClasseID).ToList();
+                return db.Matiere.Where(m => m.ClasseId == classeId).ToList();
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ClassID"></param>
+        /// <param name="classId"></param>
         /// <returns></returns>
-        public List<Staff> GetClassStaffs(Guid ClassID)
+        public List<Staff> GetClassStaffs(Guid classId)
         {
-            var Staffs = new List<Staff>();
+            var staffs = new List<Staff>();
 
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                foreach (var ST in Db.COURS.Where(C => C.CLASSE_ID == ClassID))
+                foreach (var st in db.Cours.Where(c => c.ClasseId == classId))
                 {
-                    Staffs.Add(Db.STAFF.Find(ST.STAFF_ID));
+                    staffs.Add(db.Staff.Find(st.StaffId));
                 }
-                return Staffs;
+                return staffs;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ClassID"></param>
+        /// <param name="classId"></param>
         /// <returns></returns>
-        public List<Student> GetClassStudents(Guid ClassID)
+        public List<Student> GetClassStudents(Guid classId)
         {
-            var Students = new List<Student>();
+            var students = new List<Student>();
 
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                foreach (var ST in Db.INSCRIPTION.Where(C => C.CLASSE_ID == ClassID))
+                foreach (var st in db.Inscription.Where(c => c.ClasseId == classId))
                 {
-                    Students.Add(Db.STUDENT.Find(ST.STUDENT_ID));
+                    students.Add(db.Student.Find(st.StudentId));
                 }
-                return Students;
+                return students;
             }
         }
 

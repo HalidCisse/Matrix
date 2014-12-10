@@ -12,58 +12,58 @@ namespace DataService.DataManager
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="MyCours"></param>
+        /// <param name="myCours"></param>
         /// <returns></returns>
-        public bool AddCours(Cours MyCours)
+        public bool AddCours(Cours myCours)
         {
-            MyCours.COURS_ID = Guid.NewGuid();
-            using (var Db = new EF())
+            myCours.CoursId = Guid.NewGuid();
+            using (var db = new Ef())
             {
-                Db.COURS.Add(MyCours);
-                return Db.SaveChanges() > 0;
+                db.Cours.Add(myCours);
+                return db.SaveChanges() > 0;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="MyCours"></param>
+        /// <param name="myCours"></param>
         /// <returns></returns>
-        public bool UpdateCours(Cours MyCours)
+        public bool UpdateCours(Cours myCours)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.COURS.Attach(MyCours);
-                Db.Entry(MyCours).State = System.Data.Entity.EntityState.Modified;
-                return Db.SaveChanges() > 0;
+                db.Cours.Attach(myCours);
+                db.Entry(myCours).State = System.Data.Entity.EntityState.Modified;
+                return db.SaveChanges() > 0;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="CoursID"></param>
+        /// <param name="coursId"></param>
         /// <returns></returns>
-        public bool DeleteCours(Guid CoursID)
+        public bool DeleteCours(Guid coursId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                Db.COURS.Remove(Db.COURS.Find(CoursID));
-                return Db.SaveChanges() > 0;
+                db.Cours.Remove(db.Cours.Find(coursId));
+                return db.SaveChanges() > 0;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="CoursID"></param>
+        /// <param name="coursId"></param>
         /// <returns></returns>
-        public Cours GetCoursByID(Guid CoursID)
+        public Cours GetCoursById(Guid coursId)
         {
-            using (var Db = new EF())
+            using (var db = new Ef())
             {
-                var MyCours = Db.COURS.Find(CoursID);
-                return MyCours;
+                var myCours = db.Cours.Find(coursId);
+                return myCours;
             }
         }
 

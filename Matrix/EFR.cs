@@ -3,7 +3,7 @@
 
 namespace Matrix
 {
-    class EFR
+    class Efr
     {
 
         //#region Constructeur

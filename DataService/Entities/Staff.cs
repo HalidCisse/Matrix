@@ -5,42 +5,72 @@ namespace DataService.Entities
 {
     public class Staff //: Human
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [Key]
-        public string STAFF_ID { get; set; }
+        public string StaffId { get; set; }
 
-        public string POSITION { get; set; }    
-        public string DEPARTEMENT { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Position { get; set; }    
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Departement { get; set; }
 
-        public string QUALIFICATION { get; set; }
-        public DateTime? HIRED_DATE { get; set; }       
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Qualification { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime? HiredDate { get; set; }       
       
-        public string STATUT { get; set; }  // suspended, regulier, Licencier
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Statut { get; set; }  // suspended, regulier, Licencier
 
 
 
         #region Human
 
-        public string TITLE { get; set; }
-        public string FIRSTNAME { get; set; }
-        public string LASTNAME { get; set; }
-        public byte[] PHOTO_IDENTITY { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Title { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Firstname { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Lastname { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public byte[] PhotoIdentity { get; set; }
 
-        public string NATIONALITY { get; set; }
-        public string IDENTITY_NUMBER { get; set; }
-        public DateTime? BIRTH_DATE { get; set; }
-        public string BIRTH_PLACE { get; set; }
+        public string Nationality { get; set; }
+        public string IdentityNumber { get; set; }
+        public DateTime? BirthDate { get; set; }
+        public string BirthPlace { get; set; }
 
-        public string PHONE_NUMBER { get; set; }
-        public string EMAIL_ADRESS { get; set; }
-        public string HOME_ADRESS { get; set; }
+        public string PhoneNumber { get; set; }
+        public string EmailAdress { get; set; }
+        public string HomeAdress { get; set; }
 
-        public DateTime? REGISTRATION_DATE { get; set; }
+        public DateTime? RegistrationDate { get; set; }
 
-        public string FULL_NAME
+        public string FullName
         {
             get
             {
-                return FIRSTNAME + " " + LASTNAME;
+                return Firstname + " " + Lastname;
             }
         }
 

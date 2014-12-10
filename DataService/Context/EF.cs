@@ -7,7 +7,7 @@ namespace DataService.Context
     /// <summary>
     /// School Context
     /// </summary>
-    public class EF : DbContext
+    public class Ef : DbContext
     {
         // Your context has been configured to use a 'EF' connection string from your application's 
         // configuration file (App.config or Web.config). By default, this connection string targets the 
@@ -19,7 +19,7 @@ namespace DataService.Context
         /// <summary>
         /// Context
         /// </summary>
-        public EF ( ) : base ("name=EF")
+        public Ef ( ) : base ("name=EF")
         {
             //Database.CreateIfNotExists();
             //Database.SetInitializer (new DropCreateDatabaseIfModelChanges<EF> ());
@@ -33,28 +33,28 @@ namespace DataService.Context
         /// <summary>
         /// Enseignant, instructeur, Proff
         /// </summary>
-        public virtual DbSet<Staff> STAFF { get; set; }
+        public virtual DbSet<Staff> Staff { get; set; }
 
         /// <summary>
         /// Etudiant, Stagiaire, Eleve
         /// </summary>
-        public virtual DbSet<Student> STUDENT { get; set; }
+        public virtual DbSet<Student> Student { get; set; }
 
         /// <summary>
         /// Informations Ecoles
         /// </summary>
         //todo: Deprecate Etablissement en faveur de Setting
-        public virtual DbSet<Etablissement> ETABLISSEMENT { get; set; }
+        public virtual DbSet<Etablissement> Etablissement { get; set; }
 
         /// <summary>
         /// Salle Ou on Instruit un Cours
         /// </summary>
-        public virtual DbSet<Salle> SALLE { get; set; }
+        public virtual DbSet<Salle> Salle { get; set; }
 
         /// <summary>
         /// Les Parametres
         /// </summary>
-        public virtual DbSet<Setting> SETTING { get; set; }
+        public virtual DbSet<Setting> Setting { get; set; }
 
         #endregion
 
@@ -65,67 +65,67 @@ namespace DataService.Context
         /// <summary>
         /// Represent une classe avec un groupe d'etudiant
         /// </summary>
-        public virtual DbSet<Classe> CLASSE { get; set; }
+        public virtual DbSet<Classe> Classe { get; set; }
         /// <summary>
         /// Represent une Filiere avec un groupe de Classe
         /// </summary>
-        public virtual DbSet<Filiere> FILIERE { get; set; }
+        public virtual DbSet<Filiere> Filiere { get; set; }
         /// <summary>
         /// Represent une Matiere Enseigner dans une Seule Classe
         /// </summary>
-        public virtual DbSet<Matiere> MATIERE { get; set; }
+        public virtual DbSet<Matiere> Matiere { get; set; }
         /// <summary>
         /// Represente une Periode d'Examen Exp: 1 ere Semestre
         /// </summary>
-        public virtual DbSet<PeriodeScolaire> PERIODE_SCOLAIRE { get; set; }
+        public virtual DbSet<PeriodeScolaire> PeriodeScolaire { get; set; }
         /// <summary>
         /// Represente la Note obtenue par un Etudiant apres un control
         /// </summary>
-        public virtual DbSet<ControlNote> CONTROL_NOTE { get; set; }
+        public virtual DbSet<ControlNote> ControlNote { get; set; }
         /// <summary>
         /// Represente un Cours
         /// </summary>
-        public virtual DbSet<Cours> COURS { get; set; }
+        public virtual DbSet<Cours> Cours { get; set; }
 
         /// <summary>
         /// Devoir, Control, ou Examen
         /// </summary>
-        public virtual DbSet<MatiereControl> MATIERE_CONTROL { get; set; }    
+        public virtual DbSet<MatiereControl> MatiereControl { get; set; }    
                    
         /// <summary>
         /// Les Etudiants d'une Classe
         /// </summary>
-        public virtual DbSet<Classe_Students> CLASSE_STUDENTS { get; set; } 
+        public virtual DbSet<ClasseStudents> ClasseStudents { get; set; } 
 
         /// <summary>
         /// Les Instructeurs d'une Matiere
         /// </summary>
-        public virtual DbSet<Matiere_Instructeurs> MATIERES_INSTRUCTEURS { get; set; }
+        public virtual DbSet<MatiereInstructeurs> MatieresInstructeurs { get; set; }
 
         /// <summary>
         /// Represente une Annee Scolaire
         /// </summary>
-        public virtual DbSet<AnneeScolaire> ANNEE_SCOLAIRE { get; set; }   
+        public virtual DbSet<AnneeScolaire> AnneeScolaire { get; set; }   
              
         /// <summary>
         /// L'inscription d'un etudiant a une classe en une Annee Scolaire
         /// </summary>
-        public virtual DbSet<Inscription> INSCRIPTION { get; set; }
+        public virtual DbSet<Inscription> Inscription { get; set; }
 
         /// <summary>
         /// Les Conditions d'inscription
         /// </summary>
-        public virtual DbSet<InscriptionRule> INSCRIPTION_RULE { get; set; }
+        public virtual DbSet<InscriptionRule> InscriptionRule { get; set; }
 
         /// <summary>
         /// Qualifications
         /// </summary>
-        public virtual DbSet<Qualification> QUALIFICATION { get; set; }
+        public virtual DbSet<Qualification> Qualification { get; set; }
 
         /// <summary>
         /// Les Qualifications d'un etudiant
         /// </summary>
-        public virtual DbSet<StudentQualification> STUDENT_QUALIFICATION { get; set; }
+        public virtual DbSet<StudentQualification> StudentQualification { get; set; }
 
 
         #endregion

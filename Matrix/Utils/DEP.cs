@@ -1,6 +1,6 @@
 ﻿namespace Matrix.Utils
 {
-    class DEP
+    class Dep
     {
 
         #region TASK
