@@ -33,9 +33,9 @@ namespace DataService.Migrations
 
         private static void Staff_SeedFromSql ( EF EF )
         {
-                      
-            const string FilePath = @"C:\\Users\\Halid\\Documents\\Visual Studio 2013\\Projects\\Matrix\\DataService\\Initializer\\Staffs.sql";
-                      
+
+            const string FilePath = @"C:\Users\CISSE\Documents\Net\Matrix\DataService\Initializer\Staffs.sql";
+
             var SqlFile = new FileInfo (@FilePath);
             var SqlString = SqlFile.OpenText ().ReadToEnd();
                     
@@ -51,7 +51,8 @@ namespace DataService.Migrations
         private static void Student_SeedFromSql ( EF EF )
         {
 
-            const string FilePath = @"C:\Users\Halid\Documents\Visual Studio 2013\Projects\Matrix\DataService\Initializer\Students.sql";
+            //const string FilePath = @"C:\Users\Halid\Documents\Visual Studio 2013\Projects\Matrix\DataService\DataService\Initializer\Students.sql";
+            const string FilePath = @"C:\Users\CISSE\Documents\Net\Matrix\DataService\Initializer\Students.sql";
 
             var SqlFile = new FileInfo (FilePath);
             var SqlString = SqlFile.OpenText ().ReadToEnd ();
@@ -84,7 +85,7 @@ namespace DataService.Migrations
 
         private static byte[] GetRandomImg()
         {
-            //Thread.Sleep(1000);
+            Thread.Sleep(1000);
             var x = new Random ().Next (1, 9);
 
             var Img = BitmapArrayFromFile("portrait" + x + ".jpg");
@@ -93,10 +94,8 @@ namespace DataService.Migrations
         }
 
         private static byte[] BitmapArrayFromFile ( string FilePath )
-        {
-            //FilePath = GetRes (FilePath);
-
-            FilePath = @"C:\Users\Halid\Documents\Visual Studio 2013\Projects\Matrix\Matrix\Portrait\" + FilePath;
+        {           
+            FilePath = @"C:\Users\CISSE\Documents\Net\Matrix\Matrix\Portrait\" + FilePath;
             if(!File.Exists (FilePath)) return null;
 
             var fs = new FileStream (FilePath, FileMode.Open, FileAccess.Read);
@@ -106,20 +105,20 @@ namespace DataService.Migrations
             return imgByteArr;
         }
 
-        public static Byte[] ByteFromBitmap ( string PathInApp )
-        {
-            var bitmapImage = new BitmapImage(new Uri(GetRes(PathInApp)));
+        //public static Byte[] ByteFromBitmap ( string PathInApp )
+        //{
+        //    var bitmapImage = new BitmapImage(new Uri(GetRes(PathInApp)));
 
-            byte[] data;
-            var encoder = new JpegBitmapEncoder ();
-            encoder.Frames.Add (BitmapFrame.Create (bitmapImage));
-            using(var ms = new MemoryStream ())
-            {
-                encoder.Save (ms);
-                data = ms.ToArray ();
-            }
-            return data;
-        }
+        //    byte[] data;
+        //    var encoder = new JpegBitmapEncoder ();
+        //    encoder.Frames.Add (BitmapFrame.Create (bitmapImage));
+        //    using(var ms = new MemoryStream ())
+        //    {
+        //        encoder.Save (ms);
+        //        data = ms.ToArray ();
+        //    }
+        //    return data;
+        //}
 
         private static string GetRes ( string pathInApplication, Assembly assembly = null )
         {

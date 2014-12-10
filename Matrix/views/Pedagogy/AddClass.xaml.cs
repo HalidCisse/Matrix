@@ -8,75 +8,82 @@ using FirstFloor.ModernUI.Windows.Controls;
 namespace Matrix.views.Pedagogy
 {
     
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class AddClass 
     {
-        private readonly string OpenOption;
-        private readonly Classe ClassDisplayed;
+        private readonly string _openOption;
+        private readonly Classe _classDisplayed;
         //private readonly string FiliereDisplayed;
 
-        public AddClass (Classe ClassToDisplay = null )
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="classToDisplay"></param>
+        public AddClass (Classe classToDisplay = null )
         {
             InitializeComponent ();
 
             //FiliereDisplayed = CurrentFiliere;
             FILIERE_NAME_.ItemsSource = App.DataS.Pedagogy.Filieres.GetAllFilieresNames ();
 
-            if(ClassToDisplay != null)
+            if(classToDisplay != null)
             {
-                OpenOption = "Mod";
-                ClassDisplayed = ClassToDisplay;
+                _openOption = "Mod";
+                _classDisplayed = classToDisplay;
                 DisplayClass ();                               
             }
             else
             {
-                OpenOption = "Add";
+                _openOption = "Add";
                 DisplayDefault();
             }                
         }
 
         private void DisplayDefault()
         {
-            FILIERE_NAME_.SelectedIndex = 0;                     //.SelectedValue = App.DataS.GetFiliereByID(FiliereDisplayed).NAME;
+            FILIERE_NAME_.SelectedIndex = 0;                     
             NIVEAU_.SelectedIndex = 0;
         }
 
         private void DisplayClass()
         {
             TitleText.Text = "MODIFICATION";
-            FILIERE_NAME_.SelectedValue = ClassDisplayed.NAME;
-            NIVEAU_.SelectedValue = ClassDisplayed.LEVEL;
+            FILIERE_NAME_.SelectedValue = _classDisplayed.NAME;
+            NIVEAU_.SelectedValue = _classDisplayed.LEVEL;
         }
 
         private void Enregistrer_Click ( object sender, RoutedEventArgs e )
         {
             if(ChampsValidated () != true) return;
 
-            var MyClass = new Classe
+            var myClass = new Classe
             {
                 NAME = CLASS_NAME_.Text.Trim (),
                 FILIERE_ID = App.DataS.Pedagogy.Filieres.GetFiliereByName(FILIERE_NAME_.SelectedValue.ToString()).FILIERE_ID,
                 LEVEL = Convert.ToInt32 (NIVEAU_.SelectedValue.ToString())              
             };
             
-            if(OpenOption == "Add")
+            if(_openOption == "Add")
             {
                 try
                 {
-                    MyClass.CLASSE_ID = Guid.NewGuid();
-                    App.DataS.Pedagogy.Classes.AddClasse(MyClass);
+                    myClass.CLASSE_ID = Guid.NewGuid();
+                    App.DataS.Pedagogy.Classes.AddClasse(myClass);
                     ModernDialog.ShowMessage("Add Success","Matrix",MessageBoxButton.OK);                    
                 }
-                catch (Exception Ex)
+                catch (Exception ex)
                 {                    
-                    ModernDialog.ShowMessage(Ex.Message,"Matrix",MessageBoxButton.OK);                   
+                    ModernDialog.ShowMessage(ex.Message,"Matrix",MessageBoxButton.OK);                   
                 }                
             }
             else
             {
                 try
                 {
-                    MyClass.CLASSE_ID = ClassDisplayed.CLASSE_ID;
-                    App.DataS.Pedagogy.Classes.UpdateClasse(MyClass);
+                    myClass.CLASSE_ID = _classDisplayed.CLASSE_ID;
+                    App.DataS.Pedagogy.Classes.UpdateClasse(myClass);
                     ModernDialog.ShowMessage("Add Success","Matrix",MessageBoxButton.OK);
                 }
                 catch (Exception Ex)

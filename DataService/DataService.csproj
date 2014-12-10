@@ -23,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\DataService.XML</DocumentationFile>
+    <IntermediateOutputPath>C:\Users\CISSE\AppData\Local\Temp\vsDBE4.tmp\Debug\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IntermediateOutputPath>C:\Users\CISSE\AppData\Local\Temp\vsDBE4.tmp\Release\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +43,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\x86\Debug\DataService.XML</DocumentationFile>
+    <IntermediateOutputPath>C:\Users\CISSE\AppData\Local\Temp\vsDBE4.tmp\x86\Debug\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -50,6 +53,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <IntermediateOutputPath>C:\Users\CISSE\AppData\Local\Temp\vsDBE4.tmp\x86\Release\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -118,9 +122,9 @@
     <Compile Include="Entities\Salle.cs" />
     <Compile Include="Entities\Setting.cs" />
     <Compile Include="Entities\StudentQualification.cs" />
-    <Compile Include="Migrations\201411301724240_kk.cs" />
-    <Compile Include="Migrations\201411301724240_kk.Designer.cs">
-      <DependentUpon>201411301724240_kk.cs</DependentUpon>
+    <Compile Include="Migrations\201412100017448_kk.cs" />
+    <Compile Include="Migrations\201412100017448_kk.Designer.cs">
+      <DependentUpon>201412100017448_kk.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelService.cs" />
     <Compile Include="Entities\Classe.cs" />
@@ -194,8 +198,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201411301724240_kk.resx">
-      <DependentUpon>201411301724240_kk.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201412100017448_kk.resx">
+      <DependentUpon>201412100017448_kk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

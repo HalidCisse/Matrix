@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataService.Context;
-using DataService.Entities;
 using DataService.ViewModel;
 
 namespace DataService
@@ -20,21 +19,21 @@ namespace DataService
         /// <returns></returns>
         public List<DepStaffCard> GetDepStaffsCard ( )
         {                       
-            using (var Db = new EF())
+            using (var db = new EF())
             {
-                var DepStaffCardList = new List<DepStaffCard> {  };
-                var Nd = new DepStaffCard("");
+                var depStaffCardList = new List<DepStaffCard>();
+                var nd = new DepStaffCard("");
 
-                if (Nd.STAFFS_LIST.Any()) { DepStaffCardList.Add(Nd);}
+                if (nd.STAFFS_LIST.Any()) { depStaffCardList.Add(nd);}
 
-                var Deps = (from S in Db.STAFF.ToList() where S.DEPARTEMENT != null select S.DEPARTEMENT).Distinct().ToList();
+                var deps = (from s in db.STAFF.ToList() where s.DEPARTEMENT != null select s.DEPARTEMENT).Distinct().ToList();
 
-                Parallel.ForEach(Deps, Dep =>
+                Parallel.ForEach(deps, dep =>
                 {
-                    DepStaffCardList.Add(new DepStaffCard(Dep));
+                    depStaffCardList.Add(new DepStaffCard(dep));
                 });
 
-                return DepStaffCardList.Any() ? DepStaffCardList.OrderBy(D => D.DEPARTEMENT_NAME).ToList() : DepStaffCardList;
+                return depStaffCardList.Any() ? depStaffCardList.OrderBy(d => d?.DEPARTEMENT_NAME).ToList() : depStaffCardList;
             }       
         }
 
@@ -44,86 +43,86 @@ namespace DataService
         /// <returns></returns>
         public List<FiliereClassCard> GetFiliereClassCards ( )
         {
-            using (var Db = new EF())
+            using (var db = new EF())
             {
-                var Fls = Db.FILIERE;
+                var fls = db.FILIERE;
 
-                var ClassCardList = new List<FiliereClassCard>();
+                var classCardList = new List<FiliereClassCard>();
                 
-                Parallel.ForEach(Fls, Fil =>
+                Parallel.ForEach(fls, fil =>
                 {
-                    var FC = new FiliereClassCard(Fil);
-                    if (FC.CLASS_LIST.Any()) { ClassCardList.Add(FC); }
+                    var fc = new FiliereClassCard(fil);
+                    if (fc.CLASS_LIST.Any()) { classCardList.Add(fc); }
                 });
 
-                return ClassCardList.Any() ? ClassCardList.OrderBy(F => F.FILIERE_NAME).ToList() : ClassCardList;
+                return classCardList.Any() ? classCardList.OrderBy(f => f?.FILIERE_NAME).ToList() : classCardList;
             }           
         }
         
         /// <summary>
         /// renvoi la filiere avec ses classes
         /// </summary>
-        /// <param name="FiliereID"></param>
+        /// <param name="filiereId"></param>
         /// <returns></returns>
-        public List<ClassCard> GetFiliereClassCards ( Guid FiliereID )
+        public List<ClassCard> GetFiliereClassCards ( Guid filiereId )
         {                        
-            using (var Db = new EF())
+            using (var db = new EF())
             {
-                var Class_List = new List<ClassCard> ();
+                var classList = new List<ClassCard> ();
 
-                Parallel.ForEach(Db.CLASSE.Where(C => C.FILIERE_ID == FiliereID), C =>
+                Parallel.ForEach(db.CLASSE.Where(c => c.FILIERE_ID == filiereId), c =>
                 {
-                    Class_List.Add (new ClassCard (C));
+                    classList.Add (new ClassCard (c));
                 });
 
-                return Class_List.Any()? Class_List.OrderBy(C => C.LEVEL).ToList() : Class_List;
+                return classList.Any()? classList.OrderBy(c => c.LEVEL).ToList() : classList;
             }
         }
 
         /// <summary>
         /// Renvoi les informations des cours d'une classe pour une semaine
         /// </summary>
-        /// <param name="classID">ID de la Classe</param>
+        /// <param name="classId">ID de la Classe</param>
         /// <param name="scheduleDate">Une date de cette Semaine</param>
         /// <returns></returns>
-        public List<DayCoursCards> GetClassWeekAgendaData ( Guid classID, DateTime scheduleDate )
+        public List<DayCoursCards> GetClassWeekAgendaData ( Guid classId, DateTime scheduleDate )
         {
             scheduleDate = scheduleDate.Date; 
 
-            var FirstDateOfWeek = scheduleDate.DayOfWeek == DayOfWeek.Sunday ? scheduleDate.AddDays(-6) : scheduleDate.AddDays (-((int)scheduleDate.DayOfWeek - 1));
+            var firstDateOfWeek = scheduleDate.DayOfWeek == DayOfWeek.Sunday ? scheduleDate.AddDays(-6) : scheduleDate.AddDays (-((int)scheduleDate.DayOfWeek - 1));
           
-            var ScheduleData = new List<DayCoursCards>();
+            var scheduleData = new List<DayCoursCards>();
 
             for (var i = 0; i <= 6; i++)
             {
-                var DayCard = new DayCoursCards(classID, FirstDateOfWeek.AddDays(i));
+                var dayCard = new DayCoursCards(classId, firstDateOfWeek.AddDays(i));
 
-                if (DayCard.DAY_COURS.Any())
+                if (dayCard.DAY_COURS.Any())
                 {
-                    ScheduleData.Add(DayCard);
+                    scheduleData.Add(dayCard);
                 }                
             }
  
-            return ScheduleData;
+            return scheduleData;
         }
 
         /// <summary>
         /// Renvoi les Matieres Cards Pour Une Classe
         /// </summary>
-        /// <param name="ClasseID">ID de la Classe</param>
+        /// <param name="classeId">ID de la Classe</param>
         /// <returns></returns>
-        public List<MatiereCard> GetClassMatieresCards(Guid ClasseID)
+        public List<MatiereCard> GetClassMatieresCards(Guid classeId)
         {
-            using (var Db = new EF())
+            using (var db = new EF())
             {
-                var MatierCard_List = new List<MatiereCard>();
+                var matierCardList = new List<MatiereCard>();
 
-                Parallel.ForEach(Db.MATIERE.Where(M => M.CLASSE_ID == ClasseID), MC =>
+                Parallel.ForEach(db.MATIERE.Where(m => m.CLASSE_ID == classeId), mc =>
                 {
-                    MatierCard_List.Add(new MatiereCard(MC));
+                    matierCardList.Add(new MatiereCard(mc));
                 });
 
-                return MatierCard_List.Any() ? MatierCard_List.OrderBy(M => M?.NAME).ToList() : MatierCard_List;
+                return matierCardList.Any() ? matierCardList.OrderBy(m => m?.NAME).ToList() : matierCardList;
             }
         }
 

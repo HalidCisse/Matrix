@@ -15,14 +15,13 @@ namespace DataService.DataManager
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="MyFiliere"></param>
+        /// <param name="myFiliere"></param>
         /// <returns></returns>
-        public bool AddFiliere(Filiere MyFiliere)
+        public bool AddFiliere(Filiere myFiliere)
         {
-            MyFiliere.FILIERE_ID = Guid.NewGuid();
             using (var Db = new EF())
             {
-                Db.FILIERE.Add(MyFiliere);
+                Db.FILIERE.Add(myFiliere);
                 return Db.SaveChanges() > 0;
             }
         }
