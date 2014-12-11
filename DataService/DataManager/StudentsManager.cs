@@ -1,7 +1,10 @@
-﻿using DataService.Context;
+﻿using System;
+using System.Collections;
+using DataService.Context;
 using DataService.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using DataService.Enum;
 
 namespace DataService.DataManager
 {
@@ -11,7 +14,7 @@ namespace DataService.DataManager
     public class StudentsManager
     {
        /// <summary>
-       /// 
+       /// Ajouter Un Nouveau Etudiant
        /// </summary>
        /// <param name="myStudent"></param>
        /// <returns></returns>
@@ -22,12 +25,10 @@ namespace DataService.DataManager
                 db.Student.Add(myStudent);
                 return db.SaveChanges() > 0;
             }
-
-
         }
 
         /// <summary>
-        /// 
+        /// Modifier Un Etudiant
         /// </summary>
         /// <param name="myStudent"></param>
         /// <returns></returns>
@@ -42,7 +43,7 @@ namespace DataService.DataManager
         }
 
         /// <summary>
-        /// 
+        /// Supprimer Un Etudiant
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns></returns>
@@ -77,10 +78,8 @@ namespace DataService.DataManager
         public static Student GetStudentByFullName(string firstAndLastName)
         {
             using (var db = new Ef())
-            {
-                var myStudent = db.Student.SingleOrDefault(s => s.Firstname + s.Lastname == firstAndLastName);
-
-                return myStudent;
+            {             
+                return db.Student.SingleOrDefault(s => s.FirstName + s.LastName == firstAndLastName);
             }
         }
 
@@ -92,7 +91,6 @@ namespace DataService.DataManager
         {
             using (var db = new Ef())
             {
-
                 IList<Student> daraNatadjis = db.Student.ToList();
 
                 return (List<Student>)daraNatadjis;
@@ -108,7 +106,7 @@ namespace DataService.DataManager
         {
             using (var db = new Ef())
             {
-                var myStudentName = db.Student.Find(studentId).Firstname + " " + db.Student.Find(studentId).Lastname;
+                var myStudentName = db.Student.Find(studentId).FirstName + " " + db.Student.Find(studentId).LastName;
                 return myStudentName;
             }
         }
@@ -122,11 +120,10 @@ namespace DataService.DataManager
         {
             using (var db = new Ef())
             {
-
                 return db.Student.Find(studentId) != null;
-
             }
         }
 
+               
     }
 }

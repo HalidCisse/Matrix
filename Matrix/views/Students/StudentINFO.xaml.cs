@@ -1,24 +1,51 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using DataService.Entities;
+using FirstFloor.ModernUI.Windows.Controls;
 using Matrix.Utils;
 using Microsoft.Win32;
 
-namespace Matrix.views
+namespace Matrix.views.Students
 {
     
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class StudentInfo
     {
-        public string OpenOption;
+        private readonly bool _isAdd;
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="studentToDisplayId"></param>
         public StudentInfo (string studentToDisplayId = null )
         {
             InitializeComponent ();
 
-            #region Patterns Data
+            if (!string.IsNullOrEmpty(studentToDisplayId)) { _isAdd = true;}
+            
+            new Task(() =>
+            {
+                Dispatcher.BeginInvoke(new Action(GetPatternData));
+            }).ContinueWith(delegate
+            {
+                if (_isAdd)
+                {
+                    DisplayDefault();
+                }
+                else
+                {
+                    DisplayStudent(App.DataS.Students.GetStudentById(studentToDisplayId));
+                }
+            }).Start();            
+        }
 
+        private void GetPatternData()
+        {
             TITLE_.ItemsSource = App.DataS.DataEnums.GetTitles();
 
             Nationality.ItemsSource = App.DataS.DataEnums.GetNationalities();
@@ -26,13 +53,6 @@ namespace Matrix.views
             BirthPlace.ItemsSource = App.DataS.DataEnums.GetBIRTH_PLACE();
 
             Statut.ItemsSource = App.DataS.DataEnums.GetStudentStatuts();
-
-            #endregion
-
-            if (!string.IsNullOrEmpty(studentToDisplayId))
-                DisplayStudent(App.DataS.Students.GetStudentById(studentToDisplayId));
-            else 
-                DisplayDefault();
         }
 
         private void PhotoID_Click ( object sender, RoutedEventArgs e )
@@ -59,11 +79,11 @@ namespace Matrix.views
             {               
                 StudentId = StudentId.Text.Trim (),
                 Title = TITLE_.SelectedValue.ToString (),
-                Firstname = Firstname.Text.Trim (),
-                Lastname = Lastname.Text.Trim (),
+                FirstName = Firstname.Text.Trim (),
+                LastName = Lastname.Text.Trim (),
                 PhotoIdentity = ImageUtils.GetPngFromImageControl(PhotoIdentity.Source as BitmapImage),                                              
                 IdentityNumber = IdentityNumber.Text.Trim (),
-                BirthDate = BirthDate.SelectedDate.Value,
+                BirthDate = BirthDate.SelectedDate,
                 Nationality = Nationality.Text,
                 BirthPlace = BirthPlace.Text,
                 PhoneNumber = PhoneNumber.Text.Trim (),
@@ -72,18 +92,35 @@ namespace Matrix.views
                 Statut = Statut.SelectedValue.ToString (),                                          
             };
 
-            if (OpenOption == "Add")
+            if (_isAdd)
             {
-                myStudent.RegistrationDate = DateTime.Now.Date;
-                MessageBox.Show (App.DataS.Students.AddStudent (myStudent) ? "Add Success" : "Add Failed");
-                Close ();
+                try
+                {
+                    App.DataS.Students.AddStudent(myStudent);
+                }
+                catch (Exception ex)
+                {
+
+                    ModernDialog.ShowMessage(ex.Message, "ERREUR", MessageBoxButton.OK);
+                    return;
+                }
+                ModernDialog.ShowMessage("Ajouter Avec Success", "Matrix", MessageBoxButton.OK);
+                Close();
             }
             else
             {
-                MessageBox.Show (App.DataS.Students.UpdateStudent (myStudent) ? "Update Success" : "Update Failed");
-                Close ();
-            }
-            
+                try
+                {
+                    App.DataS.Students.UpdateStudent(myStudent);
+                }
+                catch (Exception ex)
+                {
+                    ModernDialog.ShowMessage(ex.Message, "ERREUR", MessageBoxButton.OK);
+                    return;
+                }
+                ModernDialog.ShowMessage("Modifier Avec Success", "Matrix", MessageBoxButton.OK);
+                Close();
+            }            
         }
 
         private void DisplayStudent (Student studentToDisplay = null)
@@ -93,8 +130,8 @@ namespace Matrix.views
             StudentId.Text = studentToDisplay.StudentId;
             StudentId.IsEnabled = false;
             TITLE_.SelectedValue = studentToDisplay.Title;
-            Firstname.Text = studentToDisplay.Firstname;
-            Lastname.Text = studentToDisplay.Lastname;
+            Firstname.Text = studentToDisplay.FirstName;
+            Lastname.Text = studentToDisplay.LastName;
             PhotoIdentity.Source = ImageUtils.DecodePhoto(studentToDisplay.PhotoIdentity);         
             IdentityNumber.Text = studentToDisplay.IdentityNumber;
             BirthDate.SelectedDate = studentToDisplay.BirthDate;
@@ -133,8 +170,7 @@ namespace Matrix.views
 
             var ok = true;
 
-
-            if(OpenOption == "Add")
+            if(_isAdd)
             {
                 if (string.IsNullOrEmpty(StudentId.Text))
                 {                
@@ -201,15 +237,8 @@ namespace Matrix.views
             {
                 BirthPlace.BorderBrush = Brushes.Blue;
             }  
-            if(string.IsNullOrEmpty (PhoneNumber.Text))
-            {               
-                PhoneNumber.BorderBrush = Brushes.Red;
-                //Ok = false;
-            }
-            else
-            {
-                PhoneNumber.BorderBrush = Brushes.Blue;
-            }  
+
+            PhoneNumber.BorderBrush = string.IsNullOrEmpty (PhoneNumber.Text) ? Brushes.Red : Brushes.Blue;  
             if(string.IsNullOrEmpty (EmailAdress.Text))
             {                
                 EmailAdress.BorderBrush = Brushes.Red;
@@ -229,7 +258,7 @@ namespace Matrix.views
                 HomeAdress.BorderBrush = Brushes.Blue;
             }  
             
-            if (!ok) MessageBox.Show("Verifier Les Informations !");
+            if (!ok) ModernDialog.ShowMessage("Verifier Les Informations !","Matrix",MessageBoxButton.OK);
 
             return ok; 
         }

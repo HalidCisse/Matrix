@@ -3,8 +3,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DataService.Entities
 {
-    public class Staff //: Human
+    /// <summary>
+    /// Represente Un Employer de L'Ecole, Staff ou Instructeur
+    /// </summary>
+    public class Staff 
     {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Staff ()
+        {
+            RegistrationDate = DateTime.Now.Date;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -14,7 +26,8 @@ namespace DataService.Entities
         /// <summary>
         /// 
         /// </summary>
-        public string Position { get; set; }    
+        public string Position { get; set; }  
+          
         /// <summary>
         /// 
         /// </summary>
@@ -24,15 +37,16 @@ namespace DataService.Entities
         /// 
         /// </summary>
         public string Qualification { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public DateTime? HiredDate { get; set; }       
-      
+        public DateTime? HiredDate { get; set; }
+
         /// <summary>
-        /// 
+        /// Suspendu, Regulier, Licencier
         /// </summary>
-        public string Statut { get; set; }  // suspended, regulier, Licencier
+        public string Statut { get; set; }  
 
 
 
@@ -42,276 +56,70 @@ namespace DataService.Entities
         /// 
         /// </summary>
         public string Title { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public string Firstname { get; set; }
+        public string FirstName { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public string Lastname { get; set; }
+        public string LastName { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
         public byte[] PhotoIdentity { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Nationality { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string IdentityNumber { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public DateTime? BirthDate { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string BirthPlace { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string PhoneNumber { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string EmailAdress { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string HomeAdress { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public DateTime? RegistrationDate { get; set; }
 
-        public string FullName
-        {
-            get
-            {
-                return Firstname + " " + Lastname;
-            }
-        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string FullName => FirstName + " " + LastName;
 
         #endregion
 
 
-        #region The Person
-
-
-        //public string FULL_NAME
-        //{             
-        //    get
-        //    {               
-        //        return PERSON.FULL_NAME;                           
-        //    }
-        //}
-
-        //[NotMappedAttribute]
-        //public string TITLE
-        //{
-        //    get
-        //    {
-               
-                   
-        //          return PERSON.TITLE;
-                
-        //    }
-        //    set
-        //    {
-               
-        //          PERSON.TITLE = value;
-                
-        //    }
-        //}
-        ////[NotMappedAttribute]
-        //public string FIRSTNAME
-        //{
-        //    get
-        //    {
-                
-        //        return PERSON.FIRSTNAME;
-                
-        //    }
-
-        //    //set
-        //    //{
-                
-        //    //     PERSON.FIRSTNAME = value;
-               
-        //    //}
-        //}
-        //[NotMapped]
-        //public string LASTNAME
-        //{
-        //    get
-        //    {
-                
-        //            return PERSON.LASTNAME;
-                
-        //    }
-
-        //    set
-        //    {
-               
-        //            PERSON.LASTNAME = value;
-                
-        //    }
-        //}
-        //[NotMapped]
-        //public byte[] PHOTO_IDENTITY
-        //{
-        //    get
-        //    {
-               
-        //            return PERSON.PHOTO_IDENTITY;
-                
-        //    }
-
-        //    set
-        //    {
-                
-        //          PERSON.PHOTO_IDENTITY = value;
-                
-        //    }
-        //}
-
-        //[NotMapped]
-        //public string NATIONALITY
-        //{
-        //    get
-        //    {
-        //        using(var Db = new EF ())
-        //        {
-        //            return Db.PERSON.Single (P => P.PERSON_ID == "STAFF_ID" + STAFF_ID).NATIONALITY;
-        //        }
-        //    }
-
-        //    set
-        //    {
-        //        using(var Db = new EF ())
-        //        {
-        //            Db.PERSON.Single (P => P.PERSON_ID == "STAFF_ID" + STAFF_ID).NATIONALITY = value;
-        //        }
-        //    }
-        //}
-        //[NotMappedAttribute]
-        //public string IDENTITY_NUMBER
-        //{
-        //    get
-        //    {
-        //        using(var Db = new EF ())
-        //        {
-        //            return Db.PERSON.Single (P => P.PERSON_ID == "STAFF_ID" + STAFF_ID).IDENTITY_NUMBER;
-        //        }
-        //    }
-
-        //    set
-        //    {
-        //        using(var Db = new EF ())
-        //        {
-        //            Db.PERSON.Single (P => P.PERSON_ID == "STAFF_ID" + STAFF_ID).IDENTITY_NUMBER = value;
-        //        }
-        //    }
-        //}
-        //[NotMappedAttribute]
-        //public DateTime? BIRTH_DATE
-        //{
-        //    get
-        //    {
-        //        using(var Db = new EF ())
-        //        {
-        //            return Db.PERSON.Single (P => P.PERSON_ID == "STAFF_ID" + STAFF_ID).BIRTH_DATE;
-        //        }
-        //    }
-
-        //    set
-        //    {
-        //        using(var Db = new EF ())
-        //        {
-        //            Db.PERSON.Single (P => P.PERSON_ID == "STAFF_ID" + STAFF_ID).BIRTH_DATE = value;
-        //        }
-        //    }
-        //}
-        //[NotMappedAttribute]
-        //public string BIRTH_PLACE
-        //{
-        //    get
-        //    {
-        //        using(var Db = new EF ())
-        //        {
-        //            return Db.PERSON.Single (P => P.PERSON_ID == "STAFF_ID" + STAFF_ID).BIRTH_PLACE;
-        //        }
-        //    }
-
-        //    set
-        //    {
-        //        using(var Db = new EF ())
-        //        {
-        //            Db.PERSON.Single (P => P.PERSON_ID == "STAFF_ID" + STAFF_ID).BIRTH_PLACE = value;
-        //        }
-        //    }
-        //}
-
-        //[NotMappedAttribute]
-        //public string PHONE_NUMBER
-        //{
-        //    get
-        //    {
-        //        using(var Db = new EF ())
-        //        {
-        //            return Db.PERSON.Single (P => P.PERSON_ID == "STAFF_ID" + STAFF_ID).PHONE_NUMBER;
-        //        }
-        //    }
-
-        //    set
-        //    {
-        //        using(var Db = new EF ())
-        //        {
-        //            Db.PERSON.Single (P => P.PERSON_ID == "STAFF_ID" + STAFF_ID).PHONE_NUMBER = value;
-        //        }
-        //    }
-        //}
-        //[NotMappedAttribute]
-        //public string EMAIL_ADRESS
-        //{
-        //    get
-        //    {
-        //        using(var Db = new EF ())
-        //        {
-        //            return Db.PERSON.Single (P => P.PERSON_ID == "STAFF_ID" + STAFF_ID).EMAIL_ADRESS;
-        //        }
-        //    }
-
-        //    set
-        //    {
-        //        using(var Db = new EF ())
-        //        {
-        //            Db.PERSON.Single (P => P.PERSON_ID == "STAFF_ID" + STAFF_ID).EMAIL_ADRESS = value;
-        //        }
-        //    }
-        //}
-        //[NotMappedAttribute]
-        //public string HOME_ADRESS
-        //{
-        //    get
-        //    {
-        //        using(var Db = new EF ())
-        //        {
-        //            return Db.PERSON.Single (P => P.PERSON_ID == "STAFF_ID" + STAFF_ID).HOME_ADRESS;
-        //        }
-        //    }
-
-        //    set
-        //    {
-        //        using(var Db = new EF ())
-        //        {
-        //            Db.PERSON.Single (P => P.PERSON_ID == "STAFF_ID" + STAFF_ID).HOME_ADRESS = value;
-        //        }
-        //    }
-        //}
-        //[NotMappedAttribute]
-        //public DateTime? REGISTRATION_DATE
-        //{
-        //    get
-        //    {
-        //        using(var Db = new EF ())
-        //        {
-        //            return Db.PERSON.Single (P => P.PERSON_ID == "STAFF_ID" + STAFF_ID).REGISTRATION_DATE;
-        //        }
-        //    }
-
-        //    set
-        //    {
-        //        using(var Db = new EF ())
-        //        {
-        //            Db.PERSON.Single (P => P.PERSON_ID == "STAFF_ID" + STAFF_ID).REGISTRATION_DATE = value;
-        //        }
-        //    }
-        //}
-
-        #endregion
-
+       
     }
 }

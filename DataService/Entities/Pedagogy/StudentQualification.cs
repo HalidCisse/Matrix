@@ -1,33 +1,29 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DataService.Entities
+namespace DataService.Entities.Pedagogy
 {
     /// <summary>
-    /// Inscription
+    /// Student Qualification
     /// </summary>
-    public class Inscription
+    public class StudentQualification
     {
         /// <summary>
         /// ID
         /// </summary>
         [Key]
-        public Guid InscriptionId { get; set; }
+        public Guid StudentQualificationId { get; set; }
 
         /// <summary>
         /// ID de l'Etudiant
         /// </summary>
         public string StudentId { get; set; }
-
+         
         /// <summary>
-        /// ID de la Classe
+        /// ID de la Qualification
         /// </summary>
-        public Guid ClasseId { get; set; }
+        public Guid QualificationId { get; set; }
 
-        /// <summary>
-        /// L'Annee Scolaire de l'Inscription
-        /// </summary>
-        public Guid AnneeScolaireId { get; set; }
 
     }
 }

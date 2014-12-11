@@ -3,60 +3,124 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DataService.Entities
 {
+    /// <summary>
+    /// Represente un Etudiant
+    /// </summary>
     public class Student 
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public Student()
+        {
+            RegistrationDate = DateTime.Now.Date;
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Key]        
         public string StudentId { get; set; }
      
+        /// <summary>
+        /// 
+        /// </summary>
         public string Title { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string LastName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public byte[] PhotoIdentity { get; set; }   
      
+        /// <summary>
+        /// 
+        /// </summary>
         public string Nationality { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string IdentityNumber { get; set; }
 
-
         //[Column ("BIRTH_DATE", TypeName="DateTime2")]
+        /// <summary>
+        /// 
+        /// </summary>
         public DateTime? BirthDate { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string BirthPlace { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string PhoneNumber { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string EmailAdress { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string HomeAdress { get; set; }
 
-        public DateTime? RegistrationDate { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Statut { get; set; }
 
-
-        #region Trans
-        public string FullName
-        {
-            get
-            {
-                return Firstname + " " + Lastname;
-            }
-        }
-
-        public string Course 
-        {
-            get
-            {
-                return "Software Developper ";
-            }
-        }
-
-        public string Level
-        {
-            get
-            {
-                return "1 ere Annnee";
-            }
-        }
-
-
-        #endregion
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime? RegistrationDate { get; set; }
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//#region Trans
+
+///// <summary>
+///// Renvoi le nom complet exp: Halid Cisse
+///// </summary>
+//public string FullName => FirstName + " " + LastName;
+
+///// <summary>
+///// Renvoi le La Filiere Du l'étudiant
+///// </summary>
+//public string Course => "Software Developper ";
+
+///// <summary>
+///// Renvoi la Niveau de sa Classe Actuelle
+///// </summary>
+//public string Level => "1 ere Annnee";
+
+//#endregion

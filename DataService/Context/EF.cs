@@ -1,6 +1,7 @@
 using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
 using DataService.Entities;
+using DataService.Entities.Pedagogy;
+using DataService.Entities.Security;
 
 namespace DataService.Context
 {
@@ -28,7 +29,7 @@ namespace DataService.Context
         }
 
 
-        #region STANDARD
+        #region 
 
         /// <summary>
         /// Enseignant, instructeur, Proff
@@ -43,21 +44,38 @@ namespace DataService.Context
         /// <summary>
         /// Informations Ecoles
         /// </summary>
-        //todo: Deprecate Etablissement en faveur de Setting
-        public virtual DbSet<Etablissement> Etablissement { get; set; }
+        //todo: Deprecate Etablissement et Salle en faveur de Setting
+        //public virtual DbSet<Etablissement> Etablissement { get; set; }
 
         /// <summary>
         /// Salle Ou on Instruit un Cours
         /// </summary>
-        public virtual DbSet<Salle> Salle { get; set; }
+        //public virtual DbSet<Salle> Salle { get; set; }
 
         /// <summary>
         /// Les Parametres
         /// </summary>
         public virtual DbSet<Setting> Setting { get; set; }
 
+
+
         #endregion
 
+
+        #region SECURITE
+
+        /// <summary>
+        /// Profile D'Utilisateurs
+        /// </summary>
+        public virtual DbSet<UserProfile> UserProfile { get; set; }
+
+        /// <summary>
+        /// Role D'Utilisateurs
+        /// </summary>
+        public virtual DbSet<UserRole> UserRole { get; set; }
+
+
+        #endregion
 
 
         #region PEDAGOGY

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DataService.Entities
+namespace DataService.Entities.Pedagogy
 {
     public class MatiereInstructeurs
     {

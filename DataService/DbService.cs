@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using DataService.Context;
-using DataService.Entities;
+﻿
 using DataService.DataManager;
 
 namespace DataService
@@ -21,19 +15,24 @@ namespace DataService
         public DataEnums DataEnums = new DataEnums();
 
         /// <summary>
-        /// System de Gestion d'Etude
+        /// System de Gestion D'Etude
         /// </summary>
         public PedagogyManager Pedagogy = new PedagogyManager();
 
         /// <summary>
-        /// Gestion d'Etudiants
+        /// Gestion D'Etudiants
         /// </summary>
         public StudentsManager Students = new StudentsManager();
 
         /// <summary>
-        /// Gestion Des ressources Humaines
+        /// Gestion Des Ressources Humaines
         /// </summary>
         public HrManager Hr = new HrManager();
+
+        /// <summary>
+        /// Gestion Des Parametres
+        /// </summary>
+        public SettingsManager Settings = new SettingsManager();
  
     }
 }

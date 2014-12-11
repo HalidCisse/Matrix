@@ -1,44 +1,66 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using DataService.Entities;
+using FirstFloor.ModernUI.Windows.Controls;
 using Matrix.Utils;
 using Microsoft.Win32;
 
-namespace Matrix.views
+namespace Matrix.views.Staffs
 {
     
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class StaffInfo
     {
-        public string OpenOption;
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly bool _isAdd;
 
-        public StaffInfo ( string staffToDisplayId = null )
-        {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="staffToDisplayId"></param>
+        public StaffInfo (string staffToDisplayId = null )
+        {            
             InitializeComponent ();
 
-            #region Patterns Data
+            if (string.IsNullOrEmpty(staffToDisplayId)) { _isAdd = true; }
 
-            TITLE_.ItemsSource = App.DataS.DataEnums.GetTitles ();
+            new Task(() =>
+            {
+                Dispatcher.BeginInvoke(new Action(GetPatternData));
+            }).ContinueWith(delegate
+            {
+                if (_isAdd) {
+                    DisplayDefault();
+                }
+                else {
+                    DisplayStaff(App.DataS.Hr.GetStaffById(staffToDisplayId));
+                }                
+            }).Start();
+                        
+        }
 
-            Nationality.ItemsSource = App.DataS.DataEnums.GetNationalities ();
+        private void GetPatternData()
+        {           
+            TITLE_.ItemsSource = App.DataS.DataEnums.GetTitles();
 
-            BirthPlace.ItemsSource = App.DataS.DataEnums.GetBIRTH_PLACE ();
+            Nationality.ItemsSource = App.DataS.DataEnums.GetNationalities();
 
-            Statut.ItemsSource = App.DataS.DataEnums.GetStaffStatuts ();
+            BirthPlace.ItemsSource = App.DataS.DataEnums.GetBIRTH_PLACE();
 
-            Position.ItemsSource = App.DataS.DataEnums.GetStaffPositions ();
+            Statut.ItemsSource = App.DataS.DataEnums.GetStaffStatuts();
 
-            Departement.ItemsSource = App.DataS.DataEnums.GetDepartements ();
+            Position.ItemsSource = App.DataS.DataEnums.GetStaffPositions();
 
-            Qualification.ItemsSource = App.DataS.DataEnums.GetStaffQualifications ();
+            Departement.ItemsSource = App.DataS.DataEnums.GetDepartements();
 
-            #endregion
-
-            if(!string.IsNullOrEmpty (staffToDisplayId))
-                DisplayStaff (App.DataS.Hr.GetStaffById (staffToDisplayId));
-            else
-                DisplayDefault ();
+            Qualification.ItemsSource = App.DataS.DataEnums.GetStaffQualifications();
         }
 
         private void PhotoID_Click ( object sender, RoutedEventArgs e )
@@ -83,8 +105,8 @@ namespace Matrix.views
             StaffId.Text = staffToDisplay.StaffId;
             StaffId.IsEnabled = false;
             TITLE_.SelectedValue = staffToDisplay.Title;
-            Firstname.Text = staffToDisplay.Firstname;
-            Lastname.Text = staffToDisplay.Lastname;
+            Firstname.Text = staffToDisplay.FirstName;
+            Lastname.Text = staffToDisplay.LastName;
             PhotoIdentity.Source = ImageUtils.DecodePhoto (staffToDisplay.PhotoIdentity);
 
             Position.Text = staffToDisplay.Position;
@@ -116,34 +138,55 @@ namespace Matrix.views
             {
                 StaffId = StaffId.Text.Trim (),
                 Title = TITLE_.SelectedValue.ToString (),
-                Firstname = Firstname.Text.Trim (),
-                Lastname = Lastname.Text.Trim (),
+                FirstName = Firstname.Text.Trim (),
+                LastName = Lastname.Text.Trim (),
                 PhotoIdentity = ImageUtils.GetPngFromImageControl (PhotoIdentity.Source as BitmapImage),
 
-                IdentityNumber = IdentityNumber.Text.Trim (),
-                BirthDate = BirthDate.SelectedDate.Value,
+                Position = Position.Text,
+                Departement = Departement.Text,
+                Qualification = Qualification.Text,
+                HiredDate = HiredDate.SelectedDate,
+
+                IdentityNumber = IdentityNumber.Text,
+                BirthDate = BirthDate.SelectedDate,
                 Nationality = Nationality.Text,
                 BirthPlace = BirthPlace.Text,
-                PhoneNumber = PhoneNumber.Text.Trim (),
-                EmailAdress = EmailAdress.Text.Trim (),
-                HomeAdress = HomeAdress.Text.Trim (),
+                PhoneNumber = PhoneNumber.Text,
+                EmailAdress = EmailAdress.Text,
+                HomeAdress = HomeAdress.Text,
                 Statut = Statut.SelectedValue.ToString (),
             };
 
-            if(!string.IsNullOrEmpty (Position.Text)) myStaff.Position = Position.SelectedValue.ToString ();
-            if(!string.IsNullOrEmpty (Departement.Text)) myStaff.Departement = Departement.SelectedValue.ToString ();
-            if(!string.IsNullOrEmpty (Qualification.Text)) myStaff.Qualification = Qualification.SelectedValue.ToString ();
-            if(HiredDate.SelectedDate != null) myStaff.HiredDate = HiredDate.SelectedDate.Value;
-
-            if (OpenOption == "Add")
+            if (_isAdd)
             {
-                myStaff.RegistrationDate = DateTime.Now.Date;
-                MessageBox.Show(App.DataS.Hr.AddStaff(myStaff) ? "Add Success" : "Add Failed");
+                try
+                {
+                    App.DataS.Hr.AddStaff(myStaff);
+                }
+                catch (Exception ex)
+                {
+                    ModernDialog.ShowMessage(ex.Message, "ERREUR", MessageBoxButton.OK);
+                    return;
+                }
+
+                ModernDialog.ShowMessage("Ajouter Avec Success", "Matrix", MessageBoxButton.OK);                             
                 Close();
             }
             else
             {
-                MessageBox.Show(App.DataS.Hr.UpdateStaff(myStaff) ? "Update Success" : "Update Failed");
+                try
+                {
+                    App.DataS.Hr.UpdateStaff(myStaff);
+                }
+                catch (Exception ex)
+                {
+
+                    ModernDialog.ShowMessage(ex.Message, "ERREUR", MessageBoxButton.OK);
+                    return;
+                }
+
+
+                ModernDialog.ShowMessage("Modifer Avec Success", "Matrix", MessageBoxButton.OK);
                 Close();
             }
         }
@@ -161,7 +204,7 @@ namespace Matrix.views
         {          
             var ok = true;
 
-            if(OpenOption == "Add")
+            if(_isAdd)
             {
                 if(string.IsNullOrEmpty (StaffId.Text))
                 {
@@ -255,7 +298,7 @@ namespace Matrix.views
                 HomeAdress.BorderBrush = Brushes.Blue;
             }
 
-            if(!ok) MessageBox.Show ("Verifier Les Informations !");
+            if (!ok) ModernDialog.ShowMessage("Verifier Les Informations !", "Matrix", MessageBoxButton.OK);
 
             return ok;
         }
@@ -323,15 +366,9 @@ namespace Matrix.views
             if (RoleExpander != null) RoleExpander.IsExpanded = false;
             if(CoursExpander != null) CoursExpander.IsExpanded = false;
         }
-
         
         #endregion
 
-
-        #region INTER-ACTION
-
-        
-        #endregion
 
        
 

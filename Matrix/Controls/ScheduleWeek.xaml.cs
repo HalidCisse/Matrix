@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -40,7 +39,7 @@ namespace Matrix.Controls
         /// <summary>
         /// Mettre a jour les information de l'emploi du temps
         /// </summary>
-        /// <param name="Class_ID">ID de la classe</param>
+        /// <param name="classId">ID de la classe</param>
         public void UpdateData(Guid classId)
         {
             _classId = classId;
@@ -51,9 +50,6 @@ namespace Matrix.Controls
             }).Start();
 
         }
-
-
-        #region EVENTS HANDLER
 
         private void DayCoursList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -72,8 +68,6 @@ namespace Matrix.Controls
 
             SelectionChanged?.Invoke(list.SelectedValue.ToString(), e);
         }
-
-        #endregion
 
 
         //todo : Restyle Schedule

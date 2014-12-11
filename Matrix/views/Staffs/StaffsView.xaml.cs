@@ -8,7 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using DataService.ViewModel;
 
-namespace Matrix.views
+namespace Matrix.views.Staffs
 {
     
     public partial class StaffsView

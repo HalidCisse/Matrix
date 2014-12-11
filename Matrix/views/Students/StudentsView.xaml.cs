@@ -5,12 +5,18 @@ using System.Windows;
 using System.Windows.Input;
 using DataService.Entities;
 
-namespace Matrix.views
+namespace Matrix.views.Students
 {
     
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class StudentsView
     {
        
+        /// <summary>
+        /// 
+        /// </summary>
         public StudentsView ( ) {
             InitializeComponent ();               
         }
@@ -25,13 +31,11 @@ namespace Matrix.views
        
         private void StudentsViewBackButton_Click ( object sender, RoutedEventArgs e )
         {
-            if (NavigationService != null)
-                NavigationService.Navigate (new HomePage(), UriKind.Relative);
+            NavigationService?.Navigate (new HomePage(), UriKind.Relative);
         }
 
         private void Studentslist_MouseDoubleClick ( object sender, MouseButtonEventArgs e ) {
-            if (Studentslist == null) return;
-            if (Studentslist.SelectedValue == null) return;
+            if (Studentslist?.SelectedValue == null) return;
             var wind = new StudentInfo (Studentslist.SelectedValue.ToString())
             {
                 Owner = Window.GetWindow(this),

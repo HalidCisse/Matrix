@@ -164,8 +164,6 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\MatiereStaffsModel.cs" />
-    <Compile Include="Model\StaffViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Styles\LocalExtensions.cs" />
     <Compile Include="Styles\MyForm.cs" />

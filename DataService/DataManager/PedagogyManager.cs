@@ -1,6 +1,7 @@
 ﻿using DataService.Context;
 using DataService.Entities;
 using System;
+using DataService.Entities.Pedagogy;
 
 namespace DataService.DataManager
 {
@@ -30,6 +31,11 @@ namespace DataService.DataManager
         public CoursManager Cours = new CoursManager();
 
         /// <summary>
+        /// Gestion Des Inscription
+        /// </summary>
+        public InscriptionsManager Inscriptions = new InscriptionsManager();
+
+        /// <summary>
         /// Ajouter Une Nouvelle Annee Scolaire, Return True if Successful
         /// </summary>
         /// <param name="newAnneeScolaire">Object AnneeScolaire</param>
@@ -56,6 +62,10 @@ namespace DataService.DataManager
                 return db.SaveChanges() > 0;
             }
         }
+
+
+
+
 
     }
 }

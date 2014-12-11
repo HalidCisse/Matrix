@@ -110,33 +110,39 @@
     <Compile Include="DataManager\DataEnums.cs" />
     <Compile Include="DataManager\FilieresManager.cs" />
     <Compile Include="DataManager\HRManager.cs" />
+    <Compile Include="DataManager\InscriptionsManager.cs" />
     <Compile Include="DataManager\MatieresManager.cs" />
     <Compile Include="DataManager\PedagogyManager.cs" />
+    <Compile Include="DataManager\SettingsManager.cs" />
     <Compile Include="DataManager\StudentsManager.cs" />
-    <Compile Include="Entities\AnneeScolaire.cs" />
     <Compile Include="Entities\Etablissement.cs" />
-    <Compile Include="Entities\Inscription.cs" />
-    <Compile Include="Entities\InscriptionRule.cs" />
-    <Compile Include="Entities\PeriodeScolaire.cs" />
-    <Compile Include="Entities\Qualification.cs" />
+    <Compile Include="Entities\Pedagogy\Inscription.cs" />
+    <Compile Include="Entities\Pedagogy\InscriptionRule.cs" />
+    <Compile Include="Entities\Pedagogy\AnneeScolaire.cs" />
+    <Compile Include="Entities\Pedagogy\PeriodeScolaire.cs" />
+    <Compile Include="Entities\Pedagogy\Qualification.cs" />
     <Compile Include="Entities\Salle.cs" />
+    <Compile Include="Entities\Security\UserProfile.cs" />
+    <Compile Include="Entities\Security\UserRole.cs" />
     <Compile Include="Entities\Setting.cs" />
-    <Compile Include="Entities\StudentQualification.cs" />
+    <Compile Include="Entities\Pedagogy\StudentQualification.cs" />
+    <Compile Include="Enum\ClassAnnee.cs" />
+    <Compile Include="Enum\Settings.cs" />
     <Compile Include="Migrations\201412100527114_kk.cs" />
     <Compile Include="Migrations\201412100527114_kk.Designer.cs">
       <DependentUpon>201412100527114_kk.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelService.cs" />
-    <Compile Include="Entities\Classe.cs" />
-    <Compile Include="Entities\Classe_Students.cs" />
-    <Compile Include="Entities\Cours.cs" />
-    <Compile Include="Entities\Filiere.cs" />
-    <Compile Include="Entities\Filiere_Matieres.cs" />
+    <Compile Include="Entities\Pedagogy\Classe.cs" />
+    <Compile Include="Entities\Pedagogy\Classe_Students.cs" />
+    <Compile Include="Entities\Pedagogy\Cours.cs" />
+    <Compile Include="Entities\Pedagogy\Filiere.cs" />
+    <Compile Include="Entities\Pedagogy\Filiere_Matieres.cs" />
     <Compile Include="Entities\Human.cs" />
-    <Compile Include="Entities\Matiere.cs" />
-    <Compile Include="Entities\MatiereControl.cs" />
-    <Compile Include="Entities\Matiere_Instructeurs.cs" />
-    <Compile Include="Entities\ControlNote.cs" />
+    <Compile Include="Entities\Pedagogy\Matiere.cs" />
+    <Compile Include="Entities\Pedagogy\MatiereControl.cs" />
+    <Compile Include="Entities\Pedagogy\Matiere_Instructeurs.cs" />
+    <Compile Include="Entities\Pedagogy\ControlNote.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Staff.cs" />
     <Compile Include="Entities\Student.cs" />
@@ -156,6 +162,7 @@
     <Compile Include="ViewModel\FiliereClassCard.cs" />
     <Compile Include="ViewModel\FiliereLevelCard.cs" />
     <Compile Include="ViewModel\DepStaffCard.cs" />
+    <Compile Include="ViewModel\StudentCard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -202,6 +209,7 @@
       <DependentUpon>201412100527114_kk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

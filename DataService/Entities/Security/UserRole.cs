@@ -5,34 +5,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataService.Entities
+namespace DataService.Entities.Security
 {
     /// <summary>
-    /// Parametres
+    /// Le Role De L'Utilisateur
     /// </summary>
-    public class Setting
+    public class UserRole
     {
         /// <summary>
         /// ID
         /// </summary>
         [Key]
-        public Guid SettingId { get; set; }
-
+        public Guid UserRoleIdGuid { get; set; }
+        
         /// <summary>
         /// L'Utilisateur
         /// </summary>
         public Guid UserProfileId { get; set; }
 
         /// <summary>
-        /// Le Nom du Parametre
+        /// Espace de L'Utilisateur
         /// </summary>
-        public int SettingNum { get; set; }
+        public string UserSpace { get; set; }
 
-        /// <summary>
-        /// La Valeur du Parametre
-        /// </summary>
-        public string SettingValue { get; set; }
 
-        
+
     }
 }

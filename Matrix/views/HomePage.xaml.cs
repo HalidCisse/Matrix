@@ -1,38 +1,43 @@
 ﻿using System;
 using System.Windows;
 using Matrix.views.Pedagogy;
+using Matrix.views.Staffs;
+using Matrix.views.Students;
 
 namespace Matrix.views
 {
     
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class HomePage
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public HomePage ( ) {
+
             InitializeComponent ();
+
         }
 
         #region Home Buttons Commandes
 
-
         private void StudentButton_Click ( object sender, RoutedEventArgs e ) {           
-            // ReSharper disable once PossibleNullReferenceException
-            NavigationService.Navigate (new StudentsView(), UriKind.Relative);         
+            NavigationService?.Navigate (new StudentsView(), UriKind.Relative);         
         }
 
         private void PedagogieButton_Click ( object sender, RoutedEventArgs e ) {
-            // ReSharper disable once PossibleNullReferenceException
-            NavigationService.Navigate (new PedagogyView(), UriKind.Relative);
+            NavigationService?.Navigate (new PedagogyView(), UriKind.Relative);
         }
 
         private void StaffButton_Click ( object sender, RoutedEventArgs e ) {
-
-            // ReSharper disable once PossibleNullReferenceException
-            NavigationService.Navigate (new StaffsView(), UriKind.Relative); 
+            NavigationService?.Navigate (new StaffsView(), UriKind.Relative); 
         }
 
         private void AgendaButton_Click ( object sender, RoutedEventArgs e )
         {
-            if (NavigationService != null) NavigationService.Navigate (new StudentPage(), UriKind.Relative);
+            NavigationService?.Navigate (new StudentPage(), UriKind.Relative);
         }
 
         private void EconomatButton_Click(object sender, RoutedEventArgs e)
@@ -44,11 +49,6 @@ namespace Matrix.views
 
 
         }
-
-
-
-
-
 
 
 
