@@ -93,7 +93,7 @@ namespace Matrix
         {
             MessageBox.Show (e.Exception.Message,"Il ya Un Problem le Programme Doit se fermer !!");
             e.Handled = true;
-            Current.Shutdown();
+            //Current.Shutdown();
         }
 
         #endregion

@@ -16,9 +16,9 @@
             <ListBox Name="ScheduleUi" Style="{DynamicResource DayListStyle}" Margin="10,15,10,10">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Border Background="{Binding DAY_COLOR}" Margin="0,5" CornerRadius="5" Effect="{StaticResource Z-Depth2}">
+                        <Border Background="{Binding DayColor}" Margin="0,5" CornerRadius="5" Effect="{StaticResource Z-Depth2}">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Text="{Binding DAY_NAME}" Width="120" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="White" FontWeight="Thin" FontFamily="League Gothic"/>
+                                <TextBlock Text="{Binding DayName}" Width="120" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="White" FontWeight="Thin" FontFamily="League Gothic"/>
                                 <ListBox Name="DayCoursList" Style="{DynamicResource CoursListStyle}" Margin="10,10,0,0" MouseDoubleClick="DayCoursList_MouseDoubleClick" SelectionChanged="DayCoursList_SelectionChanged"/>
                             </StackPanel>
                         </Border>

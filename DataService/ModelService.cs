@@ -26,7 +26,7 @@ namespace DataService
 
                 if (nd.StaffsList.Any()) { depStaffCardList.Add(nd);}
 
-                var deps = (from s in db.Staff.ToList() where s.Departement != null select s.Departement).Distinct().ToList();
+                var deps = (from s in db.Staff.ToList() where string.IsNullOrEmpty(s.Departement)  == false select s.Departement).Distinct().ToList();
 
                 Parallel.ForEach(deps, dep =>
                 {

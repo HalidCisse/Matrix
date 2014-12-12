@@ -1,6 +1,7 @@
 ﻿using DataService.Context;
 using DataService.Entities;
 using System;
+using DataService.Entities.Pedagogy;
 
 namespace DataService.DataManager
 {

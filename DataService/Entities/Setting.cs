@@ -14,7 +14,7 @@ namespace DataService.Entities
     {
         /// <summary>
         /// ID
-        /// </summary>
+        /// </summary> 
         [Key]
         public Guid SettingId { get; set; }
 

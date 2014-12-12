@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using DataService.Entities;
 
 namespace Matrix.views.Students
 {
@@ -17,15 +15,28 @@ namespace Matrix.views.Students
         /// <summary>
         /// 
         /// </summary>
-        public StudentsView ( ) {
+        public StudentsView ( )
+        {
             InitializeComponent ();               
         }
 
-        private void Page_Loaded ( object sender, RoutedEventArgs e ) {
-            _worker.DoWork += worker_DoWork;
-            _worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+        private void UpdateData()
+        {
             BusyIndicator.IsBusy = true;
-            UpdateStudents();         
+
+            new Task(() =>
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    Studentslist.ItemsSource = App.DataS.Students.GetAllStudents();
+                    BusyIndicator.IsBusy = false;
+                }));
+            }).Start();
+        }
+
+        private void Page_Loaded ( object sender, RoutedEventArgs e )
+        {
+            UpdateData();         
         }
       
        
@@ -38,18 +49,17 @@ namespace Matrix.views.Students
             if (Studentslist?.SelectedValue == null) return;
             var wind = new StudentInfo (Studentslist.SelectedValue.ToString())
             {
-                Owner = Window.GetWindow(this),
-                OpenOption = "Mod"
+                Owner = Window.GetWindow(this),               
             };
             wind.ShowDialog();
-            UpdateStudents ();
+            UpdateData();
         }
 
         private void AddButon_Click ( object sender, RoutedEventArgs e )
         {
-            var wind = new StudentInfo {Owner = Window.GetWindow(this), OpenOption = "Add"};
+            var wind = new StudentInfo {Owner = Window.GetWindow(this)};
             wind.ShowDialog ();
-            UpdateStudents ();           
+            UpdateData();           
         }
 
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )
@@ -64,36 +74,9 @@ namespace Matrix.views.Students
 
             if (MessageBox.Show(theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
             MessageBox.Show (App.DataS.Students.DeleteStudent (Studentslist.SelectedValue.ToString ()) ? "Supprimer Avec Succes" : "Echec");
-            UpdateStudents ();
+            UpdateData();
         }
 
-          
-       
-
-        #region Background Works
-
-        private readonly BackgroundWorker _worker = new BackgroundWorker ();
-        
-        private List<Student> _studentsBuff;
-
-        private void UpdateStudents()
-        {
-            if(_worker.IsBusy) return;
-            _worker.RunWorkerAsync ();          
-        }
-
-        private void worker_DoWork(object sender, DoWorkEventArgs e) {                     
-            _studentsBuff = App.DataS.Students.GetAllStudents ();            
-        }
-
-        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
-            BusyIndicator.IsBusy = false;
-            Studentslist.ItemsSource = _studentsBuff;           
-            _worker.Dispose();
-        }
-
-        #endregion
-
-        
+     
     }
 }

@@ -11,7 +11,7 @@ namespace DataService.DataManager
     /// </summary>
     public class SettingsManager
     {
-
+        
         /// <summary>
         /// Modifier Un Parametre
         /// </summary>
@@ -54,8 +54,7 @@ namespace DataService.DataManager
                 return db.SaveChanges() > 0;
             }
         }
-
-        
+       
          /// <summary>
          /// Return Le Paramettre Pour Un Utilisateur
          /// </summary>
@@ -69,10 +68,6 @@ namespace DataService.DataManager
                 return db.Setting.FirstOrDefault(s => s.UserProfileId == userProfileId && s.SettingNum == (int)mySetting)?.SettingValue;
             }
         }
-
-
-
-
 
 
 

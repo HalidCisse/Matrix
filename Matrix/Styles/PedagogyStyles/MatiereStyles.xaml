@@ -31,7 +31,7 @@
                        
                         <Grid>
                             <Border  Name="MaskBorder" CornerRadius="50" Background="White" BorderThickness="0"/>
-                            <Image Source="{Binding INSTRUCTEUR_PHOTO}" Stretch="Fill" Width="90" Height="90">
+                            <Image Source="{Binding InstructeurPhoto}" Stretch="Fill" Width="90" Height="90">
                                 <Image.OpacityMask>
                                     <VisualBrush Visual="{Binding ElementName=MaskBorder}"/>
                                 </Image.OpacityMask>
@@ -40,20 +40,20 @@
 
                         <StackPanel Margin="10,5,5,5" >
                             
-                            <TextBlock Text="{Binding NAME}" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Width="170" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Width="170" TextWrapping="Wrap" VerticalAlignment="Top"/>
                                                         
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
                                 <TextBlock Text="Proff :" FontSize="15" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
-                                <TextBlock Text="{Binding INSTRUCTEUR_NAME}" Margin="5,0" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>                                
+                                <TextBlock Text="{Binding InstructeurName}" Margin="5,0" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>                                
                             </StackPanel>
                             
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
                                 <TextBlock Text="Coeff :" FontSize="15" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
-                                <TextBlock Text="{Binding COEFF}" Margin="5,0" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>                                
+                                <TextBlock Text="{Binding Coeff}" Margin="5,0" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>                                
                             </StackPanel>
                             
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
-                                <TextBlock Text="{Binding HEURES_PAR_SEMAINE}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Text="{Binding HeuresParSemaine}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
                                 <TextBlock Text="H/Week" FontSize="15" Margin="5,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
                             </StackPanel>  
                             
@@ -71,15 +71,14 @@
 
         <Setter Property="ItemTemplate" Value="{StaticResource ListBoxTemp}" />
         <Setter Property="ItemsPanel" Value="{StaticResource ListBoxITemp}" />  
-        <Setter Property="ItemsSource" Value="{Binding MATIERES_LIST}" />
-        <Setter Property="SelectedValuePath" Value="MATIERE_ID" />
+        <Setter Property="ItemsSource" Value="{Binding MatieresList}" />
+        <Setter Property="SelectedValuePath" Value="MatiereId" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />        
         <Setter Property="Margin" Value="10" />
         <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"/>        
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Background" Value="Beige" />
-        <!--<Setter Property="Effect" Value="{StaticResource z-depth3}" />-->
         <Setter Property="BorderThickness" Value="0" />
         
 

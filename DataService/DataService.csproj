@@ -128,9 +128,9 @@
     <Compile Include="Entities\Pedagogy\StudentQualification.cs" />
     <Compile Include="Enum\ClassAnnee.cs" />
     <Compile Include="Enum\Settings.cs" />
-    <Compile Include="Migrations\201412100527114_kk.cs" />
-    <Compile Include="Migrations\201412100527114_kk.Designer.cs">
-      <DependentUpon>201412100527114_kk.cs</DependentUpon>
+    <Compile Include="Migrations\201412111753584_kk.cs" />
+    <Compile Include="Migrations\201412111753584_kk.Designer.cs">
+      <DependentUpon>201412111753584_kk.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelService.cs" />
     <Compile Include="Entities\Pedagogy\Classe.cs" />
@@ -205,11 +205,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201412100527114_kk.resx">
-      <DependentUpon>201412100527114_kk.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201412111753584_kk.resx">
+      <DependentUpon>201412111753584_kk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

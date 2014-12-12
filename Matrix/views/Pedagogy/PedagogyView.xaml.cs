@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using DataService.ViewModel;
 using FirstFloor.ModernUI.Windows.Controls;
 using Matrix.Extention;
 
@@ -18,68 +16,47 @@ namespace Matrix.views.Pedagogy
     {
         
         private Guid _currentSelected;
-        //private bool isFirstTime = true;
-        private readonly BackgroundWorker _worker = new BackgroundWorker ();
-        private List<FiliereClassCard> _filieresBuff = new List<FiliereClassCard> ();
-
+        
         /// <summary>
         /// Affiche les filieres et leurs classes
         /// </summary>
         public PedagogyView ( )
         {
-            InitializeComponent ();
+            InitializeComponent ();          
         }
-        
-        private void UpdateData ( )
+
+        private void UpdateData()
         {
-            if(_worker.IsBusy) return;            
-            _worker.RunWorkerAsync ();
-        }
+            BusyIndicator.IsBusy = true;
 
-        private void worker_DoWork ( object sender, DoWorkEventArgs e )
-        {            
-            _filieresBuff = App.ModelS.GetFiliereClassCards ();
+            new Task(() =>
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    FiliereList.ItemsSource = App.ModelS.GetFiliereClassCards();
+                    BusyIndicator.IsBusy = false;
+                }));
+            }).Start();            
         }
-
-        private void worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
-        {
-            BusyIndicator.IsBusy = false;
-            FiliereList.ItemsSource = _filieresBuff;
-            _worker.Dispose ();
-        }
-
 
         #region Eventhandlers
 
-        private void Page_Loaded ( object sender, RoutedEventArgs e )
+        private void PedagogyView_OnLoaded(object sender, RoutedEventArgs e)
         {
-            _worker.DoWork += worker_DoWork;
-            _worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            BusyIndicator.IsBusy = true;
-            UpdateData ();
-            
+            UpdateData();
         }
 
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )
         {
             
-            MessageBox.Show (_currentSelected + "");
-
             var theClass = App.DataS.Pedagogy.Classes.GetClasseById (_currentSelected);
+           
+            var theName = "Ete Vous Sure de supprimer " + theClass.Name + " definitivement ?";
 
-            var theName = App.DataS.Pedagogy.Classes.GetClasseName (_currentSelected);
-            theName = "Ete Vous Sure de supprimer " + theClass.Name + " definitivement ?";
-
-            var md = new ModernDialog {
-                Title = "Matrix",
-                Content = theName
-            };
+            var md = new ModernDialog { Title = "Matrix", Content = theName };
                       
             var r = md.ShowDialogOkCancel ();
-            if (r != MessageBoxResult.OK)
-            {
-                return;
-            }
+            if (r != MessageBoxResult.OK) return;
            
             try
             {
@@ -88,9 +65,10 @@ namespace Matrix.views.Pedagogy
             catch(Exception ex)
             {
                 ModernDialog.ShowMessage (ex.Message, "Matrix", MessageBoxButton.OK);
+                return;
             }
                                   
-            if (App.DataS.Pedagogy.Filieres.GetFiliereClassCount(theClass.FiliereId) == 1){
+            if (App.DataS.Pedagogy.Filieres.GetFiliereClassCount(theClass.FiliereId) < 1){
                 if(MessageBox.Show ("Vouler Vous Supprimer " + App.DataS.Pedagogy.Filieres.GetFiliereById (theClass.FiliereId).Name + " definitivement ?")!= MessageBoxResult.Yes) return;
 
                 try
@@ -100,6 +78,7 @@ namespace Matrix.views.Pedagogy
                 catch (Exception ex)
                 {
                     ModernDialog.ShowMessage (ex.Message, "Matrix", MessageBoxButton.OK);
+                    return;
                 }                
             }       
             UpdateData ();
@@ -108,6 +87,7 @@ namespace Matrix.views.Pedagogy
         private void AddButon_Click ( object sender, RoutedEventArgs e )
         {
             var cm = FindResource ("AddContext") as ContextMenu;
+            if (cm == null) return;
             cm.PlacementTarget = sender as Button;
             cm.IsOpen = true;
         }
@@ -127,42 +107,16 @@ namespace Matrix.views.Pedagogy
         }
                
         private void HomeButton_Click(object sender, RoutedEventArgs e)
-        {
-            var navigationService = NavigationService;
-            navigationService?.Navigate(new HomePage());
-        }
-
-        private void ClassList_Loaded ( object sender, RoutedEventArgs e )
-        {
-            //var style = FindResource ("LabelTemplate") as Style;           
-            //TheScrollBar. = style;
-
-            //var styl = new Style (typeof (ScrollViewer), FindResource ("ScrollThumbs") as Style);
-            //styl.TargetType = typeof (ScrollViewer);
-
-
-
-
-            //if(!isFirstTime) return;
-            //try
-            //{
-            //    var E = FindVisual.FindVisualChildren<Expander> (this).First ();
-            //    E.IsExpanded = true;
-            //    isFirstTime = false;
-            //}
-            //catch(Exception)
-            //{
-            //    // ignored
-            //}
+        {           
+            NavigationService?.Navigate(new HomePage());
         }
 
         private void ClassList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {
             var list = sender as ListBox;
             if(list?.SelectedValue == null) return;
-
-            var navigationService = NavigationService;
-            navigationService?.Navigate (new ClassDetails (new Guid (list.SelectedValue.ToString ())));
+            
+            NavigationService?.Navigate(new ClassDetails(new Guid(list.SelectedValue.ToString())));
         }
 
         private void ClassList_SelectionChanged ( object sender, SelectionChangedEventArgs e )
@@ -176,30 +130,60 @@ namespace Matrix.views.Pedagogy
 
         private void ClassContextDel_Click(object sender, RoutedEventArgs e)
         {
-            var theName = App.DataS.Pedagogy.Classes.GetClasseName(_currentSelected);
+            var list = ((FrameworkElement)sender).Tag as ListBox;
+
+            if (list?.SelectedValue == null) return;
+            
+            var theName = App.DataS.Pedagogy.Classes.GetClasseName(new Guid(list.SelectedValue.ToString()));
             theName = "Ete Vous Sure de supprimer " + theName + " definitivement ?";
 
-            var md = new ModernDialog
-            {
-                Title = "Matrix",
-                Content = theName
-            };
+            var md = new ModernDialog { Title = "Matrix", Content = theName };
 
             var r = md.ShowDialogOkCancel();
             if (r != MessageBoxResult.OK) return;
 
-            App.DataS.Pedagogy.Classes.DeleteClasse(_currentSelected);
-
+            try
+            {
+                App.DataS.Pedagogy.Classes.DeleteClasse(new Guid(list.SelectedValue.ToString()));
+            }
+            catch (Exception ex)
+            {
+                ModernDialog.ShowMessage(ex.Message, "ERREUR", MessageBoxButton.OK);
+                return;
+            }
+            
             ModernDialog.ShowMessage("Supprimer Avec Success", "Matrix", MessageBoxButton.OK);
 
             UpdateData();
         }
 
+        private void ClassContextMod_OnClick(object sender, RoutedEventArgs e)
+        {
+            var menuItem = (MenuItem)e.Source;
+            var menu = (ContextMenu)menuItem.Parent;
+            var list = (ListBox)menu.PlacementTarget;
+            if (list?.SelectedValue == null) return;
+
+            var wind = new AddClass(App.DataS.Pedagogy.Classes.GetClasseById(new Guid(list.SelectedValue.ToString()))) { Owner = Window.GetWindow(this) };
+            wind.ShowDialog();
+            UpdateData();
+        }
+
+        private void ClassContextDetail_OnClick(object sender, RoutedEventArgs e)
+        {
+            var list = ((FrameworkElement)sender).Tag as ListBox;
+
+            if (list?.SelectedValue == null) return;
+
+            NavigationService?.Navigate(new ClassDetails(new Guid(list.SelectedValue.ToString())));
+        }
+
+
+
+
         #endregion
 
-
-
-
+        
     }
 
         

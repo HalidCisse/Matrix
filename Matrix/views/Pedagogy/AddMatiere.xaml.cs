@@ -2,10 +2,14 @@
 using System.Windows;
 using System.Windows.Media;
 using DataService.Entities;
+using DataService.Entities.Pedagogy;
 using FirstFloor.ModernUI.Windows.Controls;
 
 namespace Matrix.views.Pedagogy
 {
+    /// <summary>
+    /// Form Pour Ajouter Une Matiere
+    /// </summary>
     public partial class AddMatiere
     {
         private readonly bool _isAdd;               

@@ -1,6 +1,5 @@
-﻿using DataService.Context;
-using DataService.Entities;
-using System;
+﻿using System;
+using DataService.Context;
 using DataService.Entities.Pedagogy;
 
 namespace DataService.DataManager
@@ -62,10 +61,6 @@ namespace DataService.DataManager
                 return db.SaveChanges() > 0;
             }
         }
-
-
-
-
 
     }
 }

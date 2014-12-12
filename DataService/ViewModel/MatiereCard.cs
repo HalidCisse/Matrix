@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using DataService.Context;
-using DataService.Entities;
+using DataService.Entities.Pedagogy;
 
 namespace DataService.ViewModel
 {

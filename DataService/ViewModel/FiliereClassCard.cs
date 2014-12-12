@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataService.Context;
 using DataService.Entities;
+using DataService.Entities.Pedagogy;
 
 namespace DataService.ViewModel
 {

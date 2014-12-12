@@ -76,21 +76,6 @@ namespace DataService.Migrations
                 .PrimaryKey(t => t.CoursId);
             
             CreateTable(
-                "dbo.Etablissements",
-                c => new
-                    {
-                        EtablissementId = c.Guid(nullable: false),
-                        Name = c.String(),
-                        Logo = c.Binary(),
-                        Country = c.String(),
-                        Adresse = c.String(),
-                        Phone = c.String(),
-                        Fax = c.String(),
-                        Description = c.String(),
-                    })
-                .PrimaryKey(t => t.EtablissementId);
-            
-            CreateTable(
                 "dbo.Filieres",
                 c => new
                     {
@@ -185,22 +170,12 @@ namespace DataService.Migrations
                 .PrimaryKey(t => t.QualificationId);
             
             CreateTable(
-                "dbo.Salles",
-                c => new
-                    {
-                        SalleId = c.Guid(nullable: false),
-                        Name = c.String(),
-                        Adresse = c.String(),
-                    })
-                .PrimaryKey(t => t.SalleId);
-            
-            CreateTable(
                 "dbo.Settings",
                 c => new
                     {
                         SettingId = c.Guid(nullable: false),
-                        UserId = c.Guid(nullable: false),
-                        SettingName = c.String(),
+                        UserProfileId = c.Guid(nullable: false),
+                        SettingNum = c.Int(nullable: false),
                         SettingValue = c.String(),
                     })
                 .PrimaryKey(t => t.SettingId);
@@ -216,8 +191,8 @@ namespace DataService.Migrations
                         HiredDate = c.DateTime(),
                         Statut = c.String(),
                         Title = c.String(),
-                        Firstname = c.String(),
-                        Lastname = c.String(),
+                        FirstName = c.String(),
+                        LastName = c.String(),
                         PhotoIdentity = c.Binary(),
                         Nationality = c.String(),
                         IdentityNumber = c.String(),
@@ -236,8 +211,8 @@ namespace DataService.Migrations
                     {
                         StudentId = c.String(nullable: false, maxLength: 128),
                         Title = c.String(),
-                        Firstname = c.String(),
-                        Lastname = c.String(),
+                        FirstName = c.String(),
+                        LastName = c.String(),
                         PhotoIdentity = c.Binary(),
                         Nationality = c.String(),
                         IdentityNumber = c.String(),
@@ -246,8 +221,8 @@ namespace DataService.Migrations
                         PhoneNumber = c.String(),
                         EmailAdress = c.String(),
                         HomeAdress = c.String(),
-                        RegistrationDate = c.DateTime(),
                         Statut = c.String(),
+                        RegistrationDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.StudentId);
             
@@ -261,15 +236,36 @@ namespace DataService.Migrations
                     })
                 .PrimaryKey(t => t.StudentQualificationId);
             
+            CreateTable(
+                "dbo.UserProfiles",
+                c => new
+                    {
+                        UserProfileId = c.Guid(nullable: false),
+                        UserRoleGuid = c.Guid(nullable: false),
+                        UserType = c.String(),
+                    })
+                .PrimaryKey(t => t.UserProfileId);
+            
+            CreateTable(
+                "dbo.UserRoles",
+                c => new
+                    {
+                        UserRoleIdGuid = c.Guid(nullable: false),
+                        UserProfileId = c.Guid(nullable: false),
+                        UserSpace = c.String(),
+                    })
+                .PrimaryKey(t => t.UserRoleIdGuid);
+            
         }
         
         public override void Down()
         {
+            DropTable("dbo.UserRoles");
+            DropTable("dbo.UserProfiles");
             DropTable("dbo.StudentQualifications");
             DropTable("dbo.Students");
             DropTable("dbo.Staffs");
             DropTable("dbo.Settings");
-            DropTable("dbo.Salles");
             DropTable("dbo.Qualifications");
             DropTable("dbo.PeriodeScolaires");
             DropTable("dbo.MatiereInstructeurs");
@@ -278,7 +274,6 @@ namespace DataService.Migrations
             DropTable("dbo.InscriptionRules");
             DropTable("dbo.Inscriptions");
             DropTable("dbo.Filieres");
-            DropTable("dbo.Etablissements");
             DropTable("dbo.Cours");
             DropTable("dbo.ControlNotes");
             DropTable("dbo.ClasseStudents");

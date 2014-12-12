@@ -30,17 +30,19 @@ namespace Matrix.views.Students
             
             new Task(() =>
             {
-                Dispatcher.BeginInvoke(new Action(GetPatternData));
-            }).ContinueWith(delegate
-            {
-                if (_isAdd)
+                Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    DisplayDefault();
-                }
-                else
-                {
-                    DisplayStudent(App.DataS.Students.GetStudentById(studentToDisplayId));
-                }
+                    GetPatternData();
+
+                    if (_isAdd)
+                    {
+                        DisplayDefault();
+                    }
+                    else
+                    {
+                        DisplayStudent(App.DataS.Students.GetStudentById(studentToDisplayId));
+                    }
+                }));                             
             }).Start();            
         }
 

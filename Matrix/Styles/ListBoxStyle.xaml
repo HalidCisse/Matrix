@@ -93,14 +93,14 @@
                         <Border Height="70" HorizontalAlignment="Stretch" CornerRadius="0" Background="#606F11" DockPanel.Dock="Top">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="../Images/Classe.png" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
-                                <TextBlock Text="{Binding NAME}" FontSize="20" Foreground="White" FontWeight="ExtraBold" FontFamily="{StaticResource NameFontFamily}" Width="200" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding Name}" FontSize="20" Foreground="White" FontWeight="ExtraBold" FontFamily="{StaticResource NameFontFamily}" Width="200" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Border>
                         <!--Background="#F2F2EA"-->
                         <StackPanel Margin="10">
                             <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
                                 <!--<TextBlock Text="Niveau" FontSize="15" Foreground="Gray" FontWeight="SemiBold" FontFamily="Verdana"/>-->
-                                <TextBlock Text="{Binding LEVEL}" FontSize="15" Margin="5,0" Foreground="Gray" FontWeight="SemiBold" FontFamily="Verdana"/>
+                                <TextBlock Text="{Binding Level}" FontSize="15" Margin="5,0" Foreground="Gray" FontWeight="SemiBold" FontFamily="Verdana"/>
                             </StackPanel>
 
                             <Grid Margin="0,10">
@@ -316,7 +316,7 @@
                         <Border Height="70" HorizontalAlignment="Stretch" CornerRadius="0" Background="#606F11" DockPanel.Dock="Top">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="../Images/Classe.png" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
-                                <TextBlock Text="{Binding NAME}" FontSize="20" Foreground="White" FontWeight="ExtraBold" FontFamily="{StaticResource NameFontFamily}" Width="200" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding Name}" FontSize="20" Foreground="White" FontWeight="ExtraBold" FontFamily="{StaticResource NameFontFamily}" Width="200" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Border>
                         
@@ -327,7 +327,7 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding STUDENTS_COUNT}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Text="{Binding StudentsCount}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
                                 <TextBlock Grid.Column="1" Text="Etudiants" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
                             </Grid>
 
@@ -336,7 +336,7 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding INSTRUCTEURS_COUNT}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Text="{Binding InstructeursCount}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
                                 <TextBlock Grid.Column="1" Text="Instructeurs" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
                             </Grid>
 
@@ -345,7 +345,7 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding HEURES_PAR_SEMAINE}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Text="{Binding HeuresParSemaine}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
                                 <TextBlock Text="/ Semaine" Grid.Column="1" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
                             </Grid>
                             
@@ -362,6 +362,8 @@
 
         <Setter Property="ItemTemplate" Value="{StaticResource ListBoxTemp}" />
         <Setter Property="ItemsPanel" Value="{StaticResource ListBoxITemp}" />
+        <Setter Property="ItemsSource" Value="{Binding ClassList}" />
+        <Setter Property="SelectedValuePath" Value="ClassId" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />        
@@ -369,8 +371,7 @@
         <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"/>
         <Setter Property="VerticalAlignment" Value="Stretch" />        
         <Setter Property="MaxHeight" Value="520" />
-        <Setter Property="ItemsSource" Value="{Binding CLASS_LIST}" />
-        <Setter Property="SelectedValuePath" Value="CLASS_ID" />
+        
 
     </Style>
 
@@ -513,21 +514,21 @@
                     
                     <StackPanel Margin="10">
                         <StackPanel Orientation="Horizontal">                        
-                            <Image Source="{Binding PHOTO_IDENTITY}" Stretch="Fill" Width="70" Height="70"/>
+                            <Image Source="{Binding PhotoIdentity}" Stretch="Fill" Width="70" Height="70"/>
                             <Grid Margin="10,5,5,0">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                    <TextBlock Text="{Binding FIRSTNAME}" FontSize="15" FontWeight="Normal" VerticalAlignment="Bottom"/>
-                                    <TextBlock Text="{Binding LASTNAME}" FontSize="15" FontWeight="Light" Margin="10,0" VerticalAlignment="Bottom"/>                                    
+                                    <TextBlock Text="{Binding FirstName}" FontSize="15" FontWeight="Normal" VerticalAlignment="Bottom"/>
+                                    <TextBlock Text="{Binding LastName}" FontSize="15" FontWeight="Light" Margin="10,0" VerticalAlignment="Bottom"/>                                    
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                     <TextBlock Text="Filiere:" FontSize="12" FontWeight="ExtraLight" VerticalAlignment="Bottom"/>
-                                    <TextBlock Text="{Binding COURSE}" FontSize="12" FontWeight="ExtraLight" Margin="10,0" VerticalAlignment="Bottom" />
+                                    <TextBlock Text="{Binding CurrentFiliere}" FontSize="12" FontWeight="ExtraLight" Margin="10,0" VerticalAlignment="Bottom" />
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
                                     <TextBlock Text="Classe:" FontSize="12" FontWeight="ExtraLight" VerticalAlignment="Bottom"/>
-                                    <TextBlock Text="{Binding LEVEL}" FontSize="10" FontWeight="Thin" Margin="10,0" VerticalAlignment="Bottom" />
+                                    <TextBlock Text="{Binding CurrentClasseLevel}" FontSize="10" FontWeight="Thin" Margin="10,0" VerticalAlignment="Bottom" />
                                 </StackPanel>                                                              
                             </Grid>
                         </StackPanel>
@@ -535,12 +536,12 @@
                         <StackPanel Margin="0,10,0,0">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Tel:" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                                <TextBlock Text="{Binding PHONE_NUMBER}" FontSize="12" FontWeight="ExtraLight" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                                <TextBlock Text="{Binding PhoneNumber}" FontSize="12" FontWeight="ExtraLight" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="@:" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                                <TextBlock Text="{Binding EMAIL_ADRESS}" FontSize="12" FontWeight="ExtraLight" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                                <TextBlock Text="{Binding EmailAdress}" FontSize="12" FontWeight="ExtraLight" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                             </StackPanel>
                         </StackPanel>                       
                     </StackPanel>
@@ -559,9 +560,7 @@
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Margin" Value="20" />
-        <Setter Property="VirtualizingPanel.CacheLengthUnit" Value="Item"/>
-        <Setter Property="VirtualizingPanel.CacheLength" Value="5"/>
-        <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
+        <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"/>
         
     </Style>
 
@@ -635,28 +634,28 @@
                     </Border.Effect>
                     <StackPanel Orientation="Vertical" Margin="10">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding PHOTO_IDENTITY}" Stretch="Fill" Width="70" Height="70"/>
+                            <Image Source="{Binding PhotoIdentity}" Stretch="Fill" Width="70" Height="70"/>
 
                             <Grid Margin="10,5,5,0">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                    <TextBlock Text="{Binding FIRSTNAME}" FontSize="15" FontWeight="Normal" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                                    <TextBlock Text="{Binding LASTNAME}" FontSize="15" FontWeight="Light" Margin="10,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                                    <TextBlock Text="{Binding FirstName}" FontSize="15" FontWeight="Normal" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding LastName}" FontSize="15" FontWeight="Light" Margin="10,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
                                 </StackPanel>
                                 <!--<TextBlock Text="{Binding STAFF_ID}" Visibility="Hidden" Height="0" Width="0"/>-->
-                                <TextBlock Text="{Binding QUALIFICATION}" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <TextBlock Text="{Binding DEPARTEMENT}" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                                <TextBlock Text="{Binding Qualification}" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Departement}" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                             </Grid>
                         </StackPanel>
 
                         <StackPanel Margin="0,10,0,0">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Tel:" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                                <TextBlock Text="{Binding PHONE_NUMBER}" FontSize="12" FontWeight="ExtraLight" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                                <TextBlock Text="{Binding PhoneNumber}" FontSize="12" FontWeight="ExtraLight" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="@:" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                                <TextBlock Text="{Binding EMAIL_ADRESS}" FontSize="12" FontWeight="ExtraLight" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                                <TextBlock Text="{Binding EmailAdress}" FontSize="12" FontWeight="ExtraLight" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
@@ -681,8 +680,8 @@
         <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="MaxHeight" Value="350" />
-        <Setter Property="ItemsSource" Value="{Binding STAFFS_LIST}" />
-        <Setter Property="SelectedValuePath" Value="STAFF_ID" />
+        <Setter Property="ItemsSource" Value="{Binding StaffsList}" />
+        <Setter Property="SelectedValuePath" Value="StaffId" />
 
     </Style>
 

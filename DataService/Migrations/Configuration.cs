@@ -23,13 +23,21 @@ namespace DataService.Migrations
         {
             //EF.Database.CreateIfNotExists ();
 
-            //Student_SeedFromSql (ef);
-            //Staff_SeedFromSql (ef);
+            SettingsSeed(ef);
+            Student_SeedFromSql (ef);
+            Staff_SeedFromSql (ef);
 
-            //MessageBox.Show ("Seed Done");
+            MessageBox.Show ("Seed Done");
         }
 
+        private static void SettingsSeed(Ef ef)
+        {
+            const string sqlString = "INSERT INTO Settings (SettingId, UserProfileId, SettingNum)" +
+                                     "VALUES ('C07D6D28-2B82-46E7-A6DF-39E2DF821509', '00000000-0000-0000-0000-000000000000', 1)";
 
+            ef.Database.ExecuteSqlCommand("DELETE FROM Settings");
+            ef.Database.ExecuteSqlCommand(sqlString);
+        }
 
         private static void Staff_SeedFromSql ( Ef ef )
         {

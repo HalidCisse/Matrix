@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 using DataService.Entities;
+using DataService.Entities.Pedagogy;
 using FirstFloor.ModernUI.Windows.Controls;
 
 namespace Matrix.views.Pedagogy
@@ -12,7 +13,7 @@ namespace Matrix.views.Pedagogy
     /// </summary>
     public partial class AddAnneeScolaire
     {
-        private List<PeriodeScolaire> _periodeList = new List<PeriodeScolaire>();
+        private readonly List<PeriodeScolaire> _periodeList = new List<PeriodeScolaire>();
         private bool _isFirstTime = true;
 
         /// <summary>

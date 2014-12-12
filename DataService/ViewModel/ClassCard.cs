@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
-using DataService.Context;
-using DataService.Entities;
+using DataService.Entities.Pedagogy;
 
 namespace DataService.ViewModel
 {
@@ -65,31 +63,31 @@ namespace DataService.ViewModel
 
         
               
-        private void GetINSTRUCTEURS_COUNT ()
-        {
-            using(var db = new Ef ())
-            {
-                var x = db.Cours.Where(c => c.ClasseId == ClassId);
+        //private void GetINSTRUCTEURS_COUNT ()
+        //{
+        //    using(var db = new Ef ())
+        //    {
+        //        var x = db.Cours.Where(c => c.ClasseId == ClassId);
 
-            }
-        }
-        private void GetHEURE_PAR_SEMAINE ()
-        {
-            using(var db = new Ef ())
-            {
-                // From Cours
-               // HEURES_PAR_SEMAINE = "10 Heures"; //Db.FILIERE_MATIERE.Find (FiliereID + MATIERE_ID + FiliereLevel).HEURE_PAR_SEMAINE;
-            }
-        }
-        private void GetMATIERES_COUNT ()
-        {
-            //From Cours
-            //MATIERES_COUNT = 10;
-        }
-        private void GetLevel (int level)
-        {
+        //    }
+        //}
+        //private void GetHEURE_PAR_SEMAINE ()
+        //{
+        //    using(var db = new Ef ())
+        //    {
+        //        // From Cours
+        //       // HEURES_PAR_SEMAINE = "10 Heures"; //Db.FILIERE_MATIERE.Find (FiliereID + MATIERE_ID + FiliereLevel).HEURE_PAR_SEMAINE;
+        //    }
+        //}
+        //private void GetMATIERES_COUNT ()
+        //{
+        //    //From Cours
+        //    //MATIERES_COUNT = 10;
+        //}
+        //private void GetLevel (int level)
+        //{
             
-        }
+        //}
 
         
 

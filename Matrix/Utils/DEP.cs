@@ -5,6 +5,21 @@
 
         #region TASK
 
+        //new Task(() =>
+        //{
+        //    Dispatcher.BeginInvoke(new Action(GetPatternData));
+        //}).ContinueWith(delegate
+        //{
+        //    if (_isAdd)
+        //    {
+        //        DisplayDefault();
+        //    }
+        //    else
+        //    {
+        //        Display(App.DataS.Pedagogy.Inscriptions.GetInscriptionById(new Guid(inscriptionToOpen)));
+        //    }
+        //}).Start(); 
+
         //void Home ( )
         //{
         //    var firstTask = new Task (GetTheStudents);

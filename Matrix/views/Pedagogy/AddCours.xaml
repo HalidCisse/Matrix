@@ -12,25 +12,17 @@
             <Setter Property="FontFamily" Value="Verdana"/>
             <Setter Property="FontWeight" Value="Light"/>
             <Setter Property="Foreground" Value="Gray"/>
-
         </Style>
 
-        <Style TargetType="ComboBox">
-            <!--<Setter Property="VerticalAlignment" Value="Bottom"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>-->
-            <Setter Property="FontSize" Value="20"/>
-            <!--<Setter Property="FontFamily" Value="Verdana"/>-->
-            <!--<Setter Property="FontWeight" Value="ExtraLight"/>-->
+        <Style TargetType="ComboBox">                       
+            <Setter Property="FontSize" Value="20"/>            
             <Setter Property="Width" Value="250"/>
             <Setter Property="Height" Value="30"/>
-
         </Style>
 
-        <Style x:Key="ButtonStyle" TargetType="Button">
-            <!--<Setter Property="FontSize" Value="16"/>-->
+        <Style x:Key="ButtonStyle" TargetType="Button">           
             <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="FontWeight" Value="ExtraLight"/>
-            <!--<Setter Property="Foreground" Value="Gray"/>-->
+            <Setter Property="FontWeight" Value="ExtraLight"/>           
             <Setter Property="Effect" Value="{StaticResource Z-Depth2}"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
             <Setter Property="Width" Value="100"/>
@@ -69,12 +61,12 @@
 
         <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
             <TextBlock Text="MATIERE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="MatiereId" DisplayMemberPath="NAME" SelectedIndex="0" SelectedValuePath="MATIERE_ID" HorizontalAlignment="Left" />
+            <ComboBox Name="MatiereId" DisplayMemberPath="Name" SelectedIndex="0" SelectedValuePath="MatiereId" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="INSTRUCTEUR" Name="Instructeur" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="StaffId" SelectedIndex="0" DisplayMemberPath="FULL_NAME" SelectedValuePath="STAFF_ID" HorizontalAlignment="Left" />
+            <ComboBox Name="StaffId" SelectedIndex="0" DisplayMemberPath="FullName" SelectedValuePath="StaffId" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">

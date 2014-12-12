@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using DataService.Entities;
+using DataService.Entities.Pedagogy;
 
 namespace Matrix.views.Pedagogy
 {
@@ -65,12 +65,7 @@ namespace Matrix.views.Pedagogy
         }
 
         private void AddButon_Click ( object sender, RoutedEventArgs e )
-        {
-            // //var SelectedClasse = App.DataS.GetCoursByID (new Guid(CurrentSelected));
-            //var wind = new AddCours (OpenedClass.CLASSE_ID) { Owner = Window.GetWindow (this) };
-            //wind.ShowDialog ();
-            //UpdateData ();
-
+        {           
             var cm = FindResource ("AddContext") as ContextMenu;
             if (cm == null) return;
             cm.PlacementTarget = sender as Button;

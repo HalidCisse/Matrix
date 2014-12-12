@@ -1,49 +1,63 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using DataService.ViewModel;
+using Matrix.Utils;
 
 namespace Matrix.views.Staffs
 {
     
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class StaffsView
-    {
-        private readonly BackgroundWorker _worker = new BackgroundWorker ();
-        private List<DepStaffCard> _listBuff = new List<DepStaffCard> ();
+    {        
         private string _currentSelected;        
         private bool _isFirstTime = true;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public StaffsView ( ) {
 
             InitializeComponent ();
         }
 
-        private void Page_Loaded ( object sender, RoutedEventArgs e )
+        private void UpdateData()
         {
-            _worker.DoWork += Worker_DoWork;
-            _worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             BusyIndicator.IsBusy = true;
-            UpdateDep ();            
+
+            new Task(() =>
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {                  
+                    StaffList.ItemsSource = App.ModelS.GetDepStaffsCard();
+                    BusyIndicator.IsBusy = false;
+                }));
+            }).Start();
+
+            _isFirstTime = true;
+        }
+
+        private void Page_Loaded ( object sender, RoutedEventArgs e )
+        {           
+            UpdateData();            
         }
 
         
         private void HomeButton_Click ( object sender, RoutedEventArgs e )
         {
-            if (NavigationService != null)
-                NavigationService.Navigate (new HomePage(), UriKind.Relative);
+            NavigationService?.Navigate (new HomePage(), UriKind.Relative);
         }
 
         private void AddButton_Click ( object sender, RoutedEventArgs e )
         {
             BusyIndicator.IsBusy = false;
-            var wind = new StaffInfo { Owner = Window.GetWindow (this), OpenOption = "Add" };
+            var wind = new StaffInfo { Owner = Window.GetWindow (this) };
             wind.ShowDialog ();
-            UpdateDep ();
+            UpdateData();
         }
 
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )
@@ -60,7 +74,7 @@ namespace Matrix.views.Staffs
             if (MessageBox.Show(theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
 
             MessageBox.Show (App.DataS.Hr.DeleteStaff (_currentSelected) ? "Supprimer Avec Succes" : "Echec");
-            UpdateDep ();
+            UpdateData();
         }       
 
         private void DepStaffList_SelectionChanged ( object sender, SelectionChangedEventArgs e )
@@ -80,74 +94,35 @@ namespace Matrix.views.Staffs
         private void DepStaffList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
         {          
             var staff = sender as ListBox;
-            if(staff == null) return;
-            if(staff.SelectedValue == null) return;
+            if(staff?.SelectedValue == null) return;
 
             var wind = new StaffInfo (staff.SelectedValue.ToString ()) {
-                Owner = Window.GetWindow(this),
-                OpenOption = "Mod"
+                Owner = Window.GetWindow(this),              
             };
             wind.ShowDialog ();
-            UpdateDep ();  
+            UpdateData();  
         }
-
-        
-        private void UpdateDep ( )
-        {
-            if(_worker.IsBusy) return;           
-            _worker.RunWorkerAsync ();
-        }
-        private void Worker_DoWork ( object sender, DoWorkEventArgs e )
-        {
-            _listBuff = App.ModelS.GetDepStaffsCard ();            
-        }
-        private void Worker_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
-        {           
-            BusyIndicator.IsBusy = false;
-            StaffList.ItemsSource = _listBuff;
-            _isFirstTime = true;                      
-            _worker.Dispose ();
-        }
-
-        
+ 
         private void DepStaffList_Loaded ( object sender, RoutedEventArgs e )
         {
             if (!_isFirstTime) return;
+           
+            var eX = FindVisual.FindVisualChildren<Expander>(this).First();
 
-            var E = FindVisualChildren<Expander> (this).FirstOrDefault (ep => ep.Header.ToString () == "");
-
-            if (E != null) E.IsExpanded = true;
+            if (eX != null) eX.IsExpanded = true;
             _isFirstTime = false;                     
         }
       
         private void Expander_Expanded ( object sender, RoutedEventArgs e )
         {
-            var E = sender as Expander;
+            var eX = sender as Expander;
                      
-            foreach(var ep in FindVisualChildren<Expander>(this).Where(ep => E != null && ep.Header.ToString() != E.Header.ToString()))
+            foreach(var ep in FindVisual.FindVisualChildren<Expander>(this).Where(ep => eX != null && ep.Header.ToString() != eX.Header.ToString()))
             {
                 ep.IsExpanded = false;                
             }
         }
 
-        public static IEnumerable<T> FindVisualChildren<T> ( DependencyObject depObj ) where T : DependencyObject
-        {
-            if (depObj == null) yield break;
-            for(var i = 0; i < VisualTreeHelper.GetChildrenCount (depObj); i++)
-            {
-                var child = VisualTreeHelper.GetChild (depObj, i);
-                if(child is T)
-                {
-                    yield return (T)child;
-                }
-
-                foreach(var childOfChild in FindVisualChildren<T> (child))
-                {
-                    yield return childOfChild;
-                }
-            }
-        }
-
-                   
+             
     }
 }

@@ -2,11 +2,18 @@
 using System.Linq;
 using DataService.Context;
 using DataService.Entities;
+using DataService.Entities.Pedagogy;
 
 namespace DataService.ViewModel
 {
+    /// <summary>
+    /// Model de Filiere
+    /// </summary>
     public class FiliereCard
     {
+        /// <summary>
+        /// Model de Filiere
+        /// </summary>
         public FiliereCard (Filiere fl)
         {
             FiliereId = fl.FiliereId;

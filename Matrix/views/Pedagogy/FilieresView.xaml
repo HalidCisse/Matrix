@@ -73,7 +73,7 @@
             <ListBox Name="FiliereList" Style="{DynamicResource FiliereClassListStyle}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Expander Header="{Binding Path=FILIERE_NAME}" Style="{DynamicResource DepExpandStyle}" Expanded="Expander_Expanded">
+                        <Expander Header="{Binding Path = FiliereName}" Style="{DynamicResource DepExpandStyle}" Expanded="Expander_Expanded">
                             <ListBox Name="ClassList" Style="{DynamicResource ClassListBoxStyle2}" ContextMenu="{StaticResource ClassContext}" Loaded="ClassList_Loaded" MouseDoubleClick="ClassList_MouseDoubleClick" SelectionChanged="ClassList_SelectionChanged"/>
                         </Expander>
                     </DataTemplate>

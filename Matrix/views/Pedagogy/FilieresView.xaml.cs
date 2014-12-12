@@ -14,6 +14,9 @@ using Matrix.Utils;
 namespace Matrix.views.Pedagogy
 {
     
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class FilieresView
     {
         
@@ -198,7 +201,7 @@ namespace Matrix.views.Pedagogy
 
             App.DataS.Pedagogy.Classes.DeleteClasse (new Guid (_currentSelected));
 
-            //ModernDialog.ShowMessage ("Success", "Matrix", MessageBoxButton.OK);
+            ModernDialog.ShowMessage ("Supprimer Avec Success", "Matrix", MessageBoxButton.OK);
 
             UpdateData ();
         }

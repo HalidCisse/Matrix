@@ -131,7 +131,7 @@
                         <Border Height="70" HorizontalAlignment="Stretch" CornerRadius="0" Background="#606F11" DockPanel.Dock="Top">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="../Images/Classe.png" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
-                                <TextBlock Text="{Binding NAME}" FontSize="20" Foreground="White" FontWeight="ExtraBold" FontFamily="{StaticResource NameFontFamily}" Width="200" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding Name}" FontSize="20" Foreground="White" FontWeight="ExtraBold" FontFamily="{StaticResource NameFontFamily}" Width="200" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Border>
 
@@ -142,7 +142,7 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding STUDENTS_COUNT}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Text="{Binding StudentsCount}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
                                 <TextBlock Grid.Column="1" Text="Etudiants" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
                             </Grid>
 
@@ -151,7 +151,7 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding INSTRUCTEURS_COUNT}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Text="{Binding InstructeursCount}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
                                 <TextBlock Grid.Column="1" Text="Instructeurs" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
                             </Grid>
 
@@ -160,7 +160,7 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding HEURES_PAR_SEMAINE}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Text="{Binding HeuresParSemaine}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
                                 <TextBlock Text="/ Semaine" Grid.Column="1" FontSize="15" Margin="-30,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
                             </Grid>
 
@@ -185,8 +185,8 @@
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Height" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}, Path=ActualHeight }" />
         <Setter Property="Padding" Value="0,0,0,90" />
-        <Setter Property="ItemsSource" Value="{Binding CLASS_LIST}" />
-        <Setter Property="SelectedValuePath" Value="CLASS_ID" />
+        <Setter Property="ItemsSource" Value="{Binding ClassList}" />
+        <Setter Property="SelectedValuePath" Value="ClassId" />
 
     </Style>
 

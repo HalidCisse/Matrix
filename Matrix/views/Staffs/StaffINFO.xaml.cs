@@ -33,15 +33,14 @@ namespace Matrix.views.Staffs
 
             new Task(() =>
             {
-                Dispatcher.BeginInvoke(new Action(GetPatternData));
-            }).ContinueWith(delegate
-            {
-                if (_isAdd) {
-                    DisplayDefault();
-                }
-                else {
-                    DisplayStaff(App.DataS.Hr.GetStaffById(staffToDisplayId));
-                }                
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    GetPatternData();
+
+                    if (_isAdd) DisplayDefault();                 
+                    else DisplayStaff(App.DataS.Hr.GetStaffById(staffToDisplayId));
+                   
+                }));
             }).Start();
                         
         }

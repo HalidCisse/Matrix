@@ -1,8 +1,10 @@
-﻿using DataService.Context;
-using DataService.Entities;
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using DataService.Context;
+using DataService.Entities.Pedagogy;
 
 namespace DataService.DataManager
 {
@@ -35,7 +37,7 @@ namespace DataService.DataManager
             using (var db = new Ef())
             {
                 db.Matiere.Attach(myMatiere);
-                db.Entry(myMatiere).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(myMatiere).State = EntityState.Modified;
                 return db.SaveChanges() > 0;
             }
         }
@@ -99,7 +101,7 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
-        public System.Collections.IEnumerable GetAllMatieresNames()
+        public IEnumerable GetAllMatieresNames()
         {
             using (var db = new Ef())
             {

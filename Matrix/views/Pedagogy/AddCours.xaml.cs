@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using DataService.Entities;
+using DataService.Entities.Pedagogy;
 using FirstFloor.ModernUI.Windows.Controls;
 
 namespace Matrix.views.Pedagogy
@@ -25,32 +26,50 @@ namespace Matrix.views.Pedagogy
         {
             InitializeComponent ();
 
-            #region Patterns Data
-
-                MatiereId.ItemsSource = App.DataS.Pedagogy.Classes.GetClassMatieres (currentClassId);
-
-                StaffId.ItemsSource = App.DataS.Hr.GetAllStaffs ();
-
-                SalleName.ItemsSource = App.DataS.DataEnums.GetAllSalles ();
-
-                Type.ItemsSource = App.DataS.DataEnums.GetAllCoursTypes ();
-
-                StartDate.SelectedDate = DateTime.Today;
-
-                EndDate.SelectedDate = DateTime.Today;
-
-            #endregion
-
             _currentCours.ClasseId = currentClassId;
-            _isAdd = true; 
 
-            if(coursToOpen != null)
+            if (coursToOpen == null) _isAdd = true;           
+            else _currentCours = coursToOpen;
+           
+            new Task(() =>
             {
-                _isAdd = false;
-                _currentCours = coursToOpen;                
-            }
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    GetPatternData();
+                    
+                    Display();
+                }));
+            }).Start();
+
+            
+
+           
+
+            //_currentCours.ClasseId = currentClassId;
+            //_isAdd = true; 
+
+            //if(coursToOpen != null)
+            //{
+            //    _isAdd = false;
+            //    _currentCours = coursToOpen;                
+            //}
                             
-            Display ();
+            //Display ();
+        }
+
+        private void GetPatternData()
+        {
+            MatiereId.ItemsSource = App.DataS.Pedagogy.Classes.GetClassMatieres(_currentCours.ClasseId);
+
+            StaffId.ItemsSource = App.DataS.Hr.GetAllStaffs();
+
+            SalleName.ItemsSource = App.DataS.DataEnums.GetAllSalles();
+
+            Type.ItemsSource = App.DataS.DataEnums.GetAllCoursTypes();
+
+            StartDate.SelectedDate = DateTime.Today;
+
+            EndDate.SelectedDate = DateTime.Today;
         }
 
         private void Display()

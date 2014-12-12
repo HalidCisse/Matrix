@@ -36,7 +36,7 @@
         </ToolBar>
         <Grid Background="Transparent">
             <my:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <ListBox Name="Studentslist" Style="{DynamicResource StudentListBoxStyle}" SelectedValuePath="STUDENT_ID"  MouseDoubleClick="Studentslist_MouseDoubleClick"/>
+            <ListBox Name="Studentslist" Style="{DynamicResource StudentListBoxStyle}" SelectedValuePath="StudentId"  MouseDoubleClick="Studentslist_MouseDoubleClick"/>
         </Grid>
     </DockPanel>
 

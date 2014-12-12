@@ -3,13 +3,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using DataService.Entities;
+using DataService.Entities.Pedagogy;
 using FirstFloor.ModernUI.Windows.Controls;
 
 namespace Matrix.views.Pedagogy
 {
     
     /// <summary>
-    /// 
+    /// Form Pour Ajouter Une Classe
     /// </summary>
     public partial class AddClass 
     {
@@ -24,8 +25,7 @@ namespace Matrix.views.Pedagogy
         public AddClass (Classe classToDisplay = null )
         {
             InitializeComponent ();
-
-            //FiliereDisplayed = CurrentFiliere;
+            
             FiliereName.ItemsSource = App.DataS.Pedagogy.Filieres.GetAllFilieresNames ();
 
             if(classToDisplay != null)
@@ -50,8 +50,9 @@ namespace Matrix.views.Pedagogy
         private void DisplayClass()
         {
             TitleText.Text = "MODIFICATION";
-            FiliereName.SelectedValue = _classDisplayed.Name;
+            FiliereName.SelectedValue = _classDisplayed.ClasseId;
             Niveau.SelectedValue = _classDisplayed.Level;
+            ClassName.Text = _classDisplayed.Name;
         }
 
         private void Enregistrer_Click ( object sender, RoutedEventArgs e )

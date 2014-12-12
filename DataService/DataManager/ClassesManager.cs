@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using DataService.Entities.Pedagogy;
 
 namespace DataService.DataManager
 {

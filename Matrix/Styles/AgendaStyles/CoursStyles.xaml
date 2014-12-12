@@ -30,18 +30,16 @@
             <DataTemplate x:Key="ListBoxTemp">
                 <Border Style="{DynamicResource ListBoxBoderStyle}">                                       
                     <StackPanel Orientation="Horizontal" Margin="10">   
-                                                
-                        <!--<Image Source="Classe.png" Stretch="None" Width="50" Height="50"/>--> 
+              
+                        <Border Background="{Binding Couleur}" Width="50" Height="50"/> 
                         
-                        <Border Background="{Binding COULEUR}" Width="50" Height="50"/> 
+                        <TextBlock Text="{Binding Horraire}" Margin="10,0,10,0" Width="110" Foreground="{Binding ForeColor}" FontSize="20" FontWeight="ExtraLight"/>
                         
-                        <TextBlock Text="{Binding HORRAIRE}" Margin="10,0,10,0" Width="110" Foreground="{Binding FORE_COLOR}" FontSize="20" FontWeight="ExtraLight"/>
-                        
-                        <TextBlock Text="{Binding MATIERE_NAME}" Margin="10,0,10,0" Width="200" Foreground="{Binding FORE_COLOR}" FontSize="20" FontWeight="Normal" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding MatiereName}" Margin="10,0,10,0" Width="200" Foreground="{Binding ForeColor}" FontSize="20" FontWeight="Normal" TextWrapping="Wrap"/>
                                                                         
-                        <TextBlock Text="{Binding STAFF_FULL_NAME}" Width="200" Margin="10,0,10,0" Foreground="{Binding FORE_COLOR}" FontSize="20" FontWeight="Thin" TextWrapping="Wrap" />
+                        <TextBlock Text="{Binding StaffFullName}" Width="200" Margin="10,0,10,0" Foreground="{Binding ForeColor}" FontSize="20" FontWeight="Thin" TextWrapping="Wrap" />
 
-                        <TextBlock Text="{Binding SALLE}" Width="100" Foreground="{Binding FORE_COLOR}" FontSize="20" FontWeight="ExtraLight" TextWrapping="Wrap" />
+                        <TextBlock Text="{Binding Salle}" Width="100" Foreground="{Binding ForeColor}" FontSize="20" FontWeight="ExtraLight" TextWrapping="Wrap" />
                                                                       
                     </StackPanel>
                 </Border>
@@ -60,8 +58,8 @@
         <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Standard"/>        
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="MaxHeight" Value="350" />       
-        <Setter Property="ItemsSource" Value="{Binding DAY_COURS}" />
-        <Setter Property="SelectedValuePath" Value="COURS_ID" />
+        <Setter Property="ItemsSource" Value="{Binding DayCours}" />
+        <Setter Property="SelectedValuePath" Value="CoursId" />
 
     </Style>
     
