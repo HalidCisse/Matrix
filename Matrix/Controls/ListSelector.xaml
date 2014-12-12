@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Matrix.Controls.ListSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" Height="20"
+             d:DesignWidth="264">
+       
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>       
+        <Button Name="BackwardButton" Content="&#xf0d9;" Width="20" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Click="BackwardButton_OnClick"/>
+            <Label Name="TheLabel" Content="SelectedText" Foreground="Teal" Grid.Column="1" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <ComboBox Name="TheComboBox" Grid.Column="0" ItemsSource="{Binding DataDictionary ,Mode=TwoWay}" SelectedValuePath="Value" DisplayMemberPath="Key" Visibility="Hidden" SelectionChanged="TheComboBox_OnSelectionChanged" Loaded="TheComboBox_OnLoaded"/>
+        <Button Name="ForwardButton" Content="&#xf0da;" Width="20" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Click="ForwardButton_OnClick" />
+    </Grid>
+        
+</UserControl>

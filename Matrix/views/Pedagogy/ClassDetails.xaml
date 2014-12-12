@@ -69,7 +69,11 @@
                 <Button Content="&#xf0a8;" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Name="BackButton" Click="BackButton_Click" />
                 <Button Content="&#xf055;" Grid.Column="1" Style="{DynamicResource ToolButtonStyle}" Name="AddButton" Click="AddButon_Click" />
                 <Button Content="&#xf014;" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Name="DeleteButton" Click="DeleteButton_Click"/>
-                <Button Content="&#xf15d;" Grid.Column="3" Style="{DynamicResource ToolButtonStyle}" />
+                
+                <!--<Button Content="&#xf15d;" Grid.Column="3" Style="{DynamicResource ToolButtonStyle}" />-->
+                
+                <controls:ListSelector Grid.Column="3" HorizontalAlignment="Stretch"/>
+                
                 <Grid Grid.Column="4" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />

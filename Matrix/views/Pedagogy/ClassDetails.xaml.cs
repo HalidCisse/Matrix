@@ -7,30 +7,32 @@ using DataService.Entities.Pedagogy;
 
 namespace Matrix.views.Pedagogy
 {
+    //todo: Inscription student card should show grade, presence ....
+    //todo: ValueSelector Control on TaskBar for AnneeScolaire
 
     /// <summary>
     /// Affiche l'emploi du temps , les matieres et les Etudiant pour une classe donnee
     /// </summary>
     public partial class ClassDetails
-    {       
+    {
         private string _currentSelected;
         private Classe _openedClass = new Classe();
-        
+
         /// <summary>
-        /// Affiche l'emploi du temps , les matieres et les Etudiant pour une classe donnee
+        /// Affiche l'emploi du temps , les matieres et les Etudiant pour une classe 
         /// </summary>
         /// <param name="openClassId"> ID De la Classe</param>
-        public ClassDetails ( Guid openClassId )
+        public ClassDetails(Guid openClassId)
         {
-            InitializeComponent ();
+            InitializeComponent();
 
             _openedClass.ClasseId = openClassId;
-            
+
             new Task(() =>
             {
                 _openedClass = App.DataS.Pedagogy.Classes.GetClasseById(openClassId);
                 Dispatcher.BeginInvoke(new Action(() => { ClassFiliere.Text = App.DataS.Pedagogy.Filieres.GetFiliereById(_openedClass.FiliereId).Name.ToUpper(); }));
-                Dispatcher.BeginInvoke(new Action(() => { ClassName.Text = _openedClass.Name.ToUpper(); }));               
+                Dispatcher.BeginInvoke(new Action(() => { ClassName.Text = _openedClass.Name.ToUpper(); }));
             }).Start();
 
         }
@@ -53,20 +55,19 @@ namespace Matrix.views.Pedagogy
 
         #region EVENT HANDLERS
 
-        private void Page_Loaded ( object sender, RoutedEventArgs e )
-        {                                            
-            UpdateData ();            
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            UpdateData();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            var navigationService = NavigationService;
-            navigationService?.Navigate(new PedagogyView());
+            NavigationService?.Navigate(new PedagogyView());
         }
 
-        private void AddButon_Click ( object sender, RoutedEventArgs e )
-        {           
-            var cm = FindResource ("AddContext") as ContextMenu;
+        private void AddButon_Click(object sender, RoutedEventArgs e)
+        {
+            var cm = FindResource("AddContext") as ContextMenu;
             if (cm == null) return;
             cm.PlacementTarget = sender as Button;
             cm.IsOpen = true;
@@ -95,12 +96,12 @@ namespace Matrix.views.Pedagogy
 
         private void AddAnneScolaire_Click(object sender, RoutedEventArgs e)
         {
-            var wind = new AddAnneeScolaire() { Owner = Window.GetWindow(this) };
+            var wind = new AddAnneeScolaire { Owner = Window.GetWindow(this) };
             wind.ShowDialog();
             UpdateData();
         }
 
-        private void DeleteButton_Click ( object sender, RoutedEventArgs e )
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             //if(CurrentSelected == null)
             //{
@@ -123,29 +124,29 @@ namespace Matrix.views.Pedagogy
             _currentSelected = id;
         }
 
-        private void MatieresList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
+        private void MatieresList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var matieres = sender as ListBox;
-            if(matieres?.SelectedValue == null) return;
-            var matiereToDisplay = App.DataS.Pedagogy.Matieres.GetMatiereById (new Guid(matieres.SelectedValue.ToString ()));
+            if (matieres?.SelectedValue == null) return;
+            var matiereToDisplay = App.DataS.Pedagogy.Matieres.GetMatiereById(new Guid(matieres.SelectedValue.ToString()));
 
-            var wind = new AddMatiere (_openedClass.ClasseId, matiereToDisplay) { Owner = Window.GetWindow (this) };
-            wind.ShowDialog ();
-            UpdateData ();
-        }        
-        
-        private void StudentsList_MouseDoubleClick ( object sender, MouseButtonEventArgs e )
+            var wind = new AddMatiere(_openedClass.ClasseId, matiereToDisplay) { Owner = Window.GetWindow(this) };
+            wind.ShowDialog();
+            UpdateData();
+        }
+
+        private void StudentsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
         }
 
-        
+
 
         #endregion
 
 
 
-        
+
     }
 }
 

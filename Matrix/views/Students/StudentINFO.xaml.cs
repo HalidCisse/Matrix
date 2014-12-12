@@ -26,7 +26,7 @@ namespace Matrix.views.Students
         {
             InitializeComponent ();
 
-            if (!string.IsNullOrEmpty(studentToDisplayId)) { _isAdd = true;}
+            if (string.IsNullOrEmpty(studentToDisplayId)) { _isAdd = true;}
             
             new Task(() =>
             {
@@ -34,14 +34,10 @@ namespace Matrix.views.Students
                 {
                     GetPatternData();
 
-                    if (_isAdd)
-                    {
-                        DisplayDefault();
-                    }
-                    else
-                    {
-                        DisplayStudent(App.DataS.Students.GetStudentById(studentToDisplayId));
-                    }
+                    if (_isAdd) DisplayDefault();
+      
+                    else DisplayStudent(App.DataS.Students.GetStudentById(studentToDisplayId));
+                  
                 }));                             
             }).Start();            
         }
