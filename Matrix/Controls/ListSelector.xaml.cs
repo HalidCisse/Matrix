@@ -13,17 +13,28 @@ namespace Matrix.Controls
         /// <summary>
         /// Content the Key/Value to iterate over
         /// </summary>
-        public Dictionary<string, Guid> DataDictionary { get; set; } = new Dictionary<string, Guid>();
+        public Dictionary<string, string> DataDictionary
+        {
+            //get { return DataDictionary; }
+            set
+            {
+                if (value == null) return;                
+                TheComboBox.ItemsSource = null;
+                TheComboBox.ItemsSource = value;
+                TheComboBox.SelectedIndex = 0;
+                TheLabel.Content = TheComboBox.Text;
+            }
+        } //= new Dictionary<string, string>();
 
         /// <summary>
         /// Fire When New Value is Selected
         /// </summary>
-        public event EventHandler SelectionChanged;
+        public event EventHandler OnSelectionChanged;
 
         /// <summary>
         /// Content the Current Selceted Value
         /// </summary>
-        public Guid SelectedGuid;
+        public string SelectedValue { get; set; }
 
         /// <summary>
         /// A Control For Iterating A Dictionary
@@ -32,27 +43,31 @@ namespace Matrix.Controls
         {
             InitializeComponent();
            
-            DataDictionary.Add("Key 1", Guid.NewGuid());
-            DataDictionary.Add("Key 2", Guid.NewGuid());
-            DataDictionary.Add("Key 3", Guid.NewGuid());
-            DataDictionary.Add("Key 4", Guid.NewGuid());
-            DataDictionary.Add("Key 5", Guid.NewGuid());
-            DataDictionary.Add("Key 6", Guid.NewGuid());
-            DataDictionary.Add("Key 7", Guid.NewGuid());
-            DataDictionary.Add("Key 8", Guid.NewGuid());
+            //DataDictionary.Add("Key 1", Guid.NewGuid().ToString());
+            //DataDictionary.Add("Key 2", Guid.NewGuid().ToString());
+            //DataDictionary.Add("Key 3", Guid.NewGuid().ToString());
+            //DataDictionary.Add("Key 4", Guid.NewGuid().ToString());
+            //DataDictionary.Add("Key 5", Guid.NewGuid().ToString());
+            //DataDictionary.Add("Key 6", Guid.NewGuid().ToString());
+            //DataDictionary.Add("Key 7", Guid.NewGuid().ToString());
+            //DataDictionary.Add("Key 8", Guid.NewGuid().ToString());
 
-            DataContext = this;
+           // DataContext = this;
            
         }
         
         private void BackwardButton_OnClick(object sender, RoutedEventArgs e)
-        {           
+        {
+            if (TheComboBox.SelectedIndex < 1) return;
+           
             TheComboBox.SelectedIndex = TheComboBox.SelectedIndex - 1;                    
             TheLabel.Content = TheComboBox.Text;
         }
 
         private void ForwardButton_OnClick(object sender, RoutedEventArgs e)
-        {           
+        {
+            if (TheComboBox.SelectedIndex + 1 >= TheComboBox.Items.Count) return;
+
             TheComboBox.SelectedIndex = TheComboBox.SelectedIndex + 1;            
             TheLabel.Content = TheComboBox.Text;
         }
@@ -61,8 +76,8 @@ namespace Matrix.Controls
         {
             //MessageBox.Show("The ID is : " + TheComboBox.SelectedValue);
 
-            SelectedGuid = (Guid) TheComboBox.SelectedValue;
-            SelectionChanged?.Invoke(TheComboBox.SelectedValue, e);
+            SelectedValue = (string) TheComboBox.SelectedValue ;
+            OnSelectionChanged?.Invoke(TheComboBox.SelectedValue, e);
 
             BackwardButton.IsEnabled = TheComboBox.SelectedIndex > 0;
             ForwardButton.IsEnabled = (TheComboBox.SelectedIndex + 1) < TheComboBox.Items.Count;           

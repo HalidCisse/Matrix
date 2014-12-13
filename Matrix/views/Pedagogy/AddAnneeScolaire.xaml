@@ -95,15 +95,15 @@
                 <TextBlock Text="FIN" Width="100" VerticalAlignment="Bottom" />
             </StackPanel>
 
-            <ListBox Background="Transparent" BorderThickness="0" Name="PERIODE_LIST_" SelectedValuePath="STAFF_ID" Height="150" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox Background="Transparent" BorderThickness="0" Name="PeriodeList" SelectedValuePath="STAFF_ID" Height="150" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <ListBoxItem HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
                             <Border BorderThickness="1" BorderBrush="Blue">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox Text="{Binding NAME, Mode=TwoWay}" Width="320" VerticalContentAlignment="Center"/>
-                                    <DatePicker SelectedDate="{Binding START_DATE, Mode=TwoWay}" Width="100"/>
-                                    <DatePicker SelectedDate="{Binding END_DATE, Mode=TwoWay}" Width="100"/>
+                                    <TextBox Text="{Binding Name, Mode=TwoWay}" Width="320" VerticalContentAlignment="Center"/>
+                                    <DatePicker SelectedDate="{Binding StartDate, Mode=TwoWay}" Width="100"/>
+                                    <DatePicker SelectedDate="{Binding EndDate, Mode=TwoWay}" Width="100"/>
                                 </StackPanel>
                             </Border>
                         </ListBoxItem>

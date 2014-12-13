@@ -39,17 +39,18 @@ namespace Matrix.views.Pedagogy
 
         private void UpdateData()
         {
-            Dispatcher.BeginInvoke(new Action(() => { ClassWeekSchedule.UpdateData(_openedClass.ClasseId); }));
+            
+            ClassWeekSchedule.UpdateData(_openedClass.ClasseId);
 
-            var dataTask = new Task(() =>
+            new Task(() =>
             {
+                Dispatcher.BeginInvoke(new Action(() => { AnneeScolaireSelector.DataDictionary = App.DataS.Pedagogy.GetAllAnneeScolaires(); }));
+
                 Dispatcher.BeginInvoke(new Action(() => { MatieresList.ItemsSource = App.ModelS.GetClassMatieresCards(_openedClass.ClasseId); }));
-            });
-            dataTask.ContinueWith(cont =>
-            {
                 Dispatcher.BeginInvoke(new Action(() => { StudentsList.ItemsSource = App.DataS.Pedagogy.Classes.GetClassStudents(_openedClass.ClasseId); }));
-            });
-            dataTask.Start();
+                
+            }).Start();
+           
         }
 
 
@@ -144,9 +145,14 @@ namespace Matrix.views.Pedagogy
 
         #endregion
 
+        private void ListSelector_OnSelectionChanged(object sender, EventArgs e)
+        {
+            var currentAnneeScolaire = sender as string;
 
+            MessageBox.Show(currentAnneeScolaire);
+        }
 
-
+       
     }
 }
 

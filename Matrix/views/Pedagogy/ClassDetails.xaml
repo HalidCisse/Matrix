@@ -72,9 +72,9 @@
                 
                 <!--<Button Content="&#xf15d;" Grid.Column="3" Style="{DynamicResource ToolButtonStyle}" />-->
                 
-                <controls:ListSelector Grid.Column="3" HorizontalAlignment="Stretch"/>
+                <controls:ListSelector x:Name="AnneeScolaireSelector" Margin="20,0" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" OnSelectionChanged="ListSelector_OnSelectionChanged" />
                 
-                <Grid Grid.Column="4" Grid.ColumnSpan="2">
+                <Grid Grid.Column="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="40" />

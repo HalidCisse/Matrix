@@ -6,15 +6,17 @@
              mc:Ignorable="d" Height="20"
              d:DesignWidth="264">
        
-    <Grid>
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>       
         <Button Name="BackwardButton" Content="&#xf0d9;" Width="20" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Click="BackwardButton_OnClick"/>
-            <Label Name="TheLabel" Content="SelectedText" Foreground="Teal" Grid.Column="1" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
-            <ComboBox Name="TheComboBox" Grid.Column="0" ItemsSource="{Binding DataDictionary ,Mode=TwoWay}" SelectedValuePath="Value" DisplayMemberPath="Key" Visibility="Hidden" SelectionChanged="TheComboBox_OnSelectionChanged" Loaded="TheComboBox_OnLoaded"/>
+        <Label Name="TheLabel" Content="SelectedKey" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Content}" Foreground="Gray" FontSize="15" FontWeight="ExtraLight" Grid.Column="1" Margin="0,0,10,0" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+           
+        </Label>
+            <ComboBox Name="TheComboBox" Grid.Column="0" SelectedValuePath="Value" DisplayMemberPath="Key" Visibility="Collapsed" SelectionChanged="TheComboBox_OnSelectionChanged"/>
         <Button Name="ForwardButton" Content="&#xf0da;" Width="20" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Click="ForwardButton_OnClick" />
     </Grid>
         

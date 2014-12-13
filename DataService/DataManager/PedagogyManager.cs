@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DataService.Context;
 using DataService.Entities.Pedagogy;
 
@@ -61,6 +63,19 @@ namespace DataService.DataManager
                 return db.SaveChanges() > 0;
             }
         }
+
+        /// <summary>
+        /// Renvoi la List de Tous les Annee Scolaires
+        /// </summary>
+        /// <returns>Une Dictionaire</returns>        
+        public Dictionary<string, string> GetAllAnneeScolaires()
+        {
+            using (var db = new Ef())
+            {                
+                return db.AnneeScolaire.ToDictionary(a => a.Name, a => a.AnneeScolaireId.ToString());
+            }
+        }
+
 
     }
 }

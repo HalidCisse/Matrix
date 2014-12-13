@@ -44,7 +44,8 @@ namespace DataService.ViewModel
                 {
                     ClassList.Add(new ClassCard(cl));
                 });
-                
+
+                if (!ClassList.Any()) return;
                 ClassList = ClassList.OrderBy(c => c.Level).ToList();
             }
         }
