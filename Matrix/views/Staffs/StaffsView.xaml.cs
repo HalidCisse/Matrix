@@ -117,7 +117,7 @@ namespace Matrix.views.Staffs
         {
             var eX = sender as Expander;
                      
-            foreach(var ep in FindVisual.FindVisualChildren<Expander>(this).Where(ep => eX != null && ep.Header.ToString() != eX.Header.ToString()))
+            foreach(var ep in FindVisual.FindVisualChildren<Expander>(this).Where(ep => eX != null && ep.Header?.ToString() != eX.Header?.ToString()))
             {
                 ep.IsExpanded = false;                
             }

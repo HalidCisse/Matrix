@@ -1,23 +1,21 @@
-﻿namespace Matrix
+﻿using System.Windows;
+using MahApps.Metro.Controls;
+
+namespace Matrix
 {
     
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class MainWindow
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public MainWindow ( ) {
             InitializeComponent ();
             //MainFrame.Navigate (new Uri ("/views/HomePage.xaml", UriKind.Relative));
         }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -95,5 +93,13 @@
 
         #endregion
 
+        private void SeetingButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Flyout.IsOpen = true;
+
+
+            //var wind = new SettingsView() { Owner = Window.GetWindow(this) };
+            //wind.Show();
+        }
     }     
 }

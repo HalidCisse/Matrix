@@ -4,11 +4,12 @@ using System.Windows.Input;
 
 namespace Matrix.Styles
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class MyForm
     {
-
-       
-
+      
         void CloseButtonClick(object sender, RoutedEventArgs e)
         {
             sender.ForWindowFromTemplate(w => w.Close());

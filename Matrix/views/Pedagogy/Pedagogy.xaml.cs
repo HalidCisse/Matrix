@@ -1,10 +1,16 @@
 ﻿using System.Windows;
 
-namespace Matrix.views
+namespace Matrix.views.Pedagogy
 {
     
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class PedagogyD
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public PedagogyD ( )
         {
             InitializeComponent ();            
@@ -13,11 +19,7 @@ namespace Matrix.views
        
         private void BackBut_Click ( object sender, RoutedEventArgs e )
         {
-            if(NavigationService != null)
-            {
-                NavigationService.Navigate (new HomePage ());
-            }
+            NavigationService?.Navigate (new HomePage ());
         }
-
     }
 }

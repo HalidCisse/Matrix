@@ -20,23 +20,23 @@ namespace DataService.DataManager
         {
             using (var db = new Ef())
             {
-                var firstOrDefault = db.Setting.FirstOrDefault(s => s.UserProfileId == userProfileId && s.SettingNum == (int)mySetting);
+                //var firstOrDefault = db.Setting.FirstOrDefault(s => s.UserProfileId == userProfileId && s.SettingNum == (int)mySetting);
 
-                if (firstOrDefault != null)
-                {
-                    firstOrDefault.SettingValue = newValue;
-                }
-                else
-                {
-                    var newSetting = new Setting
-                    {
-                        SettingId = Guid.NewGuid(),
-                        UserProfileId = userProfileId,
-                        SettingNum = (int)mySetting,
-                        SettingValue = newValue
-                    };
-                    AddSetting(newSetting);
-                }
+                //if (firstOrDefault != null)
+                //{
+                //    firstOrDefault.SettingValue = newValue;
+                //}
+                //else
+                //{
+                //    var newSetting = new Setting
+                //    {
+                //        SettingId = Guid.NewGuid(),
+                //        UserProfileId = userProfileId,
+                //        SettingNum = (int)mySetting,
+                //        SettingValue = newValue
+                //    };
+                //    AddSetting(newSetting);
+                //}
 
                 return db.SaveChanges() > 0;
             }
@@ -50,7 +50,7 @@ namespace DataService.DataManager
         {
             using (var db = new Ef())
             {
-                db.Setting.Add(newSetting);
+                //db.Setting.Add(newSetting);
                 return db.SaveChanges() > 0;
             }
         }
@@ -64,8 +64,9 @@ namespace DataService.DataManager
          public string GetSetting(Guid userProfileId, Settings mySetting)
         {
             using (var db = new Ef())
-            {               
-                return db.Setting.FirstOrDefault(s => s.UserProfileId == userProfileId && s.SettingNum == (int)mySetting)?.SettingValue;
+            {
+                //return db.Setting.FirstOrDefault(s => s.UserProfileId == userProfileId && s.SettingNum == (int)mySetting)?.SettingValue;
+                return null;
             }
         }
 

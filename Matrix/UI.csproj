@@ -215,6 +215,9 @@
     <Compile Include="views\Pedagogy\PedagogyView.xaml.cs">
       <DependentUpon>PedagogyView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="views\Staffs\StaffINFO.xaml.cs">
       <DependentUpon>StaffINFO.xaml</DependentUpon>
     </Compile>
@@ -279,6 +282,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\ListBoxStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Main\TabStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -354,7 +361,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\HomePage.xaml">
+    <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -363,7 +370,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Styles\MyWindowStyle.cs" />
-    <Compile Include="views\HomePage.xaml.cs">
+    <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Page Include="views\Pedagogy\MatieresView.xaml">
@@ -375,6 +382,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="views\Pedagogy\PedagogyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -561,6 +572,27 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="views\Pedagogy\Icon\Inscription.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\students.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\statistic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\pedagogy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\finance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\AgendaIcon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\staffIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

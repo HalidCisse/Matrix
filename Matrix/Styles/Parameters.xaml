@@ -4,8 +4,6 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
 
-
-
     <DropShadowEffect x:Key="Z-Depth1" BlurRadius="5" ShadowDepth="1" Direction="270" Color="#CCCCCC"/>
     <DropShadowEffect x:Key="Z-Depth2" BlurRadius="8" ShadowDepth="2.5" Direction="270" Color="#BBBBBB"/>
     <DropShadowEffect x:Key="Z-Depth3" BlurRadius="14" ShadowDepth="4.5" Direction="270" Color="#BBBBBB"/>

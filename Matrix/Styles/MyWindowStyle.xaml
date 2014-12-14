@@ -47,7 +47,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
     
     <Style x:Key="WindowStyle" TargetType="{x:Type Window}">
         <Setter Property="AllowsTransparency" Value="true" />
@@ -69,15 +68,15 @@
                         Margin="7"
                         TextOptions.TextRenderingMode="ClearType"
                         TextOptions.TextFormattingMode="Display">
-                        <Border x:Name="PART_Border" Width="Auto" Height="Auto" Background="{StaticResource WindowBackGroundColor}" BorderBrush="{StaticResource WindowBorderBrush}" BorderThickness="0" Padding="0">
-                            <Border.Effect>
+                        <Border x:Name="PART_Border" Width="Auto" Height="Auto" Effect="{StaticResource Z-Depth5}" Background="{StaticResource WindowBackGroundColor}" BorderBrush="{StaticResource WindowBorderBrush}" BorderThickness="0" Padding="0">
+                            <!--<Border.Effect>
                                 <DropShadowEffect
                                     Color="black"
                                     Opacity="0.5"
                                     BlurRadius="7"
                                     ShadowDepth="2"
                                     Direction="315"/>
-                            </Border.Effect>
+                            </Border.Effect>-->
                             <DockPanel   HorizontalAlignment="Stretch" Background="Transparent" VerticalAlignment="Stretch">
                                 <Border x:Name="TitleBar" DockPanel.Dock="Top" Background="{StaticResource TitleBarBackgroundBrush}" BorderThickness="0" MouseLeftButtonDown="TitleBarMouseLeftButtonDown" MouseMove="TitleBarMouseMove">
                                     <!--<Grid Height="32">-->

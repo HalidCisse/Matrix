@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Windows;
+using Matrix.views;
 using Matrix.views.Pedagogy;
 using Matrix.views.Staffs;
 using Matrix.views.Students;
 
-namespace Matrix.views
+namespace Matrix
 {
     
     /// <summary>

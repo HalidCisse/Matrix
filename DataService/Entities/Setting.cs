@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataService.Entities
 {
@@ -13,25 +9,20 @@ namespace DataService.Entities
     public class Setting
     {
         /// <summary>
-        /// ID
+        /// ID de L'Utilisateur
         /// </summary> 
         [Key]
-        public Guid SettingId { get; set; }
-
-        /// <summary>
-        /// L'Utilisateur
-        /// </summary>
         public Guid UserProfileId { get; set; }
+        
+        /// <summary>
+        /// Le Guid de l'annee Scolaire Actuelle
+        /// </summary>
+        public Guid CurrentAnneeScolaireGuid { get; set; }
 
         /// <summary>
-        /// Le Nom du Parametre
+        /// Le Guid de de la Periode l'annee Scolaire Actuelle
         /// </summary>
-        public int SettingNum { get; set; }
-
-        /// <summary>
-        /// La Valeur du Parametre
-        /// </summary>
-        public string SettingValue { get; set; }
+        public Guid CurrentPeriodeScolaireGuid { get; set; }
 
         
     }

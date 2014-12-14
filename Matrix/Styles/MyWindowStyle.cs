@@ -5,6 +5,9 @@ using System.Windows.Input;
 
 namespace Matrix.Styles
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class MyWindowStyle
     {
         #region sizing event handlers
@@ -20,14 +23,12 @@ namespace Matrix.Styles
 
         void OnSize(object sender, SizingAction action)
         {
-            if (Mouse.LeftButton == MouseButtonState.Pressed)
+            if (Mouse.LeftButton != MouseButtonState.Pressed) return;
+            sender.ForWindowFromTemplate(w =>
             {
-                sender.ForWindowFromTemplate(w =>
-                    {
-                        if (w.WindowState == WindowState.Normal)
-                            DragSize(w.GetWindowHandle(), action);
-                    });
-            }
+                if (w.WindowState == WindowState.Normal)
+                    DragSize(w.GetWindowHandle(), action);
+            });
         }
 
         void IconMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -72,25 +73,21 @@ namespace Matrix.Styles
 
         void TitleBarMouseMove(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            if (e.LeftButton != MouseButtonState.Pressed) return;
+            sender.ForWindowFromTemplate(w =>
             {
-                sender.ForWindowFromTemplate(w =>
-                    {
-                        if (w.WindowState == WindowState.Maximized)
-                        {
-                            w.BeginInit();
-                            const double adjustment = 40.0;
-                            var mouse1 = e.MouseDevice.GetPosition(w);
-                            var width1 = Math.Max(w.ActualWidth - 2 * adjustment, adjustment);
-                            w.WindowState = WindowState.Normal;
-                            var width2 = Math.Max(w.ActualWidth - 2 * adjustment, adjustment);
-                            w.Left = (mouse1.X - adjustment) * (1 - width2 / width1);
-                            w.Top = -7;
-                            w.EndInit();
-                            w.DragMove();
-                        }
-                    });
-            }
+                if (w.WindowState != WindowState.Maximized) return;
+                w.BeginInit();
+                const double adjustment = 40.0;
+                var mouse1 = e.MouseDevice.GetPosition(w);
+                var width1 = Math.Max(w.ActualWidth - 2 * adjustment, adjustment);
+                w.WindowState = WindowState.Normal;
+                var width2 = Math.Max(w.ActualWidth - 2 * adjustment, adjustment);
+                w.Left = (mouse1.X - adjustment) * (1 - width2 / width1);
+                w.Top = -7;
+                w.EndInit();
+                w.DragMove();
+            });
         }
 
         #endregion
@@ -110,6 +107,9 @@ namespace Matrix.Styles
             SendMessage(handle, 514, IntPtr.Zero, IntPtr.Zero);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public enum SizingAction
         {
             North = 3,

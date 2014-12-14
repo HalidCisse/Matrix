@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
-using System.Windows.Interop;
 using System.Windows.Threading;
 using DataService;
 using Matrix.Utils;
-
-//using Manager;
 
 namespace Matrix
 {
@@ -56,8 +49,6 @@ namespace Matrix
                 Shutdown();
             }
 
-
-
             try
             {
                 new Thread(() => DataS = new DbService()) { Name = "DataThread", Priority = ThreadPriority.Highest }.Start();
@@ -68,10 +59,7 @@ namespace Matrix
                 MessageBox.Show(e.Message);
                 Current.Shutdown();
             }
-
-            
-
-            
+       
         }
 
         
@@ -102,6 +90,10 @@ namespace Matrix
 
         #region ISingleInstanceApp Members
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
         public static void DisplayArgs(IEnumerable<string> args)
         {
             var dispatcher = Current.Dispatcher;
@@ -120,12 +112,12 @@ namespace Matrix
         {
             // Bring window to foreground
             var mainWindow = Current.MainWindow as MainWindow;
-            if (mainWindow.WindowState == WindowState.Minimized)
+            if (mainWindow?.WindowState == WindowState.Minimized)
             {
                 mainWindow.WindowState = WindowState.Normal;
             }
 
-            mainWindow.Activate();
+            mainWindow?.Activate();
         }
 
         #endregion

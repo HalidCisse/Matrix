@@ -1,4 +1,4 @@
-﻿<Page x:Class="Matrix.views.HomePage"
+﻿<Page x:Class="Matrix.HomePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -45,7 +45,7 @@
 
         <Button Name="StudentButton" Style="{DynamicResource  FontButton}" Click="StudentButton_Click">
             <StackPanel Margin="0,0,0,-10">
-                <Image Source = "../Images/students.png" Width="150" Height="150"/>
+                <Image Source = "Icons/students.png" Width="150" Height="150"/>
                 <!--<TextBlock Text="&#xf0c0;" Style="{DynamicResource FontAwesome}"/>-->
                 <TextBlock Text="Etudiants" Style="{DynamicResource ButtonTextStyle}"/>
             </StackPanel>
@@ -53,7 +53,7 @@
 
         <Button Name="PedagogieButton" Grid.Row="0" Grid.Column="2" Style="{DynamicResource  FontButton}" Click="PedagogieButton_Click">
             <StackPanel Margin="0,0,0,-10">
-                <Image Source = "../Images/pedagogy.png" Width="150" Height="150"/>
+                <Image Source = "Icons/pedagogy.png" Width="150" Height="150"/>
                 <!--<TextBlock Text="&#xf044;" Style="{DynamicResource FontAwesome}"></TextBlock>-->
                 <TextBlock Text="Pedagogie" Style="{DynamicResource ButtonTextStyle}"/>
             </StackPanel>
@@ -61,7 +61,7 @@
 
         <Button Name="StaffButton" Grid.Column="4" Grid.Row="0" Style="{DynamicResource FontButton}" Click="StaffButton_Click">
             <StackPanel Margin="0,0,0,-10">
-                <Image Source = "../Images/StaffIcon.png" Width="150" Height="150"/>
+                <Image Source = "Icons/staffIcon.png" Width="150" Height="150"/>
                 <!--<TextBlock Text="&#xf02f;" Style="{DynamicResource FontAwesome}"></TextBlock>-->
                 <TextBlock Text="Staff" Style="{DynamicResource ButtonTextStyle}"/>
             </StackPanel>
@@ -69,7 +69,7 @@
 
         <Button Name="AgendaButton" Grid.Column="0" Grid.Row="2" Style="{DynamicResource FontButton}" Click="AgendaButton_Click">
             <StackPanel Margin="0,0,0,-10">
-                <Image Source = "../Images/AgendaIcon1.png" Width="150" Height="150"/>
+                <Image Source = "Icons/AgendaIcon1.png" Width="150" Height="150"/>
                 <!--<TextBlock Text="&#xf013;" Style="{DynamicResource FontAwesome}"></TextBlock>-->
                 <TextBlock Text="Agenda" Style="{DynamicResource ButtonTextStyle}"/>
             </StackPanel>
@@ -77,7 +77,7 @@
 
         <Button Name="EconomatButton" Grid.Column="2" Grid.Row="2" Style="{DynamicResource  FontButton}" Click="EconomatButton_Click">
             <StackPanel Margin="0,0,0,-10">
-                <Image Source = "../Images/finance.png" Width="150" Height="150"/>
+                <Image Source = "Icons/finance.png" Width="150" Height="150"/>
                 <!--<TextBlock Text="&#xf155;" Style="{DynamicResource FontAwesome}"></TextBlock>-->
                 <TextBlock Text="Economat" Style="{DynamicResource ButtonTextStyle}"/>
             </StackPanel>
@@ -85,7 +85,7 @@
 
         <Button Name="StatisticButton" Grid.Column="4" Grid.Row="2" Style="{DynamicResource FontButton}" Click="StatisticButton_Click">
             <StackPanel Margin="0,0,0,-10">
-                <Image Source = "../Images/statistic.png" Width="150" Height="150"/>
+                <Image Source = "Icons/statistic.png" Width="150" Height="150"/>
                 <!--<TextBlock Text="&#xf080;" Style="{DynamicResource FontAwesome}"></TextBlock>-->
                 <TextBlock Text="Statistiques" Style="{DynamicResource ButtonTextStyle}"/>
             </StackPanel>

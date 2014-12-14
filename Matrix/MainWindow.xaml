@@ -2,7 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:extention="clr-namespace:Matrix.Extention"
+        xmlns:control="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+       
         Height="660" Width="1100" MinHeight="550" MinWidth="850" WindowStartupLocation="CenterScreen" 
         Background="Beige" Icon="/Images/mainicon.png" Style="{DynamicResource WindowStyle}">
            
@@ -48,13 +50,36 @@
         </LinearGradientBrush>-->
         
     </Window.Resources>
-               
-    <Frame x:Name="MainFrame" Source="views/HomePage.xaml" NavigationUIVisibility="Hidden" Margin="2,0,2,2">
-        <Frame.Template>
-            <ControlTemplate TargetType="Frame">               
-                <mui:TransitioningContentControl Background="Beige" Content="{TemplateBinding Content}"/>           
-            </ControlTemplate>            
-        </Frame.Template>
-    </Frame>      
+            
+    <Grid Margin="2,-25,2,2">
+
+        <DockPanel >
+            <Grid Background="Transparent" DockPanel.Dock="Top" Height="30" Width="Auto">
+                <Button Name="SeetingButton" Content="&#xf0c9;" HorizontalAlignment="Right" Margin="10,0" Style="{DynamicResource ToolButtonStyle}" Click="SeetingButton_OnClick"/>
+            </Grid>
+
+            
+
+            <Frame x:Name="MainFrame" Source="HomePage.xaml" NavigationUIVisibility="Hidden" >
+                <Frame.Template>
+                    <ControlTemplate TargetType="Frame">
+                        <mui:TransitioningContentControl Background="Beige" Content="{TemplateBinding Content}"/>
+                    </ControlTemplate>
+                </Frame.Template>
+            </Frame>
+        </DockPanel>
+
+        <control:Flyout Name="Flyout" IsOpen="False" Header="Accent" IsPinned="False" Visibility="Collapsed" Background="Gray" Position="Right" Width="700">
+            <Grid>
+                <Button Width="50" Height="50">Fly out</Button>
+            </Grid>
+        </control:Flyout>
+
+
+    </Grid>
+    
+    
+   
+        
           
 </Window>

@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-      mc:Ignorable="d" KeepAlive="True" Loaded="Page_Loaded"
+      mc:Ignorable="d" Loaded="Page_Loaded"
       d:DesignHeight="550" d:DesignWidth="900">
 
     <Page.Resources>

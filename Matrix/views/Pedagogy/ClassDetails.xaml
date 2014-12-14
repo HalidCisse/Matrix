@@ -4,7 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:controls="clr-namespace:Matrix.Controls"
-      
+
+
       mc:Ignorable="d" KeepAlive="True" Loaded="Page_Loaded"
       d:DesignHeight="550" d:DesignWidth="2000">
 
@@ -15,7 +16,6 @@
                 <MenuItem.Icon>
                     <Image Source="pack://application:,,,/Images/Cours.png" Height="40" Width="40"/>
                 </MenuItem.Icon>
-
                 <MenuItem.Header>
                     <TextBlock Text="Ajouter Cours" Margin="5" FontWeight="ExtraLight" FontSize="15" VerticalAlignment="Center"/>
                 </MenuItem.Header>
@@ -25,7 +25,6 @@
                 <MenuItem.Icon>
                     <Image Source="pack://application:,,,/Images/Matiere.png" Height="40" Width="40"/>
                 </MenuItem.Icon>
-
                 <MenuItem.Header>
                     <TextBlock Text="Ajouter Matiere" Margin="5" FontWeight="ExtraLight" FontSize="15" VerticalAlignment="Center"/>
                 </MenuItem.Header>
@@ -35,7 +34,6 @@
                 <MenuItem.Icon>
                     <Image Source="pack://application:,,,/Images/Inscription.png" Height="40" Width="40"/>
                 </MenuItem.Icon>
-
                 <MenuItem.Header>
                     <TextBlock Text="Inscription" Margin="5" FontWeight="ExtraLight" FontSize="15" VerticalAlignment="Center"/>
                 </MenuItem.Header>
@@ -45,7 +43,6 @@
                 <MenuItem.Icon>
                     <Image Source="pack://application:,,,/Images/AnneeScolaire.png" Height="40" Width="40"/>
                 </MenuItem.Icon>
-
                 <MenuItem.Header>
                     <TextBlock Text="Nouvelle Annee Scolaire" Margin="5" FontWeight="ExtraLight" FontSize="15" VerticalAlignment="Center"/>
                 </MenuItem.Header>

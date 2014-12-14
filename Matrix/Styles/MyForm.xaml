@@ -53,11 +53,11 @@
         <!--<Setter Property="Background" Value="Transparent" />-->
         <Setter Property="ResizeMode" Value="NoResize"/>
         
-        <Setter Property="Effect">
-            <Setter.Value>
-                <!--<DropShadowEffect Color="Black" ShadowDepth="0.9" BlurRadius="20" Opacity=".5" />-->
+        <Setter Property="Effect" Value="{StaticResource Z-Depth5}">
+            <!--<Setter.Value>
+                --><!--<DropShadowEffect Color="Black" ShadowDepth="0.9" BlurRadius="20" Opacity=".5" />--><!--
                 <BlurEffect   Radius="-20" RenderOptions.BitmapScalingMode="HighQuality" RenderingBias="Performance"/>
-            </Setter.Value>
+            </Setter.Value>-->
         </Setter>
         
         <Setter Property="Template">

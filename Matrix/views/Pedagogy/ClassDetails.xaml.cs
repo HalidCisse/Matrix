@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,8 +8,9 @@ using DataService.Enum;
 
 namespace Matrix.views.Pedagogy
 {
-    //todo: Inscription student card should show grade, presence ....
-    //todo: ValueSelector Control on TaskBar for AnneeScolaire
+    //todo: ClassStudentView as UserControl move listSelector into ClassStudentView
+    //todo: ClassStudentView ClassStudentCard should show grade, presence ....
+    //todo: create SettingView and content CurrentAnneeScolaire
 
     /// <summary>
     /// Affiche l'emploi du temps , les matieres et les Etudiant pour une classe donnee
@@ -41,18 +41,18 @@ namespace Matrix.views.Pedagogy
 
         private void UpdateData()
         {
-            
-            ClassWeekSchedule.UpdateData(_openedClass.ClasseId);
+
+            //ClassWeekSchedule.UpdateData(_openedClass.ClasseId);
 
             new Task(() =>
             {
-                Dispatcher.BeginInvoke(new Action(() => { AnneeScolaireSelector.DataDictionary = App.DataS.Pedagogy.GetAllAnneeScolaires(); }));
-
+               // Dispatcher.BeginInvoke(new Action(() => { AnneeScolaireSelector.DataDictionary = App.DataS.Pedagogy.GetAllAnneeScolaires(); }));
+               // Dispatcher.BeginInvoke(new Action(() => { ClassWeekSchedule.UpdateData(_openedClass.ClasseId); }));
                 Dispatcher.BeginInvoke(new Action(() => { MatieresList.ItemsSource = App.ModelS.GetClassMatieresCards(_openedClass.ClasseId); }));
                 Dispatcher.BeginInvoke(new Action(() => { StudentsList.ItemsSource = App.DataS.Pedagogy.Classes.GetClassStudents(_openedClass.ClasseId); }));
-                
+
             }).Start();
-           
+
         }
 
 
@@ -153,37 +153,12 @@ namespace Matrix.views.Pedagogy
 
             App.DataS.Settings.SetSetting(MatrixConstants.SystemGuid(), Settings.CurrentAnneeScolaire, currentAnneeScolaire);
 
-            string configValue = Configuration.AppSettings["ConfigValueName"];
-
-            
-        Properties.Settings.Synchronized(). = ;
+           
 
             //MessageBox.Show(currentAnneeScolaire);
         }
 
-        private async Task Run()
-        {
-            // Create the service.
-            var service = new DiscoveryService(new BaseClientService.Initializer
-            {
-                ApplicationName = "Discovery Sample",
-                APIKey = "[YOUR_API_KEY_HERE]",
-            });
-
-            // Run the request.
-            Console.WriteLine("Executing a list request...");
-            var result = await service.Apis.List().ExecuteAsync();
-
-            // Display the results.
-            if (result.Items != null)
-            {
-                foreach (DirectoryList.ItemsData api in result.Items)
-                {
-                    Console.WriteLine(api.Id + " - " + api.Title);
-                }
-            }
-        }
-
+       
     }
 }
 

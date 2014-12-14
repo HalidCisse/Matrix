@@ -2,10 +2,8 @@ using System;
 using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Threading;
 using System.Windows;
-using System.Windows.Media.Imaging;
 using DataService.Context;
 
 namespace DataService.Migrations
@@ -23,21 +21,21 @@ namespace DataService.Migrations
         {
             //EF.Database.CreateIfNotExists ();
 
-            SettingsSeed(ef);
+            //SettingsSeed(ef);
             Student_SeedFromSql (ef);
             Staff_SeedFromSql (ef);
 
             MessageBox.Show ("Seed Done");
         }
 
-        private static void SettingsSeed(Ef ef)
-        {
-            const string sqlString = "INSERT INTO Settings (SettingId, UserProfileId, SettingNum)" +
-                                     "VALUES ('C07D6D28-2B82-46E7-A6DF-39E2DF821509', '00000000-0000-0000-0000-000000000000', 1)";
+        //private static void SettingsSeed(Ef ef)
+        //{
+        //    const string sqlString = "INSERT INTO Settings (SettingId, UserProfileId, SettingNum)" +
+        //                             "VALUES ('C07D6D28-2B82-46E7-A6DF-39E2DF821509', '00000000-0000-0000-0000-000000000000', 1)";
 
-            ef.Database.ExecuteSqlCommand("DELETE FROM Settings");
-            ef.Database.ExecuteSqlCommand(sqlString);
-        }
+        //    ef.Database.ExecuteSqlCommand("DELETE FROM Settings");
+        //    ef.Database.ExecuteSqlCommand(sqlString);
+        //}
 
         private static void Staff_SeedFromSql ( Ef ef )
         {
@@ -128,19 +126,19 @@ namespace DataService.Migrations
         //    return data;
         //}
 
-        private static string GetRes ( string pathInApplication, Assembly assembly = null )
-        {
-            if(assembly == null)
-            {
-                assembly = Assembly.GetExecutingAssembly ( );
-            }
+        //private static string GetRes ( string pathInApplication, Assembly assembly = null )
+        //{
+        //    if(assembly == null)
+        //    {
+        //        assembly = Assembly.GetExecutingAssembly ( );
+        //    }
 
-            if(pathInApplication[0] == '/')
-            {
-                pathInApplication = pathInApplication.Substring (1);
-            }
-            return (new Uri (@"pack://application:,,,/" + assembly.GetName ().Name + ";component/" + pathInApplication, UriKind.Absolute).ToString ());
-        }
+        //    if(pathInApplication[0] == '/')
+        //    {
+        //        pathInApplication = pathInApplication.Substring (1);
+        //    }
+        //    return (new Uri (@"pack://application:,,,/" + assembly.GetName ().Name + ";component/" + pathInApplication, UriKind.Absolute).ToString ());
+        //}
 
         #endregion
 
