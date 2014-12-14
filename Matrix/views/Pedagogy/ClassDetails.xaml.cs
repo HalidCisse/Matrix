@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Configuration;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using DataService.Entities.Pedagogy;
+using DataService.Enum;
 
 namespace Matrix.views.Pedagogy
 {
@@ -144,15 +146,44 @@ namespace Matrix.views.Pedagogy
 
 
         #endregion
-
+        [STAThread]
         private void ListSelector_OnSelectionChanged(object sender, EventArgs e)
         {
             var currentAnneeScolaire = sender as string;
 
-            MessageBox.Show(currentAnneeScolaire);
+            App.DataS.Settings.SetSetting(MatrixConstants.SystemGuid(), Settings.CurrentAnneeScolaire, currentAnneeScolaire);
+
+            string configValue = Configuration.AppSettings["ConfigValueName"];
+
+            
+        Properties.Settings.Synchronized(). = ;
+
+            //MessageBox.Show(currentAnneeScolaire);
         }
 
-       
+        private async Task Run()
+        {
+            // Create the service.
+            var service = new DiscoveryService(new BaseClientService.Initializer
+            {
+                ApplicationName = "Discovery Sample",
+                APIKey = "[YOUR_API_KEY_HERE]",
+            });
+
+            // Run the request.
+            Console.WriteLine("Executing a list request...");
+            var result = await service.Apis.List().ExecuteAsync();
+
+            // Display the results.
+            if (result.Items != null)
+            {
+                foreach (DirectoryList.ItemsData api in result.Items)
+                {
+                    Console.WriteLine(api.Id + " - " + api.Title);
+                }
+            }
+        }
+
     }
 }
 

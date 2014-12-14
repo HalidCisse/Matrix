@@ -127,6 +127,7 @@
     <Compile Include="Entities\Setting.cs" />
     <Compile Include="Entities\Pedagogy\StudentQualification.cs" />
     <Compile Include="Enum\ClassAnnee.cs" />
+    <Compile Include="Enum\MatrixConstants.cs" />
     <Compile Include="Enum\Settings.cs" />
     <Compile Include="Migrations\201412111753584_kk.cs" />
     <Compile Include="Migrations\201412111753584_kk.Designer.cs">
