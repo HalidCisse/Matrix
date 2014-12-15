@@ -95,7 +95,7 @@ namespace Matrix
 
         private void SeetingButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Flyout.IsOpen = true;
+            MyFlyout.IsOpen = true;
 
 
             //var wind = new SettingsView() { Owner = Window.GetWindow(this) };

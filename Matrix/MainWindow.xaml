@@ -4,51 +4,17 @@
         xmlns:extention="clr-namespace:Matrix.Extention"
         xmlns:control="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:mui="http://firstfloorsoftware.com/ModernUI"
-       
+        xmlns:controls="clr-namespace:Matrix.Controls"
+
         Height="660" Width="1100" MinHeight="550" MinWidth="850" WindowStartupLocation="CenterScreen" 
         Background="Beige" Icon="/Images/mainicon.png" Style="{DynamicResource WindowStyle}">
            
     <Window.Resources>
 
-        <!--<Style TargetType="Frame"  x:Key="HomeBackground">
-            --><!--<Style.Resources>                
-                <Style TargetType="Border" x:Key="BorderBack">--><!--
-                    <Setter Property="Background">
-                        <Setter.Value>
-                            <RadialGradientBrush>
-                                <RadialGradientBrush.RelativeTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform ScaleX="1.702" ScaleY="2.243"/>
-                                        <SkewTransform AngleX="0" AngleY="0"/>
-                                        <RotateTransform Angle="0"/>
-                                        <TranslateTransform X="-0.368" Y="-0.152"/>
-                                    </TransformGroup>
-                                </RadialGradientBrush.RelativeTransform>
-                                <GradientStop Color="White" Offset="0.1"/>
-                                <GradientStop Color="Beige" Offset=".9"/>
-                            </RadialGradientBrush>
-                        </Setter.Value>
-                    </Setter>
-                    
-                --><!--</Style>                                    
-            </Style.Resources>-->
-            
-            <!--<Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Frame">
-                        <Border Style="{StaticResource BorderBack }">
-                            <mui:TransitioningContentControl Content="{TemplateBinding Content}" Transition="DownTransition"/>
-                        </Border>                       
-                    </ControlTemplate>                    
-                </Setter.Value>
-            </Setter>--><!--
-        </Style>
+
+
         
-        <LinearGradientBrush x:Key="BackgroundBruss" StartPoint="0.5,0" EndPoint="0.5,1">
-            <GradientStop Color="#EB4041" Offset="0.1" />
-            <GradientStop Color="#D62B2B" Offset="0.9" />
-        </LinearGradientBrush>-->
-        
+
     </Window.Resources>
             
     <Grid Margin="2,-25,2,2">
@@ -57,9 +23,6 @@
             <Grid Background="Transparent" DockPanel.Dock="Top" Height="30" Width="Auto">
                 <Button Name="SeetingButton" Content="&#xf0c9;" HorizontalAlignment="Right" Margin="10,0" Style="{DynamicResource ToolButtonStyle}" Click="SeetingButton_OnClick"/>
             </Grid>
-
-            
-
             <Frame x:Name="MainFrame" Source="HomePage.xaml" NavigationUIVisibility="Hidden" >
                 <Frame.Template>
                     <ControlTemplate TargetType="Frame">
@@ -69,12 +32,50 @@
             </Frame>
         </DockPanel>
 
-        <control:Flyout Name="Flyout" IsOpen="False" Header="Accent" IsPinned="False" Visibility="Collapsed" Background="Gray" Position="Right" Width="700">
+        <control:Flyout Name="MyFlyout" IsOpen="False" Header="Parametres" Theme="Light" IsPinned="False" Visibility="Collapsed" Position="Right" Width="700">
             <Grid>
-                <Button Width="50" Height="50">Fly out</Button>
-            </Grid>
-        </control:Flyout>
+                                             
+                <TabControl Margin="10" BorderThickness="0" Background="White">
+                                       
+                    <TabItem Header="General">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <TextBlock Text="Annee Scolaire Actuelle" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                                <ComboBox Name="AnneeScolaireBox" Width="200" DisplayMemberPath="Name" SelectedIndex="0" SelectedValuePath="AnneeScolaireId" HorizontalAlignment="Left" />
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+                                        
+                    <TabItem Header="Security" />
+                    <TabItem Header="Advanced" />
 
+                    <TabControl.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.MergedDictionaries>
+                                <ResourceDictionary Source="/Elysium;component/Themes/Generic.xaml"/>
+                            </ResourceDictionary.MergedDictionaries>
+                        </ResourceDictionary>
+                    </TabControl.Resources>
+                </TabControl>
+                                
+            </Grid>
+            <control:Flyout.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />                   
+                        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </control:Flyout.Resources>
+        </control:Flyout>
 
     </Grid>
     
