@@ -1,6 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
-using MahApps.Metro.Controls;
 
 namespace Matrix
 {
@@ -14,13 +15,8 @@ namespace Matrix
         /// 
         /// </summary>
         public MainWindow ( ) {
-            InitializeComponent ();
-            //MainFrame.Navigate (new Uri ("/views/HomePage.xaml", UriKind.Relative));
+            InitializeComponent ();            
         }
-
-
-
-
        
         private void SeetingButton_OnClick(object sender, RoutedEventArgs e)
         {
@@ -40,29 +36,37 @@ namespace Matrix
         {
             //throw new System.NotImplementedException();
         }
-
-        private void MyFlyout_OnLostFocus(object sender, RoutedEventArgs e)
+       
+        private void MyTabControl_OnLoaded(object sender, RoutedEventArgs e)
         {
-            //if (MyTabControl.IsFocused) return;
-            //MyFlyout.IsOpen = false;
-        }
-      
-        private void MyTabControl_OnLostFocus(object sender, RoutedEventArgs e)
-        {
-            //if (MyFlyout.IsFocused) return;
-
-            //foreach (TabItem tab in MyTabControl.Items)
-            //{
-            //    if (tab.IsSelected) return;
-               
-            //}
-
-            //MyFlyout.IsOpen = false;
+            MyFlyout.IsOpenChanged += MyFlyout_IsOpenChanged;
         }
 
-        private void MyTabControl_OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void MyFlyout_IsOpenChanged(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            UpdateData();
         }
+
+        private void UpdateData()
+        {
+            new Task(() =>
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    //AnneeScolaireBox.ItemsSource = App.DataS.Pedagogy.GetAllAnneeScolaires();                   
+                    //AnneeScolaireBox.SelectedValue = App.DataS.MatrixSettings.CurrentAnneeScolaireGuid();
+
+                    //var x = App.CurrentUser.UserProfile
+                }));
+                //Dispatcher.BeginInvoke(new Action(() => { ClassWeekSchedule.UpdateData(_openedClass.ClasseId); }));
+                //Dispatcher.BeginInvoke(new Action(() => { MatieresList.ItemsSource = App.ModelS.GetClassMatieresCards(_openedClass.ClasseId); }));
+                //Dispatcher.BeginInvoke(new Action(() => { StudentsList.ItemsSource = App.DataS.Pedagogy.Classes.GetClassStudents(_openedClass.ClasseId); }));
+
+            }).Start();
+
+        }
+
+
+
     }     
 }

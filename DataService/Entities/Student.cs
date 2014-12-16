@@ -13,7 +13,7 @@ namespace DataService.Entities
         /// </summary>
         public Student()
         {
-            RegistrationDate = DateTime.Now.Date;
+            //RegistrationDate = DateTime.Now;
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace DataService.Entities
         /// <summary>
         /// 
         /// </summary>
-        public DateTime? RegistrationDate { get; set; }
+        //public DateTime? RegistrationDate { get; set; }
 
     }
 }

@@ -14,15 +14,7 @@ namespace DataService.Entities
         [Key]
         public Guid UserProfileId { get; set; }
         
-        /// <summary>
-        /// Le Guid de l'annee Scolaire Actuelle
-        /// </summary>
-        public Guid CurrentAnneeScolaireGuid { get; set; }
-
-        /// <summary>
-        /// Le Guid de de la Periode l'annee Scolaire Actuelle
-        /// </summary>
-        public Guid CurrentPeriodeScolaireGuid { get; set; }
+        
 
         
     }

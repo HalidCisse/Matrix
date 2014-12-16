@@ -15,15 +15,10 @@ namespace DataService.Entities.Security
         public Guid UserProfileId { get; set; }
 
         /// <summary>
-        /// Les Droits D'Access
-        /// </summary>
-        public Guid UserRoleGuid { get; set; }
-
-        /// <summary>
         /// Admin, Staff, Student
         /// </summary>
-        public UserSpace UserSpace { get; set; }
-
+        public int UserSpace { get; set; }
+        
 
 
     }

@@ -50,9 +50,9 @@ namespace Matrix.views.Pedagogy
         {
             //todo: Add List Of Setting in App
 
-            var currentAnneeScolaire = App.DataS.Settings.GetSetting(Guid.NewGuid(), Settings.CurrentAnneeScolaire);
+            //var currentAnneeScolaire = App.DataS.Settings.GetSetting(Guid.NewGuid(), Settings.CurrentAnneeScolaire);
 
-            StudentId.ItemsSource = App.DataS.Pedagogy.Inscriptions.GetStudentsNotIns(new Guid(currentAnneeScolaire));
+            //StudentId.ItemsSource = App.DataS.Pedagogy.Inscriptions.GetStudentsNotIns(new Guid(currentAnneeScolaire));
 
             //StaffId.ItemsSource = App.DataS.Hr.GetAllStaffs();
 

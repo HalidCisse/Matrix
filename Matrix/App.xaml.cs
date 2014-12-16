@@ -15,7 +15,6 @@ namespace Matrix
     public partial class App 
     {
 
-
         App()
         {
             if (_enforcer.ShouldApplicationExit()) Shutdown();
@@ -30,7 +29,6 @@ namespace Matrix
                 MessageBox.Show(e.Message);
                 Current.Shutdown();
             }
-
         }
 
 
@@ -67,7 +65,7 @@ namespace Matrix
 
         static void App_DispatcherUnhandledException ( object sender, DispatcherUnhandledExceptionEventArgs e )
         {
-            MessageBox.Show (e.Exception.Message,"Il ya Un Problem le Programme Doit se fermer !!");
+            MessageBox.Show (e.Exception.Message,"Not Handled Exception");
             e.Handled = true;
             //Current.Shutdown();
         }
@@ -90,15 +88,10 @@ namespace Matrix
         public static void DisplayArgs(IEnumerable<string> args)
         {
             var dispatcher = Current.Dispatcher;
-            if (dispatcher.CheckAccess())
-            {
-                ShowArgs();
-            }
-            else
-            {
-                dispatcher.BeginInvoke(
-                    new Action(ShowArgs));
-            }
+
+            if (dispatcher.CheckAccess()) ShowArgs();         
+            else dispatcher.BeginInvoke(new Action(ShowArgs));
+           
         }
 
         private static void ShowArgs()
@@ -108,7 +101,7 @@ namespace Matrix
             {
                 mainWindow.WindowState = WindowState.Normal;
             }
-            mainWindow?.Activate();
+            mainWindow?.Activate();            
         }
 
         #endregion

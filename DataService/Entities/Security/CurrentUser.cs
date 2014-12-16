@@ -19,7 +19,7 @@ namespace DataService.Entities.Security
                 userProfile = new UserProfile
                 {
                     UserProfileId = MatrixConstants.SystemGuid(),
-                    UserSpace = UserSpace.AdminSpace
+                    UserSpace = (int)UserSpace.AdminSpace
                 };
             }
 
@@ -30,7 +30,7 @@ namespace DataService.Entities.Security
                 FirstName = st.FirstName;
                 LastName = st.LastName;
                 PhotoIdentity = st.PhotoIdentity;
-                UserSpace = userProfile.UserSpace;
+                UserSpace = (UserSpace)userProfile.UserSpace;
                 UserUserSettings = db.UserSetting.Find(userProfile.UserProfileId);
                 UserRoles = db.UserRole.Find(userProfile.UserProfileId);
             }

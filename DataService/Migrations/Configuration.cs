@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
@@ -39,7 +38,7 @@ namespace DataService.Migrations
             var adminUserprofiles = new UserProfile
             {
                 UserProfileId = MatrixConstants.SystemGuid(),
-                UserSpace = UserSpace.AdminSpace
+                UserSpace = (int)UserSpace.AdminSpace
             };               
 
             var adminUserRoles = new UserRoles

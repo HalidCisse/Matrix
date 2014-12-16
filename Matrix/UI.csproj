@@ -166,7 +166,6 @@
       <DependentUpon>ToolbarStudentViews.xaml</DependentUpon>
     </Compile>
     <Compile Include="EFR.cs" />
-    <Compile Include="Extention\FaderFrames.cs" />
     <Compile Include="Extention\ModernDialogExtention.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -217,9 +216,6 @@
     </Compile>
     <Compile Include="views\Pedagogy\PedagogyView.xaml.cs">
       <DependentUpon>PedagogyView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SettingsView.xaml.cs">
-      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="views\Staffs\StaffINFO.xaml.cs">
       <DependentUpon>StaffINFO.xaml</DependentUpon>
@@ -392,10 +388,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="views\Staffs\StaffINFO.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -507,12 +499,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataService\DataService.csproj">
-      <Project>{701e45a4-bbe9-4196-b67e-766b4cf487a1}</Project>
-      <Name>DataService</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Portrait\defaultStudent.png" />
     <Resource Include="Images\StaffIcon.png" />
     <Resource Include="Images\AgendaIcon.png" />
@@ -600,6 +586,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\staffIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataService\DataService.csproj">
+      <Project>{701e45a4-bbe9-4196-b67e-766b4cf487a1}</Project>
+      <Name>DataService</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

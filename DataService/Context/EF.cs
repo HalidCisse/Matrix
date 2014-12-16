@@ -20,7 +20,7 @@ namespace DataService.Context
         /// <summary>
         /// Context
         /// </summary>
-        public Ef ( ) : base ("name=EF")
+        public Ef ( ) : base ("name=conString")
         {
             //Database.CreateIfNotExists();
             //Database.SetInitializer (new DropCreateDatabaseIfModelChanges<EF> ());
@@ -44,7 +44,6 @@ namespace DataService.Context
         /// <summary>
         /// Informations Ecoles
         /// </summary>
-        //todo: Deprecate Etablissement et Salle en faveur de Setting
         //public virtual DbSet<Etablissement> Etablissement { get; set; }
 
         /// <summary>
@@ -57,6 +56,12 @@ namespace DataService.Context
         /// </summary>
         public virtual DbSet<UserSetting> UserSetting { get; set; }
 
+        /// <summary>
+        /// Les Parametres System
+        /// </summary>
+        public virtual DbSet<MatrixSetting> MatrixSetting { get; set; }
+
+        
 
 
         #endregion

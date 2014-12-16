@@ -143,12 +143,12 @@ namespace Matrix.views.Pedagogy
 
 
         #endregion
-        [STAThread]
+       
         private void ListSelector_OnSelectionChanged(object sender, EventArgs e)
         {
             var currentAnneeScolaire = sender as string;
 
-            App.DataS.Settings.SetSetting(MatrixConstants.SystemGuid(), Settings.CurrentAnneeScolaire, currentAnneeScolaire);
+            //App.DataS.Settings.SetSetting(MatrixConstants.SystemGuid(), Settings.CurrentAnneeScolaire, currentAnneeScolaire);
 
            
 
