@@ -16,25 +16,30 @@ namespace DataService.DataManager
         /// </summary>
         public ClassesManager Classes = new ClassesManager();
 
+
         /// <summary>
         /// Gestion des Filieres
         /// </summary>
         public FilieresManager Filieres = new FilieresManager();
+
 
         /// <summary>
         /// Gestion des Matieres
         /// </summary>
         public MatieresManager Matieres = new MatieresManager();
 
+
         /// <summary>
         /// Gestion Des Cours
         /// </summary>
         public CoursManager Cours = new CoursManager();
 
+
         /// <summary>
         /// Gestion Des Inscription
         /// </summary>
         public InscriptionsManager Inscriptions = new InscriptionsManager();
+
 
         /// <summary>
         /// Ajouter Une Nouvelle Annee Scolaire, Return True if Successful
@@ -50,6 +55,7 @@ namespace DataService.DataManager
             }
         }
 
+
         /// <summary>
         /// Ajouter Nouvelle Periode Pour Une Annee Scolaire, Return True if Successful
         /// </summary>
@@ -64,6 +70,7 @@ namespace DataService.DataManager
             }
         }
 
+
         /// <summary>
         /// Renvoi la List de Tous les Annee Scolaires
         /// </summary>
@@ -77,5 +84,14 @@ namespace DataService.DataManager
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public Guid CurrentAnneeScolaireGuid()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

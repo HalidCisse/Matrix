@@ -68,7 +68,7 @@
                         Margin="7"
                         TextOptions.TextRenderingMode="ClearType"
                         TextOptions.TextFormattingMode="Display">
-                        <Border x:Name="PART_Border" Width="Auto" Height="Auto" Effect="{StaticResource Z-Depth5}" Background="{StaticResource WindowBackGroundColor}" BorderBrush="{StaticResource WindowBorderBrush}" BorderThickness="0" Padding="0">
+                        <Border x:Name="PART_Border" Width="Auto" Height="Auto" Background="{StaticResource WindowBackGroundColor}" BorderBrush="{StaticResource WindowBorderBrush}" BorderThickness="0" Padding="0">
                             <!--<Border.Effect>
                                 <DropShadowEffect
                                     Color="black"

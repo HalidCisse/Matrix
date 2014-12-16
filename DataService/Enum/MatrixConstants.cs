@@ -15,7 +15,10 @@ namespace DataService.Enum
         /// 
         /// </summary>
         /// <returns></returns>
-        public static Guid SystemGuid() => new Guid("00000000-0000-0000-0000-000000000000");
+        public static Guid SystemGuid() => new Guid("351EABA6 - 133D - 4565 - BA6D - 8FF536103E8B");
+
+
+
 
 
 

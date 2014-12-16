@@ -22,7 +22,9 @@ namespace DataService.Entities.Security
         /// <summary>
         /// Admin, Staff, Student
         /// </summary>
-        public string UserType { get; set; }
+        public UserSpace UserSpace { get; set; }
+
+
 
     }
 }

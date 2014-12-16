@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using DataService.Entities;
 using DataService.Entities.Pedagogy;
 using FirstFloor.ModernUI.Windows.Controls;
 
@@ -16,8 +15,7 @@ namespace Matrix.views.Pedagogy
     {
         private readonly string _openOption;
         private readonly Classe _classDisplayed;
-        //private readonly string FiliereDisplayed;
-
+        
         /// <summary>
         /// 
         /// </summary>

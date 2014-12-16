@@ -46,7 +46,7 @@ namespace DataService.DataManager
         /// Ajouter Un Paramettre Pour Un Utilisateur
         /// </summary>       
         /// <returns></returns>
-        public bool AddSetting(Setting newSetting)
+        public bool AddSetting(UserSetting newUserSetting)
         {
             using (var db = new Ef())
             {

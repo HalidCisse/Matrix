@@ -6,7 +6,7 @@ namespace DataService.Entities
     /// <summary>
     /// Parametres
     /// </summary>
-    public class Setting
+    public class UserSetting
     {
         /// <summary>
         /// ID de L'Utilisateur

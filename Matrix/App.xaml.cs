@@ -14,17 +14,29 @@ namespace Matrix
     /// </summary>
     public partial class App 
     {
-        
-        /// <summary>
-        /// l'utilisateur Actuelle
-        /// </summary>
-        static public string CurrentUser;
 
-        /// <summary>
-        /// Annee Scolaire Actuelle
-        /// </summary>
-        static public string CurrentAnneeScolaire;
 
+        App()
+        {
+            if (_enforcer.ShouldApplicationExit()) Shutdown();
+
+            try
+            {
+                new Thread(() => DataS = new DbService()) { Priority = ThreadPriority.Highest }.Start();
+                new Thread(() => ModelS = new ModelService()) { Priority = ThreadPriority.Highest }.Start();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                Current.Shutdown();
+            }
+
+        }
+
+
+
+        #region DATA SERVICES
+       
         /// <summary>
         /// Serveur de Donnees
         /// </summary>
@@ -35,37 +47,13 @@ namespace Matrix
         /// </summary>
         public static ModelService ModelS { get; private set; }
 
-        /// <summary>
-        /// Verifier Q'une Seule Instance est Lancee
-        /// </summary>
-        readonly SingletonApplication.SingletonApplicationEnforcer _enforcer = new SingletonApplication.SingletonApplicationEnforcer(DisplayArgs);
 
-        App()
-        {
-
-            if (_enforcer.ShouldApplicationExit())
-            {
-                //MessageBox.Show("Unable to start application. An instance of this application is already running.");
-                Shutdown();
-            }
-
-            try
-            {
-                new Thread(() => DataS = new DbService()) { Name = "DataThread", Priority = ThreadPriority.Highest }.Start();
-                new Thread(() => ModelS = new ModelService()) { Name = "DataModelThread", Priority = ThreadPriority.Highest }.Start();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                Current.Shutdown();
-            }
-       
-        }
-
-        
+        #endregion
 
 
-        #region StartUp Events
+
+
+        #region START UP EVENTS
 
         /// <summary>
         /// OnStartup
@@ -88,7 +76,12 @@ namespace Matrix
 
 
 
-        #region ISingleInstanceApp Members
+        #region SINGLE INSTANCE MEMBERS
+
+        /// <summary>
+        /// Verifier Q'une Seule Instance est Lancee
+        /// </summary>
+        readonly SingletonApplication.SingletonApplicationEnforcer _enforcer = new SingletonApplication.SingletonApplicationEnforcer(DisplayArgs);
 
         /// <summary>
         /// 
@@ -109,14 +102,12 @@ namespace Matrix
         }
 
         private static void ShowArgs()
-        {
-            // Bring window to foreground
+        {            
             var mainWindow = Current.MainWindow as MainWindow;
             if (mainWindow?.WindowState == WindowState.Minimized)
             {
                 mainWindow.WindowState = WindowState.Normal;
             }
-
             mainWindow?.Activate();
         }
 

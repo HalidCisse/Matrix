@@ -1,5 +1,6 @@
 ﻿
 using DataService.DataManager;
+using DataService.Entities.Security;
 
 namespace DataService
 {
@@ -29,11 +30,21 @@ namespace DataService
         /// </summary>
         public HrManager Hr = new HrManager();
 
+        ///// <summary>
+        ///// Gestion Des Parametres
+        ///// </summary>
+        //public SettingsManager Settings = new SettingsManager();
+
+
+
         /// <summary>
-        /// Gestion Des Parametres
+        /// l'Utilisateur Actuelle
         /// </summary>
-        public SettingsManager Settings = new SettingsManager();
- 
+        public CurrentUser CurrentUser = new CurrentUser();
+
+
+
+
     }
 }
 

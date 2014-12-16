@@ -55,7 +55,7 @@ namespace DataService.Context
         /// <summary>
         /// Les Parametres
         /// </summary>
-        public virtual DbSet<Setting> Setting { get; set; }
+        public virtual DbSet<UserSetting> UserSetting { get; set; }
 
 
 
@@ -72,7 +72,7 @@ namespace DataService.Context
         /// <summary>
         /// Role D'Utilisateurs
         /// </summary>
-        public virtual DbSet<UserRole> UserRole { get; set; }
+        public virtual DbSet<UserRoles> UserRole { get; set; }
 
 
         #endregion

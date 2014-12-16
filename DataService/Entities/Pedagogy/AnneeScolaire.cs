@@ -8,6 +8,15 @@ namespace DataService.Entities.Pedagogy
     /// </summary>
     public class AnneeScolaire
     {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public AnneeScolaire()
+        {
+            DateCreated = DateTime.UtcNow;
+        }
+
         /// <summary>
         /// ID
         /// </summary>
@@ -43,6 +52,11 @@ namespace DataService.Entities.Pedagogy
         /// Description
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Date de Creation
+        /// </summary>
+        public DateTime? DateCreated { get; }
 
     }
 

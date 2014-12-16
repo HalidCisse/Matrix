@@ -110,7 +110,7 @@ namespace DataService.Entities
         /// <summary>
         /// 
         /// </summary>
-        public DateTime? RegistrationDate { get; set; }
+        public DateTime? RegistrationDate { get; }
 
         /// <summary>
         /// 

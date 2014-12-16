@@ -1,13 +1,10 @@
 ﻿<Window x:Class="Matrix.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:extention="clr-namespace:Matrix.Extention"
         xmlns:control="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:mui="http://firstfloorsoftware.com/ModernUI"
-        xmlns:controls="clr-namespace:Matrix.Controls"
-
         Height="660" Width="1100" MinHeight="550" MinWidth="850" WindowStartupLocation="CenterScreen" 
-        Background="Beige" Icon="/Images/mainicon.png" Style="{DynamicResource WindowStyle}">
+        Background="Beige" Icon="/Images/mainicon.png" Style="{DynamicResource WindowStyle}" Effect="{StaticResource Z-Depth3}">
            
     <Window.Resources>
 
@@ -32,12 +29,12 @@
             </Frame>
         </DockPanel>
 
-        <control:Flyout Name="MyFlyout" IsOpen="False" Header="Parametres" Theme="Light" IsPinned="False" Visibility="Collapsed" Position="Right" Width="700">
+        <control:Flyout Name="MyFlyout" IsOpen="False" Header="Parametres" Background="#F2F2EA" Visibility="Collapsed" Position="Right" Width="700" LostFocus="MyFlyout_OnLostFocus">
             <Grid>
                                              
-                <TabControl Margin="10" BorderThickness="0" Background="White">
+                <TabControl Name="MyTabControl" Margin="20,0,0,0" BorderThickness="0,0,01,01" BorderBrush="Blue" Background="Transparent" IsVisibleChanged="MyTabControl_OnIsVisibleChanged" LostFocus="MyTabControl_OnLostFocus">
                                        
-                    <TabItem Header="General">
+                    <TabItem Header="   General   ">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
@@ -49,13 +46,13 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <TextBlock Text="Annee Scolaire Actuelle" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                                <ComboBox Name="AnneeScolaireBox" Width="200" DisplayMemberPath="Name" SelectedIndex="0" SelectedValuePath="AnneeScolaireId" HorizontalAlignment="Left" />
+                                <ComboBox Name="AnneeScolaireBox" Width="200" DisplayMemberPath="Name" SelectedIndex="0" SelectedValuePath="AnneeScolaireId" HorizontalAlignment="Left" SelectionChanged="AnneeScolaireBox_OnSelectionChanged" Loaded="AnneeScolaireBox_OnLoaded" />
                             </StackPanel>
                         </Grid>
                     </TabItem>
                                         
-                    <TabItem Header="Security" />
-                    <TabItem Header="Advanced" />
+                    <TabItem Header="   Security   " />
+                    <TabItem Header="   Advanced   " />
 
                     <TabControl.Resources>
                         <ResourceDictionary>
