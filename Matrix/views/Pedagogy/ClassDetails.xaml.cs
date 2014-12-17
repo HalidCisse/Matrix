@@ -23,17 +23,17 @@ namespace Matrix.views.Pedagogy
         /// <summary>
         /// Affiche l'emploi du temps , les matieres et les Etudiant pour une classe 
         /// </summary>
-        /// <param name="openClassId"> ID De la Classe</param>
-        public ClassDetails(Guid openClassId)
+        /// <param name="openClassGuid"> ID De la Classe</param>
+        public ClassDetails(Guid openClassGuid)
         {
             InitializeComponent();
 
-            _openedClass.ClasseId = openClassId;
+            _openedClass.ClasseGuid = openClassGuid;
 
             new Task(() =>
             {
-                _openedClass = App.DataS.Pedagogy.Classes.GetClasseById(openClassId);
-                Dispatcher.BeginInvoke(new Action(() => { ClassFiliere.Text = App.DataS.Pedagogy.Filieres.GetFiliereById(_openedClass.FiliereId).Name.ToUpper(); }));
+                _openedClass = App.DataS.Pedagogy.Classes.GetClasseById(openClassGuid);
+                Dispatcher.BeginInvoke(new Action(() => { ClassFiliere.Text = App.DataS.Pedagogy.Filieres.GetFiliereById(_openedClass.FiliereGuid).Name.ToUpper(); }));
                 Dispatcher.BeginInvoke(new Action(() => { ClassName.Text = _openedClass.Name.ToUpper(); }));
             }).Start();
 
@@ -44,9 +44,9 @@ namespace Matrix.views.Pedagogy
             new Task(() =>
             {
                 Dispatcher.BeginInvoke(new Action(() => { AnneeScolaireSelector.DataDictionary = App.DataS.Pedagogy.GetAllAnneeScolaires(); }));
-                Dispatcher.BeginInvoke(new Action(() => { ClassWeekSchedule.UpdateData(_openedClass.ClasseId); }));
-                Dispatcher.BeginInvoke(new Action(() => { MatieresList.ItemsSource = App.ModelS.GetClassMatieresCards(_openedClass.ClasseId); }));
-                Dispatcher.BeginInvoke(new Action(() => { StudentsList.ItemsSource = App.DataS.Pedagogy.Classes.GetClassStudents(_openedClass.ClasseId); }));
+                Dispatcher.BeginInvoke(new Action(() => { ClassWeekSchedule.UpdateData(_openedClass.ClasseGuid); }));
+                Dispatcher.BeginInvoke(new Action(() => { MatieresList.ItemsSource = App.ModelS.GetClassMatieresCards(_openedClass.ClasseGuid); }));
+                Dispatcher.BeginInvoke(new Action(() => { StudentsList.ItemsSource = App.DataS.Pedagogy.Classes.GetClassStudents(_openedClass.ClasseGuid); }));
 
             }).Start();
 
@@ -75,21 +75,21 @@ namespace Matrix.views.Pedagogy
 
         private void AddCours_Click(object sender, RoutedEventArgs e)
         {
-            var wind = new AddCours(_openedClass.ClasseId) { Owner = Window.GetWindow(this) };
+            var wind = new AddCours(_openedClass.ClasseGuid) { Owner = Window.GetWindow(this) };
             wind.ShowDialog();
             UpdateData();
         }
 
         private void AddMatiere_Click(object sender, RoutedEventArgs e)
         {
-            var wind = new AddMatiere(_openedClass.ClasseId) { Owner = Window.GetWindow(this) };
+            var wind = new AddMatiere(_openedClass.ClasseGuid) { Owner = Window.GetWindow(this) };
             wind.ShowDialog();
             UpdateData();
         }
 
         private void AddInscription_Click(object sender, RoutedEventArgs e)
         {
-            var wind = new AddInscription(_openedClass.ClasseId.ToString()) { Owner = Window.GetWindow(this) };
+            var wind = new AddInscription(_openedClass.ClasseGuid.ToString()) { Owner = Window.GetWindow(this) };
             wind.ShowDialog();
             UpdateData();
         }
@@ -130,7 +130,7 @@ namespace Matrix.views.Pedagogy
             if (matieres?.SelectedValue == null) return;
             var matiereToDisplay = App.DataS.Pedagogy.Matieres.GetMatiereById(new Guid(matieres.SelectedValue.ToString()));
 
-            var wind = new AddMatiere(_openedClass.ClasseId, matiereToDisplay) { Owner = Window.GetWindow(this) };
+            var wind = new AddMatiere(_openedClass.ClasseGuid, matiereToDisplay) { Owner = Window.GetWindow(this) };
             wind.ShowDialog();
             UpdateData();
         }

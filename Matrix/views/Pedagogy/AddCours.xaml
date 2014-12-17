@@ -61,12 +61,12 @@
 
         <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
             <TextBlock Text="MATIERE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="MatiereId" DisplayMemberPath="Name" SelectedIndex="0" SelectedValuePath="MatiereId" HorizontalAlignment="Left" />
+            <ComboBox Name="MatiereId" DisplayMemberPath="Name" SelectedIndex="0" SelectedValuePath="MatiereGuid" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="INSTRUCTEUR" Name="Instructeur" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="StaffId" SelectedIndex="0" DisplayMemberPath="FullName" SelectedValuePath="StaffId" HorizontalAlignment="Left" />
+            <ComboBox Name="StaffId" SelectedIndex="0" DisplayMemberPath="FullName" SelectedValuePath="StaffGuid" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">

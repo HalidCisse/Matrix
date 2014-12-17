@@ -120,7 +120,7 @@ namespace DataService.DataManager
         {
             using (var db = new Ef())
             {
-                return db.Classe.Count(c => c.FiliereId == filiereId);
+                return db.Classe.Count(c => c.FiliereGuid == filiereId);
             }
         }
 

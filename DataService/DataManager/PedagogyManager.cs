@@ -62,7 +62,7 @@ namespace DataService.DataManager
         /// <param name="newPeriodeScolaire"> Object PeriodeScolaire</param>
         public bool AddPeriodeScolaire(PeriodeScolaire newPeriodeScolaire)
         {
-            newPeriodeScolaire.PeriodeScolaireId = Guid.NewGuid();
+            newPeriodeScolaire.PeriodeScolaireGuid = Guid.NewGuid();
             using (var db = new Ef())
             {
                 db.PeriodeScolaire.Add(newPeriodeScolaire);
@@ -79,7 +79,7 @@ namespace DataService.DataManager
         {
             using (var db = new Ef())
             {                
-                return db.AnneeScolaire.ToDictionary(a => a.Name, a => a.AnneeScolaireId.ToString());
+                return db.AnneeScolaire.ToDictionary(a => a.Name, a => a.AnneeScolaireGuid.ToString());
             }
         }
 

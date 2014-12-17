@@ -1,16 +1,28 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DataService.Entities.Pedagogy
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ClasseStudents
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
         [Key]
-        public string ClasseStudentsId { get; set; }
+        public Guid ClasseStudentsGuid { get; set; }
 
-        public string ClasseId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Guid ClasseGuid { get; set; }
 
-        public string StudentId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Guid StudentGuid { get; set; }
 
     }
 }

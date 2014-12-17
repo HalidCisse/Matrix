@@ -14,13 +14,19 @@ namespace DataService.Entities
         /// </summary>
         public Staff ()
         {
-            RegistrationDate = DateTime.Now.Date;
+            RegistrationDate = DateTime.Now;
+            StaffGuid = Guid.NewGuid();
         }
-
+       
         /// <summary>
         /// 
         /// </summary>
         [Key]
+        public Guid StaffGuid { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string StaffId { get; set; }
 
         /// <summary>
@@ -110,7 +116,7 @@ namespace DataService.Entities
         /// <summary>
         /// 
         /// </summary>
-        public DateTime? RegistrationDate { get; }
+        public DateTime? RegistrationDate { get; set; }
 
         /// <summary>
         /// 

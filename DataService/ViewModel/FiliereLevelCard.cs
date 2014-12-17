@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using DataService.Context;
 
 namespace DataService.ViewModel
@@ -12,16 +10,27 @@ namespace DataService.ViewModel
     public class FiliereLevelCard
     {
 
-        public FiliereLevelCard ( Guid filiereId, int filiereYear )
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filiereGuid"></param>
+        /// <param name="filiereYear"></param>
+        public FiliereLevelCard ( Guid filiereGuid, int filiereYear )
         {
-            FiliereId = filiereId;
+            FiliereGuid = filiereGuid;
             FormatYear(filiereYear);      
             //MATIERES_LIST = new List<MatiereCard> ();
             //GetMATIERES_LIST (FiliereYear);           
         }
 
-        public Guid FiliereId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Guid FiliereGuid { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string FiliereYear { get; set; }
 
        // public List<MatiereCard> MATIERES_LIST { get; set; }

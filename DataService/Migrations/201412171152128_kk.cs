@@ -11,7 +11,7 @@ namespace DataService.Migrations
                 "dbo.AnneeScolaires",
                 c => new
                     {
-                        AnneeScolaireId = c.Guid(nullable: false),
+                        AnneeScolaireGuid = c.Guid(nullable: false),
                         Name = c.String(),
                         DateDebut = c.DateTime(),
                         DateFin = c.DateTime(),
@@ -19,50 +19,50 @@ namespace DataService.Migrations
                         DateFinInscription = c.DateTime(),
                         Description = c.String(),
                     })
-                .PrimaryKey(t => t.AnneeScolaireId);
+                .PrimaryKey(t => t.AnneeScolaireGuid);
             
             CreateTable(
                 "dbo.Classes",
                 c => new
                     {
-                        ClasseId = c.Guid(nullable: false),
+                        ClasseGuid = c.Guid(nullable: false),
                         Name = c.String(),
-                        FiliereId = c.Guid(nullable: false),
+                        FiliereGuid = c.Guid(nullable: false),
+                        AnneeScolaireGuid = c.Guid(nullable: false),
                         Level = c.Int(nullable: false),
                         Description = c.String(),
-                        AnneeScolaireId = c.Guid(nullable: false),
                     })
-                .PrimaryKey(t => t.ClasseId);
+                .PrimaryKey(t => t.ClasseGuid);
             
             CreateTable(
                 "dbo.ClasseStudents",
                 c => new
                     {
-                        ClasseStudentsId = c.String(nullable: false, maxLength: 128),
-                        ClasseId = c.String(),
-                        StudentId = c.String(),
+                        ClasseStudentsGuid = c.Guid(nullable: false),
+                        ClasseGuid = c.Guid(nullable: false),
+                        StudentGuid = c.Guid(nullable: false),
                     })
-                .PrimaryKey(t => t.ClasseStudentsId);
+                .PrimaryKey(t => t.ClasseStudentsGuid);
             
             CreateTable(
                 "dbo.ControlNotes",
                 c => new
                     {
-                        ControlnoteId = c.String(nullable: false, maxLength: 128),
-                        MatierecontrolId = c.String(),
-                        StudentId = c.String(),
+                        ControlNoteGuid = c.Guid(nullable: false),
+                        MatiereControlGuid = c.Guid(nullable: false),
+                        StudentGuid = c.Guid(nullable: false),
                         Note = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.ControlnoteId);
+                .PrimaryKey(t => t.ControlNoteGuid);
             
             CreateTable(
                 "dbo.Cours",
                 c => new
                     {
-                        CoursId = c.Guid(nullable: false),
-                        ClasseId = c.Guid(nullable: false),
-                        StaffId = c.String(),
-                        MatiereId = c.Guid(nullable: false),
+                        CoursGuid = c.Guid(nullable: false),
+                        ClasseGuid = c.Guid(nullable: false),
+                        StaffGuid = c.Guid(nullable: false),
+                        MatiereGuid = c.Guid(nullable: false),
                         Salle = c.String(),
                         RecurrenceDays = c.String(),
                         StartTime = c.DateTime(),
@@ -70,69 +70,70 @@ namespace DataService.Migrations
                         StartDate = c.DateTime(),
                         EndDate = c.DateTime(),
                         Type = c.String(),
-                        PeriodeScolaireId = c.Guid(nullable: false),
+                        PeriodeScolaireGuid = c.Guid(nullable: false),
                         Description = c.String(),
                     })
-                .PrimaryKey(t => t.CoursId);
+                .PrimaryKey(t => t.CoursGuid);
             
             CreateTable(
                 "dbo.Filieres",
                 c => new
                     {
-                        FiliereId = c.Guid(nullable: false),
+                        FiliereGuid = c.Guid(nullable: false),
                         Name = c.String(),
                         Niveau = c.String(),
                         NiveauEntree = c.String(),
                         NAnnee = c.Int(nullable: false),
                         Description = c.String(),
                     })
-                .PrimaryKey(t => t.FiliereId);
+                .PrimaryKey(t => t.FiliereGuid);
             
             CreateTable(
                 "dbo.Inscriptions",
                 c => new
                     {
-                        InscriptionId = c.Guid(nullable: false),
-                        StudentId = c.String(),
-                        ClasseId = c.Guid(nullable: false),
-                        AnneeScolaireId = c.Guid(nullable: false),
+                        InscriptionGuid = c.Guid(nullable: false),
+                        StudentGuid = c.Guid(nullable: false),
+                        ClasseGuid = c.Guid(nullable: false),
+                        AnneeScolaireGuid = c.Guid(nullable: false),
                     })
-                .PrimaryKey(t => t.InscriptionId);
+                .PrimaryKey(t => t.InscriptionGuid);
             
             CreateTable(
                 "dbo.InscriptionRules",
                 c => new
                     {
-                        InscriptionRuleId = c.Guid(nullable: false),
-                        ClasseId = c.Guid(nullable: false),
-                        QualificationId = c.Guid(nullable: false),
+                        InscriptionRuleGuid = c.Guid(nullable: false),
+                        ClasseGuid = c.Guid(nullable: false),
+                        QualificationGuid = c.Guid(nullable: false),
                     })
-                .PrimaryKey(t => t.InscriptionRuleId);
+                .PrimaryKey(t => t.InscriptionRuleGuid);
             
             CreateTable(
                 "dbo.Matieres",
                 c => new
                     {
-                        MatiereId = c.Guid(nullable: false),
+                        MatiereGuid = c.Guid(nullable: false),
                         Name = c.String(),
                         Sigle = c.String(),
-                        ClasseId = c.Guid(nullable: false),
+                        ClasseGuid = c.Guid(nullable: false),
+                        MassHoraire = c.DateTime(),
                         Coefficient = c.Int(nullable: false),
                         Couleur = c.String(),
                         Description = c.String(),
                     })
-                .PrimaryKey(t => t.MatiereId);
+                .PrimaryKey(t => t.MatiereGuid);
             
             CreateTable(
                 "dbo.MatiereControls",
                 c => new
                     {
-                        MatierecontrolId = c.String(nullable: false, maxLength: 128),
-                        CoursId = c.String(),
+                        MatierecontrolGuid = c.String(nullable: false, maxLength: 128),
+                        CoursGuid = c.String(),
                         StartTime = c.DateTime(),
-                        Duration = c.Int(nullable: false),
+                        Duration = c.DateTime(),
                     })
-                .PrimaryKey(t => t.MatierecontrolId);
+                .PrimaryKey(t => t.MatierecontrolGuid);
             
             CreateTable(
                 "dbo.MatiereInstructeurs",
@@ -148,46 +149,50 @@ namespace DataService.Migrations
                 "dbo.MatrixSettings",
                 c => new
                     {
-                        SysId = c.Guid(nullable: false),
+                        SysGuid = c.Guid(nullable: false),
                         CurrentAnneeScolaireGuid = c.Guid(nullable: false),
                         CurrentPeriodeScolaireGuid = c.Guid(nullable: false),
                         EtablissementName = c.String(),
                         EtablissementTel = c.String(),
                         EtablissementFax = c.String(),
                         EtablissementLogo = c.Binary(),
+                        EtablissementCountry = c.String(),
+                        EtablissementCity = c.String(),
+                        EtablissementAdress = c.String(),
                     })
-                .PrimaryKey(t => t.SysId);
+                .PrimaryKey(t => t.SysGuid);
             
             CreateTable(
                 "dbo.PeriodeScolaires",
                 c => new
                     {
-                        PeriodeScolaireId = c.Guid(nullable: false),
+                        PeriodeScolaireGuid = c.Guid(nullable: false),
                         Name = c.String(),
-                        AnneeScolaireId = c.Guid(nullable: false),
+                        AnneeScolaireGuid = c.Guid(nullable: false),
                         StartDate = c.DateTime(),
                         EndDate = c.DateTime(),
                     })
-                .PrimaryKey(t => t.PeriodeScolaireId);
+                .PrimaryKey(t => t.PeriodeScolaireGuid);
             
             CreateTable(
                 "dbo.Qualifications",
                 c => new
                     {
-                        QualificationId = c.Guid(nullable: false),
+                        QualificationGuid = c.Guid(nullable: false),
                         Niveau = c.String(),
-                        FiliereId = c.Guid(nullable: false),
+                        FiliereGuid = c.Guid(nullable: false),
                         Etablissement = c.String(),
                         BacPlus = c.Int(nullable: false),
                         Description = c.String(),
                     })
-                .PrimaryKey(t => t.QualificationId);
+                .PrimaryKey(t => t.QualificationGuid);
             
             CreateTable(
                 "dbo.Staffs",
                 c => new
                     {
-                        StaffId = c.String(nullable: false, maxLength: 128),
+                        StaffGuid = c.Guid(nullable: false),
+                        StaffId = c.String(),
                         Position = c.String(),
                         Departement = c.String(),
                         Qualification = c.String(),
@@ -204,16 +209,18 @@ namespace DataService.Migrations
                         PhoneNumber = c.String(),
                         EmailAdress = c.String(),
                         HomeAdress = c.String(),
+                        RegistrationDate = c.DateTime(),
                     })
-                .PrimaryKey(t => t.StaffId);
+                .PrimaryKey(t => t.StaffGuid);
             
             CreateTable(
                 "dbo.Students",
                 c => new
                     {
-                        StudentId = c.String(nullable: false, maxLength: 128),
+                        StudentGuid = c.Guid(nullable: false),
+                        StudentId = c.String(),
                         Title = c.String(),
-                        FirstName = c.String(),
+                        FirstName = c.String(maxLength: 20),
                         LastName = c.String(),
                         PhotoIdentity = c.Binary(),
                         Nationality = c.String(),
@@ -226,44 +233,47 @@ namespace DataService.Migrations
                         Statut = c.String(),
                         RegistrationDate = c.DateTime(),
                     })
-                .PrimaryKey(t => t.StudentId);
+                .PrimaryKey(t => t.StudentGuid);
             
             CreateTable(
                 "dbo.StudentQualifications",
                 c => new
                     {
-                        StudentQualificationId = c.Guid(nullable: false),
-                        StudentId = c.String(),
-                        QualificationId = c.Guid(nullable: false),
+                        StudentQualificationGuid = c.Guid(nullable: false),
+                        StudentGuid = c.Guid(nullable: false),
+                        QualificationGuid = c.Guid(nullable: false),
                     })
-                .PrimaryKey(t => t.StudentQualificationId);
+                .PrimaryKey(t => t.StudentQualificationGuid);
             
             CreateTable(
                 "dbo.UserProfiles",
                 c => new
                     {
-                        UserProfileId = c.Guid(nullable: false),
+                        UserProfileGuid = c.Guid(nullable: false),
                         UserSpace = c.Int(nullable: false),
+                        UserName = c.String(),
+                        Password = c.String(),
+                        Statut = c.String(),
                     })
-                .PrimaryKey(t => t.UserProfileId);
+                .PrimaryKey(t => t.UserProfileGuid);
             
             CreateTable(
                 "dbo.UserRoles",
                 c => new
                     {
-                        UserProfileId = c.Guid(nullable: false),
+                        UserProfileGuid = c.Guid(nullable: false),
                         CanAddStudent = c.Boolean(nullable: false),
                         CanDeleteStudent = c.Boolean(nullable: false),
                     })
-                .PrimaryKey(t => t.UserProfileId);
+                .PrimaryKey(t => t.UserProfileGuid);
             
             CreateTable(
                 "dbo.UserSettings",
                 c => new
                     {
-                        UserProfileId = c.Guid(nullable: false),
+                        UserProfileGuid = c.Guid(nullable: false),
                     })
-                .PrimaryKey(t => t.UserProfileId);
+                .PrimaryKey(t => t.UserProfileGuid);
             
         }
         

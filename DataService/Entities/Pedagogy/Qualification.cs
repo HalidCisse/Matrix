@@ -14,7 +14,7 @@ namespace DataService.Entities.Pedagogy
         /// ID
         /// </summary>
         [Key]
-        public Guid QualificationId { get; set; }
+        public Guid QualificationGuid { get; set; }
 
         /// <summary>
         /// Ex : Engenieur
@@ -24,7 +24,7 @@ namespace DataService.Entities.Pedagogy
         /// <summary>
         /// La Filiere
         /// </summary>
-        public Guid FiliereId { get; set; } 
+        public Guid FiliereGuid { get; set; } 
 
         /// <summary>
         /// Etablissement

@@ -186,7 +186,7 @@
         <Setter Property="Height" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}, Path=ActualHeight }" />
         <Setter Property="Padding" Value="0,0,0,90" />
         <Setter Property="ItemsSource" Value="{Binding ClassList}" />
-        <Setter Property="SelectedValuePath" Value="ClassId" />
+        <Setter Property="SelectedValuePath" Value="ClassGuid" />
 
     </Style>
 

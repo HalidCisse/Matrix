@@ -14,7 +14,7 @@ namespace DataService.ViewModel
         /// <param name="clas">La classe</param>
         public ClassCard ( Classe clas )
         {
-            ClassId = clas.ClasseId;
+            ClassGuid = clas.ClasseGuid;
             Name = clas.Name;
             Level = clas.Level == 1 ? "1 ere Annee" : clas.Level + " eme Annee";
 
@@ -28,7 +28,7 @@ namespace DataService.ViewModel
         /// <summary>
         /// ID
         /// </summary>
-        public Guid ClassId { get; }
+        public Guid ClassGuid { get; }
          
         /// <summary>
         /// Nomination

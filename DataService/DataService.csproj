@@ -128,28 +128,20 @@
     <Compile Include="Enum\MatrixConstants.cs" />
     <Compile Include="Enum\MatrixSettings.cs" />
     <Compile Include="Enum\Settings.cs" />
-    <Compile Include="Migrations\201412170347111_kk.cs" />
-    <Compile Include="Migrations\201412170347111_kk.Designer.cs">
-      <DependentUpon>201412170347111_kk.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201412170356018_kk1.cs" />
-    <Compile Include="Migrations\201412170356018_kk1.Designer.cs">
-      <DependentUpon>201412170356018_kk1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201412170357188_kk2.cs" />
-    <Compile Include="Migrations\201412170357188_kk2.Designer.cs">
-      <DependentUpon>201412170357188_kk2.cs</DependentUpon>
+    <Compile Include="Migrations\201412171152128_kk.cs" />
+    <Compile Include="Migrations\201412171152128_kk.Designer.cs">
+      <DependentUpon>201412171152128_kk.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelService.cs" />
     <Compile Include="Entities\Pedagogy\Classe.cs" />
     <Compile Include="Entities\Pedagogy\Classe_Students.cs" />
     <Compile Include="Entities\Pedagogy\Cours.cs" />
     <Compile Include="Entities\Pedagogy\Filiere.cs" />
-    <Compile Include="Entities\Pedagogy\Filiere_Matieres.cs" />
+    <Compile Include="Entities\Depracated\Filiere_Matieres.cs" />
     <Compile Include="Entities\Human.cs" />
     <Compile Include="Entities\Pedagogy\Matiere.cs" />
     <Compile Include="Entities\Pedagogy\MatiereControl.cs" />
-    <Compile Include="Entities\Pedagogy\Matiere_Instructeurs.cs" />
+    <Compile Include="Entities\Depracated\Matiere_Instructeurs.cs" />
     <Compile Include="Entities\Pedagogy\ControlNote.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Staff.cs" />
@@ -213,14 +205,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201412170347111_kk.resx">
-      <DependentUpon>201412170347111_kk.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201412170356018_kk1.resx">
-      <DependentUpon>201412170356018_kk1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201412170357188_kk2.resx">
-      <DependentUpon>201412170357188_kk2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201412171152128_kk.resx">
+      <DependentUpon>201412171152128_kk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -20,13 +20,13 @@ namespace Matrix.views.Pedagogy
         /// <summary>
         /// Form pour ajouter un cours
         /// </summary>
-        /// <param name="currentClassId"></param>
+        /// <param name="currentClassGuid"></param>
         /// <param name="coursToOpen"></param>
-        public AddCours (Guid currentClassId, Cours coursToOpen = null )
+        public AddCours (Guid currentClassGuid, Cours coursToOpen = null )
         {
             InitializeComponent ();
 
-            _currentCours.ClasseId = currentClassId;
+            _currentCours.ClasseGuid = currentClassGuid;
 
             if (coursToOpen == null) _isAdd = true;           
             else _currentCours = coursToOpen;
@@ -59,7 +59,7 @@ namespace Matrix.views.Pedagogy
 
         private void GetPatternData()
         {
-            MatiereId.ItemsSource = App.DataS.Pedagogy.Classes.GetClassMatieres(_currentCours.ClasseId);
+            MatiereId.ItemsSource = App.DataS.Pedagogy.Classes.GetClassMatieres(_currentCours.ClasseGuid);
 
             StaffId.ItemsSource = App.DataS.Hr.GetAllStaffs();
 
@@ -78,8 +78,8 @@ namespace Matrix.views.Pedagogy
 
             TitleText.Text = "MODIFICATION";
 
-            MatiereId.SelectedValue = _currentCours.MatiereId;
-            StaffId.SelectedValue = _currentCours.StaffId;
+            MatiereId.SelectedValue = _currentCours.MatiereGuid;
+            StaffId.SelectedValue = _currentCours.StaffGuid;
             SalleName.Text = _currentCours.Salle;
             Type.SelectedValue = _currentCours.Type;
             StartTime.Value = _currentCours.StartTime;
@@ -102,8 +102,8 @@ namespace Matrix.views.Pedagogy
         {
             if(ChampsValidated () != true) return;
            
-            _currentCours.MatiereId = new Guid(MatiereId.SelectedValue.ToString()) ;
-            _currentCours.StaffId = StaffId.SelectedValue.ToString();
+            _currentCours.MatiereGuid = new Guid(MatiereId.SelectedValue.ToString()) ;
+            _currentCours.StaffGuid = new Guid(StaffId.SelectedValue.ToString());
             _currentCours.Salle = SalleName.Text;
             _currentCours.Type = Type.SelectedValue.ToString();
             _currentCours.StartTime = DateTime.Parse(StartTime.Value.ToString());     
@@ -126,26 +126,28 @@ namespace Matrix.views.Pedagogy
             {
                 try
                 {
-                    App.DataS.Pedagogy.Cours.AddCours (_currentCours);
-                    ModernDialog.ShowMessage ("Success", "Matrix", MessageBoxButton.OK);
+                    App.DataS.Pedagogy.Cours.AddCours (_currentCours);                    
                 }
                 catch(Exception ex)
                 {
                     ModernDialog.ShowMessage (ex.Message, "Matrix", MessageBoxButton.OK);
+                    Close();
                 }
+                ModernDialog.ShowMessage("Success", "Matrix", MessageBoxButton.OK);
                 Close ();
             }
             else
             {
                 try
                 {
-                    App.DataS.Pedagogy.Cours.UpdateCours (_currentCours);
-                    ModernDialog.ShowMessage ("Success", "Matrix", MessageBoxButton.OK);
+                    App.DataS.Pedagogy.Cours.UpdateCours (_currentCours);                  
                 }
                 catch(Exception ex)
                 {
                     ModernDialog.ShowMessage (ex.Message, "Matrix", MessageBoxButton.OK);
+                    Close();
                 }
+                ModernDialog.ShowMessage("Success", "Matrix", MessageBoxButton.OK);
                 Close ();
             } 
         }

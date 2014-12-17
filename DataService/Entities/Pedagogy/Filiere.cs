@@ -3,11 +3,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DataService.Entities.Pedagogy
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Filiere
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Key]
-        public Guid FiliereId { get; set; }
+        public Guid FiliereGuid { get; set; }
+
         /// <summary>
         /// exp: Genie Informatique
         /// </summary>

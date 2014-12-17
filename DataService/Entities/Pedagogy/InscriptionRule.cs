@@ -12,17 +12,17 @@ namespace DataService.Entities.Pedagogy
         /// ID
         /// </summary>
         [Key]
-        public Guid InscriptionRuleId { get; set; }
+        public Guid InscriptionRuleGuid { get; set; }
 
         /// <summary>
         /// ID de la Classe
         /// </summary>
-        public Guid ClasseId { get; set; }
+        public Guid ClasseGuid { get; set; }
 
         /// <summary>
         /// ID de la Classe
         /// </summary>
-        public Guid QualificationId { get; set; }
+        public Guid QualificationGuid { get; set; }
         
 
     }

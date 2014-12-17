@@ -18,14 +18,14 @@ namespace DataService.ViewModel
         /// <param name="mat"></param>
         public MatiereCard ( Matiere mat )
         {
-            MatiereId = mat.MatiereId;
+            MatiereId = mat.MatiereGuid;
             Name = mat.Name;
             Coeff = mat.Coefficient;
             //COLOR = Mat.COULEUR;
 
             using (var db = new Ef())
             {
-                var sId = db.Cours.FirstOrDefault (c => c.MatiereId == mat.MatiereId)?.StaffId;
+                var sId = db.Cours.FirstOrDefault (c => c.MatiereGuid == mat.MatiereGuid)?.StaffGuid;
 
                 InstructeurName = db.Staff?.Find(sId)?.FullName; //--------
 
@@ -35,7 +35,7 @@ namespace DataService.ViewModel
                 var T = new TimeSpan(0,0,0);
                 var scheduleDate = DateTime.Today.Date;
 
-                foreach (var mc in db.Cours.Where(c => c.MatiereId == mat.MatiereId && c.StartDate <= scheduleDate && c.EndDate >= scheduleDate))
+                foreach (var mc in db.Cours.Where(c => c.MatiereGuid == mat.MatiereGuid && c.StartDate <= scheduleDate && c.EndDate >= scheduleDate))
                 {                             
                     var coursDuree = mc.EndTime.GetValueOrDefault().TimeOfDay - mc.StartTime.GetValueOrDefault().TimeOfDay;
 

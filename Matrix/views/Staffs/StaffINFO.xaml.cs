@@ -22,15 +22,17 @@ namespace Matrix.views.Staffs
         /// </summary>
         private readonly bool _isAdd;
 
+        private Guid _staffDisplayedGuid;
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="staffToDisplayId"></param>
-        public StaffInfo(string staffToDisplayId = null)
+        /// <param name="staffToDisplayGuid"></param>
+        public StaffInfo(string staffToDisplayGuid = null)
         {
             InitializeComponent();
 
-            if (string.IsNullOrEmpty(staffToDisplayId)) { _isAdd = true; }
+            if (string.IsNullOrEmpty(staffToDisplayGuid)) { _isAdd = true; }
 
             new Task(() =>
             {
@@ -39,7 +41,7 @@ namespace Matrix.views.Staffs
                     GetPatternData();
 
                     if (_isAdd) DisplayDefault();
-                    else DisplayStaff(App.DataS.Hr.GetStaffById(staffToDisplayId));
+                    else DisplayStaff(App.DataS.Hr.GetStaffByGuid(new Guid(staffToDisplayGuid)));
 
                 }));
             }).Start();
@@ -101,7 +103,7 @@ namespace Matrix.views.Staffs
         {
             if (staffToDisplay == null) return;
 
-
+            _staffDisplayedGuid = staffToDisplay.StaffGuid;
             StaffId.Text = staffToDisplay.StaffId;
             StaffId.IsEnabled = false;
             TITLE_.SelectedValue = staffToDisplay.Title;
@@ -176,6 +178,7 @@ namespace Matrix.views.Staffs
             {
                 try
                 {
+                    myStaff.StaffGuid = _staffDisplayedGuid;
                     App.DataS.Hr.UpdateStaff(myStaff);
                 }
                 catch (Exception ex)
@@ -195,7 +198,7 @@ namespace Matrix.views.Staffs
         {
             string idOut;
 
-            do idOut = "ST" + DateTime.Today.Year + "-" + GenId.GetId(3) + "-" + GenId.GetId(4); while (App.DataS.Hr.StaffExist(idOut));
+            do idOut = "ST" + DateTime.Today.Year + "-" + GenId.GetId(3) + "-" + GenId.GetId(4); while (App.DataS.Hr.StaffIdExist(idOut));
 
             return idOut;
         }

@@ -1,6 +1,5 @@
 ﻿using System;
 using DataService.Context;
-using DataService.Entities;
 using DataService.Entities.Pedagogy;
 
 namespace DataService.ViewModel
@@ -18,7 +17,7 @@ namespace DataService.ViewModel
         public CoursCard ( Cours currentCous, DateTime coursDay )
         {
             Type = currentCous.Type.ToUpper ();
-            CoursId = currentCous.CoursId;           
+            CoursId = currentCous.CoursGuid;           
             
             Salle = currentCous.Salle.ToUpper();
 
@@ -31,7 +30,7 @@ namespace DataService.ViewModel
 
             Horraire = StartTime.TimeOfDay.ToString("hh\\:mm") + " - " + EndTime.TimeOfDay.ToString("hh\\:mm");
 
-            ResolveData (coursDay, currentCous.MatiereId, currentCous.StaffId);
+            ResolveData (coursDay, currentCous.MatiereGuid, currentCous.StaffGuid);
             
         }
 
@@ -90,16 +89,16 @@ namespace DataService.ViewModel
         /// </summary>
         public DateTime EndTime { get; set; }
 
-        private void ResolveData (DateTime coursDay, Guid matiereId, string staffId )
+        private void ResolveData (DateTime coursDay, Guid matiereGuid, Guid staffGuid )
         {           
             using(var db = new Ef ())
             {
-                var m = db.Matiere.Find(matiereId);
+                var m = db.Matiere.Find(matiereGuid);
 
                 MatiereName = m.Name;
                 Couleur = m.Couleur;
 
-                StaffFullName = db.Staff.Find (staffId).FullName;
+                StaffFullName = db.Staff.Find (staffGuid).FullName;
             }
 
             if (coursDay < DateTime.Today)

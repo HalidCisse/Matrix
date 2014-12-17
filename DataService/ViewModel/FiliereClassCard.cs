@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataService.Context;
-using DataService.Entities;
 using DataService.Entities.Pedagogy;
 
 namespace DataService.ViewModel
@@ -13,7 +12,6 @@ namespace DataService.ViewModel
     /// </summary>
     public class FiliereClassCard
     {
-
         /// <summary>
         /// 
         /// </summary>
@@ -23,7 +21,7 @@ namespace DataService.ViewModel
             FiliereName = fil.Name.ToUpper();
 
             ClassList = new List<ClassCard> ();
-            GetCLASS_LIST (fil.FiliereId);           
+            GetCLASS_LIST (fil.FiliereGuid);           
         }
       
         /// <summary>
@@ -36,11 +34,11 @@ namespace DataService.ViewModel
         /// </summary>
         public List<ClassCard> ClassList { get; set; }      
 
-        private void GetCLASS_LIST ( Guid filiereId )
+        private void GetCLASS_LIST ( Guid filiereGuid )
         {
             using(var db = new Ef ())
             {
-                Parallel.ForEach(db.Classe.Where(c => c.FiliereId == filiereId), cl =>
+                Parallel.ForEach(db.Classe.Where(c => c.FiliereGuid == filiereGuid), cl =>
                 {
                     ClassList.Add(new ClassCard(cl));
                 });

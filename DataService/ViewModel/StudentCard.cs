@@ -16,7 +16,7 @@ namespace DataService.ViewModel
         /// </summary>
         public StudentCard( Student currentStudent, AnneeScolaire currentAnneeScolaire )
         {
-            StudentId = currentStudent.StudentId;
+            StudentGuid = currentStudent.StudentGuid;
             Title = currentStudent.Title;
             Firstname = currentStudent.FirstName;
             Lastname = currentStudent.LastName;
@@ -27,19 +27,19 @@ namespace DataService.ViewModel
 
             using (var db = new Ef())
             {                
-                var currentInscription = db.Inscription.First(i => i.AnneeScolaireId == currentAnneeScolaire.AnneeScolaireId);
+                var currentInscription = db.Inscription.First(i => i.AnneeScolaireGuid == currentAnneeScolaire.AnneeScolaireGuid);
 
                 if (currentInscription != null)
                 {
-                    var currentClasse = db.Classe.Find(currentInscription.ClasseId);
+                    var currentClasse = db.Classe.Find(currentInscription.ClasseGuid);
 
                     CurrentClasseLevel = currentClasse.Name;
-                    CurrentFiliere = db.Filiere.Find(currentClasse.FiliereId).Name;
+                    CurrentFiliere = db.Filiere.Find(currentClasse.FiliereGuid).Name;
                 }
                 else
                 {
-                    CurrentClasseLevel = "Nom Inscrit";
-                    CurrentFiliere = "Pas de Classe";
+                    CurrentClasseLevel = "Non Inscrit";
+                    CurrentFiliere = "Non Inscrit";
                 }                              
             }
         }
@@ -48,7 +48,7 @@ namespace DataService.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        public string StudentId { get; set; }
+        public Guid StudentGuid { get; set; }
 
         /// <summary>
         /// 

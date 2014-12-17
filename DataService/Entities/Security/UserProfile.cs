@@ -12,14 +12,27 @@ namespace DataService.Entities.Security
         /// ID du Profil
         /// </summary>
         [Key]
-        public Guid UserProfileId { get; set; }
+        public Guid UserProfileGuid { get; set; }
 
         /// <summary>
         /// Admin, Staff, Student
         /// </summary>
-        public int UserSpace { get; set; }
-        
+        public UserSpace UserSpace { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public string UserName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Password { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Statut { get; set; }
 
     }
 }

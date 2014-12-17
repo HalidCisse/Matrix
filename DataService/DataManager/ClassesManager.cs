@@ -131,7 +131,7 @@ namespace DataService.DataManager
         {
             using (var db = new Ef())
             {
-                return db.Matiere.Where(m => m.ClasseId == classeId).ToList();
+                return db.Matiere.Where(m => m.ClasseGuid == classeId).ToList();
             }
         }
 
@@ -146,9 +146,9 @@ namespace DataService.DataManager
 
             using (var db = new Ef())
             {
-                foreach (var st in db.Cours.Where(c => c.ClasseId == classId))
+                foreach (var st in db.Cours.Where(c => c.ClasseGuid == classId))
                 {
-                    staffs.Add(db.Staff.Find(st.StaffId));
+                    staffs.Add(db.Staff.Find(st.StaffGuid));
                 }
                 return staffs;
             }
@@ -165,9 +165,9 @@ namespace DataService.DataManager
 
             using (var db = new Ef())
             {
-                foreach (var st in db.Inscription.Where(c => c.ClasseId == classId))
+                foreach (var st in db.Inscription.Where(c => c.ClasseGuid == classId))
                 {
-                    students.Add(db.Student.Find(st.StudentId));
+                    students.Add(db.Student.Find(st.StudentGuid));
                 }
                 return students;
             }

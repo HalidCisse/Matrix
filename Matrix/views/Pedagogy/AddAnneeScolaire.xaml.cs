@@ -43,7 +43,7 @@ namespace Matrix.views.Pedagogy
 
             var newAnneeScolaire = new AnneeScolaire
             {
-                AnneeScolaireId = Guid.NewGuid(),
+                AnneeScolaireGuid = Guid.NewGuid(),
                 Name = AnneescolaireName.Text.Trim(),
                 DateDebut = DebutAns.SelectedDate,
                 DateFin = FinAns.SelectedDate,
@@ -53,7 +53,7 @@ namespace Matrix.views.Pedagogy
 
             try
             {
-                SavePeriodesScolaire(newAnneeScolaire.AnneeScolaireId);
+                SavePeriodesScolaire(newAnneeScolaire.AnneeScolaireGuid);
 
                 App.DataS.Pedagogy.AddAnneeScolaire(newAnneeScolaire);
                 ModernDialog.ShowMessage("Success", "Matrix", MessageBoxButton.OK);
@@ -69,7 +69,7 @@ namespace Matrix.views.Pedagogy
         {          
             foreach (var ps in _periodeList)
             {
-                ps.AnneeScolaireId = anneeScolaireId;
+                ps.AnneeScolaireGuid = anneeScolaireId;
                 App.DataS.Pedagogy.AddPeriodeScolaire(ps);
             }                  
         }
@@ -118,7 +118,7 @@ namespace Matrix.views.Pedagogy
             {
                 var newPeriodeSco = new PeriodeScolaire
                 {
-                    PeriodeScolaireId = Guid.NewGuid(),
+                    PeriodeScolaireGuid = Guid.NewGuid(),
                     Name = periodType + i,
                     StartDate = lastEndDate.AddDays(1),
                     EndDate = lastEndDate.AddDays(periodeLengh)

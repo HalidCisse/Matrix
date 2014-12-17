@@ -60,7 +60,7 @@ namespace Matrix.views.Pedagogy
            
             try
             {
-                App.DataS.Pedagogy.Classes.DeleteClasse (theClass.ClasseId);
+                App.DataS.Pedagogy.Classes.DeleteClasse (theClass.ClasseGuid);
             }
             catch(Exception ex)
             {
@@ -68,12 +68,12 @@ namespace Matrix.views.Pedagogy
                 return;
             }
                                   
-            if (App.DataS.Pedagogy.Filieres.GetFiliereClassCount(theClass.FiliereId) < 1){
-                if(MessageBox.Show ("Vouler Vous Supprimer " + App.DataS.Pedagogy.Filieres.GetFiliereById (theClass.FiliereId).Name + " definitivement ?")!= MessageBoxResult.Yes) return;
+            if (App.DataS.Pedagogy.Filieres.GetFiliereClassCount(theClass.FiliereGuid) < 1){
+                if(MessageBox.Show ("Vouler Vous Supprimer " + App.DataS.Pedagogy.Filieres.GetFiliereById (theClass.FiliereGuid).Name + " definitivement ?")!= MessageBoxResult.Yes) return;
 
                 try
                 {
-                    App.DataS.Pedagogy.Filieres.DeleteFiliere (theClass.FiliereId);
+                    App.DataS.Pedagogy.Filieres.DeleteFiliere (theClass.FiliereGuid);
                 }
                 catch (Exception ex)
                 {

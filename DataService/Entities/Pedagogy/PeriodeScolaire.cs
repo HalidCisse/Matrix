@@ -12,7 +12,7 @@ namespace DataService.Entities.Pedagogy
         /// ID
         /// </summary>
         [Key]
-        public Guid PeriodeScolaireId { get; set; }
+        public Guid PeriodeScolaireGuid { get; set; }
 
         /// <summary>
         /// Ex: 1 ere Trimestre 2013/2014
@@ -22,7 +22,7 @@ namespace DataService.Entities.Pedagogy
         /// <summary>
         /// ID de l'Annee Scolaire
         /// </summary>
-        public Guid AnneeScolaireId { get; set; }
+        public Guid AnneeScolaireGuid { get; set; }
 
         /// <summary>
         /// Date de Debut du Periode

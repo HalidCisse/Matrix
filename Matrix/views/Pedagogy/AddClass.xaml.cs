@@ -48,7 +48,7 @@ namespace Matrix.views.Pedagogy
         private void DisplayClass()
         {
             TitleText.Text = "MODIFICATION";
-            FiliereName.SelectedValue = _classDisplayed.ClasseId;
+            FiliereName.SelectedValue = _classDisplayed.ClasseGuid;
             Niveau.SelectedValue = _classDisplayed.Level;
             ClassName.Text = _classDisplayed.Name;
         }
@@ -60,7 +60,7 @@ namespace Matrix.views.Pedagogy
             var myClass = new Classe
             {
                 Name = ClassName.Text.Trim (),
-                FiliereId = App.DataS.Pedagogy.Filieres.GetFiliereByName(FiliereName.SelectedValue.ToString()).FiliereId,
+                FiliereGuid = App.DataS.Pedagogy.Filieres.GetFiliereByName(FiliereName.SelectedValue.ToString()).FiliereGuid,
                 Level = Convert.ToInt32 (Niveau.SelectedValue.ToString())              
             };
             
@@ -68,7 +68,7 @@ namespace Matrix.views.Pedagogy
             {
                 try
                 {
-                    myClass.ClasseId = Guid.NewGuid();
+                    myClass.ClasseGuid = Guid.NewGuid();
                     App.DataS.Pedagogy.Classes.AddClasse(myClass);
                     ModernDialog.ShowMessage("Add Success","Matrix",MessageBoxButton.OK);                    
                 }
@@ -81,7 +81,7 @@ namespace Matrix.views.Pedagogy
             {
                 try
                 {
-                    myClass.ClasseId = _classDisplayed.ClasseId;
+                    myClass.ClasseGuid = _classDisplayed.ClasseGuid;
                     App.DataS.Pedagogy.Classes.UpdateClasse(myClass);
                     ModernDialog.ShowMessage("Add Success","Matrix",MessageBoxButton.OK);
                 }
@@ -131,7 +131,7 @@ namespace Matrix.views.Pedagogy
         {
             if ( FiliereName.SelectedItem == null) return;
 
-            Niveau.ItemsSource = App.DataS.DataEnums.GetFILIERE_NIVEAUX (App.DataS.Pedagogy.Filieres.GetFiliereByName (FiliereName.SelectedItem.ToString ()).FiliereId);
+            Niveau.ItemsSource = App.DataS.DataEnums.GetFILIERE_NIVEAUX (App.DataS.Pedagogy.Filieres.GetFiliereByName (FiliereName.SelectedItem.ToString ()).FiliereGuid);
             Niveau.SelectedIndex = 0;
         }
 

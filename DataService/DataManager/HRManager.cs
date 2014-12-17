@@ -1,4 +1,5 @@
-﻿using DataService.Context;
+﻿using System;
+using DataService.Context;
 using DataService.Entities;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,13 +44,13 @@ namespace DataService.DataManager
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="staffId"></param>
+        /// <param name="staffGuid"></param>
         /// <returns></returns>
-        public bool DeleteStaff(string staffId)
+        public bool DeleteStaff(Guid staffGuid)
         {
             using (var db = new Ef())
             {
-                db.Staff.Remove(db.Staff.Find(staffId));
+                db.Staff.Remove(db.Staff.Find(staffGuid));
                 return db.SaveChanges() > 0;
             }
         }
@@ -57,13 +58,13 @@ namespace DataService.DataManager
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="staffId"></param>
+        /// <param name="staffGuid"></param>
         /// <returns></returns>
-        public Staff GetStaffById(string staffId)
+        public Staff GetStaffByGuid(Guid staffGuid)
         {
             using (var db = new Ef())
             {          
-                return db.Staff.Find(staffId);
+                return db.Staff.Find(staffGuid);
             }
         }
 
@@ -98,12 +99,12 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<string> GetAllStaffsId()
+        public List<Guid> GetAllStaffsId()
         {
-            var ds = new List<string>();
+            List<Guid> ds = new List<Guid>();
             using (var db = new Ef())
             {
-                ds.AddRange(db.Staff.ToList().Select(s => s.StaffId));
+                ds.AddRange(db.Staff.OrderBy(s => s.LastName).Select(s => s.StaffGuid));
                 return ds;
             }
         }
@@ -117,7 +118,7 @@ namespace DataService.DataManager
             var names = new List<string>();
             using (var db = new Ef())
             {
-                names.AddRange(db.Staff.ToList().Select(s => s.FullName));
+                names.AddRange(db.Staff.OrderBy(s => s.LastName).Select(s => s.FullName));
                 return names;
             }
         }
@@ -131,7 +132,20 @@ namespace DataService.DataManager
         {
             using (var db = new Ef())
             {
-                return depName == null ? db.Staff.ToList().Where(s => string.IsNullOrEmpty(s.Departement)).ToList() : db.Staff.ToList().Where(s => s.Departement == depName).ToList();
+                return depName == null ? db.Staff.Where(s => string.IsNullOrEmpty(s.Departement)).OrderBy(s => s.LastName).ToList() : db.Staff.Where(s => s.Departement == depName).OrderBy(s => s.LastName).ToList();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="staffGuid"></param>
+        /// <returns></returns>
+        public string GetStaffFullName(Guid staffGuid)
+        {
+            using (var db = new Ef())
+            {
+                return db.Staff.Find(staffGuid).FullName;
             }
         }
 
@@ -144,7 +158,7 @@ namespace DataService.DataManager
         {
             using (var db = new Ef())
             {
-                return db.Staff.Find(staffId).FullName;
+                return db.Staff.First(s => s.StaffId == staffId).FullName;
             }
         }
 
@@ -153,13 +167,14 @@ namespace DataService.DataManager
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
-        public bool StaffExist(string staffId)
+        public bool StaffIdExist(string staffId)
         {
             using (var db = new Ef())
             {
-                return db.Staff.Find(staffId) != null;
+                return db.Staff.Any(s => s.StaffId == staffId);
             }
         }
 
+        
     }
 }

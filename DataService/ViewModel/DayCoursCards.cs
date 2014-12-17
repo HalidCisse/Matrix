@@ -25,7 +25,7 @@ namespace DataService.ViewModel
 
             using (var db = new Ef())
             {
-                var myCours = db.Cours.Where(c => c.ClasseId == classId && c.StartDate <= scheduleDate && c.EndDate >= scheduleDate).OrderBy(c => c.StartTime);
+                var myCours = db.Cours.Where(c => c.ClasseGuid == classId && c.StartDate <= scheduleDate && c.EndDate >= scheduleDate).OrderBy(c => c.StartTime);
 
                 foreach (var cr in myCours)
                 {

@@ -70,7 +70,7 @@ namespace DataService
             {
                 var classList = new List<ClassCard> ();
 
-                Parallel.ForEach(db.Classe.Where(c => c.FiliereId == filiereId), c =>
+                Parallel.ForEach(db.Classe.Where(c => c.FiliereGuid == filiereId), c =>
                 {
                     classList.Add (new ClassCard (c));
                 });
@@ -117,7 +117,7 @@ namespace DataService
             {
                 var matierCardList = new List<MatiereCard>();
 
-                Parallel.ForEach(db.Matiere.Where(m => m.ClasseId == classeId), mc =>
+                Parallel.ForEach(db.Matiere.Where(m => m.ClasseGuid == classeId), mc =>
                 {
                     matierCardList.Add(new MatiereCard(mc));
                 });

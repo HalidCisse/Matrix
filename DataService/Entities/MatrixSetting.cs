@@ -13,7 +13,7 @@ namespace DataService.Entities
         /// ID Du System
         /// </summary> 
         [Key]
-        public Guid SysId { get; set; } = MatrixConstants.SystemGuid();
+        public Guid SysGuid { get; set; } = MatrixConstants.SystemGuid();
 
         /// <summary>
         /// Le Guid de l'annee Scolaire Actuelle
@@ -45,7 +45,20 @@ namespace DataService.Entities
         /// </summary>
         public byte[] EtablissementLogo { get; set; }
 
+        /// <summary>
+        /// Le pays de L'Etablissement
+        /// </summary>
+        public string EtablissementCountry { get; set; }
 
+        /// <summary>
+        /// La Ville de L'Etablissement
+        /// </summary>
+        public string EtablissementCity { get; set; }
+
+        /// <summary>
+        /// L'Adresse de L'Etablissement
+        /// </summary>
+        public string EtablissementAdress { get; set; }
 
 
 

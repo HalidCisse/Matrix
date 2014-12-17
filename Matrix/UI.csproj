@@ -165,7 +165,6 @@
     <Compile Include="Controls\ToolbarStudentViews.xaml.cs">
       <DependentUpon>ToolbarStudentViews.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EFR.cs" />
     <Compile Include="Extention\ModernDialogExtention.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -544,9 +543,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="views\Pedagogy\Icon\Cours.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="university_979ca1_100.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Styles\AgendaStyles\Classe.png" />

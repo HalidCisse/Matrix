@@ -79,7 +79,7 @@ namespace Matrix.views.Pedagogy
 
             var myFiliere = new Filiere
             {                       
-                FiliereId = Guid.NewGuid(),
+                FiliereGuid = Guid.NewGuid(),
                 Name = FiliereName.Text.Trim(),
                 NiveauEntree = NiveauEntree.Text.Trim (),
                 Niveau = NiveauSortie.Text.Trim (),
@@ -91,7 +91,7 @@ namespace Matrix.views.Pedagogy
                 try
                 {
                     App.DataS.Pedagogy.Filieres.AddFiliere(myFiliere);
-                    GenerateClasses(myFiliere.FiliereId);
+                    GenerateClasses(myFiliere.FiliereGuid);
                 }
                 catch (Exception ex)
                 {
@@ -104,7 +104,7 @@ namespace Matrix.views.Pedagogy
             {
                 try
                 {
-                    myFiliere.FiliereId = _filiereDisplayedId;
+                    myFiliere.FiliereGuid = _filiereDisplayedId;
                     App.DataS.Pedagogy.Filieres.UpdateFiliere(myFiliere);
                 }
                 catch (Exception ex)
@@ -124,7 +124,7 @@ namespace Matrix.views.Pedagogy
 
             for (var i = 1; i <= upper; i++)
             {
-                var newClasse = new Classe {ClasseId = Guid.NewGuid(), FiliereId = filiereId, Level = i};
+                var newClasse = new Classe {ClasseGuid = Guid.NewGuid(), FiliereGuid = filiereId, Level = i};
 
                 if (i == 1) {
                     newClasse.Name = "1 ere Annee";

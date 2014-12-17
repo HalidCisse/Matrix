@@ -18,21 +18,21 @@ namespace DataService.Entities.Security
             {
                 userProfile = new UserProfile
                 {
-                    UserProfileId = MatrixConstants.SystemGuid(),
-                    UserSpace = (int)UserSpace.AdminSpace
+                    UserProfileGuid = MatrixConstants.SystemGuid(),
+                    UserSpace = UserSpace.AdminSpace
                 };
             }
 
             using (var db = new Ef())
             {                
-                var st = db.Staff.Find(userProfile.UserProfileId);
+                var st = db.Staff.Find(userProfile.UserProfileGuid);
 
                 FirstName = st.FirstName;
                 LastName = st.LastName;
                 PhotoIdentity = st.PhotoIdentity;
-                UserSpace = (UserSpace)userProfile.UserSpace;
-                UserUserSettings = db.UserSetting.Find(userProfile.UserProfileId);
-                UserRoles = db.UserRole.Find(userProfile.UserProfileId);
+                UserSpace = userProfile.UserSpace;
+                UserUserSettings = db.UserSetting.Find(userProfile.UserProfileGuid);
+                UserRoles = db.UserRole.Find(userProfile.UserProfileGuid);
             }
 
         }

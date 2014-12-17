@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
-using DataService.Entities;
 using DataService.Entities.Pedagogy;
 using FirstFloor.ModernUI.Windows.Controls;
 
@@ -18,18 +17,18 @@ namespace Matrix.views.Pedagogy
         /// <summary>
         /// Form pour Ajouter/Modifier une Matiere
         /// </summary>
-        /// <param name="currentClassId">ID</param>
+        /// <param name="currentClassGuid">ID</param>
         /// <param name="matiereToDisplay">Object</param>
-        public AddMatiere ( Guid currentClassId, Matiere matiereToDisplay = null )
+        public AddMatiere ( Guid currentClassGuid, Matiere matiereToDisplay = null )
         {
             InitializeComponent ();
             
-            _matiereDisplayed.ClasseId = currentClassId;
+            _matiereDisplayed.ClasseGuid = currentClassGuid;
 
             if(matiereToDisplay == null)
             {
                 _isAdd = true;
-                _matiereDisplayed.MatiereId = Guid.NewGuid ();               
+                _matiereDisplayed.MatiereGuid = Guid.NewGuid ();               
             }
             else
             { 

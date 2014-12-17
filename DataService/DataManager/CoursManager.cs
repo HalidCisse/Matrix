@@ -17,7 +17,7 @@ namespace DataService.DataManager
         /// <returns></returns>
         public bool AddCours(Cours myCours)
         {
-            myCours.CoursId = Guid.NewGuid();
+            myCours.CoursGuid = Guid.NewGuid();
             using (var db = new Ef())
             {
                 db.Cours.Add(myCours);

@@ -21,7 +21,7 @@ namespace DataService.Entities.Pedagogy
         /// ID
         /// </summary>
         [Key]
-        public Guid AnneeScolaireId { get; set; }
+        public Guid AnneeScolaireGuid { get; set; }
 
         /// <summary>
         /// Ex: Spring 2013/2014

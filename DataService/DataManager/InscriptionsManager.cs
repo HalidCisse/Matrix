@@ -72,11 +72,11 @@ namespace DataService.DataManager
         /// Return true si l'Etudiant est Inscrit
         /// </summary>
         /// <returns>True or False</returns>
-        public bool IsStudentInsc( string studentId, Guid currentAnneeScolaireGuid)
+        public bool IsStudentInsc( Guid studentGuid, Guid currentAnneeScolaireGuid)
         {
             using (var db = new Ef())
             {
-                return db.Inscription.Any(i => i.AnneeScolaireId == currentAnneeScolaireGuid && i.StudentId == studentId);
+                return db.Inscription.Any(i => i.AnneeScolaireGuid == currentAnneeScolaireGuid && i.StudentGuid == studentGuid);
             }            
         }
 
@@ -88,7 +88,7 @@ namespace DataService.DataManager
         {
             using (var db = new Ef())
             {
-                return new List<Student>(db.Student.Where(s => IsStudentInsc(s.StudentId, currentAnneeScolaireGuid) == false));
+                return new List<Student>(db.Student.Where(s => IsStudentInsc(s.StudentGuid, currentAnneeScolaireGuid) == false));
             }
         }
 

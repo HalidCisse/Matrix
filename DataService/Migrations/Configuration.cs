@@ -37,19 +37,19 @@ namespace DataService.Migrations
         {
             var adminUserprofiles = new UserProfile
             {
-                UserProfileId = MatrixConstants.SystemGuid(),
-                UserSpace = (int)UserSpace.AdminSpace
+                UserProfileGuid = MatrixConstants.SystemGuid(),
+                UserSpace = UserSpace.AdminSpace
             };               
 
             var adminUserRoles = new UserRoles
             {
-                UserProfileId = MatrixConstants.SystemGuid(),
+                UserProfileGuid = MatrixConstants.SystemGuid(),
                 CanAddStudent = true, CanDeleteStudent = true
             };
 
             var adminSettings = new UserSetting
             {
-                UserProfileId = MatrixConstants.SystemGuid()
+                UserProfileGuid = MatrixConstants.SystemGuid()
             };
 
             ef.UserProfile.AddOrUpdate(adminUserprofiles);
@@ -70,8 +70,32 @@ namespace DataService.Migrations
             ef.Database.ExecuteSqlCommand ("DELETE FROM Staffs");
             ef.Database.ExecuteSqlCommand (sqlString);
 
-            var x = ef.Staff.ToList();
 
+            var admin = new Staff
+            {
+                StaffGuid = MatrixConstants.SystemGuid(),
+                StaffId = "Dl-I11-00",
+                Position = "Chef de Departement Info",
+                Departement = "Informatique",
+                HiredDate = DateTime.Today.AddDays(-500),
+                Statut = "Regulier",
+                Title = "Mr",
+                FirstName = "Halid",
+                LastName = "cisse",
+                //PhotoIdentity = GetRandomImg(),
+                Nationality = "",
+                IdentityNumber = "",
+                BirthDate = DateTime.Today.AddDays(-5000),
+                BirthPlace = "",
+                PhoneNumber = "",
+                EmailAdress = "",
+                HomeAdress = "",
+                RegistrationDate = DateTime.Today.AddDays(-100)
+            };
+
+            ef.Staff.AddOrUpdate(admin);
+
+            var x = ef.Staff.ToList();
             x.ForEach (s => s.PhotoIdentity = GetRandomImg());
             //x.ForEach (S => S.STAFF_ID = "ST-" + GenID(6));                     
         }

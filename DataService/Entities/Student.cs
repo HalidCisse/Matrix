@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace DataService.Entities
 {
     /// <summary>
-    /// Represente un Etudiant
+    /// Represente un Etudiant, Stagiaire, Eleve
     /// </summary>
     public class Student 
     {
@@ -13,15 +13,21 @@ namespace DataService.Entities
         /// </summary>
         public Student()
         {
-            //RegistrationDate = DateTime.Now;
+            RegistrationDate = DateTime.Now;
+            StudentGuid = Guid.NewGuid();
         }
 
         /// <summary>
         /// 
         /// </summary>
         [Key]        
+        public Guid StudentGuid { get; set; }
+       
+        /// <summary>
+        /// 
+        /// </summary>
         public string StudentId { get; set; }
-     
+
         /// <summary>
         /// 
         /// </summary>
@@ -30,6 +36,7 @@ namespace DataService.Entities
         /// <summary>
         /// 
         /// </summary>
+        [StringLength(20)]       
         public string FirstName { get; set; }
 
         /// <summary>
@@ -58,6 +65,7 @@ namespace DataService.Entities
         /// </summary>
         public DateTime? BirthDate { get; set; }
 
+       // [Column(TypeName = "date")]
         /// <summary>
         /// 
         /// </summary>
@@ -86,7 +94,7 @@ namespace DataService.Entities
         /// <summary>
         /// 
         /// </summary>
-        //public DateTime? RegistrationDate { get; set; }
+        public DateTime? RegistrationDate { get; set; }
 
     }
 }

@@ -12,7 +12,7 @@ namespace DataService.Entities.Security
         /// ID L'Utilisateur
         /// </summary>
         [Key]
-        public Guid UserProfileId { get; set; }
+        public Guid UserProfileGuid { get; set; }
             
         /// <summary>
         /// Es ce que L'Utilisateur Peut Ajouter Un Etudiant ?

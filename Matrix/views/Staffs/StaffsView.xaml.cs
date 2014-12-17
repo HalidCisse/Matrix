@@ -68,12 +68,12 @@ namespace Matrix.views.Staffs
                 return;
             }
 
-            var theGaName = App.DataS.Hr.GetStaffFullName (_currentSelected);
+            var theGaName = App.DataS.Hr.GetStaffFullName (new Guid(_currentSelected));
             theGaName = "Ete Vous Sure de supprimer " + theGaName + " de la base de donnee ?";
 
             if (MessageBox.Show(theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
 
-            MessageBox.Show (App.DataS.Hr.DeleteStaff (_currentSelected) ? "Supprimer Avec Succes" : "Echec");
+            MessageBox.Show (App.DataS.Hr.DeleteStaff (new Guid(_currentSelected)) ? "Supprimer Avec Succes" : "Echec");
             UpdateData();
         }       
 

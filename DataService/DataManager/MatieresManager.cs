@@ -133,7 +133,7 @@ namespace DataService.DataManager
             using (var db = new Ef())
             {
                 var mat = db.Matiere.FirstOrDefault(m => m.Name == matiereName);
-                return mat == null ? null : mat.MatiereId.ToString();
+                return mat == null ? null : mat.MatiereGuid.ToString();
             }
         }
 

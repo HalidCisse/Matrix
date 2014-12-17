@@ -12,10 +12,10 @@ namespace DataService.Entities
         /// ID de L'Utilisateur
         /// </summary> 
         [Key]
-        public Guid UserProfileId { get; set; }
-        
-        
+        public Guid UserProfileGuid { get; set; }
 
         
+
+
     }
 }

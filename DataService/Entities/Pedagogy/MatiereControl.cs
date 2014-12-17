@@ -3,17 +3,31 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DataService.Entities.Pedagogy
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MatiereControl
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
         [Key]
-        public string MatierecontrolId { get; set; }
+        public string MatierecontrolGuid { get; set; }
 
-        public string CoursId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string CoursGuid { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public DateTime? StartTime { get; set; }
 
-        public int Duration { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime? Duration { get; set; }
 
 
     }

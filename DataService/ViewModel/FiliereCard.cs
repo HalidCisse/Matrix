@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using DataService.Context;
-using DataService.Entities;
 using DataService.Entities.Pedagogy;
 
 namespace DataService.ViewModel
@@ -16,7 +15,7 @@ namespace DataService.ViewModel
         /// </summary>
         public FiliereCard (Filiere fl)
         {
-            FiliereId = fl.FiliereId;
+            FiliereGuid = fl.FiliereGuid;
             Name = fl.Name.ToUpper();
             Niveau = fl.Niveau;
             NiveauEntree = fl.NiveauEntree;
@@ -24,22 +23,49 @@ namespace DataService.ViewModel
             GetCLASSES_COUNT();
         }
 
-        public Guid FiliereId { get; set; } 
+        /// <summary>
+        /// 
+        /// </summary>
+        public Guid FiliereGuid { get; set; } 
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Niveau { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string NiveauEntree { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int NAnnee { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int StaffsCount { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int StudentsCount { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int ClassesCount { get; set; }
        
+        /// <summary>
+        /// 
+        /// </summary>
         public int MatieresCount { get; set; }
 
 
@@ -50,7 +76,7 @@ namespace DataService.ViewModel
         {
             using (var db = new Ef())
             {
-                ClassesCount = db.Classe.Count(c => c.FiliereId == FiliereId);        
+                ClassesCount = db.Classe.Count(c => c.FiliereGuid == FiliereGuid);        
             }
         }
 

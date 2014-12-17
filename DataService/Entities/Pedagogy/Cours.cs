@@ -8,27 +8,26 @@ namespace DataService.Entities.Pedagogy
     /// </summary>
     public class Cours
     {
-
         /// <summary>
         /// ID du Cours
         /// </summary>
         [Key]
-        public Guid CoursId { get; set; }
+        public Guid CoursGuid { get; set; }
 
         /// <summary>
         /// ID de la classe
         /// </summary>
-        public Guid ClasseId { get; set; }
+        public Guid ClasseGuid { get; set; }
 
         /// <summary>
         /// ID du staff qui va dispenser le cours
         /// </summary>
-        public string StaffId { get; set; }      
+        public Guid StaffGuid { get; set; }      
 
         /// <summary>
         /// ID du matiere qui sera enseigner
         /// </summary>
-        public Guid MatiereId { get; set; }
+        public Guid MatiereGuid { get; set; }
 
         /// <summary>
         /// La salle ou le cours sera dispenser
@@ -64,12 +63,11 @@ namespace DataService.Entities.Pedagogy
         /// Control, Cours, Examen, Test, Revision, Travaux Pratiques, Travaux Dirigés
         /// </summary>
         public string Type { get; set; }
-
-        //Todo: PERIODE SCOLAIRE Integration To Cours
+       
         /// <summary>
         /// La periode du cours
         /// </summary>
-        public Guid PeriodeScolaireId { get; set; }
+        public Guid PeriodeScolaireGuid { get; set; }
 
         /// <summary>
         /// Description

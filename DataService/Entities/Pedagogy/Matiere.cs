@@ -1,8 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
+
 namespace DataService.Entities.Pedagogy
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Matiere
     {
 
@@ -10,7 +14,7 @@ namespace DataService.Entities.Pedagogy
         /// 
         /// </summary>
         [Key]
-        public Guid MatiereId { get; set; }
+        public Guid MatiereGuid { get; set; }
 
         /// <summary>
         /// Nommination de la matiere
@@ -25,15 +29,14 @@ namespace DataService.Entities.Pedagogy
         /// <summary>
         /// La classe de cette Matiere
         /// </summary>
-        public Guid ClasseId { get; set; }
-
-        //public Guid FILIERE_ID { get; set; }
-
-        //public int FILIERE_LEVEL { get; set; }
-
+        public Guid ClasseGuid { get; set; }
+       
         //todo: Mass Horaire Matiere
 
-        //public string HEURE_PAR_SEMAINE { get; set; }
+        /// <summary>
+        /// Masse Horaire
+        /// </summary>
+        public DateTime? MassHoraire { get; set; }
 
         /// <summary>
         /// Coeffiecient de cette Matiere
