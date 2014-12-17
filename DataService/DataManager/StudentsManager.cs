@@ -98,11 +98,11 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<Student> GetAllStudents()
+        public HashSet<Student> GetAllStudents()
         {
             using (var db = new Ef())
             {                
-                return db.Student.ToList();
+                return new HashSet<Student>(db.Student.OrderBy(s => s.LastName)) ;
             }
         }
 

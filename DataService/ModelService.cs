@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,19 +22,21 @@ namespace DataService
         {                       
             using (var db = new Ef())
             {
-                var depStaffCardList = new List<DepStaffCard>();
+                var depStaffCardList = new ConcurrentBag<DepStaffCard>();
+
                 var nd = new DepStaffCard("");
+                if (nd.StaffsList.Any()) { depStaffCardList.Add(nd); }
 
-                if (nd.StaffsList.Any()) { depStaffCardList.Add(nd);}
-
-                var deps = (from s in db.Staff.ToList() where string.IsNullOrEmpty(s.Departement)  == false select s.Departement).Distinct().ToList();
-
+                var deps = (db.Staff.ToList()
+                    .Where(s => string.IsNullOrEmpty(s.Departement) == false)
+                    .Select(s => s.Departement)).Distinct().ToList();
+                                
                 Parallel.ForEach(deps, dep =>
                 {
                     depStaffCardList.Add(new DepStaffCard(dep));
                 });
 
-                return depStaffCardList.Any() ? depStaffCardList.OrderBy(d => d?.DepartementName).ToList() : depStaffCardList;
+                return depStaffCardList.Any() ? depStaffCardList.OrderBy(d => d.DepartementName).ToList() : null;
             }       
         }
 
