@@ -10,8 +10,7 @@ namespace Matrix.views.Students
     /// 
     /// </summary>
     public partial class StudentsView
-    {
-       
+    {       
         /// <summary>
         /// 
         /// </summary>
@@ -47,10 +46,7 @@ namespace Matrix.views.Students
 
         private void Studentslist_MouseDoubleClick ( object sender, MouseButtonEventArgs e ) {
             if (Studentslist?.SelectedValue == null) return;
-            var wind = new StudentInfo (Studentslist.SelectedValue.ToString())
-            {
-                Owner = Window.GetWindow(this),               
-            };
+            var wind = new StudentInfo(Studentslist.SelectedValue.ToString()) {Owner = Window.GetWindow(this)};
             wind.ShowDialog();
             UpdateData();
         }

@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using DataService.Context;
 using DataService.Entities;
-using System.Collections.Generic;
-using System.Linq;
-using DataService.Enum;
 
 namespace DataService.DataManager
 {
@@ -37,7 +36,7 @@ namespace DataService.DataManager
             using (var db = new Ef())
             {
                 db.Student.Attach(myStudent);
-                db.Entry(myStudent).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(myStudent).State = EntityState.Modified;
                 return db.SaveChanges() > 0;
             }
         }
@@ -51,7 +50,7 @@ namespace DataService.DataManager
         {
             using (var db = new Ef())
             {
-                db.Student.Remove(db.Student.Find(studentId));
+                db.Student.Remove(db.Student.First(s => s.StudentId == studentId));
                 return db.SaveChanges() > 0;
             }
         }
@@ -59,14 +58,26 @@ namespace DataService.DataManager
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sTudentId"></param>
+        /// <param name="studentId"></param>
         /// <returns></returns>
-        public Student GetStudentById(string sTudentId)
+        public Student GetStudentById(string studentId)
         {
             using (var db = new Ef())
             {
-                var myStudent = db.Student.Find(sTudentId);
-                return myStudent;
+                return db.Student.First(s => s.StudentId == studentId);
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="studentGuid"></param>
+        /// <returns></returns>
+        public Student GetStudentByGuid(Guid studentGuid)
+        {
+            using (var db = new Ef())
+            {        
+                return db.Student.Find(studentGuid);
             }
         }
 
@@ -90,10 +101,8 @@ namespace DataService.DataManager
         public List<Student> GetAllStudents()
         {
             using (var db = new Ef())
-            {
-                IList<Student> daraNatadjis = db.Student.ToList();
-
-                return (List<Student>)daraNatadjis;
+            {                
+                return db.Student.ToList();
             }
         }
 
@@ -106,7 +115,7 @@ namespace DataService.DataManager
         {
             using (var db = new Ef())
             {
-                var myStudentName = db.Student.Find(studentId).FirstName + " " + db.Student.Find(studentId).LastName;
+                var myStudentName = db.Student.First(s => s.StudentId == studentId).FirstName;
                 return myStudentName;
             }
         }
@@ -120,7 +129,7 @@ namespace DataService.DataManager
         {
             using (var db = new Ef())
             {
-                return db.Student.Find(studentId) != null;
+                return db.Student.Any(s => s.StudentId == studentId);
             }
         }
 

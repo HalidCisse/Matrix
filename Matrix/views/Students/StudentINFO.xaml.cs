@@ -17,17 +17,20 @@ namespace Matrix.views.Students
     public partial class StudentInfo
     {
         private readonly bool _isAdd;
+
+        private Guid _studentDisplatedGuid ;
         
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="studentToDisplayId"></param>
-        public StudentInfo (string studentToDisplayId = null )
+        /// <param name="studentToDisplayGuid"></param>
+        public StudentInfo (string studentToDisplayGuid = null )
         {
             InitializeComponent ();
 
-            if (string.IsNullOrEmpty(studentToDisplayId)) { _isAdd = true;}
-            
+            if (string.IsNullOrEmpty(studentToDisplayGuid)) { _isAdd = true;}
+            else _studentDisplatedGuid = new Guid(studentToDisplayGuid);
+
             new Task(() =>
             {
                 Dispatcher.BeginInvoke(new Action(() =>
@@ -36,7 +39,7 @@ namespace Matrix.views.Students
 
                     if (_isAdd) DisplayDefault();
       
-                    else DisplayStudent(App.DataS.Students.GetStudentById(studentToDisplayId));
+                    else DisplayStudent(App.DataS.Students.GetStudentByGuid(new Guid(studentToDisplayGuid)));
                   
                 }));                             
             }).Start();            
@@ -100,7 +103,7 @@ namespace Matrix.views.Students
                 {
 
                     ModernDialog.ShowMessage(ex.Message, "ERREUR", MessageBoxButton.OK);
-                    return;
+                    Close();
                 }
                 ModernDialog.ShowMessage("Ajouter Avec Success", "Matrix", MessageBoxButton.OK);
                 Close();
@@ -109,12 +112,13 @@ namespace Matrix.views.Students
             {
                 try
                 {
+                    myStudent.StudentGuid = _studentDisplatedGuid;
                     App.DataS.Students.UpdateStudent(myStudent);
                 }
                 catch (Exception ex)
                 {
                     ModernDialog.ShowMessage(ex.Message, "ERREUR", MessageBoxButton.OK);
-                    return;
+                    Close();
                 }
                 ModernDialog.ShowMessage("Modifier Avec Success", "Matrix", MessageBoxButton.OK);
                 Close();
@@ -165,7 +169,6 @@ namespace Matrix.views.Students
 
         private bool ChampsValidated ( )
         {
-
             var ok = true;
 
             if(_isAdd)
