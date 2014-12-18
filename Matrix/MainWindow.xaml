@@ -29,10 +29,10 @@
             </Frame>
         </DockPanel>
 
-        <control:Flyout Name="MyFlyout" IsOpen="False" Header="Parametres" Background="#F2F2EA" Visibility="Collapsed" Position="Right" Width="700" >
+        <control:Flyout Name="MyFlyout" IsOpen="False" Header="Parametres" Background="#F2F2EA" Visibility="Collapsed" Position="Right" Width="700" Loaded="MyFlyout_OnLoaded">
             <Grid>
                                              
-                <TabControl Name="MyTabControl" Margin="20,0,0,0" BorderThickness="0,0,01,01" BorderBrush="Blue" Background="Transparent" Loaded="MyTabControl_OnLoaded" >
+                <TabControl Name="MyTabControl" Margin="20,0,0,0" BorderThickness="0,0,01,01" BorderBrush="Blue" Background="Transparent" >
                                        
                     <TabItem Header="   General   ">
                         <Grid>
@@ -46,7 +46,7 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <TextBlock Text="Annee Scolaire Actuelle" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                                <ComboBox Name="AnneeScolaireBox" Width="200" DisplayMemberPath="Name" SelectedIndex="0" SelectedValuePath="AnneeScolaireId" HorizontalAlignment="Left" SelectionChanged="AnneeScolaireBox_OnSelectionChanged" Loaded="AnneeScolaireBox_OnLoaded" />
+                                <ComboBox Name="AnneeScolaireBox" Width="200" DisplayMemberPath="Key" SelectedIndex="0" SelectedValuePath="Value" HorizontalAlignment="Left" SelectionChanged="AnneeScolaireBox_OnSelectionChanged" Loaded="AnneeScolaireBox_OnLoaded" />
                             </StackPanel>
                         </Grid>
                     </TabItem>

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataService.Context;
+using DataService.Entities;
 using DataService.Entities.Pedagogy;
+using DataService.Enum;
 
 namespace DataService.DataManager
 {
@@ -79,19 +81,108 @@ namespace DataService.DataManager
         {
             using (var db = new Ef())
             {                
-                return db.AnneeScolaire.ToDictionary(a => a.Name, a => a.AnneeScolaireGuid.ToString());
+                return db.AnneeScolaire.OrderBy(a => a.DateDebut).ToDictionary(a => a.Name, a => a.AnneeScolaireGuid.ToString());
             }
         }
 
 
         /// <summary>
-        /// 
+        ///L'Annee Scolaire Actuelle
         /// </summary>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public Guid CurrentAnneeScolaireGuid()
+        public Guid CurrentAnneeScolaireGuid
         {
-            throw new NotImplementedException();
+            get
+            {
+                using (var db = new Ef())
+                {
+                    if (db.MatrixSetting.Find(MatrixConstants.SystemGuid()) == null) db.MatrixSetting.Add(new MatrixSetting());
+
+                    return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentAnneeScolaireGuid;
+                }
+            }
+            set
+            {
+                using (var db = new Ef())
+                {
+                    if (db.MatrixSetting.Find(MatrixConstants.SystemGuid()) == null) db.MatrixSetting.Add(new MatrixSetting());
+
+                    db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentAnneeScolaireGuid = value;
+                    db.SaveChanges();
+                }
+            }
         }
+
+
+        /// <summary>
+        /// La Periode Scolaire Actuelle
+        /// </summary>
+        public Guid CurrentPeriodeScolaireGuid
+        {
+            get
+            {
+                using (var db = new Ef())
+                {
+                    if (db.MatrixSetting.Find(MatrixConstants.SystemGuid()) == null) db.MatrixSetting.Add(new MatrixSetting());
+
+                    return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentPeriodeScolaireGuid;
+                }
+            }
+            set
+            {
+                using (var db = new Ef())
+                {
+                    if (db.MatrixSetting.Find(MatrixConstants.SystemGuid()) == null) db.MatrixSetting.Add(new MatrixSetting());
+
+                    db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentPeriodeScolaireGuid = value;
+                    db.SaveChanges();
+                }
+            }
+        }
+
+
+
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///// <summary>
+///// return la L'Annee Scolaire Actuelle
+///// </summary>
+///// <returns></returns>       
+//private Guid CurrentAnneeScolaireGuid1()
+//{
+//    using (var db = new Ef())
+//    {
+//        if (db.MatrixSetting.Find(MatrixConstants.SystemGuid()) == null)
+//            db.MatrixSetting.Add(new MatrixSetting());
+//        return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentAnneeScolaireGuid;
+//    }
+//}
+
+
+///// <summary>
+///// return la Periode Scolaire Actuelle
+///// </summary>
+///// <returns></returns>
+//private Guid CurrentPeriodeScolaireGuid1()
+//{
+//    using (var db = new Ef())
+//    {
+//        if (db.MatrixSetting.Find(MatrixConstants.SystemGuid()) == null)
+//            db.MatrixSetting.Add(new MatrixSetting());
+//        return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentPeriodeScolaireGuid;
+//    }
+//}

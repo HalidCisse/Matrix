@@ -1,6 +1,7 @@
 ﻿
 using DataService.DataManager;
 using DataService.Entities.Security;
+using DataService.Enum;
 
 namespace DataService
 {
@@ -30,12 +31,10 @@ namespace DataService
         /// </summary>
         public HrManager Hr = new HrManager();
 
-        ///// <summary>
-        ///// Gestion Des Parametres
-        ///// </summary>
-        //public SettingsManager Settings = new SettingsManager();
-
-
+        /// <summary>
+        /// Gestion Des Parametres System
+        /// </summary>
+        public MatrixSettingsManager Etablissement = new MatrixSettingsManager();
 
         /// <summary>
         /// l'Utilisateur Actuelle

@@ -11,62 +11,60 @@ namespace Matrix
     /// </summary>
     public partial class MainWindow
     {
+        private bool _isFirstTime;
         /// <summary>
         /// 
         /// </summary>
         public MainWindow ( ) {
+
             InitializeComponent ();            
+
         }
        
         private void SeetingButton_OnClick(object sender, RoutedEventArgs e)
         {
             MyFlyout.IsOpen = true;
-
-
-            //var wind = new SettingsView() { Owner = Window.GetWindow(this) };
-            //wind.Show();
         }
 
         private void AnneeScolaireBox_OnLoaded(object sender, RoutedEventArgs e)
         {
-            //throw new System.NotImplementedException();
+            _isFirstTime = true;
         }
 
         private void AnneeScolaireBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //throw new System.NotImplementedException();
+            if (_isFirstTime) { _isFirstTime = false; return;}
+          
+            App.DataS.Pedagogy.CurrentAnneeScolaireGuid = new Guid(AnneeScolaireBox.SelectedValue.ToString());
         }
-       
-        private void MyTabControl_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            MyFlyout.IsOpenChanged += MyFlyout_IsOpenChanged;
-        }
-
+             
         private void MyFlyout_IsOpenChanged(object sender, RoutedEventArgs e)
         {
-            UpdateData();
+            if (MyFlyout.IsOpen) UpdateData();       
         }
 
         private void UpdateData()
         {
+            _isFirstTime = true;
+
             new Task(() =>
             {
                 Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    //AnneeScolaireBox.ItemsSource = App.DataS.Pedagogy.GetAllAnneeScolaires();                   
-                    //AnneeScolaireBox.SelectedValue = App.DataS.MatrixSettings.CurrentAnneeScolaireGuid();
-
-                    //var x = App.CurrentUser.UserProfile
+                {                    
+                    AnneeScolaireBox.ItemsSource = App.DataS.Pedagogy.GetAllAnneeScolaires();                   
+                    AnneeScolaireBox.SelectedValue = App.DataS.Pedagogy.CurrentAnneeScolaireGuid;
+                    
+                    
                 }));
-                //Dispatcher.BeginInvoke(new Action(() => { ClassWeekSchedule.UpdateData(_openedClass.ClasseId); }));
-                //Dispatcher.BeginInvoke(new Action(() => { MatieresList.ItemsSource = App.ModelS.GetClassMatieresCards(_openedClass.ClasseId); }));
-                //Dispatcher.BeginInvoke(new Action(() => { StudentsList.ItemsSource = App.DataS.Pedagogy.Classes.GetClassStudents(_openedClass.ClasseId); }));
-
+                
             }).Start();
 
         }
 
 
-
+        private void MyFlyout_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            MyFlyout.IsOpenChanged += MyFlyout_IsOpenChanged;
+        }
     }     
 }

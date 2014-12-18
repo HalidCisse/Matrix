@@ -31,19 +31,19 @@ namespace DataService.Entities.Security
                 LastName = st.LastName;
                 PhotoIdentity = st.PhotoIdentity;
                 UserSpace = userProfile.UserSpace;
-                UserUserSettings = db.UserSetting.Find(userProfile.UserProfileGuid);
+                UserSettings = db.UserSetting.Find(userProfile.UserProfileGuid);
                 UserRoles = db.UserRole.Find(userProfile.UserProfileGuid);
             }
 
         }
 
         /// <summary>
-        /// Le profile de L'Utilisateur
+        /// Le Prenom de L'Utilisateur
         /// </summary>
         public string FirstName { get; }
 
         /// <summary>
-        /// Le profile de L'Utilisateur
+        /// Le Nom de L'Utilisateur
         /// </summary>
         public string LastName { get; }
 
@@ -60,7 +60,7 @@ namespace DataService.Entities.Security
         /// <summary>
         /// Les Prametres de L'Utilisateur
         /// </summary>
-        public UserSetting UserUserSettings { get; set; }
+        public UserSetting UserSettings { get; }
 
         /// <summary>
         /// Les Prametres de L'Utilisateur

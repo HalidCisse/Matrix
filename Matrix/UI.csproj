@@ -158,7 +158,6 @@
     <Compile Include="Controls\ListSelector.xaml.cs">
       <DependentUpon>ListSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\PropertyChangeNotifier.cs" />
     <Compile Include="Controls\ScheduleWeek.xaml.cs">
       <DependentUpon>ScheduleWeek.xaml</DependentUpon>
     </Compile>

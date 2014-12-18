@@ -14,7 +14,7 @@ namespace DataService.Entities.Pedagogy
         /// </summary>
         public AnneeScolaire()
         {
-            DateCreated = DateTime.UtcNow;
+            DateCreated = DateTime.Now;
         }
 
         /// <summary>

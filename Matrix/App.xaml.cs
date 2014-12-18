@@ -29,6 +29,8 @@ namespace Matrix
                 MessageBox.Show(e.Message);
                 Current.Shutdown();
             }
+
+            // todo : Login Form Here
         }
 
 

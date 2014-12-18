@@ -81,20 +81,19 @@ namespace DataService.Migrations
                 Statut = "Regulier",
                 Title = "Mr",
                 FirstName = "Halid",
-                LastName = "cisse",
-                //PhotoIdentity = GetRandomImg(),
+                LastName = "cisse",                
                 Nationality = "",
                 IdentityNumber = "",
                 BirthDate = DateTime.Today.AddDays(-5000),
-                BirthPlace = "",
-                PhoneNumber = "",
-                EmailAdress = "",
-                HomeAdress = "",
+                BirthPlace = "Tayba",
+                PhoneNumber = "0012547874",
+                EmailAdress = "hali@gmail.com",
+                HomeAdress = "Mabella",
                 RegistrationDate = DateTime.Today.AddDays(-100)
             };
 
             ef.Staff.AddOrUpdate(admin);
-
+            
             var x = ef.Staff.ToList();
             x.ForEach (s => s.PhotoIdentity = GetRandomImg());
             //x.ForEach (S => S.STAFF_ID = "ST-" + GenID(6));                     
