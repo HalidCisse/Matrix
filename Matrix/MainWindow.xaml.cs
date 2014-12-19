@@ -55,6 +55,7 @@ namespace Matrix
                     AnneeScolaireBox.SelectedValue = App.DataS.Pedagogy.CurrentAnneeScolaireGuid;
                     
                     
+
                 }));
                 
             }).Start();
