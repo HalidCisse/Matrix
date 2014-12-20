@@ -1,12 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataService.Entities
 {
     /// <summary>
     /// Represente un Etudiant, Stagiaire, Eleve
     /// </summary>
-    public class Student 
+    public class Student
     {
         /// <summary>
         /// 
@@ -20,9 +21,9 @@ namespace DataService.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Key]        
+        [Key]
         public Guid StudentGuid { get; set; }
-       
+
         /// <summary>
         /// 
         /// </summary>
@@ -36,7 +37,7 @@ namespace DataService.Entities
         /// <summary>
         /// 
         /// </summary>
-        [StringLength(20)]       
+        [StringLength(20)]
         public string FirstName { get; set; }
 
         /// <summary>
@@ -47,8 +48,8 @@ namespace DataService.Entities
         /// <summary>
         /// 
         /// </summary>
-        public byte[] PhotoIdentity { get; set; }   
-     
+        public byte[] PhotoIdentity { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -65,7 +66,7 @@ namespace DataService.Entities
         /// </summary>
         public DateTime? BirthDate { get; set; }
 
-       // [Column(TypeName = "date")]
+        // [Column(TypeName = "date")]
         /// <summary>
         /// 
         /// </summary>
@@ -96,6 +97,11 @@ namespace DataService.Entities
         /// </summary>
         public DateTime? RegistrationDate { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        [NotMapped]
+        public string FullName => LastName + " " + FirstName;
     }
 }
 

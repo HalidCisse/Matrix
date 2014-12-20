@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using DataService.Enum;
 
 namespace DataService.Entities.Pedagogy
 {
@@ -9,13 +10,23 @@ namespace DataService.Entities.Pedagogy
     public class Inscription
     {
         /// <summary>
-        /// ID
+        /// Inscription
+        /// </summary>
+        public Inscription()
+        {
+            InscriptionStatus = InscriptionStatus.Active;
+            DateInscription = DateTime.Now;
+            InscriptionGuid = Guid.NewGuid();
+        }
+
+        /// <summary>
+        /// Guid
         /// </summary>
         [Key]
         public Guid InscriptionGuid { get; set; }
 
         /// <summary>
-        /// ID de l'Etudiant
+        /// Guid de l'Etudiant
         /// </summary>
         public Guid StudentGuid { get; set; }
 
@@ -28,6 +39,28 @@ namespace DataService.Entities.Pedagogy
         /// L'Annee Scolaire de l'Inscription
         /// </summary>
         public Guid AnneeScolaireGuid { get; set; }
+
+        /// <summary>
+        /// ID de l'Inscription
+        /// </summary>
+        public string InscriptionId { get; set; }
+
+        /// <summary>
+        /// Le status de l'Inscription
+        /// </summary>
+        public InscriptionStatus InscriptionStatus { get; set; }
+
+        /// <summary>
+        /// Date d'Inscription
+        /// </summary>
+        public DateTime? DateInscription { get; set; }
+
+        /// <summary>
+        /// Details de l'Inscription
+        /// </summary>
+        public string Description { get; set; }
+
+
 
     }
 }

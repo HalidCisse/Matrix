@@ -23,12 +23,12 @@ namespace DataService.ViewModel
 
             CoursDay = coursDay.DayOfWeek;
 
-            StartTime = currentCous.StartTime.GetValueOrDefault();
-            EndTime = currentCous.EndTime.GetValueOrDefault();
+            StartTime = currentCous.StartTime;
+            EndTime = currentCous.EndTime;
 
             ForeColor = "Black";
 
-            Horraire = StartTime.TimeOfDay.ToString("hh\\:mm") + " - " + EndTime.TimeOfDay.ToString("hh\\:mm");
+            Horraire = StartTime.ToString("hh\\:mm") + " - " + EndTime.ToString("hh\\:mm");
 
             ResolveData (coursDay, currentCous.MatiereGuid, currentCous.StaffGuid);
             
@@ -82,12 +82,12 @@ namespace DataService.ViewModel
         /// <summary>
         /// L'heure ou le cours commencera 
         /// </summary>
-        public DateTime StartTime { get; set; }
+        public TimeSpan StartTime { get; set; }
 
         /// <summary>
         /// L'heure ou le cours terminera 
         /// </summary>
-        public DateTime EndTime { get; set; }
+        public TimeSpan EndTime { get; set; }
 
         private void ResolveData (DateTime coursDay, Guid matiereGuid, Guid staffGuid )
         {           
@@ -107,12 +107,12 @@ namespace DataService.ViewModel
             }
             else if(coursDay == DateTime.Today)
             {
-                if (EndTime.TimeOfDay < DateTime.Now.TimeOfDay)
+                if (EndTime < DateTime.Now.TimeOfDay)
                 {                                                            
                     ForeColor = "Gray";                    
                 }
 
-                if (StartTime.TimeOfDay <= DateTime.Now.TimeOfDay && EndTime.TimeOfDay >= DateTime.Now.TimeOfDay)
+                if (StartTime <= DateTime.Now.TimeOfDay && EndTime >= DateTime.Now.TimeOfDay)
                 {
                     ForeColor = "Red";
                 }

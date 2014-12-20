@@ -84,13 +84,34 @@ namespace DataService.DataManager
         /// Renvoi La List des Etudiants Non Inscrit
         /// </summary>
         /// <returns></returns>
-        public List<Student> GetStudentsNotIns(Guid currentAnneeScolaireGuid)
+        public HashSet<Student> GetStudentsNotIns(Guid currentAnneeScolaireGuid)
         {
             using (var db = new Ef())
             {
-                return new List<Student>(db.Student.Where(s => IsStudentInsc(s.StudentGuid, currentAnneeScolaireGuid) == false));
+                var students = new HashSet<Student>();
+
+                foreach (var std in db.Student)
+                {
+                    if (!IsStudentInsc(std.StudentGuid, currentAnneeScolaireGuid)) students.Add(std);                    
+                }
+
+                return students;
+
+                //return new HashSet<Student>(db.Student.Where(s => IsStudentInsc(s.StudentGuid, currentAnneeScolaireGuid) == false));
             }
         }
 
+        /// <summary>
+        /// Verifier si ce ID est Deja Utilisee
+        /// </summary>
+        /// <param name="insId"></param>
+        /// <returns></returns>
+        public bool InscExist(string insId)
+        {
+            using (var db = new Ef())
+            {
+                return db.Inscription.Any(i => i.InscriptionId == insId);
+            }
+        }
     }
 }

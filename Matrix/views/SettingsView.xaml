@@ -1,0 +1,40 @@
+﻿<Page x:Class="Matrix.views.SettingsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="700">
+
+    <TabControl Name="MyTabControl" Margin="20,0,0,0" BorderThickness="0,0,01,01" BorderBrush="Blue" Background="Transparent" >
+
+        <TabItem Header="   General   ">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <TextBlock Text="Annee Scolaire Actuelle" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                    <ComboBox Name="AnneeScolaireBox" Width="200" DisplayMemberPath="Key" SelectedValuePath="Value" HorizontalAlignment="Left" SelectionChanged="AnneeScolaireBox_OnSelectionChanged" Loaded="AnneeScolaireBox_OnLoaded" />
+                </StackPanel>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="   Security   " />
+        <TabItem Header="   Advanced   " />
+
+        <TabControl.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Elysium;component/Themes/Generic.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </TabControl.Resources>
+    </TabControl>
+
+</Page>

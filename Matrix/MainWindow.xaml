@@ -29,41 +29,10 @@
             </Frame>
         </DockPanel>
 
-        <control:Flyout Name="MyFlyout" IsOpen="False" Header="Parametres" Background="#F2F2EA" Visibility="Collapsed" Position="Right" Width="700" Loaded="MyFlyout_OnLoaded">
-            <Grid>
-                                             
-                <TabControl Name="MyTabControl" Margin="20,0,0,0" BorderThickness="0,0,01,01" BorderBrush="Blue" Background="Transparent" >
-                                       
-                    <TabItem Header="   General   ">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <TextBlock Text="Annee Scolaire Actuelle" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                                <ComboBox Name="AnneeScolaireBox" Width="200" DisplayMemberPath="Key" SelectedIndex="0" SelectedValuePath="Value" HorizontalAlignment="Left" SelectionChanged="AnneeScolaireBox_OnSelectionChanged" Loaded="AnneeScolaireBox_OnLoaded" />
-                            </StackPanel>
-                        </Grid>
-                    </TabItem>
-                                        
-                    <TabItem Header="   Security   " />
-                    <TabItem Header="   Advanced   " />
-
-                    <TabControl.Resources>
-                        <ResourceDictionary>
-                            <ResourceDictionary.MergedDictionaries>
-                                <ResourceDictionary Source="/Elysium;component/Themes/Generic.xaml"/>
-                            </ResourceDictionary.MergedDictionaries>
-                        </ResourceDictionary>
-                    </TabControl.Resources>
-                </TabControl>
-                                
-            </Grid>
+        <control:Flyout Name="MyFlyout" IsOpen="False" Header="Parametres" Background="#F2F2EA" Visibility="Collapsed" Position="Right" Width="700" IsOpenChanged="MyFlyout_OnIsOpenChanged">
+            
+            <Frame Name="SettingFrame" NavigationUIVisibility="Hidden"/>
+            
             <control:Flyout.Resources>
                 <ResourceDictionary>
                     <ResourceDictionary.MergedDictionaries>

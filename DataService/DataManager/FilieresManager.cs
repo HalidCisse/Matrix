@@ -151,5 +151,20 @@ namespace DataService.DataManager
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filiereGuid"></param>
+        /// <returns></returns>
+        public HashSet<Classe> GetFiliereClasses(Guid filiereGuid)
+        {
+            using (var db = new Ef())
+            {
+                return new HashSet<Classe>(db.Classe.Where(c => c.FiliereGuid == filiereGuid).OrderBy(c => c.Level));
+            }
+        }
+
+
+
     }
 }

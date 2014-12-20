@@ -161,6 +161,7 @@
     <Compile Include="Controls\ScheduleWeek.xaml.cs">
       <DependentUpon>ScheduleWeek.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TextboxW.cs" />
     <Compile Include="Controls\ToolbarStudentViews.xaml.cs">
       <DependentUpon>ToolbarStudentViews.xaml</DependentUpon>
     </Compile>
@@ -214,6 +215,9 @@
     </Compile>
     <Compile Include="views\Pedagogy\PedagogyView.xaml.cs">
       <DependentUpon>PedagogyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="views\Staffs\StaffINFO.xaml.cs">
       <DependentUpon>StaffINFO.xaml</DependentUpon>
@@ -383,6 +387,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="views\Pedagogy\PedagogyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

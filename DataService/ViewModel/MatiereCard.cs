@@ -37,8 +37,8 @@ namespace DataService.ViewModel
 
                 foreach (var mc in db.Cours.Where(c => c.MatiereGuid == mat.MatiereGuid && c.StartDate <= scheduleDate && c.EndDate >= scheduleDate))
                 {                             
-                    var coursDuree = mc.EndTime.GetValueOrDefault().TimeOfDay - mc.StartTime.GetValueOrDefault().TimeOfDay;
-
+                    var coursDuree = mc.EndTime - mc.StartTime;
+                    //.GetValueOrDefault().TimeOfDay
                     foreach (var d in weekDays)
                     {
                         var dayNum = (int)d;

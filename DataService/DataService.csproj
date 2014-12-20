@@ -125,6 +125,7 @@
     <Compile Include="Entities\UserSetting.cs" />
     <Compile Include="Entities\Pedagogy\StudentQualification.cs" />
     <Compile Include="Enum\ClassAnnee.cs" />
+    <Compile Include="Enum\InscriptionStatus.cs" />
     <Compile Include="Enum\MatrixConstants.cs" />
     <Compile Include="Enum\MatrixSettings.cs" />
     <Compile Include="Enum\Settings.cs" />

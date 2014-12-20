@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 using DataService.Entities.Pedagogy;
-using DataService.Enum;
 using FirstFloor.ModernUI.Windows.Controls;
+using Matrix.Utils;
 
 namespace Matrix.views.Pedagogy
 {
@@ -14,18 +16,18 @@ namespace Matrix.views.Pedagogy
     {
         private readonly bool _isAdd;
 
-        private readonly Inscription _currentInscription = new Inscription();
+        private Inscription _currentInscription = new Inscription();
 
         /// <summary>
         /// Form Pour Ajouter Inscrire Un Etudiant
         /// </summary>
-        /// <param name="inscriptionToOpen"></param>
-        public AddInscription(string inscriptionToOpen = null)
+        /// <param name="inscriptionToOpenGuid"></param>
+        public AddInscription(string inscriptionToOpenGuid = null)
         {
             InitializeComponent();
 
-            if (!string.IsNullOrEmpty(inscriptionToOpen)) { _isAdd = true; }
-
+            if (!string.IsNullOrEmpty(inscriptionToOpenGuid)) { _isAdd = true; }
+            
             new Task(() =>
             {
                 Dispatcher.BeginInvoke(new Action(() =>
@@ -34,7 +36,7 @@ namespace Matrix.views.Pedagogy
                    
                     if (_isAdd) DisplayDefault();
                    
-                    else Display(App.DataS.Pedagogy.Inscriptions.GetInscriptionById(new Guid(inscriptionToOpen)));
+                    else Display(App.DataS.Pedagogy.Inscriptions.GetInscriptionById(new Guid(inscriptionToOpenGuid)));
                    
                 }));
             }).Start();
@@ -43,87 +45,78 @@ namespace Matrix.views.Pedagogy
 
         private void Display(Inscription inscriptionToDisp)
         {
-            throw new NotImplementedException();
+            _currentInscription = inscriptionToDisp;
+
+            STUDENT_.SelectedValue = _currentInscription.StudentGuid ;
+            INSCRIPTION_NUM_.Text = _currentInscription.InscriptionId;
+
+            FILIERE_.SelectedValue = App.DataS.Pedagogy.Classes.GetClasseById(_currentInscription.ClasseGuid).FiliereGuid;
+            CLASSE_.SelectedValue = _currentInscription.ClasseGuid;
+
+            DESCRIPTION_.Text = _currentInscription.Description;
+            
+            
         }
 
         private void GetPatternData()
-        {
-            //todo: Add List Of Setting in App
-
-            //var currentAnneeScolaire = App.DataS.Settings.GetSetting(Guid.NewGuid(), Settings.CurrentAnneeScolaire);
-
-            //StudentId.ItemsSource = App.DataS.Pedagogy.Inscriptions.GetStudentsNotIns(new Guid(currentAnneeScolaire));
-
-            //StaffId.ItemsSource = App.DataS.Hr.GetAllStaffs();
-
-            //SalleName.ItemsSource = App.DataS.DataEnums.GetAllSalles();
-
-            //Type.ItemsSource = App.DataS.DataEnums.GetAllCoursTypes();
-
-            //StartDate.SelectedDate = DateTime.Today;
-
-            //EndDate.SelectedDate = DateTime.Today;
+        {           
+            STUDENT_.ItemsSource = App.DataS.Pedagogy.Inscriptions.GetStudentsNotIns(App.DataS.Pedagogy.CurrentAnneeScolaireGuid);
+            FILIERE_.ItemsSource = App.DataS.Pedagogy.Filieres.GetAllFilieres();
+            INSCRIPTION_NUM_.Text = GenNewInsId();
         }
 
         private void DisplayDefault()
         {
             if (_isAdd) return;
 
-            TitleText.Text = "MODIFICATION";
-
-            //MatiereId.SelectedValue = _currentCours.MatiereId;
-            //StaffId.SelectedValue = _currentCours.StaffId;
-            //SalleName.Text = _currentCours.Salle;
-            //Type.SelectedValue = _currentCours.Type;
-            //StartTime.Value = _currentCours.StartTime;
-            //EndTime.Value = _currentCours.EndTime;
-            //StartDate.SelectedDate = _currentCours.StartDate;
-            //EndDate.SelectedDate = _currentCours.EndDate;
-
+            TITLE_TEXT.Text = "MODIFICATION";
             
+        }
 
-            //Description.Text = _currentCours.Description;
+        private void FiliereGuid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CLASSE_.ItemsSource = App.DataS.Pedagogy.Filieres.GetFiliereClasses(new Guid(FILIERE_.SelectedValue.ToString()));
+            CLASSE_.SelectedIndex = 0;
         }
 
         private void Enregistrer_Click(object sender, RoutedEventArgs e)
         {
             if (ChampsValidated() != true) return;
-
-            //_currentCours.MatiereId = new Guid(MatiereId.SelectedValue.ToString());
-            //_currentCours.StaffId = StaffId.SelectedValue.ToString();
-            //_currentCours.Salle = SalleName.Text;
-            //_currentCours.Type = Type.SelectedValue.ToString();
-            //_currentCours.StartTime = DateTime.Parse(StartTime.Value.ToString());
-            //_currentCours.EndTime = DateTime.Parse(EndTime.Value.ToString());
-            //_currentCours.StartDate = StartDate.SelectedDate.GetValueOrDefault().Date;
-            //_currentCours.EndDate = EndDate.SelectedDate.GetValueOrDefault().Date;
-
             
+            _currentInscription.StudentGuid = new Guid(STUDENT_.SelectedValue.ToString());
+            _currentInscription.InscriptionId = INSCRIPTION_NUM_.Text.Trim();
 
+            _currentInscription.AnneeScolaireGuid = App.DataS.Pedagogy.CurrentAnneeScolaireGuid;  
+                      
+            _currentInscription.ClasseGuid = new Guid(CLASSE_.SelectedValue.ToString());
+            _currentInscription.Description = DESCRIPTION_.Text;
+           
             if (_isAdd)
             {
                 try
                 {
-                    //App.DataS.Pedagogy.Cours.AddCours(_currentCours);
-                    ModernDialog.ShowMessage("Success", "Matrix", MessageBoxButton.OK);
+                    App.DataS.Pedagogy.Inscriptions.AddInscription(_currentInscription);                  
                 }
                 catch (Exception ex)
                 {
                     ModernDialog.ShowMessage(ex.Message, "Matrix", MessageBoxButton.OK);
+                    Close();
                 }
+                ModernDialog.ShowMessage("Success", "Matrix", MessageBoxButton.OK);
                 Close();
             }
             else
             {
                 try
-                {
-                    //App.DataS.Pedagogy.Cours.UpdateCours(_currentCours);
-                    ModernDialog.ShowMessage("Success", "Matrix", MessageBoxButton.OK);
+                {                    
+                    App.DataS.Pedagogy.Inscriptions.UpdateInscription(_currentInscription);                    
                 }
                 catch (Exception ex)
                 {
                     ModernDialog.ShowMessage(ex.Message, "Matrix", MessageBoxButton.OK);
+                    Close();
                 }
+                ModernDialog.ShowMessage("Success", "Matrix", MessageBoxButton.OK);
                 Close();
             }
 
@@ -138,46 +131,31 @@ namespace Matrix.views.Pedagogy
         {
             var ok = true;
 
-            //if (MatiereId.SelectedValue == null)
-            //{
-            //    MatiereId.BorderBrush = Brushes.Red;
-            //    ok = false;
-            //}
-            //else
-            //{
-            //    MatiereId.BorderBrush = Brushes.Blue;
-            //}
-
-            //if (StartDate.SelectedDate.GetValueOrDefault() > EndDate.SelectedDate.GetValueOrDefault())
-            //{
-            //    StartDate.BorderBrush = Brushes.Red;
-            //    EndDate.BorderBrush = Brushes.Red;
-            //    ok = false;
-            //    ModernDialog.ShowMessage("Date de Debut doit etre inferieur a date de Fin !!", "Matrix", MessageBoxButton.OK);
-            //}
-            //else
-            //{
-            //    StartDate.BorderBrush = Brushes.Blue;
-            //    EndDate.BorderBrush = Brushes.Blue;
-            //}
-
-            //if (Lun.IsChecked == false && Mar.IsChecked == false && Mer.IsChecked == false && Jeu.IsChecked == false && Vend.IsChecked == false && Sam.IsChecked == false && Dim.IsChecked == false)
-            //{
-            //    Lun.BorderBrush = Brushes.Red;
-            //    Mar.BorderBrush = Brushes.Red;
-            //    Mer.BorderBrush = Brushes.Red;
-            //    Jeu.BorderBrush = Brushes.Red;
-            //    Vend.BorderBrush = Brushes.Red;
-            //    Sam.BorderBrush = Brushes.Red;
-            //    Dim.BorderBrush = Brushes.Red;
-
-            //    ok = false;
-            //    ModernDialog.ShowMessage("Choisir Au Moins Un Jour !!", "Matrix", MessageBoxButton.OK);
-            //}
-
+            if (string.IsNullOrEmpty(INSCRIPTION_NUM_.Text.Trim()) || App.DataS.Pedagogy.Inscriptions.InscExist(INSCRIPTION_NUM_.Text.Trim()))
+            {
+                INSCRIPTION_NUM_.BorderBrush = Brushes.Red;
+                ok = false;
+                ModernDialog.ShowMessage("Le numéro d'inscription doit etre valide ou  inexistant !!","Matrix", MessageBoxButton.OK);
+            }
+            else
+            {
+                INSCRIPTION_NUM_.BorderBrush = Brushes.Blue;
+            }
+            
             //if (!ok) ModernDialog.ShowMessage("Verifier Les Informations !", "Matrix", MessageBoxButton.OK);
 
             return ok;
         }
+       
+        private static string GenNewInsId()
+        {
+            string idOut;
+
+            do idOut = "I" + DateTime.Today.Year + "-" + GenId.GetId(2) + "-" + GenId.GetId(3); while (App.DataS.Pedagogy.Inscriptions.InscExist(idOut));
+
+            return idOut;
+        }
+
+
     }
 }

@@ -1,7 +1,6 @@
 ﻿<Window x:Class="Matrix.views.Pedagogy.AddInscription"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         WindowStartupLocation="CenterOwner"
         Height="500" Width="600" Style="{StaticResource MyForm}" FontFamily="Helvetica">
     
@@ -40,6 +39,7 @@
             <RowDefinition Height="100"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -49,39 +49,48 @@
             <Image Source="icon/Inscription.png" Height="70" Width="70" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
             <Grid Height="40" Margin="15,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                <TextBlock Name="TitleText" Text="INSCRIPTION" VerticalAlignment="Top" FontSize="25" HorizontalAlignment="Center"/>
+                <TextBlock Name="TITLE_TEXT" Text="INSCRIPTION" VerticalAlignment="Top" FontSize="25" HorizontalAlignment="Center"/>
                 <Border Background="Blue" Width="350" Height="7"  VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
             </Grid>
         </Grid>
        
         <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
             <TextBlock Text="ETUDIANT" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="StudentId" SelectedIndex="0" DisplayMemberPath="FULL_NAME" SelectedValuePath="STAFF_ID" HorizontalAlignment="Left" />
+            <ComboBox Name="STUDENT_" SelectedIndex="0" SelectedValuePath="StudentGuid" Height="40" HorizontalAlignment="Left" >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>                        
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding PhotoIdentity}" Stretch="UniformToFill" Width="40" Height="40"></Image>
+                            <TextBlock Text="{Binding FullName}" Margin="10,0" VerticalAlignment="Center"/>
+                        </StackPanel>                                                                  
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </StackPanel>
         
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="N° INSCRIPTION" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <TextBox Name="InscriptionNum" HorizontalAlignment="Left" Width="250" Height="30" FontSize="20" />
+            <TextBox Name="INSCRIPTION_NUM_" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="250" Height="40" FontSize="20" />
         </StackPanel>
         
         <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
             <TextBlock Text="FILIERE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="FiliereId" SelectedIndex="0" DisplayMemberPath="FULL_NAME" SelectedValuePath="STAFF_ID" HorizontalAlignment="Left" />
+            <ComboBox Name="FILIERE_" SelectedIndex="0" DisplayMemberPath="Name" SelectedValuePath="FiliereGuid" HorizontalAlignment="Left" SelectionChanged="FiliereGuid_OnSelectionChanged"/>
         </StackPanel>
         
         <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="CLASSE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="ClasseId" SelectedIndex="0" DisplayMemberPath="FULL_NAME" SelectedValuePath="STAFF_ID" HorizontalAlignment="Left" />
+            <ComboBox Name="CLASSE_" SelectedIndex="0" DisplayMemberPath="Name" SelectedValuePath="ClasseGuid" HorizontalAlignment="Left" />
         </StackPanel>
                         
         <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
             <TextBlock Text="DESCRIPTION" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <TextBox Name="Description" Height="70" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Stretch" />
+            <TextBox Name="DESCRIPTION_" Height="70" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Stretch" />
         </StackPanel>
 
         <Grid Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" VerticalAlignment="Bottom" Margin="0,0">
-            <Button Name="Enregistrer" Content="Enregistrer" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Click="Enregistrer_Click"/>
-            <Button Name="Annuler" Content="Annuler" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Right" Click="Annuler_Click"/>
+            <Button Name="ENREGISTRER" Content="Enregistrer" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Click="Enregistrer_Click"/>
+            <Button Name="ANNULER" Content="Annuler" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Right" Click="Annuler_Click"/>
         </Grid>
 
     </Grid>

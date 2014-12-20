@@ -42,12 +42,12 @@ namespace DataService.Entities.Pedagogy
         /// <summary>
         /// Heure de debut du cours
         /// </summary>
-        public DateTime? StartTime { get; set; }
+        public TimeSpan StartTime { get; set; }
          
         /// <summary>
         /// Heure de fin du cours
         /// </summary>
-        public DateTime? EndTime { get; set; }
+        public TimeSpan EndTime { get; set; }
 
         /// <summary>
         /// Debut de la periode du cours

@@ -1,6 +1,7 @@
 ﻿using DataService.Context;
 using DataService.Entities;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -159,9 +160,9 @@ namespace DataService.DataManager
         /// </summary>
         /// <param name="classId"></param>
         /// <returns></returns>
-        public List<Student> GetClassStudents(Guid classId)
+        public HashSet<Student> GetClassStudents(Guid classId)
         {
-            var students = new List<Student>();
+            var students = new HashSet<Student>();
 
             using (var db = new Ef())
             {
@@ -172,6 +173,8 @@ namespace DataService.DataManager
                 return students;
             }
         }
-
+        
+        
+    
     }
 }

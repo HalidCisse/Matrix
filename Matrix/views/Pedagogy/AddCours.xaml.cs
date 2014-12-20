@@ -82,8 +82,8 @@ namespace Matrix.views.Pedagogy
             StaffId.SelectedValue = _currentCours.StaffGuid;
             SalleName.Text = _currentCours.Salle;
             Type.SelectedValue = _currentCours.Type;
-            StartTime.Value = _currentCours.StartTime;
-            EndTime.Value = _currentCours.EndTime;
+            StartTime.Value = new DateTime(_currentCours.StartTime.Ticks); 
+            EndTime.Value = new DateTime(_currentCours.EndTime.Ticks); 
             StartDate.SelectedDate = _currentCours.StartDate;
             EndDate.SelectedDate = _currentCours.EndDate;
 
@@ -106,8 +106,8 @@ namespace Matrix.views.Pedagogy
             _currentCours.StaffGuid = new Guid(StaffId.SelectedValue.ToString());
             _currentCours.Salle = SalleName.Text;
             _currentCours.Type = Type.SelectedValue.ToString();
-            _currentCours.StartTime = DateTime.Parse(StartTime.Value.ToString());     
-            _currentCours.EndTime =DateTime.Parse (EndTime.Value.ToString ());       
+            _currentCours.StartTime = DateTime.Parse(StartTime.Value.ToString()).TimeOfDay;     
+            _currentCours.EndTime =DateTime.Parse (EndTime.Value.ToString ()).TimeOfDay;       
             _currentCours.StartDate = StartDate.SelectedDate.GetValueOrDefault().Date;
             _currentCours.EndDate = EndDate.SelectedDate.GetValueOrDefault().Date;
 
