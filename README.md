@@ -7,3 +7,4 @@ Matrix Soft
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/HalidCisse/matrix/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
+<a href="https://codeclimate.com/github/HalidCisse/Matrix"><img src="https://codeclimate.com/github/HalidCisse/Matrix/badges/gpa.svg" /></a>
