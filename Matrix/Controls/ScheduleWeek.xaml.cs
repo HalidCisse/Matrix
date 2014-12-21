@@ -44,11 +44,10 @@ namespace Matrix.Controls
         {
             _classId = classId;
 
-            new Task(() =>
-            {
+            //new Task(() =>
+            //{
                 Dispatcher.BeginInvoke(new Action(() => { ScheduleUi.ItemsSource = App.ModelS.GetClassWeekAgendaData(_classId, DateTime.Now); }));
-            }).Start();
-
+            //}).RunSynchronously();
         }
 
         private void DayCoursList_MouseDoubleClick(object sender, MouseButtonEventArgs e)

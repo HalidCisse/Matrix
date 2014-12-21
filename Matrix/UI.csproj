@@ -155,6 +155,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\ClasseStudents.xaml.cs">
+      <DependentUpon>ClasseStudents.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ListSelector.xaml.cs">
       <DependentUpon>ListSelector.xaml</DependentUpon>
     </Compile>
@@ -234,6 +237,10 @@
     <Compile Include="views\Students\StudentsView.xaml.cs">
       <DependentUpon>StudentsView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\ClasseStudents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ListSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -309,6 +316,10 @@
     <Page Include="Styles\Parameters.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\PedagogyStyles\ClasseStudentsStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\PedagogyStyles\MatiereStyles.xaml">
       <SubType>Designer</SubType>

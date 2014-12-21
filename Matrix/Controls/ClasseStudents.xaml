@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Matrix.Controls.ClasseStudents"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Matrix.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" Width="650">
+
+    <DockPanel >
+        <Grid DockPanel.Dock="Top" Height="30" Background="#25A0DA" >            
+            <TextBlock Text="ETUDIANTS" Margin="30,0" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
+            <local:ListSelector x:Name="ANNEE_SELECTOR" Margin="30,0" Width="300" HorizontalAlignment="Right" Loaded="ANNEE_SELECTOR_OnLoaded" OnSelectionChanged="ListSelector_OnOnSelectionChanged"></local:ListSelector>
+        </Grid>
+        
+        <Border BorderThickness="0" Background="Transparent">
+            <ListBox Name="STUDENTS_LIST" Style="{DynamicResource ClasseStudentsStyle}" Margin="0" MouseDoubleClick="STUDENTS_LIST_OnMouseDoubleClick" SelectionChanged="STUDENTS_LIST_OnSelectionChanged"/>
+        </Border>
+    </DockPanel>
+
+</UserControl>

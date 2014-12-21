@@ -100,10 +100,7 @@ namespace DataService
             {
                 var dayCard = new DayCoursCards(classId, firstDateOfWeek.AddDays(i));
 
-                if (dayCard.DayCours.Any())
-                {
-                    scheduleData.Add(dayCard);
-                }                
+                if (dayCard.DayCours.Any()) scheduleData.Add(dayCard);                            
             }
  
             return scheduleData;
@@ -112,20 +109,20 @@ namespace DataService
         /// <summary>
         /// Renvoi les Matieres Cards Pour Une Classe
         /// </summary>
-        /// <param name="classeId">ID de la Classe</param>
+        /// <param name="classeGuid">ID de la Classe</param>
         /// <returns></returns>
-        public List<MatiereCard> GetClassMatieresCards(Guid classeId)
+        public List<MatiereCard> GetClassMatieresCards(Guid classeGuid)
         {
             using (var db = new Ef())
-            {
-                var matierCardList = new List<MatiereCard>();
+            {                
+                var matierCardList = new ConcurrentBag<MatiereCard>();
 
-                Parallel.ForEach(db.Matiere.Where(m => m.ClasseGuid == classeId), mc =>
+                Parallel.ForEach(db.Matiere.Where(m => m.ClasseGuid == classeGuid), mc =>
                 {
                     matierCardList.Add(new MatiereCard(mc));
                 });
 
-                return matierCardList.Any() ? matierCardList.OrderBy(m => m?.Name).ToList() : matierCardList;
+                return matierCardList.OrderBy(m => m.Name).ToList();
             }
         }
 

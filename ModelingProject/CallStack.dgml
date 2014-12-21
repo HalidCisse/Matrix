@@ -1,0 +1,495 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph DataVirtualized="True" Layout="Sugiyama" ZoomLevel="1" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="(@14 Namespace=DataService.DataManager Type=ClassesManager Member=(Name=GetClassStudents OverloadingParameters=[(@11 Namespace=System Type=Guid),(@11 Namespace=System Type=Guid)]))" Category="CodeSchema_Method" Bounds="280.216666666667,129.5675,127.73,25.96" CodeSchemaProperty_IsPublic="True" CommonLabel="GetClassStudents" Icon="CodeSchema_Method" Label="GetClassStudents" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/DataService/DataManager/ClassesManager.cs StartLineNumber=176 StartCharacterOffset=0 EndLineNumber=176 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="(@14 Namespace=DataService.Entities.Pedagogy Type=AnneeScolaire Member=.ctor)" Category="CodeSchema_Method" Bounds="1110.48666666667,201.4875,111.19,25.96" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CommonLabel="AnneeScolaire" Icon="CodeSchema_Method" Label="AnneeScolaire" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/DataService/Entities/Pedagogy/AnneeScolaire.cs StartLineNumber=15 StartCharacterOffset=0 EndLineNumber=15 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="(@9 Namespace=Matrix.Styles Type=MyWindowStyle Member=(Name=TitleBarMouseMove OverloadingParameters=[@12,(@15 Namespace=System.Windows.Input Type=MouseEventArgs)]))" Category="CodeSchema_Method" Bounds="1017.38166666667,57.6475,141.4,25.96" CodeSchemaProperty_IsPrivate="True" CommonLabel="TitleBarMouseMove" Icon="CodeSchema_Method" Label="TitleBarMouseMove" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Styles/MyWindowStyle.cs StartLineNumber=74 StartCharacterOffset=0 EndLineNumber=74 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="(Name=&quot;&lt;Unknown function&gt;&quot; @1 OverloadingParameters=[(Type=&quot;object {string}&quot; Name=sender),(Type=&quot;System.EventArgs {System.Windows.Controls.SelectionChangedEventArgs}&quot; Name=e)] @2)" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="1629.08166666667,201.4875,50,25.96" Label="" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ClasseStudents.xaml.cs StartLineNumber=69 StartCharacterOffset=0 EndLineNumber=69 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="(Name=DataService.DataManager.ClassesManager.GetClassStudents @23 Type=System.Collections.Generic.HashSet&lt;DataService.ViewModel.ClasseStudentCard&gt; OverloadingParameters=[(Type=System.Data.Entity.DbSet&lt;DataService.Entities.Pedagogy.Inscription&gt; Name=&quot;DataService.Context.Ef.Inscription.get returned&quot;),@37,(Type=System.Linq.Expressions.TypedParameterExpression Name=&quot;System.Linq.Expressions.Expression.Parameter returned&quot;),@38,(Type=System.Linq.Expressions.PropertyExpression Name=&quot;System.Linq.Expressions.Expression.Property returned&quot;),@38,@37,(Type=System.Linq.Expressions.ConstantExpression Name=&quot;System.Linq.Expressions.Expression.Constant returned&quot;),(Type=System.Reflection.RtFieldInfo Name=&quot;System.Reflection.FieldInfo.GetFieldFromHandle returned&quot;),(Type=System.Linq.Expressions.FieldExpression Name=&quot;System.Linq.Expressions.Expression.Field returned&quot;),(Type=System.Linq.Expressions.InstanceMethodCallExpressionN Name=&quot;System.Linq.Expressions.Expression.Call returned&quot;),@38,(Type=System.Linq.Expressions.PropertyExpression Name=&quot;System.Linq.Expressions.Expression.Property returned&quot;),@38,@37,(Type=System.Linq.Expressions.ConstantExpression Name=&quot;System.Linq.Expressions.Expression.Constant returned&quot;),(Type=System.Reflection.RtFieldInfo Name=&quot;System.Reflection.FieldInfo.GetFieldFromHandle returned&quot;),(Type=System.Linq.Expressions.FieldExpression Name=&quot;System.Linq.Expressions.Expression.Field returned&quot;),(Type=System.Linq.Expressions.InstanceMethodCallExpressionN Name=&quot;System.Linq.Expressions.Expression.Call returned&quot;),(Type=System.Linq.Expressions.LogicalBinaryExpression Name=&quot;System.Linq.Expressions.Expression.AndAlso returned&quot;),(Type=&quot;System.Linq.Expressions.Expression&lt;System.Func&lt;DataService.Entities.Pedagogy.Inscription, bool&gt;&gt;&quot; Name=&quot;System.Linq.Expressions.Expression.Lambda&lt;TDelegate&gt; returned&quot;),(Type=System.Data.Entity.Infrastructure.DbQuery&lt;DataService.Entities.Pedagogy.Inscription&gt; Name=&quot;System.Linq.Queryable.Where&lt;TSource&gt; returned&quot;),(Type=System.Data.Entity.Internal.LazyEnumerator&lt;DataService.Entities.Pedagogy.Inscription&gt; Name=&quot;System.Collections.Generic.IEnumerable&lt;T&gt;.GetEnumerator returned&quot;),(Type=System.Guid Name=classGuid),(Type=System.Guid Name=anneeScolaireGuid)] @2)" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="596.216666666667,129.5675,127.73,25.96" Label="GetClassStudents" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/DataService/DataManager/ClassesManager.cs StartLineNumber=170 StartCharacterOffset=0 EndLineNumber=170 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="(Name=DataService.DataManager.ClassesManager.GetClassStudents @23 Type=System.Collections.Generic.HashSet&lt;DataService.ViewModel.ClasseStudentCard&gt; OverloadingParameters=[(Type=System.Data.Entity.Infrastructure.DbContextConfiguration Name=&quot;System.Data.Entity.DbContext.Configuration.get returned&quot;),(Type=System.Guid Name=classGuid),(Type=System.Guid Name=anneeScolaireGuid)] @2)" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="438.216666666667,129.5675,127.73,25.96" Label="GetClassStudents" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/DataService/DataManager/ClassesManager.cs StartLineNumber=166 StartCharacterOffset=0 EndLineNumber=166 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="(Name=DataService.DataManager.ClassesManager.GetClassStudents @23 Type=System.Collections.Generic.HashSet&lt;DataService.ViewModel.ClasseStudentCard&gt; OverloadingParameters=[(Type=bool Name=&quot;System.Collections.IEnumerator.MoveNext returned&quot;),(Type=System.Guid Name=classGuid),(Type=System.Guid Name=anneeScolaireGuid)] @2)" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="754.216666666667,129.5675,127.73,25.96" Label="GetClassStudents" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/DataService/DataManager/ClassesManager.cs StartLineNumber=174 StartCharacterOffset=0 EndLineNumber=174 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="(Name=DataService.Entities.Pedagogy.AnneeScolaire.AnneeScolaire @23 @26 OverloadingParameters=[(Type=System.Data.Entity.DbSet&lt;DataService.Entities.Pedagogy.AnneeScolaire&gt; Name=&quot;DataService.Context.Ef.AnneeScolaire.get returned&quot;),@37,(Type=System.Linq.Expressions.TypedParameterExpression Name=&quot;System.Linq.Expressions.Expression.Parameter returned&quot;),@38,(Type=System.Linq.Expressions.PropertyExpression Name=&quot;System.Linq.Expressions.Expression.Property returned&quot;),(Type=&quot;System.Linq.Expressions.Expression&lt;System.Func&lt;DataService.Entities.Pedagogy.AnneeScolaire, System.DateTime?&gt;&gt;&quot; Name=&quot;System.Linq.Expressions.Expression.Lambda&lt;TDelegate&gt; returned&quot;),(Type=System.Data.Entity.Infrastructure.DbQuery&lt;DataService.Entities.Pedagogy.AnneeScolaire&gt; Name=&quot;System.Linq.Queryable.OrderBy&lt;TSource,TKey&gt; returned&quot;)] @2)" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="1468.48666666667,201.4875,111.19,25.96" Label="AnneeScolaire" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/DataService/Entities/Pedagogy/AnneeScolaire.cs StartLineNumber=14 StartCharacterOffset=0 EndLineNumber=14 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@13" Category="CodeSchema_Method" Bounds="0.725000000000122,201.9675,248.713333333333,25" CodeSchemaProperty_IsPrivate="True" CommonLabel="ListSelector_OnOnSelectionChanged" Group="Collapsed" Icon="CodeSchema_Method" Label="ListSelector_OnOnSelectionChanged" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ClasseStudents.xaml.cs StartLineNumber=65 StartCharacterOffset=0 EndLineNumber=65 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@16" Category="CodeSchema_Method" Bounds="1302.85022248037,81.763310499131,167.703333333333,25.96" CodeSchemaProperty_IsPrivate="True" CommonLabel="BackwardButton_OnClick" Icon="CodeSchema_Method" Label="BackwardButton_OnClick" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ListSelector.xaml.cs StartLineNumber=58 StartCharacterOffset=0 EndLineNumber=58 EndCharacterOffset=0)" UseManualLocation="True">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@17" Category="CodeSchema_Method" Bounds="1177.47167073568,-46.040001371491,160.273333333333,25.96" CodeSchemaProperty_IsPrivate="True" CommonLabel="ForwardButton_OnClick" Icon="CodeSchema_Method" Label="ForwardButton_OnClick" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ListSelector.xaml.cs StartLineNumber=64 StartCharacterOffset=0 EndLineNumber=64 EndCharacterOffset=0)" UseManualLocation="True">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@19" Category="CodeSchema_Method" Bounds="0,130.0475,250.163333333333,25" CodeSchemaProperty_IsPrivate="True" CommonLabel="TheComboBox_OnSelectionChanged" Group="Collapsed" Icon="CodeSchema_Method" Label="TheComboBox_OnSelectionChanged" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ListSelector.xaml.cs StartLineNumber=74 StartCharacterOffset=0 EndLineNumber=74 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@20" Category="CodeSchema_Method" Bounds="729.15712,58.1187217312,177.849093333333,25.0175565376" CodeSchemaProperty_IsAnonymous="True" Group="Collapsed" Label="AnonymousMethod__1" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ClasseStudents.xaml.cs StartLineNumber=54 StartCharacterOffset=0 EndLineNumber=54 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@21" Category="CodeSchema_Method" Bounds="900.53640218099,107.959248109131,157.843333333333,25.96" CodeSchemaProperty_IsAnonymous="True" Label="AnonymousMethod__2" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ClasseStudents.xaml.cs StartLineNumber=59 StartCharacterOffset=0 EndLineNumber=59 EndCharacterOffset=0)" UseManualLocation="True">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@22" Category="CodeSchema_Method" Bounds="1091.875,129.5675,148.413333333333,25.96" CodeSchemaProperty_IsPublic="True" CommonLabel="GetAllAnneeScolaires" Icon="CodeSchema_Method" Label="GetAllAnneeScolaires" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/DataService/DataManager/PedagogyManager.cs StartLineNumber=83 StartCharacterOffset=0 EndLineNumber=83 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@24" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="912.875,129.5675,148.413333333333,25.96" Label="GetAllAnneeScolaires" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/DataService/DataManager/PedagogyManager.cs StartLineNumber=80 StartCharacterOffset=0 EndLineNumber=80 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@25" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="1270.875,129.5675,148.413333333333,25.96" Label="GetAllAnneeScolaires" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/DataService/DataManager/PedagogyManager.cs StartLineNumber=81 StartCharacterOffset=0 EndLineNumber=81 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@27" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="1271.41237630208,289.896443364258,228.713333333333,25.96" Label="ListSelector_OnOnSelectionChanged" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ClasseStudents.xaml.cs StartLineNumber=64 StartCharacterOffset=0 EndLineNumber=64 EndCharacterOffset=0)" UseManualLocation="True">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@28" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="1210.28493074336,170.830757530299,230.163333333333,25.96" Label="TheComboBox_OnSelectionChanged" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ListSelector.xaml.cs StartLineNumber=74 StartCharacterOffset=0 EndLineNumber=74 EndCharacterOffset=0)" UseManualLocation="True">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@30" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="1218.04621314633,167.879991941087,230.163333333333,25.96" Label="TheComboBox_OnSelectionChanged" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ListSelector.xaml.cs StartLineNumber=77 StartCharacterOffset=0 EndLineNumber=77 EndCharacterOffset=0)" UseManualLocation="True">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@31" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="1221.39362146758,101.396117706299,160.273333333333,25.96" Label="ForwardButton_OnClick" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ListSelector.xaml.cs StartLineNumber=66 StartCharacterOffset=0 EndLineNumber=66 EndCharacterOffset=0)" UseManualLocation="True">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@32" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="1424.07305840914,65.9212794494629,167.703333333333,25.96" Label="BackwardButton_OnClick" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ListSelector.xaml.cs StartLineNumber=58 StartCharacterOffset=0 EndLineNumber=58 EndCharacterOffset=0)" UseManualLocation="True">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@33" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="300.945,58.1275000000002,180.273333333334,25.0000000000001" Group="Collapsed" Label="ForwardButton_OnClick" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ListSelector.xaml.cs StartLineNumber=66 StartCharacterOffset=0 EndLineNumber=66 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@34" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="1653.75964192708,177.944110412598,230.163333333333,25.96" Label="TheComboBox_OnSelectionChanged" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ListSelector.xaml.cs StartLineNumber=78 StartCharacterOffset=0 EndLineNumber=78 EndCharacterOffset=0)" UseManualLocation="True">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@35" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="511.23,58.1275000000001,187.703333333333,25" Group="Collapsed" Label="BackwardButton_OnClick" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ListSelector.xaml.cs StartLineNumber=58 StartCharacterOffset=0 EndLineNumber=58 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@36" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="1146.75304280599,34.8616545649279,160.273333333333,25.96" Label="ForwardButton_OnClick" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ListSelector.xaml.cs StartLineNumber=66 StartCharacterOffset=0 EndLineNumber=66 EndCharacterOffset=0)" UseManualLocation="True">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@39" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="1449.875,129.5675,148.413333333333,25.96" Label="GetAllAnneeScolaires" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/DataService/DataManager/PedagogyManager.cs StartLineNumber=83 StartCharacterOffset=0 EndLineNumber=83 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@5" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="1629.08166666667,129.5675,50,25.96" Label="" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ListSelector.xaml.cs StartLineNumber=74 StartCharacterOffset=0 EndLineNumber=74 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@8" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="937.081666666667,57.6475,50,25.96" Label="" SourceLocation="(Assembly=file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/Controls/ListSelector.xaml.cs StartLineNumber=58 StartCharacterOffset=0 EndLineNumber=58 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="ExternalCodeRootNode" Category="ExternalCallStackEntry" Bounds="771.588333333333,0,92.9866666666667,25.96" Label="External Code">
+      <Category Ref="CallStackEntry" />
+    </Node>
+  </Nodes>
+  <Links>
+    <Link Source="@13" Target="@27" Category="Contains" />
+    <Link Source="@16" Target="@19" Category="CallStackIndirectCall" Bounds="1205.31843013703,-4.27668950086896,101.521923889136,234.62030713026" Label="External Code" LabelBounds="1278.20344773633,152.279111983818,72.9866666666667,15.9600000000002" />
+    <Link Source="@17" Target="@19" Category="CallStackIndirectCall" Bounds="1265.33673352818,10.919998628509,46.0077326838446,218.875977934574" Label="External Code" LabelBounds="1289.8627032055,96.471917941008,72.9866666666676,15.9600000000001" />
+    <Link Source="@19" Target="@13" Category="CallStackDirectCall" Bounds="1382.21306220697,178.830657538779,2.88574085977143,92.5501638056528" />
+    <Link Source="@19" Target="@28" Category="Contains" />
+    <Link Source="@19" Target="@30" Category="Contains" />
+    <Link Source="@19" Target="@34" Category="Contains" />
+    <Link Source="@20" Target="(@14 Namespace=DataService.DataManager Type=ClassesManager Member=(Name=GetClassStudents OverloadingParameters=[(@11 Namespace=System Type=Guid),(@11 Namespace=System Type=Guid)]))" Category="CallStackDirectCall" Bounds="416.844818115234,83.1362762451172,318.795806884766,48.3708801269531" />
+    <Link Source="@20" Target="(Name=DataService.DataManager.ClassesManager.GetClassStudents @23 Type=System.Collections.Generic.HashSet&lt;DataService.ViewModel.ClasseStudentCard&gt; OverloadingParameters=[(Type=System.Data.Entity.DbSet&lt;DataService.Entities.Pedagogy.Inscription&gt; Name=&quot;DataService.Context.Ef.Inscription.get returned&quot;),@37,(Type=System.Linq.Expressions.TypedParameterExpression Name=&quot;System.Linq.Expressions.Expression.Parameter returned&quot;),@38,(Type=System.Linq.Expressions.PropertyExpression Name=&quot;System.Linq.Expressions.Expression.Property returned&quot;),@38,@37,(Type=System.Linq.Expressions.ConstantExpression Name=&quot;System.Linq.Expressions.Expression.Constant returned&quot;),(Type=System.Reflection.RtFieldInfo Name=&quot;System.Reflection.FieldInfo.GetFieldFromHandle returned&quot;),(Type=System.Linq.Expressions.FieldExpression Name=&quot;System.Linq.Expressions.Expression.Field returned&quot;),(Type=System.Linq.Expressions.InstanceMethodCallExpressionN Name=&quot;System.Linq.Expressions.Expression.Call returned&quot;),@38,(Type=System.Linq.Expressions.PropertyExpression Name=&quot;System.Linq.Expressions.Expression.Property returned&quot;),@38,@37,(Type=System.Linq.Expressions.ConstantExpression Name=&quot;System.Linq.Expressions.Expression.Constant returned&quot;),(Type=System.Reflection.RtFieldInfo Name=&quot;System.Reflection.FieldInfo.GetFieldFromHandle returned&quot;),(Type=System.Linq.Expressions.FieldExpression Name=&quot;System.Linq.Expressions.Expression.Field returned&quot;),(Type=System.Linq.Expressions.InstanceMethodCallExpressionN Name=&quot;System.Linq.Expressions.Expression.Call returned&quot;),(Type=System.Linq.Expressions.LogicalBinaryExpression Name=&quot;System.Linq.Expressions.Expression.AndAlso returned&quot;),(Type=&quot;System.Linq.Expressions.Expression&lt;System.Func&lt;DataService.Entities.Pedagogy.Inscription, bool&gt;&gt;&quot; Name=&quot;System.Linq.Expressions.Expression.Lambda&lt;TDelegate&gt; returned&quot;),(Type=System.Data.Entity.Infrastructure.DbQuery&lt;DataService.Entities.Pedagogy.Inscription&gt; Name=&quot;System.Linq.Queryable.Where&lt;TSource&gt; returned&quot;),(Type=System.Data.Entity.Internal.LazyEnumerator&lt;DataService.Entities.Pedagogy.Inscription&gt; Name=&quot;System.Collections.Generic.IEnumerable&lt;T&gt;.GetEnumerator returned&quot;),(Type=System.Guid Name=classGuid),(Type=System.Guid Name=anneeScolaireGuid)] @2)" Category="CallStackDirectCall" Bounds="696.78857421875,83.1362762451172,93.812744140625,42.7026214599609" />
+    <Link Source="@20" Target="(Name=DataService.DataManager.ClassesManager.GetClassStudents @23 Type=System.Collections.Generic.HashSet&lt;DataService.ViewModel.ClasseStudentCard&gt; OverloadingParameters=[(Type=System.Data.Entity.Infrastructure.DbContextConfiguration Name=&quot;System.Data.Entity.DbContext.Configuration.get returned&quot;),(Type=System.Guid Name=classGuid),(Type=System.Guid Name=anneeScolaireGuid)] @2)" Category="CallStackDirectCall" Bounds="567.888366699219,83.1362762451172,195.232604980469,44.4339447021484" />
+    <Link Source="@20" Target="(Name=DataService.DataManager.ClassesManager.GetClassStudents @23 Type=System.Collections.Generic.HashSet&lt;DataService.ViewModel.ClasseStudentCard&gt; OverloadingParameters=[(Type=bool Name=&quot;System.Collections.IEnumerator.MoveNext returned&quot;),(Type=System.Guid Name=classGuid),(Type=System.Guid Name=anneeScolaireGuid)] @2)" Category="CallStackDirectCall" Bounds="818.081665039063,83.1362762451172,0,37.4312210083008" />
+    <Link Source="@20" Target="@21" Category="Contains" />
+    <Link Source="@21" Target="@22" Category="CallStackDirectCall" Bounds="157.413245595677,121.285207256089,743.123156585313,3.25075756126762" />
+    <Link Source="@21" Target="@24" Category="CallStackDirectCall" Bounds="495.465662297685,132.802202256804,405.734675968653,61.5008855025403" />
+    <Link Source="@21" Target="@25" Category="CallStackDirectCall" Bounds="335.826642653126,121.369951781695,564.709759527864,3.07667066080084" />
+    <Link Source="@21" Target="@39" Category="CallStackDirectCall" Bounds="629.824649548409,133.919968109131,313.573326451323,112.872193493879" />
+    <Link Source="@22" Target="(@14 Namespace=DataService.Entities.Pedagogy Type=AnneeScolaire Member=.ctor)" Category="CallStackIndirectCall" Bounds="1166.08166503906,155.527496337891,0,36.9600067138672" Label="External Code" LabelBounds="1093.095,170.5275,72.9866666666671,15.96" />
+    <Link Source="@28" Target="@27" Category="CallStackDirectCall" Bounds="1192.7096879069,292.839526426849,69.7150128150827,3.65215911383706" />
+    <Link Source="@31" Target="@28" Category="CallStackIndirectCall" Bounds="1083.06309206168,178.830654602051,21.596944715501,86.2695248484289" Label="External Code" LabelBounds="1170.54740710658,153.057203018136,72.9866666666667,15.9600000000001" />
+    <Link Source="@32" Target="@30" Category="CallStackIndirectCall" Bounds="1156.02668327417,137.879939219157,114.870410288874,27.8774869221341" Label="External Code" LabelBounds="1205.45326723498,131.85704507462,72.9866666666667,15.96" />
+    <Link Source="@33" Target="@17" Category="Contains" />
+    <Link Source="@33" Target="@30" Category="CallStackIndirectCall" Bounds="1302.74136778142,117.356117706299,20.2909309635886,42.4054174654615" Label="External Code" LabelBounds="1314.69093476751,121.735566476909,72.9866666666676,15.96" />
+    <Link Source="@33" Target="@31" Category="Contains" />
+    <Link Source="@33" Target="@36" Category="Contains" />
+    <Link Source="@35" Target="@16" Category="Contains" />
+    <Link Source="@35" Target="@32" Category="Contains" />
+    <Link Source="@35" Target="@34" Category="CallStackIndirectCall" Bounds="1507.46730723772,81.919998626709,225.264365831061,172.519755565807" Label="External Code" LabelBounds="1529.84666101075,97.2758841581817,72.9866666666667,15.96" />
+    <Link Source="@36" Target="@34" Category="CallStackIndirectCall" Bounds="1784.47399869437,81.919998626709,267.920895206295,173.107752239033" Label="External Code" LabelBounds="1894.06239733282,100.090836642148,72.9866666666667,15.96" />
+    <Link Source="@39" Target="(Name=DataService.Entities.Pedagogy.AnneeScolaire.AnneeScolaire @23 @26 OverloadingParameters=[(Type=System.Data.Entity.DbSet&lt;DataService.Entities.Pedagogy.AnneeScolaire&gt; Name=&quot;DataService.Context.Ef.AnneeScolaire.get returned&quot;),@37,(Type=System.Linq.Expressions.TypedParameterExpression Name=&quot;System.Linq.Expressions.Expression.Parameter returned&quot;),@38,(Type=System.Linq.Expressions.PropertyExpression Name=&quot;System.Linq.Expressions.Expression.Property returned&quot;),(Type=&quot;System.Linq.Expressions.Expression&lt;System.Func&lt;DataService.Entities.Pedagogy.AnneeScolaire, System.DateTime?&gt;&gt;&quot; Name=&quot;System.Linq.Expressions.Expression.Lambda&lt;TDelegate&gt; returned&quot;),(Type=System.Data.Entity.Infrastructure.DbQuery&lt;DataService.Entities.Pedagogy.AnneeScolaire&gt; Name=&quot;System.Linq.Queryable.OrderBy&lt;TSource,TKey&gt; returned&quot;)] @2)" Category="CallStackIndirectCall" Bounds="1524.08166503906,155.527496337891,0,36.9600067138672" Label="External Code" LabelBounds="1451.095,170.5275,72.9866666666671,15.96" />
+    <Link Source="@5" Target="(Name=&quot;&lt;Unknown function&gt;&quot; @1 OverloadingParameters=[(Type=&quot;object {string}&quot; Name=sender),(Type=&quot;System.EventArgs {System.Windows.Controls.SelectionChangedEventArgs}&quot; Name=e)] @2)" Category="CallStackDirectCall" Bounds="1654.08166503906,155.527496337891,0,36.9600067138672" />
+    <Link Source="@8" Target="@5" Category="CallStackIndirectCall" Bounds="987.069396972656,80.8784637451172,633.451110839844,48.7684173583984" Label="External Code" LabelBounds="1235.095,98.6075,72.9866666666667,15.96" />
+    <Link Source="ExternalCodeRootNode" Target="(@9 Namespace=Matrix.Styles Type=MyWindowStyle Member=(Name=TitleBarMouseMove OverloadingParameters=[@12,(@15 Namespace=System.Windows.Input Type=MouseEventArgs)]))" Category="CallStackIndirectCall" Bounds="864.575012207031,22.9067573547363,153.911437988281,32.861515045166" />
+    <Link Source="ExternalCodeRootNode" Target="@16" Category="CallStackIndirectCall" Bounds="1240.2587890625,-115.236885070801,79.6153564453125,81.6361694335938" />
+    <Link Source="ExternalCodeRootNode" Target="@17" Category="CallStackIndirectCall" Bounds="1298.83959960938,-115.236885070801,27.0299072265625,95.0315723419189" />
+    <Link Source="ExternalCodeRootNode" Target="@20" Category="CallStackIndirectCall" Bounds="1005.77016350303,-115.236884613037,302.915650658026,208.100652151599" />
+    <Link Source="ExternalCodeRootNode" Target="@21" Category="CallStackIndirectCall" Bounds="1004.9123530291,-115.236884613037,304.531776971227,217.958771918179" />
+    <Link Source="ExternalCodeRootNode" Target="@31" Category="CallStackIndirectCall" Bounds="1309.57055089273,25.9599995422363,25.1705532850326,67.0108712705312" />
+    <Link Source="ExternalCodeRootNode" Target="@32" Category="CallStackIndirectCall" Bounds="1363.08995907814,25.9599993133545,100.87154636892,36.8714674464088" />
+    <Link Source="ExternalCodeRootNode" Target="@33" Category="CallStackIndirectCall" Bounds="1306.48724708032,25.9599490844727,27.0103311237513,57.2954177863397" />
+    <Link Source="ExternalCodeRootNode" Target="@35" Category="CallStackIndirectCall" Bounds="1380.41736187994,25.9599995422363,85.724134759357,27.2715571777002" />
+    <Link Source="ExternalCodeRootNode" Target="@36" Category="CallStackIndirectCall" Bounds="1352.27136230469,-115.236885070801,242.221801757813,176.364234924316" />
+    <Link Source="ExternalCodeRootNode" Target="@8" Category="CallStackIndirectCall" Bounds="850.504943847656,25.9599990844727,78.2214965820313,31.3144149780273" />
+  </Links>
+  <Categories>
+    <Category Id="CallStackDirectCall" Label="Call Stack direct call" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Call Stack direct call" OutgoingActionLabel="Call Stack direct call" />
+    <Category Id="CallStackEntry" Label="Call Stack Entry" CanBeDataDriven="True" IsProviderRoot="False" NavigationActionLabel="Call Stack Entry" />
+    <Category Id="CallStackIndirectCall" Label="Call Stack indirect call" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Call Stack indirect call" OutgoingActionLabel="Call Stack indirect call" />
+    <Category Id="CodeSchema_CallStackUnresolvedMethod" Label="Unresolved Method" CanBeDataDriven="True" DefaultAction="Microsoft.AllOutBoundLinks" IsProviderRoot="False" NavigationActionLabel="Unresolved Method" />
+    <Category Id="CodeSchema_Member" Label="Member" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="CodeSchema_Field" NavigationActionLabel="Members" />
+    <Category Id="CodeSchema_Method" Label="Method" BasedOn="CodeSchema_Member" CanBeDataDriven="True" DefaultAction="Link:Forward:CodeSchema_Calls" Icon="CodeSchema_Method" NavigationActionLabel="Methods" />
+    <Category Id="CodeSchema_SourceLocation" Label="Source Location" Icon="File" />
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+    <Category Id="ExternalCallStackEntry" Label="External Call Stack Entry" CanBeDataDriven="True" IsProviderRoot="False" NavigationActionLabel="External Call Stack Entry" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsAnonymous" Label="Is Anonymous" Description="Flag indicating if this delegate, type, or method is anonymous" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsConstructor" Label="Is Constructor" Description="Flag to indicate the method is a constructor" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsPrivate" Label="Is Private" Description="Flag to indicate the scope is Private" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsPublic" Label="Is Public" Description="Flag to indicate the scope is Public" DataType="System.Boolean" />
+    <Property Id="CommonLabel" DataType="System.String" />
+    <Property Id="DataVirtualized" Label="Data Virtualized" Description="If true, the graph can contain nodes and links that represent data for virtualized nodes/links (i.e. not actually created in the graph)." DataType="System.Boolean" />
+    <Property Id="DefaultAction" Label="DefaultAction" Description="DefaultAction" DataType="System.String" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="Icon" Label="Icon" DataType="System.String" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="IsProviderRoot" Label="IsProviderRoot" Description="IsProviderRoot" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="LabelBounds" DataType="System.Windows.Rect" />
+    <Property Id="Layout" DataType="System.String" />
+    <Property Id="NavigationActionLabel" Label="NavigationActionLabel" Description="NavigationActionLabel" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="SourceLocation" Label="Start Line Number" DataType="Microsoft.VisualStudio.GraphModel.CodeSchema.SourceLocation" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+    <Property Id="Visibility" Label="Visibility" Description="Defines whether a node in the graph is visible or not" DataType="System.Windows.Visibility" />
+    <Property Id="ZoomLevel" DataType="System.String" />
+  </Properties>
+  <QualifiedNames>
+    <Name Id="Assembly" Label="Assembly" ValueType="Uri" />
+    <Name Id="IsUnresolved" Label="Is Unresolved" ValueType="System.String" />
+    <Name Id="Member" Label="Member" ValueType="System.Object" />
+    <Name Id="Name" Label="Name" ValueType="System.String" />
+    <Name Id="Namespace" Label="Namespace" ValueType="System.String" />
+    <Name Id="OverloadingParameters" Label="Parameter" ValueType="Microsoft.VisualStudio.GraphModel.GraphNodeIdCollection" Formatter="NameValueNoEscape" />
+    <Name Id="Type" Label="Type" ValueType="System.Object" />
+  </QualifiedNames>
+  <IdentifierAliases>
+    <Alias n="1" Uri="Assembly=Matrix.exe" />
+    <Alias n="2" Id="IsUnresolved=True" />
+    <Alias n="3" Id="(Type=&quot;object {System.Windows.Controls.ComboBox}&quot; Name=sender)" />
+    <Alias n="4" Id="(Type=System.Windows.Controls.SelectionChangedEventArgs Name=e)" />
+    <Alias n="5" Id="(Name=&quot;&lt;Unknown function&gt;&quot; @1 OverloadingParameters=[@3,@4] @2)" />
+    <Alias n="6" Id="(Type=&quot;object {System.Windows.Controls.Button}&quot; Name=sender)" />
+    <Alias n="7" Id="(Type=System.Windows.RoutedEventArgs Name=e)" />
+    <Alias n="8" Id="(Name=&quot;&lt;Unknown function&gt;&quot; @1 OverloadingParameters=[@6,@7] @2)" />
+    <Alias n="9" Uri="Assembly=$(03c8fd91-740e-4c8b-a03b-b4c4024f5a35.OutputPathUri)" />
+    <Alias n="10" Id="Namespace=Matrix.Controls" />
+    <Alias n="11" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.5.3/mscorlib.dll" />
+    <Alias n="12" Id="(@11 Namespace=System Type=Object)" />
+    <Alias n="13" Id="(@9 @10 Type=ClasseStudents Member=(Name=ListSelector_OnOnSelectionChanged OverloadingParameters=[@12,(@11 Namespace=System Type=EventArgs)]))" />
+    <Alias n="14" Uri="Assembly=$(701e45a4-bbe9-4196-b67e-766b4cf487a1.OutputPathUri)" />
+    <Alias n="15" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.5.3/PresentationCore.dll" />
+    <Alias n="16" Id="(@9 @10 Type=ListSelector Member=(Name=BackwardButton_OnClick OverloadingParameters=[@12,(@15 Namespace=System.Windows Type=RoutedEventArgs)]))" />
+    <Alias n="17" Id="(@9 @10 Type=ListSelector Member=(Name=ForwardButton_OnClick OverloadingParameters=[@12,(@15 Namespace=System.Windows Type=RoutedEventArgs)]))" />
+    <Alias n="18" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.5.3/PresentationFramework.dll" />
+    <Alias n="19" Id="(@9 @10 Type=ListSelector Member=(Name=TheComboBox_OnSelectionChanged OverloadingParameters=[@12,(@18 Namespace=System.Windows.Controls Type=SelectionChangedEventArgs)]))" />
+    <Alias n="20" Id="(@9 @10 Type=ClasseStudents Member=AnonymousMethod__1)" />
+    <Alias n="21" Id="(@9 @10 Type=ClasseStudents Member=AnonymousMethod__2)" />
+    <Alias n="22" Id="(@14 Namespace=DataService.DataManager Type=PedagogyManager Member=GetAllAnneeScolaires)" />
+    <Alias n="23" Uri="Assembly=DataService.dll" />
+    <Alias n="24" Id="(Name=DataService.DataManager.PedagogyManager.GetAllAnneeScolaires @23 Type=&quot;System.Collections.Generic.Dictionary&lt;string,string&gt;&quot; OverloadingParameters=[(Type=DataService.DbService Name=&quot;Matrix.App.DataS.get returned&quot;)] @2)" />
+    <Alias n="25" Id="(Name=DataService.DataManager.PedagogyManager.GetAllAnneeScolaires @23 Type=&quot;System.Collections.Generic.Dictionary&lt;string,string&gt;&quot; OverloadingParameters=[(Type=System.Data.Entity.Infrastructure.DbContextConfiguration Name=&quot;System.Data.Entity.DbContext.Configuration.get returned&quot;)] @2)" />
+    <Alias n="26" Id="Type=void" />
+    <Alias n="27" Id="(Name=Matrix.Controls.ClasseStudents.ListSelector_OnOnSelectionChanged @1 @26 OverloadingParameters=[(Type=string Name=&quot;Matrix.Controls.ListSelector.SelectedValue.get returned&quot;),(Type=&quot;object {string}&quot; Name=sender),(Type=&quot;System.EventArgs {System.Windows.Controls.SelectionChangedEventArgs}&quot; Name=e)] @2)" />
+    <Alias n="28" Id="(Name=Matrix.Controls.ListSelector.TheComboBox_OnSelectionChanged @1 @26 OverloadingParameters=[(Type=string Name=&quot;Matrix.Controls.ListSelector.SelectedValue.get returned&quot;),@3,@4] @2)" />
+    <Alias n="29" Id="(Type=int Name=&quot;System.Windows.Controls.Primitives.Selector.SelectedIndex.get returned&quot;)" />
+    <Alias n="30" Id="(Name=Matrix.Controls.ListSelector.TheComboBox_OnSelectionChanged @1 @26 OverloadingParameters=[@29,@3,@4] @2)" />
+    <Alias n="31" Id="(Name=Matrix.Controls.ListSelector.ForwardButton_OnClick @1 @26 OverloadingParameters=[(Type=string Name=&quot;Matrix.Controls.ListSelector.SelectedValue.get returned&quot;),@6,@7] @2)" />
+    <Alias n="32" Id="(Name=Matrix.Controls.ListSelector.BackwardButton_OnClick @1 @26 OverloadingParameters=[@29,@6,@7] @2)" />
+    <Alias n="33" Id="(Name=Matrix.Controls.ListSelector.ForwardButton_OnClick @1 @26 OverloadingParameters=[@29,@6,@7] @2)" />
+    <Alias n="34" Id="(Name=Matrix.Controls.ListSelector.TheComboBox_OnSelectionChanged @1 @26 OverloadingParameters=[@29,(Type=System.Windows.Controls.ItemCollection Name=&quot;System.Windows.Controls.ItemsControl.Items.get returned&quot;),(Type=int Name=&quot;System.Windows.Data.CollectionView.Count.get returned&quot;),@3,@4] @2)" />
+    <Alias n="35" Id="(Name=Matrix.Controls.ListSelector.BackwardButton_OnClick @1 @26 OverloadingParameters=[@29,(Type=System.Windows.Controls.ItemCollection Name=&quot;System.Windows.Controls.ItemsControl.Items.get returned&quot;),(Type=int Name=&quot;System.Windows.Data.CollectionView.Count.get returned&quot;),@6,@7] @2)" />
+    <Alias n="36" Id="(Name=Matrix.Controls.ListSelector.ForwardButton_OnClick @1 @26 OverloadingParameters=[@29,(Type=System.Windows.Controls.ItemCollection Name=&quot;System.Windows.Controls.ItemsControl.Items.get returned&quot;),(Type=int Name=&quot;System.Windows.Data.CollectionView.Count.get returned&quot;),@6,@7] @2)" />
+    <Alias n="37" Id="(Type=System.RuntimeType Name=&quot;System.Type.GetTypeFromHandle returned&quot;)" />
+    <Alias n="38" Id="(Type=System.Reflection.RuntimeMethodInfo Name=&quot;System.Reflection.MethodBase.GetMethodFromHandle returned&quot;)" />
+    <Alias n="39" Id="(Name=DataService.DataManager.PedagogyManager.GetAllAnneeScolaires @23 Type=&quot;System.Collections.Generic.Dictionary&lt;string,string&gt;&quot; OverloadingParameters=[(Type=System.Data.Entity.DbSet&lt;DataService.Entities.Pedagogy.AnneeScolaire&gt; Name=&quot;DataService.Context.Ef.AnneeScolaire.get returned&quot;),@37,(Type=System.Linq.Expressions.TypedParameterExpression Name=&quot;System.Linq.Expressions.Expression.Parameter returned&quot;),@38,(Type=System.Linq.Expressions.PropertyExpression Name=&quot;System.Linq.Expressions.Expression.Property returned&quot;),(Type=&quot;System.Linq.Expressions.Expression&lt;System.Func&lt;DataService.Entities.Pedagogy.AnneeScolaire, System.DateTime?&gt;&gt;&quot; Name=&quot;System.Linq.Expressions.Expression.Lambda&lt;TDelegate&gt; returned&quot;),(Type=System.Data.Entity.Infrastructure.DbQuery&lt;DataService.Entities.Pedagogy.AnneeScolaire&gt; Name=&quot;System.Linq.Queryable.OrderBy&lt;TSource,TKey&gt; returned&quot;)] @2)" />
+  </IdentifierAliases>
+  <Styles>
+    <Style TargetType="Link" GroupLabel="Current Call Stack Link" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('CurrentCallStackCall')" />
+      <Setter Property="Stroke" Value="#FFD93701" />
+      <Setter Property="Weight" Value="1" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Call Stack Indirect Link" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('CallStackIndirectCall')" />
+      <Setter Property="Stroke" Value="#FFB8B8B8" />
+      <Setter Property="StrokeDashArray" Value="4 1" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Call Stack Direct Link" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('CallStackDirectCall')" />
+      <Setter Property="Stroke" Value="#FFB8B8B8" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Current Call Stack (no source)" ValueLabel="True">
+      <Condition Expression="HasCategory('CurrentCallStackEntry') And !HasCategory('CodeSchema_SourceLocation')" />
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Foreground" Value="#FFA5A5A5" />
+      <Setter Property="Stroke" Value="#FF0072C6" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="External And Current" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('ExternalCallStackEntry') And HasCategory('CurrentCallStackEntry')" />
+      <Setter Property="Background" Value="#FFFFF8F0" />
+      <Setter Property="Stroke" Value="#FFCE5100" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Current Call Stack (source)" ValueLabel="True">
+      <Condition Expression="HasCategory('CurrentCallStackEntry') And !HasCategory('QueryResult')" />
+      <Setter Property="Background" Value="#FFFFE3C6" />
+      <Setter Property="Stroke" Value="#FFD93701" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="External Call Stack" ValueLabel="True">
+      <Condition Expression="HasCategory('ExternalCallStackEntry')" />
+      <Setter Property="Background" Value="#FFF7F7F7" />
+      <Setter Property="StrokeDashArray" Value="1 3" />
+      <Setter Property="Foreground" Value="#FFA5A5A5" />
+      <Setter Property="Stroke" Value="#FFA5A5A5" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Results" ValueLabel="True">
+      <Condition Expression="HasCategory('QueryResult')" />
+      <Setter Property="Background" Value="#FFBCFFBE" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Assembly" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Assembly')" />
+      <Setter Property="Background" Value="#FF094167" />
+      <Setter Property="Stroke" Value="#FF094167" />
+      <Setter Property="Icon" Value="CodeSchema_Assembly" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Namespace" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Namespace')" />
+      <Setter Property="Background" Value="#FF0E619A" />
+      <Setter Property="Stroke" Value="#FF0E619A" />
+      <Setter Property="Icon" Value="CodeSchema_Namespace" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Interface" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Interface')" />
+      <Setter Property="Background" Value="#FF1382CE" />
+      <Setter Property="Stroke" Value="#FF1382CE" />
+      <Setter Property="Icon" Value="CodeSchema_Interface" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Struct" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Struct')" />
+      <Setter Property="Background" Value="#FF1382CE" />
+      <Setter Property="Stroke" Value="#FF1382CE" />
+      <Setter Property="Icon" Value="CodeSchema_Struct" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Enumeration" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Enum')" />
+      <Setter Property="Background" Value="#FF1382CE" />
+      <Setter Property="Stroke" Value="#FF1382CE" />
+      <Setter Property="Icon" Value="CodeSchema_Enum" />
+      <Setter Property="LayoutSettings" Value="List" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Delegate" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Delegate')" />
+      <Setter Property="Background" Value="#FF1382CE" />
+      <Setter Property="Stroke" Value="#FF1382CE" />
+      <Setter Property="Icon" Value="CodeSchema_Delegate" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Class" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Type')" />
+      <Setter Property="Background" Value="#FF1382CE" />
+      <Setter Property="Stroke" Value="#FF1382CE" />
+      <Setter Property="Icon" Value="CodeSchema_Class" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Property')" />
+      <Setter Property="Background" Value="#FFE0E0E0" />
+      <Setter Property="Stroke" Value="#FFE0E0E0" />
+      <Setter Property="Icon" Value="CodeSchema_Property" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Method" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Method') Or HasCategory('CodeSchema_CallStackUnresolvedMethod')" />
+      <Setter Property="Background" Value="#FFE0E0E0" />
+      <Setter Property="Stroke" Value="#FFE0E0E0" />
+      <Setter Property="Icon" Value="CodeSchema_Method" />
+      <Setter Property="LayoutSettings" Value="List" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Event" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Event')" />
+      <Setter Property="Background" Value="#FFE0E0E0" />
+      <Setter Property="Stroke" Value="#FFE0E0E0" />
+      <Setter Property="Icon" Value="CodeSchema_Event" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Field" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Field')" />
+      <Setter Property="Background" Value="#FFE0E0E0" />
+      <Setter Property="Stroke" Value="#FFE0E0E0" />
+      <Setter Property="Icon" Value="CodeSchema_Field" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Out Parameter" ValueLabel="Has category">
+      <Condition Expression="CodeSchemaProperty_IsOut = 'True'" />
+      <Setter Property="Icon" Value="CodeSchema_OutParameter" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Parameter" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Parameter')" />
+      <Setter Property="Icon" Value="CodeSchema_Parameter" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Local Variable" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_LocalExpression')" />
+      <Setter Property="Icon" Value="CodeSchema_LocalExpression" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Externals" ValueLabel="Has category">
+      <Condition Expression="HasCategory('Externals')" />
+      <Setter Property="Background" Value="#FF424242" />
+      <Setter Property="Stroke" Value="#FF424242" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Inherits From" ValueLabel="True">
+      <Condition Expression="HasCategory('InheritsFrom')" />
+      <Setter Property="Stroke" Value="#FF00A600" />
+      <Setter Property="StrokeDashArray" Value="2 0" />
+      <Setter Property="DrawArrow" Value="true" />
+      <Setter Property="IsHidden" Value="false" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Implements" ValueLabel="True">
+      <Condition Expression="HasCategory('Implements')" />
+      <Setter Property="Stroke" Value="#8000A600" />
+      <Setter Property="StrokeDashArray" Value="2 2" />
+      <Setter Property="DrawArrow" Value="true" />
+      <Setter Property="IsHidden" Value="false" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Calls" ValueLabel="True">
+      <Condition Expression="HasCategory('CodeSchema_Calls')" />
+      <Setter Property="Stroke" Value="#FFFF00FF" />
+      <Setter Property="StrokeDashArray" Value="2 0" />
+      <Setter Property="DrawArrow" Value="true" />
+      <Setter Property="IsHidden" Value="false" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Function Pointer" ValueLabel="True">
+      <Condition Expression="HasCategory('CodeSchema_FunctionPointer')" />
+      <Setter Property="Stroke" Value="#FFFF00FF" />
+      <Setter Property="StrokeDashArray" Value="2 2" />
+      <Setter Property="DrawArrow" Value="true" />
+      <Setter Property="IsHidden" Value="false" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Field Read" ValueLabel="True">
+      <Condition Expression="HasCategory('CodeSchema_FieldRead')" />
+      <Setter Property="Stroke" Value="#FF00AEEF" />
+      <Setter Property="StrokeDashArray" Value="2 2" />
+      <Setter Property="DrawArrow" Value="true" />
+      <Setter Property="IsHidden" Value="false" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Field Write" ValueLabel="True">
+      <Condition Expression="HasCategory('CodeSchema_FieldWrite')" />
+      <Setter Property="Stroke" Value="#FF00AEEF" />
+      <Setter Property="DrawArrow" Value="true" />
+      <Setter Property="IsHidden" Value="false" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Inherits From" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('InheritsFrom') And Target.HasCategory('CodeSchema_Class')" />
+      <Setter Property="TargetDecorator" Value="OpenArrow" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Implements" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('Implements') And Target.HasCategory('CodeSchema_Interface')" />
+      <Setter Property="TargetDecorator" Value="OpenArrow" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Comment Link" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="Source.HasCategory('Comment')" />
+      <Setter Property="Stroke" Value="#FFE5C365" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Cursor Location Changed" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="IsCursorLocation" />
+      <Setter Property="IndicatorWest" Value="WestIndicator" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Disabled Breakpoint Location Changed" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="DisabledBreakpointCount" />
+      <Setter Property="IndicatorWest" Value="WestIndicator" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Enabled Breakpoint Location Changed" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="EnabledBreakpointCount" />
+      <Setter Property="IndicatorWest" Value="WestIndicator" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Instruction Pointer Location Changed" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="IsInstructionPointerLocation" />
+      <Setter Property="IndicatorWest" Value="WestIndicator" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Current Callstack Changed" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="IsCurrentCallstackFrame" />
+      <Setter Property="IndicatorWest" Value="WestIndicator" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Return" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('CodeSchema_ReturnTypeLink')" />
+      <Setter Property="IsHidden" Value="false" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="References" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('References')" />
+      <Setter Property="IsHidden" Value="false" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Uses Attribute" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('CodeSchema_AttributeUse')" />
+      <Setter Property="IsHidden" Value="false" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="HasAnyCategory" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="CategoryCount &gt;= 1" />
+      <Setter Property="IsHidden" Value="false" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="No Category" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="CategoryCount = 0" />
+      <Setter Property="HideLinkForNoCategory" Value="true" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Comment" ValueLabel="Has comment">
+      <Condition Expression="HasCategory('Comment')" />
+      <Setter Property="Background" Value="#FFFFFACD" />
+      <Setter Property="Stroke" Value="#FFE5C365" />
+      <Setter Property="StrokeThickness" Value="1" />
+      <Setter Property="NodeRadius" Value="2" />
+      <Setter Property="MaxWidth" Value="250" />
+    </Style>
+  </Styles>
+  <Paths>
+    <Path Id="03c8fd91-740e-4c8b-a03b-b4c4024f5a35.OutputPathUri" Value="file:///C:/Users/CISSE/Documents/Net/Matrix/Matrix/bin/x86/Debug/Matrix.exe" />
+    <Path Id="701e45a4-bbe9-4196-b67e-766b4cf487a1.OutputPathUri" Value="file:///C:/Users/CISSE/Documents/Net/Matrix/DataService/bin/x86/Debug/DataService.dll" />
+    <Path Id="FxReferenceAssembliesUri" Value="file:///C:/Program Files (x86)/Reference Assemblies/Microsoft/Framework" />
+  </Paths>
+</DirectedGraph>

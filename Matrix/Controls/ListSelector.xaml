@@ -12,12 +12,12 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>       
-        <Button Name="BackwardButton" Content="&#xf0d9;" FontSize="40" Width="20" Height="40" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Click="BackwardButton_OnClick"/>
-        <Label Name="TheLabel" Content="SelectedKey" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Content}" Foreground="Gray" FontSize="15" FontWeight="ExtraLight" Grid.Column="1" Margin="0,0,10,0" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+        <Button Name="BACKWARD_BUTTON" Content="&#xf0d9;" FontSize="40" Width="20" Height="40" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Click="BackwardButton_OnClick"/>
+        <Label Name="THE_LABEL" Content="SelectedKey" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Content}" Foreground="White" FontSize="15" FontWeight="ExtraLight" Grid.Column="1" Margin="0,0,10,0" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Stretch">
            
         </Label>
-            <ComboBox Name="TheComboBox" Grid.Column="0" SelectedValuePath="Value" DisplayMemberPath="Key" Visibility="Collapsed" SelectionChanged="TheComboBox_OnSelectionChanged"/>
-        <Button Name="ForwardButton" Content="&#xf0da;" FontSize="40" Height="40" Width="20" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Click="ForwardButton_OnClick" />
+            <ComboBox Name="THE_COMBO_BOX" Grid.Column="0" SelectedValuePath="Value" DisplayMemberPath="Key" Visibility="Collapsed" SelectionChanged="TheComboBox_OnSelectionChanged"/>
+        <Button Name="FORWARD_BUTTON" Content="&#xf0da;" FontSize="40" Height="40" Width="20" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Click="ForwardButton_OnClick" />
     </Grid>
         
 </UserControl>

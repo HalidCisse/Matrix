@@ -4,20 +4,18 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using DataService.Entities.Pedagogy;
-using DataService.Enum;
 
 namespace Matrix.views.Pedagogy
 {
-    //todo: ClassStudentView as UserControl move listSelector into ClassStudentView
-    //todo: ClassStudentView ClassStudentCard should show grade, presence ....
-    //todo: create SettingView and content CurrentAnneeScolaire
+    
+    //todo: new ClasseMatieres control 
 
     /// <summary>
-    /// Affiche l'emploi du temps , les matieres et les Etudiant pour une classe donnee
+    /// Affiche l'emploi du temps , les matieres et les Etudiant pour une classe donnee 
     /// </summary>
     public partial class ClassDetails
     {
-        private string _currentSelected;
+        //private string _currentSelected;
         private Classe _openedClass = new Classe();
 
         /// <summary>
@@ -35,20 +33,17 @@ namespace Matrix.views.Pedagogy
                 _openedClass = App.DataS.Pedagogy.Classes.GetClasseById(openClassGuid);
                 Dispatcher.BeginInvoke(new Action(() => { ClassFiliere.Text = App.DataS.Pedagogy.Filieres.GetFiliereById(_openedClass.FiliereGuid).Name.ToUpper(); }));
                 Dispatcher.BeginInvoke(new Action(() => { ClassName.Text = _openedClass.Name.ToUpper(); }));
-            }).Start();
+            }).RunSynchronously();
 
         }
 
         private void UpdateData()
-        {            
-            new Task(() =>
-            {
-                Dispatcher.BeginInvoke(new Action(() => { AnneeScolaireSelector.DataDictionary = App.DataS.Pedagogy.GetAllAnneeScolaires(); }));
-                Dispatcher.BeginInvoke(new Action(() => { ClassWeekSchedule.UpdateData(_openedClass.ClasseGuid); }));
-                Dispatcher.BeginInvoke(new Action(() => { MatieresList.ItemsSource = App.ModelS.GetClassMatieresCards(_openedClass.ClasseGuid); }));
-                Dispatcher.BeginInvoke(new Action(() => { StudentsList.ItemsSource = App.DataS.Pedagogy.Classes.GetClassStudents(_openedClass.ClasseGuid); }));
-
-            }).Start();
+        {                        
+            Parallel.Invoke(
+                () => Dispatcher.BeginInvoke(new Action(() => { CLASS_WEEK_SCHEDULE.UpdateData(_openedClass.ClasseGuid); })),
+                () => Dispatcher.BeginInvoke(new Action(() => { MATIERES_LIST.ItemsSource = App.ModelS.GetClassMatieresCards(_openedClass.ClasseGuid); })),
+                () => Dispatcher.BeginInvoke(new Action(() => { CLASSE_STUDENTS.Refresh(_openedClass.ClasseGuid, App.DataS.Pedagogy.CurrentAnneeScolaireGuid); }))
+            );
 
         }
 
@@ -98,7 +93,7 @@ namespace Matrix.views.Pedagogy
         {
             var wind = new AddAnneeScolaire { Owner = Window.GetWindow(this) };
             wind.ShowDialog();
-            UpdateData();
+            NavigationService?.Refresh();           
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -120,8 +115,8 @@ namespace Matrix.views.Pedagogy
 
         private void ClassWeekSchedule_OnSelectionChanged(object sender, EventArgs e)
         {
-            var id = sender as string;
-            _currentSelected = id;
+            //var id = sender as string;
+            //_currentSelected = id;
         }
 
         private void MatieresList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -135,26 +130,11 @@ namespace Matrix.views.Pedagogy
             UpdateData();
         }
 
-        private void StudentsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-
+       
 
         #endregion
        
-        private void ListSelector_OnSelectionChanged(object sender, EventArgs e)
-        {
-            var currentAnneeScolaire = sender as string;
-
-            //App.DataS.Settings.SetSetting(MatrixConstants.SystemGuid(), Settings.CurrentAnneeScolaire, currentAnneeScolaire);
-
-           
-
-            //MessageBox.Show(currentAnneeScolaire);
-        }
-
+        
        
     }
 }
@@ -171,6 +151,13 @@ namespace Matrix.views.Pedagogy
 
 
 
+//new Task(() =>
+//{               
+//    Dispatcher.BeginInvoke(new Action(() => { CLASS_WEEK_SCHEDULE.UpdateData(_openedClass.ClasseGuid); }));
+//    Dispatcher.BeginInvoke(new Action(() => { MatieresList.ItemsSource = App.ModelS.GetClassMatieresCards(_openedClass.ClasseGuid); }));
+//    Dispatcher.BeginInvoke(new Action(() => { CLASSE_STUDENTS.Refresh(_openedClass.ClasseGuid, App.DataS.Pedagogy.CurrentAnneeScolaireGuid); }));
+
+//}).Start();
 
 
 //Dispatcher.BeginInvoke(new Action(() => { ClassWeekSchedule.UpdateData(OpenedClass.CLASSE_ID); }));

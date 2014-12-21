@@ -4,9 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:controls="clr-namespace:Matrix.Controls"
-
-
-      mc:Ignorable="d" KeepAlive="True" Loaded="Page_Loaded"
+      mc:Ignorable="d" Loaded="Page_Loaded"
       d:DesignHeight="550" d:DesignWidth="2000">
 
     <Page.Resources>
@@ -63,13 +61,11 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button Content="&#xf0a8;" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Name="BackButton" Click="BackButton_Click" />
-                <Button Content="&#xf055;" Grid.Column="1" Style="{DynamicResource ToolButtonStyle}" Name="AddButton" Click="AddButon_Click" />
-                <Button Content="&#xf014;" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Name="DeleteButton" Click="DeleteButton_Click"/>
-                
-                <!--<Button Content="&#xf15d;" Grid.Column="3" Style="{DynamicResource ToolButtonStyle}" />-->
-                
-                <controls:ListSelector x:Name="AnneeScolaireSelector" Margin="20,0" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" OnSelectionChanged="ListSelector_OnSelectionChanged" />
+                <Button Content="&#xf0a8;" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Name="BACK_BUTTON" Click="BackButton_Click" />
+                <Button Content="&#xf055;" Grid.Column="1" Style="{DynamicResource ToolButtonStyle}" Name="ADD_BUTTON" Click="AddButon_Click" />
+                <Button Content="&#xf014;" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Name="DELETE_BUTTON" Click="DeleteButton_Click"/>
+                                
+                <!--<controls:ListSelector x:Name="ANNEE_SCOLAIRE_SELECTOR" Margin="20,0" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" OnSelectionChanged="ListSelector_OnSelectionChanged" />-->
                 
                 <Grid Grid.Column="5">
                     <Grid.ColumnDefinitions>
@@ -90,25 +86,18 @@
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
             <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
                 
-                <controls:ScheduleWeek x:Name="ClassWeekSchedule" Margin="10,0" Effect="{StaticResource Z-Depth3}" SelectionChanged="ClassWeekSchedule_OnSelectionChanged"/>
+                <controls:ScheduleWeek x:Name="CLASS_WEEK_SCHEDULE" Margin="10,0" Effect="{StaticResource Z-Depth3}" SelectionChanged="ClassWeekSchedule_OnSelectionChanged"/>
                                                                            
                 <DockPanel Width="650" Margin="10,0" Effect="{StaticResource Z-Depth3}">
-                    <Border DockPanel.Dock="Top" Height="30" BorderThickness="5" BorderBrush="Beige" Background="#25A0DA" >
+                    <Grid DockPanel.Dock="Top" Height="30" Background="#25A0DA" >
                         <TextBlock Text="MATIERES" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
-                    </Border>                   
+                    </Grid>                   
                     <Border BorderThickness="0" Background="Transparent">
-                        <ListBox Name="MatieresList" Style="{DynamicResource MatiereStyle}" Margin="0" MouseDoubleClick="MatieresList_MouseDoubleClick"/>
+                        <ListBox Name="MATIERES_LIST" Style="{DynamicResource MatiereStyle}" Margin="0" MouseDoubleClick="MatieresList_MouseDoubleClick"/>
                     </Border>
                 </DockPanel>
                              
-                <DockPanel Width="500" Margin="10,0" Effect="{StaticResource Z-Depth3}">                   
-                    <Border DockPanel.Dock="Top" Height="30"  Background="Beige" Effect="{StaticResource Z-Depth3}">
-                        <TextBlock Text="ETUDIANTS" Foreground="#25A0DA" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
-                    </Border>                    
-                    <Border BorderThickness="0" Background="Transparent" >
-                        <ListBox Name="StudentsList" Style="{DynamicResource MatiereStyle}" Margin="20,10,20,0" MouseDoubleClick="StudentsList_MouseDoubleClick"/>
-                    </Border>
-                </DockPanel>
+                <controls:ClasseStudents x:Name="CLASSE_STUDENTS" Margin="10,0" Effect="{StaticResource Z-Depth3}" ></controls:ClasseStudents>
                 
             </StackPanel>
         </ScrollViewer>

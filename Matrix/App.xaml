@@ -22,6 +22,7 @@
                 <ResourceDictionary Source="Styles/AgendaStyles/DaysStyles.xaml"/>
                 <ResourceDictionary Source="Styles/AgendaStyles/CoursStyles.xaml"/>
                 <ResourceDictionary Source="Styles/PedagogyStyles/MatiereStyles.xaml"/>
+                <ResourceDictionary Source="Styles/PedagogyStyles/ClasseStudentsStyles.xaml"/>
                 <ResourceDictionary Source="Styles/Main/TabStyles.xaml"/>
                 
                 <!--<ResourceDictionary Source="/Elysium;component/Themes/Generic.xaml"/>-->

@@ -10,6 +10,7 @@ namespace Matrix.Controls
     /// </summary>
     public partial class ListSelector
     {
+        private bool _shouldFire;
         /// <summary>
         /// Content the Key/Value to iterate over
         /// </summary>
@@ -18,10 +19,11 @@ namespace Matrix.Controls
             set
             {
                 if (value == null) return;                
-                TheComboBox.ItemsSource = null;
-                TheComboBox.ItemsSource = value;
-                TheComboBox.SelectedIndex = 0;
-                TheLabel.Content = TheComboBox.Text;
+                THE_COMBO_BOX.ItemsSource = null;
+                THE_COMBO_BOX.ItemsSource = value;
+                _shouldFire = false;
+                THE_COMBO_BOX.SelectedIndex = 0;
+                THE_LABEL.Content = THE_COMBO_BOX.Text;
             }
         } 
 
@@ -33,7 +35,15 @@ namespace Matrix.Controls
         /// <summary>
         /// Content the Current Selceted Value
         /// </summary>
-        public string SelectedValue { get; set; }
+        public string SelectedValue
+        {
+            get { return THE_COMBO_BOX.SelectedValue?.ToString(); }
+            set
+            {
+                THE_COMBO_BOX.SelectedValue = value;
+                THE_LABEL.Content = THE_COMBO_BOX.Text;
+            }
+        }
 
         /// <summary>
         /// A Control For Iterating A Dictionary
@@ -45,28 +55,30 @@ namespace Matrix.Controls
         
         private void BackwardButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (TheComboBox.SelectedIndex < 1) return;
+            if (THE_COMBO_BOX.SelectedIndex < 1) return;
            
-            TheComboBox.SelectedIndex = TheComboBox.SelectedIndex - 1;                    
-            TheLabel.Content = TheComboBox.Text;
+            THE_COMBO_BOX.SelectedIndex = THE_COMBO_BOX.SelectedIndex - 1;                    
+            THE_LABEL.Content = THE_COMBO_BOX.Text;
         }
 
         private void ForwardButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (TheComboBox.SelectedIndex + 1 >= TheComboBox.Items.Count) return;
+            if (THE_COMBO_BOX.SelectedIndex + 1 >= THE_COMBO_BOX.Items.Count) return;
 
-            TheComboBox.SelectedIndex = TheComboBox.SelectedIndex + 1;            
-            TheLabel.Content = TheComboBox.Text;
+            THE_COMBO_BOX.SelectedIndex = THE_COMBO_BOX.SelectedIndex + 1;            
+            THE_LABEL.Content = THE_COMBO_BOX.Text;
         }
 
         private void TheComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {            
-            SelectedValue = TheComboBox.SelectedValue as string ;
-            OnSelectionChanged?.Invoke(TheComboBox.SelectedValue, e);
+        {                        
+            if (!_shouldFire) { _shouldFire = true;}
+            else OnSelectionChanged?.Invoke(SelectedValue, e);
 
-            BackwardButton.IsEnabled = TheComboBox.SelectedIndex > 0;
-            ForwardButton.IsEnabled = (TheComboBox.SelectedIndex + 1) < TheComboBox.Items.Count;           
+            BACKWARD_BUTTON.IsEnabled = THE_COMBO_BOX.SelectedIndex > 0;
+            FORWARD_BUTTON.IsEnabled = (THE_COMBO_BOX.SelectedIndex + 1) < THE_COMBO_BOX.Items.Count;           
         }
+
+
        
     }
 }

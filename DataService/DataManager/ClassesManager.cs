@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using DataService.Entities.Pedagogy;
+using DataService.ViewModel;
 
 namespace DataService.DataManager
 {
@@ -158,18 +159,20 @@ namespace DataService.DataManager
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="classId"></param>
+        /// <param name="classGuid"></param>
+        /// <param name="anneeScolaireGuid"></param>
         /// <returns></returns>
-        public HashSet<Student> GetClassStudents(Guid classId)
-        {
-            var students = new HashSet<Student>();
-
+        public HashSet<ClasseStudentCard> GetClassStudents(Guid classGuid, Guid anneeScolaireGuid)
+        {            
             using (var db = new Ef())
             {
-                foreach (var st in db.Inscription.Where(c => c.ClasseGuid == classId))
+                var students = new HashSet<ClasseStudentCard>();
+
+                foreach (var st in db.Inscription.Where(c => c.ClasseGuid.Equals(classGuid) && c.AnneeScolaireGuid.Equals(anneeScolaireGuid) ))
                 {
-                    students.Add(db.Student.Find(st.StudentGuid));
+                    students.Add (new ClasseStudentCard(db.Student.Find(st.StudentGuid), anneeScolaireGuid));
                 }
+
                 return students;
             }
         }

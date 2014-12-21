@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     
- 
-    <Style x:Key="MatiereStyle" TargetType="{x:Type ListBox}">
+    
+    <Style x:Key="ClasseStudentsStyle" TargetType="{x:Type ListBox}">
 
         <Style.Resources>
            
@@ -30,7 +30,7 @@
                        
                         <Grid>
                             <Border  Name="MaskBorder" CornerRadius="50" Background="White" BorderThickness="0"/>
-                            <Image Source="{Binding InstructeurPhoto}" Stretch="Fill" Width="90" Height="90">
+                            <Image Source="{Binding PhotoIdentity}" Stretch="Fill" Width="90" Height="90">
                                 <Image.OpacityMask>
                                     <VisualBrush Visual="{Binding ElementName=MaskBorder}"/>
                                 </Image.OpacityMask>
@@ -39,21 +39,21 @@
 
                         <StackPanel Margin="10,5,5,5" >
                             
-                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Width="170" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                            <TextBlock Text="{Binding FullName}" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Width="170" TextWrapping="Wrap" VerticalAlignment="Top"/>
                                                         
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
-                                <TextBlock Text="Proff :" FontSize="15" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
-                                <TextBlock Text="{Binding InstructeurName}" Margin="5,0" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>                                
+                                <TextBlock Text="@:" FontSize="15" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                                <TextBlock Text="{Binding PhoneNumber}" Margin="5,0" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>                                
                             </StackPanel>
                             
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
-                                <TextBlock Text="Coeff :" FontSize="15" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
-                                <TextBlock Text="{Binding Coeff}" Margin="5,0" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>                                
+                                <TextBlock Text="Retards :" FontSize="15" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                                <TextBlock Text="{Binding Retards}" Margin="5,0" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>                                
                             </StackPanel>
                             
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
-                                <TextBlock Text="{Binding HeuresParSemaine}" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
-                                <TextBlock Text="H/Week" FontSize="15" Margin="5,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                                <TextBlock Text="Absences :" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                <TextBlock Text="{Binding Absences}" FontSize="15" Margin="5,0" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
                             </StackPanel>  
                             
                         </StackPanel>
@@ -69,9 +69,8 @@
         </Style.Resources>
 
         <Setter Property="ItemTemplate" Value="{StaticResource ListBoxTemp}" />
-        <Setter Property="ItemsPanel" Value="{StaticResource ListBoxITemp}" />  
-        <Setter Property="ItemsSource" Value="{Binding MatieresList}" />
-        <Setter Property="SelectedValuePath" Value="MatiereGuid" />
+        <Setter Property="ItemsPanel" Value="{StaticResource ListBoxITemp}" />          
+        <Setter Property="SelectedValuePath" Value="StudentGuid" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />        
         <Setter Property="Margin" Value="10" />
@@ -80,10 +79,10 @@
         <Setter Property="Background" Value="Beige" />
         <Setter Property="BorderThickness" Value="0" />
         
-
     </Style>
     
     
- 
+    
+    
     
 </ResourceDictionary>

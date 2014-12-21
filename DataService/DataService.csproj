@@ -153,6 +153,7 @@
     <Compile Include="Initializer\DBInitializer.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModel\ClassCard.cs" />
+    <Compile Include="ViewModel\ClasseStudentCard.cs" />
     <Compile Include="ViewModel\MatiereCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DbService.cs" />

@@ -48,32 +48,32 @@ namespace DataService.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        public Guid StudentGuid { get; set; }
+        public Guid StudentGuid { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Title { get; set; }
+        public string Title { get;  }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Firstname { get; set; }
+        public string Firstname { get;  }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Lastname { get; set; }
+        public string Lastname { get;  }
 
         /// <summary>
         /// 
         /// </summary>
-        public byte[] PhotoIdentity { get; set; }
+        public byte[] PhotoIdentity { get;  }
 
         /// <summary>
         /// 
         /// </summary>
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber { get;  }
 
         /// <summary>
         /// 
@@ -83,7 +83,7 @@ namespace DataService.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        public string HomeAdress { get; set; }       
+        public string HomeAdress { get;  }       
       
         /// <summary>
         /// Renvoi le nom complet exp: Halid Cisse
@@ -93,14 +93,13 @@ namespace DataService.ViewModel
         /// <summary>
         /// Renvoi le La Filiere Du l'étudiant
         /// </summary>
-        public string CurrentFiliere;
+        public string CurrentFiliere { get; }
 
         /// <summary>
         /// Renvoi la Niveau de sa Classe Actuelle
         /// </summary>
-        public string CurrentClasseLevel;
+        public string CurrentClasseLevel { get; }
 
-        
 
     }
 }

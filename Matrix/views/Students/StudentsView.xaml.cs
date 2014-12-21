@@ -37,8 +37,7 @@ namespace Matrix.views.Students
         {
             UpdateData();         
         }
-      
-       
+             
         private void StudentsViewBackButton_Click ( object sender, RoutedEventArgs e )
         {
             NavigationService?.Navigate (new HomePage(), UriKind.Relative);
