@@ -79,31 +79,20 @@
         </ToolBar>
 
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center">
-            <TextBlock Text="CLASSE" Name="ClassName" FontFamily="{StaticResource NameFontFamily}" FontSize="20" FontWeight="ExtraLight" Foreground="#B9B2B2"/>
-            <TextBlock Text="FILIERE" Name="ClassFiliere" Margin="20,0,0,0" FontFamily="{StaticResource NameFontFamily}" FontSize="20" FontWeight="ExtraLight" Foreground="#B9B2B2"/>
+            <TextBlock Text="CLASSE" Name="CLASS_NAME" FontFamily="{StaticResource NameFontFamily}" FontSize="20" FontWeight="ExtraLight" Foreground="#B9B2B2"/>
+            <TextBlock Text="FILIERE" Name="CLASS_FILIERE" Margin="20,0,0,0" FontFamily="{StaticResource NameFontFamily}" FontSize="20" FontWeight="ExtraLight" Foreground="#B9B2B2"/>
         </StackPanel>
                      
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
             <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
                 
-                <controls:ScheduleWeek x:Name="CLASS_WEEK_SCHEDULE" Margin="10,0" Effect="{StaticResource Z-Depth3}" SelectionChanged="ClassWeekSchedule_OnSelectionChanged"/>
-                                                                           
-                <DockPanel Width="650" Margin="10,0" Effect="{StaticResource Z-Depth3}">
-                    <Grid DockPanel.Dock="Top" Height="30" Background="#25A0DA" >
-                        <TextBlock Text="MATIERES" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
-                    </Grid>                   
-                    <Border BorderThickness="0" Background="Transparent">
-                        <ListBox Name="MATIERES_LIST" Style="{DynamicResource MatiereStyle}" Margin="0" MouseDoubleClick="MatieresList_MouseDoubleClick"/>
-                    </Border>
-                </DockPanel>
-                             
-                <controls:ClasseStudents x:Name="CLASSE_STUDENTS" Margin="10,0" Effect="{StaticResource Z-Depth3}" ></controls:ClasseStudents>
+                <controls:ScheduleWeek x:Name="CLASS_WEEK_SCHEDULE" Margin="10,0" Effect="{StaticResource Z-Depth3}"/>
+                                 
+                <controls:ClasseMatieres x:Name="CLASSE_MATIERES" Margin="10,0" Effect="{StaticResource Z-Depth3}"/>
+                           
+                <controls:ClasseStudents x:Name="CLASSE_STUDENTS" Margin="10,0" Effect="{StaticResource Z-Depth3}" />
                 
             </StackPanel>
         </ScrollViewer>
-
-
-
-
     </DockPanel>
 </Page>

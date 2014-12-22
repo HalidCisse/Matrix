@@ -2,13 +2,12 @@
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using DataService.Entities.Pedagogy;
 
 namespace Matrix.views.Pedagogy
 {
     
-    //todo: new ClasseMatieres control 
+    //todo Consider Abandoning Matieres Entity
 
     /// <summary>
     /// Affiche l'emploi du temps , les matieres et les Etudiant pour une classe donnee 
@@ -31,20 +30,21 @@ namespace Matrix.views.Pedagogy
             new Task(() =>
             {
                 _openedClass = App.DataS.Pedagogy.Classes.GetClasseById(openClassGuid);
-                Dispatcher.BeginInvoke(new Action(() => { ClassFiliere.Text = App.DataS.Pedagogy.Filieres.GetFiliereById(_openedClass.FiliereGuid).Name.ToUpper(); }));
-                Dispatcher.BeginInvoke(new Action(() => { ClassName.Text = _openedClass.Name.ToUpper(); }));
+                Dispatcher.BeginInvoke(new Action(() => { CLASS_FILIERE.Text = App.DataS.Pedagogy.Filieres.GetFiliereById(_openedClass.FiliereGuid).Name.ToUpper(); }));
+                Dispatcher.BeginInvoke(new Action(() => { CLASS_NAME.Text = _openedClass.Name.ToUpper(); }));
             }).RunSynchronously();
 
         }
 
         private void UpdateData()
-        {                        
+        {                                  
             Parallel.Invoke(
-                () => Dispatcher.BeginInvoke(new Action(() => { CLASS_WEEK_SCHEDULE.UpdateData(_openedClass.ClasseGuid); })),
-                () => Dispatcher.BeginInvoke(new Action(() => { MATIERES_LIST.ItemsSource = App.ModelS.GetClassMatieresCards(_openedClass.ClasseGuid); })),
-                () => Dispatcher.BeginInvoke(new Action(() => { CLASSE_STUDENTS.Refresh(_openedClass.ClasseGuid, App.DataS.Pedagogy.CurrentAnneeScolaireGuid); }))
-            );
+                () =>  CLASS_WEEK_SCHEDULE.Refresh(_openedClass.ClasseGuid),
 
+                () => CLASSE_MATIERES.Refresh(_openedClass.ClasseGuid),
+
+                () => CLASSE_STUDENTS.Refresh(_openedClass.ClasseGuid, App.DataS.Pedagogy.CurrentAnneeScolaireGuid)
+            );
         }
 
 
@@ -113,23 +113,7 @@ namespace Matrix.views.Pedagogy
             //UpdateMatieres ();
         }
 
-        private void ClassWeekSchedule_OnSelectionChanged(object sender, EventArgs e)
-        {
-            //var id = sender as string;
-            //_currentSelected = id;
-        }
-
-        private void MatieresList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var matieres = sender as ListBox;
-            if (matieres?.SelectedValue == null) return;
-            var matiereToDisplay = App.DataS.Pedagogy.Matieres.GetMatiereById(new Guid(matieres.SelectedValue.ToString()));
-
-            var wind = new AddMatiere(_openedClass.ClasseGuid, matiereToDisplay) { Owner = Window.GetWindow(this) };
-            wind.ShowDialog();
-            UpdateData();
-        }
-
+       
        
 
         #endregion
@@ -149,6 +133,14 @@ namespace Matrix.views.Pedagogy
 
 
 
+
+//Parallel.Invoke(
+//    () => Dispatcher.BeginInvoke(new Action(() => { CLASS_WEEK_SCHEDULE.Refresh(_openedClass.ClasseGuid); })),
+
+//    () => Dispatcher.BeginInvoke(new Action(() => { CLASSE_MATIERES.Refresh(_openedClass.ClasseGuid); })),
+
+//    () => Dispatcher.BeginInvoke(new Action(() => { CLASSE_STUDENTS.Refresh(_openedClass.ClasseGuid, App.DataS.Pedagogy.CurrentAnneeScolaireGuid); }))
+//);
 
 
 //new Task(() =>

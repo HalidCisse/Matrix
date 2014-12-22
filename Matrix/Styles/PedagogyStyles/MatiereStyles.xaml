@@ -70,11 +70,10 @@
 
         <Setter Property="ItemTemplate" Value="{StaticResource ListBoxTemp}" />
         <Setter Property="ItemsPanel" Value="{StaticResource ListBoxITemp}" />  
-        <Setter Property="ItemsSource" Value="{Binding MatieresList}" />
+        <!--<Setter Property="ItemsSource" Value="{Binding MatieresList}" />-->
         <Setter Property="SelectedValuePath" Value="MatiereGuid" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />        
-        <Setter Property="Margin" Value="10" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />                
         <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"/>        
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Background" Value="Beige" />

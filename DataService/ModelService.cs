@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataService.Context;
+using DataService.Entities.Pedagogy;
 using DataService.ViewModel;
 
 namespace DataService
@@ -40,6 +41,7 @@ namespace DataService
             }       
         }
 
+
         /// <summary>
         /// Renvoi les filieres avec leurs classes
         /// </summary>
@@ -62,6 +64,7 @@ namespace DataService
             }           
         }
         
+
         /// <summary>
         /// renvoi la filiere avec ses classes
         /// </summary>
@@ -81,6 +84,7 @@ namespace DataService
                 return classList.Any()? classList.OrderBy(c => c.Level).ToList() : classList;
             }
         }
+
 
         /// <summary>
         /// Renvoi les informations des cours d'une classe pour une semaine
@@ -106,15 +110,65 @@ namespace DataService
             return scheduleData;
         }
 
+
         /// <summary>
         /// Renvoi les Matieres Cards Pour Une Classe
         /// </summary>
         /// <param name="classeGuid">ID de la Classe</param>
+        /// <param name="currentDate">La Date Actuelle</param>
         /// <returns></returns>
-        public List<MatiereCard> GetClassMatieresCards(Guid classeGuid)
+        public ConcurrentBag<MatiereCard> GetClassMatieresCards(Guid classeGuid, DateTime currentDate)
         {
             using (var db = new Ef())
             {                
+                currentDate = currentDate.Date;
+                var firstDateOfWeek = currentDate.DayOfWeek == DayOfWeek.Sunday ? currentDate.AddDays(-6) : currentDate.AddDays(-((int)currentDate.DayOfWeek - 1));
+                var lastDateOfWeek = firstDateOfWeek.AddDays(6);
+
+                var currentCours = db.Cours.Where(c =>
+
+                                                c.ClasseGuid == classeGuid &&
+                                                (
+                                                    (
+                                                        c.StartDate <= firstDateOfWeek &&
+                                                        c.EndDate >= lastDateOfWeek
+                                                    )
+                                                    |
+                                                    (
+                                                        c.EndDate >= firstDateOfWeek &&
+                                                        c.EndDate <= lastDateOfWeek
+                                                    )
+                                                    |
+                                                    (
+                                                        c.StartDate >= firstDateOfWeek &&
+                                                        c.StartDate <= lastDateOfWeek
+                                                    )
+                                                )
+
+                                             ).OrderBy(c => c.StartTime);
+
+                var currentMatieres = new ConcurrentBag<MatiereCard>();
+
+                Parallel.ForEach(currentCours, cour =>
+                {
+                    var m = GetMatiereById(cour.MatiereGuid);
+                    if (m != null) currentMatieres.Add(new MatiereCard(m));                   
+                });
+                                
+                return currentMatieres;               
+            }
+        }      
+
+
+        /// <summary>
+        /// Return Toutes Les Matieres de cette Classe
+        /// </summary>
+        /// <param name="classeGuid"></param>
+        /// <returns></returns>
+        public IOrderedEnumerable<MatiereCard> GetClassMatieresCards(Guid classeGuid)
+        {
+            using (var db = new Ef())
+            {               
                 var matierCardList = new ConcurrentBag<MatiereCard>();
 
                 Parallel.ForEach(db.Matiere.Where(m => m.ClasseGuid == classeGuid), mc =>
@@ -122,7 +176,7 @@ namespace DataService
                     matierCardList.Add(new MatiereCard(mc));
                 });
 
-                return matierCardList.OrderBy(m => m.Name).ToList();
+                return matierCardList.OrderBy(m => m.Name);
             }
         }
 
@@ -130,6 +184,20 @@ namespace DataService
 
 
 
+
+
+
+        #region HELPERS
+
+        private static Matiere GetMatiereById(Guid matiereId)
+        {
+            using (var db = new Ef())
+            {                
+                return db.Matiere.Find(matiereId);
+            }
+        }
+
+        #endregion
 
 
     }

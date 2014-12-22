@@ -40,7 +40,7 @@ namespace Matrix.Controls
         /// Mettre a jour les information de l'emploi du temps
         /// </summary>
         /// <param name="classId">ID de la classe</param>
-        public void UpdateData(Guid classId)
+        public void Refresh(Guid classId)
         {
             _classId = classId;
 
@@ -57,7 +57,7 @@ namespace Matrix.Controls
 
             var wind = new AddCours(_classId, App.DataS.Pedagogy.Cours.GetCoursById(new Guid(list.SelectedValue.ToString()))) { Owner = Window.GetWindow(this) };
             wind.ShowDialog();
-            UpdateData(_classId);
+            Refresh(_classId);
         }
 
         private void DayCoursList_SelectionChanged(object sender, SelectionChangedEventArgs e)

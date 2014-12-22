@@ -21,7 +21,7 @@ namespace DataService.ViewModel
 
             DayName = scheduleDate.DayOfWeek.ToString ().ToUpper ();
 
-            DayColor = scheduleDate == DateTime.Today.Date ? "Green" : "#25A0DA";
+            DayColor = scheduleDate == DateTime.Today ? "Green" : "#25A0DA";
 
             using (var db = new Ef())
             {

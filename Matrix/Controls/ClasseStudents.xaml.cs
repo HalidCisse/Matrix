@@ -52,12 +52,7 @@ namespace Matrix.Controls
             {
                 Dispatcher.BeginInvoke(new Action(() => { STUDENTS_LIST.ItemsSource = App.DataS.Pedagogy.Classes.GetClassStudents(_classId, _currentAnneeScolaireGuid); }));
                
-            }).RunSynchronously();
-
-            //Parallel.Invoke(
-            //    () => DoSomeWork(), 
-            //    () => DoSomeOtherWork()
-            //);
+            }).RunSynchronously();            
         }
 
         private void ListSelector_OnOnSelectionChanged(object sender, EventArgs e)

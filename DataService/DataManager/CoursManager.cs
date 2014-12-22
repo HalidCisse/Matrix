@@ -1,6 +1,8 @@
-﻿using DataService.Context;
-using DataService.Entities;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using DataService.Context;
 using DataService.Entities.Pedagogy;
 
 namespace DataService.DataManager
@@ -35,7 +37,7 @@ namespace DataService.DataManager
             using (var db = new Ef())
             {
                 db.Cours.Attach(myCours);
-                db.Entry(myCours).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(myCours).State = EntityState.Modified;
                 return db.SaveChanges() > 0;
             }
         }
@@ -67,6 +69,42 @@ namespace DataService.DataManager
                 return myCours;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="classeGuid"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        public HashSet<Cours> GetCoursBetween(Guid classeGuid, DateTime startDate, DateTime endDate)
+        {
+            using (var db = new Ef())
+            {
+                return new HashSet<Cours>(db.Cours.Where(c =>
+
+                    c.ClasseGuid == classeGuid &&
+                    (
+                        (
+                            c.StartDate <= startDate &&
+                            c.EndDate >= endDate
+                            )
+                        |
+                        (
+                            c.EndDate >= startDate &&
+                            c.EndDate <= endDate
+                            )
+                        |
+                        (
+                            c.StartDate >= startDate &&
+                            c.StartDate <= endDate
+                            )
+                        )
+
+                    ).OrderBy(c => c.StartTime));
+            }
+        }
+
 
     }
 }
