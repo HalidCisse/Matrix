@@ -59,7 +59,7 @@
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="MaxHeight" Value="350" />       
         <Setter Property="ItemsSource" Value="{Binding DayCours}" />
-        <Setter Property="SelectedValuePath" Value="CoursId" />
+        <Setter Property="SelectedValuePath" Value="CoursGuid" />
 
     </Style>
     

@@ -158,8 +158,14 @@
     <Compile Include="Controls\ClasseMatieres.xaml.cs">
       <DependentUpon>ClasseMatieres.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ClasseSchedule.xaml.cs">
+      <DependentUpon>ClasseSchedule.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ClasseStudents.xaml.cs">
       <DependentUpon>ClasseStudents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CoursPresence.xaml.cs">
+      <DependentUpon>CoursPresence.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ListSelector.xaml.cs">
       <DependentUpon>ListSelector.xaml</DependentUpon>
@@ -244,7 +250,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ClasseSchedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ClasseStudents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CoursPresence.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -453,6 +467,7 @@
     </EmbeddedResource>
     <Resource Include="Resources\Entypo.ttf" />
     <Resource Include="Fonts\fontawesome-webfont.ttf" />
+    <None Include="Rapport\AssemblyDependencies.dgml" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -567,6 +582,7 @@
     <Folder Include="Styles\ListStyles\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Rapport\Report20141222-2253.diagsession" />
     <None Include="views\Pedagogy\Icon\Cours.png" />
   </ItemGroup>
   <ItemGroup>

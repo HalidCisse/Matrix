@@ -17,6 +17,7 @@
         <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Margin" Value="0" />
+        <!--<Setter Property="SelectedValuePath" Value="DayDate" />-->
         
     </Style>
     

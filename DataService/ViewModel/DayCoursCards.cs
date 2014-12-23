@@ -23,6 +23,8 @@ namespace DataService.ViewModel
 
             DayColor = scheduleDate == DateTime.Today ? "Green" : "#25A0DA";
 
+            DayDate = scheduleDate;
+
             using (var db = new Ef())
             {
                 var myCours = db.Cours.Where(c => c.ClasseGuid == classId && c.StartDate <= scheduleDate && c.EndDate >= scheduleDate).OrderBy(c => c.StartTime);
@@ -42,37 +44,25 @@ namespace DataService.ViewModel
         /// <summary>
         /// Le Nom De la Journee WeekDay Name
         /// </summary>
-        public string DayName { get; set; }
+        public string DayName { get; }
 
         /// <summary>
         /// La Couleur de la journee
         /// </summary>
         public string DayColor { get; set; }
-      
+        
+        /// <summary>
+        /// La Date du Jour
+        /// </summary>
+        public DateTime? DayDate { get; }
+
         /// <summary>
         /// La Liste des Cours Enseigner Dans la Journee
         /// </summary>
-        public List<CoursCard> DayCours { get; set; }
+        public List<CoursCard> DayCours { get; }
 
-        //public string DAY_START_TIME { get; set; }
 
-        //public string DAY_END_TIME { get; set; }
-
-        //private void ResolveData ( Guid ClassID, DateTime scheduleDate )
-        //{
-        //    using(var Db = new EF ())
-        //    {               
-        //        var MyCours = Db.COURS.Where (C => C.CLASSE_ID == ClassID && C.START_DATE <= scheduleDate && C.END_DATE >= scheduleDate).OrderBy(C => C.START_TIME);
-    
-        //        foreach(var CR in MyCours) {                    
-        //            var DayNum = (int)scheduleDate.DayOfWeek;
-
-        //            if(CR.RECURRENCE_DAYS.Contains (DayNum.ToString ())) {
-        //                DAY_COURS.Add (new CoursCard (CR, scheduleDate));
-        //            }                   
-        //        }              
-        //    }            
-        //}
+        
 
 
 
@@ -84,6 +74,28 @@ namespace DataService.ViewModel
 
 
 
+
+
+
+//public string DAY_START_TIME { get; set; }
+
+//public string DAY_END_TIME { get; set; }
+
+//private void ResolveData ( Guid ClassID, DateTime scheduleDate )
+//{
+//    using(var Db = new EF ())
+//    {               
+//        var MyCours = Db.COURS.Where (C => C.CLASSE_ID == ClassID && C.START_DATE <= scheduleDate && C.END_DATE >= scheduleDate).OrderBy(C => C.START_TIME);
+
+//        foreach(var CR in MyCours) {                    
+//            var DayNum = (int)scheduleDate.DayOfWeek;
+
+//            if(CR.RECURRENCE_DAYS.Contains (DayNum.ToString ())) {
+//                DAY_COURS.Add (new CoursCard (CR, scheduleDate));
+//            }                   
+//        }              
+//    }            
+//}
 
 //var WeekDays = new List<DayOfWeek> {
 //                        DayOfWeek.Monday,
@@ -156,51 +168,51 @@ namespace DataService.ViewModel
 //                    }
 
 
-   //#region Resolve Day
+//#region Resolve Day
 
-   //         var TheDayCode = "";
+//         var TheDayCode = "";
 
-   //         if(scheduleDate.DayOfWeek == DayOfWeek.Monday)
-   //         {
-   //             TheDayCode = "LUN";
-   //             DAY_NAME = "LUNDI";
-   //         }
+//         if(scheduleDate.DayOfWeek == DayOfWeek.Monday)
+//         {
+//             TheDayCode = "LUN";
+//             DAY_NAME = "LUNDI";
+//         }
 
-   //         if(scheduleDate.DayOfWeek == DayOfWeek.Tuesday)
-   //         {
-   //             TheDayCode = "MAR";
-   //             DAY_NAME = "MARDI";
-   //         }
+//         if(scheduleDate.DayOfWeek == DayOfWeek.Tuesday)
+//         {
+//             TheDayCode = "MAR";
+//             DAY_NAME = "MARDI";
+//         }
 
-   //         if(scheduleDate.DayOfWeek == DayOfWeek.Monday)
-   //         {
-   //             TheDayCode = "MER";
-   //             DAY_NAME = "MERCREDI";
-   //         }
+//         if(scheduleDate.DayOfWeek == DayOfWeek.Monday)
+//         {
+//             TheDayCode = "MER";
+//             DAY_NAME = "MERCREDI";
+//         }
 
-   //         if(scheduleDate.DayOfWeek == DayOfWeek.Monday)
-   //         {
-   //             TheDayCode = "JEU";
-   //             DAY_NAME = "JEUDI";
-   //         }
+//         if(scheduleDate.DayOfWeek == DayOfWeek.Monday)
+//         {
+//             TheDayCode = "JEU";
+//             DAY_NAME = "JEUDI";
+//         }
 
-   //         if(scheduleDate.DayOfWeek == DayOfWeek.Tuesday)
-   //         {
-   //             TheDayCode = "VEND";
-   //             DAY_NAME = "VENDREDI";
-   //         }
+//         if(scheduleDate.DayOfWeek == DayOfWeek.Tuesday)
+//         {
+//             TheDayCode = "VEND";
+//             DAY_NAME = "VENDREDI";
+//         }
 
-   //         if(scheduleDate.DayOfWeek == DayOfWeek.Monday)
-   //         {
-   //             TheDayCode = "SAM";
-   //             DAY_NAME = "SAMEDI";
-   //         }
+//         if(scheduleDate.DayOfWeek == DayOfWeek.Monday)
+//         {
+//             TheDayCode = "SAM";
+//             DAY_NAME = "SAMEDI";
+//         }
 
-   //         if(scheduleDate.DayOfWeek == DayOfWeek.Monday)
-   //         {
-   //             TheDayCode = "DIM";
-   //             DAY_NAME = "DIAMANCHE";
-   //         }
-            
+//         if(scheduleDate.DayOfWeek == DayOfWeek.Monday)
+//         {
+//             TheDayCode = "DIM";
+//             DAY_NAME = "DIAMANCHE";
+//         }
 
-   //         #endregion
+
+//         #endregion

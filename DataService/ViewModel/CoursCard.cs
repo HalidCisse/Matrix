@@ -17,11 +17,11 @@ namespace DataService.ViewModel
         public CoursCard ( Cours currentCous, DateTime coursDay )
         {
             Type = currentCous.Type.ToUpper ();
-            CoursId = currentCous.CoursGuid;           
+            CoursGuid = currentCous.CoursGuid;           
             
             Salle = currentCous.Salle.ToUpper();
 
-            CoursDay = coursDay.DayOfWeek;
+            CoursDate = coursDay;
 
             StartTime = currentCous.StartTime;
             EndTime = currentCous.EndTime;
@@ -37,7 +37,7 @@ namespace DataService.ViewModel
         /// <summary>
         /// ID du cours
         /// </summary>
-        public Guid CoursId { get; set; }
+        public Guid CoursGuid { get;  }
 
         /// <summary>
         /// Nom de la matiere
@@ -62,7 +62,7 @@ namespace DataService.ViewModel
         /// <summary>
         /// La Journee ou le cours sera dispenser
         /// </summary>
-        public DayOfWeek CoursDay { get; set; }
+        public DateTime CoursDate { get; set; }
 
         /// <summary>
         /// L'Horraire Formater
@@ -107,15 +107,10 @@ namespace DataService.ViewModel
             }
             else if(coursDay == DateTime.Today)
             {
-                if (EndTime < DateTime.Now.TimeOfDay)
-                {                                                            
-                    ForeColor = "Gray";                    
-                }
-
-                if (StartTime <= DateTime.Now.TimeOfDay && EndTime >= DateTime.Now.TimeOfDay)
-                {
-                    ForeColor = "Red";
-                }
+                if (EndTime < DateTime.Now.TimeOfDay) ForeColor = "Gray";
+               
+                if (StartTime <= DateTime.Now.TimeOfDay && EndTime >= DateTime.Now.TimeOfDay) ForeColor = "Red";
+              
             }
                       
         }

@@ -25,12 +25,13 @@ namespace Matrix.Controls
         /// </summary>
         private Guid _classId;
 
-        #endregion
 
+        #endregion
 
         /// <summary>
         /// UI Emploi du temps d'une classe en une semaine
         /// </summary>
+        [Obsolete("ScheduleWeek is deprecated, please use ClassSchedule instead.")]     
         public ScheduleWeek()
         {
             InitializeComponent();
@@ -44,10 +45,7 @@ namespace Matrix.Controls
         {
             _classId = classId;
 
-            //new Task(() =>
-            //{
-                Dispatcher.BeginInvoke(new Action(() => { ScheduleUi.ItemsSource = App.ModelS.GetClassWeekAgendaData(_classId, DateTime.Now); }));
-            //}).RunSynchronously();
+            Dispatcher.BeginInvoke(new Action(() => { SCHEDULE_UI.ItemsSource = App.ModelS.GetClassWeekAgendaData(_classId, DateTime.Now); }));
         }
 
         private void DayCoursList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -62,14 +60,33 @@ namespace Matrix.Controls
 
         private void DayCoursList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var list = sender as ListBox;
-            if (list?.SelectedValue == null) return;
+            var courId = ((ListBox) sender).SelectedValue?.ToString();            
+            if (courId == null) return;
 
-            SelectionChanged?.Invoke(list.SelectedValue.ToString(), e);
+            SelectionChanged?.Invoke(courId, e);
         }
 
-
+        //bug : Test Zone
         //todo : Restyle Schedule
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//new Task(() =>
+//            {
+//                SCHEDULE_UI.ItemsSource = App.ModelS.GetClassWeekAgendaData(_classId, DateTime.Now);
+//            }).RunSynchronously();
+//Dispatcher.BeginInvoke(new Action(() => { SCHEDULE_UI.ItemsSource = App.ModelS.GetClassWeekAgendaData(_classId, DateTime.Now); }));

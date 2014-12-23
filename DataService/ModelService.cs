@@ -92,22 +92,28 @@ namespace DataService
         /// <param name="classId">ID de la Classe</param>
         /// <param name="scheduleDate">Une date de cette Semaine</param>
         /// <returns></returns>
-        public List<DayCoursCards> GetClassWeekAgendaData ( Guid classId, DateTime scheduleDate )
+        public ConcurrentBag<DayCoursCards> GetClassWeekAgendaData ( Guid classId, DateTime scheduleDate )
         {
             scheduleDate = scheduleDate.Date; 
 
             var firstDateOfWeek = scheduleDate.DayOfWeek == DayOfWeek.Sunday ? scheduleDate.AddDays(-6) : scheduleDate.AddDays (-((int)scheduleDate.DayOfWeek - 1));
           
-            var scheduleData = new List<DayCoursCards>();
+            var scheduleData = new ConcurrentBag<DayCoursCards>();
 
-            for (var i = 0; i <= 6; i++)
+            var days = new HashSet<DateTime>();
+
+            for (var i = 0; i <= 6; i++) days.Add(firstDateOfWeek.AddDays(i));
+
+            Parallel.ForEach(days, d =>
             {
-                var dayCard = new DayCoursCards(classId, firstDateOfWeek.AddDays(i));
+                var dayCard = new DayCoursCards(classId, d);
 
-                if (dayCard.DayCours.Any()) scheduleData.Add(dayCard);                            
-            }
- 
-            return scheduleData;
+                if (dayCard.DayDate.Equals(scheduleDate) && scheduleDate != DateTime.Today) dayCard.DayColor = "Brown";
+
+                if (dayCard.DayCours.Any()) scheduleData.Add(dayCard);
+            });
+                      
+            return new ConcurrentBag<DayCoursCards>(scheduleData.OrderByDescending(d => d.DayDate));
         }
 
 
@@ -208,6 +214,20 @@ namespace DataService
 
 
 
+
+
+
+
+
+
+//for (var i = 0; i <= 6; i++)
+//{
+//    var dayCard = new DayCoursCards(classId, firstDateOfWeek.AddDays(i));
+
+//    if (dayCard.DayDate.Equals(scheduleDate)  && scheduleDate != DateTime.Today) dayCard.DayColor = "Red";
+
+//    if (dayCard.DayCours.Any()) scheduleData.Add(dayCard);                            
+//}
 
 
 
