@@ -23,3 +23,4 @@
     PRIMARY KEY CLUSTERED ([GUID] ASC)
 );
 
+
