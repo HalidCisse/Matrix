@@ -112,6 +112,7 @@
     <Compile Include="DataManager\UserProfilesManager.cs" />
     <Compile Include="Entities\Etablissement.cs" />
     <Compile Include="Entities\MatrixSetting.cs" />
+    <Compile Include="Entities\Pedagogy\CoursPresence.cs" />
     <Compile Include="Entities\Pedagogy\Inscription.cs" />
     <Compile Include="Entities\Pedagogy\InscriptionRule.cs" />
     <Compile Include="Entities\Pedagogy\AnneeScolaire.cs" />

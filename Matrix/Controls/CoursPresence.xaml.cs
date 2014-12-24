@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,22 +22,23 @@ namespace Matrix.Controls
     public partial class CoursPresence
     {
        
-
         /// <summary>
         /// Une Page Pour Saisir La Presence A un Cours
         /// </summary>
-        public CoursPresence(Guid currentclassId, DateTime currentDayOfWeek)
+        public CoursPresence(Guid currentCoursId, DateTime coursDate)
         {
             InitializeComponent();
 
-            TEXT_BLOCK1.Text = currentclassId.ToString();
-            TEXT_BLOCK.Text = currentDayOfWeek.ToString();
+            TEXT_BLOCK1.Text = currentCoursId.ToString();
+            TEXT_BLOCK.Text = coursDate.ToString(CultureInfo.CurrentCulture);
 
             //Dispatcher.BeginInvoke(new Action(() => { SCHEDULE_UI.ItemsSource = App.ModelS.GetClassWeekAgendaData(_classId, DateTime.Now); }));
         }
 
 
        
+
+
 
 
 

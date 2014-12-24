@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using DataService.ViewModel;
 
 namespace Matrix.Controls
@@ -66,22 +56,6 @@ namespace Matrix.Controls
 
         #region EVENT HANDLERS
 
-
-        private void code()
-        {
-            //SCHEDULE_FRAME.NavigationService.Navigate(new ClasseSchedule());
-
-            //Application.Current.Dispatcher.Invoke(delegate {
-
-            //    var schedule = new ScheduleWeek();
-
-            //});
-
-            // var schedule = new ScheduleWeek();
-            //SCHEDULE_FRAME.Navigate(new CoursPresence());
-
-        }
-
         private void DayCoursList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var list = sender as ListBox;
@@ -92,9 +66,10 @@ namespace Matrix.Controls
 
         private void DayCoursList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {            
-            var cour = ((CoursCard)((ListBox)sender).SelectedItem).CoursDate;
-            
-            SCHEDULE_FRAME.NavigationService.Navigate(new CoursPresence(_currentclassId, cour));
+            var cour = ((CoursCard)((ListBox)sender).SelectedItem);
+                        
+            SCHEDULE_FRAME.NavigationService.Navigate(new CoursPresence(cour.CoursGuid, cour.CoursDate));
+            BACK_BUTTON.Visibility = Visibility.Visible;
         }
 
         private void DATE_PICKER_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -110,6 +85,10 @@ namespace Matrix.Controls
 
         #endregion
 
-
+        private void BACK_BUTTON_OnClick(object sender, RoutedEventArgs e)
+        {
+            SCHEDULE_FRAME.NavigationService.GoBack();
+            BACK_BUTTON.Visibility = Visibility.Collapsed;
+        }
     }
 }

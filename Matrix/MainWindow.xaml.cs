@@ -31,6 +31,8 @@ namespace Matrix
             SettingFrame.Navigate(new SettingsView());
         }
 
+       
+
 
     }     
 }

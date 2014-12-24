@@ -7,7 +7,7 @@ namespace DataService.Entities
     public class Person
     {
         [Key] 
-        public string PersonId { get; set; }
+        public Guid PersonId { get; set; }
         public string Title { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }

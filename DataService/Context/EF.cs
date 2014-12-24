@@ -150,6 +150,12 @@ namespace DataService.Context
         /// </summary>
         public virtual DbSet<StudentQualification> StudentQualification { get; set; }
 
+        /// <summary>
+        /// Presence d'une Personne a un Cours
+        /// </summary>
+        public virtual DbSet<CoursPresence> CoursPresence { get; set; }
+
+        
 
         #endregion
 

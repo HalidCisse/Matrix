@@ -12,7 +12,7 @@ namespace DataService.Entities.Pedagogy
         /// 
         /// </summary>
         [Key]
-        public string MatierecontrolGuid { get; set; }
+        public Guid MatierecontrolGuid { get; set; }
 
         /// <summary>
         /// 
