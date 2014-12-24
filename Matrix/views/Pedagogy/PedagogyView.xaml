@@ -89,8 +89,8 @@
             </Grid>
         </ToolBar>
         <Grid>
-            <xctk:BusyIndicator Name="BusyIndicator" IsBusy="True" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>            
-            <ListBox Name="FiliereList" Style="{DynamicResource ListOfGroupBoxStyle}" ScrollViewer.CanContentScroll="False">
+            <xctk:BusyIndicator Name="BUSY_INDICATOR" IsBusy="True" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>            
+            <ListBox Name="FILIERE_LIST" Style="{DynamicResource ListOfGroupBoxStyle}" ScrollViewer.CanContentScroll="False">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <GroupBox Header="{Binding Path=FiliereName}" Style="{StaticResource GroupBoxStyle}">                           

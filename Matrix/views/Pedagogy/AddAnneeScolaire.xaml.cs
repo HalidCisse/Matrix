@@ -30,8 +30,8 @@ namespace Matrix.views.Pedagogy
             AnneescolaireName.Text = "Annee Scolaire " + DateTime.Today.Year + "-" + (DateTime.Today.Year + 1);
             DebutAns.SelectedDate = new DateTime(DateTime.Today.Year, 10, 1);                      
             FinAns.SelectedDate = new DateTime(DateTime.Today.Year, 10, 1).AddMonths(9);
-            DebutIns.SelectedDate = DebutAns.SelectedDate;// DateTime.Today;
-            FinIns.SelectedDate = DebutIns.SelectedDate.Value.AddMonths(3); // DateTime.Today.AddMonths(3);
+            DebutIns.SelectedDate = DebutAns.SelectedDate;
+            FinIns.SelectedDate = DebutIns.SelectedDate.Value.AddMonths(3); 
             PeriodeList.ItemsSource = _periodeList;
 
             Genperiods();
@@ -56,12 +56,14 @@ namespace Matrix.views.Pedagogy
                 SavePeriodesScolaire(newAnneeScolaire.AnneeScolaireGuid);
 
                 App.DataS.Pedagogy.AddAnneeScolaire(newAnneeScolaire);
-                ModernDialog.ShowMessage("Success", "Matrix", MessageBoxButton.OK);
+                Close();
             }
             catch (Exception ex)
             {
                 ModernDialog.ShowMessage(ex.Message, "ERREUR", MessageBoxButton.OK);
+                Close();
             }
+            ModernDialog.ShowMessage("Success", "Matrix", MessageBoxButton.OK);
             Close();                        
         }
        
@@ -142,5 +144,6 @@ namespace Matrix.views.Pedagogy
             if (_isFirstTime){ _isFirstTime = false;  return; }
             Genperiods();       
         }
+
     }
 }

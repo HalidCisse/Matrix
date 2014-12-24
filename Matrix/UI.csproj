@@ -213,15 +213,6 @@
     <Compile Include="views\Pedagogy\ClassDetails.xaml.cs">
       <DependentUpon>ClassDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\Pedagogy\ClassesView.xaml.cs">
-      <DependentUpon>ClassesView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="views\Pedagogy\FilieresView.xaml.cs">
-      <DependentUpon>FilieresView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="views\Pedagogy\MatieresView.xaml.cs">
-      <DependentUpon>MatieresView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="views\Pedagogy\Pedagogy.xaml.cs">
       <DependentUpon>Pedagogy.xaml</DependentUpon>
     </Compile>
@@ -390,14 +381,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="views\Pedagogy\ClassesView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="views\Pedagogy\FilieresView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -410,10 +393,6 @@
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Page Include="views\Pedagogy\MatieresView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="views\Pedagogy\Pedagogy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

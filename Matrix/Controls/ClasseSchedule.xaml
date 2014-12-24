@@ -7,7 +7,7 @@
              d:DesignHeight="300" Width="950">
 
     <UserControl.Resources>
-    
+    <!--&#xf104;-->
     </UserControl.Resources>
 
     <DockPanel>
@@ -19,7 +19,7 @@
                     <ColumnDefinition Width="*"/>                   
                     <ColumnDefinition Width="120"/>
                 </Grid.ColumnDefinitions>
-                <Button Name="BACK_BUTTON" Grid.Column="0" Width="30" Content="&#xf104;" Style="{DynamicResource ToolButtonStyle}" Visibility="Collapsed" HorizontalAlignment="Right" Click="BACK_BUTTON_OnClick"/>
+                <Button Name="BACK_BUTTON" Content="&#xf053;" Grid.Column="0" Width="20" FontSize="20" Height="20" Style="{DynamicResource ToolButtonStyle}" Visibility="Collapsed" HorizontalAlignment="Center" Click="BACK_BUTTON_OnClick"/>
                 <TextBlock Text="EMPLOI DU TEMPS" Grid.Column="1" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
                 <DatePicker Name="DATE_PICKER" Grid.Column="3" Background="Transparent" Foreground="#D0D0C6" BorderThickness="0" Width="100" SelectedDateFormat="Short" HorizontalAlignment="Left" SelectedDateChanged="DATE_PICKER_OnSelectedDateChanged"/>
             </Grid>

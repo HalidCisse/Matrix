@@ -25,16 +25,16 @@ namespace Matrix.views.Pedagogy
             InitializeComponent ();          
         }
 
-        private void UpdateData()
+        private void Refresh()
         {
-            BusyIndicator.IsBusy = true;
+            BUSY_INDICATOR.IsBusy = true;
 
             new Task(() =>
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    FiliereList.ItemsSource = App.ModelS.GetFiliereClassCards();
-                    BusyIndicator.IsBusy = false;
+                    FILIERE_LIST.ItemsSource = App.ModelS.GetFiliereClassCards();
+                    BUSY_INDICATOR.IsBusy = false;
                 }));
             }).Start();            
         }
@@ -43,7 +43,7 @@ namespace Matrix.views.Pedagogy
 
         private void PedagogyView_OnLoaded(object sender, RoutedEventArgs e)
         {
-            UpdateData();
+            Refresh();
         }
 
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )
@@ -81,7 +81,7 @@ namespace Matrix.views.Pedagogy
                     return;
                 }                
             }       
-            UpdateData ();
+            Refresh ();
         }
 
         private void AddButon_Click ( object sender, RoutedEventArgs e )
@@ -96,14 +96,14 @@ namespace Matrix.views.Pedagogy
         {
             var wind = new AddFiliere { Owner = Window.GetWindow (this), OpenOption = "Add" };
             wind.ShowDialog ();
-            UpdateData ();
+            Refresh ();
         }
 
         private void AddClasse_Click ( object sender, RoutedEventArgs e )
         {
             var wind = new AddClass { Owner = Window.GetWindow (this) };
             wind.ShowDialog ();
-            UpdateData ();
+            Refresh ();
         }
                
         private void HomeButton_Click(object sender, RoutedEventArgs e)
@@ -154,7 +154,7 @@ namespace Matrix.views.Pedagogy
             
             ModernDialog.ShowMessage("Supprimer Avec Success", "Matrix", MessageBoxButton.OK);
 
-            UpdateData();
+            Refresh();
         }
 
         private void ClassContextMod_OnClick(object sender, RoutedEventArgs e)
@@ -166,7 +166,7 @@ namespace Matrix.views.Pedagogy
 
             var wind = new AddClass(App.DataS.Pedagogy.Classes.GetClasseById(new Guid(list.SelectedValue.ToString()))) { Owner = Window.GetWindow(this) };
             wind.ShowDialog();
-            UpdateData();
+            Refresh();
         }
 
         private void ClassContextDetail_OnClick(object sender, RoutedEventArgs e)

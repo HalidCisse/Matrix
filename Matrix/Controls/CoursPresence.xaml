@@ -9,7 +9,7 @@
       Title="CoursPresence">
 
     <StackPanel>
-        <TextBlock Name="TEXT_BLOCK1">hi</TextBlock>
-        <TextBlock Name="TEXT_BLOCK">hi</TextBlock>
+        <TextBlock Name="TEXT_BLOCK1"></TextBlock>
+        <TextBlock Name="TEXT_BLOCK"></TextBlock>
     </StackPanel>
 </Page>
