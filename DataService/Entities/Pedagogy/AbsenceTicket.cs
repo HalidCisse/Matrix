@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace DataService.Entities.Pedagogy
 {
     /// <summary>
-    /// Presence a un cours
+    /// Ticket d'Absence ou de Retard
     /// </summary>
     public class AbsenceTicket
     {
@@ -33,15 +33,11 @@ namespace DataService.Entities.Pedagogy
         /// <summary>
         /// Bool Present ?
         /// </summary>
-        public bool IsPresent  { get; set; }
+        public bool IsPresent  { get; set; } = true;
 
         /// <summary>
         /// Retard en Minute
         /// </summary>
-        public TimeSpan RetardTime { get; set; }
-
-
-
-
+        public TimeSpan RetardTime { get; set; } = new TimeSpan(0);
     }
 }

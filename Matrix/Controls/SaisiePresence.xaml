@@ -2,14 +2,13 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Matrix.Controls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
-      d:DesignHeight="300" Width="715" >
+      d:DesignHeight="500" Width="715" >
       
     
-    <ListBox Background="Transparent" BorderThickness="0" Name="PERSONS_LIST" SelectedValuePath="CoursPresenceGuid" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+    <ListBox Background="Transparent" BorderThickness="0" Name="TICKET_LIST" SelectedValuePath="PersonGuid" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <ListBoxItem HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
@@ -24,16 +23,16 @@
                                     </Image>
                                 </Grid>
                                
-                                <TextBlock Text="{Binding FullName}" Margin="5" HorizontalAlignment="Center" FontSize="20" Foreground="Gray" FontWeight="Bold" Width="170" TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding FullName}" Margin="5" HorizontalAlignment="Stretch" FontSize="20" Foreground="Gray" FontWeight="Bold" Width="170" TextWrapping="NoWrap" />
 
                                 <Grid Margin="5">
                                     <TextBlock Text="Est Present" FontSize="15" HorizontalAlignment="Left" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
-                                    <CheckBox Name="THE_CHECK_BOX"  IsChecked="{Binding IsPresent}"  HorizontalAlignment="Right"/>
+                                    <CheckBox x:Name="THE_CHECK_BOX"  IsChecked="{Binding IsPresent, Mode=TwoWay}"  HorizontalAlignment="Right" Click="THE_CHECK_BOX_OnClick"/>
                                 </Grid>
 
                                 <Grid Margin="5">
-                                    <TextBlock Text="Retard" HorizontalAlignment="Left" FontSize="15" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
-                                    <xctk:IntegerUpDown Text="{Binding RetardTime, StringFormat= mm}" IsEnabled="{Binding ElementName = THE_CHECK_BOX, Path=IsChecked}" HorizontalAlignment="Right" Minimum="0" FontSize="15" Foreground="Gray" FontWeight="Light" FontFamily="Verdana"/>
+                                    <TextBlock Text="Retard (Min)" HorizontalAlignment="Left" FontSize="15" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                                    <xctk:IntegerUpDown x:Name="RETARD_MIN" Value="{Binding RetardTime, StringFormat= mm, Mode=TwoWay}" IsEnabled="{Binding ElementName = THE_CHECK_BOX, Path=IsChecked}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Minimum="0" Maximum="60" Foreground="Gray" ValueChanged="UpDownBase_OnValueChanged"/>
                                 </Grid>
                                                                
                             </StackPanel>

@@ -17,12 +17,24 @@ namespace DataService.ViewModel
         {
             coursDate = coursDate.Date;
 
-            var currentCoursPresence = GetTicket(personGuid, coursGuid, coursDate) ?? new AbsenceTicket { AbsenceTicketGuid = Guid.NewGuid(), PersonGuid = personGuid, CoursGuid = coursGuid, CoursDate = coursDate};
+            var currentTicket = GetTicket(personGuid, coursGuid, coursDate) ?? new AbsenceTicket
+            {
+                AbsenceTicketGuid = Guid.NewGuid(),
+                PersonGuid = personGuid,
+                CoursGuid = coursGuid,
+                CoursDate = coursDate,                
+            };
 
-            AbsenceTicketGuid = currentCoursPresence.AbsenceTicketGuid;
-            PersonGuid = currentCoursPresence.PersonGuid;            
-            IsPresent = currentCoursPresence.IsPresent;
-            RetardTime = currentCoursPresence.RetardTime;
+            if (coursDate > DateTime.Today)
+            {
+                currentTicket.IsPresent = false;
+                currentTicket.RetardTime = new TimeSpan(0);
+            }
+
+            AbsenceTicketGuid = currentTicket.AbsenceTicketGuid;
+            PersonGuid = currentTicket.PersonGuid;            
+            IsPresent = currentTicket.IsPresent;
+            RetardTime = currentTicket.RetardTime.Minutes;
 
             using (var db = new Ef())
             {                
@@ -60,7 +72,7 @@ namespace DataService.ViewModel
         /// <summary>
         /// Temps de Retard 
         /// </summary>
-        public TimeSpan RetardTime { get; set; }
+        public int RetardTime { get; set; }
 
 
         //private static bool IsStaff(Guid personGuid)

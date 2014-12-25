@@ -199,17 +199,16 @@ namespace DataService
         /// <exception cref="NotImplementedException"></exception>
         public IEnumerable GetAbsencesTiketCards(Guid currentCoursGuid, DateTime coursDate)
         {                        
-                var tiketList = new ConcurrentBag<AbsenceTicketCard>() {new AbsenceTicketCard(GetCoursStaffGuid(currentCoursGuid), currentCoursGuid, coursDate) };
+            var tiketList = new ConcurrentBag<AbsenceTicketCard>() {new AbsenceTicketCard(GetCoursStaffGuid(currentCoursGuid), currentCoursGuid, coursDate) };
                 
-                var stdsGuids = GetClassStudentsGuids(GetCoursClasseGuid(currentCoursGuid), GetCoursAnneeScolaireGuid(currentCoursGuid));
+            var stdsGuids = GetClassStudentsGuids(GetCoursClasseGuid(currentCoursGuid), GetCoursAnneeScolaireGuid(currentCoursGuid));
 
-                Parallel.ForEach(stdsGuids, std =>
-                {
-                    tiketList.Add(new AbsenceTicketCard(std, currentCoursGuid, coursDate));
-                });
+            Parallel.ForEach(stdsGuids, std =>
+            {
+                tiketList.Add(new AbsenceTicketCard(std, currentCoursGuid, coursDate));
+            });
 
-                return tiketList.OrderBy(m => m.FullName);
-            
+            return tiketList.OrderBy(m => m.FullName);            
         }
 
 

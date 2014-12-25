@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\Ef.cs" />
+    <Compile Include="DataManager\AbsenceManager.cs" />
     <Compile Include="DataManager\ClassesManager.cs" />
     <Compile Include="DataManager\CoursManager.cs" />
     <Compile Include="DataManager\DataEnums.cs" />

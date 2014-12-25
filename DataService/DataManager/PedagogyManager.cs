@@ -44,6 +44,12 @@ namespace DataService.DataManager
 
 
         /// <summary>
+        /// Gestion Des Absence/Retard
+        /// </summary>
+        public AbsenceManager AbsenceTicket = new AbsenceManager();
+
+
+        /// <summary>
         /// Ajouter Une Nouvelle Annee Scolaire, Return True if Successful
         /// </summary>
         /// <param name="newAnneeScolaire">Object AnneeScolaire</param>
