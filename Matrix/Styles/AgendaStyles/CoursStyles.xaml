@@ -29,17 +29,26 @@
             
             <DataTemplate x:Key="ListBoxTemp">
                 <Border Style="{DynamicResource ListBoxBoderStyle}">                                       
-                    <StackPanel Orientation="Horizontal" Margin="10">   
+                    <StackPanel Orientation="Horizontal" Margin="10,0">   
               
-                        <Border Background="{Binding Couleur}" Width="50" Height="50"/> 
+                        <!--<Border Background="{Binding Couleur}" Width="50" Height="50" Margin="10"/>--> 
                         
-                        <TextBlock Text="{Binding Horraire}" Margin="10,0,10,0" Width="110" Foreground="{Binding ForeColor}" FontSize="20" FontWeight="ExtraLight"/>
+                        <!--<TextBlock Text="{Binding Horraire}" Margin="10,0,10,0" Width="110" Foreground="{Binding ForeColor}" FontSize="20" FontWeight="ExtraLight"/>-->
                         
-                        <TextBlock Text="{Binding MatiereName}" Margin="10,0,10,0" Width="200" Foreground="{Binding ForeColor}" FontSize="20" FontWeight="Normal" TextWrapping="Wrap"/>
-                                                                        
-                        <TextBlock Text="{Binding StaffFullName}" Width="200" Margin="10,0,10,0" Foreground="{Binding ForeColor}" FontSize="20" FontWeight="Thin" TextWrapping="Wrap" />
+                        <StackPanel Margin="5,0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding StartTime, StringFormat=hh\\:mm}" Foreground="{Binding ForeColor}" FontSize="12" FontWeight="ExtraLight"/>
+                            <TextBlock Text="|" FontSize="5" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding EndTime, StringFormat=hh\\:mm}" Foreground="{Binding ForeColor}" FontSize="12" FontWeight="ExtraLight"/>
+                        </StackPanel>
+                        
+                        <Border Background="{Binding Couleur}" Width="50" Height="50" Margin="10"/> 
 
-                        <TextBlock Text="{Binding Salle}" Width="100" Foreground="{Binding ForeColor}" FontSize="20" FontWeight="ExtraLight" TextWrapping="Wrap" />
+                        
+                        <TextBlock Text="{Binding MatiereName}" Margin="10,0,10,0" Width="150" Foreground="{Binding ForeColor}" VerticalAlignment="Center" FontSize="20" FontWeight="Normal" TextWrapping="Wrap"/>
+                                                                        
+                        <TextBlock Text="{Binding StaffFullName}" Margin="10,0,10,0" Width="150" Foreground="{Binding ForeColor}" VerticalAlignment="Center" FontSize="20" FontWeight="Thin" TextWrapping="Wrap" />
+
+                        <TextBlock Text="{Binding Salle}" Width="50" Foreground="{Binding ForeColor}" VerticalAlignment="Center" FontSize="20" FontWeight="ExtraLight" TextWrapping="Wrap" />
                                                                       
                     </StackPanel>
                 </Border>

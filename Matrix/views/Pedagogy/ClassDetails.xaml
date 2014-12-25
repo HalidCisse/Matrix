@@ -84,11 +84,9 @@
         </StackPanel>
                      
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
-                
-                <!--<controls:ScheduleWeek x:Name="CLASS_WEEK_SCHEDULE" Margin="10,0" Effect="{StaticResource Z-Depth3}"/>-->
-                
-                <controls:ClasseSchedule x:Name="CLASS_WEEK_SCHEDULE" Margin="10,0" Effect="{StaticResource Z-Depth3}"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">                
+               
+                <controls:ClasseSchedule x:Name="CLASS_WEEK_SCHEDULE" Margin="10,0" Effect="{StaticResource Z-Depth3}" />              
                                  
                 <controls:ClasseMatieres x:Name="CLASSE_MATIERES" Margin="10,0" Effect="{StaticResource Z-Depth3}"/>
                            

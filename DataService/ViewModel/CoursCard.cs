@@ -28,7 +28,7 @@ namespace DataService.ViewModel
 
             ForeColor = "Black";
 
-            Horraire = StartTime.ToString("hh\\:mm") + " - " + EndTime.ToString("hh\\:mm");
+            //Horraire = StartTime.ToString("hh\\:mm") + " - " + EndTime.ToString("hh\\:mm");
 
             ResolveData (coursDay, currentCous.MatiereGuid, currentCous.StaffGuid);
             
@@ -95,7 +95,7 @@ namespace DataService.ViewModel
             {
                 var m = db.Matiere.Find(matiereGuid);
 
-                MatiereName = m.Name;
+                MatiereName = m.Name.Substring(0,1).ToUpper() + m.Name.Substring(1).ToLower();
                 Couleur = m.Couleur;
 
                 StaffFullName = db.Staff.Find (staffGuid).FullName;
