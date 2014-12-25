@@ -21,14 +21,14 @@ namespace Matrix.views.Students
 
         private void UpdateData()
         {
-            BusyIndicator.IsBusy = true;
+            BUSY_INDICATOR.IsBusy = true;
 
             new Task(() =>
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    Studentslist.ItemsSource = App.DataS.Students.GetAllStudents();
-                    BusyIndicator.IsBusy = false;
+                    STUDENTSLIST.ItemsSource = App.DataS.Students.GetAllStudents();
+                    BUSY_INDICATOR.IsBusy = false;
                 }));
             }).Start();
         }
@@ -44,8 +44,8 @@ namespace Matrix.views.Students
         }
 
         private void Studentslist_MouseDoubleClick ( object sender, MouseButtonEventArgs e ) {
-            if (Studentslist?.SelectedValue == null) return;
-            var wind = new StudentInfo(Studentslist.SelectedValue.ToString()) {Owner = Window.GetWindow(this)};
+            if (STUDENTSLIST?.SelectedValue == null) return;
+            var wind = new StudentInfo(STUDENTSLIST.SelectedValue.ToString()) {Owner = Window.GetWindow(this)};
             wind.ShowDialog();
             UpdateData();
         }
@@ -59,16 +59,16 @@ namespace Matrix.views.Students
 
         private void DeleteButton_Click ( object sender, RoutedEventArgs e )
         {
-            if(Studentslist.SelectedValue == null) {
+            if(STUDENTSLIST.SelectedValue == null) {
                 MessageBox.Show("Selectionner Un Etudiant A Supprimer !");
                 return;
             }
 
-            var theGaName = App.DataS.Students.GetStudentName(Studentslist.SelectedValue.ToString ());
+            var theGaName = App.DataS.Students.GetStudentName(STUDENTSLIST.SelectedValue.ToString ());
             theGaName = "Ete Vous Sure de supprimer " + theGaName + " de la base de donnee ?";
 
             if (MessageBox.Show(theGaName, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
-            MessageBox.Show (App.DataS.Students.DeleteStudent (Studentslist.SelectedValue.ToString ()) ? "Supprimer Avec Succes" : "Echec");
+            MessageBox.Show (App.DataS.Students.DeleteStudent (STUDENTSLIST.SelectedValue.ToString ()) ? "Supprimer Avec Succes" : "Echec");
             UpdateData();
         }
 

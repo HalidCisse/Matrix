@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataService.Context;
+using DataService.Entities;
 using DataService.Entities.Pedagogy;
+using DataService.Enum;
 using DataService.ViewModel;
 
 namespace DataService
@@ -187,13 +190,91 @@ namespace DataService
         }
 
 
+        /// <summary>
+        /// Model des Presences
+        /// </summary>
+        /// <param name="currentCoursGuid"></param>
+        /// <param name="coursDate"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public IEnumerable GetAbsencesTiketCards(Guid currentCoursGuid, DateTime coursDate)
+        {                        
+                var tiketList = new ConcurrentBag<AbsenceTicketCard>() {new AbsenceTicketCard(GetCoursStaffGuid(currentCoursGuid), currentCoursGuid, coursDate) };
+                
+                var stdsGuids = GetClassStudentsGuids(GetCoursClasseGuid(currentCoursGuid), GetCoursAnneeScolaireGuid(currentCoursGuid));
 
+                Parallel.ForEach(stdsGuids, std =>
+                {
+                    tiketList.Add(new AbsenceTicketCard(std, currentCoursGuid, coursDate));
+                });
+
+                return tiketList.OrderBy(m => m.FullName);
+            
+        }
 
 
 
 
 
         #region HELPERS
+
+        private static List<Guid> GetClassStudentsGuids(Guid classGuid, Guid anneeScolaireGuid)
+        {
+            using (var db = new Ef())
+            {
+                var students =
+                    new List<Guid>(db.Inscription.Where(
+                        i => i.ClasseGuid.Equals(classGuid) && i.AnneeScolaireGuid.Equals(anneeScolaireGuid)).Select(i => i.StudentGuid));
+
+                return students;
+            }
+        }
+
+        private static Guid GetCoursClasseGuid(Guid coursGuid)
+        {
+            using (var db = new Ef())
+            {
+                return db.Cours.Find(coursGuid).ClasseGuid;
+            }
+        }
+
+        private static Cours GetCours(Guid coursGuid)
+        {
+            using (var db = new Ef())
+            {
+                return db.Cours.Find(coursGuid);
+            }
+        }
+
+        private static Guid GetCoursStaffGuid(Guid coursGuid)
+        {
+            using (var db = new Ef())
+            {
+                return db.Cours.Find(coursGuid).StaffGuid;
+            }
+        }
+
+        private static Guid GetCoursAnneeScolaireGuid(Guid coursGuid)
+        {
+            using (var db = new Ef())
+            {               
+                return db.PeriodeScolaire.Find(db.Cours.Find(coursGuid).PeriodeScolaireGuid)?.AnneeScolaireGuid ?? GetCurrentAnneeScolaireGuid;
+            }
+        }
+
+        private static Guid GetCurrentAnneeScolaireGuid
+        {
+            get
+            {
+                using (var db = new Ef())
+                {
+                    if (db.MatrixSetting.Find(MatrixConstants.SystemGuid()) == null)
+                        db.MatrixSetting.Add(new MatrixSetting());
+
+                    return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentAnneeScolaireGuid;
+                }
+            }
+        }
 
         private static Matiere GetMatiereById(Guid matiereId)
         {
@@ -205,7 +286,7 @@ namespace DataService
 
         #endregion
 
-
+       
     }
  
 }

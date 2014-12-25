@@ -18,9 +18,9 @@
 
         <DockPanel >
             <Grid Background="Transparent" DockPanel.Dock="Top" Height="30" Width="Auto">
-                <Button Name="SeetingButton" Content="&#xf0c9;" HorizontalAlignment="Right" Margin="10,0" Style="{DynamicResource ToolButtonStyle}" Click="SeetingButton_OnClick"/>
+                <Button Name="SEETING_BUTTON" Content="&#xf0c9;" HorizontalAlignment="Right" Margin="10,0" Style="{DynamicResource ToolButtonStyle}" Click="SeetingButton_OnClick"/>
             </Grid>
-            <Frame x:Name="MainFrame" Source="HomePage.xaml" NavigationUIVisibility="Hidden" >
+            <Frame x:Name="MAIN_FRAME" Source="HomePage.xaml" NavigationUIVisibility="Hidden" >
                 <Frame.Template>
                     <ControlTemplate TargetType="Frame">
                         <mui:TransitioningContentControl Background="Beige" Content="{TemplateBinding Content}"/>
@@ -29,9 +29,9 @@
             </Frame>
         </DockPanel>
 
-        <control:Flyout Name="MyFlyout" IsOpen="False" Header="Parametres" Background="#F2F2EA" Visibility="Collapsed" Position="Right" Width="700" IsOpenChanged="MyFlyout_OnIsOpenChanged">
+        <control:Flyout Name="MY_FLYOUT" IsOpen="False" Header="Parametres" Background="#F2F2EA" Visibility="Collapsed" Position="Right" Width="700" IsOpenChanged="MyFlyout_OnIsOpenChanged">
             
-            <Frame Name="SettingFrame" NavigationUIVisibility="Hidden"/>
+            <Frame Name="SETTING_FRAME" NavigationUIVisibility="Hidden"/>
             
             <control:Flyout.Resources>
                 <ResourceDictionary>

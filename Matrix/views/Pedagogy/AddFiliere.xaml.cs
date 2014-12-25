@@ -29,19 +29,19 @@ namespace Matrix.views.Pedagogy
 
             #region Patterns Data
 
-            NiveauEntree.ItemsSource = App.DataS.DataEnums.GetFILIERE_NIVEAU_ENTREE ();
+            NIVEAU_ENTREE.ItemsSource = App.DataS.DataEnums.GetFILIERE_NIVEAU_ENTREE ();
 
-            NiveauSortie.ItemsSource = App.DataS.DataEnums.GetFILIERE_NIVEAU_SORTIE ();
+            NIVEAU_SORTIE.ItemsSource = App.DataS.DataEnums.GetFILIERE_NIVEAU_SORTIE ();
 
             foreach(var f in App.DataS.DataEnums.GetFILIERE_LEVELS ())
             {
                 if(f.ToString().Equals ("1"))
                 {
-                    NAnnee.Items.Add (1 +" Annee");
+                    N_ANNEE.Items.Add (1 +" Annee");
                 }
                 else
                 {
-                    NAnnee.Items.Add (f + " Annees");
+                    N_ANNEE.Items.Add (f + " Annees");
                 }
             }           
            
@@ -50,7 +50,7 @@ namespace Matrix.views.Pedagogy
             if (!string.IsNullOrEmpty(filiereToDisplayId)) {
                 DisplayFiliere(App.DataS.Pedagogy.Filieres.GetFiliereById(new Guid(filiereToDisplayId)));
                 _filiereDisplayedId = new Guid (filiereToDisplayId);
-                TitleText.Text = "MODIFICATION";
+                TITLE_TEXT.Text = "MODIFICATION";
             }
             else
                 DisplayDefault();
@@ -58,19 +58,19 @@ namespace Matrix.views.Pedagogy
 
         private void DisplayDefault()
         {
-            NiveauEntree.SelectedIndex = 0;
-            NiveauSortie.SelectedIndex = 0;
-            NAnnee.SelectedIndex = 0;            
+            NIVEAU_ENTREE.SelectedIndex = 0;
+            NIVEAU_SORTIE.SelectedIndex = 0;
+            N_ANNEE.SelectedIndex = 0;            
         }
 
         private void DisplayFiliere(Filiere filiereToDisplay)
         {
             if(filiereToDisplay == null) return;
 
-            FiliereName.Text = filiereToDisplay.Name;
-            NiveauEntree.SelectedValue = filiereToDisplay.NiveauEntree;
-            NiveauSortie.SelectedValue = filiereToDisplay.Niveau;
-            NAnnee.SelectedValue = filiereToDisplay.NAnnee.ToString();           
+            FILIERE_NAME.Text = filiereToDisplay.Name;
+            NIVEAU_ENTREE.SelectedValue = filiereToDisplay.NiveauEntree;
+            NIVEAU_SORTIE.SelectedValue = filiereToDisplay.Niveau;
+            N_ANNEE.SelectedValue = filiereToDisplay.NAnnee.ToString();           
         }
 
         private void Enregistrer_Click ( object sender, RoutedEventArgs e )
@@ -80,10 +80,10 @@ namespace Matrix.views.Pedagogy
             var myFiliere = new Filiere
             {                       
                 FiliereGuid = Guid.NewGuid(),
-                Name = FiliereName.Text.Trim(),
-                NiveauEntree = NiveauEntree.Text.Trim (),
-                Niveau = NiveauSortie.Text.Trim (),
-                NAnnee = Convert.ToInt32 ((NAnnee.SelectedValue.ToString ().Substring(0,1)))
+                Name = FILIERE_NAME.Text.Trim(),
+                NiveauEntree = NIVEAU_ENTREE.Text.Trim (),
+                Niveau = NIVEAU_SORTIE.Text.Trim (),
+                NAnnee = Convert.ToInt32 ((N_ANNEE.SelectedValue.ToString ().Substring(0,1)))
             };
 
             if(OpenOption == "Add")
@@ -120,7 +120,7 @@ namespace Matrix.views.Pedagogy
 
         private void GenerateClasses(Guid filiereId)
         {
-            var upper = Convert.ToInt32((NAnnee.SelectedValue.ToString().Substring(0, 1)));
+            var upper = Convert.ToInt32((N_ANNEE.SelectedValue.ToString().Substring(0, 1)));
 
             for (var i = 1; i <= upper; i++)
             {
@@ -148,34 +148,34 @@ namespace Matrix.views.Pedagogy
         {
             var ok = true;
 
-            if(string.IsNullOrEmpty (FiliereName.Text))
+            if(string.IsNullOrEmpty (FILIERE_NAME.Text))
             {
-                FiliereName.BorderBrush = Brushes.Red;
+                FILIERE_NAME.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                FiliereName.BorderBrush = Brushes.Blue;
+                FILIERE_NAME.BorderBrush = Brushes.Blue;
             }
 
-            if(string.IsNullOrEmpty (NiveauEntree.Text))
+            if(string.IsNullOrEmpty (NIVEAU_ENTREE.Text))
             {
-                NiveauEntree.BorderBrush = Brushes.Red;
+                NIVEAU_ENTREE.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                NiveauEntree.BorderBrush = Brushes.Blue;
+                NIVEAU_ENTREE.BorderBrush = Brushes.Blue;
             }
 
-            if(string.IsNullOrEmpty (NiveauSortie.Text))
+            if(string.IsNullOrEmpty (NIVEAU_SORTIE.Text))
             {
-                NiveauSortie.BorderBrush = Brushes.Red;
+                NIVEAU_SORTIE.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                NiveauSortie.BorderBrush = Brushes.Blue;
+                NIVEAU_SORTIE.BorderBrush = Brushes.Blue;
             }
 
 

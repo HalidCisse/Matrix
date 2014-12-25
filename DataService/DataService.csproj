@@ -112,7 +112,7 @@
     <Compile Include="DataManager\UserProfilesManager.cs" />
     <Compile Include="Entities\Etablissement.cs" />
     <Compile Include="Entities\MatrixSetting.cs" />
-    <Compile Include="Entities\Pedagogy\CoursPresence.cs" />
+    <Compile Include="Entities\Pedagogy\AbsenceTicket.cs" />
     <Compile Include="Entities\Pedagogy\Inscription.cs" />
     <Compile Include="Entities\Pedagogy\InscriptionRule.cs" />
     <Compile Include="Entities\Pedagogy\AnneeScolaire.cs" />
@@ -155,6 +155,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModel\ClassCard.cs" />
     <Compile Include="ViewModel\ClasseStudentCard.cs" />
+    <Compile Include="ViewModel\AbsenceTicketCard.cs" />
     <Compile Include="ViewModel\MatiereCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DbService.cs" />

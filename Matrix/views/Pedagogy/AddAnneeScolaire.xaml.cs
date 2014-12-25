@@ -27,12 +27,12 @@ namespace Matrix.views.Pedagogy
 
         private void DisplayDefault()
         {
-            AnneescolaireName.Text = "Annee Scolaire " + DateTime.Today.Year + "-" + (DateTime.Today.Year + 1);
-            DebutAns.SelectedDate = new DateTime(DateTime.Today.Year, 10, 1);                      
-            FinAns.SelectedDate = new DateTime(DateTime.Today.Year, 10, 1).AddMonths(9);
-            DebutIns.SelectedDate = DebutAns.SelectedDate;
-            FinIns.SelectedDate = DebutIns.SelectedDate.Value.AddMonths(3); 
-            PeriodeList.ItemsSource = _periodeList;
+            ANNEESCOLAIRE_NAME.Text = "Annee Scolaire " + DateTime.Today.Year + "-" + (DateTime.Today.Year + 1);
+            DEBUT_ANS.SelectedDate = new DateTime(DateTime.Today.Year, 10, 1);                      
+            FIN_ANS.SelectedDate = new DateTime(DateTime.Today.Year, 10, 1).AddMonths(9);
+            DEBUT_INS.SelectedDate = DEBUT_ANS.SelectedDate;
+            FIN_INS.SelectedDate = DEBUT_INS.SelectedDate.Value.AddMonths(3); 
+            PERIODE_LIST.ItemsSource = _periodeList;
 
             Genperiods();
         }
@@ -44,11 +44,11 @@ namespace Matrix.views.Pedagogy
             var newAnneeScolaire = new AnneeScolaire
             {
                 AnneeScolaireGuid = Guid.NewGuid(),
-                Name = AnneescolaireName.Text.Trim(),
-                DateDebut = DebutAns.SelectedDate,
-                DateFin = FinAns.SelectedDate,
-                DateDebutInscription = DebutIns.SelectedDate,
-                DateFinInscription = FinIns.SelectedDate
+                Name = ANNEESCOLAIRE_NAME.Text.Trim(),
+                DateDebut = DEBUT_ANS.SelectedDate,
+                DateFin = FIN_ANS.SelectedDate,
+                DateDebutInscription = DEBUT_INS.SelectedDate,
+                DateFinInscription = FIN_INS.SelectedDate
             };
 
             try
@@ -85,14 +85,14 @@ namespace Matrix.views.Pedagogy
         {
             var ok = true;
 
-            if (string.IsNullOrEmpty(AnneescolaireName.Text))
+            if (string.IsNullOrEmpty(ANNEESCOLAIRE_NAME.Text))
             {
-                AnneescolaireName.BorderBrush = Brushes.Red;
+                ANNEESCOLAIRE_NAME.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                AnneescolaireName.BorderBrush = Brushes.Blue;
+                ANNEESCOLAIRE_NAME.BorderBrush = Brushes.Blue;
             }
 
 
@@ -107,16 +107,16 @@ namespace Matrix.views.Pedagogy
         {
             _periodeList.Clear();
 
-            var periodeLengh = (int)((FinAns.SelectedDate - DebutAns.SelectedDate).Value.TotalDays / NPeriodes.Value);
+            var periodeLengh = (int)((FIN_ANS.SelectedDate - DEBUT_ANS.SelectedDate).Value.TotalDays / N_PERIODES.Value);
             
-            var lastEndDate = DebutAns.SelectedDate.GetValueOrDefault();
+            var lastEndDate = DEBUT_ANS.SelectedDate.GetValueOrDefault();
             var periodType = "Periode ";
 
-            if (NPeriodes.Value == 2) periodType = "Semestre ";
+            if (N_PERIODES.Value == 2) periodType = "Semestre ";
            
-            else if (NPeriodes.Value == 3) periodType = "Trimestre ";
+            else if (N_PERIODES.Value == 3) periodType = "Trimestre ";
                                    
-            for (var i = 1; i <= NPeriodes.Value; i++)
+            for (var i = 1; i <= N_PERIODES.Value; i++)
             {
                 var newPeriodeSco = new PeriodeScolaire
                 {
@@ -126,17 +126,17 @@ namespace Matrix.views.Pedagogy
                     EndDate = lastEndDate.AddDays(periodeLengh)
                 };
 
-                if (i == 1) newPeriodeSco.StartDate = DebutAns.SelectedDate;
+                if (i == 1) newPeriodeSco.StartDate = DEBUT_ANS.SelectedDate;
                
-                else if (i == NPeriodes.Value) newPeriodeSco.EndDate = FinAns.SelectedDate;
+                else if (i == N_PERIODES.Value) newPeriodeSco.EndDate = FIN_ANS.SelectedDate;
                
                 _periodeList.Add(newPeriodeSco);
           
                 lastEndDate = newPeriodeSco.EndDate.GetValueOrDefault();
             }
 
-            PeriodeList.ItemsSource = null;
-            PeriodeList.ItemsSource = _periodeList;
+            PERIODE_LIST.ItemsSource = null;
+            PERIODE_LIST.ItemsSource = _periodeList;
         }
     
         private void N_PERIODES__ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)

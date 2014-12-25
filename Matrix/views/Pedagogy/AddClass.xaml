@@ -18,29 +18,29 @@
             <Image Source="Icon/Classe.png" Height="70" Width="70" VerticalAlignment="Center" DockPanel.Dock="Left"/>
 
             <Grid Height="40" VerticalAlignment="Top" Margin="15,0,0,0">
-                <TextBlock Name="TitleText" Text="AJOUTER NOUVELLE CLASSE" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Center"/>
+                <TextBlock Name="TITLE_TEXT" Text="AJOUTER NOUVELLE CLASSE" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Center"/>
                 <Border Background="Blue" Width="350" Height="7"  VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
             </Grid>
         </StackPanel>        
         
         <Grid Grid.Row="1">
             <TextBlock Text="FILIERE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="FiliereName" Width="200" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right" SelectionChanged="FILIERE__SelectionChanged"/>
+            <ComboBox Name="FILIERE_NAME" Width="200" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right" SelectionChanged="FILIERE__SelectionChanged"/>
         </Grid>
 
         <Grid Grid.Row="2">
             <TextBlock Text="NIVEAU" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="Niveau" Width="200" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+            <ComboBox Name="NIVEAU" Width="200" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
         </Grid>
 
         <Grid Grid.Row="3">
             <TextBlock Text="NOM DE LA CLASSE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <TextBox Name="ClassName" Width="300" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+            <TextBox Name="CLASS_NAME" Width="300" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
         </Grid>
              
         <Grid Grid.Row="4" VerticalAlignment="Bottom" Margin="0,0">
-            <Button Name="Enregistrer" Content="Enregistrer" Margin="10,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Enregistrer_Click"/>
-            <Button Name="Annuler"     Content="Annuler" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="Annuler_Click"/>
+            <Button Name="ENREGISTRER" Content="Enregistrer" Margin="10,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Enregistrer_Click"/>
+            <Button Name="ANNULER"     Content="Annuler" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="Annuler_Click"/>
         </Grid>
     </Grid>
 </Window>

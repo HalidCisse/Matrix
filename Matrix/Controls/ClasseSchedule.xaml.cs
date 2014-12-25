@@ -68,7 +68,7 @@ namespace Matrix.Controls
         {            
             var cour = ((CoursCard)((ListBox)sender).SelectedItem);
                         
-            SCHEDULE_FRAME.NavigationService.Navigate(new CoursPresence(cour.CoursGuid, cour.CoursDate));
+            SCHEDULE_FRAME.NavigationService.Navigate(new SaisiePresence(cour.CoursGuid, cour.CoursDate));
             BACK_BUTTON.Visibility = Visibility.Visible;
         }
 

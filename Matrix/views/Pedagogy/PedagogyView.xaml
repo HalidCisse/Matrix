@@ -75,9 +75,9 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button Content="&#xf015;" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Name="HomeButton" Click="HomeButton_Click" />
-                <Button Content="&#xf055;" Grid.Column="1" Style="{DynamicResource ToolButtonStyle}" Name="AddButon" Click="AddButon_Click" />
-                <Button Content="&#xf014;" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Name="DeleteButton" Click="DeleteButton_Click"/>
+                <Button Content="&#xf015;" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Name="HOME_BUTTON" Click="HomeButton_Click" />
+                <Button Content="&#xf055;" Grid.Column="1" Style="{DynamicResource ToolButtonStyle}" Name="ADD_BUTON" Click="AddButon_Click" />
+                <Button Content="&#xf014;" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Name="DELETE_BUTTON" Click="DeleteButton_Click"/>
                 <Grid Grid.Column="4" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using DataService.Context;
+using DataService.Entities;
 using DataService.Entities.Pedagogy;
+using DataService.Enum;
 
 namespace DataService.DataManager
 {
@@ -20,6 +22,7 @@ namespace DataService.DataManager
         public bool AddCours(Cours myCours)
         {
             myCours.CoursGuid = Guid.NewGuid();
+            myCours.PeriodeScolaireGuid = GetCurrentPeriodeScolaireGuid;
             using (var db = new Ef())
             {
                 db.Cours.Add(myCours);
@@ -106,5 +109,42 @@ namespace DataService.DataManager
         }
 
 
-    }
+
+
+        #region Helpers
+
+        private static Guid GetCurrentPeriodeScolaireGuid
+        {
+            get 
+            {
+                using (var db = new Ef())
+                {                   
+                    var psList = db.PeriodeScolaire.Where(ps => ps.AnneeScolaireGuid.Equals(GetCurrentAnneeScolaireGuid));
+
+                    foreach (var ps in psList) if (ps.StartDate <= DateTime.Today && DateTime.Today <= ps.EndDate) return ps.PeriodeScolaireGuid;
+                   
+                    return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentPeriodeScolaireGuid;
+                }
+            }
+        }
+
+        private static Guid GetCurrentAnneeScolaireGuid
+        {
+            get
+            {
+                using (var db = new Ef())
+                {
+                    if (db.MatrixSetting.Find(MatrixConstants.SystemGuid()) == null)
+                        db.MatrixSetting.Add(new MatrixSetting());
+
+                    return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentAnneeScolaireGuid;
+                }
+            }
+        }
+
+
+        #endregion
+
+
+        }
 }

@@ -59,68 +59,68 @@ namespace Matrix.views.Pedagogy
 
         private void GetPatternData()
         {
-            MatiereId.ItemsSource = App.DataS.Pedagogy.Classes.GetClassMatieres(_currentCours.ClasseGuid);
+            MATIERE_ID.ItemsSource = App.DataS.Pedagogy.Classes.GetClassMatieres(_currentCours.ClasseGuid);
 
-            StaffId.ItemsSource = App.DataS.Hr.GetAllStaffs();
+            STAFF_ID.ItemsSource = App.DataS.Hr.GetAllStaffs();
 
-            SalleName.ItemsSource = App.DataS.DataEnums.GetAllSalles();
+            SALLE_NAME.ItemsSource = App.DataS.DataEnums.GetAllSalles();
 
-            Type.ItemsSource = App.DataS.DataEnums.GetAllCoursTypes();
+            TYPE.ItemsSource = App.DataS.DataEnums.GetAllCoursTypes();
 
-            StartDate.SelectedDate = DateTime.Today;
+            START_DATE.SelectedDate = DateTime.Today;
 
-            EndDate.SelectedDate = DateTime.Today;
+            END_DATE.SelectedDate = DateTime.Today;
         }
 
         private void Display()
         {
             if (_isAdd) return;
 
-            TitleText.Text = "MODIFICATION";
+            TITLE_TEXT.Text = "MODIFICATION";
 
-            MatiereId.SelectedValue = _currentCours.MatiereGuid;
-            StaffId.SelectedValue = _currentCours.StaffGuid;
-            SalleName.Text = _currentCours.Salle;
-            Type.SelectedValue = _currentCours.Type;
-            StartTime.Value = new DateTime(_currentCours.StartTime.Ticks); 
-            EndTime.Value = new DateTime(_currentCours.EndTime.Ticks); 
-            StartDate.SelectedDate = _currentCours.StartDate;
-            EndDate.SelectedDate = _currentCours.EndDate;
+            MATIERE_ID.SelectedValue = _currentCours.MatiereGuid;
+            STAFF_ID.SelectedValue = _currentCours.StaffGuid;
+            SALLE_NAME.Text = _currentCours.Salle;
+            TYPE.SelectedValue = _currentCours.Type;
+            START_TIME.Value = new DateTime(_currentCours.StartTime.Ticks); 
+            END_TIME.Value = new DateTime(_currentCours.EndTime.Ticks); 
+            START_DATE.SelectedDate = _currentCours.StartDate;
+            END_DATE.SelectedDate = _currentCours.EndDate;
 
-            Lun.IsChecked = _currentCours.RecurrenceDays.Contains("1");
-            Mar.IsChecked = _currentCours.RecurrenceDays.Contains ("2");
-            Mer.IsChecked = _currentCours.RecurrenceDays.Contains ("3");
-            Jeu.IsChecked = _currentCours.RecurrenceDays.Contains ("4");
-            Vend.IsChecked = _currentCours.RecurrenceDays.Contains ("5");
-            Sam.IsChecked = _currentCours.RecurrenceDays.Contains ("6");
-            Dim.IsChecked = _currentCours.RecurrenceDays.Contains ("0");
+            LUN.IsChecked = _currentCours.RecurrenceDays.Contains("1");
+            MAR.IsChecked = _currentCours.RecurrenceDays.Contains ("2");
+            MER.IsChecked = _currentCours.RecurrenceDays.Contains ("3");
+            JEU.IsChecked = _currentCours.RecurrenceDays.Contains ("4");
+            VEND.IsChecked = _currentCours.RecurrenceDays.Contains ("5");
+            SAM.IsChecked = _currentCours.RecurrenceDays.Contains ("6");
+            DIM.IsChecked = _currentCours.RecurrenceDays.Contains ("0");
 
-            Description.Text = _currentCours.Description;
+            DESCRIPTION.Text = _currentCours.Description;
         }
        
         private void Enregistrer_Click ( object sender, RoutedEventArgs e )
         {
             if(ChampsValidated () != true) return;
            
-            _currentCours.MatiereGuid = new Guid(MatiereId.SelectedValue.ToString()) ;
-            _currentCours.StaffGuid = new Guid(StaffId.SelectedValue.ToString());
-            _currentCours.Salle = SalleName.Text;
-            _currentCours.Type = Type.SelectedValue.ToString();
-            _currentCours.StartTime = DateTime.Parse(StartTime.Value.ToString()).TimeOfDay;     
-            _currentCours.EndTime =DateTime.Parse (EndTime.Value.ToString ()).TimeOfDay;       
-            _currentCours.StartDate = StartDate.SelectedDate.GetValueOrDefault().Date;
-            _currentCours.EndDate = EndDate.SelectedDate.GetValueOrDefault().Date;
+            _currentCours.MatiereGuid = new Guid(MATIERE_ID.SelectedValue.ToString()) ;
+            _currentCours.StaffGuid = new Guid(STAFF_ID.SelectedValue.ToString());
+            _currentCours.Salle = SALLE_NAME.Text;
+            _currentCours.Type = TYPE.SelectedValue.ToString();
+            _currentCours.StartTime = DateTime.Parse(START_TIME.Value.ToString()).TimeOfDay;     
+            _currentCours.EndTime =DateTime.Parse (END_TIME.Value.ToString ()).TimeOfDay;       
+            _currentCours.StartDate = START_DATE.SelectedDate.GetValueOrDefault().Date;
+            _currentCours.EndDate = END_DATE.SelectedDate.GetValueOrDefault().Date;
 
             _currentCours.RecurrenceDays = "";
-            if(Lun.IsChecked == true) { _currentCours.RecurrenceDays = string.Format ("{0} 1 ", _currentCours.RecurrenceDays); }
-            if(Mar.IsChecked == true) { _currentCours.RecurrenceDays = string.Format ("{0} 2 ", _currentCours.RecurrenceDays); }
-            if(Mer.IsChecked == true) { _currentCours.RecurrenceDays = string.Format ("{0} 3 ", _currentCours.RecurrenceDays); }
-            if(Jeu.IsChecked == true) { _currentCours.RecurrenceDays = string.Format ("{0} 4 ", _currentCours.RecurrenceDays); }
-            if(Vend.IsChecked == true){ _currentCours.RecurrenceDays = string.Format ("{0} 5 ", _currentCours.RecurrenceDays); }
-            if(Sam.IsChecked == true) { _currentCours.RecurrenceDays = string.Format ("{0} 6 ", _currentCours.RecurrenceDays); }
-            if(Dim.IsChecked == true) { _currentCours.RecurrenceDays = string.Format ("{0} 0 ", _currentCours.RecurrenceDays); }
+            if(LUN.IsChecked == true) { _currentCours.RecurrenceDays = string.Format ("{0} 1 ", _currentCours.RecurrenceDays); }
+            if(MAR.IsChecked == true) { _currentCours.RecurrenceDays = string.Format ("{0} 2 ", _currentCours.RecurrenceDays); }
+            if(MER.IsChecked == true) { _currentCours.RecurrenceDays = string.Format ("{0} 3 ", _currentCours.RecurrenceDays); }
+            if(JEU.IsChecked == true) { _currentCours.RecurrenceDays = string.Format ("{0} 4 ", _currentCours.RecurrenceDays); }
+            if(VEND.IsChecked == true){ _currentCours.RecurrenceDays = string.Format ("{0} 5 ", _currentCours.RecurrenceDays); }
+            if(SAM.IsChecked == true) { _currentCours.RecurrenceDays = string.Format ("{0} 6 ", _currentCours.RecurrenceDays); }
+            if(DIM.IsChecked == true) { _currentCours.RecurrenceDays = string.Format ("{0} 0 ", _currentCours.RecurrenceDays); }
             
-            _currentCours.Description = Description.Text;
+            _currentCours.Description = DESCRIPTION.Text;
 
             if(_isAdd)
             {
@@ -156,38 +156,38 @@ namespace Matrix.views.Pedagogy
         {
             var ok = true;
 
-            if(MatiereId.SelectedValue == null)
+            if(MATIERE_ID.SelectedValue == null)
             {
-                MatiereId.BorderBrush = Brushes.Red;
+                MATIERE_ID.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                MatiereId.BorderBrush = Brushes.Blue;
+                MATIERE_ID.BorderBrush = Brushes.Blue;
             }
 
-            if(StartDate.SelectedDate.GetValueOrDefault () >  EndDate.SelectedDate.GetValueOrDefault ())
+            if(START_DATE.SelectedDate.GetValueOrDefault () >  END_DATE.SelectedDate.GetValueOrDefault ())
             {
-                StartDate.BorderBrush = Brushes.Red;
-                EndDate.BorderBrush = Brushes.Red;
+                START_DATE.BorderBrush = Brushes.Red;
+                END_DATE.BorderBrush = Brushes.Red;
                 ok = false;
                 ModernDialog.ShowMessage ("Date de Debut doit etre inferieur a date de Fin !!", "Matrix", MessageBoxButton.OK);
             }
             else
             {
-                StartDate.BorderBrush = Brushes.Blue;
-                EndDate.BorderBrush = Brushes.Blue;
+                START_DATE.BorderBrush = Brushes.Blue;
+                END_DATE.BorderBrush = Brushes.Blue;
             }
 
-            if(Lun.IsChecked == false && Mar.IsChecked == false && Mer.IsChecked == false && Jeu.IsChecked == false && Vend.IsChecked == false && Sam.IsChecked == false && Dim.IsChecked == false )
+            if(LUN.IsChecked == false && MAR.IsChecked == false && MER.IsChecked == false && JEU.IsChecked == false && VEND.IsChecked == false && SAM.IsChecked == false && DIM.IsChecked == false )
             {
-                Lun.BorderBrush = Brushes.Red;
-                Mar.BorderBrush = Brushes.Red;
-                Mer.BorderBrush = Brushes.Red;
-                Jeu.BorderBrush = Brushes.Red;
-                Vend.BorderBrush = Brushes.Red;
-                Sam.BorderBrush = Brushes.Red;
-                Dim.BorderBrush = Brushes.Red; 
+                LUN.BorderBrush = Brushes.Red;
+                MAR.BorderBrush = Brushes.Red;
+                MER.BorderBrush = Brushes.Red;
+                JEU.BorderBrush = Brushes.Red;
+                VEND.BorderBrush = Brushes.Red;
+                SAM.BorderBrush = Brushes.Red;
+                DIM.BorderBrush = Brushes.Red; 
                
                 ok = false;
                 ModernDialog.ShowMessage ("Choisir Au Moins Un Jour !!", "Matrix", MessageBoxButton.OK);
@@ -205,17 +205,17 @@ namespace Matrix.views.Pedagogy
 
         private void TYPE__OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(TitleText.Text == "MODIFICATION") return;
+            if(TITLE_TEXT.Text == "MODIFICATION") return;
 
-            if(Type.SelectedValue.ToString () == "Revision")
-              { TitleText.Text = "AJOUTER UNE " + Type.SelectedValue.ToString().ToUpper(); }
+            if(TYPE.SelectedValue.ToString () == "Revision")
+              { TITLE_TEXT.Text = "AJOUTER UNE " + TYPE.SelectedValue.ToString().ToUpper(); }
             else
-            { TitleText.Text = "AJOUTER UN " + Type.SelectedValue.ToString ().ToUpper (); }
+            { TITLE_TEXT.Text = "AJOUTER UN " + TYPE.SelectedValue.ToString ().ToUpper (); }
 
-            if(Type.SelectedValue.ToString () == "Control" || Type.SelectedValue.ToString () == "Examen" || Type.SelectedValue.ToString () == "Test")
-              { Instructeur.Text = "SUPERVISEUR"; }
+            if(TYPE.SelectedValue.ToString () == "Control" || TYPE.SelectedValue.ToString () == "Examen" || TYPE.SelectedValue.ToString () == "Test")
+              { INSTRUCTEUR.Text = "SUPERVISEUR"; }
             else
-              { Instructeur.Text = "INSTRUCTEUR"; }
+              { INSTRUCTEUR.Text = "INSTRUCTEUR"; }
             
         }
 

@@ -140,6 +140,27 @@ namespace DataService.DataManager
         }
 
 
+        /// <summary>
+        /// La Periode Scolaire Actuelle
+        /// </summary>
+        public Guid GetCurrentPeriodeScolaireGuid
+        {
+            get
+            {
+                using (var db = new Ef())
+                {
+                    var psList = db.PeriodeScolaire.Where(ps => ps.AnneeScolaireGuid.Equals(CurrentPeriodeScolaireGuid));
+
+                    foreach (var ps in psList)
+                    {
+                        if (ps.StartDate <= DateTime.Today && DateTime.Today <= ps.EndDate) return ps.PeriodeScolaireGuid;                      
+                    }
+                    return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentPeriodeScolaireGuid;
+                }
+            }           
+        }
+
+
 
 
     }

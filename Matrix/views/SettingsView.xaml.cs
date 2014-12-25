@@ -29,7 +29,7 @@ namespace Matrix.views
         {
             if (_isFirstTime) { _isFirstTime = false; return; }
           
-            App.DataS.Pedagogy.CurrentAnneeScolaireGuid = new Guid(AnneeScolaireBox.SelectedValue.ToString());
+            App.DataS.Pedagogy.CurrentAnneeScolaireGuid = new Guid(ANNEE_SCOLAIRE_BOX.SelectedValue.ToString());
         }
 
         private void RefreshData()
@@ -40,8 +40,8 @@ namespace Matrix.views
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    AnneeScolaireBox.ItemsSource = App.DataS.Pedagogy.GetAllAnneeScolaires();
-                    AnneeScolaireBox.SelectedValue = App.DataS.Pedagogy.CurrentAnneeScolaireGuid;
+                    ANNEE_SCOLAIRE_BOX.ItemsSource = App.DataS.Pedagogy.GetAllAnneeScolaires();
+                    ANNEE_SCOLAIRE_BOX.SelectedValue = App.DataS.Pedagogy.CurrentAnneeScolaireGuid;
 
                 }));
 

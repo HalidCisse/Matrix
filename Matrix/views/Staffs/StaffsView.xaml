@@ -18,9 +18,9 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button Content="&#xf015;" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Name="HomeButton" Click="HomeButton_Click" />
-                <Button Content="&#xf055;" Grid.Column="1" Style="{DynamicResource ToolButtonStyle}" Name="AddButton" Click="AddButton_Click" />
-                <Button Content="&#xf014;" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Name="DeleteButton" Click="DeleteButton_Click"/>
+                <Button Content="&#xf015;" Grid.Column="0" Style="{DynamicResource ToolButtonStyle}" Name="HOME_BUTTON" Click="HomeButton_Click" />
+                <Button Content="&#xf055;" Grid.Column="1" Style="{DynamicResource ToolButtonStyle}" Name="ADD_BUTTON" Click="AddButton_Click" />
+                <Button Content="&#xf014;" Grid.Column="2" Style="{DynamicResource ToolButtonStyle}" Name="DELETE_BUTTON" Click="DeleteButton_Click"/>
                 <Button Content="&#xf15d;" Grid.Column="3" Style="{DynamicResource ToolButtonStyle}" />                
                 <Grid Grid.Column="4" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
@@ -33,8 +33,8 @@
             </Grid>
         </ToolBar>
         <Grid Background="Transparent">
-            <xctk:BusyIndicator Name="BusyIndicator" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <ListBox Name="StaffList" Style="{DynamicResource DepListStyle}">
+            <xctk:BusyIndicator Name="BUSY_INDICATOR" Style="{DynamicResource BusyStyle}" BusyContent="Patientez ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ListBox Name="STAFF_LIST" Style="{DynamicResource DepListStyle}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Expander  Header="{Binding Path=DepartementName}" Style="{DynamicResource DepExpandStyle}" Expanded="Expander_Expanded">

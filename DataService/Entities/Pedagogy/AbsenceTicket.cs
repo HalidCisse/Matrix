@@ -7,14 +7,13 @@ namespace DataService.Entities.Pedagogy
     /// <summary>
     /// Presence a un cours
     /// </summary>
-    public class CoursPresence
+    public class AbsenceTicket
     {
-
         /// <summary>
         /// Presence a un cours
         /// </summary>
         [Key]
-        public Guid CoursPresenceGuid { get; set; }
+        public Guid AbsenceTicketGuid { get; set; }
 
         /// <summary>
         /// ID de la person => StudentGuid ou StaffGuid
@@ -34,12 +33,12 @@ namespace DataService.Entities.Pedagogy
         /// <summary>
         /// Bool Present ?
         /// </summary>
-        public bool Present  { get; set; }
+        public bool IsPresent  { get; set; }
 
         /// <summary>
         /// Retard en Minute
         /// </summary>
-        public TimeSpan Retard { get; set; }
+        public TimeSpan RetardTime { get; set; }
 
 
 

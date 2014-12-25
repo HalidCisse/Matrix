@@ -52,17 +52,17 @@ namespace Matrix.views.Staffs
         {
             TITLE_.ItemsSource = App.DataS.DataEnums.GetTitles();
 
-            Nationality.ItemsSource = App.DataS.DataEnums.GetNationalities();
+            NATIONALITY.ItemsSource = App.DataS.DataEnums.GetNationalities();
 
-            BirthPlace.ItemsSource = App.DataS.DataEnums.GetBIRTH_PLACE();
+            BIRTH_PLACE.ItemsSource = App.DataS.DataEnums.GetBIRTH_PLACE();
 
-            Statut.ItemsSource = App.DataS.DataEnums.GetStaffStatuts();
+            STATUT.ItemsSource = App.DataS.DataEnums.GetStaffStatuts();
 
-            Position.ItemsSource = App.DataS.DataEnums.GetStaffPositions();
+            POSITION.ItemsSource = App.DataS.DataEnums.GetStaffPositions();
 
-            Departement.ItemsSource = App.DataS.DataEnums.GetDepartements();
+            DEPARTEMENT.ItemsSource = App.DataS.DataEnums.GetDepartements();
 
-            Qualification.ItemsSource = App.DataS.DataEnums.GetStaffQualifications();
+            QUALIFICATION.ItemsSource = App.DataS.DataEnums.GetStaffQualifications();
         }
 
         private void PhotoID_Click(object sender, RoutedEventArgs e)
@@ -73,30 +73,30 @@ namespace Matrix.views.Staffs
             {
                 if (string.IsNullOrEmpty(openFileDialog.FileName)) return;
 
-                PhotoIdentity.Source = new BitmapImage(new Uri(openFileDialog.FileName));
+                PHOTO_IDENTITY.Source = new BitmapImage(new Uri(openFileDialog.FileName));
             }
         }
 
         private void DisplayDefault()
         {
-            CoursExpander.Visibility = Visibility.Hidden;
-            MatiereExpander.Visibility = Visibility.Hidden;
-            InfoExpander.IsExpanded = true;
+            COURS_EXPANDER.Visibility = Visibility.Hidden;
+            MATIERE_EXPANDER.Visibility = Visibility.Hidden;
+            INFO_EXPANDER.IsExpanded = true;
 
-            StaffId.Text = GenNewStaffId();
+            STAFF_ID.Text = GenNewStaffId();
             TITLE_.SelectedIndex = 0;
-            PhotoIdentity.Source = PhotoIdentity.Source = new BitmapImage(new Uri(Res.GetRes("Portrait/defaultStaff.png")));
+            PHOTO_IDENTITY.Source = PHOTO_IDENTITY.Source = new BitmapImage(new Uri(Res.GetRes("Portrait/defaultStaff.png")));
 
-            Position.SelectedIndex = 0;
-            Departement.SelectedIndex = 0;
-            Qualification.SelectedIndex = 0;
-            HiredDate.SelectedDate = DateTime.Today.Date;
+            POSITION.SelectedIndex = 0;
+            DEPARTEMENT.SelectedIndex = 0;
+            QUALIFICATION.SelectedIndex = 0;
+            HIRED_DATE.SelectedDate = DateTime.Today.Date;
 
-            PhoneNumber.Text = "+00";
-            BirthDate.SelectedDate = DateTime.Today.AddDays(-7000);
-            Nationality.SelectedIndex = 0;
-            BirthPlace.SelectedIndex = 0;
-            Statut.SelectedIndex = 0;
+            PHONE_NUMBER.Text = "+00";
+            BIRTH_DATE.SelectedDate = DateTime.Today.AddDays(-7000);
+            NATIONALITY.SelectedIndex = 0;
+            BIRTH_PLACE.SelectedIndex = 0;
+            STATUT.SelectedIndex = 0;
         }
 
         private void DisplayStaff(Staff staffToDisplay)
@@ -104,27 +104,27 @@ namespace Matrix.views.Staffs
             if (staffToDisplay == null) return;
 
             _staffDisplayedGuid = staffToDisplay.StaffGuid;
-            StaffId.Text = staffToDisplay.StaffId;
-            StaffId.IsEnabled = false;
+            STAFF_ID.Text = staffToDisplay.StaffId;
+            STAFF_ID.IsEnabled = false;
             TITLE_.SelectedValue = staffToDisplay.Title;
-            Firstname.Text = staffToDisplay.FirstName;
-            Lastname.Text = staffToDisplay.LastName;
-            PhotoIdentity.Source = ImageUtils.DecodePhoto(staffToDisplay.PhotoIdentity);
+            FIRSTNAME.Text = staffToDisplay.FirstName;
+            LASTNAME.Text = staffToDisplay.LastName;
+            PHOTO_IDENTITY.Source = ImageUtils.DecodePhoto(staffToDisplay.PhotoIdentity);
 
-            Position.Text = staffToDisplay.Position;
-            Departement.Text = staffToDisplay.Departement;
-            Qualification.Text = staffToDisplay.Qualification;
-            HiredDate.SelectedDate = staffToDisplay.HiredDate;
+            POSITION.Text = staffToDisplay.Position;
+            DEPARTEMENT.Text = staffToDisplay.Departement;
+            QUALIFICATION.Text = staffToDisplay.Qualification;
+            HIRED_DATE.SelectedDate = staffToDisplay.HiredDate;
 
-            IdentityNumber.Text = staffToDisplay.IdentityNumber;
-            BirthDate.SelectedDate = staffToDisplay.BirthDate;
-            Nationality.Text = staffToDisplay.Nationality;
-            BirthPlace.Text = staffToDisplay.BirthPlace;
-            PhoneNumber.Text = staffToDisplay.PhoneNumber;
-            EmailAdress.Text = staffToDisplay.EmailAdress;
-            HomeAdress.Text = staffToDisplay.HomeAdress;
-            Statut.SelectedValue = staffToDisplay.Statut;
-            Enregistrer.Content = "Modifier";
+            IDENTITY_NUMBER.Text = staffToDisplay.IdentityNumber;
+            BIRTH_DATE.SelectedDate = staffToDisplay.BirthDate;
+            NATIONALITY.Text = staffToDisplay.Nationality;
+            BIRTH_PLACE.Text = staffToDisplay.BirthPlace;
+            PHONE_NUMBER.Text = staffToDisplay.PhoneNumber;
+            EMAIL_ADRESS.Text = staffToDisplay.EmailAdress;
+            HOME_ADRESS.Text = staffToDisplay.HomeAdress;
+            STATUT.SelectedValue = staffToDisplay.Statut;
+            ENREGISTRER.Content = "Modifier";
         }
 
         private void Annuler_Click(object sender, RoutedEventArgs e)
@@ -138,25 +138,25 @@ namespace Matrix.views.Staffs
 
             var myStaff = new Staff
             {
-                StaffId = StaffId.Text.Trim(),
+                StaffId = STAFF_ID.Text.Trim(),
                 Title = TITLE_.SelectedValue.ToString(),
-                FirstName = Firstname.Text.Trim(),
-                LastName = Lastname.Text.Trim(),
-                PhotoIdentity = ImageUtils.GetPngFromImageControl(PhotoIdentity.Source as BitmapImage),
+                FirstName = FIRSTNAME.Text.Trim(),
+                LastName = LASTNAME.Text.Trim(),
+                PhotoIdentity = ImageUtils.GetPngFromImageControl(PHOTO_IDENTITY.Source as BitmapImage),
 
-                Position = Position.Text,
-                Departement = Departement.Text,
-                Qualification = Qualification.Text,
-                HiredDate = HiredDate.SelectedDate,
+                Position = POSITION.Text,
+                Departement = DEPARTEMENT.Text,
+                Qualification = QUALIFICATION.Text,
+                HiredDate = HIRED_DATE.SelectedDate,
 
-                IdentityNumber = IdentityNumber.Text,
-                BirthDate = BirthDate.SelectedDate,
-                Nationality = Nationality.Text,
-                BirthPlace = BirthPlace.Text,
-                PhoneNumber = PhoneNumber.Text,
-                EmailAdress = EmailAdress.Text,
-                HomeAdress = HomeAdress.Text,
-                Statut = Statut.SelectedValue.ToString(),
+                IdentityNumber = IDENTITY_NUMBER.Text,
+                BirthDate = BIRTH_DATE.SelectedDate,
+                Nationality = NATIONALITY.Text,
+                BirthPlace = BIRTH_PLACE.Text,
+                PhoneNumber = PHONE_NUMBER.Text,
+                EmailAdress = EMAIL_ADRESS.Text,
+                HomeAdress = HOME_ADRESS.Text,
+                Statut = STATUT.SelectedValue.ToString(),
             };
 
             if (_isAdd)
@@ -209,96 +209,96 @@ namespace Matrix.views.Staffs
 
             if (_isAdd)
             {
-                if (string.IsNullOrEmpty(StaffId.Text))
+                if (string.IsNullOrEmpty(STAFF_ID.Text))
                 {
-                    StaffId.BorderBrush = Brushes.Red;
+                    STAFF_ID.BorderBrush = Brushes.Red;
                     ok = false;
                 }
-                else if (App.DataS.Students.StudentExist(StaffId.Text.Trim()))
+                else if (App.DataS.Students.StudentExist(STAFF_ID.Text.Trim()))
                 {
-                    MessageBox.Show("Ce Numero de Matricule Est Deja Utiliser par " + App.DataS.Hr.GetStaffFullName(StaffId.Text.Trim()));
+                    MessageBox.Show("Ce Numero de Matricule Est Deja Utiliser par " + App.DataS.Hr.GetStaffFullName(STAFF_ID.Text.Trim()));
                     return false;
                 }
                 else
                 {
-                    StaffId.BorderBrush = Brushes.Blue;
+                    STAFF_ID.BorderBrush = Brushes.Blue;
                 }
             }
 
-            if (string.IsNullOrEmpty(Firstname.Text))
+            if (string.IsNullOrEmpty(FIRSTNAME.Text))
             {
-                Firstname.BorderBrush = Brushes.Red;
+                FIRSTNAME.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                Firstname.BorderBrush = Brushes.Blue;
+                FIRSTNAME.BorderBrush = Brushes.Blue;
             }
 
-            if (string.IsNullOrEmpty(Lastname.Text))
+            if (string.IsNullOrEmpty(LASTNAME.Text))
             {
-                Lastname.BorderBrush = Brushes.Red;
+                LASTNAME.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                Lastname.BorderBrush = Brushes.Blue;
+                LASTNAME.BorderBrush = Brushes.Blue;
             }
 
-            if (string.IsNullOrEmpty(IdentityNumber.Text))
+            if (string.IsNullOrEmpty(IDENTITY_NUMBER.Text))
             {
-                IdentityNumber.BorderBrush = Brushes.Red;
+                IDENTITY_NUMBER.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                IdentityNumber.BorderBrush = Brushes.Blue;
+                IDENTITY_NUMBER.BorderBrush = Brushes.Blue;
             }
 
-            if (string.IsNullOrEmpty(Nationality.Text))
+            if (string.IsNullOrEmpty(NATIONALITY.Text))
             {
-                Nationality.BorderBrush = Brushes.Red;
+                NATIONALITY.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                Nationality.BorderBrush = Brushes.Blue;
+                NATIONALITY.BorderBrush = Brushes.Blue;
             }
-            if (string.IsNullOrEmpty(BirthPlace.Text))
+            if (string.IsNullOrEmpty(BIRTH_PLACE.Text))
             {
-                BirthPlace.BorderBrush = Brushes.Red;
+                BIRTH_PLACE.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                BirthPlace.BorderBrush = Brushes.Blue;
+                BIRTH_PLACE.BorderBrush = Brushes.Blue;
             }
-            if (string.IsNullOrEmpty(PhoneNumber.Text))
+            if (string.IsNullOrEmpty(PHONE_NUMBER.Text))
             {
-                PhoneNumber.BorderBrush = Brushes.Red;
+                PHONE_NUMBER.BorderBrush = Brushes.Red;
                 //Ok = false;
             }
             else
             {
-                PhoneNumber.BorderBrush = Brushes.Blue;
+                PHONE_NUMBER.BorderBrush = Brushes.Blue;
             }
-            if (string.IsNullOrEmpty(EmailAdress.Text))
+            if (string.IsNullOrEmpty(EMAIL_ADRESS.Text))
             {
-                EmailAdress.BorderBrush = Brushes.Red;
+                EMAIL_ADRESS.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                EmailAdress.BorderBrush = Brushes.Blue;
+                EMAIL_ADRESS.BorderBrush = Brushes.Blue;
             }
-            if (string.IsNullOrEmpty(HomeAdress.Text))
+            if (string.IsNullOrEmpty(HOME_ADRESS.Text))
             {
-                HomeAdress.BorderBrush = Brushes.Red;
+                HOME_ADRESS.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                HomeAdress.BorderBrush = Brushes.Blue;
+                HOME_ADRESS.BorderBrush = Brushes.Blue;
             }
 
             if (!ok) ModernDialog.ShowMessage("Verifier Les Informations !", "Matrix", MessageBoxButton.OK);
@@ -312,62 +312,62 @@ namespace Matrix.views.Staffs
 
         private void CoursExpander_Collapsed(object sender, RoutedEventArgs e)
         {
-            if (InfoExpander != null && (RoleExpander != null && (MatiereExpander != null && (!MatiereExpander.IsExpanded && !RoleExpander.IsExpanded && !InfoExpander.IsExpanded))))
+            if (INFO_EXPANDER != null && (ROLE_EXPANDER != null && (MATIERE_EXPANDER != null && (!MATIERE_EXPANDER.IsExpanded && !ROLE_EXPANDER.IsExpanded && !INFO_EXPANDER.IsExpanded))))
             {
-                MatiereExpander.IsExpanded = true;
+                MATIERE_EXPANDER.IsExpanded = true;
             }
         }
 
         private void CoursExpander_Expanded(object sender, RoutedEventArgs e)
         {
-            if (MatiereExpander != null) MatiereExpander.IsExpanded = false;
-            if (RoleExpander != null) RoleExpander.IsExpanded = false;
-            if (InfoExpander != null) InfoExpander.IsExpanded = false;
+            if (MATIERE_EXPANDER != null) MATIERE_EXPANDER.IsExpanded = false;
+            if (ROLE_EXPANDER != null) ROLE_EXPANDER.IsExpanded = false;
+            if (INFO_EXPANDER != null) INFO_EXPANDER.IsExpanded = false;
         }
 
         private void MatiereExpander_Collapsed(object sender, RoutedEventArgs e)
         {
-            if (CoursExpander != null && (InfoExpander != null && (RoleExpander != null && (!RoleExpander.IsExpanded && !InfoExpander.IsExpanded && !CoursExpander.IsExpanded))))
+            if (COURS_EXPANDER != null && (INFO_EXPANDER != null && (ROLE_EXPANDER != null && (!ROLE_EXPANDER.IsExpanded && !INFO_EXPANDER.IsExpanded && !COURS_EXPANDER.IsExpanded))))
             {
-                RoleExpander.IsExpanded = true;
+                ROLE_EXPANDER.IsExpanded = true;
             }
         }
 
         private void MatiereExpander_Expanded(object sender, RoutedEventArgs e)
         {
-            if (RoleExpander != null) RoleExpander.IsExpanded = false;
-            if (InfoExpander != null) InfoExpander.IsExpanded = false;
-            if (CoursExpander != null) CoursExpander.IsExpanded = false;
+            if (ROLE_EXPANDER != null) ROLE_EXPANDER.IsExpanded = false;
+            if (INFO_EXPANDER != null) INFO_EXPANDER.IsExpanded = false;
+            if (COURS_EXPANDER != null) COURS_EXPANDER.IsExpanded = false;
         }
 
         private void RoleExpander_Collapsed(object sender, RoutedEventArgs e)
         {
-            if (CoursExpander != null && (InfoExpander != null && (MatiereExpander != null && (!MatiereExpander.IsExpanded && !InfoExpander.IsExpanded && !CoursExpander.IsExpanded))))
+            if (COURS_EXPANDER != null && (INFO_EXPANDER != null && (MATIERE_EXPANDER != null && (!MATIERE_EXPANDER.IsExpanded && !INFO_EXPANDER.IsExpanded && !COURS_EXPANDER.IsExpanded))))
             {
-                InfoExpander.IsExpanded = true;
+                INFO_EXPANDER.IsExpanded = true;
             }
         }
 
         private void RoleExpander_Expanded(object sender, RoutedEventArgs e)
         {
-            if (MatiereExpander != null) MatiereExpander.IsExpanded = false;
-            if (InfoExpander != null) InfoExpander.IsExpanded = false;
-            if (CoursExpander != null) CoursExpander.IsExpanded = false;
+            if (MATIERE_EXPANDER != null) MATIERE_EXPANDER.IsExpanded = false;
+            if (INFO_EXPANDER != null) INFO_EXPANDER.IsExpanded = false;
+            if (COURS_EXPANDER != null) COURS_EXPANDER.IsExpanded = false;
         }
 
         private void InfoExpander_Collapsed(object sender, RoutedEventArgs e)
         {
-            if (CoursExpander != null && (RoleExpander != null && (MatiereExpander != null && (!MatiereExpander.IsExpanded && !RoleExpander.IsExpanded && !CoursExpander.IsExpanded))))
+            if (COURS_EXPANDER != null && (ROLE_EXPANDER != null && (MATIERE_EXPANDER != null && (!MATIERE_EXPANDER.IsExpanded && !ROLE_EXPANDER.IsExpanded && !COURS_EXPANDER.IsExpanded))))
             {
-                CoursExpander.IsExpanded = true;
+                COURS_EXPANDER.IsExpanded = true;
             }
         }
 
         private void InfoExpander_Expanded(object sender, RoutedEventArgs e)
         {
-            if (MatiereExpander != null) MatiereExpander.IsExpanded = false;
-            if (RoleExpander != null) RoleExpander.IsExpanded = false;
-            if (CoursExpander != null) CoursExpander.IsExpanded = false;
+            if (MATIERE_EXPANDER != null) MATIERE_EXPANDER.IsExpanded = false;
+            if (ROLE_EXPANDER != null) ROLE_EXPANDER.IsExpanded = false;
+            if (COURS_EXPANDER != null) COURS_EXPANDER.IsExpanded = false;
         }
 
         #endregion

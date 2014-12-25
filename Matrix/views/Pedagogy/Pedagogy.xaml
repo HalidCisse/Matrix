@@ -58,7 +58,7 @@
     </Page.Resources>
     
     <Grid>  
-        <Button Name="BackBut" Style="{StaticResource BackButtonText}" Click="BackBut_Click"/>
+        <Button Name="BACK_BUT" Style="{StaticResource BackButtonText}" Click="BackBut_Click"/>
 
         <TabControl Background="Transparent" TabStripPlacement="Left" SnapsToDevicePixels="True" >
 
@@ -71,11 +71,11 @@
             </TabItem>
 
             <TabItem Style="{DynamicResource TabItemStyleClass}">
-                <Frame Name="ClassFrame" NavigationUIVisibility="Hidden" Source="ClassesView.xaml"/>
+                <Frame Name="CLASS_FRAME" NavigationUIVisibility="Hidden" Source="ClassesView.xaml"/>
             </TabItem>
 
             <TabItem Style="{DynamicResource TabItemStyleFiliere}">
-                <Frame Name="FiliereFrame" NavigationUIVisibility="Hidden" Source="FilieresView.xaml"/>
+                <Frame Name="FILIERE_FRAME" NavigationUIVisibility="Hidden" Source="FilieresView.xaml"/>
             </TabItem>
 
         </TabControl>

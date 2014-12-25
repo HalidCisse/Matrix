@@ -42,13 +42,13 @@ namespace Matrix.views.Pedagogy
         {
             if(matiereToDisplay == null) return;
 
-            TitleText.Text = "MODIFICATION";
-            MatiereName.Text = matiereToDisplay.Name;
-            Sigle.Text = matiereToDisplay.Sigle;
-            Coefficient.Value = matiereToDisplay.Coefficient;
+            TITLE_TEXT.Text = "MODIFICATION";
+            MATIERE_NAME.Text = matiereToDisplay.Name;
+            SIGLE.Text = matiereToDisplay.Sigle;
+            COEFFICIENT.Value = matiereToDisplay.Coefficient;
             // ReSharper disable once PossibleNullReferenceException
-            Couleur.SelectedColor = (Color)ColorConverter.ConvertFromString (matiereToDisplay.Couleur);
-            Description.Text =matiereToDisplay.Description;                         
+            COULEUR.SelectedColor = (Color)ColorConverter.ConvertFromString (matiereToDisplay.Couleur);
+            DESCRIPTION.Text =matiereToDisplay.Description;                         
         }
        
         private void Enregistrer_Click ( object sender, RoutedEventArgs e )
@@ -56,11 +56,11 @@ namespace Matrix.views.Pedagogy
 
             if(ChampsValidated () != true) return;
             
-            _matiereDisplayed.Name = MatiereName.Text.Trim ();            
-            _matiereDisplayed.Sigle = Sigle.Text;
-            _matiereDisplayed.Coefficient = Coefficient.Value.GetValueOrDefault();
-            _matiereDisplayed.Couleur = Couleur.SelectedColorText;
-            _matiereDisplayed.Description = Description.Text;          
+            _matiereDisplayed.Name = MATIERE_NAME.Text.Trim ();            
+            _matiereDisplayed.Sigle = SIGLE.Text;
+            _matiereDisplayed.Coefficient = COEFFICIENT.Value.GetValueOrDefault();
+            _matiereDisplayed.Couleur = COULEUR.SelectedColorText;
+            _matiereDisplayed.Description = DESCRIPTION.Text;          
 
             if(_isAdd)
             {
@@ -94,14 +94,14 @@ namespace Matrix.views.Pedagogy
         {
             var ok = true;
 
-            if(string.IsNullOrEmpty (MatiereName.Text))
+            if(string.IsNullOrEmpty (MATIERE_NAME.Text))
             {
-                MatiereName.BorderBrush = Brushes.Red;
+                MATIERE_NAME.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                MatiereName.BorderBrush = Brushes.Blue;
+                MATIERE_NAME.BorderBrush = Brushes.Blue;
             }
                        
             if(!ok) ModernDialog.ShowMessage ("Verifier Les Informations !","Matrix",MessageBoxButton.OK);

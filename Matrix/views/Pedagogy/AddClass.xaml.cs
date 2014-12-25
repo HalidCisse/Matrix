@@ -24,7 +24,7 @@ namespace Matrix.views.Pedagogy
         {
             InitializeComponent ();
             
-            FiliereName.ItemsSource = App.DataS.Pedagogy.Filieres.GetAllFilieresNames ();
+            FILIERE_NAME.ItemsSource = App.DataS.Pedagogy.Filieres.GetAllFilieresNames ();
 
             if(classToDisplay != null)
             {
@@ -41,16 +41,16 @@ namespace Matrix.views.Pedagogy
 
         private void DisplayDefault()
         {
-            FiliereName.SelectedIndex = 0;                     
-            Niveau.SelectedIndex = 0;
+            FILIERE_NAME.SelectedIndex = 0;                     
+            NIVEAU.SelectedIndex = 0;
         }
 
         private void DisplayClass()
         {
-            TitleText.Text = "MODIFICATION";
-            FiliereName.SelectedValue = _classDisplayed.ClasseGuid;
-            Niveau.SelectedValue = _classDisplayed.Level;
-            ClassName.Text = _classDisplayed.Name;
+            TITLE_TEXT.Text = "MODIFICATION";
+            FILIERE_NAME.SelectedValue = _classDisplayed.ClasseGuid;
+            NIVEAU.SelectedValue = _classDisplayed.Level;
+            CLASS_NAME.Text = _classDisplayed.Name;
         }
 
         private void Enregistrer_Click ( object sender, RoutedEventArgs e )
@@ -59,9 +59,9 @@ namespace Matrix.views.Pedagogy
 
             var myClass = new Classe
             {
-                Name = ClassName.Text.Trim (),
-                FiliereGuid = App.DataS.Pedagogy.Filieres.GetFiliereByName(FiliereName.SelectedValue.ToString()).FiliereGuid,
-                Level = Convert.ToInt32 (Niveau.SelectedValue.ToString())              
+                Name = CLASS_NAME.Text.Trim (),
+                FiliereGuid = App.DataS.Pedagogy.Filieres.GetFiliereByName(FILIERE_NAME.SelectedValue.ToString()).FiliereGuid,
+                Level = Convert.ToInt32 (NIVEAU.SelectedValue.ToString())              
             };
             
             if(_openOption == "Add")
@@ -97,23 +97,23 @@ namespace Matrix.views.Pedagogy
         {
             var ok = true;
 
-            if(FiliereName.SelectedValue == null)
+            if(FILIERE_NAME.SelectedValue == null)
             {
-                FiliereName.BorderBrush = Brushes.Red;
+                FILIERE_NAME.BorderBrush = Brushes.Red;
                 ok = false;
             }
             
 
-            if(Niveau.SelectedValue == null)
+            if(NIVEAU.SelectedValue == null)
             {
-                Niveau.BorderBrush = Brushes.Red;
+                NIVEAU.BorderBrush = Brushes.Red;
                 ok = false;
             }
 
 
-            if(string.IsNullOrEmpty (ClassName.Text))
+            if(string.IsNullOrEmpty (CLASS_NAME.Text))
             {
-                ClassName.BorderBrush = Brushes.Red;
+                CLASS_NAME.BorderBrush = Brushes.Red;
                 ok = false;
             }
             
@@ -129,10 +129,10 @@ namespace Matrix.views.Pedagogy
 
         private void FILIERE__SelectionChanged ( object sender, SelectionChangedEventArgs e )
         {
-            if ( FiliereName.SelectedItem == null) return;
+            if ( FILIERE_NAME.SelectedItem == null) return;
 
-            Niveau.ItemsSource = App.DataS.DataEnums.GetFILIERE_NIVEAUX (App.DataS.Pedagogy.Filieres.GetFiliereByName (FiliereName.SelectedItem.ToString ()).FiliereGuid);
-            Niveau.SelectedIndex = 0;
+            NIVEAU.ItemsSource = App.DataS.DataEnums.GetFILIERE_NIVEAUX (App.DataS.Pedagogy.Filieres.GetFiliereByName (FILIERE_NAME.SelectedItem.ToString ()).FiliereGuid);
+            NIVEAU.SelectedIndex = 0;
         }
 
 

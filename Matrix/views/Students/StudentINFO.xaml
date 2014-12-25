@@ -82,8 +82,8 @@
 
                 <DockPanel>
 
-                    <Button Name="PhotoId" Style="{StaticResource NoChromeButton}" Focusable="False" BorderThickness="0" Click="PhotoID_Click" ToolTip="Click Pour Changer">
-                        <Image Name="PhotoIdentity" Style="{StaticResource PortraitPicStyle}" Stretch="Fill" DockPanel.Dock="Left"/>
+                    <Button Name="PHOTO_ID" Style="{StaticResource NoChromeButton}" Focusable="False" BorderThickness="0" Click="PhotoID_Click" ToolTip="Click Pour Changer">
+                        <Image Name="PHOTO_IDENTITY" Style="{StaticResource PortraitPicStyle}" Stretch="Fill" DockPanel.Dock="Left"/>
                     </Button>                   
                     
                     <Grid  DockPanel.Dock="Right" Margin="10,-20,0,0">
@@ -101,17 +101,17 @@
 
                         <Grid Grid.Row="1">
                             <TextBlock Text="NOM" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                            <TextBox Name="Firstname" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                            <TextBox Name="FIRSTNAME" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
                         </Grid>
 
                         <Grid Grid.Row="2">
                             <TextBlock Text="PRENOM" VerticalAlignment="Bottom"/>
-                            <TextBox Name="Lastname" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                            <TextBox Name="LASTNAME" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
                         </Grid>
 
                         <Grid Grid.Row="3">
                             <TextBlock Text="MATRICULE" VerticalAlignment="Bottom"/>
-                            <TextBox Name="StudentId" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                            <TextBox Name="STUDENT_ID" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
                         </Grid>
                     </Grid>
 
@@ -136,47 +136,47 @@
 
                 <Grid Grid.Row="0">
                     <TextBlock Text="Numero Identite" />
-                    <TextBox Name="IdentityNumber"/>
+                    <TextBox Name="IDENTITY_NUMBER"/>
                 </Grid>
 
                 <Grid Grid.Row="1">
                     <TextBlock Text="Date de Naissance" />
-                    <DatePicker Name="BirthDate" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                    <DatePicker Name="BIRTH_DATE" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                 </Grid>
 
                 <Grid  Grid.Row="2">
                     <TextBlock Text="Nationalite" />
-                    <ComboBox Name="Nationality" IsEditable="True" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                    <ComboBox Name="NATIONALITY" IsEditable="True" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                 </Grid>
 
                 <Grid Grid.Row="3">
                     <TextBlock Text="Lieu de Naissance" />
-                    <ComboBox Name="BirthPlace" IsEditable="True" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                    <ComboBox Name="BIRTH_PLACE" IsEditable="True" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                 </Grid>
 
                 <Grid Grid.Row="4">
                     <TextBlock Text="Telephone" />
-                    <TextBox Name="PhoneNumber"/>
+                    <TextBox Name="PHONE_NUMBER"/>
                 </Grid>
 
                 <Grid Grid.Row="5">
                     <TextBlock Text="Adresse Email"/>
-                    <TextBox Name="EmailAdress"/>
+                    <TextBox Name="EMAIL_ADRESS"/>
                 </Grid>
 
                 <Grid Grid.Row="6">
                     <TextBlock Text="Adresse Domicile"/>
-                    <TextBox Name="HomeAdress"/>
+                    <TextBox Name="HOME_ADRESS"/>
                 </Grid>
 
                 <Grid Grid.Row="7">
                     <TextBlock Text="Statut"/>
-                    <ComboBox Name="Statut" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                    <ComboBox Name="STATUT" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                 </Grid>
 
                 <Grid Grid.Row="8">
-                    <Button Name="Enregistrer" Content="Enregistrer" Margin="0,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Enregistrer_Click"/>
-                    <Button Name="Annuler"     Content="Annuler" Margin="0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="Annuler_Click"/>
+                    <Button Name="ENREGISTRER" Content="Enregistrer" Margin="0,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Enregistrer_Click"/>
+                    <Button Name="ANNULER"     Content="Annuler" Margin="0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="Annuler_Click"/>
                 </Grid>
 
             </Grid>

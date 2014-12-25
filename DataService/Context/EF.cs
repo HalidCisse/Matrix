@@ -153,7 +153,7 @@ namespace DataService.Context
         /// <summary>
         /// Presence d'une Personne a un Cours
         /// </summary>
-        public virtual DbSet<CoursPresence> CoursPresence { get; set; }
+        public virtual DbSet<AbsenceTicket> AbsenceTicket { get; set; }
 
         
 

@@ -27,14 +27,14 @@ namespace Matrix.views.Staffs
 
         private void UpdateData()
         {
-            BusyIndicator.IsBusy = true;
+            BUSY_INDICATOR.IsBusy = true;
 
             new Task(() =>
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {                  
-                    StaffList.ItemsSource = App.ModelS.GetDepStaffsCard();
-                    BusyIndicator.IsBusy = false;
+                    STAFF_LIST.ItemsSource = App.ModelS.GetDepStaffsCard();
+                    BUSY_INDICATOR.IsBusy = false;
                 }));
             }).Start();
 
@@ -54,7 +54,7 @@ namespace Matrix.views.Staffs
 
         private void AddButton_Click ( object sender, RoutedEventArgs e )
         {
-            BusyIndicator.IsBusy = false;
+            BUSY_INDICATOR.IsBusy = false;
             var wind = new StaffInfo { Owner = Window.GetWindow (this) };
             wind.ShowDialog ();
             UpdateData();

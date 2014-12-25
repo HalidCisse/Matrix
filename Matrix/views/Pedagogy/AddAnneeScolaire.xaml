@@ -51,39 +51,39 @@
             <Image Source="pack://application:,,,/Images/AnneeScolaire.png" Height="70" Width="70" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
             <Grid Height="40" Margin="15,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                <TextBlock Name="TitleText" Text="Nouvelle Annee Scolaire" VerticalAlignment="Top" FontSize="25" HorizontalAlignment="Center"/>
+                <TextBlock Name="TITLE_TEXT" Text="Nouvelle Annee Scolaire" VerticalAlignment="Top" FontSize="25" HorizontalAlignment="Center"/>
                 <Border Background="Blue" Width="350" Height="7"  VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
             </Grid>
         </Grid>
 
         <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
             <TextBlock Text="ANNEE SCOLAIRE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <TextBox Name="AnneescolaireName" HorizontalAlignment="Left" Width="250" Height="30" FontSize="20" />
+            <TextBox Name="ANNEESCOLAIRE_NAME" HorizontalAlignment="Left" Width="250" Height="30" FontSize="20" />
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="NOMBRE DE PERIODES" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <xctk:IntegerUpDown Name="NPeriodes" Value="2" Increment="1" Minimum="1" Maximum="20" ValueChanged="N_PERIODES__ValueChanged"  HorizontalAlignment="Left" Width="250" Height="30" />
+            <xctk:IntegerUpDown Name="N_PERIODES" Value="2" Increment="1" Minimum="1" Maximum="20" ValueChanged="N_PERIODES__ValueChanged"  HorizontalAlignment="Left" Width="250" Height="30" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
             <TextBlock Text="DEBUT ANNEE SCOLAIRE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <DatePicker Name="DebutAns" Width="250" Height="30" HorizontalAlignment="Left" />
+            <DatePicker Name="DEBUT_ANS" Width="250" Height="30" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="FIN ANNEE SCOLAIRE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <DatePicker Name="FinAns" Width="250" Height="30" HorizontalAlignment="Left" />
+            <DatePicker Name="FIN_ANS" Width="250" Height="30" HorizontalAlignment="Left" />
         </StackPanel>
         
         <StackPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
             <TextBlock Text="DEBUT INSCRIPTION" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <DatePicker Name="DebutIns" Width="250" Height="30" HorizontalAlignment="Left" />
+            <DatePicker Name="DEBUT_INS" Width="250" Height="30" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="FIN INSCRIPTION" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <DatePicker Name="FinIns" Width="250" Height="30" HorizontalAlignment="Left" />
+            <DatePicker Name="FIN_INS" Width="250" Height="30" HorizontalAlignment="Left" />
         </StackPanel>
         
         <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
@@ -95,7 +95,7 @@
                 <TextBlock Text="FIN" Width="100" VerticalAlignment="Bottom" />
             </StackPanel>
 
-            <ListBox Background="Transparent" BorderThickness="0" Name="PeriodeList" SelectedValuePath="STAFF_ID" Height="150" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox Background="Transparent" BorderThickness="0" Name="PERIODE_LIST" SelectedValuePath="STAFF_ID" Height="150" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <ListBoxItem HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
@@ -115,8 +115,8 @@
         
         
         <Grid Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" VerticalAlignment="Bottom" Margin="0,0">
-            <Button Name="Enregistrer" Content="Enregistrer" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Click="Enregistrer_Click"/>
-            <Button Name="Annuler" Content="Annuler" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Right" Click="Annuler_Click"/>
+            <Button Name="ENREGISTRER" Content="Enregistrer" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Click="Enregistrer_Click"/>
+            <Button Name="ANNULER" Content="Annuler" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Right" Click="Annuler_Click"/>
         </Grid>
 
     </Grid>

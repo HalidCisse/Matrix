@@ -69,8 +69,7 @@
         </Style.Resources>
 
         <Setter Property="ItemTemplate" Value="{StaticResource ListBoxTemp}" />
-        <Setter Property="ItemsPanel" Value="{StaticResource ListBoxITemp}" />  
-        <!--<Setter Property="ItemsSource" Value="{Binding MatieresList}" />-->
+        <Setter Property="ItemsPanel" Value="{StaticResource ListBoxITemp}" />       
         <Setter Property="SelectedValuePath" Value="MatiereGuid" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />                

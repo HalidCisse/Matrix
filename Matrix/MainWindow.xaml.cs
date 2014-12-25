@@ -21,14 +21,14 @@ namespace Matrix
        
         private void SeetingButton_OnClick(object sender, RoutedEventArgs e)
         {
-            MyFlyout.IsOpen = true;
+            MY_FLYOUT.IsOpen = true;
         }
                      
         private void MyFlyout_OnIsOpenChanged(object sender, RoutedEventArgs e)
         {
-            if (!MyFlyout.IsOpen) return;
+            if (!MY_FLYOUT.IsOpen) return;
 
-            SettingFrame.Navigate(new SettingsView());
+            SETTING_FRAME.Navigate(new SettingsView());
         }
 
        

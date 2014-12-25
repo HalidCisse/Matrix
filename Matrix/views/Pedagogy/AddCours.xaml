@@ -54,49 +54,49 @@
             <Image Source="Icon/Cours.png" Height="70" Width="70" VerticalAlignment="Center" HorizontalAlignment="Left" DockPanel.Dock="Left"/>
 
             <Grid Height="40" Margin="15,0,0,0" VerticalAlignment="Bottom">
-                <TextBlock Name="TitleText" Text="AJOUTER UN COURS" VerticalAlignment="Top" FontSize="25" HorizontalAlignment="Center"/>
+                <TextBlock Name="TITLE_TEXT" Text="AJOUTER UN COURS" VerticalAlignment="Top" FontSize="25" HorizontalAlignment="Center"/>
                 <Border Background="Blue" Width="350" Height="7"  VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
             </Grid>
         </Grid>        
 
         <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
             <TextBlock Text="MATIERE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="MatiereId" DisplayMemberPath="Name" SelectedIndex="0" SelectedValuePath="MatiereGuid" HorizontalAlignment="Left" />
+            <ComboBox Name="MATIERE_ID" DisplayMemberPath="Name" SelectedIndex="0" SelectedValuePath="MatiereGuid" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <TextBlock Text="INSTRUCTEUR" Name="Instructeur" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="StaffId" SelectedIndex="0" DisplayMemberPath="FullName" SelectedValuePath="StaffGuid" HorizontalAlignment="Left" />
+            <TextBlock Text="INSTRUCTEUR" Name="INSTRUCTEUR" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+            <ComboBox Name="STAFF_ID" SelectedIndex="0" DisplayMemberPath="FullName" SelectedValuePath="StaffGuid" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
             <TextBlock Text="SALLE" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
-            <ComboBox Name="SalleName" SelectedIndex="0" IsEditable="True" HorizontalAlignment="Left" />
+            <ComboBox Name="SALLE_NAME" SelectedIndex="0" IsEditable="True" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="TYPE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="Type" Width="250" Height="30" SelectedIndex="0" HorizontalAlignment="Left" SelectionChanged="TYPE__OnSelectionChanged" />
+            <ComboBox Name="TYPE" Width="250" Height="30" SelectedIndex="0" HorizontalAlignment="Left" SelectionChanged="TYPE__OnSelectionChanged" />
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Center">
             <TextBlock Text="HEURE DEBUT" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <xctk:TimePicker Name="StartTime" Value="07:45" StartTime="07:00" EndTime="00:00" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
+            <xctk:TimePicker Name="START_TIME" Value="07:45" StartTime="07:00" EndTime="00:00" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="HEURE FIN" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
-            <xctk:TimePicker Name="EndTime" Value="09:45" StartTime="07:00" EndTime="00:00" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
+            <xctk:TimePicker Name="END_TIME" Value="09:45" StartTime="07:00" EndTime="00:00" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Center">
             <TextBlock Text="DE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <DatePicker Name="StartDate" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
+            <DatePicker Name="START_DATE" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="A" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
-            <DatePicker Name="EndDate" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
+            <DatePicker Name="END_DATE" Width="250" Height="30" FontSize="20" HorizontalAlignment="Left" />
         </StackPanel>
 
         <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" >
@@ -112,49 +112,49 @@
 
             <StackPanel Grid.Column="0" >
                 <TextBlock Text="LUN"  HorizontalAlignment="Center"/>
-                <CheckBox Name="Lun" FontSize="20" HorizontalAlignment="Center"/>
+                <CheckBox Name="LUN" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1">
                 <TextBlock Text="MAR" HorizontalAlignment="Center"/>
-                <CheckBox Name="Mar" FontSize="20" HorizontalAlignment="Center"/>
+                <CheckBox Name="MAR" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Grid.Column="2">
                 <TextBlock Text="MER"  HorizontalAlignment="Center"/>
-                <CheckBox Name="Mer" FontSize="20" HorizontalAlignment="Center"/>
+                <CheckBox Name="MER" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Grid.Column="3">
                 <TextBlock Text="JEU" HorizontalAlignment="Center"/>
-                <CheckBox Name="Jeu" FontSize="20" HorizontalAlignment="Center"/>
+                <CheckBox Name="JEU" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Grid.Column="4">
                 <TextBlock Text="VEND"  HorizontalAlignment="Center"/>
-                <CheckBox Name="Vend" FontSize="20" HorizontalAlignment="Center"/>
+                <CheckBox Name="VEND" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Grid.Column="5">
                 <TextBlock Text="SAM" HorizontalAlignment="Center"/>
-                <CheckBox Name="Sam" FontSize="20" HorizontalAlignment="Center"/>
+                <CheckBox Name="SAM" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Grid.Column="6">
                 <TextBlock Text="DIM"  HorizontalAlignment="Center"/>
-                <CheckBox Name="Dim" FontSize="20" HorizontalAlignment="Center"/>
+                <CheckBox Name="DIM" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
 
         </Grid>
 
         <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
             <TextBlock Text="DESCRIPTION" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <TextBox Name="Description" Height="70" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Stretch" />
+            <TextBox Name="DESCRIPTION" Height="70" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Stretch" />
         </StackPanel>
                 
         <Grid Grid.Row="7" Grid.ColumnSpan="2" Grid.Column="0" VerticalAlignment="Bottom" Margin="0,0">
-            <Button Name="Enregistrer" Content="Enregistrer" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Click="Enregistrer_Click"/>
-            <Button Name="Annuler" Content="Annuler" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Right" Click="Annuler_Click"/>
+            <Button Name="ENREGISTRER" Content="Enregistrer" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Click="Enregistrer_Click"/>
+            <Button Name="ANNULER" Content="Annuler" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Right" Click="Annuler_Click"/>
         </Grid>
 
     </Grid>        

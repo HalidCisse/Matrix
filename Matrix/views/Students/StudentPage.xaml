@@ -283,13 +283,13 @@
     
     <Grid >
 
-        <Button Name="BackBut" Style="{DynamicResource BackButtonText}" Click="BackBut_Click" />
+        <Button Name="BACK_BUT" Style="{DynamicResource BackButtonText}" Click="BackBut_Click" />
         
         <TabControl Background="Transparent" TabStripPlacement="Left" SnapsToDevicePixels="True">
             
             <TabItem Style="{DynamicResource TabItemStyleX}">
                 <Grid>                    
-                    <ListBox Name="StudentList" Style="{DynamicResource StudentList}" Background="#5B8577"/>
+                    <ListBox Name="STUDENT_LIST" Style="{DynamicResource StudentList}" Background="#5B8577"/>
                 </Grid>
             </TabItem>
             
@@ -306,13 +306,13 @@
     </Grid>
 
     <Page.RenderTransform>
-        <TranslateTransform x:Name="MoveMe" X="100" />
+        <TranslateTransform x:Name="MOVE_ME" X="100" />
     </Page.RenderTransform>
     <Page.Triggers>
         <EventTrigger RoutedEvent="Page.Loaded">
             <BeginStoryboard>
                 <Storyboard>
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MoveMe" Storyboard.TargetProperty="X">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MOVE_ME" Storyboard.TargetProperty="X">
                         <SplineDoubleKeyFrame KeyTime="0:0:0.50" Value="0" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>

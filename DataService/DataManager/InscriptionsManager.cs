@@ -96,8 +96,6 @@ namespace DataService.DataManager
                 }
 
                 return students;
-
-                //return new HashSet<Student>(db.Student.Where(s => IsStudentInsc(s.StudentGuid, currentAnneeScolaireGuid) == false));
             }
         }
 
@@ -113,5 +111,7 @@ namespace DataService.DataManager
                 return db.Inscription.Any(i => i.InscriptionId == insId);
             }
         }
+
+
     }
 }

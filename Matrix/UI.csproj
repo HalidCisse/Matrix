@@ -164,8 +164,8 @@
     <Compile Include="Controls\ClasseStudents.xaml.cs">
       <DependentUpon>ClasseStudents.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CoursPresence.xaml.cs">
-      <DependentUpon>CoursPresence.xaml</DependentUpon>
+    <Compile Include="Controls\SaisiePresence.xaml.cs">
+      <DependentUpon>SaisiePresence.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ListSelector.xaml.cs">
       <DependentUpon>ListSelector.xaml</DependentUpon>
@@ -249,7 +249,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\CoursPresence.xaml">
+    <Page Include="Controls\SaisiePresence.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -608,6 +608,9 @@
       <Project>{701e45a4-bbe9-4196-b67e-766b4cf487a1}</Project>
       <Name>DataService</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="views\Pedagogy\Icon\AnneeScolaire.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,10 +1,9 @@
-﻿using DataService.Context;
-using DataService.Entities;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using DataService.Context;
+using DataService.Entities;
 using DataService.Entities.Pedagogy;
 using DataService.ViewModel;
 

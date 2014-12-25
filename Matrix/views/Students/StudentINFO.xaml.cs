@@ -49,11 +49,11 @@ namespace Matrix.views.Students
         {
             TITLE_.ItemsSource = App.DataS.DataEnums.GetTitles();
 
-            Nationality.ItemsSource = App.DataS.DataEnums.GetNationalities();
+            NATIONALITY.ItemsSource = App.DataS.DataEnums.GetNationalities();
 
-            BirthPlace.ItemsSource = App.DataS.DataEnums.GetBIRTH_PLACE();
+            BIRTH_PLACE.ItemsSource = App.DataS.DataEnums.GetBIRTH_PLACE();
 
-            Statut.ItemsSource = App.DataS.DataEnums.GetStudentStatuts();
+            STATUT.ItemsSource = App.DataS.DataEnums.GetStudentStatuts();
         }
 
         private void PhotoID_Click ( object sender, RoutedEventArgs e )
@@ -63,7 +63,7 @@ namespace Matrix.views.Students
             if (openFileDialog.ShowDialog() == true) {
                 if(string.IsNullOrEmpty (openFileDialog.FileName)) return;
 
-                PhotoIdentity.Source = new BitmapImage (new Uri (openFileDialog.FileName));
+                PHOTO_IDENTITY.Source = new BitmapImage (new Uri (openFileDialog.FileName));
             }           
         }
 
@@ -78,19 +78,19 @@ namespace Matrix.views.Students
 
             var myStudent = new Student
             {               
-                StudentId = StudentId.Text.Trim (),
+                StudentId = STUDENT_ID.Text.Trim (),
                 Title = TITLE_.SelectedValue.ToString (),
-                FirstName = Firstname.Text.Trim (),
-                LastName = Lastname.Text.Trim (),
-                PhotoIdentity = ImageUtils.GetPngFromImageControl(PhotoIdentity.Source as BitmapImage),                                              
-                IdentityNumber = IdentityNumber.Text.Trim (),
-                BirthDate = BirthDate.SelectedDate,
-                Nationality = Nationality.Text,
-                BirthPlace = BirthPlace.Text,
-                PhoneNumber = PhoneNumber.Text.Trim (),
-                EmailAdress = EmailAdress.Text.Trim (),
-                HomeAdress = HomeAdress.Text.Trim (),
-                Statut = Statut.SelectedValue.ToString (),                                          
+                FirstName = FIRSTNAME.Text.Trim (),
+                LastName = LASTNAME.Text.Trim (),
+                PhotoIdentity = ImageUtils.GetPngFromImageControl(PHOTO_IDENTITY.Source as BitmapImage),                                              
+                IdentityNumber = IDENTITY_NUMBER.Text.Trim (),
+                BirthDate = BIRTH_DATE.SelectedDate,
+                Nationality = NATIONALITY.Text,
+                BirthPlace = BIRTH_PLACE.Text,
+                PhoneNumber = PHONE_NUMBER.Text.Trim (),
+                EmailAdress = EMAIL_ADRESS.Text.Trim (),
+                HomeAdress = HOME_ADRESS.Text.Trim (),
+                Statut = STATUT.SelectedValue.ToString (),                                          
             };
 
             if (_isAdd)
@@ -129,33 +129,33 @@ namespace Matrix.views.Students
         {
             if (studentToDisplay == null) return;
 
-            StudentId.Text = studentToDisplay.StudentId;
-            StudentId.IsEnabled = false;
+            STUDENT_ID.Text = studentToDisplay.StudentId;
+            STUDENT_ID.IsEnabled = false;
             TITLE_.SelectedValue = studentToDisplay.Title;
-            Firstname.Text = studentToDisplay.FirstName;
-            Lastname.Text = studentToDisplay.LastName;
-            PhotoIdentity.Source = ImageUtils.DecodePhoto(studentToDisplay.PhotoIdentity);         
-            IdentityNumber.Text = studentToDisplay.IdentityNumber;
-            BirthDate.SelectedDate = studentToDisplay.BirthDate;
-            Nationality.SelectedValue = studentToDisplay.Nationality;
-            BirthPlace.SelectedValue = studentToDisplay.BirthPlace;
-            PhoneNumber.Text = studentToDisplay.PhoneNumber;
-            EmailAdress.Text = studentToDisplay.EmailAdress;
-            HomeAdress.Text = studentToDisplay.HomeAdress;
-            Statut.SelectedValue = studentToDisplay.Statut;
-            Enregistrer.Content = "Modifier";
+            FIRSTNAME.Text = studentToDisplay.FirstName;
+            LASTNAME.Text = studentToDisplay.LastName;
+            PHOTO_IDENTITY.Source = ImageUtils.DecodePhoto(studentToDisplay.PhotoIdentity);         
+            IDENTITY_NUMBER.Text = studentToDisplay.IdentityNumber;
+            BIRTH_DATE.SelectedDate = studentToDisplay.BirthDate;
+            NATIONALITY.SelectedValue = studentToDisplay.Nationality;
+            BIRTH_PLACE.SelectedValue = studentToDisplay.BirthPlace;
+            PHONE_NUMBER.Text = studentToDisplay.PhoneNumber;
+            EMAIL_ADRESS.Text = studentToDisplay.EmailAdress;
+            HOME_ADRESS.Text = studentToDisplay.HomeAdress;
+            STATUT.SelectedValue = studentToDisplay.Statut;
+            ENREGISTRER.Content = "Modifier";
         }
 
         private void DisplayDefault()
         {
-            StudentId.Text = GenNewStudentId();
+            STUDENT_ID.Text = GenNewStudentId();
             TITLE_.SelectedIndex = 0;
-            PhotoIdentity.Source = PhotoIdentity.Source = new BitmapImage (new Uri (Res.GetRes ("Portrait/defaultStudent.png")));
-            PhoneNumber.Text =  "+00";
-            BirthDate.SelectedDate = DateTime.Today.AddDays(-7000);
-            Nationality.SelectedIndex = 0;
-            BirthPlace.SelectedIndex = 0;
-            Statut.SelectedIndex = 0;
+            PHOTO_IDENTITY.Source = PHOTO_IDENTITY.Source = new BitmapImage (new Uri (Res.GetRes ("Portrait/defaultStudent.png")));
+            PHONE_NUMBER.Text =  "+00";
+            BIRTH_DATE.SelectedDate = DateTime.Today.AddDays(-7000);
+            NATIONALITY.SelectedIndex = 0;
+            BIRTH_PLACE.SelectedIndex = 0;
+            STATUT.SelectedIndex = 0;
         }
 
         private static string GenNewStudentId()
@@ -173,90 +173,90 @@ namespace Matrix.views.Students
 
             if(_isAdd)
             {
-                if (string.IsNullOrEmpty(StudentId.Text))
+                if (string.IsNullOrEmpty(STUDENT_ID.Text))
                 {                
-                    StudentId.BorderBrush = Brushes.Red;
+                    STUDENT_ID.BorderBrush = Brushes.Red;
                     ok = false;
                 }
-                else if (App.DataS.Students.StudentExist(StudentId.Text.Trim()))
+                else if (App.DataS.Students.StudentExist(STUDENT_ID.Text.Trim()))
                 {
                     MessageBox.Show("Ce numero de Matricule Est Deja Utiliser par " +
-                                    App.DataS.Students.GetStudentName(StudentId.Text.Trim()));
+                                    App.DataS.Students.GetStudentName(STUDENT_ID.Text.Trim()));
                     return false;
                 }
                 else
                 {
-                    StudentId.BorderBrush = Brushes.Blue;
+                    STUDENT_ID.BorderBrush = Brushes.Blue;
                 }               
             }
 
-            if(string.IsNullOrEmpty (Firstname.Text))
+            if(string.IsNullOrEmpty (FIRSTNAME.Text))
             {               
-                Firstname.BorderBrush = Brushes.Red;
+                FIRSTNAME.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                Firstname.BorderBrush = Brushes.Blue;
+                FIRSTNAME.BorderBrush = Brushes.Blue;
             }  
 
-            if(string.IsNullOrEmpty (Lastname.Text))
+            if(string.IsNullOrEmpty (LASTNAME.Text))
             {              
-                Lastname.BorderBrush = Brushes.Red;
+                LASTNAME.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                Lastname.BorderBrush = Brushes.Blue;
+                LASTNAME.BorderBrush = Brushes.Blue;
             }  
 
-            if(string.IsNullOrEmpty (IdentityNumber.Text))
+            if(string.IsNullOrEmpty (IDENTITY_NUMBER.Text))
             {               
-                IdentityNumber.BorderBrush = Brushes.Red;
+                IDENTITY_NUMBER.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                IdentityNumber.BorderBrush = Brushes.Blue;
+                IDENTITY_NUMBER.BorderBrush = Brushes.Blue;
             }  
             
-            if (string.IsNullOrEmpty (Nationality.Text))
+            if (string.IsNullOrEmpty (NATIONALITY.Text))
             {             
-                Nationality.BorderBrush = Brushes.Red;
+                NATIONALITY.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                Nationality.BorderBrush = Brushes.Blue;
+                NATIONALITY.BorderBrush = Brushes.Blue;
             }  
-            if (string.IsNullOrEmpty (BirthPlace.Text))
+            if (string.IsNullOrEmpty (BIRTH_PLACE.Text))
             {               
-                BirthPlace.BorderBrush = Brushes.Red;
+                BIRTH_PLACE.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                BirthPlace.BorderBrush = Brushes.Blue;
+                BIRTH_PLACE.BorderBrush = Brushes.Blue;
             }  
 
-            PhoneNumber.BorderBrush = string.IsNullOrEmpty (PhoneNumber.Text) ? Brushes.Red : Brushes.Blue;  
-            if(string.IsNullOrEmpty (EmailAdress.Text))
+            PHONE_NUMBER.BorderBrush = string.IsNullOrEmpty (PHONE_NUMBER.Text) ? Brushes.Red : Brushes.Blue;  
+            if(string.IsNullOrEmpty (EMAIL_ADRESS.Text))
             {                
-                EmailAdress.BorderBrush = Brushes.Red;
+                EMAIL_ADRESS.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                EmailAdress.BorderBrush = Brushes.Blue;
+                EMAIL_ADRESS.BorderBrush = Brushes.Blue;
             }  
-            if(string.IsNullOrEmpty (HomeAdress.Text))
+            if(string.IsNullOrEmpty (HOME_ADRESS.Text))
             {               
-                HomeAdress.BorderBrush = Brushes.Red;
+                HOME_ADRESS.BorderBrush = Brushes.Red;
                 ok = false;
             }
             else
             {
-                HomeAdress.BorderBrush = Brushes.Blue;
+                HOME_ADRESS.BorderBrush = Brushes.Blue;
             }  
             
             if (!ok) ModernDialog.ShowMessage("Verifier Les Informations !","Matrix",MessageBoxButton.OK);

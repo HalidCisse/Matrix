@@ -83,8 +83,8 @@
 
             <DockPanel>
 
-                <Button Name="PhotoId" Style="{StaticResource NoChromeButton}" Focusable="False" BorderThickness="0" Click="PhotoID_Click" ToolTip="Click Pour Changer">
-                    <Image Name="PhotoIdentity" DockPanel.Dock="Left" Stretch="Fill"/>
+                <Button Name="PHOTO_ID" Style="{StaticResource NoChromeButton}" Focusable="False" BorderThickness="0" Click="PhotoID_Click" ToolTip="Click Pour Changer">
+                    <Image Name="PHOTO_IDENTITY" DockPanel.Dock="Left" Stretch="Fill"/>
                 </Button>
 
                 <Grid  DockPanel.Dock="Right" Margin="10,-20,0,0">
@@ -102,17 +102,17 @@
 
                     <Grid Grid.Row="1">
                         <TextBlock Text="NOM" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                        <TextBox Name="Firstname" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                        <TextBox Name="FIRSTNAME" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
                     </Grid>
 
                     <Grid Grid.Row="2">
                         <TextBlock Text="PRENOM" VerticalAlignment="Bottom"/>
-                        <TextBox Name="Lastname" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                        <TextBox Name="LASTNAME" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
                     </Grid>
 
                     <Grid Grid.Row="3">
                         <TextBlock Text="MATRICULE" VerticalAlignment="Bottom"/>
-                        <TextBox Name="StaffId" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                        <TextBox Name="STAFF_ID" Width="150" Height="20" Margin="0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
                     </Grid>
                 </Grid>
 
@@ -120,19 +120,19 @@
                
             <StackPanel>
 
-                <Expander Header="COURS" IsExpanded="True" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="CoursExpander" Collapsed="CoursExpander_Collapsed" Expanded="CoursExpander_Expanded">
+                <Expander Header="COURS" IsExpanded="True" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="COURS_EXPANDER" Collapsed="CoursExpander_Collapsed" Expanded="CoursExpander_Expanded">
                     <Grid Height="230" Margin="5">
 
                     </Grid>
                 </Expander>
                 
-                <Expander Header="MATIERES D ENSEIGNEMENT" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="MatiereExpander" Collapsed="MatiereExpander_Collapsed" Expanded="MatiereExpander_Expanded">
+                <Expander Header="MATIERES D ENSEIGNEMENT" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="MATIERE_EXPANDER" Collapsed="MatiereExpander_Collapsed" Expanded="MatiereExpander_Expanded">
                     <Grid Height="230" Margin="5">
                         
                     </Grid>
                 </Expander>
 
-                <Expander Header="ROLE" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="RoleExpander" Collapsed="RoleExpander_Collapsed" Expanded="RoleExpander_Expanded" >
+                <Expander Header="ROLE" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="ROLE_EXPANDER" Collapsed="RoleExpander_Collapsed" Expanded="RoleExpander_Expanded" >
                     <Grid Height="230" Margin="5">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -144,32 +144,32 @@
 
                         <Grid Grid.Row="0">
                             <TextBlock Text="Position"/>
-                            <ComboBox Name="Position" IsEditable="True" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                            <ComboBox Name="POSITION" IsEditable="True" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                         </Grid>
 
                         <Grid Grid.Row="1">
                             <TextBlock Text="Departement"/>
-                            <ComboBox Name="Departement" IsEditable="True"  Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                            <ComboBox Name="DEPARTEMENT" IsEditable="True"  Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                         </Grid>
 
                         <Grid  Grid.Row="2">
                             <TextBlock Text="Qualification" />
-                            <ComboBox Name="Qualification" IsEditable="True"  Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                            <ComboBox Name="QUALIFICATION" IsEditable="True"  Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                         </Grid>
 
                         <Grid Grid.Row="3">
                             <TextBlock Text="Date de Recrutement" />
-                            <DatePicker Name="HiredDate" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                            <DatePicker Name="HIRED_DATE" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                         </Grid>
 
                         <Grid Grid.Row="4">
                             <TextBlock Text="Statut"/>
-                            <ComboBox Name="Statut" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                            <ComboBox Name="STATUT" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                         </Grid>
                     </Grid>
                 </Expander>
 
-                <Expander Header="INFORMATIONS DETAILLEES" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="InfoExpander" Collapsed="InfoExpander_Collapsed" Expanded="InfoExpander_Expanded">
+                <Expander Header="INFORMATIONS DETAILLEES" Margin="0,10,0,0" Style="{DynamicResource ExpanderStyle}" Name="INFO_EXPANDER" Collapsed="InfoExpander_Collapsed" Expanded="InfoExpander_Expanded">
                     <Grid Margin="5" Height="230">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -185,37 +185,37 @@
 
                         <Grid Grid.Row="0">
                             <TextBlock Text="Numero Identite"/>
-                            <TextBox Name="IdentityNumber"/>
+                            <TextBox Name="IDENTITY_NUMBER"/>
                         </Grid>
 
                         <Grid Grid.Row="1">
                             <TextBlock Text="Date de Naissance"/>
-                            <DatePicker Name="BirthDate" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                            <DatePicker Name="BIRTH_DATE" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                         </Grid>
 
                         <Grid  Grid.Row="2">
                             <TextBlock Text="Nationalite" />
-                            <ComboBox Name="Nationality" IsEditable="True" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                            <ComboBox Name="NATIONALITY" IsEditable="True" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                         </Grid>
 
                         <Grid Grid.Row="3">
                             <TextBlock Text="Lieu de Naissance" />
-                            <ComboBox Name="BirthPlace" IsEditable="True" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                            <ComboBox Name="BIRTH_PLACE" IsEditable="True" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                         </Grid>
 
                         <Grid Grid.Row="4">
                             <TextBlock Text="Telephone" />
-                            <TextBox Name="PhoneNumber"/>
+                            <TextBox Name="PHONE_NUMBER"/>
                         </Grid>
 
                         <Grid Grid.Row="5">
                             <TextBlock Text="Adresse Email"/>
-                            <TextBox Name="EmailAdress"/>
+                            <TextBox Name="EMAIL_ADRESS"/>
                         </Grid>
 
                         <Grid Grid.Row="6">
                             <TextBlock Text="Adresse Domicile"/>
-                            <TextBox Name="HomeAdress"/>
+                            <TextBox Name="HOME_ADRESS"/>
                         </Grid>                       
                     </Grid>                                              
                 </Expander >
@@ -225,8 +225,8 @@
         </StackPanel>       
         
         <Grid VerticalAlignment="Bottom" Margin="0,10">
-            <Button Name="Enregistrer" Content="Enregistrer" Margin="10,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Enregistrer_Click"/>
-            <Button Name="Annuler"     Content="Annuler" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="Annuler_Click"/>
+            <Button Name="ENREGISTRER" Content="Enregistrer" Margin="10,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Enregistrer_Click"/>
+            <Button Name="ANNULER"     Content="Annuler" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="Annuler_Click"/>
         </Grid>
         
     </Grid>
