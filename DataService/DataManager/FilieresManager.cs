@@ -129,12 +129,11 @@ namespace DataService.DataManager
         /// </summary>
         /// <param name="filiereId"></param>
         /// <returns></returns>
-        public string GetFiliereName(Guid filiereId)
+        public string GetFiliereName(Guid? filiereId)
         {
             using (var db = new Ef())
-            {
-                var myFiliereName = db.Filiere.Find(filiereId).Name;
-                return myFiliereName;
+            {                
+                return db.Filiere.Find(filiereId)?.Name; ;
             }
         }
 

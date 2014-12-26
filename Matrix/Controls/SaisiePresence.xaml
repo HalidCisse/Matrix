@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
-      d:DesignHeight="500" Width="715" >
+      d:DesignHeight="500" d:DesignWidth="715" >
       
     
     <ListBox Background="Transparent" BorderThickness="0" Name="TICKET_LIST" SelectedValuePath="PersonGuid" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
@@ -26,7 +26,7 @@
                                 <TextBlock Text="{Binding FullName}" Margin="5" HorizontalAlignment="Stretch" FontSize="20" Foreground="Gray" FontWeight="Bold" Width="170" TextWrapping="NoWrap" />
 
                                 <Grid Margin="5">
-                                    <TextBlock Text="Est Present" FontSize="15" HorizontalAlignment="Left" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                                    <TextBlock Text="Present" FontSize="15" HorizontalAlignment="Left" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
                                     <CheckBox x:Name="THE_CHECK_BOX"  IsChecked="{Binding IsPresent, Mode=TwoWay}"  HorizontalAlignment="Right" Click="THE_CHECK_BOX_OnClick"/>
                                 </Grid>
 

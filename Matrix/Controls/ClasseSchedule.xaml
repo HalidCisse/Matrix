@@ -4,49 +4,43 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
-             d:DesignHeight="300" Width="715">
+             d:DesignHeight="300" Width="765">
 
-    <UserControl.Resources>
-    <!--&#xf104; Effect="{StaticResource Z-Depth2}" Width="950"-->
-    </UserControl.Resources>
-
+    <!--Width="715"-->
     <DockPanel Background="Beige">
         <Grid DockPanel.Dock="Top" Height="30" Background="#25A0DA" >
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="40"/>                    
                     <ColumnDefinition Width="*"/>                   
                     <ColumnDefinition Width="120"/>
                 </Grid.ColumnDefinitions>
                 <Button Name="BACK_BUTTON" Content="&#xf053;" Grid.Column="0" Width="20" FontSize="20" Height="20" Style="{DynamicResource ToolButtonStyle}" Visibility="Collapsed" HorizontalAlignment="Center" Click="BACK_BUTTON_OnClick"/>
-                <TextBlock Text="EMPLOI DU TEMPS" Grid.Column="1" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
-                <DatePicker Name="DATE_PICKER" Grid.Column="3" Background="Transparent" Foreground="#D0D0C6" BorderThickness="0" Width="100" SelectedDateFormat="Short" HorizontalAlignment="Left" SelectedDateChanged="DATE_PICKER_OnSelectedDateChanged"/>
+                <TextBlock Name="TITLE_TEXT" Grid.Column="1" Foreground="#D0D0C6" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" FontFamily="League Gothic"/>
+                <DatePicker Name="DATE_PICKER" Grid.Column="2" Background="Transparent" Foreground="#D0D0C6" BorderThickness="0" Width="100" SelectedDateFormat="Short" HorizontalAlignment="Left" SelectedDateChanged="DATE_PICKER_OnSelectedDateChanged"/>
             </Grid>
         </Grid>
-        <Border BorderBrush="#25A0DA" BorderThickness="0">
-            <Frame Name="SCHEDULE_FRAME" NavigationUIVisibility="Hidden">
-                <Frame.Content>
-                    <ListBox Name="SCHEDULE_UI" Style="{DynamicResource DayListStyle}" Margin="10,15,10,10">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Border Background="{Binding DayColor}" Margin="0,5" CornerRadius="5" Effect="{StaticResource Z-Depth2}" >
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                                        <StackPanel >
-                                            <TextBlock Text="{Binding DayName}" Width="110" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="White" FontWeight="Thin" FontFamily="League Gothic"/>
-                                            <TextBlock Text="{Binding DayDate, StringFormat=[dd\\ MMM]}" HorizontalAlignment="Left" Margin="5,0" VerticalAlignment="Top" FontSize="10" FontWeight="ExtraLight" Foreground="White"></TextBlock>
-                                        </StackPanel>
-                                        <!--<TextBlock Text="{Binding DayName}" Width="110" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="White" FontWeight="Thin" FontFamily="League Gothic"/>-->
-                                        <ListBox Name="DayCoursList" Style="{DynamicResource CoursListStyle}" Margin="10,10,0,0" MouseDoubleClick="DayCoursList_MouseDoubleClick" SelectionChanged="DayCoursList_SelectionChanged"/>
+        
+        <Frame Name="SCHEDULE_FRAME" NavigationUIVisibility="Hidden" BorderBrush="#25A0DA" BorderThickness="0">
+            <Frame.Content>
+                <ListBox Name="SCHEDULE_UI" Style="{DynamicResource DayListStyle}" Margin="5,5,0,0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="{Binding DayColor}" Margin="0,5" CornerRadius="5" Effect="{StaticResource Z-Depth2}" >
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                    <StackPanel >
+                                        <TextBlock Text="{Binding DayName}" Width="110" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="White" FontWeight="Thin" FontFamily="League Gothic"/>
+                                        <TextBlock Text="{Binding DayDate, StringFormat=[dd\\ MMM]}" HorizontalAlignment="Left" Margin="5,0" VerticalAlignment="Top" FontSize="10" FontWeight="ExtraLight" Foreground="White"></TextBlock>
                                     </StackPanel>
-                                </Border>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Frame.Content>
-            </Frame>
-        </Border>
+                                    <ListBox Name="DayCoursList" Style="{DynamicResource CoursListStyle}" Margin="10,10,0,0" MouseDoubleClick="DayCoursList_MouseDoubleClick" SelectionChanged="DayCoursList_SelectionChanged"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Frame.Content>
+        </Frame>
+        
     </DockPanel>
-
 
 </UserControl>

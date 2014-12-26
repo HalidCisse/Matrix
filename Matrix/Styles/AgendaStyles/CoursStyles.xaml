@@ -17,7 +17,7 @@
                 <Setter Property="HorizontalAlignment" Value="Stretch" />
                 <Setter Property="Height" Value="50" />
                 <Setter Property="BorderThickness" Value="1" />
-                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="CornerRadius" Value="2" />
                 <Setter Property="Margin" Value="2,4" />
                 <Setter Property="Effect" Value="{StaticResource Z-Depth2}" />
                 
@@ -38,13 +38,12 @@
                         </StackPanel>
                         
                         <Border Background="{Binding Couleur}" Width="50" Height="50" Margin="10"/> 
-
                         
-                        <TextBlock Text="{Binding MatiereName}" Margin="10,0,10,0" Width="150" Foreground="{Binding ForeColor}" VerticalAlignment="Center" FontSize="20" FontWeight="Normal" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding MatiereName}" Margin="10,0,10,0" Width="175" Foreground="{Binding ForeColor}" VerticalAlignment="Center" FontSize="20" FontWeight="Normal" TextWrapping="Wrap"/>
                                                                         
-                        <TextBlock Text="{Binding StaffFullName}" Margin="10,0,10,0" Width="150" Foreground="{Binding ForeColor}" VerticalAlignment="Center" FontSize="20" FontWeight="Thin" TextWrapping="Wrap" />
+                        <TextBlock Text="{Binding StaffFullName}" Margin="10,0,10,0" Width="175" Foreground="{Binding ForeColor}" VerticalAlignment="Center" FontSize="20" FontWeight="Thin" TextWrapping="Wrap" />
 
-                        <TextBlock Text="{Binding Salle}" Width="50" Foreground="{Binding ForeColor}" VerticalAlignment="Center" FontSize="20" FontWeight="ExtraLight" TextWrapping="Wrap" />
+                        <TextBlock Text="{Binding Salle}" Width="60" Foreground="{Binding ForeColor}" VerticalAlignment="Center" FontSize="20" FontWeight="ExtraLight" TextWrapping="Wrap" />
                                                                       
                     </StackPanel>
                 </Border>
