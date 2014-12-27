@@ -27,9 +27,7 @@ namespace DataService.ViewModel
             EndTime = currentCous.EndTime;
 
             ForeColor = "Black";
-
-            //Horraire = StartTime.ToString("hh\\:mm") + " - " + EndTime.ToString("hh\\:mm");
-
+           
             ResolveData (coursDay, currentCous.MatiereGuid, currentCous.StaffGuid);
             
         }
@@ -63,11 +61,6 @@ namespace DataService.ViewModel
         /// La Journee ou le cours sera dispenser
         /// </summary>
         public DateTime CoursDate { get; set; }
-
-        /// <summary>
-        /// L'Horraire Formater
-        /// </summary>
-        public string Horraire { get; set; }
 
         /// <summary>
         /// La couleur du cours

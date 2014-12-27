@@ -2,8 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using DataService.Entities.Pedagogy;
 using DataService.ViewModel;
+using Matrix.views.Pedagogy;
 
 namespace Matrix.Controls
 {
@@ -97,8 +97,74 @@ namespace Matrix.Controls
             TITLE_TEXT.Text = _titleText;
         }
 
-       
+
+
         #endregion
+
+
+        #region CONTEXT MENUS
+
+        private void CoursContextDel_Click(object sender, RoutedEventArgs e)
+        {
+            //var myCoursId = ((ListBox)((ContextMenu)((MenuItem)sender).Parent).PlacementTarget).SelectedValue;
+
+            //if (myCoursId == null) return;
+        }
+
+        private void CoursContextMod_OnClick(object sender, RoutedEventArgs e)
+        {
+            var myCoursId = ((ListBox)((ContextMenu)((MenuItem)sender).Parent).PlacementTarget).SelectedValue;
+
+            if (myCoursId == null) return;
+
+            var courToOpen = App.DataS.Pedagogy.Cours.GetCoursById(new Guid(myCoursId.ToString()));
+
+            var wind = new AddCours(_currentclassGuid, courToOpen) { Owner = Window.GetWindow(this) };
+            wind.ShowDialog();
+            Refresh();            
+        }
+      
+        private void CoursContextPresence_OnClick(object sender, RoutedEventArgs e)
+        {
+            var cour = ((CoursCard)((ListBox)((ContextMenu)((MenuItem)sender).Parent).PlacementTarget).SelectedItem);
+          
+            SCHEDULE_FRAME.NavigationService.Navigate(new SaisiePresence(cour.CoursGuid, cour.CoursDate));
+            BACK_BUTTON.Visibility = Visibility.Visible;
+            TITLE_TEXT.Text = "Presence au cours de " + cour.MatiereName + " avec " + cour.StaffFullName + " entre " + cour.StartTime.ToString("hh\\:mm") + " et " + cour.EndTime.ToString("hh\\:mm");
+        }
+
+        private void CoursContextCorrection_OnClick(object sender, RoutedEventArgs e)
+        {
+            //var myCoursId = ((ListBox)((ContextMenu)((MenuItem)sender).Parent).PlacementTarget).SelectedValue;
+
+            //if (myCoursId == null) return;
+        }
+
+        private void CoursContext_OnOpened(object sender, RoutedEventArgs e)
+        {
+            var myCoursType = ((CoursCard)((ListBox)((ContextMenu)sender).PlacementTarget).SelectedItem).Type;
+
+            if (myCoursType.Equals("CONTROL"))
+            {
+                ((MenuItem)((ContextMenu)sender).Items.GetItemAt(1)).Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ((MenuItem)((ContextMenu)sender).Items.GetItemAt(1)).Visibility = Visibility.Collapsed;
+            }
+
+        }
+
+
+
+        #endregion
+
+
+
+
+
+
+
 
 
     }

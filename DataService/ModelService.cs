@@ -199,16 +199,18 @@ namespace DataService
         /// <exception cref="NotImplementedException"></exception>
         public IEnumerable GetAbsencesTiketCards(Guid currentCoursGuid, DateTime coursDate)
         {                        
-            var tiketList = new ConcurrentBag<AbsenceTicketCard>() {new AbsenceTicketCard(GetCoursStaffGuid(currentCoursGuid), currentCoursGuid, coursDate) };
-                
+            var tiketList = new HashSet<AbsenceTicketCard>() {new AbsenceTicketCard(GetCoursStaffGuid(currentCoursGuid), currentCoursGuid, coursDate) };
+
+            var tiketListB = new ConcurrentBag<AbsenceTicketCard>();
+
             var stdsGuids = GetClassStudentsGuids(GetCoursClasseGuid(currentCoursGuid), GetCoursAnneeScolaireGuid(currentCoursGuid));
 
             Parallel.ForEach(stdsGuids, std =>
             {
-                tiketList.Add(new AbsenceTicketCard(std, currentCoursGuid, coursDate));
+                tiketListB.Add(new AbsenceTicketCard(std, currentCoursGuid, coursDate));
             });
-
-            return tiketList.OrderBy(m => m.FullName);            
+           
+            return tiketList.Union(tiketListB.OrderBy(s => s.FullName));            
         }
 
 
@@ -220,12 +222,9 @@ namespace DataService
         private static List<Guid> GetClassStudentsGuids(Guid classGuid, Guid anneeScolaireGuid)
         {
             using (var db = new Ef())
-            {
-                var students =
-                    new List<Guid>(db.Inscription.Where(
+            {              
+                return new List<Guid>(db.Inscription.Where(
                         i => i.ClasseGuid.Equals(classGuid) && i.AnneeScolaireGuid.Equals(anneeScolaireGuid)).Select(i => i.StudentGuid));
-
-                return students;
             }
         }
 
