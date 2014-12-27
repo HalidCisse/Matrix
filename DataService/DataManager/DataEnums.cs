@@ -1,30 +1,33 @@
-﻿using DataService.Context;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DataService.Context;
 
 namespace DataService.DataManager
 {
     /// <summary>
     /// Serveur des Enums
     /// </summary>
+    [Obsolete]
     public class DataEnums
-    {      
+    {
+        //Todo Considere Abandoning DataEnums
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
+        [Obsolete]
         public IEnumerable GetNationalities()
         {
             var nationalities = new List<string>();
 
             using (var db = new Ef())
             {
-                var studentNt = (from S in db.Student.ToList() where S.Nationality != null select S.Nationality).ToList().Distinct().ToList();
+                var studentNt = (from s in db.Student.ToList() where s.Nationality != null select s.Nationality).ToList().Distinct().ToList();
                 nationalities.AddRange(studentNt);
 
-                var staffNt = (from S in db.Staff.ToList() where S.Nationality != null select S.Nationality).ToList().Distinct().ToList();
+                var staffNt = (from s in db.Staff.ToList() where s.Nationality != null select s.Nationality).ToList().Distinct().ToList();
                 nationalities.AddRange(staffNt);
             }
 
@@ -50,16 +53,17 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
+        [Obsolete]
         public IEnumerable GetBIRTH_PLACE()
         {
             var birthPlace = new List<string>();
 
             using (var db = new Ef())
             {
-                var studentBp = (from S in db.Student.ToList() where S.BirthPlace != null select S.BirthPlace).ToList().Distinct().ToList();
+                var studentBp = (from s in db.Student.ToList() where s.BirthPlace != null select s.BirthPlace).ToList().Distinct().ToList();
                 birthPlace.AddRange(studentBp);
 
-                var staffBp = (from S in db.Staff.ToList() where S.BirthPlace != null select S.BirthPlace).ToList().Distinct().ToList();
+                var staffBp = (from s in db.Staff.ToList() where s.BirthPlace != null select s.BirthPlace).ToList().Distinct().ToList();
                 birthPlace.AddRange(staffBp);
             }
 
@@ -79,6 +83,7 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
+        [Obsolete]
         public IEnumerable GetTitles()
         {
             return new List<string> { "Mr", "Mme", "Mlle", "Dr" };
@@ -88,6 +93,7 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
+        [Obsolete]
         public IEnumerable GetStudentStatuts()
         {
             return new List<string> { "Regulier", "Abandonner", "Irregulier", "Suspendue" };
@@ -97,6 +103,7 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
+        [Obsolete]
         public IEnumerable GetStaffStatuts()
         {
             return new List<string> { "Regulier", "Licencier", "Irregulier", "Suspendue" };
@@ -106,11 +113,12 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
+        [Obsolete]
         public IEnumerable GetStaffPositions()
         {
             using (var db = new Ef())
             {
-                var pos = (from S in db.Staff.ToList() where S.Position != null select S.Position).ToList().Distinct().ToList();
+                var pos = (from s in db.Staff.ToList() where s.Position != null select s.Position).ToList().Distinct().ToList();
 
                 if (pos.Count == 0)
                 {
@@ -134,11 +142,12 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
+        [Obsolete]
         public IEnumerable GetDepartements()
         {
             using (var db = new Ef())
             {
-                var deps = (from S in db.Staff.ToList() where S.Departement != null select S.Departement).ToList().Distinct().ToList();
+                var deps = (from s in db.Staff.ToList() where s.Departement != null select s.Departement).Distinct().ToList();
 
                 return deps;
             }
@@ -149,11 +158,12 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
+        [Obsolete]
         public IEnumerable GetStaffQualifications()
         {
             using (var db = new Ef())
             {
-                var quals = (from S in db.Staff.ToList() where S.Qualification != null select S.Qualification).Distinct().ToList();
+                var quals = (from s in db.Staff.ToList() where s.Qualification != null select s.Qualification).Distinct().ToList();
 
                 return quals.Count == 0 ? new List<string> { "Engenieur Etat En Informatique", "Doctorat En Mathematique", "Master En Anglais" } : quals;
             }
@@ -163,11 +173,12 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
+        [Obsolete]
         public IEnumerable GetFILIERE_NIVEAU_ENTREE()
         {
             using (var db = new Ef())
             {
-                var ns = (from S in db.Filiere.ToList() where S.NiveauEntree != null select S.NiveauEntree).ToList();
+                var ns = (from s in db.Filiere.ToList() where s.NiveauEntree != null select s.NiveauEntree).ToList();
 
                 ns.AddRange(new List<string> { "Bac", "Bac+1", "Bac+2", "Licence", "Bac+4", "Master", "Engenieur", "Doctorat" });
 
@@ -179,11 +190,12 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
+        [Obsolete]
         public IEnumerable GetFILIERE_NIVEAU_SORTIE()
         {
             using (var db = new Ef())
             {
-                var ns = (from S in db.Filiere.ToList() where S.Niveau != null select S.Niveau).ToList();
+                var ns = (from s in db.Filiere.ToList() where s.Niveau != null select s.Niveau).ToList();
 
                 ns.AddRange(new List<string> { "Bac+1", "Bac+2", "Licence", "Bac+4", "Master", "Engenieur", "Doctorat" });
 
@@ -196,6 +208,7 @@ namespace DataService.DataManager
         /// </summary>
         /// <param name="filiereId"></param>
         /// <returns></returns>
+        [Obsolete]
         public IEnumerable GetFILIERE_LEVELS(Guid filiereId)
         {
             return GetFILIERE_NIVEAUX(filiereId);
@@ -206,6 +219,7 @@ namespace DataService.DataManager
         /// </summary>
         /// <param name="filiereId"></param>
         /// <returns></returns>
+        [Obsolete]
         public IEnumerable GetFILIERE_NIVEAUX(Guid filiereId)
         {
             using (var db = new Ef())
@@ -223,6 +237,7 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
+        [Obsolete]
         public IEnumerable GetFILIERE_LEVELS()
         {
             return new List<string> { "1", "2", "3", "4", "5", "6", "7", "8" };
@@ -232,6 +247,7 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
+         [Obsolete]
         public IEnumerable GetMATIERE_HEURES_PAR_SEMAINE()
         {
             return new List<string>
@@ -246,11 +262,12 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
+        [Obsolete]
         public IEnumerable GetAllSalles()
         {
             using (var db = new Ef())
             {
-                return (from S in db.Cours.ToList() where S.Salle != null select S.Salle).Distinct().ToList();
+                return (from s in db.Cours.ToList() where s.Salle != null select s.Salle).Distinct().ToList();
             }
         }
 
@@ -258,10 +275,14 @@ namespace DataService.DataManager
         /// 
         /// </summary>
         /// <returns></returns>
+        [Obsolete]
         public IEnumerable GetAllCoursTypes()
         {
             return new List<string> { "Cours", "Control", "Travaux Pratiques", "Travaux Dirigés", "Examen", "Test", "Revision", "Cours Theorique", "Cours Magistral" };
         }
+
+
+
 
     }
 }

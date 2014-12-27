@@ -1,23 +1,25 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
+
+
 namespace DataService.Entities.Pedagogy
 {
     /// <summary>
     /// 
     /// </summary>
-    public class ControlNote
+    public class StudentNote
     {
         /// <summary>
         /// 
         /// </summary>
-        [Key]
-        public Guid ControlNoteGuid { get; set; }
+        [Key]     
+        public Guid StudentNoteGuid { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public Guid MatiereControlGuid { get; set; }
+        public Guid CoursGuid { get; set; }
 
         /// <summary>
         /// 
@@ -27,7 +29,11 @@ namespace DataService.Entities.Pedagogy
         /// <summary>
         /// 
         /// </summary>
-        public int Note { get; set; }
+        public double Note { get; set; }
+
+
+
+
 
     }
 }

@@ -19,24 +19,24 @@ namespace DataService.DataManager
         {
             using (var db = new Ef())
             {
-                if (db.MatrixSetting.Find(MatrixConstants.SystemGuid()) == null) db.MatrixSetting.Add(new MatrixSetting());
+                if (db.SystemSetting.Find(MatrixConstants.SystemGuid()) == null) db.SystemSetting.Add(new MatrixSetting());
 
                 switch (systemSetting)
                 {
                     case MatrixSettings.CurrentAnneeScolaire:
-                        db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentAnneeScolaireGuid = (Guid)newValue;
+                        db.SystemSetting.Find(MatrixConstants.SystemGuid()).CurrentAnneeScolaireGuid = (Guid)newValue;
                         break;
                     case MatrixSettings.CurrentPerodeScolaire:
-                        db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentPeriodeScolaireGuid = (Guid)newValue;
+                        db.SystemSetting.Find(MatrixConstants.SystemGuid()).CurrentPeriodeScolaireGuid = (Guid)newValue;
                         break;
                     case MatrixSettings.EtablissementName:
-                        db.MatrixSetting.Find(MatrixConstants.SystemGuid()).EtablissementName = (string)newValue;
+                        db.SystemSetting.Find(MatrixConstants.SystemGuid()).EtablissementName = (string)newValue;
                         break;
                     case MatrixSettings.EtablissementFax:
-                        db.MatrixSetting.Find(MatrixConstants.SystemGuid()).EtablissementFax = (string)newValue;
+                        db.SystemSetting.Find(MatrixConstants.SystemGuid()).EtablissementFax = (string)newValue;
                         break;
                     case MatrixSettings.EtablissementLogo:
-                        db.MatrixSetting.Find(MatrixConstants.SystemGuid()).EtablissementLogo = (byte[])newValue;
+                        db.SystemSetting.Find(MatrixConstants.SystemGuid()).EtablissementLogo = (byte[])newValue;
                         break;
                     default:
                         return true;
@@ -55,24 +55,24 @@ namespace DataService.DataManager
         {
             using (var db = new Ef())
             {
-                if (db.MatrixSetting.Find(MatrixConstants.SystemGuid()) == null) db.MatrixSetting.Add(new MatrixSetting());
+                if (db.SystemSetting.Find(MatrixConstants.SystemGuid()) == null) db.SystemSetting.Add(new MatrixSetting());
 
                 switch (systemSetting)
                 {
                     case MatrixSettings.CurrentAnneeScolaire:
-                        return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentAnneeScolaireGuid;
+                        return db.SystemSetting.Find(MatrixConstants.SystemGuid()).CurrentAnneeScolaireGuid;
 
                     case MatrixSettings.CurrentPerodeScolaire:
-                        return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentPeriodeScolaireGuid;
+                        return db.SystemSetting.Find(MatrixConstants.SystemGuid()).CurrentPeriodeScolaireGuid;
 
                     case MatrixSettings.EtablissementName:
-                        return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).EtablissementName;
+                        return db.SystemSetting.Find(MatrixConstants.SystemGuid()).EtablissementName;
 
                     case MatrixSettings.EtablissementFax:
-                        return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).EtablissementFax;
+                        return db.SystemSetting.Find(MatrixConstants.SystemGuid()).EtablissementFax;
 
                     case MatrixSettings.EtablissementLogo:
-                        return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).EtablissementLogo;
+                        return db.SystemSetting.Find(MatrixConstants.SystemGuid()).EtablissementLogo;
 
                     default:
                         return null;

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.Entity;
-using System.Globalization;
 using System.Linq;
 using DataService.Context;
 using DataService.Entities.Pedagogy;
@@ -76,9 +75,7 @@ namespace DataService.DataManager
         /// <param name="absenceTicket"></param>        
         /// <returns></returns>
         private static bool AbsenceTicketExist(AbsenceTicket absenceTicket)
-        {
-            //absenceTicket.CoursDate = DateTime.Parse(absenceTicket.CoursDate.GetValueOrDefault().Date.ToString(CultureInfo.InvariantCulture));
-            
+        {           
             using (var db = new Ef())
             {
                 if (db.AbsenceTicket.Find(absenceTicket.AbsenceTicketGuid) != null) return true;
@@ -89,6 +86,23 @@ namespace DataService.DataManager
             }
         }
 
+        /// <summary>
+        /// Verifie Si un Etudiant ou Staff est Present a un cours donnee
+        /// </summary>       
+        /// <param name="personGuid"></param>
+        /// <param name="coursGuid"></param>
+        /// <param name="coursDate"></param>
+        /// <returns></returns>
+        public static bool EstPresent(Guid personGuid, Guid coursGuid, DateTime coursDate)
+        {           
+            using (var db = new Ef())
+            {
+                var ticket = db.AbsenceTicket.FirstOrDefault(t => t.CoursGuid == coursGuid &&
+                                                                          t.PersonGuid == personGuid &&
+                                                                          t.CoursDate == coursDate);
+                return ticket != null && ticket.IsPresent;
+            }
+        }
 
 
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using DataService.Enum;
 
 namespace DataService.Entities.Pedagogy
 {
@@ -62,7 +63,7 @@ namespace DataService.Entities.Pedagogy
         /// <summary>
         /// Control, Cours, Examen, Test, Revision, Travaux Pratiques, Travaux Dirigés
         /// </summary>
-        public string Type { get; set; }
+        public CoursTypes Type { get; set; }
        
         /// <summary>
         /// La periode du cours

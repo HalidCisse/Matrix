@@ -185,6 +185,7 @@
     <Compile Include="Styles\LocalExtensions.cs" />
     <Compile Include="Styles\MyForm.cs" />
     <Compile Include="Utils\DEP.cs" />
+    <Compile Include="Utils\EnumsHelper.cs" />
     <Compile Include="Utils\Exp.cs" />
     <Compile Include="Utils\FindVisualChildren.cs" />
     <Compile Include="Utils\GenID.cs" />

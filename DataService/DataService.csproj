@@ -110,6 +110,7 @@
     <Compile Include="DataManager\PedagogyManager.cs" />
     <Compile Include="DataManager\SettingsManager.cs" />
     <Compile Include="DataManager\StudentsManager.cs" />
+    <Compile Include="DataManager\StudentsNotesManager.cs" />
     <Compile Include="DataManager\UserProfilesManager.cs" />
     <Compile Include="Entities\Etablissement.cs" />
     <Compile Include="Entities\MatrixSetting.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Entities\UserSetting.cs" />
     <Compile Include="Entities\Pedagogy\StudentQualification.cs" />
     <Compile Include="Enum\ClassAnnee.cs" />
+    <Compile Include="Enum\CoursTypes.cs" />
     <Compile Include="Enum\InscriptionStatus.cs" />
     <Compile Include="Enum\MatrixConstants.cs" />
     <Compile Include="Enum\MatrixSettings.cs" />
@@ -145,7 +147,7 @@
     <Compile Include="Entities\Pedagogy\Matiere.cs" />
     <Compile Include="Entities\Pedagogy\MatiereControl.cs" />
     <Compile Include="Entities\Depracated\Matiere_Instructeurs.cs" />
-    <Compile Include="Entities\Pedagogy\ControlNote.cs" />
+    <Compile Include="Entities\Pedagogy\StudentNote.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Staff.cs" />
     <Compile Include="Entities\Student.cs" />

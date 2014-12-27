@@ -169,7 +169,9 @@ namespace DataService.DataManager
 
                 foreach (var st in db.Inscription.Where(c => c.ClasseGuid.Equals(classGuid) && c.AnneeScolaireGuid.Equals(anneeScolaireGuid) ))
                 {
-                    students.Add (new ClasseStudentCard(db.Student.Find(st.StudentGuid), anneeScolaireGuid));
+                    var nn = db.Student.Find(st.StudentGuid);
+                    if (nn != null)
+                        students.Add (new ClasseStudentCard(nn));
                 }
 
                 return students;

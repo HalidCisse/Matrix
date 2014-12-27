@@ -1,6 +1,8 @@
 ﻿
 
 
+using System.ComponentModel;
+
 namespace DataService.Enum
 {
     /// <summary>
@@ -11,11 +13,13 @@ namespace DataService.Enum
         /// <summary>
         /// Active
         /// </summary>
+        [Description("Active")]
         Active = 1,
 
         /// <summary>
         /// Suspendue
         /// </summary>
+        [Description("Suspendue")]
         Suspendue = 2
 
     }

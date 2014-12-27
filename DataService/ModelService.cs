@@ -236,14 +236,6 @@ namespace DataService
             }
         }
 
-        private static Cours GetCours(Guid coursGuid)
-        {
-            using (var db = new Ef())
-            {
-                return db.Cours.Find(coursGuid);
-            }
-        }
-
         private static Guid GetCoursStaffGuid(Guid coursGuid)
         {
             using (var db = new Ef())
@@ -266,10 +258,10 @@ namespace DataService
             {
                 using (var db = new Ef())
                 {
-                    if (db.MatrixSetting.Find(MatrixConstants.SystemGuid()) == null)
-                        db.MatrixSetting.Add(new MatrixSetting());
+                    if (db.SystemSetting.Find(MatrixConstants.SystemGuid()) == null)
+                        db.SystemSetting.Add(new MatrixSetting());
 
-                    return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentAnneeScolaireGuid;
+                    return db.SystemSetting.Find(MatrixConstants.SystemGuid()).CurrentAnneeScolaireGuid;
                 }
             }
         }

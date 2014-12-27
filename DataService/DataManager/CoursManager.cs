@@ -14,6 +14,7 @@ namespace DataService.DataManager
     /// </summary>
     public class CoursManager
     {
+       
         /// <summary>
         /// 
         /// </summary>
@@ -67,9 +68,8 @@ namespace DataService.DataManager
         public Cours GetCoursById(Guid coursId)
         {
             using (var db = new Ef())
-            {
-                var myCours = db.Cours.Find(coursId);
-                return myCours;
+            {               
+                return db.Cours.Find(coursId);
             }
         }
 
@@ -108,6 +108,8 @@ namespace DataService.DataManager
             }
         }
 
+       
+
 
 
 
@@ -123,7 +125,7 @@ namespace DataService.DataManager
 
                     foreach (var ps in psList) if (ps.StartDate <= DateTime.Today && DateTime.Today <= ps.EndDate) return ps.PeriodeScolaireGuid;
                    
-                    return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentPeriodeScolaireGuid;
+                    return db.SystemSetting.Find(MatrixConstants.SystemGuid()).CurrentPeriodeScolaireGuid;
                 }
             }
         }
@@ -134,10 +136,10 @@ namespace DataService.DataManager
             {
                 using (var db = new Ef())
                 {
-                    if (db.MatrixSetting.Find(MatrixConstants.SystemGuid()) == null)
-                        db.MatrixSetting.Add(new MatrixSetting());
+                    if (db.SystemSetting.Find(MatrixConstants.SystemGuid()) == null)
+                        db.SystemSetting.Add(new MatrixSetting());
 
-                    return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentAnneeScolaireGuid;
+                    return db.SystemSetting.Find(MatrixConstants.SystemGuid()).CurrentAnneeScolaireGuid;
                 }
             }
         }

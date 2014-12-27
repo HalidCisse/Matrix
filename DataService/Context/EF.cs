@@ -59,7 +59,7 @@ namespace DataService.Context
         /// <summary>
         /// Les Parametres System
         /// </summary>
-        public virtual DbSet<MatrixSetting> MatrixSetting { get; set; }
+        public virtual DbSet<MatrixSetting> SystemSetting { get; set; }
 
         
 
@@ -104,16 +104,16 @@ namespace DataService.Context
         /// <summary>
         /// Represente la Note obtenue par un Etudiant apres un control
         /// </summary>
-        public virtual DbSet<ControlNote> ControlNote { get; set; }
+        public virtual DbSet<StudentNote> StudentNote { get; set; }
         /// <summary>
         /// Represente un Cours
         /// </summary>
         public virtual DbSet<Cours> Cours { get; set; }
 
-        /// <summary>
-        /// Devoir, Control, ou Examen
-        /// </summary>
-        public virtual DbSet<MatiereControl> MatiereControl { get; set; }    
+        ///// <summary>
+        ///// Devoir, Control, ou Examen
+        ///// </summary>
+        //public virtual DbSet<MatiereControl> MatiereControl { get; set; }    
                    
         /// <summary>
         /// Les Etudiants d'une Classe

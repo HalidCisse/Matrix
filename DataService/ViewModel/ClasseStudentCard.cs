@@ -12,8 +12,10 @@ namespace DataService.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        public ClasseStudentCard( Student myStudent, Guid currentAnneeScolaire)
+        public ClasseStudentCard( Student myStudent)
         {
+            if (myStudent == null) myStudent = new Student();
+           
             StudentGuid = myStudent.StudentGuid;            
             Firstname = myStudent.FirstName;
             Lastname = myStudent.LastName;

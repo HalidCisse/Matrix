@@ -101,18 +101,18 @@ namespace DataService.DataManager
             {
                 using (var db = new Ef())
                 {
-                    if (db.MatrixSetting.Find(MatrixConstants.SystemGuid()) == null) db.MatrixSetting.Add(new MatrixSetting());
+                    if (db.SystemSetting.Find(MatrixConstants.SystemGuid()) == null) db.SystemSetting.Add(new MatrixSetting());
 
-                    return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentAnneeScolaireGuid;
+                    return db.SystemSetting.Find(MatrixConstants.SystemGuid()).CurrentAnneeScolaireGuid;
                 }
             }
             set
             {
                 using (var db = new Ef())
                 {
-                    if (db.MatrixSetting.Find(MatrixConstants.SystemGuid()) == null) db.MatrixSetting.Add(new MatrixSetting());
+                    if (db.SystemSetting.Find(MatrixConstants.SystemGuid()) == null) db.SystemSetting.Add(new MatrixSetting());
 
-                    db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentAnneeScolaireGuid = value;
+                    db.SystemSetting.Find(MatrixConstants.SystemGuid()).CurrentAnneeScolaireGuid = value;
                     db.SaveChanges();
                 }
             }
@@ -128,18 +128,18 @@ namespace DataService.DataManager
             {
                 using (var db = new Ef())
                 {
-                    if (db.MatrixSetting.Find(MatrixConstants.SystemGuid()) == null) db.MatrixSetting.Add(new MatrixSetting());
+                    if (db.SystemSetting.Find(MatrixConstants.SystemGuid()) == null) db.SystemSetting.Add(new MatrixSetting());
 
-                    return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentPeriodeScolaireGuid;
+                    return db.SystemSetting.Find(MatrixConstants.SystemGuid()).CurrentPeriodeScolaireGuid;
                 }
             }
             set
             {
                 using (var db = new Ef())
                 {
-                    if (db.MatrixSetting.Find(MatrixConstants.SystemGuid()) == null) db.MatrixSetting.Add(new MatrixSetting());
+                    if (db.SystemSetting.Find(MatrixConstants.SystemGuid()) == null) db.SystemSetting.Add(new MatrixSetting());
 
-                    db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentPeriodeScolaireGuid = value;
+                    db.SystemSetting.Find(MatrixConstants.SystemGuid()).CurrentPeriodeScolaireGuid = value;
                     db.SaveChanges();
                 }
             }
@@ -161,7 +161,7 @@ namespace DataService.DataManager
                     {
                         if (ps.StartDate <= DateTime.Today && DateTime.Today <= ps.EndDate) return ps.PeriodeScolaireGuid;                      
                     }
-                    return db.MatrixSetting.Find(MatrixConstants.SystemGuid()).CurrentPeriodeScolaireGuid;
+                    return db.SystemSetting.Find(MatrixConstants.SystemGuid()).CurrentPeriodeScolaireGuid;
                 }
             }           
         }

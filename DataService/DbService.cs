@@ -1,7 +1,6 @@
 ﻿
 using DataService.DataManager;
 using DataService.Entities.Security;
-using DataService.Enum;
 
 namespace DataService
 {
@@ -10,7 +9,7 @@ namespace DataService
     /// </summary>
     public class DbService 
     {
-
+        
         /// <summary>
         ///Serveur des Enums
         /// </summary>

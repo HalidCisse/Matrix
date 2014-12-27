@@ -76,7 +76,7 @@
 
         <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="TYPE" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <ComboBox Name="TYPE" Width="250" Height="30" SelectedIndex="0" HorizontalAlignment="Left" SelectionChanged="TYPE__OnSelectionChanged" />
+            <ComboBox Name="TYPE" Width="250" Height="30" SelectedIndex="0" SelectedValuePath="Value" DisplayMemberPath="Key" HorizontalAlignment="Left" SelectionChanged="TYPE__OnSelectionChanged" />
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Center">

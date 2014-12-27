@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using DataService.Entities.Pedagogy;
+using DataService.Enum;
 using FirstFloor.ModernUI.Windows.Controls;
+using Matrix.Utils;
+using Matrix.Utils.EnumsHelper;
 
 namespace Matrix.views.Pedagogy
 {
@@ -39,22 +43,7 @@ namespace Matrix.views.Pedagogy
                     
                     Display();
                 }));
-            }).Start();
-
-            
-
-           
-
-            //_currentCours.ClasseId = currentClassId;
-            //_isAdd = true; 
-
-            //if(coursToOpen != null)
-            //{
-            //    _isAdd = false;
-            //    _currentCours = coursToOpen;                
-            //}
-                            
-            //Display ();
+            }).Start();      
         }
 
         private void GetPatternData()
@@ -65,7 +54,7 @@ namespace Matrix.views.Pedagogy
 
             SALLE_NAME.ItemsSource = App.DataS.DataEnums.GetAllSalles();
 
-            TYPE.ItemsSource = App.DataS.DataEnums.GetAllCoursTypes();
+            TYPE.ItemsSource = GetAllValuesAndDescriptions<CoursTypes>();   //GetAllCoursTypesString(); //Enum.GetValues(typeof (CoursTypes));       //App.DataS.DataEnums.GetAllCoursTypes();
 
             START_DATE.SelectedDate = DateTime.Today;
 
@@ -81,7 +70,7 @@ namespace Matrix.views.Pedagogy
             MATIERE_ID.SelectedValue = _currentCours.MatiereGuid;
             STAFF_ID.SelectedValue = _currentCours.StaffGuid;
             SALLE_NAME.Text = _currentCours.Salle;
-            TYPE.SelectedValue = _currentCours.Type;
+            TYPE.SelectedValue = _currentCours.Type ;
             START_TIME.Value = new DateTime(_currentCours.StartTime.Ticks); 
             END_TIME.Value = new DateTime(_currentCours.EndTime.Ticks); 
             START_DATE.SelectedDate = _currentCours.StartDate;
@@ -105,7 +94,7 @@ namespace Matrix.views.Pedagogy
             _currentCours.MatiereGuid = new Guid(MATIERE_ID.SelectedValue.ToString()) ;
             _currentCours.StaffGuid = new Guid(STAFF_ID.SelectedValue.ToString());
             _currentCours.Salle = SALLE_NAME.Text;
-            _currentCours.Type = TYPE.SelectedValue.ToString();
+            _currentCours.Type = (CoursTypes) TYPE.SelectedValue;            
             _currentCours.StartTime = DateTime.Parse(START_TIME.Value.ToString()).TimeOfDay;     
             _currentCours.EndTime =DateTime.Parse (END_TIME.Value.ToString ()).TimeOfDay;       
             _currentCours.StartDate = START_DATE.SelectedDate.GetValueOrDefault().Date;
@@ -207,17 +196,20 @@ namespace Matrix.views.Pedagogy
         {
             if(TITLE_TEXT.Text == "MODIFICATION") return;
 
-            if(TYPE.SelectedValue.ToString () == "Revision")
-              { TITLE_TEXT.Text = "AJOUTER UNE " + TYPE.SelectedValue.ToString().ToUpper(); }
+            if(TYPE.SelectedValue.ToString().Equals(CoursTypes.Revision.ToString()) )
+              { TITLE_TEXT.Text = "AJOUTER UNE " + ((KeyValuePair<string, string>)(TYPE.SelectedItem)).Key.ToUpper(); }
             else
-            { TITLE_TEXT.Text = "AJOUTER UN " + TYPE.SelectedValue.ToString ().ToUpper (); }
+            { TITLE_TEXT.Text = "AJOUTER UN " + ((KeyValuePair<string, string>)(TYPE.SelectedItem)).Key.ToUpper (); }
 
-            if(TYPE.SelectedValue.ToString () == "Control" || TYPE.SelectedValue.ToString () == "Examen" || TYPE.SelectedValue.ToString () == "Test")
+            if(TYPE.SelectedValue.ToString().Equals(CoursTypes.Control.ToString()) || TYPE.SelectedValue.ToString().Equals(CoursTypes.Examen.ToString()) || TYPE.SelectedValue.ToString().Equals(CoursTypes.Test.ToString()))
               { INSTRUCTEUR.Text = "SUPERVISEUR"; }
             else
               { INSTRUCTEUR.Text = "INSTRUCTEUR"; }
             
         }
+
+        
+
 
 
     }

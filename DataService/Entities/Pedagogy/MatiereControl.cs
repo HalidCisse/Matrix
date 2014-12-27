@@ -6,6 +6,7 @@ namespace DataService.Entities.Pedagogy
     /// <summary>
     /// 
     /// </summary>
+    [Obsolete]
     public class MatiereControl
     {
         /// <summary>

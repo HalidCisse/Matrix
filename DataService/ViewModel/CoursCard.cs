@@ -16,7 +16,8 @@ namespace DataService.ViewModel
         /// <param name="coursDay">La Journee De Recurrence</param>
         public CoursCard ( Cours currentCous, DateTime coursDay )
         {
-            Type = currentCous.Type.ToUpper ();
+            //Type = currentCous.Type.ToUpper ();
+            Type = currentCous.Type.ToString().ToUpper();
             CoursGuid = currentCous.CoursGuid;           
             
             Salle = currentCous.Salle.ToUpper();
