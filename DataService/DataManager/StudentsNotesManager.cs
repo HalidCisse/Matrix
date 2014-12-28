@@ -17,7 +17,7 @@ namespace DataService.DataManager
         /// <param name="myNote"></param>
         /// <returns></returns>
         public bool AddOrUpdateStudentNote(StudentNote myNote)
-        {
+        {           
             return NoteExist(myNote) ? UpdateStudentNote(myNote) : AddStudentNote(myNote);
         }
 

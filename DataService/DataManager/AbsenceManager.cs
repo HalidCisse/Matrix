@@ -18,8 +18,11 @@ namespace DataService.DataManager
         /// <param name="myTicket"></param>
         /// <returns></returns>
         public bool AddOrUpdateAbsenceTicket(AbsenceTicket myTicket)
-        {
-            return AbsenceTicketExist(myTicket) ? UpdateAbsenceTicket(myTicket) : AddAbsenceTicket(myTicket);
+        {            
+            if (!myTicket.IsPresent || myTicket.RetardTime != new TimeSpan(0))
+                return AbsenceTicketExist(myTicket) ? UpdateAbsenceTicket(myTicket) : AddAbsenceTicket(myTicket);
+            DeleteAbsenceTicket(myTicket.AbsenceTicketGuid);
+            return true;
         }
 
         /// <summary>

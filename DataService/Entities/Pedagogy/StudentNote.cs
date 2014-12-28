@@ -29,9 +29,12 @@ namespace DataService.Entities.Pedagogy
         /// <summary>
         /// 
         /// </summary>
-        public double Note { get; set; }
+        public double Note { get; set; } = 0.0;
 
-
+        /// <summary>
+        /// Appreciation
+        /// </summary>
+        public string Appreciation { get; set; } = "Null";
 
 
 

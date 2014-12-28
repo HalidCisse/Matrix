@@ -135,9 +135,12 @@ namespace Matrix.Controls
 
         private void CoursContextCorrection_OnClick(object sender, RoutedEventArgs e)
         {
-            //var myCoursId = ((ListBox)((ContextMenu)((MenuItem)sender).Parent).PlacementTarget).SelectedValue;
+            var cour = ((CoursCard)((ListBox)((ContextMenu)((MenuItem)sender).Parent).PlacementTarget).SelectedItem);
 
-            //if (myCoursId == null) return;
+            SCHEDULE_FRAME.NavigationService.Navigate(new SaisieNote(cour.CoursGuid));
+            BACK_BUTTON.Visibility = Visibility.Visible;
+            TITLE_TEXT.Text = "Correction du controle de " + cour.MatiereName ;
+
         }
 
         private void CoursContext_OnOpened(object sender, RoutedEventArgs e)

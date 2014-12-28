@@ -34,7 +34,7 @@ namespace DataService.ViewModel
             AbsenceTicketGuid = currentTicket.AbsenceTicketGuid;
             PersonGuid = currentTicket.PersonGuid;            
             IsPresent = currentTicket.IsPresent;
-            RetardTime = currentTicket.RetardTime.Minutes;
+            RetardTime = (int) currentTicket.RetardTime.TotalMinutes;
 
             using (var db = new Ef())
             {                
@@ -71,18 +71,11 @@ namespace DataService.ViewModel
 
         /// <summary>
         /// Temps de Retard 
-        /// </summary>
+        /// </summary>       
         public int RetardTime { get; set; }
 
 
-        //private static bool IsStaff(Guid personGuid)
-        //{
-        //    using (var db = new Ef())
-        //    {
-        //        return db.Staff.Find(personGuid) != null;                
-        //    }
-        //}
-
+       
         private static AbsenceTicket GetTicket (Guid personGuid, Guid coursGuid, DateTime coursDate)
         {
             using (var db = new Ef())

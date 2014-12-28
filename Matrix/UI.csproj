@@ -164,6 +164,9 @@
     <Compile Include="Controls\ClasseStudents.xaml.cs">
       <DependentUpon>ClasseStudents.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SaisieNote.xaml.cs">
+      <DependentUpon>SaisieNote.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SaisiePresence.xaml.cs">
       <DependentUpon>SaisiePresence.xaml</DependentUpon>
     </Compile>
@@ -247,6 +250,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ClasseStudents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SaisieNote.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

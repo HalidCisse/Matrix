@@ -213,7 +213,25 @@ namespace DataService
             return tiketList.Union(tiketListB.OrderBy(s => s.FullName));            
         }
 
+        /// <summary>
+        /// Models des Notes
+        /// </summary>
+        /// <param name="currentCoursGuid"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public IEnumerable GetStudentsNotesCards(Guid currentCoursGuid)
+        {
+            var noteList = new ConcurrentBag<StudentNoteCard>();
 
+            var stdsGuids = GetClassStudentsGuids(GetCoursClasseGuid(currentCoursGuid), GetCoursAnneeScolaireGuid(currentCoursGuid));
+
+            Parallel.ForEach(stdsGuids, std =>
+            {
+                noteList.Add(new StudentNoteCard(currentCoursGuid, std));
+            });
+
+            return noteList.OrderBy(s => s.FullName);
+        }
 
 
 
@@ -276,7 +294,7 @@ namespace DataService
 
         #endregion
 
-       
+        
     }
  
 }

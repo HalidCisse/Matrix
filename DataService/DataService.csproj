@@ -170,6 +170,7 @@
     <Compile Include="ViewModel\FiliereLevelCard.cs" />
     <Compile Include="ViewModel\DepStaffCard.cs" />
     <Compile Include="ViewModel\StudentCard.cs" />
+    <Compile Include="ViewModel\StudentNoteCard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

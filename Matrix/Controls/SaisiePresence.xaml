@@ -6,46 +6,46 @@
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="715" >
-      
-    
+
+
     <ListBox Background="Transparent" BorderThickness="0" Name="TICKET_LIST" SelectedValuePath="PersonGuid" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <ListBoxItem HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
-                        <Border BorderThickness="1" BorderBrush="#A9A9CB" Width="160" Background="Beige" Height="210" Effect="{StaticResource Z-Depth3}">
-                            <StackPanel >
-                                <Grid Width="100" Height="100" HorizontalAlignment="Center" Margin="5">
-                                    <Border  Name="MaskBorder" CornerRadius="50" Background="White" BorderThickness="0"/>
-                                    <Image Source="{Binding PhotoIdentity}" Stretch="Fill" Width="100" Height="100">
-                                        <Image.OpacityMask>
-                                            <VisualBrush Visual="{Binding ElementName=MaskBorder}"/>
-                                        </Image.OpacityMask>
-                                    </Image>
-                                </Grid>
-                               
-                                <TextBlock Text="{Binding FullName}" Margin="5" HorizontalAlignment="Stretch" FontSize="20" Foreground="Gray" FontWeight="Bold" Width="170" TextWrapping="NoWrap" />
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <ListBoxItem HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                    <Border BorderThickness="1" BorderBrush="#A9A9CB" Width="160" Background="Beige" Height="210" Effect="{StaticResource Z-Depth3}">
+                        <StackPanel >
+                            <Grid Width="100" Height="100" HorizontalAlignment="Center" Margin="5">
+                                <Border  Name="MaskBorder" CornerRadius="50" Background="White" BorderThickness="0"/>
+                                <Image Source="{Binding PhotoIdentity}" Stretch="Fill" Width="100" Height="100">
+                                    <Image.OpacityMask>
+                                        <VisualBrush Visual="{Binding ElementName=MaskBorder}"/>
+                                    </Image.OpacityMask>
+                                </Image>
+                            </Grid>
 
-                                <Grid Margin="5">
-                                    <TextBlock Text="Present" FontSize="15" HorizontalAlignment="Left" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
-                                    <CheckBox x:Name="THE_CHECK_BOX"  IsChecked="{Binding IsPresent, Mode=TwoWay}"  HorizontalAlignment="Right" Click="THE_CHECK_BOX_OnClick"/>
-                                </Grid>
+                            <TextBlock Text="{Binding FullName}" Margin="5" HorizontalAlignment="Stretch" FontSize="20" Foreground="Gray" FontWeight="Bold" Width="170" TextWrapping="NoWrap" />
 
-                                <Grid Margin="5">
-                                    <TextBlock Text="Retard (Min)" HorizontalAlignment="Left" FontSize="15" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
-                                    <xctk:IntegerUpDown x:Name="RETARD_MIN" Value="{Binding RetardTime, StringFormat= mm, Mode=TwoWay}" IsEnabled="{Binding ElementName = THE_CHECK_BOX, Path=IsChecked}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Minimum="0" Maximum="60" Foreground="Gray" ValueChanged="UpDownBase_OnValueChanged"/>
-                                </Grid>
-                                                               
-                            </StackPanel>
-                        </Border>
-                    </ListBoxItem>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel></WrapPanel>
-                </ItemsPanelTemplate>                
-            </ListBox.ItemsPanel>
-        </ListBox>
-    
-    
+                            <Grid Margin="5">
+                                <TextBlock Text="Present" FontSize="15" HorizontalAlignment="Left" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                                <CheckBox x:Name="THE_CHECK_BOX"  IsChecked="{Binding IsPresent, Mode=TwoWay}"  HorizontalAlignment="Right" Click="THE_CHECK_BOX_OnClick"/>
+                            </Grid>
+
+                            <Grid Margin="5">
+                                <TextBlock Text="Retard (Min)" HorizontalAlignment="Left" FontSize="15" Foreground="Gray" FontWeight="Medium" FontFamily="Verdana"/>
+                                <xctk:IntegerUpDown x:Name="RETARD_MIN" Value="{Binding RetardTime, StringFormat= mm, Mode=TwoWay}" IsEnabled="{Binding ElementName = THE_CHECK_BOX, Path=IsChecked}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Minimum="0" Maximum="60" Foreground="Gray" ValueChanged="UpDownBase_OnValueChanged"/>
+                            </Grid>
+
+                        </StackPanel>
+                    </Border>
+                </ListBoxItem>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+        <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel></WrapPanel>
+            </ItemsPanelTemplate>
+        </ListBox.ItemsPanel>
+    </ListBox>
+
+
 </Page>
