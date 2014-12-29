@@ -34,7 +34,7 @@ namespace DataService.Entities.Pedagogy
         /// <summary>
         /// Appreciation
         /// </summary>
-        public string Appreciation { get; set; } = "Null";
+        public string Appreciation { get; set; } = "";
 
 
 

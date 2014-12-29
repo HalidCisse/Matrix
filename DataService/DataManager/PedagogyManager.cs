@@ -50,6 +50,12 @@ namespace DataService.DataManager
 
 
         /// <summary>
+        /// Gestion Des Notes des Etudiants
+        /// </summary>
+        public StudentsNotesManager StudentNote = new StudentsNotesManager();
+
+
+        /// <summary>
         /// Ajouter Une Nouvelle Annee Scolaire, Return True if Successful
         /// </summary>
         /// <param name="newAnneeScolaire">Object AnneeScolaire</param>

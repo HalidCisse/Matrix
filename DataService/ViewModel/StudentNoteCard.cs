@@ -19,12 +19,14 @@ namespace DataService.ViewModel
             var myStudentNote = GetStudentNote(coursGuid, studentGuid) ?? new StudentNote
             {
                 StudentNoteGuid = Guid.NewGuid(),
-                CoursGuid = coursGuid,
-                StudentGuid = studentGuid,    
-                Appreciation            = ""
+                CoursGuid       = coursGuid,
+                StudentGuid     = studentGuid,    
+                Appreciation    = ""
             };
 
             StudentNoteGuid = myStudentNote.StudentNoteGuid;
+            StudentGuid = myStudentNote.StudentGuid;
+            CoursGuid = myStudentNote.CoursGuid;
             Note = myStudentNote.Note;
             Appreciation = myStudentNote.Appreciation;
 
@@ -38,10 +40,20 @@ namespace DataService.ViewModel
 
 
         /// <summary>
-        /// Presence a un cours
+        /// ID
         /// </summary>       
         public Guid StudentNoteGuid { get; }
-       
+
+        /// <summary>
+        /// Student ID
+        /// </summary>       
+        public Guid StudentGuid { get; }
+
+        /// <summary>
+        /// Cours ID
+        /// </summary>       
+        public Guid CoursGuid { get; }
+
         /// <summary>
         /// Photo de l'etudiant
         /// </summary>
