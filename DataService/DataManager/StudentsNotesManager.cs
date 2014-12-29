@@ -28,8 +28,8 @@ namespace DataService.DataManager
         /// <returns></returns>
         private static bool AddStudentNote(StudentNote myNote)
         {
-            var controlDate = GetCoursById(myNote.CoursGuid)?.StartDate;
-            if (controlDate == null || !EstPresent(myNote.StudentGuid, myNote.CoursGuid, (DateTime)controlDate)) myNote.Note = 0;
+            //var controlDate = GetCoursById(myNote.CoursGuid)?.StartDate;
+            //if (controlDate == null || !EstPresent(myNote.StudentGuid, myNote.CoursGuid, (DateTime)controlDate)) myNote.Note = 0;
 
             using (var db = new Ef())
             {
@@ -45,8 +45,8 @@ namespace DataService.DataManager
         /// <returns></returns>
         private static bool UpdateStudentNote(StudentNote myNote)
         {
-            var controlDate = GetCoursById(myNote.CoursGuid)?.StartDate;
-            if (controlDate == null || !EstPresent(myNote.StudentGuid, myNote.CoursGuid, (DateTime)controlDate)) myNote.Note = 0;
+            //var controlDate = GetCoursById(myNote.CoursGuid)?.StartDate;
+            //if (controlDate == null || !EstPresent(myNote.StudentGuid, myNote.CoursGuid, (DateTime)controlDate)) myNote.Note = 0;
                              
             using (var db = new Ef())
             {
@@ -92,6 +92,8 @@ namespace DataService.DataManager
  
         private static bool EstPresent(Guid personGuid, Guid coursGuid, DateTime coursDate)
         {
+            coursDate = coursDate.Date;
+
             using (var db = new Ef())
             {
                 var ticket = db.AbsenceTicket.FirstOrDefault(t => t.CoursGuid == coursGuid &&

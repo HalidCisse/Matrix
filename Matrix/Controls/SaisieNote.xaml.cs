@@ -65,7 +65,7 @@ namespace Matrix.Controls
                 CoursGuid = studentNoteCard.CoursGuid,
                 StudentGuid = studentNoteCard.StudentGuid,
                 Note = studentNoteCard.Note,
-                Appreciation = studentNoteCard.Appreciation //((TextboxW)sender).Text
+                Appreciation = studentNoteCard.Appreciation 
             };
 
             try

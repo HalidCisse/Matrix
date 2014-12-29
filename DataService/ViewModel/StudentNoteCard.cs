@@ -24,11 +24,12 @@ namespace DataService.ViewModel
                 Appreciation    = ""
             };
 
-            StudentNoteGuid = myStudentNote.StudentNoteGuid;
-            StudentGuid = myStudentNote.StudentGuid;
-            CoursGuid = myStudentNote.CoursGuid;
-            Note = myStudentNote.Note;
-            Appreciation = myStudentNote.Appreciation;
+            StudentNoteGuid = myStudentNote.StudentNoteGuid;            
+            CoursGuid       = myStudentNote.CoursGuid;
+            StudentGuid     = myStudentNote.StudentGuid;
+            IsPresent       = true;
+            Note            = myStudentNote.Note;
+            Appreciation    = myStudentNote.Appreciation;
 
             using (var db = new Ef())
             {
@@ -63,6 +64,11 @@ namespace DataService.ViewModel
         /// Nom Complet
         /// </summary>
         public string FullName { get; }
+
+        /// <summary>
+        /// Si l'Etudiant est present au cours
+        /// </summary>
+        public bool IsPresent { get; }
 
         /// <summary>
         /// La Note

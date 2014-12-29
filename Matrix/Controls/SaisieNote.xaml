@@ -131,7 +131,7 @@
                                 </Image>
                             </Grid>
 
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding FullName}" Margin="5,15" HorizontalAlignment="Stretch" FontSize="20" Foreground="Gray" FontWeight="Bold" Width="170" TextWrapping="Wrap" />
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding FullName}" Margin="5,15" HorizontalAlignment="Stretch" FontSize="20" Foreground="Gray" FontWeight="Bold" Width="170" TextWrapping="NoWrap" />
 
                             <Grid Grid.Row="1" Grid.Column="1" Margin="10,0">
                                 <Slider x:Name="THE_SLIDER" Value="{Binding Note, Mode=TwoWay}" Style="{StaticResource Horizontal_Slider}" Width="170" Maximum="20" Minimum="0" TickFrequency="0.25" IsSnapToTickEnabled="True" HorizontalAlignment="Left" ValueChanged="RangeBase_OnValueChanged"/>
