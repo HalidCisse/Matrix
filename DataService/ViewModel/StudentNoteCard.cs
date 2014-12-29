@@ -20,7 +20,8 @@ namespace DataService.ViewModel
             {
                 StudentNoteGuid = Guid.NewGuid(),
                 CoursGuid = coursGuid,
-                StudentGuid = studentGuid,                
+                StudentGuid = studentGuid,    
+                Appreciation            = ""
             };
 
             StudentNoteGuid = myStudentNote.StudentNoteGuid;

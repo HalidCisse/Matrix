@@ -197,9 +197,9 @@ namespace Matrix.views.Pedagogy
             if(TITLE_TEXT.Text == "MODIFICATION") return;
 
             if(TYPE.SelectedValue.ToString().Equals(CoursTypes.Revision.ToString()) )
-              { TITLE_TEXT.Text = "AJOUTER UNE " + ((KeyValuePair<string, string>)(TYPE.SelectedItem)).Key.ToUpper(); }
+              { TITLE_TEXT.Text = "AJOUTER UNE " + ((KeyValuePair<string, Enum >)(TYPE.SelectedItem)).Key.ToUpper(); }
             else
-            { TITLE_TEXT.Text = "AJOUTER UN " + ((KeyValuePair<string, string>)(TYPE.SelectedItem)).Key.ToUpper (); }
+            { TITLE_TEXT.Text = "AJOUTER UN " + ((KeyValuePair<string, Enum>)(TYPE.SelectedItem)).Key.ToUpper (); }
 
             if(TYPE.SelectedValue.ToString().Equals(CoursTypes.Control.ToString()) || TYPE.SelectedValue.ToString().Equals(CoursTypes.Examen.ToString()) || TYPE.SelectedValue.ToString().Equals(CoursTypes.Test.ToString()))
               { INSTRUCTEUR.Text = "SUPERVISEUR"; }

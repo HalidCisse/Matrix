@@ -21,8 +21,7 @@ namespace Matrix.Controls
     public partial class SaisieNote
     {
         private readonly Guid _currentCoursGuid;
-        //private readonly DateTime _currentCoursDate;
-
+        
         /// <summary>
         /// 
         /// </summary>
@@ -33,7 +32,7 @@ namespace Matrix.Controls
 
             new Task(() => Dispatcher.BeginInvoke(new Action(() =>
             {
-                NOTE_LIST.ItemsSource = App.ModelS.GetStudentsNotesCards(currentCoursGuid);
+                NOTE_LIST.ItemsSource = App.ModelS.GetStudentsNotesCards(_currentCoursGuid);
 
             }))).RunSynchronously();
 

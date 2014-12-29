@@ -4,25 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:Ct="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:controls="clr-namespace:Matrix.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="715">
     <ListBox Background="Transparent" BorderThickness="0" Name="NOTE_LIST" SelectedValuePath="PersonGuid" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
         <ListBox.ItemTemplate>
             <DataTemplate>
                 <ListBoxItem HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
-                    <Border BorderThickness="1" BorderBrush="#A9A9CB" Width="160" Background="Beige" Height="210" Effect="{StaticResource Z-Depth3}">
+                    <Border BorderThickness="1" BorderBrush="#A9A9CB" Width="340" Background="Beige" Height="215" Effect="{StaticResource Z-Depth3}">
                         <Grid >
                             <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="50"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="110"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             
-                            <Grid Grid.Row="0" Grid.Column="0" RowSpan="2" Width="100" Height="100" HorizontalAlignment="Center" Margin="5">
+                            <Grid Grid.Row="0" Grid.Column="0" RowSpan="2" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <Border  Name="MaskBorder" CornerRadius="50" Background="White" BorderThickness="0"/>
                                 <Image Source="{Binding PhotoIdentity}" Stretch="Fill" Width="100" Height="100">
                                     <Image.OpacityMask>
@@ -31,16 +34,14 @@
                                 </Image>
                             </Grid>
 
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding FullName}" Margin="5" HorizontalAlignment="Stretch" FontSize="20" Foreground="Gray" FontWeight="Bold" Width="170" TextWrapping="NoWrap" />
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding FullName}" Margin="5,15" HorizontalAlignment="Stretch" FontSize="20" Foreground="Gray" FontWeight="Bold" Width="170" TextWrapping="Wrap" />
 
-                            <Grid Grid.Row="1" Grid.Column="1" Margin="5">
-                                <Slider Name="THE_SLIDER" Value="{Binding Note, Mode=TwoWay}" FontSize="15" HorizontalAlignment="Left" Foreground="Gray" ValueChanged="RangeBase_OnValueChanged"/>
-                                <TextBlock Text="{Binding ElementName= THE_SLIDER, Path= Value, Mode= TwoWay}"  HorizontalAlignment="Right"/>
+                            <Grid Grid.Row="1" Grid.Column="1" Margin="10,0">
+                                <Slider Name="THE_SLIDER" Value="{Binding Note, Mode=TwoWay}" Width="170" Maximum="20" Minimum="0" TickFrequency="0.25" IsSnapToTickEnabled="True" HorizontalAlignment="Left" ValueChanged="RangeBase_OnValueChanged"/>
+                                <TextBox Text="{Binding ElementName= THE_SLIDER, Path= Value, UpdateSourceTrigger=PropertyChanged}" Width="40" Height="20" Foreground="Gray" HorizontalAlignment="Right" VerticalAlignment="Top"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Appreciation, Mode=TwoWay}" Margin="5" HorizontalAlignment="Stretch" FontSize="20" Foreground="Gray" FontWeight="Bold" Width="170" TextWrapping="NoWrap" LostFocus="UIElement_OnLostFocus"/>
-
-                            
+                            <controls:TextboxW Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Appreciation, Mode=TwoWay}" Watermark="Apprecition" Background="WhiteSmoke" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Foreground="Gray" FontWeight="ExtraLight" Width="320" Height="90" TextWrapping="Wrap" LostFocus="UIElement_OnLostFocus"/>                    
                         </Grid>
                     </Border>
                 </ListBoxItem>
@@ -51,7 +52,5 @@
                 <WrapPanel></WrapPanel>
             </ItemsPanelTemplate>
         </ListBox.ItemsPanel>
-    </ListBox>
-    
-    
+    </ListBox>    
 </UserControl>

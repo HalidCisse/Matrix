@@ -199,7 +199,7 @@ namespace DataService
         /// <exception cref="NotImplementedException"></exception>
         public IEnumerable GetAbsencesTiketCards(Guid currentCoursGuid, DateTime coursDate)
         {                        
-            var tiketList = new HashSet<AbsenceTicketCard>() {new AbsenceTicketCard(GetCoursStaffGuid(currentCoursGuid), currentCoursGuid, coursDate) };
+            var tiketList = new HashSet<AbsenceTicketCard> {new AbsenceTicketCard(GetCoursStaffGuid(currentCoursGuid), currentCoursGuid, coursDate) };
 
             var tiketListB = new ConcurrentBag<AbsenceTicketCard>();
 
