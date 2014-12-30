@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations;
 
 
-
 namespace DataService.Entities.Pedagogy
 {
     /// <summary>

@@ -110,7 +110,7 @@
         <ListBox.ItemTemplate>
             <DataTemplate>
                 <ListBoxItem HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
-                    <Border BorderThickness="1" BorderBrush="#A9A9CB" Width="340" Background="Beige" Height="215" Effect="{StaticResource Z-Depth3}">
+                    <Border BorderThickness="1" BorderBrush="{Binding IsPresentColor}" Width="340" Background="Beige" Height="215" Effect="{StaticResource Z-Depth3}">
                         <Grid >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="60"/>

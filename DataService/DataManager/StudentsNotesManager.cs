@@ -99,7 +99,8 @@ namespace DataService.DataManager
                 var ticket = db.AbsenceTicket.FirstOrDefault(t => t.CoursGuid == coursGuid &&
                                                                           t.PersonGuid == personGuid &&
                                                                           t.CoursDate == coursDate);
-                return ticket != null && ticket.IsPresent;
+
+                return ticket == null || ticket.IsPresent;
             }
         }
 

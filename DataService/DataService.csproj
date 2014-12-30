@@ -168,7 +168,6 @@
     <Compile Include="Entities\Pedagogy\Cours.cs" />
     <Compile Include="Entities\Pedagogy\Filiere.cs" />
     <Compile Include="Entities\Depracated\Filiere_Matieres.cs" />
-    <Compile Include="Entities\Human.cs" />
     <Compile Include="Entities\Pedagogy\Matiere.cs" />
     <Compile Include="Entities\Pedagogy\MatiereControl.cs" />
     <Compile Include="Entities\Depracated\Matiere_Instructeurs.cs" />
@@ -241,6 +240,16 @@
     <EmbeddedResource Include="Migrations\201412171152128_kk.resx">
       <DependentUpon>201412171152128_kk.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CLib\CLib.csproj">
+      <Project>{e6b9d217-36d7-4656-b702-918fc31db125}</Project>
+      <Name>CLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{2de4e559-b4c9-4f75-a448-975096e553a6}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

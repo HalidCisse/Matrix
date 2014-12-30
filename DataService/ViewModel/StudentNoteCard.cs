@@ -20,22 +20,21 @@ namespace DataService.ViewModel
             {
                 StudentNoteGuid = Guid.NewGuid(),
                 CoursGuid       = coursGuid,
-                StudentGuid     = studentGuid,    
-                Appreciation    = ""
+                StudentGuid     = studentGuid,                    
             };
 
             StudentNoteGuid = myStudentNote.StudentNoteGuid;            
             CoursGuid       = myStudentNote.CoursGuid;
             StudentGuid     = myStudentNote.StudentGuid;
-            IsPresent       = true;
+            IsPresentColor  = EstPresent(studentGuid, CoursGuid) ? "#A9A9CB" : "Red";
             Note            = myStudentNote.Note;
             Appreciation    = myStudentNote.Appreciation;
-
+            
             using (var db = new Ef())
             {
-                var st = db.Student.Find(myStudentNote.StudentGuid);
+                var st        = db.Student.Find(myStudentNote.StudentGuid);
                 PhotoIdentity = st?.PhotoIdentity;
-                FullName = st?.FullName;
+                FullName      = st?.FullName;
             }
         }
 
@@ -68,7 +67,7 @@ namespace DataService.ViewModel
         /// <summary>
         /// Si l'Etudiant est present au cours
         /// </summary>
-        public bool IsPresent { get; }
+        public string IsPresentColor { get; }
 
         /// <summary>
         /// La Note
@@ -89,6 +88,26 @@ namespace DataService.ViewModel
             }
         }
 
+        private static bool EstPresent(Guid personGuid, Guid controlGuid)
+        {
+            var coursDate = new DateTime();  
+
+            using (var xb = new Ef())
+            {
+                var startDate = xb.Cours.Find(controlGuid)?.StartDate;
+                if (startDate != null)
+                    coursDate = ((DateTime) startDate).Date;
+            }
+
+            using (var db = new Ef())
+            {
+                var ticket = db.AbsenceTicket.FirstOrDefault(t => t.CoursGuid == controlGuid    &&
+                                                                  t.PersonGuid == personGuid  &&
+                                                                  t.CoursDate == coursDate    );
+
+                return ticket == null || ticket.IsPresent;
+            }
+        }
 
 
     }
