@@ -2,6 +2,7 @@ using System.Data.Entity;
 using DataService.Entities;
 using DataService.Entities.Pedagogy;
 using DataService.Entities.Security;
+//using Microsoft.Data.Entity;
 
 namespace DataService.Context
 {
@@ -20,13 +21,25 @@ namespace DataService.Context
         /// <summary>
         /// Context
         /// </summary>
-        public Ef ( ) : base ("name=conString")
+        public Ef() : base("name=conString")
         {
+            //"name=conString"
             //Database.CreateIfNotExists();
             //Database.SetInitializer (new DropCreateDatabaseIfModelChanges<EF> ());
-            Configuration.ProxyCreationEnabled = false;           
+            //Configuration.ProxyCreationEnabled = false;           
             //Database.SetInitializer (new DBInitializer ());
         }
+
+        //public Ef(DbContextOptions options) : base(options)
+        //{
+
+        //}
+
+       
+        //protected override void OnConfiguring(DbContextOptions builder)
+        //{
+        //    builder.UseSqlServer(@"Server=(localdb)\v11.0;Database=Blogging;Trusted_Connection=True;");
+        //}
 
 
         #region 
@@ -163,38 +176,22 @@ namespace DataService.Context
 
         #region RELATIONS MAPPING
 
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        //    //modelBuilder.Conventions.Remove<KeyDiscoveryConvention>();
 
-        /// <summary>
-        /// This method is called when the model for a derived context has been initialized, but
-        ///             before the model has been locked down and used to initialize the context.  The default
-        ///             implementation of this method does nothing, but it can be overridden in a derived class
-        ///             such that the model can be further configured before it is locked down.
-        /// </summary>
-        /// <remarks>
-        /// Typically, this method is called only once when the first instance of a derived context
-        ///             is created.  The model for that context is then cached and is for all further instances of
-        ///             the context in the app domain.  This caching can be disabled by setting the ModelCaching
-        ///             property on the given ModelBuidler, but note that this can seriously degrade performance.
-        ///             More control over caching is provided through use of the DbModelBuilder and DbContextFactory
-        ///             classes directly.
-        /// </remarks>
-        /// <param name="modelBuilder">The builder that defines the model for the context being created. </param>
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            //modelBuilder.Conventions.Remove<KeyDiscoveryConvention>();
+        //    //modelBuilder.Entity<Staff> ()
+        //    //    .HasRequired (e => e.PERSON)
+        //    //    .WithRequiredPrincipal ();
 
-            //modelBuilder.Entity<Staff> ()
-            //    .HasRequired (e => e.PERSON)
-            //    .WithRequiredPrincipal ();
+        //    //modelBuilder.Entity<Course> ()
+        //    //    .HasMany (c => c.Instructors).WithMany (i => i.Courses)
+        //    //    .Map (t => t.MapLeftKey ("CourseID")
+        //    //        .MapRightKey ("InstructorID")
+        //    //        .ToTable ("CourseInstructor"));
 
-            //modelBuilder.Entity<Course> ()
-            //    .HasMany (c => c.Instructors).WithMany (i => i.Courses)
-            //    .Map (t => t.MapLeftKey ("CourseID")
-            //        .MapRightKey ("InstructorID")
-            //        .ToTable ("CourseInstructor"));
-
-        }
+        //}
 
 
         #endregion

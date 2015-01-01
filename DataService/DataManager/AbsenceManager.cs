@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using DataService.Context;
 using DataService.Entities.Pedagogy;
+//using Microsoft.Data.Entity;
 
 namespace DataService.DataManager
 {
