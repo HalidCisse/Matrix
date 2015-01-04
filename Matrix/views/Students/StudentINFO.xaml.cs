@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using CLib;
 using DataService.Entities;
 using FirstFloor.ModernUI.Windows.Controls;
-using Matrix.Utils;
 using Microsoft.Win32;
 
 namespace Matrix.views.Students
@@ -18,7 +18,7 @@ namespace Matrix.views.Students
     {
         private readonly bool _isAdd;
 
-        private Guid _studentDisplatedGuid ;
+        private readonly Guid _studentDisplatedGuid ;
         
         /// <summary>
         /// 

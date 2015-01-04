@@ -5,9 +5,12 @@ using System.IO;
 using System.IO.MemoryMappedFiles;
 using System.Threading;
 
-namespace Matrix.Utils
+namespace CLib
 {
-    class SingletonApplication
+    /// <summary>
+    /// 
+    /// </summary>
+    public class SingletonApplication
     {
 
         /// <summary>
@@ -18,24 +21,13 @@ namespace Matrix.Utils
             readonly Action<IEnumerable<string>> _processArgsFunc;
             readonly string _applicationId;
             Thread _thread;
-            string _argDelimiter = "_;;_";
 
             /// <summary>
             /// Gets or sets the string that is used to join 
             /// the string array of arguments in memory.
             /// </summary>
             /// <value>The arg delimeter.</value>
-            public string ArgDelimeter
-            {
-                get
-                {
-                    return _argDelimiter;
-                }
-                set
-                {
-                    _argDelimiter = value;
-                }
-            }
+            public string ArgDelimeter { get; set; } = "_;;_";
 
             /// <summary>
             /// Initializes a new instance of the <see cref="SingletonApplicationEnforcer"/> class.
@@ -50,8 +42,8 @@ namespace Matrix.Utils
                 {
                     throw new ArgumentNullException("processArgsFunc");
                 }
-                this._processArgsFunc = processArgsFunc;
-                this._applicationId = applicationId;
+                _processArgsFunc = processArgsFunc;
+                _applicationId = applicationId;
             }
 
             /// <summary>
@@ -99,7 +91,7 @@ namespace Matrix.Utils
                                             Debug.WriteLine("Unable to retrieve string. " + ex);
                                             continue;
                                         }
-                                        string[] argsSplit = args.Split(new[] { _argDelimiter },
+                                        string[] argsSplit = args.Split(new[] { ArgDelimeter },
                                                                         StringSplitOptions.RemoveEmptyEntries);
                                         _processArgsFunc(argsSplit);
                                     }
@@ -127,7 +119,7 @@ namespace Matrix.Utils
                         {
                             var writer = new BinaryWriter(stream);
                             var args = Environment.GetCommandLineArgs();
-                            var joined = string.Join(_argDelimiter, args);
+                            var joined = string.Join(ArgDelimeter, args);
                             writer.Write(joined);
                         }
                     }

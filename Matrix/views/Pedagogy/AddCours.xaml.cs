@@ -7,8 +7,8 @@ using System.Windows.Media;
 using DataService.Entities.Pedagogy;
 using DataService.Enum;
 using FirstFloor.ModernUI.Windows.Controls;
-using Matrix.Utils;
-using Matrix.Utils.EnumsHelper;
+using CLib.EnumsHelper;
+//using Matrix.Utils.EnumsHelper;
 
 namespace Matrix.views.Pedagogy
 {

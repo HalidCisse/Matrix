@@ -22,10 +22,8 @@ namespace DataService.Migrations
 
         protected override void Seed(Ef ef)
         {
-            //EF.Database.CreateIfNotExists ();
-
-            //SettingsSeed(ef);
-
+            ef.Database.CreateIfNotExists ();
+            
             ProfileSeed(ef);
             Student_SeedFromSql (ef);
             Staff_SeedFromSql (ef);

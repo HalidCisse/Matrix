@@ -2,17 +2,25 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Globalization;
 
-namespace DataService.Utils
+namespace CLib
 {
-    static class ListExtention
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class ListExtention
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="data"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public static DataTable ToDataTable<T> ( this IList<T> data )
         {
-            const double d = 1.0D;
-            d.ToString(CultureInfo.InvariantCulture);
+            //const double d = 1.0D;
+            //d.ToString(CultureInfo.InvariantCulture);
             var properties = TypeDescriptor.GetProperties (typeof (T));
 
             var table = new DataTable ();
@@ -37,6 +45,12 @@ namespace DataService.Utils
             return table;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="data"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public static DataRow ToDataRow<T> ( this T data )
         {
             var properties = TypeDescriptor.GetProperties (typeof (T));

@@ -3,19 +3,22 @@ using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace Matrix.Utils
+namespace CLib
 {
-
     
-
-    class ImageUtils
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class ImageUtils
     {
-
         
-
-
         #region Image To Bytes
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="imageControl"></param>
+        /// <returns></returns>
         public static byte[] GetPngFromImageControl ( BitmapImage imageControl )
         {
             var memStream = new MemoryStream ();
@@ -25,7 +28,12 @@ namespace Matrix.Utils
             return memStream.GetBuffer ();
         }
 
-        public Byte[] BitmapToByte2 ( BitmapImage bitmapImage )
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bitmapImage"></param>
+        /// <returns></returns>
+        public static Byte[] BitmapToByte2 ( BitmapImage bitmapImage )
         {
 
             byte[] data;
@@ -39,7 +47,12 @@ namespace Matrix.Utils
             return data;
         }
 
-        public Byte[] BitmapToByte ( BitmapImage bitmap )
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bitmap"></param>
+        /// <returns></returns>
+        public static Byte[] BitmapToByte ( BitmapImage bitmap )
         {
             var stream = bitmap.StreamSource;
             Byte[] buffer;
@@ -51,6 +64,11 @@ namespace Matrix.Utils
             return buffer;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="imagePath"></param>
+        /// <returns></returns>
         public static byte[] BitmapToByte ( string imagePath )
         {
             FileStream fs = new FileStream (imagePath, FileMode.Open, FileAccess.Read);
@@ -71,7 +89,12 @@ namespace Matrix.Utils
             return imgByteArr;
         }
 
-        public Byte[] BitmapToByte1 ( BitmapImage bitmap )
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bitmap"></param>
+        /// <returns></returns>
+        public static Byte[] BitmapToByte1 ( BitmapImage bitmap )
         {
             var stream = bitmap.StreamSource;
             Byte[] buffer;
@@ -91,6 +114,11 @@ namespace Matrix.Utils
 
         #region Bytes To Image
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="byteVal"></param>
+        /// <returns></returns>
         public static BitmapImage DecodePhoto ( byte[] byteVal )
         {
             if(byteVal == null) return null;
@@ -113,7 +141,11 @@ namespace Matrix.Utils
             return null;
         }
         
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public static BitmapImage GetBitmapFromFile ( string path )
         {
             var img = new BitmapImage ();

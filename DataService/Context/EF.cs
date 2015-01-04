@@ -2,7 +2,7 @@ using System.Data.Entity;
 using DataService.Entities;
 using DataService.Entities.Pedagogy;
 using DataService.Entities.Security;
-//using Microsoft.Data.Entity;
+
 
 namespace DataService.Context
 {
@@ -24,9 +24,9 @@ namespace DataService.Context
         public Ef() : base("name=conString")
         {
             //"name=conString"
-            //Database.CreateIfNotExists();
+            Database.CreateIfNotExists();
             //Database.SetInitializer (new DropCreateDatabaseIfModelChanges<EF> ());
-            //Configuration.ProxyCreationEnabled = false;           
+            Configuration.ProxyCreationEnabled = false;           
             //Database.SetInitializer (new DBInitializer ());
         }
 
@@ -54,15 +54,7 @@ namespace DataService.Context
         /// </summary>
         public virtual DbSet<Student> Student { get; set; }
 
-        /// <summary>
-        /// Informations Ecoles
-        /// </summary>
-        //public virtual DbSet<Etablissement> Etablissement { get; set; }
-
-        /// <summary>
-        /// Salle Ou on Instruit un Cours
-        /// </summary>
-        //public virtual DbSet<Salle> Salle { get; set; }
+       
 
         /// <summary>
         /// Les Parametres
@@ -132,12 +124,7 @@ namespace DataService.Context
         /// Les Etudiants d'une Classe
         /// </summary>
         public virtual DbSet<ClasseStudents> ClasseStudents { get; set; } 
-
-        /// <summary>
-        /// Les Instructeurs d'une Matiere
-        /// </summary>
-        public virtual DbSet<MatiereInstructeurs> MatieresInstructeurs { get; set; }
-
+       
         /// <summary>
         /// Represente une Annee Scolaire
         /// </summary>

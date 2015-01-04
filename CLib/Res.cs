@@ -1,10 +1,19 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Matrix.Utils
+namespace CLib
 {
-    class Res
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class Res
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pathInApplication"></param>
+        /// <param name="assembly"></param>
+        /// <returns></returns>
         public static string GetRes ( string pathInApplication, Assembly assembly = null )
         {
             if(assembly == null)

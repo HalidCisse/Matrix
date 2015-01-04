@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using CLib;
 using DataService.Entities.Pedagogy;
 using FirstFloor.ModernUI.Windows.Controls;
-using Matrix.Utils;
 
 namespace Matrix.views.Pedagogy
 {

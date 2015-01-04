@@ -1,9 +1,17 @@
 ﻿using System;
 
-namespace Matrix.Utils
+namespace CLib
 {
-    class GenId
+    /// <summary>
+    /// 
+    /// </summary>
+    public class GenId
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lengthOfTheId"></param>
+        /// <returns></returns>
         public static string GetId (int lengthOfTheId)
         {
             var x = new Random();
@@ -15,7 +23,6 @@ namespace Matrix.Utils
             }
             return idOut;
         }
-
     }
 
 }

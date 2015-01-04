@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 
-namespace Matrix.Utils
+namespace CLib
 {
     /// <summary>
     /// Helper

@@ -2,10 +2,20 @@
 using System.Windows;
 using System.Windows.Media;
 
-namespace Matrix.Utils
+namespace CLib
 {
-    class FindVisual
+
+    /// <summary>
+    /// FindVisual
+    /// </summary>
+    public class FindVisual
     {  
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="depObj"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public static IEnumerable<T> FindVisualChildren<T> ( DependencyObject depObj ) where T : DependencyObject
         {
             if(depObj == null) yield break;
