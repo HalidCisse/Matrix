@@ -2,6 +2,7 @@ using System.Data.Entity;
 using DataService.Entities;
 using DataService.Entities.Pedagogy;
 using DataService.Entities.Security;
+using DataService.Migrations;
 
 
 namespace DataService.Context

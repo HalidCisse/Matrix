@@ -142,12 +142,6 @@
     <Reference Include="Elysium">
       <HintPath>..\packages\Elysium.Theme.2.0.4\lib\net45\Elysium.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.Core">
-      <HintPath>..\packages\EntityFramework.Core.7.0.0-rc1-11882\lib\net45\EntityFramework.Core.dll</HintPath>
-    </Reference>
     <Reference Include="FirstFloor.ModernUI">
       <HintPath>..\packages\ModernUI.WPF.1.0.6\lib\net45\FirstFloor.ModernUI.dll</HintPath>
     </Reference>
@@ -166,9 +160,6 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Common">
-      <HintPath>..\packages\System.Data.Common.1.0.0-rc1-10634\lib\net451\System.Data.Common.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data.SqlClient">
       <HintPath>..\packages\System.Data.SqlClient.1.0.0-rc1-10672\lib\net45\System.Data.SqlClient.dll</HintPath>
     </Reference>
@@ -662,9 +653,9 @@
       <Project>{2de4e559-b4c9-4f75-a448-975096e553a6}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataService\DataService.csproj">
-      <Project>{701e45a4-bbe9-4196-b67e-766b4cf487a1}</Project>
-      <Name>DataService</Name>
+    <ProjectReference Include="..\DataServeur\DataServeur.csproj">
+      <Project>{e063952c-8fbd-4d2f-b17b-1bbc04690468}</Project>
+      <Name>DataServeur</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
