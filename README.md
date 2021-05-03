@@ -1,10 +1,28 @@
-Matrix Soft
+Matrix
 ======
 
-[![Coverage Status](https://img.shields.io/coveralls/HalidCisse/Matrix.svg)](https://coveralls.io/r/HalidCisse/Matrix)
+Matrix is a school managment software made during my school years (2014 - 2016).
 
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/HalidCisse/Matrix?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+## Home Page
+![Home Page](doc/home.png "Home Page")
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/HalidCisse/matrix/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+## Schedule
+![Home Page](doc/add-course.png "Schedule")
 
-<a href="https://codeclimate.com/github/HalidCisse/Matrix"><img src="https://codeclimate.com/github/HalidCisse/Matrix/badges/gpa.svg" /></a>
+## Attendance
+![Home Page](doc/attandance.png "Attendance")
+
+## Students List
+![Home Page](doc/students.png "Students list")
+
+## Student View
+![Home Page](doc/studentview.png "studentview")
+
+## Timetable
+![Home Page](doc/timetable.png "timetable")
+
+## Tracks
+![Home Page](doc/tracks.png "tracks")
+
+## School Fees
+![Home Page](doc/transactions.png "transactions")
