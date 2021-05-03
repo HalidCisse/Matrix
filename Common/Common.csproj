@@ -1,53 +1,140 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-	<PropertyGroup>
-		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-		<ProjectGuid>2de4e559-b4c9-4f75-a448-975096e553a6</ProjectGuid>
-		<OutputType>Library</OutputType>
-		<AppDesignerFolder>Properties</AppDesignerFolder>
-		<RootNamespace>Common</RootNamespace>
-		<AssemblyName>Common</AssemblyName>
-		<TargetFrameworkVersion>v4.5.3</TargetFrameworkVersion>
-		<FileAlignment>512</FileAlignment>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<DebugSymbols>true</DebugSymbols>
-		<DebugType>full</DebugType>
-		<Optimize>false</Optimize>
-		<OutputPath>bin\Debug\</OutputPath>
-		<DefineConstants>DEBUG;TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<DebugType>pdbonly</DebugType>
- 		<Optimize>true</Optimize>
-		<OutputPath>bin\Release\</OutputPath>
-		<DefineConstants>TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="System"/>
-		
-		<Reference Include="System.Core"/>
-		<Reference Include="System.Xml.Linq"/>
-		<Reference Include="System.Data.DataSetExtensions"/>
-		
-		
-		<Reference Include="Microsoft.CSharp"/>
- 		
-		<Reference Include="System.Data"/>
-		<Reference Include="System.Xml"/>
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="Class1.cs" />
-
-		<Compile Include="Properties\AssemblyInfo.cs" />
-	</ItemGroup>
-	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2DE4E559-B4C9-4F75-A448-975096E553A6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>Common</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Common.XML</DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Matrix.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3-beta1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3-beta1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Comm\Entity\Message.cs" />
+    <Compile Include="Comm\Entity\Chat.cs" />
+    <Compile Include="Security\Enums\TeacherClearances.cs" />
+    <Compile Include="Security\Enums\USpace.cs" />
+    <Compile Include="Shared\Entity\Document.cs" />
+    <Compile Include="Economat\Entity\BillPayOff.cs" />
+    <Compile Include="Economat\Entity\Employement.cs" />
+    <Compile Include="Economat\Entity\Paycheck.cs" />
+    <Compile Include="Economat\Entity\Salary.cs" />
+    <Compile Include="Economat\Entity\PayRoll.cs" />
+    <Compile Include="Economat\Entity\SchoolFee.cs" />
+    <Compile Include="Economat\Entity\StudentBill.cs" />
+    <Compile Include="Economat\Entity\Transaction.cs" />
+    <Compile Include="Shared\Entity\Etablissement.cs" />
+    <Compile Include="Shared\Entity\MatrixSetting.cs" />
+    <Compile Include="Comm\Entity\Conversation.cs" />
+    <Compile Include="Pedagogy\Entity\AbsenceTicket.cs" />
+    <Compile Include="Pedagogy\Entity\AnneeScolaire.cs" />
+    <Compile Include="Pedagogy\Entity\Classe.cs" />
+    <Compile Include="Pedagogy\Entity\Study.cs" />
+    <Compile Include="Pedagogy\Entity\CoursEvent.cs" />
+    <Compile Include="Pedagogy\Entity\StudyException.cs" />
+    <Compile Include="Pedagogy\Entity\Filiere.cs" />
+    <Compile Include="Pedagogy\Entity\Enrollement.cs" />
+    <Compile Include="Pedagogy\Entity\InscriptionRule.cs" />
+    <Compile Include="Pedagogy\Entity\Subject.cs" />
+    <Compile Include="Pedagogy\Entity\PeriodeScolaire.cs" />
+    <Compile Include="Pedagogy\Entity\Qualification.cs" />
+    <Compile Include="Pedagogy\Entity\StudentGrade.cs" />
+    <Compile Include="Pedagogy\Entity\StudentQualification.cs" />
+    <Compile Include="Shared\Entity\Person.cs" />
+    <Compile Include="Shared\Entity\Salle.cs" />
+    <Compile Include="Security\Entity\User.cs" />
+    <Compile Include="Security\Entity\UserProfile.cs" />
+    <Compile Include="Security\Enums\UserRoles.cs" />
+    <Compile Include="Security\Enums\UserSpace.cs" />
+    <Compile Include="Shared\Entity\Staff.cs" />
+    <Compile Include="Shared\Entity\Student.cs" />
+    <Compile Include="Pedagogy\Enums\ClassGrades.cs" />
+    <Compile Include="Pedagogy\Enums\CoursTypes.cs" />
+    <Compile Include="Pedagogy\Enums\FiliereScolarite.cs" />
+    <Compile Include="Pedagogy\Enums\EnrollementStatus.cs" />
+    <Compile Include="Shared\Enums\HealthStates.cs" />
+    <Compile Include="Shared\Enums\MatrixConstants.cs" />
+    <Compile Include="Shared\Enums\MatrixSettings.cs" />
+    <Compile Include="Comm\Enums\MessageType.cs" />
+    <Compile Include="Shared\Enums\Nationalite.cs" />
+    <Compile Include="Pedagogy\Enums\GradeAppreciations.cs" />
+    <Compile Include="Economat\Enums\PaymentMethode.cs" />
+    <Compile Include="Economat\Enums\PaymentType.cs" />
+    <Compile Include="Economat\Enums\PayType.cs" />
+    <Compile Include="Security\Enums\SecurityClearances.cs" />
+    <Compile Include="Pedagogy\Enums\ScheduleType.cs" />
+    <Compile Include="Shared\Enums\Settings.cs" />
+    <Compile Include="Shared\Enums\StaffStatus.cs" />
+    <Compile Include="Shared\Enums\PersonTitles.cs" />
+    <Compile Include="Shared\Enums\StudentStatus.cs" />
+    <Compile Include="Shared\Enums\StudentTitles.cs" />
+    <Compile Include="Economat\Enums\InstallmentRecurrence.cs" />
+    <Compile Include="Shared\Enums\ProfileSettings.cs" />
+    <Compile Include="Economat\Enums\TransactionType.cs" />
+    <Compile Include="Security\Enums\AdminClearances.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Matrix.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CLib\CLib.csproj">
+      <Project>{e6b9d217-36d7-4656-b702-918fc31db125}</Project>
+      <Name>CLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -55,5 +142,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
- </Project>
+</Project>

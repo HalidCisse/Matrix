@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{93E7E898-5A11-43B7-8815-38213C170757}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataService</RootNamespace>
+    <AssemblyName>DataService</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DocumentationFile>bin\Debug\DataService.XML</DocumentationFile>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Matrix.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Humanizer">
+      <HintPath>..\packages\Humanizer.1.35.0\lib\portable-win+net40+sl50+wp8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Humanizer.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Context\EconomatContext.cs" />
+    <Compile Include="Context\SchoolContext.cs" />
+    <Compile Include="DataManager\AbsenceManager.cs" />
+    <Compile Include="DataManager\AnalyticsManager.cs" />
+    <Compile Include="DataManager\ClassesManager.cs" />
+    <Compile Include="DataManager\CommManager.cs" />
+    <Compile Include="DataManager\StudyManager.cs" />
+    <Compile Include="DataManager\DocumentsManager.cs" />
+    <Compile Include="DataManager\EconomatManager.cs" />
+    <Compile Include="DataManager\MetaManager.cs" />
+    <Compile Include="DataManager\PayrollManager.cs" />
+    <Compile Include="DataManager\SecurityManager.cs" />
+    <Compile Include="DataManager\StudentsFinanceManager.cs" />
+    <Compile Include="DataManager\FilieresManager.cs" />
+    <Compile Include="DataManager\HRManager.cs" />
+    <Compile Include="DataManager\EnrollementManager.cs" />
+    <Compile Include="DataManager\SubjectsManager.cs" />
+    <Compile Include="DataManager\MatrixSettingsManager.cs" />
+    <Compile Include="DataManager\PedagogyManager.cs" />
+    <Compile Include="DataManager\SettingsManager.cs" />
+    <Compile Include="DataManager\StudentsManager.cs" />
+    <Compile Include="DataManager\GradesManager.cs" />
+    <Compile Include="DataManager\TreasuryManager.cs" />
+    <Compile Include="DbService.cs" />
+    <Compile Include="Helpers\CoursHelper.cs" />
+    <Compile Include="Helpers\MembershipUserCreateStatus.cs" />
+    <Compile Include="Helpers\PayRollHelper.cs" />
+    <Compile Include="Helpers\SchoolFeeHelper.cs" />
+    <Compile Include="Migrations\EconomatContext\201504041341159_v .cs" />
+    <Compile Include="Migrations\EconomatContext\201504041341159_v .Designer.cs">
+      <DependentUpon>201504041341159_v .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SchoolContext\201504041340516_v .cs" />
+    <Compile Include="Migrations\SchoolContext\201504041340516_v .Designer.cs">
+      <DependentUpon>201504041340516_v .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SchoolContext\Configuration.cs" />
+    <Compile Include="Migrations\EconomatContext\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\Comm\MessageCard.cs" />
+    <Compile Include="ViewModel\Comm\ChatCard.cs" />
+    <Compile Include="ViewModel\Economat\DataCard.cs" />
+    <Compile Include="ViewModel\Economat\EmploymentCard.cs" />
+    <Compile Include="ViewModel\Economat\PayrollCard.cs" />
+    <Compile Include="ViewModel\Economat\SalaryCard.cs" />
+    <Compile Include="ViewModel\Economat\SchoolFeeRepport.cs" />
+    <Compile Include="ViewModel\Economat\TransactionCard.cs" />
+    <Compile Include="ViewModel\Pedagogy\AbsenceTicketCard.cs" />
+    <Compile Include="ViewModel\Pedagogy\AttendenceRepport.cs" />
+    <Compile Include="ViewModel\Pedagogy\ClassCard.cs" />
+    <Compile Include="ViewModel\Pedagogy\ClasseStudentCard.cs" />
+    <Compile Include="ViewModel\Pedagogy\CoursCard.cs" />
+    <Compile Include="ViewModel\Pedagogy\DayCoursCards.cs" />
+    <Compile Include="ViewModel\DepStaffCard.cs" />
+    <Compile Include="ViewModel\Pedagogy\FiliereCard.cs" />
+    <Compile Include="ViewModel\Pedagogy\FiliereClassCard.cs" />
+    <Compile Include="ViewModel\Pedagogy\FiliereClasses.cs" />
+    <Compile Include="ViewModel\Pedagogy\GradeCard.cs" />
+    <Compile Include="ViewModel\Pedagogy\InscriptionCard.cs" />
+    <Compile Include="ViewModel\Pedagogy\MatiereCard.cs" />
+    <Compile Include="ViewModel\Pedagogy\AssiduiteCard.cs" />
+    <Compile Include="ViewModel\Pedagogy\PeriodeAttendance.cs" />
+    <Compile Include="ViewModel\Economat\SchoolFeeCard.cs" />
+    <Compile Include="ViewModel\Pedagogy\PeriodeTranscript.cs" />
+    <Compile Include="ViewModel\Pedagogy\SubjectCard.cs" />
+    <Compile Include="ViewModel\SearchCard.cs" />
+    <Compile Include="ViewModel\StudentCard.cs" />
+    <Compile Include="ViewModel\Pedagogy\StudentNoteCard.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CLib\CLib.csproj">
+      <Project>{e6b9d217-36d7-4656-b702-918fc31db125}</Project>
+      <Name>CLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{2de4e559-b4c9-4f75-a448-975096e553a6}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Matrix.ico" />
+    <None Include="App.config" />
+    <None Include="Migrations\InitData\Students.data.sql" />
+    <None Include="Migrations\InitData\People.Students.sql" />
+    <None Include="Migrations\InitData\dbo.People.data.sql" />
+    <None Include="Migrations\InitData\dbo.Staffs.data.sql" />
+    <None Include="Migrations\InitData\dbo.Subjects.data.sql" />
+    <None Include="Migrations\InitData\dbo.Classes.data.sql" />
+    <None Include="Migrations\InitData\dbo.Filieres.data.sql" />
+    <Content Include="Migrations\InitData\Portraits\defaultStaff.png" />
+    <Content Include="Migrations\InitData\Portraits\defaultStudent.png" />
+    <Content Include="Migrations\InitData\Portraits\portrait1.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait10.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait11.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait12.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait13.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait14.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait15.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait16.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait17.png" />
+    <Content Include="Migrations\InitData\Portraits\portrait18.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait19.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait2.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait20.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait21.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait22.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait3.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait4.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait5.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait6.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait7.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait8.jpg" />
+    <Content Include="Migrations\InitData\Portraits\portrait9.jpg" />
+    <Content Include="Migrations\InitData\Portraits\user_ico.png" />
+    <Content Include="Migrations\InitData\Portraits\user_icon.png" />
+    <None Include="Resources\Staffs %281%29.sql" />
+    <None Include="Resources\Staffs.sql" />
+    <None Include="packages.config" />
+    <None Include="Resources\Down.png" />
+    <None Include="Resources\Up.png" />
+    <None Include="Resources\No.png" />
+    <None Include="Resources\yes.png" />
+    <EmbeddedResource Include="Migrations\EconomatContext\201504041341159_v .resx">
+      <DependentUpon>201504041341159_v .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\InitData\Students.sql" />
+    <EmbeddedResource Include="Migrations\InitData\Staffs.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\SchoolContext\201504041340516_v .resx">
+      <DependentUpon>201504041340516_v .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"
+    if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
